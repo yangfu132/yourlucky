@@ -3,26 +3,45 @@ import 'dart:math';
 ///此Model仅代表占卜时所创造的数据；
 class SABEasyDigitModel {
   //构造函数
-  SABEasyDigitModel(this._strEasyGoal, this._strUsefulDeity, this._nEasyTime,
-      this._listEasyData);
+  SABEasyDigitModel(
+    this._strEasyGoal,
+    this._strUsefulDeity,
+    this._nEasyTime,
+    this._listEasyData, {
+    stringDescribe,
+  }) {
+    bool tempMovement = false;
+    for (int intItem in _listEasyData) {
+      if (8 == intItem || 9 == intItem) {
+        tempMovement = true;
+        break;
+      } //else continue
+    } //end for
+    this.isMovement = tempMovement;
+  }
 
   //属性：实例发生时间
-  DateTime _nEasyTime;
+  final DateTime _nEasyTime;
 
-//属性：实例的随机数数组
-  List _listEasyData;
+  //属性：实例的随机数数组
+  final List<int> _listEasyData;
 
   //属性：实例的发生目的
-  String _strEasyGoal;
+  final String _strEasyGoal;
 
   //属性：实例的用神
-  String _strUsefulDeity;
+  final String _strUsefulDeity;
+
+  late final bool isMovement;
+
+  String stringFormatTime = "原始";
+  String stringDescribe = "原始";
 
   /// `public 函数`/////////////////////////////////////////////////////////////
 
   ///利用随机数创造数据
-  static List generateEasyArray() {
-    var listEasyData = List.empty(growable: true);
+  static List<int> generateEasyArray() {
+    var listEasyData = List<int>.empty(growable: true);
     for (int nIndex = 0; nIndex < 6; nIndex++) {
       int randomNum = Random().nextInt(3);
       if (2 == randomNum)

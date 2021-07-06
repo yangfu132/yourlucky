@@ -8,15 +8,13 @@ class SABEasyWordsModel {
   final SABEasyDigitModel inputDigitModel;
   SABEasyWordsModel(
     this.inputDigitModel, {
-    required this.intLifeIndex,
-    required this.intGoalIndex,
     required this.stringFormatTime,
-    required this.stringDayEarth,
     required this.stringDaySky,
-    required this.stringMonthElement,
+    required this.stringDayEarth,
+    required this.stringDayElement,
     required this.stringMonthSky,
     required this.stringMonthEarth,
-    required this.stringDayElement,
+    required this.stringMonthElement,
     required this.stringFromName,
     required this.stringFromPlace,
     required this.stringFromElement,
@@ -29,7 +27,19 @@ class SABEasyWordsModel {
     required this.bFromPureEasy,
     required this.bToPureEasy,
     required this.elementOfUsefulDeity,
-  });
+    required this.intLifeIndex,
+    required this.intGoalIndex,
+  }) {
+    if (this.inputDigitModel.isMovement) {
+      this.inputDigitModel.stringDescribe =
+          "${this.stringFromName}(${this.stringFromPlace})->${this.stringToName}(${this.stringToPlace})";
+    } else {
+      this.inputDigitModel.stringDescribe =
+          "${this.stringFromName}(${this.stringFromPlace})";
+    }
+
+    this.inputDigitModel.stringFormatTime = this.stringFormatTime;
+  }
 
   final List _listRowModels = List.empty(growable: true);
 
