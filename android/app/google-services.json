@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "323669781762",
+    "project_id": "yangfu132-firebase",
+    "storage_bucket": "yangfu132-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323669781762:android:3e689b29a751bc6cf8a61b",
+        "android_client_info": {
+          "package_name": "com.kongyilanlan.yourlucky"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "323669781762-vmq4dbm8qr6blltfkg93pooj75hp64ug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWpJBCbsAYkZ3Ztp7BH2hjzF2RTbnAGi4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "323669781762-vmq4dbm8qr6blltfkg93pooj75hp64ug.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
