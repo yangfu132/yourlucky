@@ -1,6 +1,6 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
-import 'package:yourlucky/src/3L_Business/Easy/SABEasyWordsModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:yourlucky/src/3L_Business/ExpertCategory/SABUsefulDeityModel.dart';
 import 'package:yourlucky/src/3L_Business/HealthLogic/SABEasyHealthLogicModel.dart';
 

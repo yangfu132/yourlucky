@@ -1,4 +1,4 @@
-﻿import 'package:yourlucky/src/3L_Business/Easy/SABSymbolWordsModel.dart';
+﻿import 'package:yourlucky/src/3L_Business/EasyWords/SABSymbolWordsModel.dart';
 
 import '../../1L_Context/SACGlobal.dart';
 

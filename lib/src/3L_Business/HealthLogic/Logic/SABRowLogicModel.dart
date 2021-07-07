@@ -2,7 +2,7 @@
 
 import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';
-import '../../Easy/SABRowWordsModel.dart';
+import '../../EasyWords/SABRowWordsModel.dart';
 
 class SABRowLogicModel {
   SABRowLogicModel({

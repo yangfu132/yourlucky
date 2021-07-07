@@ -1,5 +1,5 @@
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
-import 'package:yourlucky/src/3L_Business/Easy/SABSymbolWordsModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyWords/SABSymbolWordsModel.dart';
 
 class SABSymbolLogicModel {
   SABSymbolLogicModel({

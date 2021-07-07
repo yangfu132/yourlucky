@@ -3,7 +3,7 @@
 import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';
 import '../../EarthBranch/SABEarthBranchModel.dart';
-import '../../Easy/SABEasyWordsModel.dart';
+import '../../EasyWords/SABEasyWordsModel.dart';
 import 'SABRowLogicModel.dart';
 
 class SABEasyLogicModel {

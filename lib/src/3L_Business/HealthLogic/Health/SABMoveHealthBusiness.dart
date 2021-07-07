@@ -1,5 +1,5 @@
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
-import 'package:yourlucky/src/3L_Business/Easy/SABEasyWordsModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 
 import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';

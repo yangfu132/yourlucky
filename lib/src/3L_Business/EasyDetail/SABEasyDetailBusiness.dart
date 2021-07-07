@@ -1,8 +1,8 @@
 ﻿import 'package:yourlucky/src/3L_Business/HealthLogic/SABEasyHealthLogicBusiness.dart';
 
-import '../Detail/SABEasyDetailModel.dart';
 import '../EasyAnalysis/SABEasyAnalysisBusiness.dart';
 import '../EasyBasic/SABEasyDigitModel.dart';
+import '../EasyDetail/SABEasyDetailModel.dart';
 
 class SABEasyDetailBusiness {
   final SABEasyDigitModel _inputEasyModel;

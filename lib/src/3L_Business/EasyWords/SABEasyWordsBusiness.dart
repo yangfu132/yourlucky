@@ -1,6 +1,6 @@
 ﻿import "package:flutter_perpttual_calendar/flutter_perpttual_calendar.dart";
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
-import 'package:yourlucky/src/3L_Business/Easy/SABSymbolWordsModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyWords/SABSymbolWordsModel.dart';
 
 import '../../1L_Context/SACContext.dart';
 import '../../1L_Context/SACGlobal.dart';

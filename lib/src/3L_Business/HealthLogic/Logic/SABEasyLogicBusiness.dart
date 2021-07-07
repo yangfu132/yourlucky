@@ -1,5 +1,5 @@
-﻿import 'package:yourlucky/src/3L_Business/Easy/SABRowWordsModel.dart';
-import 'package:yourlucky/src/3L_Business/Easy/SABSymbolWordsModel.dart';
+﻿import 'package:yourlucky/src/3L_Business/EasyWords/SABRowWordsModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyWords/SABSymbolWordsModel.dart';
 import 'package:yourlucky/src/3L_Business/HealthLogic/Logic/SABEasyLogicDelegate.dart';
 import 'package:yourlucky/src/3L_Business/HealthLogic/Logic/SABRowLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/HealthLogic/Logic/SABSymbolLogicModel.dart';
@@ -7,10 +7,10 @@ import 'package:yourlucky/src/3L_Business/HealthLogic/Logic/SABSymbolLogicModel.
 import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';
 import '../../EarthBranch/SABEarthBranchBusiness.dart';
-import '../../Easy/SABEasyWordsBusiness.dart';
-import '../../Easy/SABEasyWordsModel.dart';
 import '../../EasyBasic/SABEasyDigitModel.dart';
 import '../../EasyBasic/SABElementModel.dart';
+import '../../EasyWords/SABEasyWordsBusiness.dart';
+import '../../EasyWords/SABEasyWordsModel.dart';
 import 'SABEasyLogicModel.dart';
 
 class SABEasyLogicBusiness {

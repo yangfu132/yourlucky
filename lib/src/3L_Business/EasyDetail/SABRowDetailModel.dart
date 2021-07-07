@@ -1,8 +1,8 @@
 import 'package:yourlucky/src/3L_Business/HealthLogic/SABRowHealthLogicModel.dart';
 
 import '../../1L_Context/SACGlobal.dart';
-import '../Easy/SABRowWordsModel.dart';
 import '../EasyAnalysis/SABRowAnalysisModel.dart';
+import '../EasyWords/SABRowWordsModel.dart';
 import '../HealthLogic/Health/SABRowHealthModel.dart';
 import '../HealthLogic/Logic/SABRowLogicModel.dart';
 

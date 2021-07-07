@@ -4,8 +4,8 @@ import 'package:yourlucky/src/3L_Business/HealthLogic/SABEasyHealthLogicModel.da
 import '../../1L_Context/SACContext.dart';
 import '../../1L_Context/SACGlobal.dart';
 import '../EarthBranch/SABEarthBranchBusiness.dart';
-import '../Easy/SABEasyWordsModel.dart';
 import '../EasyBasic/SABEasyDigitModel.dart';
+import '../EasyWords/SABEasyWordsModel.dart';
 import '../HealthLogic/Logic/SABEasyLogicModel.dart';
 import 'SABEasyAnalysisModel.dart';
 

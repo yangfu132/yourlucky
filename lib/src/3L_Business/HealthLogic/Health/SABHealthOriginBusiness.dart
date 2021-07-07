@@ -1,4 +1,4 @@
-import 'package:yourlucky/src/3L_Business/Easy/SABEasyWordsModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:yourlucky/src/3L_Business/HealthLogic/Health/SABSymbolHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/HealthLogic/Logic/SABRowLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/HealthLogic/Logic/SABSymbolLogicModel.dart';
