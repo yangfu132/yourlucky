@@ -37,8 +37,13 @@ class SABEasyWordsModel {
       this.inputDigitModel.stringDescribe =
           "${this.stringFromName}(${this.stringFromPlace})";
     }
-
-    this.inputDigitModel.stringTitle = this.stringFormatTime;
+    if (this.inputDigitModel.getEasyGoal().length > 0) {
+      this.inputDigitModel.stringTitle =
+          this.stringFormatTime + this.inputDigitModel.getEasyGoal();
+    } else {
+      this.inputDigitModel.stringTitle =
+          this.stringFormatTime + this.inputDigitModel.getUsefulDeity();
+    }
   }
 
   final List _listRowModels = List.empty(growable: true);

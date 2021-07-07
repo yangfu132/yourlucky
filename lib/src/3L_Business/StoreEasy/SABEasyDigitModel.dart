@@ -42,6 +42,7 @@ class SABEasyDigitModel {
   final String _strUsefulDeity;
 
   String stringTitle = "原始";
+
   String stringDescribe = "原始";
 
   bool isMovement() {
