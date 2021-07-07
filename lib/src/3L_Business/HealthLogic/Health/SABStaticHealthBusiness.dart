@@ -1,6 +1,6 @@
 import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';
-import '../Logic/SABEasyLogicModel.dart';
+import '../BaseLogic/SABEasyLogicModel.dart';
 import 'SABHealthModel.dart';
 import 'SABHealthOriginBusiness.dart';
 import 'SABMoveHealthBusiness.dart';

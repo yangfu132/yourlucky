@@ -6,7 +6,7 @@ import '../../1L_Context/SACGlobal.dart';
 import '../EarthBranch/SABEarthBranchBusiness.dart';
 import '../EasyBasic/SABEasyDigitModel.dart';
 import '../EasyWords/SABEasyWordsModel.dart';
-import '../HealthLogic/Logic/SABEasyLogicModel.dart';
+import '../HealthLogic/BaseLogic/SABEasyLogicModel.dart';
 import 'SABEasyAnalysisModel.dart';
 
 class SABEasyAnalysisBusiness {

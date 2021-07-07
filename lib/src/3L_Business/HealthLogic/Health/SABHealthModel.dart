@@ -1,7 +1,7 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 
-import '../Logic/SABEasyLogicModel.dart';
+import '../BaseLogic/SABEasyLogicModel.dart';
 import 'SABRowHealthModel.dart';
 
 class SABHealthModel {

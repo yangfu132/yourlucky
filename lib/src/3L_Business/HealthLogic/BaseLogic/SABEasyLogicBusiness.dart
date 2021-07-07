@@ -1,8 +1,8 @@
 ﻿import 'package:yourlucky/src/3L_Business/EasyWords/SABRowWordsModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABSymbolWordsModel.dart';
-import 'package:yourlucky/src/3L_Business/HealthLogic/Logic/SABEasyLogicDelegate.dart';
-import 'package:yourlucky/src/3L_Business/HealthLogic/Logic/SABRowLogicModel.dart';
-import 'package:yourlucky/src/3L_Business/HealthLogic/Logic/SABSymbolLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/HealthLogic/BaseLogic/SABEasyLogicDelegate.dart';
+import 'package:yourlucky/src/3L_Business/HealthLogic/BaseLogic/SABRowLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/HealthLogic/BaseLogic/SABSymbolLogicModel.dart';
 
 import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';

@@ -1,4 +1,4 @@
-import 'package:yourlucky/src/3L_Business/HealthLogic/Logic/SABEasyLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/HealthLogic/BaseLogic/SABEasyLogicModel.dart';
 
 import '../../../1L_Context/SACGlobal.dart';
 import 'SABHealthModel.dart';

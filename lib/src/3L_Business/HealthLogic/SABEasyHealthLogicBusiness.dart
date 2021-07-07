@@ -5,19 +5,18 @@ import 'package:yourlucky/src/3L_Business/EasyBasic/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyBasic/SABElementModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:yourlucky/src/3L_Business/ExpertCategory/SABUsefulDeityModel.dart';
+import 'package:yourlucky/src/3L_Business/HealthLogic/BaseLogic/SABEasyLogicBusiness.dart';
+import 'package:yourlucky/src/3L_Business/HealthLogic/BaseLogic/SABEasyLogicDelegate.dart';
+import 'package:yourlucky/src/3L_Business/HealthLogic/BaseLogic/SABEasyLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/HealthLogic/BaseLogic/SABRowLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/HealthLogic/BaseLogic/SABSymbolLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/HealthLogic/Health/SABEasyHealthBusiness.dart';
 import 'package:yourlucky/src/3L_Business/HealthLogic/Health/SABHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/HealthLogic/Health/SABRowHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/HealthLogic/Health/SABSymbolHealthModel.dart';
-import 'package:yourlucky/src/3L_Business/HealthLogic/Logic/SABEasyLogicDelegate.dart';
-import 'package:yourlucky/src/3L_Business/HealthLogic/Logic/SABEasyLogicModel.dart';
-import 'package:yourlucky/src/3L_Business/HealthLogic/Logic/SABRowLogicModel.dart';
-import 'package:yourlucky/src/3L_Business/HealthLogic/Logic/SABSymbolLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/HealthLogic/SABEasyHealthLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/HealthLogic/SABRowHealthLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/HealthLogic/SABSymbolHealthLogicModel.dart';
-
-import 'Logic/SABEasyLogicBusiness.dart';
 
 class SABEasyHealthLogicBusiness extends SABEasyLogicDelegate {
   SABEasyHealthLogicBusiness(this._inputEasyModel);

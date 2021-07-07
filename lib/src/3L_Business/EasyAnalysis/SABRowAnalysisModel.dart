@@ -3,7 +3,7 @@ import 'package:yourlucky/src/3L_Business/HealthLogic/SABRowHealthLogicModel.dar
 import '../../1L_Context/SACContext.dart';
 import '../../1L_Context/SACGlobal.dart';
 import '../EasyWords/SABRowWordsModel.dart';
-import '../HealthLogic/Logic/SABRowLogicModel.dart';
+import '../HealthLogic/BaseLogic/SABRowLogicModel.dart';
 
 class SABRowAnalysisModel {
   SABRowAnalysisModel(

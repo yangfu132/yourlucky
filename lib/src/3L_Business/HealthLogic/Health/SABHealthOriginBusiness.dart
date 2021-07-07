@@ -1,12 +1,12 @@
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
+import 'package:yourlucky/src/3L_Business/HealthLogic/BaseLogic/SABRowLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/HealthLogic/BaseLogic/SABSymbolLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/HealthLogic/Health/SABSymbolHealthModel.dart';
-import 'package:yourlucky/src/3L_Business/HealthLogic/Logic/SABRowLogicModel.dart';
-import 'package:yourlucky/src/3L_Business/HealthLogic/Logic/SABSymbolLogicModel.dart';
 
 import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';
 import '../../EarthBranch/SABEarthBranchBusiness.dart';
-import '../Logic/SABEasyLogicModel.dart';
+import '../BaseLogic/SABEasyLogicModel.dart';
 import 'SABHealthModel.dart';
 import 'SABHealthOriginModel.dart';
 import 'SABRowHealthModel.dart';
