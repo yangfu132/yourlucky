@@ -4,7 +4,7 @@ import 'package:yourlucky/src/3L_Business/Easy/SABEasyWordsModel.dart';
 import 'package:yourlucky/src/3L_Business/ExpertCategory/SABUsefulDeityModel.dart';
 import 'package:yourlucky/src/3L_Business/HealthLogic/SABEasyHealthLogicModel.dart';
 
-import '../Analysis/SABEasyAnalysisModel.dart';
+import '../EasyAnalysis/SABEasyAnalysisModel.dart';
 import 'SABRowDetailModel.dart';
 
 class SABEasyDetailModel {
