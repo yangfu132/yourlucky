@@ -2,9 +2,9 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourlucky/src/2L_UI/EasyResult/SAUEasyResultRoute.dart';
 
-import '../../3L_Business/Basic/SABEasyDigitModel.dart';
 import '../../3L_Business/Detail/SABEasyDetailBusiness.dart';
 import '../../3L_Business/Detail/SABEasyDetailModel.dart';
+import '../../3L_Business/EasyBasic/SABEasyDigitModel.dart';
 
 class SAUEasyDetailRoute extends StatefulWidget {
   SAUEasyDetailRoute(this.inputEasyModel);

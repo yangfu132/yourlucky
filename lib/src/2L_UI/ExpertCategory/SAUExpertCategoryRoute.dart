@@ -1,6 +1,6 @@
 ﻿import 'package:flutter/material.dart';
 
-import '../../3L_Business/Basic/SABEasyDigitModel.dart';
+import '../../3L_Business/EasyBasic/SABEasyDigitModel.dart';
 import '../../3L_Business/Result/SABEasyResultBusiness.dart';
 import '../../3L_Business/Result/SABEasyResultModel.dart';
 import '../EasyResult/SAUEasyResultRoute.dart';

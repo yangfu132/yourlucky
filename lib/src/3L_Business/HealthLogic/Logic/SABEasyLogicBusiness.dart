@@ -6,11 +6,11 @@ import 'package:yourlucky/src/3L_Business/HealthLogic/Logic/SABSymbolLogicModel.
 
 import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';
-import '../../Basic/SABEasyDigitModel.dart';
-import '../../Basic/SABElementModel.dart';
 import '../../EarthBranch/SABEarthBranchBusiness.dart';
 import '../../Easy/SABEasyWordsBusiness.dart';
 import '../../Easy/SABEasyWordsModel.dart';
+import '../../EasyBasic/SABEasyDigitModel.dart';
+import '../../EasyBasic/SABElementModel.dart';
 import 'SABEasyLogicModel.dart';
 
 class SABEasyLogicBusiness {

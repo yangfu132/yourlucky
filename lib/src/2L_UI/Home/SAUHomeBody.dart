@@ -4,7 +4,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 import '../../1L_Context/SACContext.dart';
-import '../../3L_Business/Basic/SABEasyDigitModel.dart';
+import '../../3L_Business/EasyBasic/SABEasyDigitModel.dart';
 import '../EasyExpertResult/SAUEasyExpertResultRoute.dart';
 // import 'package:flutter/src/foundation/constants.dart';
 import 'AnimationDiceWidget.dart';

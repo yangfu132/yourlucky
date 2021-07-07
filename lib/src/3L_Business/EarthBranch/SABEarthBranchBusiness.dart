@@ -1,6 +1,6 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACContext.dart';
 
-import '../Basic/SABElementModel.dart';
+import '../EasyBasic/SABElementModel.dart';
 import 'SABEarthBranchModel.dart';
 
 class SABEarthBranchBusiness {

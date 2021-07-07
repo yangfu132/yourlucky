@@ -11,8 +11,8 @@ import '../../1L_Context/SACContext.dart';
 ///输出Easy的结果文案
 import '../../1L_Context/SACGlobal.dart';
 import '../../4L_Service/SASStringService.dart';
-import '../Basic/SABEasyDigitModel.dart';
 import '../EasyAnalysis/SABEasyAnalysisBusiness.dart';
+import '../EasyBasic/SABEasyDigitModel.dart';
 import 'SABEasyResultModel.dart';
 
 class SABEasyResultBusiness {
