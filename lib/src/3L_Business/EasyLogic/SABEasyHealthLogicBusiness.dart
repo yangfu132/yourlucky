@@ -504,14 +504,13 @@ class SABEasyHealthLogicBusiness {
               bEnemyMoving = isMovementAtRow(intIndex);
               if (bEnemyMoving) break;
               //else cont.
-            } //endf
+            } //end for
 
             bResult = bMoving && bEnemyMoving;
-          } //endi
-        } //endi
-      } //endi
-
-    } //endi
+          } //end if
+        } //end if
+      } //end if
+    } //end if
     return bResult;
   }
 
@@ -524,7 +523,6 @@ class SABEasyHealthLogicBusiness {
      元神旺动临空化空，五也。
      */
     bool bResult = false;
-    String stringSymbolBase = symbolNameAtRow(intIndex, EasyTypeEnum.from);
     SABSymbolLogicModel symbolFrom =
         logicModel().symbolAtRow(intIndex, EasyTypeEnum.from);
     //元神旺相或临日月或动爻生扶者，一也。
@@ -569,10 +567,10 @@ class SABEasyHealthLogicBusiness {
               bResult = true;
             }
             //else cont.
-          } //endi
-        } //endi
-      } //endi
-    } //endi
+          } //end if
+        } //end if
+      } //end if
+    } //end if
 
     return bResult;
   }
@@ -603,7 +601,7 @@ class SABEasyHealthLogicBusiness {
 
       bResult =
           !bSeasonStrong && bMonthRestricts && bDayRestricts && bMoveRestricts;
-    } //endi
+    } //end if
 
     return bResult;
   }

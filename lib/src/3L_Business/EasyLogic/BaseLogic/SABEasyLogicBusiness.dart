@@ -20,9 +20,6 @@ class SABEasyLogicBusiness {
       SABEasyWordsBusiness(_inputEasyModel);
   late final SABEasyLogicModel _outLogicModel = initLogicModel();
 
-  //属性：用神的索引号
-  int _usefulDeityRow = GLOBAL_ROW_INVALID;
-
   get symbol => null;
 
   ///`六亲歌章第五`//////////////////////////////////////////////////////
