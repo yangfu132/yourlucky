@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../Result/SABEasyResultModel.dart';
-import 'SABUsefulDeityModel.dart';
-import 'SABExpertCategoryModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../EasyResult/SABEasyResultModel.dart';
+import 'SABExpertCategoryModel.dart';
+import 'SABUsefulDeityModel.dart';
 
 ///note:章，既是预测模型
 ///example:趋避章

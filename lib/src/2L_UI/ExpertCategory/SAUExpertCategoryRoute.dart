@@ -1,8 +1,8 @@
 ﻿import 'package:flutter/material.dart';
 
 import '../../3L_Business/EasyBasic/SABEasyDigitModel.dart';
-import '../../3L_Business/Result/SABEasyResultBusiness.dart';
-import '../../3L_Business/Result/SABEasyResultModel.dart';
+import '../../3L_Business/EasyResult/SABEasyResultBusiness.dart';
+import '../../3L_Business/EasyResult/SABEasyResultModel.dart';
 import '../EasyResult/SAUEasyResultRoute.dart';
 
 class SAUExpertCategoryRoute extends StatefulWidget {
