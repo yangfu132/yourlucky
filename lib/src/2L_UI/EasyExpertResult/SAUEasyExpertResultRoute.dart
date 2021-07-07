@@ -2,7 +2,7 @@
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 
 import '../../3L_Business/EasyBasic/SABEasyDigitModel.dart';
-import '../../3L_Business/EasyExpertResult/SABEasyExpertResultBusiness.dart';
+import '../../3L_Business/EasyExpert/ExpertResult/SABEasyExpertResultBusiness.dart';
 import '../EasyDetail/SAUEasyDetailRoute.dart';
 
 class SAUEasyExpertResultRoute extends StatefulWidget {

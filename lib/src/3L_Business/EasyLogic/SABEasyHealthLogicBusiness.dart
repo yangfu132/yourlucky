@@ -3,6 +3,7 @@ import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyBasic/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyBasic/SABElementModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyExpert/ExpertCategory/SABUsefulDeityModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicDelegate.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
@@ -16,7 +17,6 @@ import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABSymbolHealthLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
-import 'package:yourlucky/src/3L_Business/ExpertCategory/SABUsefulDeityModel.dart';
 
 class SABEasyHealthLogicBusiness extends SABEasyLogicDelegate {
   SABEasyHealthLogicBusiness(this._inputEasyModel);

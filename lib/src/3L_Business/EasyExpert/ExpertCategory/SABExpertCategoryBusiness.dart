@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../EasyResult/SABEasyResultModel.dart';
+import '../../EasyResult/SABEasyResultModel.dart';
 import 'SABExpertCategoryModel.dart';
 import 'SABUsefulDeityModel.dart';
 
