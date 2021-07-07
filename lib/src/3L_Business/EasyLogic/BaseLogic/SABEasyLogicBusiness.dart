@@ -5,11 +5,11 @@ import 'package:yourlucky/src/3L_Business/EasyWords/SABSymbolWordsModel.dart';
 
 import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';
+import '../../BasicEasy/SABElementModel.dart';
 import '../../EarthBranch/SABEarthBranchBusiness.dart';
-import '../../EasyBasic/SABEasyDigitModel.dart';
-import '../../EasyBasic/SABElementModel.dart';
 import '../../EasyWords/SABEasyWordsBusiness.dart';
 import '../../EasyWords/SABEasyWordsModel.dart';
+import '../../StoreEasy/SABEasyDigitModel.dart';
 import 'SABEasyLogicModel.dart';
 
 class SABEasyLogicBusiness {

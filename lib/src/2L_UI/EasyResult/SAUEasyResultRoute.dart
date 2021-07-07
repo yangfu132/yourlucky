@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../3L_Business/EasyBasic/SABEasyDigitModel.dart';
 import '../../3L_Business/EasyResult/SABEasyResultBusiness.dart';
 import '../../3L_Business/EasyResult/SABEasyResultModel.dart';
+import '../../3L_Business/StoreEasy/SABEasyDigitModel.dart';
 
 class SAUEasyResultRoute extends StatefulWidget {
   SAUEasyResultRoute(this._inputEasyModel) {

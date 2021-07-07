@@ -4,9 +4,9 @@ import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart
 import '../../1L_Context/SACContext.dart';
 import '../../1L_Context/SACGlobal.dart';
 import '../EarthBranch/SABEarthBranchBusiness.dart';
-import '../EasyBasic/SABEasyDigitModel.dart';
 import '../EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 import '../EasyWords/SABEasyWordsModel.dart';
+import '../StoreEasy/SABEasyDigitModel.dart';
 import 'SABEasyAnalysisModel.dart';
 
 class SABEasyAnalysisBusiness {

@@ -1,7 +1,7 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACContext.dart';
 
 import '../../1L_Context/SACGlobal.dart';
-import '../EasyBasic/SABEasyDigitModel.dart';
+import '../StoreEasy/SABEasyDigitModel.dart';
 import 'SABRowWordsModel.dart';
 
 class SABEasyWordsModel {

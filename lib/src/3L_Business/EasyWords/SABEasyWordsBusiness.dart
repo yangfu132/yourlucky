@@ -4,9 +4,9 @@ import 'package:yourlucky/src/3L_Business/EasyWords/SABSymbolWordsModel.dart';
 
 import '../../1L_Context/SACContext.dart';
 import '../../1L_Context/SACGlobal.dart';
-import '../EasyBasic/SABEasyDigitModel.dart';
-import '../EasyBasic/SABEightDiagramsModel.dart';
-import '../EasyBasic/SABElementModel.dart';
+import '../BasicEasy/SABEightDiagramsModel.dart';
+import '../BasicEasy/SABElementModel.dart';
+import '../StoreEasy/SABEasyDigitModel.dart';
 import 'SABEasyWordsModel.dart';
 import 'SABRowWordsModel.dart';
 

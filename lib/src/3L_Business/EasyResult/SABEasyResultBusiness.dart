@@ -12,7 +12,7 @@ import '../../1L_Context/SACContext.dart';
 import '../../1L_Context/SACGlobal.dart';
 import '../../4L_Service/SASStringService.dart';
 import '../EasyAnalysis/SABEasyAnalysisBusiness.dart';
-import '../EasyBasic/SABEasyDigitModel.dart';
+import '../StoreEasy/SABEasyDigitModel.dart';
 import 'SABEasyResultModel.dart';
 
 class SABEasyResultBusiness {

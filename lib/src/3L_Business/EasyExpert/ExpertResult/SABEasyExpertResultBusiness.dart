@@ -1,4 +1,4 @@
-﻿import '../../EasyBasic/SABEasyDigitModel.dart';
+﻿import '../../StoreEasy/SABEasyDigitModel.dart';
 import 'SABEasyExpertResultModel.dart';
 
 class SABEasyExpertResultBusiness {
