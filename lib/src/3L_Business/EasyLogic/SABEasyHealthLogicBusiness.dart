@@ -5,7 +5,6 @@ import 'package:yourlucky/src/3L_Business/EasyBasic/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyBasic/SABElementModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyExpert/ExpertCategory/SABUsefulDeityModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicBusiness.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicDelegate.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABRowLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
@@ -18,14 +17,14 @@ import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart'
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABSymbolHealthLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 
-class SABEasyHealthLogicBusiness extends SABEasyLogicDelegate {
+class SABEasyHealthLogicBusiness {
   SABEasyHealthLogicBusiness(this._inputEasyModel);
   final SABEasyDigitModel _inputEasyModel;
 
   late final SABEasyHealthLogicModel _healthLogicModel = initLogicModel();
 
   late final SABEasyLogicBusiness _logicBusiness =
-      SABEasyLogicBusiness(_inputEasyModel, this);
+      SABEasyLogicBusiness(_inputEasyModel);
 
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
 
@@ -445,7 +444,7 @@ class SABEasyHealthLogicBusiness extends SABEasyLogicDelegate {
       }
       //else cont.
 
-    } //endf
+    } //end for
 
     return arrayResult;
   }
@@ -492,9 +491,9 @@ class SABEasyHealthLogicBusiness extends SABEasyLogicDelegate {
         } else {
           //忌神长生帝旺于日辰，四也。
           String stringEarthBase = symbolFrom.wordsSymbol.stringEarth;
-          String stringTewleveDeity =
+          String stringTwelveDeity =
               branchBusiness().earthTwelveDeity(stringEarthBase, dayEarth());
-          if ("长生" == stringTewleveDeity || "帝旺" == stringTewleveDeity)
+          if ("长生" == stringTwelveDeity || "帝旺" == stringTwelveDeity)
             bResult = true;
           else {
             //忌神与仇神同动，五也。
@@ -545,9 +544,9 @@ class SABEasyHealthLogicBusiness extends SABEasyLogicDelegate {
       } else {
         //元神长生帝旺于日辰，三也。
         String stringEarthBase = symbolFrom.wordsSymbol.stringEarth;
-        String stringTewleveDeity =
+        String stringTwelveDeity =
             branchBusiness().earthTwelveDeity(stringEarthBase, dayEarth());
-        if ("长生" == stringTewleveDeity || "帝旺" == stringTewleveDeity)
+        if ("长生" == stringTwelveDeity || "帝旺" == stringTwelveDeity)
           bResult = true;
         else {
           //元神与忌神同动，四也。
@@ -1476,6 +1475,80 @@ class SABEasyHealthLogicBusiness extends SABEasyLogicDelegate {
     return resultModel;
   }
 
+  List strongUsefulArray(EasyTypeEnum easyTypeEnum, List usefulArray) {
+    //舍其休囚而用旺相；
+    List strongArray = List.empty(growable: true);
+
+    double maxValue = -10000;
+
+    for (int intItem in usefulArray) {
+      double strongValue = symbolHealthAtRow(intItem, easyTypeEnum);
+      if (maxValue < strongValue) {
+        maxValue = strongValue;
+      }
+      //else cont.
+    } //endf
+
+    for (int intItem in usefulArray) {
+      double strongValue = symbolHealthAtRow(intItem, easyTypeEnum);
+      if (strongValue == maxValue) {
+        strongArray.add(intItem);
+      }
+      //else cont.
+
+    } //endi
+
+    return strongArray;
+  }
+
+  int strongUsefulDeity(EasyTypeEnum easyTypeEnum, List usefulArray) {
+    int result = GLOBAL_ROW_INVALID;
+
+    //旺、相、余气, 依次选用,有旺用旺，如果有多个旺，通过动静区分；
+
+    List strongArray = strongUsefulArray(easyTypeEnum, usefulArray);
+
+    if (0 == strongArray.length) {
+      result = logicBusiness().lifeOrGoalUsefulDeity(easyTypeEnum, usefulArray);
+    } else if (1 == strongArray.length) {
+      result = strongArray[0];
+    } else if (strongArray.length > 1) {
+      result = logicBusiness().lifeOrGoalUsefulDeity(easyTypeEnum, strongArray);
+    }
+
+    return result;
+  }
+
+  int emptyUsefulDeity(EasyTypeEnum easyTypeEnum, List usefulArray) {
+    int result = GLOBAL_ROW_INVALID;
+
+    List listEmpty = logicBusiness().emptyArray(easyTypeEnum, usefulArray);
+
+    if (0 == listEmpty.length) {
+      result = movementUsefulDeity(easyTypeEnum, usefulArray);
+    } else if (1 == listEmpty.length) {
+      result = listEmpty[0];
+    } else if (listEmpty.length > 1) {
+      result = movementUsefulDeity(easyTypeEnum, listEmpty);
+    }
+
+    return result;
+  }
+
+  int movementUsefulDeity(EasyTypeEnum easyTypeEnum, List usefulArray) {
+    int result = GLOBAL_ROW_INVALID;
+
+    List movementArray = logicBusiness().movementArrayInArray(usefulArray);
+    if (0 == movementArray.length) {
+      result = strongUsefulDeity(easyTypeEnum, usefulArray);
+    } else if (1 == movementArray.length) {
+      result = movementArray[0];
+    } else if (movementArray.length > 1) {
+      result = strongUsefulDeity(easyTypeEnum, movementArray);
+    }
+    return result;
+  }
+
   ///****************************************************************
   ///  古法：舍其月破而用不破；     野鹤：舍其不破而用月破(采用)；
   ///  舍其旬空而用不空；          野鹤：舍其不空而用旬空；
@@ -1489,11 +1562,11 @@ class SABEasyHealthLogicBusiness extends SABEasyLogicDelegate {
 
     List listMonthBroken = monthBrokenArray(easyTypeEnum, usefulArray);
     if (0 == listMonthBroken.length) {
-      result = logicBusiness().emptyUsefulDeity(easyTypeEnum, usefulArray);
+      result = emptyUsefulDeity(easyTypeEnum, usefulArray);
     } else if (1 == listMonthBroken.length) {
       result = listMonthBroken[0];
     } else if (listMonthBroken.length > 1) {
-      result = logicBusiness().emptyUsefulDeity(easyTypeEnum, listMonthBroken);
+      result = emptyUsefulDeity(easyTypeEnum, listMonthBroken);
     }
     return result;
   }

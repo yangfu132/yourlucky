@@ -1,5 +1,4 @@
-﻿import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicDelegate.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABRowLogicModel.dart';
+﻿import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABRowLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABRowWordsModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABSymbolWordsModel.dart';
@@ -14,9 +13,8 @@ import '../../EasyWords/SABEasyWordsModel.dart';
 import 'SABEasyLogicModel.dart';
 
 class SABEasyLogicBusiness {
-  SABEasyLogicBusiness(this._inputEasyModel, this._inputDelegate);
+  SABEasyLogicBusiness(this._inputEasyModel);
   final SABEasyDigitModel _inputEasyModel;
-  final SABEasyLogicDelegate _inputDelegate;
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
   late final SABEasyWordsBusiness _wordsBusiness =
       SABEasyWordsBusiness(_inputEasyModel);
@@ -940,54 +938,6 @@ class SABEasyLogicBusiness {
   ///`两现章第三十二`//////////////////////////////////////////////////////
   ///参见HealthLogic
 
-  int emptyUsefulDeity(EasyTypeEnum easyTypeEnum, List usefulArray) {
-    int result = GLOBAL_ROW_INVALID;
-
-    List listEmpty = emptyArray(easyTypeEnum, usefulArray);
-
-    if (0 == listEmpty.length) {
-      result = movementUsefulDeity(easyTypeEnum, usefulArray);
-    } else if (1 == listEmpty.length) {
-      result = listEmpty[0];
-    } else if (listEmpty.length > 1) {
-      result = movementUsefulDeity(easyTypeEnum, listEmpty);
-    }
-
-    return result;
-  }
-
-  int movementUsefulDeity(EasyTypeEnum easyTypeEnum, List usefulArray) {
-    int result = GLOBAL_ROW_INVALID;
-
-    List movementArray = movementArrayInArray(usefulArray);
-    if (0 == movementArray.length) {
-      result = strongUsefulDeity(easyTypeEnum, usefulArray);
-    } else if (1 == movementArray.length) {
-      result = movementArray[0];
-    } else if (movementArray.length > 1) {
-      result = strongUsefulDeity(easyTypeEnum, movementArray);
-    }
-    return result;
-  }
-
-  int strongUsefulDeity(EasyTypeEnum easyTypeEnum, List usefulArray) {
-    int result = GLOBAL_ROW_INVALID;
-
-    //旺、相、余气, 依次选用,有旺用旺，如果有多个旺，通过动静区分；
-
-    List strongArray = strongUsefulArray(easyTypeEnum, usefulArray);
-
-    if (0 == strongArray.length) {
-      result = lifeOrGoalUsefulDeity(easyTypeEnum, usefulArray);
-    } else if (1 == strongArray.length) {
-      result = strongArray[0];
-    } else if (strongArray.length > 1) {
-      result = lifeOrGoalUsefulDeity(easyTypeEnum, strongArray);
-    }
-
-    return result;
-  }
-
   int lifeOrGoalUsefulDeity(EasyTypeEnum easyTypeEnum, List usefulArray) {
     int result = GLOBAL_ROW_INVALID;
 
@@ -1032,34 +982,6 @@ class SABEasyLogicBusiness {
     //    colog("error!");
 
     return result;
-  }
-
-  List strongUsefulArray(EasyTypeEnum easyTypeEnum, List usefulArray) {
-    //舍其休囚而用旺相；
-    List strongArray = List.empty(growable: true);
-
-    double maxValue = -10000;
-
-    for (int intItem in usefulArray) {
-      double strongValue =
-          _inputDelegate.symbolHealthAtRow(intItem, easyTypeEnum);
-      if (maxValue < strongValue) {
-        maxValue = strongValue;
-      }
-      //else cont.
-    } //endf
-
-    for (int intItem in usefulArray) {
-      double strongValue =
-          _inputDelegate.symbolHealthAtRow(intItem, easyTypeEnum);
-      if (strongValue == maxValue) {
-        strongArray.add(intItem);
-      }
-      //else cont.
-
-    } //endi
-
-    return strongArray;
   }
 
   List emptyArray(EasyTypeEnum easyTypeEnum, List usefulArray) {
