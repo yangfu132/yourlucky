@@ -30,7 +30,7 @@ class SABEasyWordsModel {
     required this.intLifeIndex,
     required this.intGoalIndex,
   }) {
-    if (this.inputDigitModel.isMovement) {
+    if (this.inputDigitModel.isMovement()) {
       this.inputDigitModel.stringDescribe =
           "${this.stringFromName}(${this.stringFromPlace})->${this.stringToName}(${this.stringToPlace})";
     } else {
@@ -38,7 +38,7 @@ class SABEasyWordsModel {
           "${this.stringFromName}(${this.stringFromPlace})";
     }
 
-    this.inputDigitModel.stringFormatTime = this.stringFormatTime;
+    this.inputDigitModel.stringTitle = this.stringFormatTime;
   }
 
   final List _listRowModels = List.empty(growable: true);

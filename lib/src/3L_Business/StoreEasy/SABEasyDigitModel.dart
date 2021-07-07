@@ -9,15 +9,24 @@ class SABEasyDigitModel {
     this._nEasyTime,
     this._listEasyData, {
     stringDescribe,
-  }) {
-    bool tempMovement = false;
-    for (int intItem in _listEasyData) {
-      if (8 == intItem || 9 == intItem) {
-        tempMovement = true;
-        break;
-      } //else continue
-    } //end for
-    this.isMovement = tempMovement;
+  });
+  SABEasyDigitModel.fromJson(Map<String, Object?> json)
+      : this(
+          json['strEasyGoal']! as String,
+          json['strUsefulDeity']! as String,
+          json['nEasyTime']! as DateTime,
+          (json['listEasyData']! as List).cast<int>(),
+          stringDescribe: json['stringDescribe']! as String,
+        );
+
+  Map<String, Object?> toJson() {
+    return {
+      'listEasyData': _listEasyData,
+      'strEasyGoal': _strEasyGoal,
+      'nEasyTime': _nEasyTime,
+      'strUsefulDeity': _strUsefulDeity,
+      'stringDescribe': stringDescribe
+    };
   }
 
   //属性：实例发生时间
@@ -32,10 +41,19 @@ class SABEasyDigitModel {
   //属性：实例的用神
   final String _strUsefulDeity;
 
-  late final bool isMovement;
-
-  String stringFormatTime = "原始";
+  String stringTitle = "原始";
   String stringDescribe = "原始";
+
+  bool isMovement() {
+    bool tempMovement = false;
+    for (int intItem in _listEasyData) {
+      if (8 == intItem || 9 == intItem) {
+        tempMovement = true;
+        break;
+      } //else continue
+    } //end for
+    return tempMovement;
+  }
 
   /// `public 函数`/////////////////////////////////////////////////////////////
 
