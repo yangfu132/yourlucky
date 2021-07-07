@@ -1,9 +1,9 @@
-import 'package:yourlucky/src/3L_Business/HealthLogic/SABRowHealthLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart';
 
 import '../../1L_Context/SACContext.dart';
 import '../../1L_Context/SACGlobal.dart';
+import '../EasyLogic/BaseLogic/SABRowLogicModel.dart';
 import '../EasyWords/SABRowWordsModel.dart';
-import '../HealthLogic/BaseLogic/SABRowLogicModel.dart';
 
 class SABRowAnalysisModel {
   SABRowAnalysisModel(

@@ -1,12 +1,12 @@
-﻿import 'package:yourlucky/src/3L_Business/HealthLogic/Health/SABHealthModel.dart';
-import 'package:yourlucky/src/3L_Business/HealthLogic/SABEasyHealthLogicModel.dart';
+﻿import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
 
 import '../../1L_Context/SACContext.dart';
 import '../../1L_Context/SACGlobal.dart';
 import '../EarthBranch/SABEarthBranchBusiness.dart';
 import '../EasyBasic/SABEasyDigitModel.dart';
+import '../EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 import '../EasyWords/SABEasyWordsModel.dart';
-import '../HealthLogic/BaseLogic/SABEasyLogicModel.dart';
 import 'SABEasyAnalysisModel.dart';
 
 class SABEasyAnalysisBusiness {

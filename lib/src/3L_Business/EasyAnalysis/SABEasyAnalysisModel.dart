@@ -1,5 +1,5 @@
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
-import 'package:yourlucky/src/3L_Business/HealthLogic/SABEasyHealthLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
 
 import '../../1L_Context/SACGlobal.dart';
 import 'SABRowAnalysisModel.dart';

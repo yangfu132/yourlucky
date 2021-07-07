@@ -1,5 +1,5 @@
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
-import 'package:yourlucky/src/3L_Business/HealthLogic/BaseLogic/SABSymbolLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
 
 class SABSymbolHealthModel {
   SABSymbolHealthModel({

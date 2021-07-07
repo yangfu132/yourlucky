@@ -1,10 +1,10 @@
-import 'package:yourlucky/src/3L_Business/HealthLogic/SABRowHealthLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart';
 
 import '../../1L_Context/SACGlobal.dart';
 import '../EasyAnalysis/SABRowAnalysisModel.dart';
+import '../EasyLogic/BaseLogic/SABRowLogicModel.dart';
+import '../EasyLogic/Health/SABRowHealthModel.dart';
 import '../EasyWords/SABRowWordsModel.dart';
-import '../HealthLogic/BaseLogic/SABRowLogicModel.dart';
-import '../HealthLogic/Health/SABRowHealthModel.dart';
 
 class SABRowDetailModel {
   SABRowDetailModel(this.inputAnalysisRow);

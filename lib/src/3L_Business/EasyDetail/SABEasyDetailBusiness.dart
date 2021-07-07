@@ -1,4 +1,4 @@
-﻿import 'package:yourlucky/src/3L_Business/HealthLogic/SABEasyHealthLogicBusiness.dart';
+﻿import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicBusiness.dart';
 
 import '../EasyAnalysis/SABEasyAnalysisBusiness.dart';
 import '../EasyBasic/SABEasyDigitModel.dart';
