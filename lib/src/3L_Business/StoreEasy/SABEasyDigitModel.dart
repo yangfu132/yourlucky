@@ -8,6 +8,7 @@ class SABEasyDigitModel {
     this._strUsefulDeity,
     this._nEasyTime,
     this._listEasyData, {
+    stringTitle,
     stringDescribe,
   });
   SABEasyDigitModel.fromJson(Map<String, Object?> json)
@@ -16,6 +17,7 @@ class SABEasyDigitModel {
           json['strUsefulDeity']! as String,
           json['nEasyTime']! as DateTime,
           (json['listEasyData']! as List).cast<int>(),
+          stringTitle: json['stringTitle']! as String,
           stringDescribe: json['stringDescribe']! as String,
         );
 
@@ -25,6 +27,7 @@ class SABEasyDigitModel {
       'strEasyGoal': _strEasyGoal,
       'nEasyTime': _nEasyTime,
       'strUsefulDeity': _strUsefulDeity,
+      'stringTitle': stringTitle,
       'stringDescribe': stringDescribe
     };
   }
@@ -44,17 +47,6 @@ class SABEasyDigitModel {
   String stringTitle = "原始";
 
   String stringDescribe = "原始";
-
-  bool isMovement() {
-    bool tempMovement = false;
-    for (int intItem in _listEasyData) {
-      if (8 == intItem || 9 == intItem) {
-        tempMovement = true;
-        break;
-      } //else continue
-    } //end for
-    return tempMovement;
-  }
 
   /// `public 函数`/////////////////////////////////////////////////////////////
 
@@ -76,6 +68,17 @@ class SABEasyDigitModel {
     //[0, 1, 1, 8, 8, 1]
 
     return listEasyData;
+  }
+
+  bool isMovement() {
+    bool tempMovement = false;
+    for (int intItem in _listEasyData) {
+      if (8 == intItem || 9 == intItem) {
+        tempMovement = true;
+        break;
+      } //else continue
+    } //end for
+    return tempMovement;
   }
 
   ///此函数获取内卦变动的爻列表
