@@ -16,8 +16,6 @@ final easyRef = FirebaseFirestore.instance
     );
 
 class SABStoreEasyBusiness {
-  SABStoreEasyBusiness();
-
   /// Requires that a Firestore emulator is running locally.
   /// See https://firebase.flutter.dev/docs/firestore/usage#emulator-usage
   Future<void> initFireBase() async {

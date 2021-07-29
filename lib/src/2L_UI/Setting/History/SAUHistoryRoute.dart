@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACRouteUrl.dart';
 import 'package:yourlucky/src/2L_UI/Base/SAUListTitleVistor.dart';
 import 'package:yourlucky/src/3L_Business/StoreEasy/SABEasyDigitModel.dart';
-import 'package:yourlucky/src/3L_Business/StoreEasy/SABStoreEasyBusiness.dart';
 
 class SAUHistoryRoute extends StatefulWidget {
   SAUHistoryRoute({Key? key, this.title}) : super(key: key);
@@ -32,8 +32,6 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
   late Query<SABEasyDigitModel> _easyQuery;
   Stream<QuerySnapshot<SABEasyDigitModel>>? _easies;
 
-  SABStoreEasyBusiness storeBusiness = SABStoreEasyBusiness();
-
   @override
   void initState() {
     super.initState();
@@ -41,9 +39,8 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
   }
 
   Future<void> _updateQuery() async {
-    await storeBusiness.initFireBase();
     setState(() {
-      _easyQuery = storeBusiness.getQuery();
+      _easyQuery = SACContext.getStoreBusiness().getQuery();
       _easies = _easyQuery.snapshots();
     });
   }

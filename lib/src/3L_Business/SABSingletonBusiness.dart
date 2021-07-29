@@ -17,12 +17,17 @@ class SABSingletonBusiness {
   }
 
   ///note:释放所有临时对象
-  static clear() {
+  static removeAll() {
     SABSingletonBusiness.instance.clearAbleMap.clear();
   }
 
   ///note:保存临时对象
-  static sharedClass(String key, dynamic value) {
+  static addObject(String key, dynamic value) {
     SABSingletonBusiness.instance.clearAbleMap[key] = value;
+  }
+
+  ///note:保存临时对象
+  static dynamic getObject(String key) {
+    return SABSingletonBusiness.instance.clearAbleMap[key];
   }
 }
