@@ -1,5 +1,6 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/2L_UI/EasyResult/SAUEasyResultRoute.dart';
 
 import '../../3L_Business/EasyDetail/SABEasyDetailBusiness.dart';
@@ -34,6 +35,19 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
     return Scaffold(
       appBar: AppBar(
         title: Text(detailModel().stringDetailName),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              SACContext.getStoreBusiness()
+                  .addDigitModel(widget.inputEasyModel);
+            },
+            child: Text('保存',
+                style: TextStyle(
+                    fontSize: 16.w,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.white)),
+          ),
+        ],
       ),
       body: _buildBody(),
     );
