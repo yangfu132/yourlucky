@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:yourlucky/src/3L_Business/StoreEasy/SABEasyDigitModel.dart';
 
-const bool USE_FIRE_STORE_EMULATOR = false;
+const bool USE_FIRE_STORE_EMULATOR = true;
 
 /// A reference to the list of movies.
 /// We are using `withConverter` to ensure that interactions with the collection
@@ -16,9 +16,7 @@ final easyRef = FirebaseFirestore.instance
     );
 
 class SABStoreEasyBusiness {
-  SABStoreEasyBusiness() {
-    initFireBase();
-  }
+  SABStoreEasyBusiness();
 
   /// Requires that a Firestore emulator is running locally.
   /// See https://firebase.flutter.dev/docs/firestore/usage#emulator-usage
@@ -35,5 +33,9 @@ class SABStoreEasyBusiness {
 
   void addDigitModel(SABEasyDigitModel digitModel) {
     easyRef.add(digitModel);
+  }
+
+  Query<SABEasyDigitModel> getQuery() {
+    return easyRef.limit(1);
   }
 }

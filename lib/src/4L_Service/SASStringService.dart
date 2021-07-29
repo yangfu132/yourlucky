@@ -10,4 +10,8 @@ class SASStringService {
 
     return mainString;
   }
+
+  static String appendSentence(String stringMain, String stringContain) {
+    return stringMain + ',' + stringContain;
+  }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:yourlucky/src/1L_Context/SACRouteUrl.dart';
 import 'package:yourlucky/src/2L_UI/Base/SAUListTitleVistor.dart';
 import 'package:yourlucky/src/3L_Business/StoreEasy/SABEasyDigitModel.dart';
+import 'package:yourlucky/src/3L_Business/StoreEasy/SABStoreEasyBusiness.dart';
 
 class SAUHistoryRoute extends StatefulWidget {
   SAUHistoryRoute({Key? key, this.title}) : super(key: key);
@@ -28,17 +29,31 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
     {'value': SACRouteUrl.history, 'key': 'History'},
   ];
 
-  late Query<SABEasyDigitModel> _moviesQuery;
-  late Stream<QuerySnapshot<SABEasyDigitModel>> _movies;
+  late Query<SABEasyDigitModel> _easyQuery;
+  Stream<QuerySnapshot<SABEasyDigitModel>>? _easies;
+
+  SABStoreEasyBusiness storeBusiness = SABStoreEasyBusiness();
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('历史'),
-      ),
-      body: StreamBuilder<QuerySnapshot<SABEasyDigitModel>>(
-        stream: _movies,
+  void initState() {
+    super.initState();
+    _updateQuery();
+  }
+
+  Future<void> _updateQuery() async {
+    await storeBusiness.initFireBase();
+    setState(() {
+      _easyQuery = storeBusiness.getQuery();
+      _easies = _easyQuery.snapshots();
+    });
+  }
+
+  Widget _buildBody() {
+    if (null == _easies) {
+      return Text('Waiting');
+    } else {
+      return StreamBuilder<QuerySnapshot<SABEasyDigitModel>>(
+        stream: _easies,
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Center(
@@ -51,19 +66,29 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
           }
 
           final data = snapshot.requireData;
-
-          return ListView.builder(
-            itemCount: data.size,
-            itemBuilder: (context, index) {
-              return SAUListTitleVisitor.greyWhite(index, 'title', () {});
-              // return _MovieItem(
-              //   data.docs[index].data(),
-              //   data.docs[index].reference,
-              // );
-            },
-          );
+          var dataSize = data.size;
+          if (dataSize > 0) {
+            return ListView.builder(
+              itemCount: dataSize,
+              itemBuilder: (context, index) {
+                return SAUListTitleVisitor.greyWhite(index, 'title', () {});
+              },
+            );
+          } else {
+            return Text('No Data');
+          }
         },
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('历史'),
       ),
+      body: _buildBody(),
     );
   }
 }

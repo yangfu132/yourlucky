@@ -15,14 +15,6 @@ class SACContext {
     return MediaQuery.of(context).size.height;
   }
 
-  static String appendToString(String stringMain, String stringContain) {
-    return stringMain + '\r\n' + stringContain;
-  }
-
-  static String appendSentence(String stringMain, String stringContain) {
-    return stringMain + ',' + stringContain;
-  }
-
   static ButtonStyle textButtonStyle() {
     return ButtonStyle(
       foregroundColor: MaterialStateProperty.resolveWith(

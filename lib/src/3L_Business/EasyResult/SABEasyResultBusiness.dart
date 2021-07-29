@@ -200,18 +200,18 @@ class SABEasyResultBusiness {
 
     if (bFromSixPair && !bToConflict && !bToSixPair) {
       //卦逢六合，四也;
-      strResult = SACContext.appendToString(strResult, "卦逢六合");
-      strResult = SACContext.appendToString(strResult,
+      strResult = SASStringService.appendToString(strResult, "卦逢六合");
+      strResult = SASStringService.appendToString(strResult,
           "    凡得诸合，诸占皆以为吉。占名名成，占利利就，占婚必成，占身发迹，占宅兴旺，占风水聚气藏风，占求谋遂心合意。\r\n    然必用神有气相宜，用若失陷无益。但是六冲卦变六合者，不看用神，竟以吉断。\r\n    卜书曰：万事若得三六合，诸事必得久远，有始有终。但宜吉事逢之，事之必就，不宜凶事逢之，事之难结。");
     } else if (bFromSixPair && bToSixPair) {
       //六合卦变六合，六也。
-      strResult = SACContext.appendToString(strResult, "六合卦变六合");
-      strResult = SACContext.appendToString(strResult,
+      strResult = SASStringService.appendToString(strResult, "六合卦变六合");
+      strResult = SASStringService.appendToString(strResult,
           "爻逢六合已为吉兆，动而又变六合，谓始终而作合也。占风土百代簪缨，占宅舍千秋基业，占婚姻白头相守，占伙计管鲍雷陈，占功名仕路亨通，占财帛聚相如山。占兄弟累世同居。宜合吉不宜合凶。诸占用神临日月者，吉之而又吉也。\r\n    唯占讼狱不利，冤仇难解。及占忧疑怪事终不闻心。占孕胎安，占产难生。再若用神受克更为凶兆。");
     } else if (bFromConflict && bToSixPair) {
       //六冲变六合，五也；
-      strResult = SACContext.appendToString(strResult, "六冲变六合");
-      strResult = SACContext.appendToString(strResult,
+      strResult = SASStringService.appendToString(strResult, "六冲变六合");
+      strResult = SASStringService.appendToString(strResult,
           "诸合皆以用神旺者为吉，独此六冲卦变六合者，不看用神，竟以吉断。占婚姻先吴越而后朱陈。占夫妻先参商后必合好。占功名始则艰难，终须荣显。占身命先困后宁。占风水巧处奇逢。占家宅先颓后盛。\r\n");
     }
 
@@ -225,18 +225,18 @@ class SABEasyResultBusiness {
      */
     else if (bFromConflict && !bToConflict && !bToSixPair) {
       //卦逢六冲，二也。
-      strResult = SACContext.appendToString(strResult, "卦逢六冲");
-      strResult = SACContext.appendToString(
+      strResult = SASStringService.appendToString(strResult, "卦逢六冲");
+      strResult = SASStringService.appendToString(
           strResult, "冲者，散也。凡占凶事宜于冲散，占吉事而不宜。亦必兼看用神而言，用神旺，虽冲不碍，用神失陷，凶而又凶。");
     } else if (bFromSixPair && bToConflict) {
       //六合卦变六冲，三也。
-      strResult = SACContext.appendToString(strResult, "六合卦变六冲");
-      strResult = SACContext.appendToString(strResult,
+      strResult = SASStringService.appendToString(strResult, "六合卦变六冲");
+      strResult = SASStringService.appendToString(strResult,
           "冲者，散也。凡占凶事宜于冲散，占吉事而不宜。\r\n    亦必兼看用神而言，用神旺，虽冲不碍，用神失陷，凶而又凶。\r\n    六合卦变六冲者，用神若旺，始吉终凶，图事虽成，有始而无终也。\r\n    凡得六合变六冲者，诸占先合后离，先亲后疏，先浓后淡，始荣终悴，初好后迟，先亨后否，得而复失，成而后败，事就而又变也。唯占官非盗贼结绝事者宜之。");
     } else if (bFromConflict && bToConflict) {
       //六冲变六冲，四也。
-      strResult = SACContext.appendToString(strResult, "六冲变六冲");
-      strResult = SACContext.appendToString(
+      strResult = SASStringService.appendToString(strResult, "六冲变六冲");
+      strResult = SASStringService.appendToString(
           strResult, "冲者，散也。凡占凶事宜于冲散，占吉事而不宜。亦必兼看用神而言，用神旺，虽冲不碍，用神失陷，凶而又凶。");
     }
     //else cont.
@@ -263,7 +263,7 @@ class SABEasyResultBusiness {
   ///`应期`//////////////////////////////////////////////////////
   String resultHappenTime() {
     String strResult = "";
-    strResult = SACContext.appendToString(strResult, timeResult());
+    strResult = SASStringService.appendToString(strResult, timeResult());
     return strResult;
   }
 
@@ -282,14 +282,14 @@ class SABEasyResultBusiness {
       usefulEarth =
           logicModel().getSymbolEarth(usefulDeity.intRow, usefulDeity.easyType);
       String onResult = "用神月破：实破之 $usefulEarth (日、月、年)则不破";
-      result = SACContext.appendToString(result, onResult);
+      result = SASStringService.appendToString(result, onResult);
 
       String strEarthPair = _branchBusiness.earthSixPair(usefulEarth);
       String strEarthPairResult = "用神月破：应期为逢合之 $strEarthPair (日、月、年)则不破";
 
-      result = SACContext.appendToString(result, strEarthPairResult);
+      result = SASStringService.appendToString(result, strEarthPairResult);
 
-      result = SACContext.appendToString(result, "用神月破：目下虽破，出月则不破");
+      result = SASStringService.appendToString(result, "用神月破：目下虽破，出月则不破");
     }
     if (EasyTypeEnum.type_null == usefulDeity.easyType) {
     } else {
@@ -326,23 +326,23 @@ class SABEasyResultBusiness {
     if (EmptyEnum.Empty_NoUseful == emptyState) {
       //用神没有出现
       strUseful = strUseful + "卦中用神未现";
-      strResult = SACContext.appendToString(strResult, strUseful);
+      strResult = SASStringService.appendToString(strResult, strUseful);
     } else if (EmptyEnum.Empty_Conflict == emptyState) {
       //用神冲空 出空
       strUseful = strUseful + "现在有效";
-      strResult = SACContext.appendToString(strResult, strUseful);
+      strResult = SASStringService.appendToString(strResult, strUseful);
     } else if (EmptyEnum.Empty_NO != emptyState) {
       //用神旬空
 
       strUseful = strUseful + outEmptyDate();
-      strResult = SACContext.appendToString(strResult, strUseful);
+      strResult = SASStringService.appendToString(strResult, strUseful);
     }
     if (EasyTypeEnum.from == usefulDeity.easyType) {
       if (healthLogicModel().getIsSymbolChangeEmpty(usefulDeity.intRow)!) {
         //化空
         String str = "变爻";
         str = str + outEmptyDate();
-        strResult = SACContext.appendToString(strResult, str);
+        strResult = SASStringService.appendToString(strResult, str);
       }
       //else cont.
     } else {}
@@ -355,7 +355,8 @@ class SABEasyResultBusiness {
       if (MonthConflictEnum.Conflict_OnDay == monthBrokenState ||
           MonthConflictEnum.Conflict_Move == monthBrokenState ||
           MonthConflictEnum.Conflict_DayBorn == monthBrokenState) {
-        strResult = SACContext.appendToString(strResult, monthBrokenResult());
+        strResult =
+            SASStringService.appendToString(strResult, monthBrokenResult());
       }
       //else cont.
     }
@@ -436,18 +437,18 @@ class SABEasyResultBusiness {
 
     if (bFromSixPair && !bToConflict && !bToSixPair) {
       //卦逢六合，四也;
-      strResult = SACContext.appendToString(strResult, "卦逢六合");
-      strResult = SACContext.appendToString(strResult,
+      strResult = SASStringService.appendToString(strResult, "卦逢六合");
+      strResult = SASStringService.appendToString(strResult,
           "    凡得诸合，诸占皆以为吉。占名名成，占利利就，占婚必成，占身发迹，占宅兴旺，占风水聚气藏风，占求谋遂心合意。\r\n    然必用神有气相宜，用若失陷无益。但是六冲卦变六合者，不看用神，竟以吉断。\r\n    卜书曰：万事若得三六合，诸事必得久远，有始有终。但宜吉事逢之，事之必就，不宜凶事逢之，事之难结。");
     } else if (bFromSixPair && bToSixPair) {
       //六合卦变六合，六也。
-      strResult = SACContext.appendToString(strResult, "六合卦变六合");
-      strResult = SACContext.appendToString(strResult,
+      strResult = SASStringService.appendToString(strResult, "六合卦变六合");
+      strResult = SASStringService.appendToString(strResult,
           "爻逢六合已为吉兆，动而又变六合，谓始终而作合也。占风土百代簪缨，占宅舍千秋基业，占婚姻白头相守，占伙计管鲍雷陈，占功名仕路亨通，占财帛聚相如山。占兄弟累世同居。宜合吉不宜合凶。诸占用神临日月者，吉之而又吉也。\r\n    唯占讼狱不利，冤仇难解。及占忧疑怪事终不闻心。占孕胎安，占产难生。再若用神受克更为凶兆。");
     } else if (bFromConflict && bToSixPair) {
       //六冲变六合，五也；
-      strResult = SACContext.appendToString(strResult, "六冲变六合");
-      strResult = SACContext.appendToString(strResult,
+      strResult = SASStringService.appendToString(strResult, "六冲变六合");
+      strResult = SASStringService.appendToString(strResult,
           "诸合皆以用神旺者为吉，独此六冲卦变六合者，不看用神，竟以吉断。占婚姻先吴越而后朱陈。占夫妻先参商后必合好。占功名始则艰难，终须荣显。占身命先困后宁。占风水巧处奇逢。占家宅先颓后盛。\r\n");
     }
 
@@ -482,18 +483,18 @@ class SABEasyResultBusiness {
 
     if (bFromConflict && !bToConflict && !bToSixPair) {
       //卦逢六冲，二也。
-      strResult = SACContext.appendToString(strResult, "卦逢六冲");
-      strResult = SACContext.appendToString(
+      strResult = SASStringService.appendToString(strResult, "卦逢六冲");
+      strResult = SASStringService.appendToString(
           strResult, "冲者，散也。凡占凶事宜于冲散，占吉事而不宜。亦必兼看用神而言，用神旺，虽冲不碍，用神失陷，凶而又凶。");
     } else if (bFromSixPair && bToConflict) {
       //六合卦变六冲，三也。
-      strResult = SACContext.appendToString(strResult, "六合卦变六冲");
-      strResult = SACContext.appendToString(strResult,
+      strResult = SASStringService.appendToString(strResult, "六合卦变六冲");
+      strResult = SASStringService.appendToString(strResult,
           "冲者，散也。凡占凶事宜于冲散，占吉事而不宜。\r\n    亦必兼看用神而言，用神旺，虽冲不碍，用神失陷，凶而又凶。\r\n    六合卦变六冲者，用神若旺，始吉终凶，图事虽成，有始而无终也。\r\n    凡得六合变六冲者，诸占先合后离，先亲后疏，先浓后淡，始荣终悴，初好后迟，先亨后否，得而复失，成而后败，事就而又变也。唯占官非盗贼结绝事者宜之。");
     } else if (bFromConflict && bToConflict) {
       //六冲变六冲，四也。
-      strResult = SACContext.appendToString(strResult, "六冲变六冲");
-      strResult = SACContext.appendToString(
+      strResult = SASStringService.appendToString(strResult, "六冲变六冲");
+      strResult = SASStringService.appendToString(
           strResult, "冲者，散也。凡占凶事宜于冲散，占吉事而不宜。亦必兼看用神而言，用神旺，虽冲不碍，用神失陷，凶而又凶。");
     }
     //else cont.
@@ -529,13 +530,13 @@ class SABEasyResultBusiness {
 
     if (bFromSixPair && !bToConflict && !bToSixPair) {
       //卦逢六合，四也;
-      strResult = SACContext.appendToString(strResult, "卦逢六合");
+      strResult = SASStringService.appendToString(strResult, "卦逢六合");
     } else if (bFromSixPair && bToSixPair) {
       //六合卦变六合，六也。
-      strResult = SACContext.appendToString(strResult, "六合卦变六合");
+      strResult = SASStringService.appendToString(strResult, "六合卦变六合");
     } else if (bFromConflict && bToSixPair) {
       //六冲变六合，五也；
-      strResult = SACContext.appendToString(strResult, "六冲变六合");
+      strResult = SASStringService.appendToString(strResult, "六冲变六合");
     }
 
     /*
@@ -548,13 +549,13 @@ class SABEasyResultBusiness {
      */
     else if (bFromConflict && !bToConflict && !bToSixPair) {
       //卦逢六冲，二也。
-      strResult = SACContext.appendToString(strResult, "卦逢六冲");
+      strResult = SASStringService.appendToString(strResult, "卦逢六冲");
     } else if (bFromSixPair && bToConflict) {
       //六合卦变六冲，三也。
-      strResult = SACContext.appendToString(strResult, "六合卦变六冲");
+      strResult = SASStringService.appendToString(strResult, "六合卦变六冲");
     } else if (bFromConflict && bToConflict) {
       //六冲变六冲，四也。
-      strResult = SACContext.appendToString(strResult, "六冲变六冲");
+      strResult = SASStringService.appendToString(strResult, "六冲变六冲");
     }
     //else cont.
 
