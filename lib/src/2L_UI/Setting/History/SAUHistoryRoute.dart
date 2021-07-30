@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
-import 'package:yourlucky/src/1L_Context/SACRouteUrl.dart';
 import 'package:yourlucky/src/2L_UI/Base/SAUListTitleVistor.dart';
+import 'package:yourlucky/src/2L_UI/EasyDetail/SAUEasyDetailRoute.dart';
 import 'package:yourlucky/src/3L_Business/StoreEasy/SABEasyDigitModel.dart';
 
 class SAUHistoryRoute extends StatefulWidget {
@@ -15,20 +15,6 @@ class SAUHistoryRoute extends StatefulWidget {
 }
 
 class SAUHistoryRouteState extends State<SAUHistoryRoute> {
-  List settingsList = <Map>[
-    {'value': SACRouteUrl.history, 'key': 'Feedback'},
-    {'value': SACRouteUrl.history, 'key': 'Develop Task'},
-    {'value': SACRouteUrl.history, 'key': 'Friends'},
-    {'value': SACRouteUrl.history, 'key': 'About'},
-    {'value': SACRouteUrl.history, 'key': 'Rate And Review'},
-    {'value': SACRouteUrl.history, 'key': 'Setting'},
-    {'value': SACRouteUrl.history, 'key': 'Log In'},
-    {'value': SACRouteUrl.history, 'key': 'Log Out'},
-    {'value': SACRouteUrl.history, 'key': 'Debug'},
-    {'value': SACRouteUrl.history, 'key': '趋避'},
-    {'value': SACRouteUrl.history, 'key': 'History'},
-  ];
-
   late Query<SABEasyDigitModel> _easyQuery;
   Stream<QuerySnapshot<SABEasyDigitModel>>? _easies;
 
@@ -68,7 +54,17 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
             return ListView.builder(
               itemCount: dataSize,
               itemBuilder: (context, index) {
-                return SAUListTitleVisitor.greyWhite(index, 'title', () {});
+                return SAUListTitleVisitor.greyWhite(
+                  index,
+                  'title',
+                  () {
+                    SABEasyDigitModel digitModel = data.docs[index].data();
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return SAUEasyDetailRoute(digitModel);
+                    }));
+                  },
+                );
               },
             );
           } else {

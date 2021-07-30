@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 ///此Model仅代表占卜时所创造的数据；
 class SABEasyDigitModel {
   //构造函数
@@ -15,7 +17,7 @@ class SABEasyDigitModel {
       : this(
           json['strEasyGoal']! as String,
           json['strUsefulDeity']! as String,
-          json['nEasyTime']! as DateTime,
+          (json['nEasyTime']! as Timestamp).toDate(),
           (json['listEasyData']! as List).cast<int>(),
           stringTitle: json['stringTitle']! as String,
           stringDescribe: json['stringDescribe']! as String,

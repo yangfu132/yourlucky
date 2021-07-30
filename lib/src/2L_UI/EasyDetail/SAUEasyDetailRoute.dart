@@ -41,11 +41,8 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
               SACContext.getStoreBusiness()
                   .addDigitModel(widget.inputEasyModel);
             },
-            child: Text('保存',
-                style: TextStyle(
-                    fontSize: 16.w,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.white)),
+            child: Text('保存'),
+            style: SACContext.textButtonStyle(),
           ),
         ],
       ),
