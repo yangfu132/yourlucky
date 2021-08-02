@@ -38,8 +38,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
         actions: <Widget>[
           TextButton(
             onPressed: () {
-              SACContext.getStoreBusiness()
-                  .addDigitModel(widget.inputEasyModel);
+              SACContext.easyStore().addDigitModel(widget.inputEasyModel);
             },
             child: Text('保存'),
             style: SACContext.textButtonStyle(),

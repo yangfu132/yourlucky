@@ -26,7 +26,7 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
 
   Future<void> _updateQuery() async {
     setState(() {
-      _easyQuery = SACContext.getStoreBusiness().getQuery();
+      _easyQuery = SACContext.easyStore().getQueryRes();
       _easies = _easyQuery.snapshots();
     });
   }
@@ -54,11 +54,11 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
             return ListView.builder(
               itemCount: dataSize,
               itemBuilder: (context, index) {
+                SABEasyDigitModel digitModel = data.docs[index].data();
                 return SAUListTitleVisitor.greyWhite(
                   index,
-                  'title',
+                  digitModel.stringTitle,
                   () {
-                    SABEasyDigitModel digitModel = data.docs[index].data();
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
                       return SAUEasyDetailRoute(digitModel);

@@ -14,7 +14,7 @@ class SACContext {
     await storeBusiness.initFireBase();
   }
 
-  static SABStoreEasyBusiness getStoreBusiness() {
+  static SABStoreEasyBusiness easyStore() {
     SACContext businessContext = SABSingletonBusiness.getObject('SACContext');
     return businessContext.storeBusiness;
   }

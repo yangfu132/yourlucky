@@ -12,7 +12,19 @@ class SABEasyDigitModel {
     this._listEasyData, {
     stringTitle,
     stringDescribe,
-  });
+  }) {
+    if (stringTitle.isEmpty) {
+      this.stringTitle = "原始";
+    } else {
+      this.stringTitle = stringTitle;
+    }
+
+    if (stringDescribe.isEmpty) {
+      this.stringDescribe = "原始";
+    } else {
+      this.stringDescribe = stringDescribe;
+    }
+  }
   SABEasyDigitModel.fromJson(Map<String, Object?> json)
       : this(
           json['strEasyGoal']! as String,
@@ -46,9 +58,9 @@ class SABEasyDigitModel {
   //属性：实例的用神
   final String _strUsefulDeity;
 
-  String stringTitle = "原始";
+  late String stringTitle;
 
-  String stringDescribe = "原始";
+  late String stringDescribe;
 
   /// `public 函数`/////////////////////////////////////////////////////////////
 

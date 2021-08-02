@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:yourlucky/src/3L_Business/StoreEasy/SABEasyDigitModel.dart';
-
-const bool USE_FIRE_STORE_EMULATOR = true;
+import 'package:yourlucky/src/4L_Service/SASFireStoreService.dart';
 
 /// A reference to the list of movies.
 /// We are using `withConverter` to ensure that interactions with the collection
@@ -19,21 +17,14 @@ class SABStoreEasyBusiness {
   /// Requires that a Firestore emulator is running locally.
   /// See https://firebase.flutter.dev/docs/firestore/usage#emulator-usage
   Future<void> initFireBase() async {
-    await Firebase.initializeApp();
-    if (USE_FIRE_STORE_EMULATOR) {
-      FirebaseFirestore.instance.settings = const Settings(
-        host: 'localhost:8080',
-        sslEnabled: false,
-        persistenceEnabled: false,
-      );
-    }
+    await SASFireStoreService.initFireBase();
   }
 
   void addDigitModel(SABEasyDigitModel digitModel) {
     easyRef.add(digitModel);
   }
 
-  Query<SABEasyDigitModel> getQuery() {
-    return easyRef.limit(1);
+  Query<SABEasyDigitModel> getQueryRes() {
+    return easyRef.limit(3);
   }
 }
