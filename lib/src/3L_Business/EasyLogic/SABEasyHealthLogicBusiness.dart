@@ -1175,7 +1175,7 @@ class SABEasyHealthLogicBusiness {
           nResult = MonthConflictEnum.Conflict_MoveBorn;
         }
         //else cont.
-      } //endi
+      } //end if
     }
     //else cont.
 

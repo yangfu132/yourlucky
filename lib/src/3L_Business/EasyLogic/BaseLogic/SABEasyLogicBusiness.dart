@@ -316,14 +316,10 @@ class SABEasyLogicBusiness {
     return bRestricted;
   }
 
-  bool _isSymbolMonthConflict(String stringSymbol) {
-    String strMonth = monthEarth();
-
-    String strEarth = symbolEarth(stringSymbol);
-
-    bool bConflicted = isEarthConflict(strMonth, strEarth);
-
-    return bConflicted;
+  bool isConflictMonthAtRow(int intRow, EasyTypeEnum easyType) {
+    String stringSymbol = wordsModel().getSymbolName(intRow, easyType);
+    String basicEarth = symbolEarth(stringSymbol);
+    return isEarthConflict(basicEarth, monthEarth());
   }
 
   bool isMovementStrongAtRow(int intRow) {
@@ -885,12 +881,6 @@ class SABEasyLogicBusiness {
 
   ///`月破章第二十七`//////////////////////////////////////////////////////
   ///参见HealthLogic
-
-  bool isConflictMonthAtRow(int intRow, EasyTypeEnum easyType) {
-    String stringSymbol = wordsModel().getSymbolName(intRow, easyType);
-    String basicEarth = symbolEarth(stringSymbol);
-    return isEarthConflict(basicEarth, monthEarth());
-  }
 
   ///`飞伏章第二十八`//////////////////////////////////////////////////////
   ///参见SABEasyHealthLogicBusiness `飞伏章第二十八`
