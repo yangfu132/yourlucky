@@ -13,13 +13,13 @@ class SABEasyDigitModel {
     stringTitle,
     stringDescribe,
   }) {
-    if (stringTitle.isEmpty) {
+    if (null == stringTitle || stringTitle.isEmpty) {
       this.stringTitle = "原始";
     } else {
       this.stringTitle = stringTitle;
     }
 
-    if (stringDescribe.isEmpty) {
+    if (stringDescribe == null || stringDescribe.isEmpty) {
       this.stringDescribe = "原始";
     } else {
       this.stringDescribe = stringDescribe;
