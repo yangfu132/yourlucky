@@ -25,6 +25,6 @@ class SABStoreEasyBusiness {
   }
 
   Query<SABEasyDigitModel> getQueryRes() {
-    return easyRef.limit(3);
+    return easyRef.orderBy('easyDateTime', descending: true);
   }
 }

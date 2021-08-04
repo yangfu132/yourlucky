@@ -8,7 +8,7 @@ class SABEasyDigitModel {
   SABEasyDigitModel(
     this._strEasyGoal,
     this._strUsefulDeity,
-    this._nEasyTime,
+    this.easyDateTime,
     this._listEasyData, {
     stringTitle,
     stringDescribe,
@@ -29,7 +29,7 @@ class SABEasyDigitModel {
       : this(
           json['strEasyGoal']! as String,
           json['strUsefulDeity']! as String,
-          (json['nEasyTime']! as Timestamp).toDate(),
+          (json['easyDateTime']! as Timestamp).toDate(),
           (json['listEasyData']! as List).cast<int>(),
           stringTitle: json['stringTitle']! as String,
           stringDescribe: json['stringDescribe']! as String,
@@ -39,7 +39,7 @@ class SABEasyDigitModel {
     return {
       'listEasyData': _listEasyData,
       'strEasyGoal': _strEasyGoal,
-      'nEasyTime': _nEasyTime,
+      'easyDateTime': easyDateTime,
       'strUsefulDeity': _strUsefulDeity,
       'stringTitle': stringTitle,
       'stringDescribe': stringDescribe
@@ -47,7 +47,7 @@ class SABEasyDigitModel {
   }
 
   //属性：实例发生时间
-  final DateTime _nEasyTime;
+  final DateTime easyDateTime;
 
   //属性：实例的随机数数组
   final List<int> _listEasyData;
@@ -128,7 +128,7 @@ class SABEasyDigitModel {
   /// `get and set函数`/////////////////////////////////////////////////////////
 
   DateTime getEasyTime() {
-    return _nEasyTime;
+    return easyDateTime;
   }
 
   //函数：占卜目的
