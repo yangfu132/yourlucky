@@ -2,9 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:yourlucky/src/2L_UI/Setting/History/SAUHistoryRoute.dart';
+import 'package:yourlucky/src/2L_UI/Setting/LogIn/SAULoginRoute.dart';
+import 'package:yourlucky/src/2L_UI/Setting/LogOut/SAULogOutRoute.dart';
 
 class SACRouteUrl {
   static const history = 'history';
+  static const logIn = 'logIn';
+  static const logOut = 'logOut';
 
   // native route，所有native页面route必须添加 "Native/" 前缀
   static const nativePageA = 'Native/somePageA';
@@ -16,6 +20,12 @@ Widget mapRouteToPage(String route, Object? arguments) {
   switch (route) {
     case SACRouteUrl.history:
       widget = SAUHistoryRoute();
+      break;
+    case SACRouteUrl.logIn:
+      widget = SAULoginRoute();
+      break;
+    case SACRouteUrl.logOut:
+      widget = SAULogOutRoute();
       break;
     default:
       break;

@@ -32,7 +32,7 @@ class SABEasyResultBusiness {
     List resultList = outputResultModel.resultList;
     if (theHealthModel.bValidEasy()) {
       resultList[0]['value'] = _inputEasyModel.getEasyGoal();
-      resultList[1]['value'] = this.resultUsefulDeitye();
+      resultList[1]['value'] = this.resultUsefulDeity();
       resultList[2]['value'] = this.resultEasy();
       resultList[3]['value'] = this.resultRepeatedOrConflict();
       resultList[4]['value'] = this.resultSixPairOrConflict();
@@ -44,7 +44,7 @@ class SABEasyResultBusiness {
   }
 
   ///`用神`//////////////////////////////////////////////////////
-  String resultUsefulDeitye() {
+  String resultUsefulDeity() {
     return "${digitModel().getUsefulDeity()}，类像参见用神爻。";
   }
 
