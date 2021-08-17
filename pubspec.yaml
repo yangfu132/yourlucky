@@ -23,6 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
   #接入cloud_firestore
   cloud_firestore: 2.2.2 # new

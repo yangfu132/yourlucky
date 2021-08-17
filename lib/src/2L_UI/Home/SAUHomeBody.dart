@@ -4,6 +4,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/2L_UI/EasyExpertResult/SAUEasyExpertResultRoute.dart';
 import 'package:yourlucky/src/2L_UI/Setting/SAUUserRoute.dart';
+import 'package:yourlucky/src/4L_Service/SASLocalizationsService.dart';
 
 import '../../1L_Context/SACContext.dart';
 import '../../3L_Business/StoreEasy/SABEasyDigitModel.dart';
@@ -132,7 +133,7 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
             left: (SACContext.screenWidth(context) / 2 - buttonWidth) / 2,
             child: TextButton(
               child: Text(
-                '开始',
+                SASLocalizationsService.homeEasy(context),
                 style: TextStyle(
                   color: Color(0xFFE5CC69),
                   fontSize: 28,
@@ -151,7 +152,7 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
             right: (SACContext.screenWidth(context) / 2 - buttonWidth) / 2,
             child: TextButton(
                 child: Text(
-                  '用户',
+                  SASLocalizationsService.homeUser(context),
                   style: TextStyle(
                     color: Color(0xFFE5CC69),
                     fontSize: 28,
