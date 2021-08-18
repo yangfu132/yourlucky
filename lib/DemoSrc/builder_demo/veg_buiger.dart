@@ -1,4 +1,4 @@
-import 'package:yourlucky/builder_demo/burger.dart';
+import 'package:yourlucky/DemoSrc/builder_demo/burger.dart';
 
 class VegBurger extends BurgerDemo {
   @override

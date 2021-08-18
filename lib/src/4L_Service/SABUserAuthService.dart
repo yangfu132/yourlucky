@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart'; // new
-import 'package:firebase_core/firebase_core.dart'; // new
 import 'package:flutter/foundation.dart';
 
 enum ApplicationLoginState {
@@ -10,14 +9,14 @@ enum ApplicationLoginState {
   register,
 }
 
-class SABSingletonBusiness extends ChangeNotifier {
-  ApplicationState() {
-    init();
-  }
+class SABUserAuthService extends ChangeNotifier {
+  ApplicationLoginState _loginState = ApplicationLoginState.loggedOut;
+  ApplicationLoginState get loginState => _loginState;
 
-  Future<void> init() async {
-    await Firebase.initializeApp();
+  String? _email;
+  String? get email => _email;
 
+  Future<void> initFireAuth() async {
     FirebaseAuth.instance.userChanges().listen((user) {
       if (user != null) {
         _loginState = ApplicationLoginState.loggedIn;
@@ -27,12 +26,6 @@ class SABSingletonBusiness extends ChangeNotifier {
       notifyListeners();
     });
   }
-
-  ApplicationLoginState _loginState = ApplicationLoginState.loggedOut;
-  ApplicationLoginState get loginState => _loginState;
-
-  String? _email;
-  String? get email => _email;
 
   void startLoginFlow() {
     _loginState = ApplicationLoginState.emailAddress;

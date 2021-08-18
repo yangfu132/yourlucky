@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yourlucky/src/3L_Business/User/SABLogInBusiness.dart';
+import 'package:yourlucky/src/4L_Service/SASLocalizationsService.dart';
 
 class SAULoginRoute extends StatefulWidget {
   SAULoginRoute({Key? key, this.title}) : super(key: key);
@@ -10,19 +12,22 @@ class SAULoginRoute extends StatefulWidget {
 }
 
 class SAULoginRouteState extends State<SAULoginRoute> {
+  final SABLogInBusiness business = SABLogInBusiness();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Log In'),
+        title: Text(SASLocalizationsService.userLogIn(context)),
       ),
       body: ListView.builder(
-          itemCount: 3,
+          itemCount: 4,
           itemExtent: 50.0, //强制高度为50.0
           itemBuilder: (BuildContext context, int index) {
             switch (index) {
               case 0:
                 return TextField(
+                  controller: business.emailController,
                   style: TextStyle(fontSize: 14, color: Color(0xFF333333)),
                   decoration: InputDecoration(
                     hintText: '请输入email',
@@ -31,9 +36,11 @@ class SAULoginRouteState extends State<SAULoginRoute> {
                     border: InputBorder.none,
                   ),
                   textInputAction: TextInputAction.next,
+                  focusNode: business.emailFocus,
                 );
               case 1:
                 return TextField(
+                  controller: business.passwordController,
                   style: TextStyle(fontSize: 14, color: Color(0xFF333333)),
                   decoration: InputDecoration(
                     hintText: '请输入密码',
@@ -41,12 +48,13 @@ class SAULoginRouteState extends State<SAULoginRoute> {
                         TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
                     border: InputBorder.none,
                   ),
-                  textInputAction: TextInputAction.next,
+                  textInputAction: TextInputAction.done,
+                  focusNode: business.passwordFocus,
                 );
               case 2:
                 return TextButton(
-                  onPressed: () => print('111'),
-                  child: Text('登录'),
+                  onPressed: () => business.logIn(),
+                  child: Text(SASLocalizationsService.userLogIn(context)),
                 );
               default:
                 return Container();

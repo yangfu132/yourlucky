@@ -1,4 +1,4 @@
-import 'package:yourlucky/builder_demo/item.dart';
+import 'package:yourlucky/DemoSrc/builder_demo/item.dart';
 
 class MealDemo {
   List<ItemDemo> items = <ItemDemo>[];

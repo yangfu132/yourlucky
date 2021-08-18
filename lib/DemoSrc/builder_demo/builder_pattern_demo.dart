@@ -1,5 +1,5 @@
-import 'package:yourlucky/builder_demo/meal.dart';
-import 'package:yourlucky/builder_demo/meal_builder.dart';
+import 'package:yourlucky/DemoSrc/builder_demo/meal.dart';
+import 'package:yourlucky/DemoSrc/builder_demo/meal_builder.dart';
 
 class BuilderPatternDemo {
   void mainMethod() {

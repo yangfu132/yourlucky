@@ -1,8 +1,8 @@
-import 'package:yourlucky/builder_demo/chicken_buiger.dart';
-import 'package:yourlucky/builder_demo/meal.dart';
-import 'package:yourlucky/builder_demo/pepsi.dart';
-import 'package:yourlucky/builder_demo/veg_buiger.dart';
-import 'package:yourlucky/builder_demo/coke.dart';
+import 'package:yourlucky/DemoSrc/builder_demo/chicken_buiger.dart';
+import 'package:yourlucky/DemoSrc/builder_demo/coke.dart';
+import 'package:yourlucky/DemoSrc/builder_demo/meal.dart';
+import 'package:yourlucky/DemoSrc/builder_demo/pepsi.dart';
+import 'package:yourlucky/DemoSrc/builder_demo/veg_buiger.dart';
 
 class MealBuilder {
   MealDemo prepareVegMeal() {
