@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yourlucky/src/2L_UI/Base/Widget/toast.dart';
 import 'package:yourlucky/src/3L_Business/User/SABLogInBusiness.dart';
 import 'package:yourlucky/src/4L_Service/SASLocalizationsService.dart';
 
@@ -53,7 +54,11 @@ class SAULoginRouteState extends State<SAULoginRoute> {
                 );
               case 2:
                 return TextButton(
-                  onPressed: () => business.logIn(),
+                  onPressed: () =>
+                      business.logIn((String code, String message) {
+                    ToastWidget.show("message:" + message);
+                    // Navigator.pop(context);
+                  }),
                   child: Text(SASLocalizationsService.userLogIn(context)),
                 );
               default:

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 
+typedef LoginCallback = void Function(String code, String message);
+
 class SABLogInBusiness {
   final emailController = TextEditingController();
   final emailFocus = FocusNode();
@@ -8,10 +10,10 @@ class SABLogInBusiness {
   final passwordController = TextEditingController();
   final passwordFocus = FocusNode();
 
-  void logIn() {
+  void logIn(LoginCallback callback) {
     SACContext.userAuth().signInWithEmailAndPassword(
         emailController.text, passwordController.text, (e) {
-      print('111');
+      callback(e.code, e.message ?? "");
     });
   }
 }

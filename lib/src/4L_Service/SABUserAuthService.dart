@@ -9,6 +9,8 @@ enum ApplicationLoginState {
   register,
 }
 
+const bool USE_FIRE_AUTH_EMULATOR = false;
+
 class SABUserAuthService extends ChangeNotifier {
   ApplicationLoginState _loginState = ApplicationLoginState.loggedOut;
   ApplicationLoginState get loginState => _loginState;
@@ -17,6 +19,9 @@ class SABUserAuthService extends ChangeNotifier {
   String? get email => _email;
 
   Future<void> initFireAuth() async {
+    if (USE_FIRE_AUTH_EMULATOR) {
+      await FirebaseAuth.instance.useEmulator('http://localhost:9099');
+    }
     FirebaseAuth.instance.userChanges().listen((user) {
       if (user != null) {
         _loginState = ApplicationLoginState.loggedIn;
