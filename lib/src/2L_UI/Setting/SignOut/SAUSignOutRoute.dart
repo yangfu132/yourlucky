@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:yourlucky/src/1L_Context/SACNavigator.dart';
 import 'package:yourlucky/src/1L_Context/SACRouteUrl.dart';
 
-class SAULogOutRoute extends StatefulWidget {
-  SAULogOutRoute({Key? key, this.title}) : super(key: key);
+class SAUSignOutRoute extends StatefulWidget {
+  SAUSignOutRoute({Key? key, this.title}) : super(key: key);
   final String? title;
   @override
-  SAULogOutRouteState createState() {
-    return SAULogOutRouteState();
+  SAUSignOutRouteState createState() {
+    return SAUSignOutRouteState();
   }
 }
 
-class SAULogOutRouteState extends State<SAULogOutRoute> {
+class SAUSignOutRouteState extends State<SAUSignOutRoute> {
   List settingsList = <Map>[
     {'value': SACRouteUrl.history, 'key': 'Feedback'},
     {'value': SACRouteUrl.history, 'key': 'Develop Task'},

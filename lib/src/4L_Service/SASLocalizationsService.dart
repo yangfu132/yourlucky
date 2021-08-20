@@ -55,8 +55,8 @@ class SASLocalizationsService {
     return localizationsString(context, "登录", "Log In");
   }
 
-  static String userLogOut(BuildContext context) {
-    return localizationsString(context, "注销", "Log Out");
+  static String userSignOut(BuildContext context) {
+    return localizationsString(context, "注销", "Sign Out");
   }
 
   static String userDebug(BuildContext context) {
