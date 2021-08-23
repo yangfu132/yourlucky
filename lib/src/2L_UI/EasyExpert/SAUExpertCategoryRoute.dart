@@ -1,13 +1,8 @@
 ﻿import 'package:flutter/material.dart';
-
-import '../../3L_Business/EasyResult/SABEasyResultBusiness.dart';
-import '../../3L_Business/EasyResult/SABEasyResultModel.dart';
-import '../../3L_Business/StoreEasy/SABEasyDigitModel.dart';
-import '../EasyResult/SAUEasyResultRoute.dart';
+import 'package:yourlucky/src/3L_Business/EasyExpert/ExpertCategory/SABExpertCategoryBusiness.dart';
 
 class SAUExpertCategoryRoute extends StatefulWidget {
-  SAUExpertCategoryRoute(this.inputEasyModel);
-  final SABEasyDigitModel inputEasyModel;
+  SAUExpertCategoryRoute();
 
   @override
   _SAUExpertCategoryRoute createState() {
@@ -16,18 +11,11 @@ class SAUExpertCategoryRoute extends StatefulWidget {
 }
 
 class _SAUExpertCategoryRoute extends State<SAUExpertCategoryRoute> {
-  late final SABEasyResultBusiness detailBusiness;
-  SABEasyResultModel outputResultModel = SABEasyResultModel();
+  late final SABExpertCategoryBusiness categoryBusiness;
 
   @override
   void initState() {
     super.initState();
-
-    detailBusiness.configResultModel(outputResultModel);
-  }
-
-  SABEasyResultModel resultModel() {
-    return outputResultModel;
   }
 
   @override
@@ -37,19 +25,17 @@ class _SAUExpertCategoryRoute extends State<SAUExpertCategoryRoute> {
         title: Text('补充'),
       ),
       body: ListView.builder(
-          itemCount: resultModel().resultList.length * 2,
+          itemCount: 10,
           //itemExtent: 50.0, //强制高度为50.0
           itemBuilder: (BuildContext context, int index) {
             int dataIndex = index ~/ 2;
             int kv = index % 2;
-            Map value = resultModel().resultList[dataIndex];
+            Map value = {'key': 'key', 'value': 'value'};
             if (kv > 0)
               return ListTile(
                 title: Text(value['value']),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return SAUEasyResultRoute(widget.inputEasyModel);
-                  }));
+                  print('111');
                 },
               );
             else

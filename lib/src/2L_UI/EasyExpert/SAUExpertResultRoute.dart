@@ -5,20 +5,20 @@ import '../../3L_Business/EasyExpert/ExpertResult/SABEasyExpertResultBusiness.da
 import '../../3L_Business/StoreEasy/SABEasyDigitModel.dart';
 import '../EasyDetail/SAUEasyDetailRoute.dart';
 
-class SAUEasyExpertResultRoute extends StatefulWidget {
-  SAUEasyExpertResultRoute(this._inputEasyModel) {
+class SAUExpertResultRoute extends StatefulWidget {
+  SAUExpertResultRoute(this._inputEasyModel) {
     this.resultBusiness.configResultModel(this._inputEasyModel);
   }
   final SABEasyDigitModel _inputEasyModel;
   final SABEasyExpertResultBusiness resultBusiness =
       SABEasyExpertResultBusiness();
   @override
-  _SAUEasyExpertResultRoute createState() {
-    return _SAUEasyExpertResultRoute();
+  _SAUExpertResultRoute createState() {
+    return _SAUExpertResultRoute();
   }
 }
 
-class _SAUEasyExpertResultRoute extends State<SAUEasyExpertResultRoute> {
+class _SAUExpertResultRoute extends State<SAUExpertResultRoute> {
   @override
   void initState() {
     super.initState();

@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:yourlucky/src/2L_UI/EasyExpertResult/SAUEasyExpertResultRoute.dart';
-import 'package:yourlucky/src/2L_UI/Setting/SAUUserRoute.dart';
+import 'package:yourlucky/src/2L_UI/EasyExpert/SAUExpertResultRoute.dart';
+import 'package:yourlucky/src/2L_UI/User/SAUUserRoute.dart';
 import 'package:yourlucky/src/4L_Service/SASLocalizationsService.dart';
 
 import '../../1L_Context/SACContext.dart';
@@ -69,7 +69,7 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
           DateTime.now(),
           SABEasyDigitModel.generateEasyArray(),
         );
-        return SAUEasyExpertResultRoute(outEasyModel);
+        return SAUExpertResultRoute(outEasyModel);
       }));
     });
     double screenWidth = SACContext.screenWidth(context);
