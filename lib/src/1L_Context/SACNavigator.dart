@@ -8,4 +8,8 @@ class SACNavigator {
       return mapRouteToPage(stringUrl, null);
     }));
   }
+
+  static pop(BuildContext context) {
+    Navigator.pop(context);
+  }
 }

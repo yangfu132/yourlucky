@@ -18,6 +18,9 @@ class SABUserAuthService extends ChangeNotifier {
   String? _email;
   String? get email => _email;
 
+  String? _displayName;
+  String? get displayName => _displayName;
+
   Future<void> initFireAuth() async {
     if (USE_FIRE_AUTH_EMULATOR) {
       await FirebaseAuth.instance.useEmulator('http://localhost:9099');
@@ -25,9 +28,11 @@ class SABUserAuthService extends ChangeNotifier {
     FirebaseAuth.instance.userChanges().listen((user) {
       if (user != null) {
         _loginState = ApplicationLoginState.loggedIn;
+        _displayName = user.displayName;
       } else {
         _loginState = ApplicationLoginState.loggedOut;
       }
+
       notifyListeners();
     });
   }
@@ -61,13 +66,20 @@ class SABUserAuthService extends ChangeNotifier {
     String password,
     void Function(FirebaseAuthException e) errorCallback,
   ) async {
+    FirebaseAuthException? failure;
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
     } on FirebaseAuthException catch (e) {
-      errorCallback(e);
+      failure = e;
+    } finally {
+      if (null == failure) {
+        errorCallback(FirebaseAuthException(message: '成功', code: '0'));
+      } else {
+        errorCallback(failure);
+      }
     }
   }
 
@@ -89,5 +101,14 @@ class SABUserAuthService extends ChangeNotifier {
 
   void signOut() {
     FirebaseAuth.instance.signOut();
+    _displayName = null;
+  }
+
+  void sendPasswordResetEmail(String email) {
+    FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  }
+
+  void verifyPasswordResetCode(String code) {
+    FirebaseAuth.instance.verifyPasswordResetCode(code);
   }
 }

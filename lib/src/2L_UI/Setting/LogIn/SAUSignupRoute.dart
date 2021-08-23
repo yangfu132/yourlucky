@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:yourlucky/src/1L_Context/SACNavigator.dart';
 import 'package:yourlucky/src/2L_UI/Base/Widget/toast.dart';
 import 'package:yourlucky/src/3L_Business/User/SABLogInBusiness.dart';
 import 'package:yourlucky/src/4L_Service/SASLocalizationsService.dart';
 
-class SAULoginRoute extends StatefulWidget {
-  SAULoginRoute({Key? key, this.title}) : super(key: key);
+class SAUSignupRoute extends StatefulWidget {
+  SAUSignupRoute({Key? key, this.title}) : super(key: key);
   final String? title;
   @override
-  SAULoginRouteState createState() {
-    return SAULoginRouteState();
+  SAUSignupRouteState createState() {
+    return SAUSignupRouteState();
   }
 }
 
-class SAULoginRouteState extends State<SAULoginRoute> {
+class SAUSignupRouteState extends State<SAUSignupRoute> {
   final SABLogInBusiness business = SABLogInBusiness();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(SASLocalizationsService.userLogIn(context)),
+        title: Text(SASLocalizationsService.userSignUp(context)),
       ),
       body: business.isLogged() ? buildLogged(context) : buildLogIn(context),
     );
@@ -31,7 +32,7 @@ class SAULoginRouteState extends State<SAULoginRoute> {
 
   Widget buildLogIn(BuildContext context) {
     return ListView.builder(
-        itemCount: 4,
+        itemCount: 5,
         itemExtent: 50.0, //强制高度为50.0
         itemBuilder: (BuildContext context, int index) {
           switch (index) {
@@ -49,6 +50,18 @@ class SAULoginRouteState extends State<SAULoginRoute> {
               );
             case 1:
               return TextField(
+                controller: business.nameController,
+                style: TextStyle(fontSize: 14, color: Color(0xFF333333)),
+                decoration: InputDecoration(
+                  hintText: '请输入用户名',
+                  hintStyle: TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
+                  border: InputBorder.none,
+                ),
+                textInputAction: TextInputAction.next,
+                focusNode: business.nameFocus,
+              );
+            case 2:
+              return TextField(
                 controller: business.passwordController,
                 style: TextStyle(fontSize: 14, color: Color(0xFF333333)),
                 decoration: InputDecoration(
@@ -59,14 +72,15 @@ class SAULoginRouteState extends State<SAULoginRoute> {
                 textInputAction: TextInputAction.done,
                 focusNode: business.passwordFocus,
               );
-            case 2:
+            case 3:
               return TextButton(
-                onPressed: () => business.logIn((String code, String message) {
+                onPressed: () => business.signUp((String code, String message) {
                   ToastWidget.show("message:" + message);
-                  // Navigator.pop(context);
+                  SACNavigator.pop(context);
                 }),
-                child: Text(SASLocalizationsService.userLogIn(context)),
+                child: Text(SASLocalizationsService.userSignUp(context)),
               );
+
             default:
               return Container();
           }

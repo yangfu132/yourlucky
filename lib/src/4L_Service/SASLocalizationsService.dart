@@ -51,12 +51,20 @@ class SASLocalizationsService {
     return localizationsString(context, "设置", "Setting");
   }
 
+  static String userSignUp(BuildContext context) {
+    return localizationsString(context, "注册", "Sign Up");
+  }
+
   static String userLogIn(BuildContext context) {
-    return localizationsString(context, "登录", "Log In");
+    return localizationsString(context, "登录", "Sign In");
+  }
+
+  static String userForget(BuildContext context) {
+    return localizationsString(context, "重置密码", "Forget");
   }
 
   static String userSignOut(BuildContext context) {
-    return localizationsString(context, "注销", "Sign Out");
+    return localizationsString(context, "退出登录", "Sign Out");
   }
 
   static String userDebug(BuildContext context) {

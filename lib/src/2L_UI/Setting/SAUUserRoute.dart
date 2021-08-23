@@ -44,10 +44,6 @@ class SAUUserRouteState extends State<SAUUserRoute> {
         'key': SASLocalizationsService.userLogIn(context)
       },
       {
-        'value': SACRouteUrl.signOut,
-        'key': SASLocalizationsService.userSignOut(context)
-      },
-      {
         'value': SACRouteUrl.history,
         'key': SASLocalizationsService.userDebug(context)
       },
