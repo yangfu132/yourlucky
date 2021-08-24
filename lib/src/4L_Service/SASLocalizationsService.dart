@@ -74,6 +74,10 @@ class SASLocalizationsService {
   static String userHistory(BuildContext context) {
     return localizationsString(context, "历史", "History");
   }
+
+  static String userCategory(BuildContext context) {
+    return localizationsString(context, "门类", "Category");
+  }
 }
 
 //Locale代理类

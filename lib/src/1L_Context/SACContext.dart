@@ -12,11 +12,11 @@ void colog(String strMsg) {
 
 class SACContext {
   final SABStoreEasyBusiness storeBusiness = SABStoreEasyBusiness();
-  final SABUserAuthService userBusiness = SABUserAuthService();
+  final SABUserAuthService userAuthService = SABUserAuthService();
   Future<void> initStep() async {
     await SASFireBaseService.initFireBase();
     await storeBusiness.initFireStore();
-    await userBusiness.initFireAuth();
+    await userAuthService.initFireAuth();
   }
 
   static SABStoreEasyBusiness easyStore() {
@@ -26,7 +26,7 @@ class SACContext {
 
   static SABUserAuthService userAuth() {
     SACContext businessContext = SABSingletonBusiness.getObject('SACContext');
-    return businessContext.userBusiness;
+    return businessContext.userAuthService;
   }
 
   static double screenWidth(context) {

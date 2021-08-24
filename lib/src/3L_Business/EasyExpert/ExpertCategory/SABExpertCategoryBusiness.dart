@@ -13,6 +13,8 @@ import 'SABUsefulDeityModel.dart';
 class SABExpertCategoryBusiness {
   String strExpertCategory = 'ExpertCategory';
 
+  String stringCategory = '趋避';
+
   ///UI信息
   List categorySection() {
     return ['基础', '分类'];
@@ -30,11 +32,10 @@ class SABExpertCategoryBusiness {
     return Text('data');
   }
 
-  Future<String> getsCategory() async {
-    var userName;
+  Future<void> getsCategory() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    userName = prefs.getString(strExpertCategory);
-    return userName;
+    stringCategory = prefs.getString(strExpertCategory) ?? '趋避';
+    print(stringCategory);
   }
 
   Future<void> setCategory(String strType) async {

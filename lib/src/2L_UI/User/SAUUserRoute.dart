@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/1L_Context/SACNavigator.dart';
 import 'package:yourlucky/src/1L_Context/SACRouteUrl.dart';
+import 'package:yourlucky/src/3L_Business/EasyExpert/ExpertCategory/SABExpertCategoryBusiness.dart';
 import 'package:yourlucky/src/4L_Service/SASLocalizationsService.dart';
 
 class SAUUserRoute extends StatefulWidget {
@@ -13,6 +14,9 @@ class SAUUserRoute extends StatefulWidget {
 }
 
 class SAUUserRouteState extends State<SAUUserRoute> {
+  late final SABExpertCategoryBusiness categoryBusiness =
+      SABExpertCategoryBusiness();
+
   List<Map> userActionData(BuildContext context) {
     return <Map>[
       {
@@ -47,7 +51,10 @@ class SAUUserRouteState extends State<SAUUserRoute> {
         'value': SACRouteUrl.history,
         'key': SASLocalizationsService.userDebug(context)
       },
-      {'value': SACRouteUrl.expertCategory, 'key': '趋避'},
+      {
+        'value': SACRouteUrl.expertCategory,
+        'key': categoryBusiness.stringCategory
+      },
       {
         'value': SACRouteUrl.history,
         'key': SASLocalizationsService.userHistory(context)
@@ -67,15 +74,22 @@ class SAUUserRouteState extends State<SAUUserRoute> {
           itemExtent: 50.0, //强制高度为50.0
           itemBuilder: (BuildContext context, int index) {
             int kv = index % 2;
+            final value = userActionList[index]['value'];
+            String key = userActionList[index]['key'];
+            if (SACRouteUrl.expertCategory == value) {
+              key = categoryBusiness.stringCategory;
+            } else {}
             if (kv > 0) {
               return ListTile(
                 trailing: Icon(Icons.chevron_right, color: Colors.grey),
-                title: Text(userActionList[index]['key']),
-                onTap: () {
-                  SACNavigator.pushNamed(
+                title: Text(key),
+                onTap: () async {
+                  await SACNavigator.pushNamed(
                     context,
-                    userActionList[index]['value'],
+                    value,
                   );
+                  await categoryBusiness.getsCategory();
+                  setState(() {});
                 },
               );
             } else {
@@ -86,12 +100,14 @@ class SAUUserRouteState extends State<SAUUserRoute> {
                 ),
                 child: ListTile(
                   trailing: Icon(Icons.chevron_right, color: Colors.white),
-                  title: Text(userActionList[index]['key']),
-                  onTap: () {
-                    SACNavigator.pushNamed(
+                  title: Text(key),
+                  onTap: () async {
+                    await SACNavigator.pushNamed(
                       context,
-                      userActionList[index]['value'],
+                      value,
                     );
+                    await categoryBusiness.getsCategory();
+                    setState(() {});
                   },
                 ),
               );
