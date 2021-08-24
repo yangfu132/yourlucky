@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:yourlucky/src/2L_UI/EasyExpert/SAUExpertCategoryRoute.dart';
+import 'package:yourlucky/src/2L_UI/EasyExpert/SAUEasyStrategyRoute.dart';
 import 'package:yourlucky/src/2L_UI/User/History/SAUHistoryRoute.dart';
 import 'package:yourlucky/src/2L_UI/User/SignIn/SAUSignInRoute.dart';
 import 'package:yourlucky/src/2L_UI/User/SignIn/SAUSignupRoute.dart';
@@ -30,7 +30,7 @@ Widget mapRouteToPage(String route, Object? arguments) {
       widget = SAUSignupRoute();
       break;
     case SACRouteUrl.expertCategory:
-      widget = SAUExpertCategoryRoute();
+      widget = SAUEasyStrategyRoute();
       break;
     default:
       break;

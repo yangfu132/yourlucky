@@ -1,21 +1,18 @@
 ﻿import 'package:flutter/material.dart';
+import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACNavigator.dart';
-import 'package:yourlucky/src/3L_Business/EasyExpert/ExpertCategory/SABExpertCategoryBusiness.dart';
 import 'package:yourlucky/src/4L_Service/SASLocalizationsService.dart';
 
-class SAUExpertCategoryRoute extends StatefulWidget {
-  SAUExpertCategoryRoute();
+class SAUEasyStrategyRoute extends StatefulWidget {
+  SAUEasyStrategyRoute();
 
   @override
-  _SAUExpertCategoryRoute createState() {
-    return _SAUExpertCategoryRoute();
+  _SAUEasyStrategyRoute createState() {
+    return _SAUEasyStrategyRoute();
   }
 }
 
-class _SAUExpertCategoryRoute extends State<SAUExpertCategoryRoute> {
-  late final SABExpertCategoryBusiness categoryBusiness =
-      SABExpertCategoryBusiness();
-
+class _SAUEasyStrategyRoute extends State<SAUEasyStrategyRoute> {
   @override
   void initState() {
     super.initState();
@@ -23,7 +20,7 @@ class _SAUExpertCategoryRoute extends State<SAUExpertCategoryRoute> {
 
   List categoryActionData() {
     List result = List.empty(growable: true);
-    Map categoryMap = categoryBusiness.categoryDictionary();
+    Map categoryMap = SACContext.expertCategory().categoryDictionary();
     categoryMap.forEach((key, value) {
       result.add({'key': key, 'value': true});
       List categoryList = categoryMap[key];
@@ -64,7 +61,7 @@ class _SAUExpertCategoryRoute extends State<SAUExpertCategoryRoute> {
                 child: ListTile(
                   title: Text(category['key']),
                   onTap: () {
-                    categoryBusiness.setCategory(category['key']);
+                    SACContext.expertCategory().setCategory(category['key']);
                     SACNavigator.pop(context);
                   },
                 ),
