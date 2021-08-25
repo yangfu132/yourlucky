@@ -1,7 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
-import 'package:yourlucky/src/2L_UI/EasyResult/SAUEasyAnalysisRoute.dart';
+import 'package:yourlucky/src/2L_UI/EasyResult/SAUEasyResultRoute.dart';
 
 import '../../3L_Business/EasyDetail/SABEasyDetailModel.dart';
 
@@ -67,7 +67,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
       child: GestureDetector(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return SAUEasyAnalysisRoute(widget.inputDetailModel);
+            return SAUEasyResultRoute(widget.inputDetailModel);
           }));
         },
         child: Container(
@@ -92,7 +92,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
       child: GestureDetector(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return SAUEasyAnalysisRoute(widget.inputDetailModel);
+            return SAUEasyResultRoute(widget.inputDetailModel);
           }));
         },
         child: Container(
