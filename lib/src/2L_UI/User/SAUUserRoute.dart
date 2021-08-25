@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/1L_Context/SACNavigator.dart';
 import 'package:yourlucky/src/1L_Context/SACRouteUrl.dart';
-import 'package:yourlucky/src/3L_Business/EasyStrategy/ExpertCategory/SABExpertCategoryBusiness.dart';
+import 'package:yourlucky/src/3L_Business/EasyStrategy/EasyStrategy/SABEasyStrategyBusiness.dart';
 import 'package:yourlucky/src/4L_Service/SASLocalizationsService.dart';
 
 class SAUUserRoute extends StatefulWidget {
@@ -14,8 +14,8 @@ class SAUUserRoute extends StatefulWidget {
 }
 
 class SAUUserRouteState extends State<SAUUserRoute> {
-  late final SABExpertCategoryBusiness categoryBusiness =
-      SABExpertCategoryBusiness();
+  late final SABEasyStrategyBusiness categoryBusiness =
+      SABEasyStrategyBusiness();
 
   List<Map> userActionData(BuildContext context) {
     return <Map>[
@@ -53,7 +53,7 @@ class SAUUserRouteState extends State<SAUUserRoute> {
       },
       {
         'value': SACRouteUrl.expertCategory,
-        'key': categoryBusiness.stringCategory
+        'key': categoryBusiness.stringStrategy
       },
       {
         'value': SACRouteUrl.history,
@@ -77,7 +77,7 @@ class SAUUserRouteState extends State<SAUUserRoute> {
             final value = userActionList[index]['value'];
             String key = userActionList[index]['key'];
             if (SACRouteUrl.expertCategory == value) {
-              key = categoryBusiness.stringCategory;
+              key = categoryBusiness.stringStrategy;
             } else {}
             if (kv > 0) {
               return ListTile(

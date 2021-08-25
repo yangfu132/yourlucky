@@ -1,7 +1,7 @@
 ///遇到的问题：
 ///问题1：如何全局引用context？
 import 'package:flutter/material.dart';
-import 'package:yourlucky/src/3L_Business/EasyStrategy/ExpertCategory/SABExpertCategoryBusiness.dart';
+import 'package:yourlucky/src/3L_Business/EasyStrategy/EasyStrategy/SABEasyStrategyBusiness.dart';
 import 'package:yourlucky/src/3L_Business/SABSingletonBusiness.dart';
 import 'package:yourlucky/src/3L_Business/StoreEasy/SABStoreEasyBusiness.dart';
 import 'package:yourlucky/src/4L_Service/SABUserAuthService.dart';
@@ -14,8 +14,7 @@ void colog(String strMsg) {
 class SACContext {
   final SABStoreEasyBusiness storeBusiness = SABStoreEasyBusiness();
   final SABUserAuthService userAuthService = SABUserAuthService();
-  final SABExpertCategoryBusiness categoryBusiness =
-      SABExpertCategoryBusiness();
+  final SABEasyStrategyBusiness categoryBusiness = SABEasyStrategyBusiness();
   Future<void> initStep() async {
     await SASFireBaseService.initFireBase();
     await storeBusiness.initFireStore();
@@ -23,7 +22,7 @@ class SACContext {
     await categoryBusiness.getsCategory();
   }
 
-  static SABExpertCategoryBusiness expertCategory() {
+  static SABEasyStrategyBusiness expertCategory() {
     SACContext businessContext = SABSingletonBusiness.getObject('SACContext');
     return businessContext.categoryBusiness;
   }

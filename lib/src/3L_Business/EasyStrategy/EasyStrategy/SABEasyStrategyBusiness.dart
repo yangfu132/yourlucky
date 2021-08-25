@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../EasyResult/SABEasyResultModel.dart';
-import 'SABExpertCategoryModel.dart';
+import 'SABEasyStrategyModel.dart';
 import 'SABUsefulDeityModel.dart';
 
 ///note:章，既是预测模型
@@ -10,13 +10,13 @@ import 'SABUsefulDeityModel.dart';
 ///对应：COMCategoryAdapter
 ///解释：Expert代表专家，每一章都是对某种情况的专家系统；
 
-class SABExpertCategoryBusiness {
-  String strExpertCategory = 'ExpertCategory';
+class SABEasyStrategyBusiness {
+  String stringStrategyKey = 'ExpertCategory';
 
-  String stringCategory = '趋避';
+  String stringStrategy = '趋避';
 
   ///UI信息
-  List categorySection() {
+  List strategySection() {
     return ['基础', '分类'];
   }
 
@@ -24,7 +24,7 @@ class SABExpertCategoryBusiness {
   Map categoryDictionary() {
     return {
       '基础': SABUsefulDeityModel.baseCategoryArray(),
-      '分类': SABExpertCategoryModel.categoryArray(),
+      '分类': SABEasyStrategyModel.categoryArray(),
     };
   }
 
@@ -34,12 +34,12 @@ class SABExpertCategoryBusiness {
 
   Future<void> getsCategory() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    stringCategory = prefs.getString(strExpertCategory) ?? '趋避';
-    print(stringCategory);
+    stringStrategy = prefs.getString(stringStrategyKey) ?? '趋避';
+    print(stringStrategy);
   }
 
   Future<void> setCategory(String strType) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(strExpertCategory, strType);
+    prefs.setString(stringStrategyKey, strType);
   }
 }

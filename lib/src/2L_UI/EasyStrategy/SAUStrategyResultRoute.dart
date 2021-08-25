@@ -1,7 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 
-import '../../3L_Business/EasyStrategy/ExpertResult/SABEasyStrategyResultBusiness.dart';
+import '../../3L_Business/EasyStrategy/EasyStrategyResult/SABEasyStrategyResultBusiness.dart';
 import '../../3L_Business/StoreEasy/SABEasyDigitModel.dart';
 import '../EasyDetail/SAUEasyDetailRoute.dart';
 
@@ -11,7 +11,8 @@ class SAUStrategyResultRoute extends StatefulWidget {
   }
   final SABEasyDigitModel _inputEasyModel;
   final SABEasyStrategyResultBusiness resultBusiness =
-      SABEasyStrategyResultBusiness();
+      SABEasyStrategyResultBusiness(
+          strategy: SACContext.expertCategory().stringStrategy);
   @override
   _SAUStrategyResultRoute createState() {
     return _SAUStrategyResultRoute();
@@ -28,7 +29,7 @@ class _SAUStrategyResultRoute extends State<SAUStrategyResultRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(SACContext.expertCategory().stringCategory),
+        title: Text(SACContext.expertCategory().stringStrategy),
         actions: [
           TextButton(
             onPressed: () {
