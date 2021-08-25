@@ -1,4 +1,4 @@
-﻿class SABEasyExpertResultModel {
+﻿class SABEasyStrategyResultModel {
   List resultList = [
     {'key': '持世', 'value': '持世'},
     {'key': '克世者', 'value': '持世'},

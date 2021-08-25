@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/1L_Context/SACNavigator.dart';
 import 'package:yourlucky/src/1L_Context/SACRouteUrl.dart';
-import 'package:yourlucky/src/3L_Business/EasyExpert/ExpertCategory/SABExpertCategoryBusiness.dart';
+import 'package:yourlucky/src/3L_Business/EasyStrategy/ExpertCategory/SABExpertCategoryBusiness.dart';
 import 'package:yourlucky/src/4L_Service/SASLocalizationsService.dart';
 
 class SAUUserRoute extends StatefulWidget {

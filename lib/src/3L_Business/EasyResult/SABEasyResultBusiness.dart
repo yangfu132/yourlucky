@@ -1,9 +1,9 @@
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
-import 'package:yourlucky/src/3L_Business/EasyExpert/ExpertCategory/SABUsefulDeityModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyStrategy/ExpertCategory/SABUsefulDeityModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 
 import '../../1L_Context/SACContext.dart';

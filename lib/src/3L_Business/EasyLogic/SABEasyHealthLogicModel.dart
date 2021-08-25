@@ -1,8 +1,8 @@
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
-import 'package:yourlucky/src/3L_Business/EasyExpert/ExpertCategory/SABUsefulDeityModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyStrategy/ExpertCategory/SABUsefulDeityModel.dart';
 
 class SABEasyHealthLogicModel {
   SABEasyHealthLogicModel({
