@@ -7,9 +7,9 @@ class SABEasyAvoidBusiness {
   SABEasyStrategyResultModel resultModel() {
     SABEasyStrategyResultModel modelResult = SABEasyStrategyResultModel(
         lifeDescription: lifeDescription(),
-        ghostDescription: '',
-        sonDescription: '',
         enemyDescription: '',
+        sonState: '',
+        enemyState: '',
         relationAboutEnemy: '',
         relationAboutParentOrSon: '');
     return modelResult;

@@ -12,14 +12,20 @@ class SABEasyStrategyResultBusiness {
   final SABEasyDetailModel inputDetail;
   void configResultModel(SABEasyDigitModel inputEasyModel) {}
   SABEasyStrategyResultModel resultModel() {
-    SABEasyAvoidBusiness avoidBusiness = SABEasyAvoidBusiness(inputDetail);
     SABEasyStrategyResultModel modelResult;
     switch (strategy) {
       case SABEasyStrategyModel.avoid:
+        SABEasyAvoidBusiness avoidBusiness = SABEasyAvoidBusiness(inputDetail);
         modelResult = avoidBusiness.resultModel();
         break;
       default:
-        modelResult = avoidBusiness.resultModel();
+        modelResult = SABEasyStrategyResultModel(
+            lifeDescription: '',
+            enemyDescription: '',
+            sonState: '',
+            enemyState: '',
+            relationAboutEnemy: '',
+            relationAboutParentOrSon: '');
     }
     return modelResult;
   }
