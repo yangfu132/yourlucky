@@ -1,4 +1,18 @@
 ﻿class SABEasyStrategyResultModel {
+  SABEasyStrategyResultModel({
+    required this.lifeDescription,
+    required this.ghostDescription,
+    required this.sonDescription,
+    required this.enemyDescription,
+    required this.relationAboutEnemy,
+    required this.relationAboutParentOrSon,
+  });
+  final String lifeDescription;
+  final String ghostDescription;
+  final String sonDescription;
+  final String enemyDescription;
+  final String relationAboutEnemy;
+  final String relationAboutParentOrSon;
   List resultList = [
     {'key': '持世', 'value': '持世'},
     {'key': '克世者', 'value': '持世'},

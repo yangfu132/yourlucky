@@ -1,18 +1,19 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
+import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailModel.dart';
 
 import '../../3L_Business/EasyStrategy/EasyStrategyResult/SABEasyStrategyResultBusiness.dart';
-import '../../3L_Business/StoreEasy/SABEasyDigitModel.dart';
 import '../EasyDetail/SAUEasyDetailRoute.dart';
 
 class SAUStrategyResultRoute extends StatefulWidget {
-  SAUStrategyResultRoute(this._inputEasyModel) {
-    this.resultBusiness.configResultModel(this._inputEasyModel);
+  SAUStrategyResultRoute(this.inputDetail) {
+    resultBusiness = SABEasyStrategyResultBusiness(
+      inputDetail: inputDetail,
+      strategy: SACContext.expertCategory().stringStrategy,
+    );
   }
-  final SABEasyDigitModel _inputEasyModel;
-  final SABEasyStrategyResultBusiness resultBusiness =
-      SABEasyStrategyResultBusiness(
-          strategy: SACContext.expertCategory().stringStrategy);
+  final SABEasyDetailModel inputDetail;
+  late final SABEasyStrategyResultBusiness resultBusiness;
   @override
   _SAUStrategyResultRoute createState() {
     return _SAUStrategyResultRoute();
@@ -34,7 +35,7 @@ class _SAUStrategyResultRoute extends State<SAUStrategyResultRoute> {
           TextButton(
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return SAUEasyDetailRoute(widget._inputEasyModel);
+                return SAUEasyDetailRoute(widget.inputDetail);
               }));
             },
             child: Text('详细'),
@@ -43,13 +44,13 @@ class _SAUStrategyResultRoute extends State<SAUStrategyResultRoute> {
         ],
       ),
       body: ListView.builder(
-          itemCount: widget.resultBusiness.expertModel().resultList.length * 2,
+          itemCount: widget.resultBusiness.resultModel().resultList.length * 2,
           //itemExtent: 50.0, //强制高度为50.0
           itemBuilder: (BuildContext context, int index) {
             int dataIndex = index ~/ 2;
             int kv = index % 2;
             Map value =
-                widget.resultBusiness.expertModel().resultList[dataIndex];
+                widget.resultBusiness.resultModel().resultList[dataIndex];
             if (kv > 0)
               return ListTile(title: Text(value['value']));
             else

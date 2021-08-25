@@ -3,13 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/2L_UI/EasyResult/SAUEasyResultRoute.dart';
 
-import '../../3L_Business/EasyDetail/SABEasyDetailBusiness.dart';
 import '../../3L_Business/EasyDetail/SABEasyDetailModel.dart';
-import '../../3L_Business/StoreEasy/SABEasyDigitModel.dart';
 
 class SAUEasyDetailRoute extends StatefulWidget {
-  SAUEasyDetailRoute(this.inputEasyModel);
-  final SABEasyDigitModel inputEasyModel;
+  SAUEasyDetailRoute(this.inputDetailModel);
+  final SABEasyDetailModel inputDetailModel;
 
   @override
   _SAUEasyDetailRouteState createState() {
@@ -18,16 +16,13 @@ class SAUEasyDetailRoute extends StatefulWidget {
 }
 
 class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
-  late final SABEasyDetailBusiness detailBusiness =
-      SABEasyDetailBusiness(widget.inputEasyModel);
-
   @override
   void initState() {
     super.initState();
   }
 
   SABEasyDetailModel detailModel() {
-    return detailBusiness.outputDetailModel();
+    return widget.inputDetailModel;
   }
 
   @override
@@ -38,7 +33,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
         actions: <Widget>[
           TextButton(
             onPressed: () {
-              SACContext.easyStore().addDigitModel(widget.inputEasyModel);
+              SACContext.easyStore().addDigitModel(detailModel().digitModel());
             },
             child: Text('保存'),
             style: SACContext.textButtonStyle(),
@@ -72,7 +67,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
       child: GestureDetector(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return SAUEasyResultRoute(widget.inputEasyModel);
+            return SAUEasyResultRoute(widget.inputDetailModel);
           }));
         },
         child: Container(
@@ -97,7 +92,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
       child: GestureDetector(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return SAUEasyResultRoute(widget.inputEasyModel);
+            return SAUEasyResultRoute(widget.inputDetailModel);
           }));
         },
         child: Container(

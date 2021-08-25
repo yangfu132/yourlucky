@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailModel.dart';
 
-import '../../3L_Business/EasyResult/SABEasyResultBusiness.dart';
 import '../../3L_Business/EasyResult/SABEasyResultModel.dart';
-import '../../3L_Business/StoreEasy/SABEasyDigitModel.dart';
 
 class SAUEasyResultRoute extends StatefulWidget {
-  SAUEasyResultRoute(this._inputEasyModel) {
-    this.resultBusiness.configResultModel(this.resultModel);
-  }
-  final SABEasyDigitModel _inputEasyModel;
-  late final SABEasyResultBusiness resultBusiness =
-      SABEasyResultBusiness(this._inputEasyModel);
+  SAUEasyResultRoute(this.inputDetailModel);
+  final SABEasyDetailModel inputDetailModel;
   final SABEasyResultModel resultModel = SABEasyResultModel();
   @override
   _SAUEasyResultState createState() {
@@ -28,10 +23,7 @@ class _SAUEasyResultState extends State<SAUEasyResultRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.resultBusiness
-            .logicModel()
-            .inputWordsModel
-            .stringFormatTime),
+        title: Text(widget.inputDetailModel.wordsModel().stringFormatTime),
       ),
       body: ListView.builder(
           itemCount: widget.resultModel.resultList.length * 2,

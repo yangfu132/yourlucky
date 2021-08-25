@@ -3,6 +3,7 @@ import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyStrategy/EasyStrategy/SABUsefulDeityModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
+import 'package:yourlucky/src/3L_Business/StoreEasy/SABEasyDigitModel.dart';
 
 import '../EasyAnalysis/SABEasyAnalysisModel.dart';
 import 'SABRowDetailModel.dart';
@@ -12,6 +13,10 @@ class SABEasyDetailModel {
   final SABEasyAnalysisModel _analysisModel;
   final String stringDetailName;
   late List _listRowModels = _initRowModelsArray();
+
+  SABEasyDigitModel digitModel() {
+    return wordsModel().inputDigitModel;
+  }
 
   SABEasyWordsModel wordsModel() {
     return _analysisModel

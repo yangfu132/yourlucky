@@ -236,6 +236,10 @@ class SABEasyWordsModel {
     return rowModelAtRow(intRow).getSymbolElement(easyTypeEnum);
   }
 
+  String getLifeParent() {
+    return getSymbolParent(intLifeIndex, EasyTypeEnum.from);
+  }
+
   /// `加载函数`/////////////////////////////////////////////////////////////////
 
   void addRowModel(SABRowWordsModel rowModel) {

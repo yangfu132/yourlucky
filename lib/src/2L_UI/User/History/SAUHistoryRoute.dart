@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/2L_UI/Base/SAUListTitleVistor.dart';
 import 'package:yourlucky/src/2L_UI/EasyDetail/SAUEasyDetailRoute.dart';
+import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailBusiness.dart';
 import 'package:yourlucky/src/3L_Business/StoreEasy/SABEasyDigitModel.dart';
 
 class SAUHistoryRoute extends StatefulWidget {
@@ -59,9 +60,12 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
                   index,
                   digitModel.stringTitle,
                   () {
+                    SABEasyDetailBusiness detailBusiness =
+                        SABEasyDetailBusiness(digitModel);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return SAUEasyDetailRoute(digitModel);
+                      return SAUEasyDetailRoute(
+                          detailBusiness.outputDetailModel());
                     }));
                   },
                 );
