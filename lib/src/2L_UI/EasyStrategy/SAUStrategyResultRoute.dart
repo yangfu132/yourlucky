@@ -5,6 +5,7 @@ import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailModel.dart';
 import '../../3L_Business/EasyStrategy/EasyStrategyResult/SABEasyStrategyResultBusiness.dart';
 import '../EasyDetail/SAUEasyDetailRoute.dart';
 
+///功能：显示策略推断结果
 class SAUStrategyResultRoute extends StatefulWidget {
   SAUStrategyResultRoute(this.inputDetail) {
     resultBusiness = SABEasyStrategyResultBusiness(
