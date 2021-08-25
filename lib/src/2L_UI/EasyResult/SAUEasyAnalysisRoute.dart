@@ -3,8 +3,8 @@ import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailModel.dart';
 
 import '../../3L_Business/EasyResult/SABEasyResultModel.dart';
 
-class SAUEasyResultRoute extends StatefulWidget {
-  SAUEasyResultRoute(this.inputDetailModel);
+class SAUEasyAnalysisRoute extends StatefulWidget {
+  SAUEasyAnalysisRoute(this.inputDetailModel);
   final SABEasyDetailModel inputDetailModel;
   final SABEasyResultModel resultModel = SABEasyResultModel();
   @override
@@ -13,7 +13,7 @@ class SAUEasyResultRoute extends StatefulWidget {
   }
 }
 
-class _SAUEasyResultState extends State<SAUEasyResultRoute> {
+class _SAUEasyResultState extends State<SAUEasyAnalysisRoute> {
   @override
   void initState() {
     super.initState();
