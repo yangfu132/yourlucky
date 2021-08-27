@@ -21,7 +21,7 @@ class SABEasyHealthLogicBusiness {
   SABEasyHealthLogicBusiness(this._inputEasyModel);
   final SABEasyDigitModel _inputEasyModel;
 
-  late final SABEasyHealthLogicModel _healthLogicModel = initLogicModel();
+  late final SABEasyHealthLogicModel _healthLogicModel = initHealthLogicModel();
 
   late final SABEasyLogicBusiness _logicBusiness =
       SABEasyLogicBusiness(_inputEasyModel);
@@ -32,7 +32,7 @@ class SABEasyHealthLogicBusiness {
       SABEasyHealthBusiness(logicModel());
 
   ///`输出`
-  SABEasyHealthLogicModel healthLogicModel() {
+  SABEasyHealthLogicModel outputModel() {
     return _healthLogicModel;
   }
 
@@ -153,42 +153,43 @@ class SABEasyHealthLogicBusiness {
   SABSymbolHealthLogicModel fromSymbol(SABSymbolHealthModel healthSymbol) {
     int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
     return SABSymbolHealthLogicModel(
-      healthSymbol: healthSymbol,
-      symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.from),
-      isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, EasyTypeEnum.from),
-      conflictOnMonthState:
-          symbolConflictStateOnMonth(intRow, EasyTypeEnum.from),
-      conflictOnDayState: symbolDayConflictState(intRow, EasyTypeEnum.from),
-      stringDeity: deityAtRow(intRow, EasyTypeEnum.from),
-    );
+        healthSymbol: healthSymbol,
+        symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.from),
+        isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, EasyTypeEnum.from),
+        conflictOnMonthState:
+            symbolConflictStateOnMonth(intRow, EasyTypeEnum.from),
+        conflictOnDayState: symbolDayConflictState(intRow, EasyTypeEnum.from),
+        stringDeity: deityAtRow(intRow, EasyTypeEnum.from),
+        outRight: OutRightEnum.RIGHT_EMPTY);
   }
 
   SABSymbolHealthLogicModel toSymbol(SABSymbolHealthModel healthSymbol) {
     int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
     return SABSymbolHealthLogicModel(
-      healthSymbol: healthSymbol,
-      symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.to),
-      isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, EasyTypeEnum.to),
-      conflictOnMonthState: symbolConflictStateOnMonth(intRow, EasyTypeEnum.to),
-      conflictOnDayState: symbolDayConflictState(intRow, EasyTypeEnum.to),
-      stringDeity: deityAtRow(intRow, EasyTypeEnum.to),
-    );
+        healthSymbol: healthSymbol,
+        symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.to),
+        isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, EasyTypeEnum.to),
+        conflictOnMonthState:
+            symbolConflictStateOnMonth(intRow, EasyTypeEnum.to),
+        conflictOnDayState: symbolDayConflictState(intRow, EasyTypeEnum.to),
+        stringDeity: deityAtRow(intRow, EasyTypeEnum.to),
+        outRight: OutRightEnum.RIGHT_EMPTY);
   }
 
   SABSymbolHealthLogicModel hideSymbol(SABSymbolHealthModel healthSymbol) {
     int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
     return SABSymbolHealthLogicModel(
-      healthSymbol: healthSymbol,
-      symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.hide),
-      isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, EasyTypeEnum.hide),
-      conflictOnMonthState:
-          symbolConflictStateOnMonth(intRow, EasyTypeEnum.hide),
-      conflictOnDayState: symbolDayConflictState(intRow, EasyTypeEnum.hide),
-      stringDeity: deityAtRow(intRow, EasyTypeEnum.hide),
-    );
+        healthSymbol: healthSymbol,
+        symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.hide),
+        isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, EasyTypeEnum.hide),
+        conflictOnMonthState:
+            symbolConflictStateOnMonth(intRow, EasyTypeEnum.hide),
+        conflictOnDayState: symbolDayConflictState(intRow, EasyTypeEnum.hide),
+        stringDeity: deityAtRow(intRow, EasyTypeEnum.hide),
+        outRight: OutRightEnum.RIGHT_EMPTY);
   }
 
-  SABEasyHealthLogicModel initLogicModel() {
+  SABEasyHealthLogicModel initHealthLogicModel() {
     SABEasyHealthLogicModel logicModel = SABEasyHealthLogicModel(
       inputHealthModel: healthModel(),
       usefulDeity: usefulDeityRow(),

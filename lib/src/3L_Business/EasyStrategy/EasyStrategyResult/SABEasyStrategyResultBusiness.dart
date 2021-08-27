@@ -19,13 +19,7 @@ class SABEasyStrategyResultBusiness {
         modelResult = avoidBusiness.resultModel();
         break;
       default:
-        modelResult = SABEasyStrategyResultModel(
-            lifeDescription: '',
-            enemyDescription: '',
-            sonState: '',
-            enemyState: '',
-            relationAboutEnemy: '',
-            relationAboutParentOrSon: '');
+        modelResult = SABEasyStrategyResultModel.empty();
     }
     return modelResult;
   }

@@ -176,7 +176,7 @@ class SABMoveHealthBusiness {
       SABHealthModel tempHealthModel, int nLevel3Row, EasyTypeEnum easyType) {
     List arrayEffects = [];
 
-    ///TODO:为了找到分析的开头，假设日建或者月建是不受其他爻生克的;
+    ///TODO:yangfu132为了找到分析的开头，假设日建或者月建是不受其他爻生克的;
     if (logicModel().isOnDay(nLevel3Row, easyType) ||
         logicModel().isOnMonth(nLevel3Row, easyType)) {
       String basicEarth = logicModel().getSymbolEarth(nLevel3Row, easyType);
@@ -202,8 +202,8 @@ class SABMoveHealthBusiness {
 
   bool isLevel6EffectableAtRow(int nRow, EasyTypeEnum easyType) {
     bool bResult = false;
-    //TODO:除了动爻，静爻可以生克伏神吗？
-    //TODO:除了旬空的不可以生克伏神，还有别的不可以生克伏神吗？
+    //TODO:yangfu132除了动爻，静爻可以生克伏神吗？
+    //TODO:yangfu132除了旬空的不可以生克伏神，还有别的不可以生克伏神吗？
     final symbol = logicModel().rowModelAtRow(nRow).symbolModel(easyType);
     if (null != symbol) {
       bResult = !symbol.isEmpty();

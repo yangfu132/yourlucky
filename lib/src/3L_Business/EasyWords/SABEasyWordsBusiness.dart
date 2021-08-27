@@ -420,7 +420,7 @@ class SABEasyWordsBusiness {
         desOfGoalOrLife = "应";
       } //esle desOfGoalOrLife = "";
 
-      SABRowWordsModel symbol = SABRowWordsModel(
+      SABRowWordsModel row = SABRowWordsModel(
         intDigit: _inputEasyModel.digitAtIndex(intRow),
         fromSymbol: fromSymbol(intRow),
         toSymbol: toSymbol(intRow),
@@ -428,8 +428,9 @@ class SABEasyWordsBusiness {
         bMovement: _inputEasyModel.isMovementAtRow(intRow),
         stringAnimal: animalAtRow(intRow),
         desOfGoalOrLife: desOfGoalOrLife,
+        stringDiagrams: eightGuaAtFromRow(intRow),
       );
-      wordsModel.addRowModel(symbol);
+      wordsModel.addRowModel(row);
     }
 
     return wordsModel;

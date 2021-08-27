@@ -16,7 +16,7 @@ class SABEasyDetailBusiness {
       SABEasyHealthLogicBusiness(_inputEasyModel);
 
   late final SABEasyAnalysisBusiness _analysisBusiness =
-      SABEasyAnalysisBusiness(_healthLogicBusiness.healthLogicModel());
+      SABEasyAnalysisBusiness(_healthLogicBusiness.outputModel());
 
   SABEasyAnalysisBusiness analysisBusiness() {
     return _analysisBusiness;
@@ -29,7 +29,7 @@ class SABEasyDetailBusiness {
   }
 
   SABEasyDetailModel initOutputDetailModel() {
-    //TODO:细化detailmodel
+    //TODO:yangfu132细化detailmodel
     var outputDetailModel = SABEasyDetailModel(
       analysisBusiness().outAnalysisModel(),
       easyName(),

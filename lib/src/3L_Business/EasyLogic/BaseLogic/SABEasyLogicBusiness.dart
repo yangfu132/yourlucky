@@ -964,7 +964,7 @@ class SABEasyLogicBusiness {
   int unKnowUsefulDeity(EasyTypeEnum easyTypeEnum, List usefulArray) {
     int result = usefulArray[0]; //GLOBAL_ROW_INVALID;
 
-    //TODO:丰富用神的选取规则：按旺相休囚死的顺序排列；或者按照强弱顺序排序。
+    //TODO:yangfu132丰富用神的选取规则：按旺相休囚死的顺序排列；或者按照强弱顺序排序。
     //其实此时应该已经知道用神衰弱，事情很难成功。
     //    colog("error!");
 

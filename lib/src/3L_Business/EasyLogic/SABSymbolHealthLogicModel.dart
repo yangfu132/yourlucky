@@ -9,6 +9,7 @@ class SABSymbolHealthLogicModel {
     required this.conflictOnDayState,
     required this.symbolEmptyState,
     required this.stringDeity,
+    required this.outRight,
   });
   final SABSymbolHealthModel healthSymbol;
   final bool isSymbolDayBroken;
@@ -16,4 +17,5 @@ class SABSymbolHealthLogicModel {
   final DayConflictEnum conflictOnDayState;
   final EmptyEnum symbolEmptyState;
   final String stringDeity;
+  final OutRightEnum outRight;
 }

@@ -23,7 +23,7 @@ class SABEasyResultBusiness {
       SABEasyHealthLogicBusiness(_inputEasyModel);
 
   late final SABEasyAnalysisBusiness _analysisBusiness =
-      SABEasyAnalysisBusiness(_healthLogicBusiness.healthLogicModel());
+      SABEasyAnalysisBusiness(_healthLogicBusiness.outputModel());
 
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
 
@@ -707,7 +707,7 @@ class SABEasyResultBusiness {
   }
 
   SABEasyHealthLogicModel healthLogicModel() {
-    return _healthLogicBusiness.healthLogicModel();
+    return _healthLogicBusiness.outputModel();
   }
 
   SABEasyWordsModel wordsModel() {

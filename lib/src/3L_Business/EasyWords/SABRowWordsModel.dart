@@ -11,10 +11,12 @@ class SABRowWordsModel {
     required this.bMovement,
     required this.stringAnimal,
     required this.desOfGoalOrLife,
+    required this.stringDiagrams,
   });
   final int intDigit;
   final bool bMovement;
   final String stringAnimal;
+  final String stringDiagrams;
   final String desOfGoalOrLife;
   final SABSymbolWordsModel fromSymbol;
   final SABSymbolWordsModel toSymbol;

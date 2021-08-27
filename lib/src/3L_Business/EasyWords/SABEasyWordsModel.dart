@@ -189,6 +189,10 @@ class SABEasyWordsModel {
     return rowModelAtRow(intRow).stringAnimal;
   }
 
+  String getDiagrams(int intRow) {
+    return rowModelAtRow(intRow).stringDiagrams;
+  }
+
   List arrayFromRowOfParent(String parent) {
     return arrayRowWithParent(parent, EasyTypeEnum.from);
   }
@@ -238,6 +242,22 @@ class SABEasyWordsModel {
 
   String getLifeParent() {
     return getSymbolParent(intLifeIndex, EasyTypeEnum.from);
+  }
+
+  String getLifeName() {
+    return getSymbolName(intLifeIndex, EasyTypeEnum.from);
+  }
+
+  String getLifeElement() {
+    return getSymbolElement(intLifeIndex, EasyTypeEnum.from);
+  }
+
+  String getLifeAnimal() {
+    return getAnimal(intLifeIndex);
+  }
+
+  String getLifeDiagrams() {
+    return getDiagrams(intLifeIndex);
   }
 
   /// `加载函数`/////////////////////////////////////////////////////////////////

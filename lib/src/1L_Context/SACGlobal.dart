@@ -63,7 +63,7 @@ enum DayConflictEnum {
   Conflict_NO, //非日冲
   Conflict_YES, //日冲
   Conflict_BROKEN, //日冲，弱而破
-  Conflict_SAN, //旺相冲之不散，衰弱冲之则散,TODO:程序中都是按照散写的
+  Conflict_SAN, //旺相冲之不散，衰弱冲之则散,TODO:yangfu132程序中都是按照散写的
   Conflict_BackMove, //日冲，强而暗动
 }
 

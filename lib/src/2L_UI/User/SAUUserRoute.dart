@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACNavigator.dart';
 import 'package:yourlucky/src/1L_Context/SACRouteUrl.dart';
 import 'package:yourlucky/src/3L_Business/EasyStrategy/EasyStrategy/SABEasyStrategyBusiness.dart';
@@ -14,9 +15,6 @@ class SAUUserRoute extends StatefulWidget {
 }
 
 class SAUUserRouteState extends State<SAUUserRoute> {
-  late final SABEasyStrategyBusiness categoryBusiness =
-      SABEasyStrategyBusiness();
-
   List<Map> userActionData(BuildContext context) {
     return <Map>[
       {
@@ -53,7 +51,7 @@ class SAUUserRouteState extends State<SAUUserRoute> {
       },
       {
         'value': SACRouteUrl.expertCategory,
-        'key': categoryBusiness.stringStrategy
+        'key': SACContext.expertCategory().stringStrategy
       },
       {
         'value': SACRouteUrl.history,
@@ -75,10 +73,7 @@ class SAUUserRouteState extends State<SAUUserRoute> {
           itemBuilder: (BuildContext context, int index) {
             int kv = index % 2;
             final value = userActionList[index]['value'];
-            String key = userActionList[index]['key'];
-            if (SACRouteUrl.expertCategory == value) {
-              key = categoryBusiness.stringStrategy;
-            } else {}
+            final key = userActionList[index]['key'];
             if (kv > 0) {
               return ListTile(
                 trailing: Icon(Icons.chevron_right, color: Colors.grey),
@@ -88,7 +83,7 @@ class SAUUserRouteState extends State<SAUUserRoute> {
                     context,
                     value,
                   );
-                  await categoryBusiness.getsCategory();
+                  await SACContext.expertCategory().getsCategory();
                   setState(() {});
                 },
               );
@@ -106,7 +101,7 @@ class SAUUserRouteState extends State<SAUUserRoute> {
                       context,
                       value,
                     );
-                    await categoryBusiness.getsCategory();
+                    await SACContext.expertCategory().getsCategory();
                     setState(() {});
                   },
                 ),
