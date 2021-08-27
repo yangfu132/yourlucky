@@ -154,7 +154,7 @@ class SABEasyAvoidBusiness {
     //else cont.
 
     if (usefulArray.length > 0) {
-      bool outright = false;
+      bool hasOutright = false;
       for (int intRow in usefulArray) {
         String symbol = wordsModel().getSymbolName(intRow, easyType);
         if ('' != stringResult) {
@@ -162,14 +162,14 @@ class SABEasyAvoidBusiness {
         } else {
           stringResult = symbol;
         }
-        if (!outright) {
-          outright = OutRightEnum.RIGHT_MOVE ==
+        if (!hasOutright) {
+          hasOutright = OutRightEnum.RIGHT_MOVE ==
               healthModel().symbolOutRightAtRow(intRow, easyType);
-          outright = true;
+          hasOutright = true;
         }
       } //end for
 
-      if (outright) {
+      if (hasOutright) {
         SASStringService.appendToString(
             stringResult, "福神动于卦中。古法曰：但得子孙乘旺动，飞殃横祸化为尘。");
       } else {

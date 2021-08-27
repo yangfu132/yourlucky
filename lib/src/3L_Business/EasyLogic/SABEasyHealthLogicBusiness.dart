@@ -8,10 +8,10 @@ import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABRowLogicModel.d
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABEasyHealthBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABOutRightBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABRowHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABSymbolHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/SABOutRightBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABSymbolHealthLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyStrategy/EasyStrategy/SABUsefulDeityModel.dart';
@@ -19,7 +19,6 @@ import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:yourlucky/src/3L_Business/StoreEasy/SABEasyDigitModel.dart';
 
 class SABEasyHealthLogicBusiness {
-  ///TODO:yangfu132重新计算health与outright
   SABEasyHealthLogicBusiness(this._inputEasyModel);
   final SABEasyDigitModel _inputEasyModel;
 
@@ -41,16 +40,89 @@ class SABEasyHealthLogicBusiness {
     return _healthLogicModel;
   }
 
-  SABEasyLogicModel logicModel() {
-    return _logicBusiness.outputLogicModel();
+  SABSymbolHealthLogicModel fromSymbol(SABSymbolHealthModel healthSymbol) {
+    int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
+    return SABSymbolHealthLogicModel(
+      healthSymbol: healthSymbol,
+      symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.from),
+      isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, EasyTypeEnum.from),
+      conflictOnMonthState:
+          symbolConflictStateOnMonth(intRow, EasyTypeEnum.from),
+      conflictOnDayState: symbolDayConflictState(intRow, EasyTypeEnum.from),
+      stringDeity: deityAtRow(intRow, EasyTypeEnum.from),
+    );
+  }
+
+  SABSymbolHealthLogicModel toSymbol(SABSymbolHealthModel healthSymbol) {
+    int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
+    return SABSymbolHealthLogicModel(
+      healthSymbol: healthSymbol,
+      symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.to),
+      isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, EasyTypeEnum.to),
+      conflictOnMonthState: symbolConflictStateOnMonth(intRow, EasyTypeEnum.to),
+      conflictOnDayState: symbolDayConflictState(intRow, EasyTypeEnum.to),
+      stringDeity: deityAtRow(intRow, EasyTypeEnum.to),
+    );
+  }
+
+  SABSymbolHealthLogicModel hideSymbol(SABSymbolHealthModel healthSymbol) {
+    int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
+    return SABSymbolHealthLogicModel(
+        healthSymbol: healthSymbol,
+        symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.hide),
+        isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, EasyTypeEnum.hide),
+        conflictOnMonthState:
+            symbolConflictStateOnMonth(intRow, EasyTypeEnum.hide),
+        conflictOnDayState: symbolDayConflictState(intRow, EasyTypeEnum.hide),
+        stringDeity: deityAtRow(intRow, EasyTypeEnum.hide));
+  }
+
+  SABEasyHealthLogicModel initHealthLogicModel() {
+    SABEasyHealthLogicModel logicModel = SABEasyHealthLogicModel(
+      inputHealthModel: healthModel(),
+      usefulDeity: usefulDeityRow(),
+    );
+    //此信息依赖爻的基础信息
+    for (int intRow = 0; intRow < 6; intRow++) {
+      SABRowHealthModel rowHealthModel = healthModel().rowModelAtRow(intRow);
+      SABRowHealthLogicModel symbol = SABRowHealthLogicModel(
+        healthRow: rowHealthModel,
+        fromSymbol: fromSymbol(rowHealthModel.fromSymbol),
+        toSymbol: toSymbol(rowHealthModel.toSymbol),
+        hideSymbol: hideSymbol(rowHealthModel.hideSymbol),
+        isSymbolBackMove: isSymbolBackMoveAtRow(intRow, EasyTypeEnum.from),
+      );
+      logicModel.addSymbol(symbol);
+
+      logicModel.setIsSymbolChangeEmpty(intRow, isSymbolChangeEmpty(intRow));
+    }
+    return logicModel;
+  }
+
+  ///`加载函数`
+
+  SABEasyHealthBusiness healthBusiness() {
+    return _healthBusiness;
   }
 
   SABHealthModel healthModel() {
     return healthBusiness().outHealthModel1();
   }
 
-  String getUsefulDeity() {
-    return logicModel().inputWordsModel.inputDigitModel.getUsefulDeity();
+  SABEasyWordsModel wordsModel() {
+    return logicBusiness().wordsModel();
+  }
+
+  SABEasyLogicBusiness logicBusiness() {
+    return _logicBusiness;
+  }
+
+  SABEasyLogicModel logicModel() {
+    return _logicBusiness.outputLogicModel();
+  }
+
+  SABEarthBranchBusiness branchBusiness() {
+    return _branchBusiness;
   }
 
   ///`SABEasyHealthDelegate`
@@ -68,6 +140,10 @@ class SABEasyHealthLogicBusiness {
   }
 
   ///`桥函数`
+  String getUsefulDeity() {
+    return logicModel().inputWordsModel.inputDigitModel.getUsefulDeity();
+  }
+
   bool isEffectAbleRow(int intRow, EasyTypeEnum easyType) {
     return logicModel().symbolAtRow(intRow, easyType).isEffectAble;
   }
@@ -136,82 +212,6 @@ class SABEasyHealthLogicBusiness {
 
   String dayElement() {
     return wordsModel().stringDayElement;
-  }
-
-  ///`加载函数`
-  SABEasyLogicBusiness logicBusiness() {
-    return _logicBusiness;
-  }
-
-  SABEasyHealthBusiness healthBusiness() {
-    return _healthBusiness;
-  }
-
-  SABEarthBranchBusiness branchBusiness() {
-    return _branchBusiness;
-  }
-
-  SABEasyWordsModel wordsModel() {
-    return logicBusiness().wordsModel();
-  }
-
-  SABSymbolHealthLogicModel fromSymbol(SABSymbolHealthModel healthSymbol) {
-    int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
-    return SABSymbolHealthLogicModel(
-      healthSymbol: healthSymbol,
-      symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.from),
-      isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, EasyTypeEnum.from),
-      conflictOnMonthState:
-          symbolConflictStateOnMonth(intRow, EasyTypeEnum.from),
-      conflictOnDayState: symbolDayConflictState(intRow, EasyTypeEnum.from),
-      stringDeity: deityAtRow(intRow, EasyTypeEnum.from),
-    );
-  }
-
-  SABSymbolHealthLogicModel toSymbol(SABSymbolHealthModel healthSymbol) {
-    int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
-    return SABSymbolHealthLogicModel(
-      healthSymbol: healthSymbol,
-      symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.to),
-      isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, EasyTypeEnum.to),
-      conflictOnMonthState: symbolConflictStateOnMonth(intRow, EasyTypeEnum.to),
-      conflictOnDayState: symbolDayConflictState(intRow, EasyTypeEnum.to),
-      stringDeity: deityAtRow(intRow, EasyTypeEnum.to),
-    );
-  }
-
-  SABSymbolHealthLogicModel hideSymbol(SABSymbolHealthModel healthSymbol) {
-    int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
-    return SABSymbolHealthLogicModel(
-        healthSymbol: healthSymbol,
-        symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.hide),
-        isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, EasyTypeEnum.hide),
-        conflictOnMonthState:
-            symbolConflictStateOnMonth(intRow, EasyTypeEnum.hide),
-        conflictOnDayState: symbolDayConflictState(intRow, EasyTypeEnum.hide),
-        stringDeity: deityAtRow(intRow, EasyTypeEnum.hide));
-  }
-
-  SABEasyHealthLogicModel initHealthLogicModel() {
-    SABEasyHealthLogicModel logicModel = SABEasyHealthLogicModel(
-      inputHealthModel: healthModel(),
-      usefulDeity: usefulDeityRow(),
-    );
-    //此信息依赖爻的基础信息
-    for (int intRow = 0; intRow < 6; intRow++) {
-      SABRowHealthModel rowHealthModel = healthModel().rowModelAtRow(intRow);
-      SABRowHealthLogicModel symbol = SABRowHealthLogicModel(
-        healthRow: rowHealthModel,
-        fromSymbol: fromSymbol(rowHealthModel.fromSymbol),
-        toSymbol: toSymbol(rowHealthModel.toSymbol),
-        hideSymbol: hideSymbol(rowHealthModel.hideSymbol),
-        isSymbolBackMove: isSymbolBackMoveAtRow(intRow, EasyTypeEnum.from),
-      );
-      logicModel.addSymbol(symbol);
-
-      logicModel.setIsSymbolChangeEmpty(intRow, isSymbolChangeEmpty(intRow));
-    }
-    return logicModel;
   }
 
   ///`六亲歌章第五`//////////////////////////////////////////////////////
@@ -1006,7 +1006,7 @@ class SABEasyHealthLogicBusiness {
 
   ///`暗动章第二十二`//////////////////////////////////////////////////////
 
-//暗动
+  ///暗动
   bool isSymbolBackMoveAtRow(int intRow, EasyTypeEnum easyType) {
     bool result = false;
     if (!isMovementAtRow(intRow)) {

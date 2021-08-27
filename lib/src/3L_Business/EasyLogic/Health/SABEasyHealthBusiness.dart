@@ -33,7 +33,7 @@ class SABEasyHealthBusiness {
       tempHealthModel,
       arrayMoveRightRow,
     );
-    List<int> conflictMove = updateOutRight(tempHealthModel);
+    List<int> conflictMove = updateDayConflictOutRight(tempHealthModel);
     moveBusiness().calculateHealthOfAllMoveRight(tempHealthModel, conflictMove);
     tempHealthModel.listMoveRight =
         rowArrayAtOutRightLevel(OutRightEnum.RIGHT_MOVE);
@@ -41,7 +41,7 @@ class SABEasyHealthBusiness {
     return tempHealthModel;
   }
 
-  List<int> updateOutRight(SABHealthModel tempHealthModel) {
+  List<int> updateDayConflictOutRight(SABHealthModel tempHealthModel) {
     final resultRow = <int>[];
     final rowList = originBusiness()
         .rowArrayAtOutRightLevel(OutRightEnum.RIGHT_Day_Conflict);

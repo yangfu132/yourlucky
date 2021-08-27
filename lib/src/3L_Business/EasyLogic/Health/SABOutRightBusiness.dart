@@ -2,7 +2,7 @@ import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 
-import 'BaseLogic/SABEasyLogicModel.dart';
+import '../BaseLogic/SABEasyLogicModel.dart';
 
 class SABOutRightBusiness {
   SABOutRightBusiness(this._inputLogicModel);
@@ -76,9 +76,10 @@ class SABOutRightBusiness {
             fResult = OutRightEnum.RIGHT_Day_Conflict;
           else
             fResult = OutRightEnum.RIGHT_STATIC;
-        } //endi
-      } else
+        } //end if
+      } else {
         fResult = OutRightEnum.RIGHT_EMPTY;
+      }
     } else {
       colog("symbolModel is null");
     }
