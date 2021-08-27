@@ -1,5 +1,7 @@
+import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyStrategy/EasyStrategyResult/SABEasyStrategyResultModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:yourlucky/src/4L_Service/SASStringService.dart';
@@ -139,52 +141,50 @@ class SABEasyAvoidBusiness {
     return stringResult;
   }
 
-
-  String sonState()
-  {
+  String sonState() {
     String stringResult = '';
     EasyTypeEnum easyType = EasyTypeEnum.from;
     List usefulArray = wordsModel().arrayRowWithParent('子孙', easyType);
 
+    if (usefulArray.length == 0) {
+      easyType = EasyTypeEnum.hide;
+      usefulArray = wordsModel().arrayRowWithParent('子孙', easyType);
+      stringResult = "子孙没有上挂，以下为伏神信息：";
+    }
+    //else cont.
 
-  if ( usefulArray.length == 0 )
-  {
-    easyType = EasyTypeEnum.hide;
-    usefulArray = wordsModel().arrayRowWithParent('子孙', easyType);
-    stringResult = "子孙没有上挂，以下为伏神信息：";
-  }
-  //else cont.
+    if (usefulArray.length > 0) {
+      bool outright = false;
+      for (int intRow in usefulArray) {
+        String symbol = wordsModel().getSymbolName(intRow, easyType);
+        if ('' != stringResult) {
+          SASStringService.appendToString(stringResult, symbol);
+        } else {
+          stringResult = symbol;
+        }
+        if (!outright) {
+          outright = OutRightEnum.RIGHT_MOVE ==
+              healthModel().symbolOutRightAtRow(intRow, easyType);
+          outright = true;
+        }
+      } //end for
 
-    if ( usefulArray.length > 0 )
-  {
-    bool aaa = false;
-    for (int intRow in usefulArray) {
-      String symbol = wordsModel().getSymbolName(intRow, easyType);
-      if ('' != stringResult) {
-        SASStringService.appendToString(stringResult, symbol);
+      if (outright) {
+        SASStringService.appendToString(
+            stringResult, "福神动于卦中。古法曰：但得子孙乘旺动，飞殃横祸化为尘。");
       } else {
-        stringResult = symbol;
+        SASStringService.appendToString(stringResult, "福神安静。");
       }
-  }//end for
-
-  NSMutableArray* movementArray = [easyData movementArrayInArray:usefulArray];
-  if ( [movementArray count] > 0 )
-  {
-  strResult = [TLStringService appendToString:strResult byContent:@"福神动于卦中。古法曰：但得子孙乘旺动，飞殃横祸化为尘。"];
+    } else
+      colog("error");
+    return stringResult;
   }
-  else
-  {
-  strResult = [strResult stringByAppendingString:@"； 福神安静。"];
-  strResult = [TLStringService appendToString:strResult byContent:@"福神安静。"];
-  }
-  }
-  else
-  CO_LOG(@"error!");
-
-  return stringResult;
-}
 
   SABEasyWordsModel wordsModel() {
     return inputDetail.wordsModel();
+  }
+
+  SABHealthModel healthModel() {
+    return inputDetail.healthLogicModel().inputHealthModel;
   }
 }

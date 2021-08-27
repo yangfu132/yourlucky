@@ -31,6 +31,18 @@ class SABHealthModel {
     return rowModelAtRow(nRow).healthForEasyType(easyType);
   }
 
+  OutRightEnum symbolOutRightAtRow(int nRow, EasyTypeEnum easyType) {
+    if (EasyTypeEnum.from == easyType) {
+      return rowModelAtRow(nRow).fromSymbol.outRight;
+    } else if (EasyTypeEnum.to == easyType) {
+      return rowModelAtRow(nRow).toSymbol.outRight;
+    } else if (EasyTypeEnum.hide == easyType) {
+      return rowModelAtRow(nRow).hideSymbol.outRight;
+    } else {
+      return OutRightEnum.RIGHT_NULL;
+    }
+  }
+
   void updateHealthAtRow(int nRow, double health) {
     return rowModelAtRow(nRow).setHealthForEasyType(EasyTypeEnum.from, health);
   }
