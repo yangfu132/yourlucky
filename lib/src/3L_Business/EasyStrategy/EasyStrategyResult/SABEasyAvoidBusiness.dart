@@ -1,5 +1,6 @@
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
+import 'package:yourlucky/src/3L_Business/BasicEasy/SABElementModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyStrategy/EasyStrategyResult/SABEasyStrategyResultModel.dart';
@@ -15,7 +16,7 @@ class SABEasyAvoidBusiness {
         lifeDescription: lifeDescription(),
         enemyDescription: enemyDescription(),
         sonState: sonState(),
-        enemyState: '',
+        enemyState: enemyState(),
         relationAboutEnemy: '',
         relationAboutParentOrSon: '');
     return modelResult;
@@ -30,6 +31,18 @@ class SABEasyAvoidBusiness {
     String lifeParent = wordsModel().getLifeParent();
     if ('官鬼' == lifeParent) {
       stringResult = "最忌官鬼持世；";
+      stringResult = inputDetail.wordsModel().getLifeName();
+      String animalElement =
+          ghostForElement(inputDetail.wordsModel().getLifeElement());
+      stringResult =
+          SASStringService.appendToString(stringResult, animalElement);
+
+      String animalDes =
+          ghostForAnimal(inputDetail.wordsModel().getLifeAnimal());
+      stringResult = SASStringService.appendToString(stringResult, animalDes);
+
+      String guaDes = ghostForGua(inputDetail.wordsModel().getLifeDiagrams());
+      stringResult = SASStringService.appendToString(stringResult, guaDes);
     } else if ('' == lifeParent) {
       stringResult =
           "占趋避独宜福德随身子孙持世\r\n占梦兆、占漂洋过江、占逾险偷关、占防瘟疫、占防病、占误食毒物、占远邻火起、占防伊害、占避难、占贼盗生发、占孤身夜行、占宿店朝、占入山 、占仇人讹诈、占已定大罪、占入不毛。\r\n\大凡一切忧疑惊恐，防灾、防患者，皆宜子孙持世，或福神动于卦中。古法曰：但得子孙乘旺动，飞殃横祸化为尘。";
@@ -80,48 +93,31 @@ class SABEasyAvoidBusiness {
     return ghostDictionary[gua];
   }
 
+  List avoidGodRowArray(EasyTypeEnum easyTypeEnum) {
+    String lifeElement = wordsModel().getLifeElement();
+    String emptyElement = SABElementModel.elementByRelative(lifeElement, '官鬼');
+    return wordsModel().arrayRowWithElement(emptyElement, easyTypeEnum);
+  }
+
   String enemyDescription() {
     String stringResult = "";
-    String lifeParent = inputDetail.wordsModel().getLifeParent();
-    if ('官鬼' == lifeParent) {
-      stringResult = inputDetail.wordsModel().getLifeName();
-      String animalElement =
-          ghostForElement(inputDetail.wordsModel().getLifeElement());
-      stringResult =
-          SASStringService.appendToString(stringResult, animalElement);
+    EasyTypeEnum easyTypeEnum = EasyTypeEnum.from;
+    List avoidRowArray = avoidGodRowArray(easyTypeEnum);
+    if (avoidRowArray.length == 0) {
+      easyTypeEnum = EasyTypeEnum.hide;
+      avoidRowArray = avoidGodRowArray(easyTypeEnum);
+      stringResult = "克害没有上挂，以下为伏神信息：";
+    } // else is EasyTypeEnum.from;
 
-      String animalDes =
-          ghostForAnimal(inputDetail.wordsModel().getLifeAnimal());
-      stringResult = SASStringService.appendToString(stringResult, animalDes);
-
-      String guaDes = ghostForGua(inputDetail.wordsModel().getLifeDiagrams());
-      stringResult = SASStringService.appendToString(stringResult, guaDes);
-    } else {
-      List avoidRowArray =
-          inputDetail.wordsModel().arrayRowWithParent('官鬼', EasyTypeEnum.from);
-
-      if (avoidRowArray.length != 0) {
-        for (int intRow in avoidRowArray) {
-          String description =
-              enemyDescriptionOfSymbol(intRow, EasyTypeEnum.from);
-          if ('' != stringResult) {
-            SASStringService.appendToString(stringResult, description);
-          } else {
-            stringResult = description;
-          }
-        } //end for
+    for (int intRow in avoidRowArray) {
+      String description = enemyDescriptionOfSymbol(intRow, easyTypeEnum);
+      if ('' != stringResult) {
+        SASStringService.appendToString(stringResult, description);
       } else {
-        avoidRowArray = inputDetail
-            .wordsModel()
-            .arrayRowWithParent('官鬼', EasyTypeEnum.hide);
-        stringResult = "克害没有上挂，以下为伏神信息：";
-        for (int intRow in avoidRowArray) {
-          String description =
-              enemyDescriptionOfSymbol(intRow, EasyTypeEnum.hide);
-          SASStringService.appendToString(stringResult, description);
-        } //end for
+        stringResult = description;
       }
-    } //end if
+    } //end for
+
     stringResult = SASStringService.appendToString(stringResult, '诸类多门，在人通变。');
     return stringResult;
   }
@@ -158,7 +154,7 @@ class SABEasyAvoidBusiness {
       for (int intRow in usefulArray) {
         String symbol = wordsModel().getSymbolName(intRow, easyType);
         if ('' != stringResult) {
-          SASStringService.appendToString(stringResult, symbol);
+          stringResult = SASStringService.appendToString(stringResult, symbol);
         } else {
           stringResult = symbol;
         }
@@ -170,13 +166,49 @@ class SABEasyAvoidBusiness {
       } //end for
 
       if (hasOutright) {
-        SASStringService.appendToString(
+        stringResult = SASStringService.appendToString(
             stringResult, "福神动于卦中。古法曰：但得子孙乘旺动，飞殃横祸化为尘。");
       } else {
-        SASStringService.appendToString(stringResult, "福神安静。");
+        stringResult = SASStringService.appendToString(stringResult, "福神安静。");
       }
     } else
       colog("error");
+    return stringResult;
+  }
+
+  String enemyState() {
+    String stringResult = "";
+    EasyTypeEnum easyType = EasyTypeEnum.from;
+    List avoidRowArray = avoidGodRowArray(easyType);
+    //克在内世在外，宜于外避。克神若在内卦动而克世，宜出外避之。克神若在外卦动而克世，宜在家避之。
+
+    if (avoidRowArray.length > 0) {
+      List moveArray = healthModel().moveRightInArray(avoidRowArray, easyType);
+      if (moveArray.length > 0) {
+        for (int intRow in moveArray) {
+          if (wordsModel().inputDigitModel.isInGua(intRow)) {
+            stringResult = SASStringService.appendToString(
+                stringResult, "克神若在内卦动而克世，宜出外避之。");
+          } else if (wordsModel().inputDigitModel.isOutGua(intRow)) {
+            stringResult = SASStringService.appendToString(
+                stringResult, "克神若在外卦动而克世，宜在家避之。");
+          } else {
+            colog('error');
+          }
+        } //end for
+      } else {
+        stringResult = SASStringService.appendToString(stringResult, "克神安静。");
+      }
+    } else {
+      stringResult =
+          SASStringService.appendToString(stringResult, "克神没有上卦，以下为伏神信息：");
+      List avoidRowArray = avoidGodRowArray(easyType);
+      String stringSYmbol =
+          wordsModel().stringFromSymbolArray(avoidRowArray, easyType);
+      // strResult = [TLStringService appendToString:strResult
+      // byContent:[self stringFromHideArray:[self enemyHideRowArray]]];
+    } //endi
+
     return stringResult;
   }
 

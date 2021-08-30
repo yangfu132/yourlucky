@@ -95,6 +95,14 @@ class SABEasyDigitModel {
     return tempMovement;
   }
 
+  bool isInGua(int intRow) {
+    return 0 <= intRow && intRow <= 3;
+  }
+
+  bool isOutGua(int intRow) {
+    return 4 <= intRow && intRow <= 6;
+  }
+
   ///此函数获取内卦变动的爻列表
   List inGuaMovementArray() {
     List inMovementArray = [];

@@ -1,4 +1,5 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACContext.dart';
+import 'package:yourlucky/src/4L_Service/SASStringService.dart';
 
 import '../../1L_Context/SACGlobal.dart';
 import '../StoreEasy/SABEasyDigitModel.dart';
@@ -117,20 +118,6 @@ class SABEasyWordsModel {
     return enumResultType;
   }
 
-  int rowOfMergeRow(int intRow) {
-    int intResultRow = -1;
-    if (0 <= intRow && intRow < 6) {
-      intResultRow = intRow;
-    } else if (ROW_CHANGE_BEGIN <= intRow && intRow < ROW_CHANGE_END) {
-      intResultRow = intRow - ROW_CHANGE_BEGIN;
-    } else if (ROW_FLY_BEGIN <= intRow && intRow < ROW_FLY_END) {
-      intResultRow = intRow - ROW_FLY_BEGIN;
-    }
-    //else cont.
-
-    return intResultRow;
-  }
-
   String earthAtMergeRow(int intRow) {
     String stringResult = "";
     if (0 <= intRow && intRow < 6) {
@@ -211,6 +198,20 @@ class SABEasyWordsModel {
     return parentArray;
   }
 
+  List arrayRowWithElement(String element, EasyTypeEnum easyTypeEnum) {
+    List resultArray = List.empty(growable: true);
+
+    for (int intRow = 0; intRow < 6; intRow++) {
+      String symbolElement = getSymbolElement(intRow, easyTypeEnum);
+      if (symbolElement == element) {
+        resultArray.add(intRow);
+      }
+      //else cont.
+    } //endf
+
+    return resultArray;
+  }
+
   String monthSkyEarth() {
     return stringMonthSky + stringMonthEarth + "月";
   }
@@ -258,6 +259,19 @@ class SABEasyWordsModel {
 
   String getLifeDiagrams() {
     return getDiagrams(intLifeIndex);
+  }
+
+  String stringFromSymbolArray(List hideArray, EasyTypeEnum easyTypeEnum) {
+    String stringResult = "";
+    for (int intRow in hideArray) {
+      String symbol = getSymbolName(intRow, easyTypeEnum);
+      if ('' != symbol) {
+        SASStringService.appendToString(stringResult, symbol);
+      } else {
+        stringResult = symbol;
+      }
+    }
+    return stringResult;
   }
 
   /// `加载函数`/////////////////////////////////////////////////////////////////

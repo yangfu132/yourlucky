@@ -53,6 +53,20 @@ class SABHealthModel {
     }
   }
 
+  List moveRightInArray(List arrayRow, easyType) {
+    List listMoveRight = List.empty(growable: true);
+    for (int intRow in arrayRow) {
+      if (OutRightEnum.RIGHT_MOVE == symbolOutRightAtRow(intRow, easyType)) {
+        listMoveRight.add(intRow);
+      }
+
+      /// else not add
+    }
+
+    /// end for
+    return listMoveRight;
+  }
+
   bool isUnFinish(int nRow) {
     return -1 == _finishedList.indexOf(nRow);
   }
