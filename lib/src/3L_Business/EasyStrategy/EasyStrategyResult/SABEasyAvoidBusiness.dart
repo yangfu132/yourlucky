@@ -17,8 +17,8 @@ class SABEasyAvoidBusiness {
         enemyDescription: enemyDescription(),
         sonState: sonState(),
         enemyState: enemyState(),
-        relationAboutEnemy: '',
-        relationAboutParentOrSon: '');
+        relationAboutEnemy: relationAboutEnemy(),
+        relationAboutParentOrSon: relationAboutParentOrSon());
     return modelResult;
   }
 
@@ -112,7 +112,8 @@ class SABEasyAvoidBusiness {
     for (int intRow in avoidRowArray) {
       String description = enemyDescriptionOfSymbol(intRow, easyTypeEnum);
       if ('' != stringResult) {
-        SASStringService.appendToString(stringResult, description);
+        stringResult =
+            SASStringService.appendToString(stringResult, description);
       } else {
         stringResult = description;
       }
@@ -203,11 +204,84 @@ class SABEasyAvoidBusiness {
       stringResult =
           SASStringService.appendToString(stringResult, "克神没有上卦，以下为伏神信息：");
       List avoidRowArray = avoidGodRowArray(easyType);
-      String stringSYmbol =
+      String stringSymbol =
           wordsModel().stringFromSymbolArray(avoidRowArray, easyType);
-      // strResult = [TLStringService appendToString:strResult
-      // byContent:[self stringFromHideArray:[self enemyHideRowArray]]];
-    } //endi
+      stringResult =
+          SASStringService.appendToString(stringResult, stringSymbol);
+    } //end if
+
+    return stringResult;
+  }
+
+  String relationAboutEnemy() {
+    String stringResult = "";
+
+    //克在内世在外，宜于外避。克神若在内卦动而克世，宜出外避之。克神若在外卦动而克世，宜在家避之。
+    List arrayEnemy = avoidGodRowArray(EasyTypeEnum.from);
+    int lifeRow = wordsModel().intLifeIndex;
+
+    if (arrayEnemy.length > 0) {
+      if (wordsModel().inputDigitModel.isInGua(lifeRow)) {
+        for (int intRow in arrayEnemy) {
+          if (OutRightEnum.RIGHT_MOVE ==
+              healthModel().symbolOutRightAtRow(intRow, EasyTypeEnum.from)) {
+            if (wordsModel().inputDigitModel.isInGua(intRow)) {
+              stringResult = SASStringService.appendToString(
+                  stringResult, "世与忌神在内卦者，不可家居，宜于外避。");
+            }
+          }
+        }
+      } else if (wordsModel().inputDigitModel.isOutGua(lifeRow)) {
+        for (int intRow in arrayEnemy) {
+          if (OutRightEnum.RIGHT_MOVE ==
+              healthModel().symbolOutRightAtRow(intRow, EasyTypeEnum.from)) {
+            if (wordsModel().inputDigitModel.isOutGua(intRow)) {
+              stringResult = SASStringService.appendToString(
+                  stringResult, "世爻与忌神皆在外卦者，不可出行，家居可避。");
+            } //else cont.
+          } // else cont.
+        } // end for
+      } else {
+        colog('error');
+      }
+    }
+    return stringResult;
+  }
+
+  String directionAtRow(int intRow) {
+    String stringResult = "";
+    String earth = wordsModel().getSymbolEarth(intRow, EasyTypeEnum.from);
+    if (null != earth && earth.length > 0) {
+      String direction = healthModel()
+          .inputLogicModel
+          .earthBranchModel()
+          .earthDirection()[earth];
+
+      stringResult = SASStringService.appendToString(stringResult, direction);
+    }
+    return stringResult;
+  }
+
+  List bornGodRowArray(EasyTypeEnum easyTypeEnum) {
+    String lifeElement = wordsModel().getLifeElement();
+    String emptyElement = SABElementModel.elementByRelative(lifeElement, '父母');
+    return wordsModel().arrayRowWithElement(emptyElement, easyTypeEnum);
+  }
+
+  String relationAboutParentOrSon() {
+    String stringResult = "避患于生世之方:";
+    List arrayBorn = bornGodRowArray(EasyTypeEnum.from);
+    for (int intRow in arrayBorn) {
+      stringResult =
+          SASStringService.appendToString(stringResult, directionAtRow(intRow));
+    }
+    stringResult = SASStringService.appendToString(stringResult, " 趋吉于福神之地:");
+
+    List usefulArray = wordsModel().arrayUsefulRow(EasyTypeEnum.from);
+    for (int intRow in usefulArray) {
+      stringResult =
+          SASStringService.appendToString(stringResult, directionAtRow(intRow));
+    }
 
     return stringResult;
   }

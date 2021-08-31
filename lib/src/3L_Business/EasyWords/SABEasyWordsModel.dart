@@ -212,6 +212,20 @@ class SABEasyWordsModel {
     return resultArray;
   }
 
+  List arrayUsefulRow(EasyTypeEnum easyTypeEnum) {
+    List parentArray = List.empty(growable: true);
+
+    for (int intRow = 0; intRow < 6; intRow++) {
+      String stringSymbolParent = getSymbolParent(intRow, easyTypeEnum);
+      if (stringSymbolParent == this.inputDigitModel.getUsefulDeity()) {
+        parentArray.add(intRow);
+      }
+      //else cont.
+    } //end for
+
+    return parentArray;
+  }
+
   String monthSkyEarth() {
     return stringMonthSky + stringMonthEarth + "月";
   }
