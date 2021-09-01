@@ -37,7 +37,7 @@ dependencies:
 
   #接入animation
   shared_preferences: ^2.0.5
-  audioplayers: 0.19.1
+  audioplayers: ^0.19.0
 
   #my
   flutter_perpttual_calendar: ^1.0.0+5
