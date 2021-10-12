@@ -28,7 +28,7 @@ dependencies:
 
 
   #接入cloud_firestore
-  cloud_firestore: 2.2.2 # new
+  cloud_firestore: # new
   firebase_auth:    # new
   google_fonts:
   provider:         # new
