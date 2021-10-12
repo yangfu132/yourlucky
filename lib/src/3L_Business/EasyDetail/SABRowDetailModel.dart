@@ -1,15 +1,15 @@
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart';
 
 import '../../1L_Context/SACGlobal.dart';
-import '../EasyAnalysis/SABRowAnalysisModel.dart';
 import '../EasyLogic/BaseLogic/SABRowLogicModel.dart';
 import '../EasyLogic/Health/SABRowHealthModel.dart';
+import '../EasyLogicDescription/SABRowLogicDescriptionModel.dart';
 import '../EasyWords/SABRowWordsModel.dart';
 
 class SABRowDetailModel {
   SABRowDetailModel(this.inputAnalysisRow);
 
-  final SABRowAnalysisModel inputAnalysisRow;
+  final SABRowLogicDescriptionModel inputAnalysisRow;
 
   late final String stringDeity =
       healthLogicModel().getDeity(EasyTypeEnum.from); //事情
@@ -114,7 +114,7 @@ class SABRowDetailModel {
 
   /// `加载函数`/////////////////////////////////////////////////////////////////
 
-  SABRowAnalysisModel analysisModel() {
+  SABRowLogicDescriptionModel analysisModel() {
     return this.inputAnalysisRow;
   }
 

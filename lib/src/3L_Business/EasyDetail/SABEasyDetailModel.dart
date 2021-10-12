@@ -1,18 +1,23 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
+import 'package:yourlucky/src/3L_Business/EasyDetail/SABDiagramsDetailModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyStrategy/EasyStrategy/SABUsefulDeityModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:yourlucky/src/3L_Business/StoreEasy/SABEasyDigitModel.dart';
 
-import '../EasyAnalysis/SABEasyAnalysisModel.dart';
+import '../EasyLogicDescription/SABEasyLogicDescriptionModel.dart';
 import 'SABRowDetailModel.dart';
 
 class SABEasyDetailModel {
   SABEasyDetailModel(this._analysisModel, this.stringDetailName);
-  final SABEasyAnalysisModel _analysisModel;
+  final SABEasyLogicDescriptionModel _analysisModel;
   final String stringDetailName;
   late List _listRowModels = _initRowModelsArray();
+
+  SABDiagramsDetailModel diagramsDetailModel() {
+    return SABDiagramsDetailModel();
+  }
 
   SABEasyDigitModel digitModel() {
     return wordsModel().inputDigitModel;

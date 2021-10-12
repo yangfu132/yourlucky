@@ -1,7 +1,7 @@
 ﻿import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicBusiness.dart';
 
-import '../EasyAnalysis/SABEasyAnalysisBusiness.dart';
 import '../EasyDetail/SABEasyDetailModel.dart';
+import '../EasyLogicDescription/SABEasyLogicDescriptionBusiness.dart';
 import '../StoreEasy/SABEasyDigitModel.dart';
 
 class SABEasyDetailBusiness {
@@ -15,10 +15,10 @@ class SABEasyDetailBusiness {
   late final SABEasyHealthLogicBusiness _healthLogicBusiness =
       SABEasyHealthLogicBusiness(_inputEasyModel);
 
-  late final SABEasyAnalysisBusiness _analysisBusiness =
-      SABEasyAnalysisBusiness(_healthLogicBusiness.outputModel());
+  late final SABEasyLogicDescriptionBusiness _analysisBusiness =
+      SABEasyLogicDescriptionBusiness(_healthLogicBusiness.outputModel());
 
-  SABEasyAnalysisBusiness analysisBusiness() {
+  SABEasyLogicDescriptionBusiness analysisBusiness() {
     return _analysisBusiness;
   }
 

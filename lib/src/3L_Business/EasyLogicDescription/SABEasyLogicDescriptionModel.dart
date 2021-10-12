@@ -2,10 +2,10 @@ import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
 
 import '../../1L_Context/SACGlobal.dart';
-import 'SABRowAnalysisModel.dart';
+import 'SABRowLogicDescriptionModel.dart';
 
-class SABEasyAnalysisModel {
-  SABEasyAnalysisModel(
+class SABEasyLogicDescriptionModel {
+  SABEasyLogicDescriptionModel(
     this.inputHealthLogicModel,
   );
 
@@ -46,14 +46,14 @@ class SABEasyAnalysisModel {
   List _initRowModelsArray() {
     var listRowModels = [];
     for (int intRow = 0; intRow < 6; intRow++) {
-      SABRowAnalysisModel model =
-          SABRowAnalysisModel(inputHealthLogicModel.rowModelAtRow(intRow));
+      SABRowLogicDescriptionModel model = SABRowLogicDescriptionModel(
+          inputHealthLogicModel.rowModelAtRow(intRow));
       listRowModels.add(model);
     }
     return listRowModels;
   }
 
-  SABRowAnalysisModel rowModelAtRow(int intRow) {
+  SABRowLogicDescriptionModel rowModelAtRow(int intRow) {
     if (intRow > _listRowModels.length) {
       colog("intRow:$intRow");
     }

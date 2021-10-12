@@ -5,8 +5,8 @@ import '../../1L_Context/SACGlobal.dart';
 import '../EasyLogic/BaseLogic/SABRowLogicModel.dart';
 import '../EasyWords/SABRowWordsModel.dart';
 
-class SABRowAnalysisModel {
-  SABRowAnalysisModel(
+class SABRowLogicDescriptionModel {
+  SABRowLogicDescriptionModel(
     this.healthLogicRow,
   );
   final SABRowHealthLogicModel healthLogicRow;

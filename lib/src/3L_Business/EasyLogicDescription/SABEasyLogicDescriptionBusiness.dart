@@ -8,16 +8,16 @@ import '../EarthBranch/SABEarthBranchBusiness.dart';
 import '../EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 import '../EasyWords/SABEasyWordsModel.dart';
 import '../StoreEasy/SABEasyDigitModel.dart';
-import 'SABEasyAnalysisModel.dart';
+import 'SABEasyLogicDescriptionModel.dart';
 
-class SABEasyAnalysisBusiness {
-  SABEasyAnalysisBusiness(this._inputHealthLogicModel);
+class SABEasyLogicDescriptionBusiness {
+  SABEasyLogicDescriptionBusiness(this._inputHealthLogicModel);
 
   final SABEasyHealthLogicModel _inputHealthLogicModel;
 
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
 
-  late final SABEasyAnalysisModel _analysisModel = initAnalysisModel();
+  late final SABEasyLogicDescriptionModel _analysisModel = initAnalysisModel();
 
   ///`basic`//////////////////////////////////////////////////////
 
@@ -796,12 +796,12 @@ class SABEasyAnalysisBusiness {
     return wordsModel().inputDigitModel;
   }
 
-  SABEasyAnalysisModel outAnalysisModel() {
+  SABEasyLogicDescriptionModel outAnalysisModel() {
     return _analysisModel;
   }
 
-  SABEasyAnalysisModel initAnalysisModel() {
-    var analysisModel = SABEasyAnalysisModel(_inputHealthLogicModel);
+  SABEasyLogicDescriptionModel initAnalysisModel() {
+    var analysisModel = SABEasyLogicDescriptionModel(_inputHealthLogicModel);
     for (int intRow = 0; intRow < 6; intRow++) {
       ///MonthBrokenDescription
       analysisModel.setMonthRelation(intRow, EasyTypeEnum.from,

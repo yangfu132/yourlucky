@@ -11,7 +11,7 @@ import '../../1L_Context/SACContext.dart';
 ///输出Easy的结果文案
 import '../../1L_Context/SACGlobal.dart';
 import '../../4L_Service/SASStringService.dart';
-import '../EasyAnalysis/SABEasyAnalysisBusiness.dart';
+import '../EasyLogicDescription/SABEasyLogicDescriptionBusiness.dart';
 import '../StoreEasy/SABEasyDigitModel.dart';
 import 'SABDiagramsDetailModel.dart';
 
@@ -22,8 +22,8 @@ class SABDiagramsDetailBusiness {
   late final SABEasyHealthLogicBusiness _healthLogicBusiness =
       SABEasyHealthLogicBusiness(_inputEasyModel);
 
-  late final SABEasyAnalysisBusiness _analysisBusiness =
-      SABEasyAnalysisBusiness(_healthLogicBusiness.outputModel());
+  late final SABEasyLogicDescriptionBusiness _analysisBusiness =
+      SABEasyLogicDescriptionBusiness(_healthLogicBusiness.outputModel());
 
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
 
@@ -697,7 +697,7 @@ class SABDiagramsDetailBusiness {
 
   ///`加载函数`
 
-  SABEasyAnalysisBusiness analysisBusiness() {
+  SABEasyLogicDescriptionBusiness analysisBusiness() {
     return _analysisBusiness;
   }
 
