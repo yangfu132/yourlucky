@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../EasyResult/SABEasyResultModel.dart';
+import '../../EasyDetail/SABDiagramsDetailModel.dart';
 import 'SABEasyStrategyModel.dart';
 import 'SABUsefulDeityModel.dart';
 
@@ -28,7 +28,7 @@ class SABEasyStrategyBusiness {
     };
   }
 
-  Widget categoryController(String category, SABEasyResultModel easyItem) {
+  Widget categoryController(String category, SABDiagramsDetailModel easyItem) {
     return Text('data');
   }
 

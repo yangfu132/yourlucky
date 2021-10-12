@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailModel.dart';
 
-import '../../3L_Business/EasyResult/SABEasyResultModel.dart';
+import '../../3L_Business/EasyDetail/SABDiagramsDetailModel.dart';
 
 ///功能：一般性推断结果
-class SAUEasyResultRoute extends StatefulWidget {
-  SAUEasyResultRoute(this.inputDetailModel);
+class SAUDiagramsDetailRoute extends StatefulWidget {
+  SAUDiagramsDetailRoute(this.inputDetailModel);
   final SABEasyDetailModel inputDetailModel;
-  final SABEasyResultModel resultModel = SABEasyResultModel();
+  final SABDiagramsDetailModel resultModel = SABDiagramsDetailModel();
   @override
   _SAUEasyResultState createState() {
     return _SAUEasyResultState();
   }
 }
 
-class _SAUEasyResultState extends State<SAUEasyResultRoute> {
+class _SAUEasyResultState extends State<SAUDiagramsDetailRoute> {
   @override
   void initState() {
     super.initState();

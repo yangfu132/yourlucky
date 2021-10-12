@@ -1,6 +1,6 @@
 ///
 ///
-class SABEasyResultModel {
+class SABDiagramsDetailModel {
   List<Map> resultList = [
     {
       'key': '目的',

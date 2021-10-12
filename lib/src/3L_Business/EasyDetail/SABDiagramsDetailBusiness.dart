@@ -13,10 +13,10 @@ import '../../1L_Context/SACGlobal.dart';
 import '../../4L_Service/SASStringService.dart';
 import '../EasyAnalysis/SABEasyAnalysisBusiness.dart';
 import '../StoreEasy/SABEasyDigitModel.dart';
-import 'SABEasyResultModel.dart';
+import 'SABDiagramsDetailModel.dart';
 
-class SABEasyResultBusiness {
-  SABEasyResultBusiness(this._inputEasyModel);
+class SABDiagramsDetailBusiness {
+  SABDiagramsDetailBusiness(this._inputEasyModel);
   final SABEasyDigitModel _inputEasyModel;
 
   late final SABEasyHealthLogicBusiness _healthLogicBusiness =
@@ -27,7 +27,7 @@ class SABEasyResultBusiness {
 
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
 
-  void configResultModel(SABEasyResultModel outputResultModel) {
+  void configResultModel(SABDiagramsDetailModel outputResultModel) {
     SABHealthModel theHealthModel = _healthLogicBusiness.healthModel();
     List resultList = outputResultModel.resultList;
     if (theHealthModel.bValidEasy()) {
