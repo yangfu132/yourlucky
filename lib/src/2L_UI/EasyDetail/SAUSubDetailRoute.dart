@@ -4,8 +4,8 @@ import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailModel.dart';
 import '../../3L_Business/EasyDetail/SABDiagramsDetailModel.dart';
 
 ///功能：一般性推断结果
-class SAURowDetailRoute extends StatefulWidget {
-  SAURowDetailRoute(this.inputDetailModel, this.intIndex);
+class SAUSubDetailRoute extends StatefulWidget {
+  SAUSubDetailRoute(this.inputDetailModel, this.intIndex);
   final SABEasyDetailModel inputDetailModel;
   final int intIndex;
   late final SABDiagramsDetailModel resultModel = SABDiagramsDetailModel();
@@ -19,7 +19,7 @@ class SAURowDetailRoute extends StatefulWidget {
   }
 }
 
-class _SAUEasyResultState extends State<SAURowDetailRoute> {
+class _SAUEasyResultState extends State<SAUSubDetailRoute> {
   @override
   void initState() {
     super.initState();
