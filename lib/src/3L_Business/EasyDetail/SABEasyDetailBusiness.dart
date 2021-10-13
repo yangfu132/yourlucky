@@ -1,4 +1,6 @@
-﻿import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicBusiness.dart';
+﻿import 'package:yourlucky/src/3L_Business/EasyDetail/SABDiagramsDetailBusiness.dart';
+import 'package:yourlucky/src/3L_Business/EasyDetail/SABDiagramsDetailModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicBusiness.dart';
 
 import '../EasyDetail/SABEasyDetailModel.dart';
 import '../EasyLogicDescription/SABEasyLogicDescriptionBusiness.dart';
@@ -36,6 +38,14 @@ class SABEasyDetailBusiness {
     );
     outputDetailModel.detailList();
     return outputDetailModel;
+  }
+
+  SABDiagramsDetailModel diagramsDetailModel() {
+    SABDiagramsDetailBusiness _diagramsDetailBusiness =
+        SABDiagramsDetailBusiness(analysisBusiness().outAnalysisModel());
+    SABDiagramsDetailModel diagramsDetailModel = SABDiagramsDetailModel();
+    _diagramsDetailBusiness.configResultModel(diagramsDetailModel);
+    return diagramsDetailModel;
   }
 
   String easyName() {

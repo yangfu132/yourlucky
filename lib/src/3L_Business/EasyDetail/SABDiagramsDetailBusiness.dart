@@ -3,6 +3,7 @@ import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicModel.
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogicDescription/SABEasyLogicDescriptionModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyStrategy/EasyStrategy/SABUsefulDeityModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 
@@ -16,22 +17,16 @@ import '../StoreEasy/SABEasyDigitModel.dart';
 import 'SABDiagramsDetailModel.dart';
 
 class SABDiagramsDetailBusiness {
-  SABDiagramsDetailBusiness(this._inputEasyModel);
-  final SABEasyDigitModel _inputEasyModel;
-
-  late final SABEasyHealthLogicBusiness _healthLogicBusiness =
-      SABEasyHealthLogicBusiness(_inputEasyModel);
-
-  late final SABEasyLogicDescriptionBusiness _analysisBusiness =
-      SABEasyLogicDescriptionBusiness(_healthLogicBusiness.outputModel());
+  SABDiagramsDetailBusiness(this._inputLogicDesModel);
+  final SABEasyLogicDescriptionModel _inputLogicDesModel;
 
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
 
   void configResultModel(SABDiagramsDetailModel outputResultModel) {
-    SABHealthModel theHealthModel = _healthLogicBusiness.healthModel();
+    SABHealthModel theHealthModel = healthModel();
     List resultList = outputResultModel.resultList;
     if (theHealthModel.bValidEasy()) {
-      resultList[0]['value'] = _inputEasyModel.getEasyGoal();
+      resultList[0]['value'] = digitModel().getEasyGoal();
       resultList[1]['value'] = this.resultUsefulDeity();
       resultList[2]['value'] = this.resultEasy();
       resultList[3]['value'] = this.resultRepeatedOrConflict();
@@ -333,7 +328,6 @@ class SABDiagramsDetailBusiness {
       strResult = SASStringService.appendToString(strResult, strUseful);
     } else if (EmptyEnum.Empty_NO != emptyState) {
       //用神旬空
-
       strUseful = strUseful + outEmptyDate();
       strResult = SASStringService.appendToString(strResult, strUseful);
     }
@@ -695,26 +689,27 @@ class SABDiagramsDetailBusiness {
     return strResult;
   }
 
-  ///`加载函数`
-
-  SABEasyLogicDescriptionBusiness analysisBusiness() {
-    return _analysisBusiness;
-  }
-
   ///`加载函数`//////////////////////////////////////////////////////
-  SABEasyLogicModel logicModel() {
-    return _healthLogicBusiness.logicModel();
-  }
 
-  SABEasyHealthLogicModel healthLogicModel() {
-    return _healthLogicBusiness.outputModel();
+  SABEasyDigitModel digitModel() {
+    return wordsModel().inputDigitModel;
   }
 
   SABEasyWordsModel wordsModel() {
-    return logicModel().inputWordsModel;
+    return _inputLogicDesModel
+        .inputHealthLogicModel.inputHealthModel.inputLogicModel.inputWordsModel;
   }
 
-  SABEasyDigitModel digitModel() {
-    return logicModel().inputWordsModel.inputDigitModel;
+  SABEasyLogicModel logicModel() {
+    return _inputLogicDesModel
+        .inputHealthLogicModel.inputHealthModel.inputLogicModel;
+  }
+
+  SABHealthModel healthModel() {
+    return _inputLogicDesModel.inputHealthLogicModel.inputHealthModel;
+  }
+
+  SABEasyHealthLogicModel healthLogicModel() {
+    return _inputLogicDesModel.inputHealthLogicModel;
   }
 }
