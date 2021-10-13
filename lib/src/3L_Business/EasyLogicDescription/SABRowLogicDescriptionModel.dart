@@ -80,6 +80,30 @@ class SABRowLogicDescriptionModel {
       colog('easyTypeEnum:$easyTypeEnum');
   }
 
+  String getEmptyDescription(EasyTypeEnum easyTypeEnum) {
+    if (easyTypeEnum == EasyTypeEnum.from) {
+      return fromSymbol.emptyDescription;
+    } else if (easyTypeEnum == EasyTypeEnum.to) {
+      return toSymbol.emptyDescription;
+    } else if (easyTypeEnum == EasyTypeEnum.hide) {
+      return hideSymbol.emptyDescription;
+    } else {
+      colog('easyTypeEnum:$easyTypeEnum');
+      return 'easyTypeEnum:$easyTypeEnum';
+    }
+  }
+
+  void setEmptyDescription(EasyTypeEnum easyTypeEnum, String emptyDescription) {
+    if (easyTypeEnum == EasyTypeEnum.from) {
+      fromSymbol.emptyDescription = emptyDescription;
+    } else if (easyTypeEnum == EasyTypeEnum.to) {
+      toSymbol.emptyDescription = emptyDescription;
+    } else if (easyTypeEnum == EasyTypeEnum.hide) {
+      hideSymbol.emptyDescription = emptyDescription;
+    } else
+      colog('easyTypeEnum:$easyTypeEnum');
+  }
+
   /// `加载函数`/////////////////////////////////////////////////////////////////
   SABRowLogicModel logicModel() {
     return this.healthLogicRow.healthRow.inputLogicRow;

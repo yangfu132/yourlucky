@@ -81,6 +81,11 @@ class SABEasyHealthLogicBusiness {
     SABEasyHealthLogicModel logicModel = SABEasyHealthLogicModel(
       inputHealthModel: healthModel(),
       usefulDeity: usefulDeityRow(),
+      lifeHealthWithCritical: lifeHealthWithCritical(),
+      usefulHealthWithCritical: usefulHealthWithCritical(),
+      isUsefulDeityStrong: isUsefulDeityStrong(),
+      isUsefulDeityChangeToRestricts: isUsefulDeityChangeToRestricts(),
+      isUsefulDeityChangeToConflict: isUsefulDeityChangeToConflict(),
     );
     //此信息依赖爻的基础信息
     for (int intRow = 0; intRow < 6; intRow++) {

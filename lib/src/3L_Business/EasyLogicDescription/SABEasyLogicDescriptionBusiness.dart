@@ -822,6 +822,14 @@ class SABEasyLogicDescriptionBusiness {
       ///SymbolRelation
       analysisModel.setSymbolRelation(
           intRow, parentEffectAtRow(intRow, EasyTypeEnum.from));
+
+      ///EmptyDescription
+      analysisModel.setEmptyDescription(intRow, EasyTypeEnum.from,
+          resultSymbolEmpty(intRow, EasyTypeEnum.from));
+      analysisModel.setEmptyDescription(
+          intRow, EasyTypeEnum.to, resultSymbolEmpty(intRow, EasyTypeEnum.to));
+      analysisModel.setEmptyDescription(intRow, EasyTypeEnum.hide,
+          resultSymbolEmpty(intRow, EasyTypeEnum.hide));
     }
 
     return analysisModel;

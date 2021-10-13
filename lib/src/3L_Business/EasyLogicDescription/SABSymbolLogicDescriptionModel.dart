@@ -5,4 +5,5 @@ class SABSymbolLogicDescriptionModel {
   final SABSymbolHealthLogicModel inputHealthLogic;
   late String dayRelation;
   late String monthRelation;
+  late String emptyDescription;
 }

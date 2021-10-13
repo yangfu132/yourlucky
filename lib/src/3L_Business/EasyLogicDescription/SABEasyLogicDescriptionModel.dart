@@ -38,6 +38,15 @@ class SABEasyLogicDescriptionModel {
     rowModelAtRow(intRow).setSymbolRelation(stringParentRelation);
   }
 
+  String getEmptyDescription(int intRow, EasyTypeEnum easyTypeEnum) {
+    return rowModelAtRow(intRow).getEmptyDescription(easyTypeEnum);
+  }
+
+  void setEmptyDescription(
+      int intRow, EasyTypeEnum easyTypeEnum, String emptyDescription) {
+    rowModelAtRow(intRow).setEmptyDescription(easyTypeEnum, emptyDescription);
+  }
+
   /// `加载函数`/////////////////////////////////////////////////////////////////
   List _rowModelsArray() {
     return _listRowModels;

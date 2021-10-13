@@ -8,6 +8,11 @@ class SABEasyHealthLogicModel {
   SABEasyHealthLogicModel({
     required this.inputHealthModel,
     required this.usefulDeity,
+    required this.lifeHealthWithCritical,
+    required this.usefulHealthWithCritical,
+    required this.isUsefulDeityStrong,
+    required this.isUsefulDeityChangeToRestricts,
+    required this.isUsefulDeityChangeToConflict,
   });
   final SABHealthModel inputHealthModel;
 
@@ -15,6 +20,12 @@ class SABEasyHealthLogicModel {
   final SABUsefulDeityModel usefulDeity;
 
   final _listRowModels = <SABRowHealthLogicModel>[];
+
+  final double lifeHealthWithCritical;
+  final double usefulHealthWithCritical;
+  final bool isUsefulDeityStrong;
+  final bool isUsefulDeityChangeToRestricts;
+  final bool isUsefulDeityChangeToConflict;
 
   EmptyEnum getSymbolEmptyState(int intRow, EasyTypeEnum easyTypeEnum) {
     return rowModelAtRow(intRow).getSymbolEmptyState(easyTypeEnum);

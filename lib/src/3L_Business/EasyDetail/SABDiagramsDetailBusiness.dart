@@ -1,7 +1,6 @@
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogicDescription/SABEasyLogicDescriptionModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyStrategy/EasyStrategy/SABUsefulDeityModel.dart';
@@ -12,7 +11,6 @@ import '../../1L_Context/SACContext.dart';
 ///输出Easy的结果文案
 import '../../1L_Context/SACGlobal.dart';
 import '../../4L_Service/SASStringService.dart';
-import '../EasyLogicDescription/SABEasyLogicDescriptionBusiness.dart';
 import '../StoreEasy/SABEasyDigitModel.dart';
 import 'SABDiagramsDetailModel.dart';
 
@@ -303,7 +301,7 @@ class SABDiagramsDetailBusiness {
     String strUseful = "";
     if (EasyTypeEnum.from == usefulDeity.easyType ||
         EasyTypeEnum.hide == usefulDeity.easyType) {
-      strUseful = _inputLogicDesModel.resultSymbolEmpty(
+      strUseful = _inputLogicDesModel.getEmptyDescription(
           usefulDeity.intRow, usefulDeity.easyType);
       emptyState = logicModel()
           .getBasicEmptyState(usefulDeity.intRow, usefulDeity.easyType);
@@ -362,9 +360,9 @@ class SABDiagramsDetailBusiness {
 
     String strResult = "";
     //生克
-    double lifeHealth = _healthLogicBusiness.lifeHealthWithCritical();
+    double lifeHealth = healthLogicModel().lifeHealthWithCritical;
 
-    double usefulHealth = _healthLogicBusiness.usefulHealthWithCritical();
+    double usefulHealth = healthLogicModel().usefulHealthWithCritical;
 
     if (lifeHealth > 0 && usefulHealth > 0) {
       strResult =
@@ -633,15 +631,15 @@ class SABDiagramsDetailBusiness {
     SABUsefulDeityModel usefulDeity = healthLogicModel().usefulDeity;
     if (EasyTypeEnum.from == usefulDeity.easyType) {
       if (logicModel().isMovementAtRow(usefulDeity.intRow)) {
-        if (_healthLogicBusiness.isUsefulDeityStrong()) {
+        if (healthLogicModel().isUsefulDeityStrong) {
           String fromEarth = wordsModel()
               .getSymbolEarth(usefulDeity.intRow, usefulDeity.easyType);
           String timeEarth = _branchBusiness.getSixConflict(fromEarth);
 
           result =
               result + "伏吟之卦，用神旺相冲开之年月其志则神，预计 $timeEarth 年或者 $timeEarth 月冲开。";
-        } else if (_healthLogicBusiness.isUsefulDeityChangeToRestricts() ||
-            _healthLogicBusiness.isUsefulDeityChangeToConflict()) {
+        } else if (healthLogicModel().isUsefulDeityChangeToRestricts ||
+            healthLogicModel().isUsefulDeityChangeToConflict) {
           String fromEarth = wordsModel()
               .getSymbolEarth(usefulDeity.intRow, usefulDeity.easyType);
           String timeEarth = _branchBusiness.getSixConflict(fromEarth);
@@ -659,12 +657,12 @@ class SABDiagramsDetailBusiness {
   String restrictsEasyResult() {
     String result = "";
 
-    if (_healthLogicBusiness.isUsefulDeityStrong() &&
-        !_healthLogicBusiness.isUsefulDeityChangeToRestricts() &&
-        !_healthLogicBusiness.isUsefulDeityChangeToConflict()) {
+    if (healthLogicModel().isUsefulDeityStrong &&
+        !healthLogicModel().isUsefulDeityChangeToRestricts &&
+        !healthLogicModel().isUsefulDeityChangeToConflict) {
       result = "用神旺相不变冲克者虽则反吟，事之必成。";
-    } else if (_healthLogicBusiness.isUsefulDeityChangeToRestricts() ||
-        _healthLogicBusiness.isUsefulDeityChangeToConflict()) {
+    } else if (healthLogicModel().isUsefulDeityChangeToRestricts ||
+        healthLogicModel().isUsefulDeityChangeToConflict) {
       result = "用神化回头冲克，卦变大凶之象。";
     }
 
