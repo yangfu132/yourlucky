@@ -35,6 +35,7 @@ class SABEasyDetailBusiness {
     var outputDetailModel = SABEasyDetailModel(
       analysisBusiness().outAnalysisModel(),
       easyName(),
+      diagramsDetailModel(),
     );
     outputDetailModel.detailList();
     return outputDetailModel;

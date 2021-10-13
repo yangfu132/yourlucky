@@ -48,11 +48,12 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
     List listDetail = detailModel().detailList();
     List<Widget> listRow = [];
     int intCount = listDetail.length;
-    for (int intRow = 0; intRow < intCount; intRow++) {
-      if (0 == intRow) {
-        listRow.add(getTitleRowWidget(listDetail[intRow]));
+    for (int intIndex = 0; intIndex < intCount; intIndex++) {
+      if (0 == intIndex) {
+        listRow.add(getTitleRowWidget(listDetail[intIndex]));
       } else {
-        listRow.add(getContentRowWidget(listDetail[0], listDetail[intRow]));
+        listRow.add(
+            getContentRowWidget(intIndex, listDetail[0], listDetail[intIndex]));
       }
     }
 
@@ -67,7 +68,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
       child: GestureDetector(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return SAURowDetailRoute(widget.inputDetailModel);
+            return SAURowDetailRoute(widget.inputDetailModel, 0);
           }));
         },
         child: Container(
@@ -87,12 +88,13 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
   }
 
   ///内容行
-  Widget getContentRowWidget(List<String> listTitle, List<String> listContent) {
+  Widget getContentRowWidget(
+      int intIndex, List<String> listTitle, List<String> listContent) {
     return Expanded(
       child: GestureDetector(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return SAURowDetailRoute(widget.inputDetailModel);
+            return SAURowDetailRoute(widget.inputDetailModel, intIndex);
           }));
         },
         child: Container(
