@@ -24,6 +24,8 @@ class SABRowLogicDescriptionModel {
 
   String _symbolRelation = '';
 
+  late String movementDescription;
+
   String getDayRelation(EasyTypeEnum easyTypeEnum) {
     if (easyTypeEnum == EasyTypeEnum.from) {
       return fromSymbol.dayRelation;

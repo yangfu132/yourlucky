@@ -195,6 +195,20 @@ class SABEasyDetailModel {
     return listResult;
   }
 
+  void rowDetailList() {
+    for (int intRow = 0; intRow < 6; intRow++) {
+      // List<Map> resultList = rowModelAtRow(intRow).resultList;
+      // resultList[0]['value'] = digitModel().getEasyGoal();
+      // resultList[1]['value'] = "";
+      // resultList[2]['value'] = this.resultEasy();
+      // resultList[3]['value'] = this.resultRepeatedOrConflict();
+      // resultList[4]['value'] = this.resultSixPairOrConflict();
+      // resultList[5]['value'] = this.resultThreePair();
+      // resultList[6]['value'] = this.resultSymbol(theHealthModel);
+      // resultList[7]['value'] = this.resultHappenTime();
+    }
+  }
+
   /// `加载函数`/////////////////////////////////////////////////////////////////
   List _rowModelsArray() {
     return _listRowModels;

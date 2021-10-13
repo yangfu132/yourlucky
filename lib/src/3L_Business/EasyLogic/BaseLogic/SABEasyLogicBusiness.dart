@@ -25,19 +25,6 @@ class SABEasyLogicBusiness {
   ///`六亲歌章第五`//////////////////////////////////////////////////////
   ///参见 SABEasyHealthLogicBusiness
 
-  ///`世应章第六 -- 世（Life） 应（Goal）`/////////////////////////////////////////
-
-  String roleDescriptionAtRow(int intIndex) {
-    String strResult = "";
-    if (intIndex == getLifeIndex()) {
-      strResult = "世";
-    } else if (intIndex == getGoalIndex()) {
-      strResult = "应";
-    }
-
-    return strResult;
-  }
-
   ///`动变章第七`//////////////////////////////////////////////////////
   bool isSymbolChangeGuiAtRow(int intRow) {
     bool bResult = false;
@@ -104,16 +91,6 @@ class SABEasyLogicBusiness {
   }
 
   ///`动静生克章第十四`//////////////////////////////////////////////////////
-  String movementDescriptionAtRow(int intIndex) {
-    String result = "";
-
-    if (isMovementAtRow(intIndex)) {
-      result = "动";
-    }
-
-    return result;
-  }
-
   bool isStaticEasy() {
     return fromEasyName() == toEasyName();
   }

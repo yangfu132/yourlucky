@@ -38,6 +38,10 @@ class SABEasyLogicDescriptionModel {
     rowModelAtRow(intRow).setSymbolRelation(stringParentRelation);
   }
 
+  void setMovementDescription(int intRow, String movementDescription) {
+    rowModelAtRow(intRow).movementDescription = movementDescription;
+  }
+
   String getEmptyDescription(int intRow, EasyTypeEnum easyTypeEnum) {
     return rowModelAtRow(intRow).getEmptyDescription(easyTypeEnum);
   }

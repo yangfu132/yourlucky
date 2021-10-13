@@ -15,7 +15,11 @@ class SAUSubDetailRoute extends StatefulWidget {
   }
 
   List<Map> resultList() {
-    return inputDetailModel.diagramsDetailModel.resultList;
+    if (0 == intIndex) {
+      return inputDetailModel.diagramsDetailModel.resultList;
+    } else {
+      return inputDetailModel.rowModelAtRow(intIndex - 1).resultList;
+    }
   }
 }
 

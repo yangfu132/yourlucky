@@ -60,7 +60,46 @@ class SABEasyLogicDescriptionBusiness {
     return "";
   }
 
+  String healthDescriptionAtRow(int intRow, EasyTypeEnum easyType) {
+    String strResult = "";
+
+    double fHealth = healthModel().symbolHealthAtRow(intRow, easyType);
+    fHealth -= healthModel().healthCritical;
+    if (fHealth > 0) {
+      strResult = "强";
+    } else {
+      strResult = "弱";
+    }
+    strResult = fHealth.toStringAsFixed(4) + '($strResult)';
+    return strResult;
+  }
+
+  ///`六亲歌章第五`//////////////////////////////////////////////////////
+  ///参见 SABEasyHealthLogicBusiness
+
+  ///`世应章第六 -- 世（Life） 应（Goal）`/////////////////////////////////////////
+
+  String roleDescriptionAtRow(int intRow) {
+    return wordsModel().rowModelAtRow(intRow).desOfGoalOrLife;
+  }
+
   ///`动静生克章第十四`//////////////////////////////////////////////////////
+
+  String movementDescriptionAtRow(int intRow) {
+    String result = "";
+    if (wordsModel().isMovementAtRow(intRow)) {
+      result = "动";
+    } else {
+      OutRightEnum outright =
+          healthModel().symbolOutRightAtRow(intRow, EasyTypeEnum.from);
+      if (OutRightEnum.RIGHT_MOVE == outright) {
+        result = "暗动";
+      } else {
+        result = '静';
+      }
+    } //end if
+    return result;
+  }
 
   String resultParentEffectAtRow(int nRow, EasyTypeEnum easyType) {
     String strResult = parentEffectAtRow(nRow, easyType);
@@ -830,6 +869,9 @@ class SABEasyLogicDescriptionBusiness {
           intRow, EasyTypeEnum.to, resultSymbolEmpty(intRow, EasyTypeEnum.to));
       analysisModel.setEmptyDescription(intRow, EasyTypeEnum.hide,
           resultSymbolEmpty(intRow, EasyTypeEnum.hide));
+
+      analysisModel.setMovementDescription(
+          intRow, movementDescriptionAtRow(intRow));
     }
 
     return analysisModel;

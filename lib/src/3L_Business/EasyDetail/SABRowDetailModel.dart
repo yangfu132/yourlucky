@@ -9,6 +9,45 @@ import '../EasyWords/SABRowWordsModel.dart';
 class SABRowDetailModel {
   SABRowDetailModel(this.inputAnalysisRow);
 
+  List<Map> resultList = [
+    {
+      'key': '基本信息',
+      'value': '',
+    },
+    {
+      'key': '六神类象',
+      'value': '',
+    },
+    {
+      'key': '地支类象',
+      'value': '',
+    },
+    {
+      'key': '六合',
+      'value': '',
+    },
+    {
+      'key': '四时',
+      'value': '',
+    },
+    {
+      'key': '月将',
+      'value': '',
+    },
+    {
+      'key': '日将',
+      'value': '',
+    },
+    {
+      'key': '地支方位',
+      'value': '',
+    },
+    {
+      'key': '所属八卦',
+      'value': '',
+    },
+  ];
+
   final SABRowLogicDescriptionModel inputAnalysisRow;
 
   late final String stringDeity =
