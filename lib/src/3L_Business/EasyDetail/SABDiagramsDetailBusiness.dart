@@ -303,8 +303,8 @@ class SABDiagramsDetailBusiness {
     String strUseful = "";
     if (EasyTypeEnum.from == usefulDeity.easyType ||
         EasyTypeEnum.hide == usefulDeity.easyType) {
-      strUseful = analysisBusiness()
-          .resultSymbolEmpty(usefulDeity.intRow, usefulDeity.easyType);
+      strUseful = _inputLogicDesModel.resultSymbolEmpty(
+          usefulDeity.intRow, usefulDeity.easyType);
       emptyState = logicModel()
           .getBasicEmptyState(usefulDeity.intRow, usefulDeity.easyType);
     }

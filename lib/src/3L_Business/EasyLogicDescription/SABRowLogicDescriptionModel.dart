@@ -1,4 +1,5 @@
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogicDescription/SABSymbolLogicDescriptionModel.dart';
 
 import '../../1L_Context/SACContext.dart';
 import '../../1L_Context/SACGlobal.dart';
@@ -11,22 +12,25 @@ class SABRowLogicDescriptionModel {
   );
   final SABRowHealthLogicModel healthLogicRow;
 
-  ///{
-  ///monthRelation
-  ///dayRelation
-  ///symbolRelation
-  ///}
-  Map mapSymbolFrom = {};
-  Map mapSymbolTo = {};
-  Map mapSymbolHide = {};
+  late final SABSymbolLogicDescriptionModel fromSymbol =
+      SABSymbolLogicDescriptionModel(
+          inputHealthLogic: this.healthLogicRow.fromSymbol);
+  late final SABSymbolLogicDescriptionModel toSymbol =
+      SABSymbolLogicDescriptionModel(
+          inputHealthLogic: this.healthLogicRow.toSymbol);
+  late final SABSymbolLogicDescriptionModel hideSymbol =
+      SABSymbolLogicDescriptionModel(
+          inputHealthLogic: this.healthLogicRow.hideSymbol);
+
+  String _symbolRelation = '';
 
   String getDayRelation(EasyTypeEnum easyTypeEnum) {
     if (easyTypeEnum == EasyTypeEnum.from) {
-      return mapSymbolFrom['dayRelation'];
+      return fromSymbol.dayRelation;
     } else if (easyTypeEnum == EasyTypeEnum.to) {
-      return mapSymbolTo['dayRelation'];
+      return toSymbol.dayRelation;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
-      return mapSymbolHide['dayRelation'];
+      return hideSymbol.dayRelation;
     } else {
       colog('easyTypeEnum:$easyTypeEnum');
       return 'easyTypeEnum:$easyTypeEnum';
@@ -35,30 +39,30 @@ class SABRowLogicDescriptionModel {
 
   void setDayRelation(EasyTypeEnum easyTypeEnum, String stringDayRelation) {
     if (easyTypeEnum == EasyTypeEnum.from) {
-      mapSymbolFrom['dayRelation'] = stringDayRelation;
+      fromSymbol.dayRelation = stringDayRelation;
     } else if (easyTypeEnum == EasyTypeEnum.to) {
-      mapSymbolTo['dayRelation'] = stringDayRelation;
+      toSymbol.dayRelation = stringDayRelation;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
-      mapSymbolHide['dayRelation'] = stringDayRelation;
+      hideSymbol.dayRelation = stringDayRelation;
     } else
       colog('easyTypeEnum:$easyTypeEnum');
   }
 
   String getSymbolRelation() {
-    return mapSymbolFrom['symbolRelation'];
+    return _symbolRelation;
   }
 
   void setSymbolRelation(String stringSymbolRelation) {
-    mapSymbolFrom['symbolRelation'] = stringSymbolRelation;
+    _symbolRelation = stringSymbolRelation;
   }
 
   String getMonthRelation(EasyTypeEnum easyTypeEnum) {
     if (easyTypeEnum == EasyTypeEnum.from) {
-      return mapSymbolFrom['monthRelation'];
+      return fromSymbol.monthRelation;
     } else if (easyTypeEnum == EasyTypeEnum.to) {
-      return mapSymbolTo['monthRelation'];
+      return toSymbol.monthRelation;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
-      return mapSymbolHide['monthRelation'];
+      return hideSymbol.monthRelation;
     } else {
       colog('easyTypeEnum:$easyTypeEnum');
       return 'easyTypeEnum:$easyTypeEnum';
@@ -67,11 +71,11 @@ class SABRowLogicDescriptionModel {
 
   void setMonthRelation(EasyTypeEnum easyTypeEnum, String stringMonthRelation) {
     if (easyTypeEnum == EasyTypeEnum.from) {
-      mapSymbolFrom['monthRelation'] = stringMonthRelation;
+      fromSymbol.monthRelation = stringMonthRelation;
     } else if (easyTypeEnum == EasyTypeEnum.to) {
-      mapSymbolTo['monthRelation'] = stringMonthRelation;
+      toSymbol.monthRelation = stringMonthRelation;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
-      mapSymbolHide['monthRelation'] = stringMonthRelation;
+      hideSymbol.monthRelation = stringMonthRelation;
     } else
       colog('easyTypeEnum:$easyTypeEnum');
   }
