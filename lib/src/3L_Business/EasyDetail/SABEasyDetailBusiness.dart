@@ -1,4 +1,5 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
+import 'package:yourlucky/src/3L_Business/BasicEasy/SABAnimalModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABDiagramsDetailBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABDiagramsDetailModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
@@ -110,35 +111,27 @@ class SABEasyDetailBusiness {
     return strPosition + ' ' + symbolName;
   }
 
-// - (NSString*) symbolAnimalLike
-// {
-// NSString* result = [[self animalLike] objectForKey:[self.easyData animalAtRow:self.symbolRow]];
-//
-// return result;
-// }
-//
-// - (NSString*) symbolEarthDirection
-// {
-// NSString* earth = [self symbolEarth];
-//
-// NSString* result = [earth stringByAppendingFormat:@"：%@",
-// [[[self earthBranch] earthDirection] objectForKey:earth]];
-//
-// return result;
-// }
-//
-// - (NSString*) symbolGuaPlace
-// {
-// NSString* result = @"";
-//
-// //    result = [result stringByAppendingFormat:@"卦：先天八卦位于%@，",
-// //              [[COMEightGua earlyPlace] objectForKey:self.symbolEasy]];
-//
-// NSString* strGua = [self.easyData eightGuaAtFromRow:self.symbolRow];
-// result = [result stringByAppendingFormat:@"后天八卦位于%@ ",
-// [[COMEightDiagrams latePlace] objectForKey:strGua]];
-// return result;
-// }
+  String symbolAnimalLike(int intRow) {
+    String animal = wordsModel().getAnimal(intRow);
+    SABAnimalModel animalModel = SABAnimalModel();
+    return animalModel.likeOfAnimal(animal);
+  }
+
+  String symbolEarthDirection(int intRow, EasyTypeEnum easyType) {
+    String earth = wordsModel().getSymbolEarth(intRow, easyType);
+    String result =
+        earth + ' ' + logicModel().earthBranchModel().earthDirection()[earth];
+    return result;
+  }
+
+  String symbolGuaPlace(int intRow) {
+    String strGua = wordsModel().rowModelAtRow(intRow).stringDiagrams;
+    String result = strGua + ':';
+    result = '先天八卦位于' + wordsModel().eightDiagrams.earlyPlace()[strGua] + ',';
+    result += '后天八卦位于' + wordsModel().eightDiagrams.latePlace()[strGua];
+    return result;
+  }
+
   ///`加载函数`
 
   SABEasyDetailModel outputDetailModel() {

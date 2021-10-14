@@ -38,7 +38,7 @@ class SABEightDiagramsModel {
     return result;
   }
 
-  static Map earlyPlace() {
+  Map earlyPlace() {
     return {
       "乾": "正南",
       "坤": "正北",
@@ -51,7 +51,7 @@ class SABEightDiagramsModel {
     };
   }
 
-  static Map latePlace() {
+  Map latePlace() {
     return {
       "乾": "西北",
       "坤": "西南",

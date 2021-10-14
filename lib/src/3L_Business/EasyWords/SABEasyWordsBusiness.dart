@@ -412,6 +412,8 @@ class SABEasyWordsBusiness {
   SABEasyWordsModel _initEasyWordsModel() {
     var wordsModel = easyWordsModel();
 
+    wordsModel.eightDiagrams = eightDiagrams();
+
     for (int intRow = 0; intRow < 6; intRow++) {
       var desOfGoalOrLife = "";
       if (_getLifeIndex() == intRow) {
