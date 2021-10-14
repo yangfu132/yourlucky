@@ -4,6 +4,7 @@ import 'package:yourlucky/src/3L_Business/EasyDetail/SABDiagramsDetailBusiness.d
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABDiagramsDetailModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicBusiness.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogicDescription/SABEasyLogicDescriptionModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:yourlucky/src/4L_Service/SASStringService.dart';
 
@@ -70,7 +71,7 @@ class SABEasyDetailBusiness {
     return logicModel().earthBranchModel().likeDescription(earthName);
   }
 
-  String symbolSixPairResultAtRow(int intRow, EasyTypeEnum easyType) {
+  String symbolSixPair(int intRow, EasyTypeEnum easyType) {
     String strResult = "";
 
     String resultMonth =
@@ -99,10 +100,6 @@ class SABEasyDetailBusiness {
     return strResult;
   }
 
-  String symbolSixPair(int intRow, EasyTypeEnum easyType) {
-    return symbolSixPairResultAtRow(intRow, easyType);
-  }
-
   String symbolTitle(int intRow, EasyTypeEnum easyType) {
     String strPosition = analysisBusiness().positionAtRow(intRow, easyType);
 
@@ -124,7 +121,7 @@ class SABEasyDetailBusiness {
     return result;
   }
 
-  String symbolGuaPlace(int intRow) {
+  String eightDiagramsPlace(int intRow) {
     String strGua = wordsModel().rowModelAtRow(intRow).stringDiagrams;
     String result = strGua + ':';
     result = '先天八卦位于' + wordsModel().eightDiagrams.earlyPlace()[strGua] + ',';
@@ -141,17 +138,31 @@ class SABEasyDetailBusiness {
   SABEasyDetailModel initOutputDetailModel() {
     //TODO:yangfu132细化detailmodel
     var outputDetailModel = SABEasyDetailModel(
-      analysisBusiness().outAnalysisModel(),
+      analysisModel(),
       easyName(),
       diagramsDetailModel(),
     );
     outputDetailModel.detailList();
+
+    for (int intRow = 0; intRow < 6; intRow++) {
+      List<Map> resultList = outputDetailModel.rowModelAtRow(intRow).resultList;
+      resultList[0]['value'] = symbolBasic(intRow, EasyTypeEnum.from);
+      resultList[1]['value'] = symbolAnimalLike(intRow);
+      resultList[2]['value'] = symbolEarthLike(intRow, EasyTypeEnum.from);
+      resultList[3]['value'] = symbolSixPair(intRow, EasyTypeEnum.from);
+      resultList[4]['value'] =
+          analysisModel().getMonthRelation(intRow, EasyTypeEnum.from);
+      resultList[5]['value'] =
+          analysisModel().getDayRelation(intRow, EasyTypeEnum.from);
+      resultList[6]['value'] = symbolEarthDirection(intRow, EasyTypeEnum.from);
+      resultList[7]['value'] = eightDiagramsPlace(intRow);
+    }
     return outputDetailModel;
   }
 
   SABDiagramsDetailModel diagramsDetailModel() {
     SABDiagramsDetailBusiness _diagramsDetailBusiness =
-        SABDiagramsDetailBusiness(analysisBusiness().outAnalysisModel());
+        SABDiagramsDetailBusiness(analysisModel());
     SABDiagramsDetailModel diagramsDetailModel = SABDiagramsDetailModel();
     _diagramsDetailBusiness.configResultModel(diagramsDetailModel);
     return diagramsDetailModel;
@@ -171,5 +182,9 @@ class SABEasyDetailBusiness {
 
   SABEasyLogicModel logicModel() {
     return _healthLogicBusiness.logicModel();
+  }
+
+  SABEasyLogicDescriptionModel analysisModel() {
+    return analysisBusiness().outAnalysisModel();
   }
 }

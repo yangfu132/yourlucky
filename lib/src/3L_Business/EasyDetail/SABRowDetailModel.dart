@@ -11,6 +11,7 @@ class SABRowDetailModel {
 
   List<Map> resultList = [
     {
+      ///强弱、动静、四时
       'key': '基本信息',
       'value': '',
     },
@@ -24,10 +25,6 @@ class SABRowDetailModel {
     },
     {
       'key': '六合',
-      'value': '',
-    },
-    {
-      'key': '四时',
       'value': '',
     },
     {
