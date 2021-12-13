@@ -194,9 +194,8 @@ class SABEasyWordsModel {
       String stringSymbolParent = getSymbolParent(intRow, easyTypeEnum);
       if (stringSymbolParent == parent) {
         parentArray.add(intRow);
-      }
-      //else cont.
-    } //endf
+      } //else {}
+    } //end for
 
     return parentArray;
   }

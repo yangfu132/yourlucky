@@ -50,6 +50,7 @@ class SABHealthModel {
   void addToFinishArray(int nRow) {
     if (-1 == _finishedList.indexOf(nRow)) {
       _finishedList.add(nRow);
+      print("addToFinishArray: $nRow");
     }
   }
 

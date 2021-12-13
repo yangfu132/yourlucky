@@ -109,9 +109,7 @@ class SABMoveHealthBusiness {
       if (!tempHealthModel.isUnFinish(nRow)) {
         double health = tempHealthModel.symbolHealthAtRow(nRow, easyType);
         result = health * originBusiness().conversionRateAtRow(nRow, easyType);
-      } else {
-        colog("error!");
-      }
+      } //else { moving row }
     } else if (EasyTypeEnum.hide == easyType) {
       colog("error!");
     }

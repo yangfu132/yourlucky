@@ -305,8 +305,7 @@ class SABDiagramsDetailBusiness {
           usefulDeity.intRow, usefulDeity.easyType);
       emptyState = logicModel()
           .getBasicEmptyState(usefulDeity.intRow, usefulDeity.easyType);
-    }
-    if (EasyTypeEnum.type_null == usefulDeity.easyType) {
+    } else if (EasyTypeEnum.type_null == usefulDeity.easyType) {
       if (ROW_MONTH == usefulDeity.intRow) {
         strUseful = "月为用神";
       } else if (ROW_DAY == usefulDeity.intRow) {
@@ -314,7 +313,7 @@ class SABDiagramsDetailBusiness {
       }
     } else {
       colog("EasyType do not has usefulDeity.");
-    } //endi
+    } //end {}
 
     if (EmptyEnum.Empty_NoUseful == emptyState) {
       //用神没有出现

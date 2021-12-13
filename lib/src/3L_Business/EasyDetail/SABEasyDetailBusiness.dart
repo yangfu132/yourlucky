@@ -4,6 +4,7 @@ import 'package:yourlucky/src/3L_Business/EasyDetail/SABDiagramsDetailBusiness.d
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABDiagramsDetailModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicBusiness.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogicDescription/SABEasyLogicDescriptionModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:yourlucky/src/4L_Service/SASStringService.dart';
@@ -34,8 +35,7 @@ class SABEasyDetailBusiness {
   String symbolBasic(int intRow, EasyTypeEnum easyType) {
     String result = "";
     //用神
-    String symbolGod =
-        _outputDetailModel.healthLogicModel().getDeity(intRow, easyType);
+    String symbolGod = healthLogicModel().getDeity(intRow, easyType);
     if (symbolGod.isNotEmpty) {
       result = result + symbolGod + ' ';
     }
@@ -66,7 +66,6 @@ class SABEasyDetailBusiness {
   }
 
   String symbolEarthLike(int intRow, EasyTypeEnum easyType) {
-    String strResult = '';
     String earthName = wordsModel().getSymbolEarth(intRow, easyType);
     return logicModel().earthBranchModel().likeDescription(earthName);
   }
@@ -186,5 +185,9 @@ class SABEasyDetailBusiness {
 
   SABEasyLogicDescriptionModel analysisModel() {
     return analysisBusiness().outAnalysisModel();
+  }
+
+  SABEasyHealthLogicModel healthLogicModel() {
+    return analysisModel().inputHealthLogicModel;
   }
 }

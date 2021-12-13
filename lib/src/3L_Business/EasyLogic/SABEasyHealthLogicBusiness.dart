@@ -24,6 +24,9 @@ class SABEasyHealthLogicBusiness {
 
   late final SABEasyHealthLogicModel _healthLogicModel = initHealthLogicModel();
 
+  late final SABUsefulDeityModel _deityModel =
+      indexOfUseDeityInEasy(EasyTypeEnum.from);
+
   late final SABEasyLogicBusiness _logicBusiness =
       SABEasyLogicBusiness(_inputEasyModel);
 
@@ -80,7 +83,7 @@ class SABEasyHealthLogicBusiness {
   SABEasyHealthLogicModel initHealthLogicModel() {
     SABEasyHealthLogicModel logicModel = SABEasyHealthLogicModel(
       inputHealthModel: healthModel(),
-      usefulDeity: usefulDeityRow(),
+      usefulDeity: _deityModel, //usefulDeityRow(),
       lifeHealthWithCritical: lifeHealthWithCritical(),
       usefulHealthWithCritical: usefulHealthWithCritical(),
       isUsefulDeityStrong: isUsefulDeityStrong(),
@@ -279,7 +282,7 @@ class SABEasyHealthLogicBusiness {
   }
 
   SABUsefulDeityModel usefulDeityRow() {
-    return indexOfUseDeityInEasy(EasyTypeEnum.from);
+    return _deityModel;
   }
 
   bool isUsefulDeityChangeToConflict() {

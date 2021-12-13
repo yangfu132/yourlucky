@@ -519,7 +519,7 @@ class SABHealthOriginBusiness {
           hideSymbol: hideSymbol(logicModel.fromSymbol));
 
       healthModel.addRowModel(rowModel);
-    } //endf
+    } //end for
 
     return healthModel;
   }

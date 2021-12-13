@@ -251,7 +251,7 @@ class SABEasyAvoidBusiness {
   String directionAtRow(int intRow) {
     String stringResult = "";
     String earth = wordsModel().getSymbolEarth(intRow, EasyTypeEnum.from);
-    if (null != earth && earth.length > 0) {
+    if (earth.length > 0) {
       String direction = healthModel()
           .inputLogicModel
           .earthBranchModel()

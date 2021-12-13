@@ -49,7 +49,7 @@ class SABStaticHealthBusiness {
 
       basicHealth += moveBusiness().adjustHealthAtRow(
           tempHealthModel, nRow, easyType, effectsItem, easyType);
-    } //endf
+    } //end for
     return basicHealth;
   }
 
