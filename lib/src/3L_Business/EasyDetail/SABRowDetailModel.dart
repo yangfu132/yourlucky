@@ -1,3 +1,4 @@
+import 'package:yourlucky/src/3L_Business/EasyDetail/SABSymbolDetailModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart';
 
 import '../../1L_Context/SACGlobal.dart';
@@ -8,43 +9,6 @@ import '../EasyWords/SABRowWordsModel.dart';
 
 class SABRowDetailModel {
   SABRowDetailModel(this.inputAnalysisRow);
-
-  List<Map> resultList = [
-    {
-      ///强弱、动静、四时
-      'key': '基本信息',
-      'value': '',
-    },
-    {
-      'key': '六神类象',
-      'value': '',
-    },
-    {
-      'key': '地支类象',
-      'value': '',
-    },
-    {
-      'key': '六合',
-      'value': '',
-    },
-    {
-      'key': '月将',
-      'value': '',
-    },
-    {
-      'key': '日将',
-      'value': '',
-    },
-    {
-      'key': '地支方位',
-      'value': '',
-    },
-    {
-      'key': '所属八卦',
-      'value': '',
-    },
-  ];
-
   final SABRowLogicDescriptionModel inputAnalysisRow;
 
   late final String stringDeity =
@@ -52,33 +16,28 @@ class SABRowDetailModel {
 
   late final String stringAnimal = wordsModel().stringAnimal; //六神
 
-  ///Hide
-  late final String stringHideSymbolH = hideSymbolHealthDes();
-
-  late final String stringHideMonthR = hideMonthRelation();
-
-  late final String stringHideDayR = hideDayRelation();
-
-  late final String stringConflictOrPair =
-      analysisModel().getSymbolRelation(); //六爻冲合
-
-  ///from
-  late final String stringFromMonthR =
-      analysisModel().getMonthRelation(EasyTypeEnum.from);
-
-  late final String stringFromDayR =
-      analysisModel().getDayRelation(EasyTypeEnum.from);
-
-  late final String stringFromEasySymbolH = fromSymbolHealthDes();
-
   late final String stringGoal = wordsModel().desOfGoalOrLife; //世应
 
   late final String stringChange = logicModel().stringSymbolForwardOrBack; //进化
 
-  ///to
-  late final String stringToEasySymbolH = toSymbolHealthDes();
-  late final String stringToMonthR = toMonthRelation();
-  late final String stringToDayR = toDayRelation();
+  late final String stringConflictOrPair =
+      analysisModel().getSymbolRelation(); //六爻冲合
+
+  late final SABSymbolDetailModel fromSymbol = SABSymbolDetailModel(
+    symbolHealthDes: fromSymbolHealthDes(),
+    monthRelation: analysisModel().getMonthRelation(EasyTypeEnum.from),
+    dayRelation: analysisModel().getDayRelation(EasyTypeEnum.from),
+  );
+  late final SABSymbolDetailModel toSymbol = SABSymbolDetailModel(
+    symbolHealthDes: toSymbolHealthDes(),
+    monthRelation: toMonthRelation(),
+    dayRelation: toDayRelation(),
+  );
+  late final SABSymbolDetailModel hideSymbol = SABSymbolDetailModel(
+    symbolHealthDes: hideSymbolHealthDes(),
+    monthRelation: hideMonthRelation(),
+    dayRelation: hideDayRelation(),
+  );
 
   String hideSymbolHealthDes() {
     String stringResult = "";
@@ -169,4 +128,40 @@ class SABRowDetailModel {
   SABRowWordsModel wordsModel() {
     return logicModel().inputWordsRow;
   }
+
+  List<Map> resultList = [
+    {
+      ///强弱、动静、四时
+      'key': '基本信息',
+      'value': '',
+    },
+    {
+      'key': '六神类象',
+      'value': '',
+    },
+    {
+      'key': '地支类象',
+      'value': '',
+    },
+    {
+      'key': '六合',
+      'value': '',
+    },
+    {
+      'key': '月将',
+      'value': '',
+    },
+    {
+      'key': '日将',
+      'value': '',
+    },
+    {
+      'key': '地支方位',
+      'value': '',
+    },
+    {
+      'key': '所属八卦',
+      'value': '',
+    },
+  ];
 }

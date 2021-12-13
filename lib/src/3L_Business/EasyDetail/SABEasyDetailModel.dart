@@ -48,9 +48,9 @@ class SABEasyDetailModel {
         rowModel.stringDeity,
         rowModel.stringAnimal,
         rowModel.stringConflictOrPair,
-        rowModel.stringFromMonthR,
-        rowModel.stringFromDayR,
-        rowModel.stringFromEasySymbolH,
+        rowModel.fromSymbol.monthRelation,
+        rowModel.fromSymbol.dayRelation,
+        rowModel.fromSymbol.symbolHealthDes,
         rowModel.stringGoal,
       ];
       listResult.add(listItem);
@@ -76,15 +76,15 @@ class SABEasyDetailModel {
 
     for (SABRowDetailModel rowModel in _rowModelsArray()) {
       final listItem = <String>[
-        rowModel.stringHideMonthR,
-        rowModel.stringHideDayR,
-        rowModel.stringHideSymbolH,
+        rowModel.hideSymbol.monthRelation,
+        rowModel.hideSymbol.dayRelation,
+        rowModel.hideSymbol.symbolHealthDes,
         rowModel.stringDeity,
         rowModel.stringAnimal,
         rowModel.stringConflictOrPair,
-        rowModel.stringFromMonthR,
-        rowModel.stringFromDayR,
-        rowModel.stringFromEasySymbolH,
+        rowModel.fromSymbol.monthRelation,
+        rowModel.fromSymbol.dayRelation,
+        rowModel.fromSymbol.symbolHealthDes,
         rowModel.stringGoal,
       ];
       listResult.add(listItem);
@@ -114,14 +114,14 @@ class SABEasyDetailModel {
         rowModel.stringDeity,
         rowModel.stringAnimal,
         rowModel.stringConflictOrPair,
-        rowModel.stringFromMonthR,
-        rowModel.stringFromDayR,
-        rowModel.stringFromEasySymbolH,
+        rowModel.fromSymbol.monthRelation,
+        rowModel.fromSymbol.dayRelation,
+        rowModel.fromSymbol.symbolHealthDes,
         rowModel.stringGoal,
         rowModel.logicModel().stringSymbolForwardOrBack,
-        rowModel.stringToEasySymbolH,
-        rowModel.stringToMonthR,
-        rowModel.stringToDayR,
+        rowModel.toSymbol.symbolHealthDes,
+        rowModel.toSymbol.monthRelation,
+        rowModel.toSymbol.dayRelation,
       ];
       listResult.add(listItem);
     }
@@ -150,20 +150,20 @@ class SABEasyDetailModel {
 
     for (SABRowDetailModel rowModel in _rowModelsArray()) {
       final listItem = <String>[
-        rowModel.stringHideMonthR,
-        rowModel.stringHideDayR,
-        rowModel.stringHideSymbolH,
+        rowModel.hideSymbol.monthRelation, //stringHideMonthR,
+        rowModel.hideSymbol.dayRelation, //stringHideDayR,
+        rowModel.hideSymbol.symbolHealthDes, //stringHideSymbolH,
         rowModel.stringDeity,
         rowModel.stringAnimal,
         rowModel.stringConflictOrPair,
-        rowModel.stringFromMonthR,
-        rowModel.stringFromDayR,
-        rowModel.stringFromEasySymbolH,
+        rowModel.fromSymbol.monthRelation, //stringFromMonthR,
+        rowModel.fromSymbol.dayRelation, //stringFromDayR,
+        rowModel.fromSymbol.symbolHealthDes, //stringFromEasySymbolH,
         rowModel.stringGoal,
         rowModel.logicModel().stringSymbolForwardOrBack,
-        rowModel.stringToEasySymbolH,
-        rowModel.stringToMonthR,
-        rowModel.stringToDayR,
+        rowModel.toSymbol.symbolHealthDes, // stringToEasySymbolH,
+        rowModel.toSymbol.monthRelation, //stringToMonthR,
+        rowModel.toSymbol.dayRelation, //stringToDayR,
       ];
       listResult.add(listItem);
     }
