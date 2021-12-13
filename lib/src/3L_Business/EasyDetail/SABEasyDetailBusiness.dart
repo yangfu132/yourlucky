@@ -15,11 +15,9 @@ import '../StoreEasy/SABEasyDigitModel.dart';
 
 class SABEasyDetailBusiness {
   final SABEasyDigitModel _inputEasyModel;
-  SABEasyDetailBusiness(this._inputEasyModel) {
-    _outputDetailModel = initOutputDetailModel();
-  }
+  SABEasyDetailBusiness(this._inputEasyModel);
 
-  late final SABEasyDetailModel _outputDetailModel;
+  late final SABEasyDetailModel _outputDetailModel = initOutputDetailModel();
 
   late final SABEasyHealthLogicBusiness _healthLogicBusiness =
       SABEasyHealthLogicBusiness(_inputEasyModel);
