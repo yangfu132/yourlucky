@@ -23,7 +23,7 @@ class SABUserAuthService extends ChangeNotifier {
 
   Future<void> initFireAuth() async {
     if (USE_FIRE_AUTH_EMULATOR) {
-      await FirebaseAuth.instance.useEmulator('http://localhost:9099');
+      await FirebaseAuth.instance.useAuthEmulator("http://localhost", 9099);
     }
     FirebaseAuth.instance.userChanges().listen((user) {
       if (user != null) {
@@ -93,7 +93,7 @@ class SABUserAuthService extends ChangeNotifier {
     try {
       var credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-      await credential.user!.updateProfile(displayName: displayName);
+      await credential.user!.updateDisplayName(displayName);
     } on FirebaseAuthException catch (e) {
       errorCallback(e);
     }

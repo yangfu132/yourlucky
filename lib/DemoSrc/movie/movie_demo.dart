@@ -6,7 +6,7 @@ import 'package:yourlucky/DemoSrc/movie/movie.dart';
 /// Requires that a Firestore emulator is running locally.
 /// See https://firebase.flutter.dev/docs/firestore/usage#emulator-usage
 bool USE_FIRESTORE_EMULATOR = false;
-Future<void> main_move() async {
+Future<void> mainMove() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   if (USE_FIRESTORE_EMULATOR) {
