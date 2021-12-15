@@ -1,10 +1,8 @@
-import 'dart:io';
-
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/2L_UI/EasyStrategy/SAUStrategyResultRoute.dart';
 import 'package:yourlucky/src/2L_UI/User/SAUUserRoute.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailBusiness.dart';
+import 'package:yourlucky/src/4L_Service/SASAudioService.dart';
 import 'package:yourlucky/src/4L_Service/SASLocalizationsService.dart';
 
 import '../../1L_Context/SACContext.dart';
@@ -14,6 +12,7 @@ import 'AnimationDiceWidget.dart';
 class SAUHomeBody extends StatefulWidget {
   SAUHomeBody({this.title});
   final String? title;
+
   @override
   SAUHomeBodyState createState() {
     return SAUHomeBodyState();
@@ -21,28 +20,23 @@ class SAUHomeBody extends StatefulWidget {
 }
 
 class SAUHomeBodyState extends State<SAUHomeBody> {
-  AudioCache audioCache = AudioCache();
-  AudioPlayer advancedPlayer = AudioPlayer();
   AnimationDiceWidget animationWidget = AnimationDiceWidget(() {});
   bool _bAnimation = false;
+  final SASAudioService _audioService = SASAudioService();
+
   @override
   void initState() {
     super.initState();
-
+    _audioService.initAudio();
     // if (kIsWeb) {
     //   // Calls to Platform.isIOS fails on web
     //   return;
     // }
-
-    if (Platform.isIOS) {
-      audioCache.fixedPlayer?.notificationService.startHeadlessService();
-      advancedPlayer.notificationService.startHeadlessService();
-    }
   }
 
   @override
   void dispose() {
-    advancedPlayer.dispose();
+    _audioService.disposeAudio();
     super.dispose();
   }
 
@@ -146,7 +140,7 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
               onPressed: () async {
                 _bAnimation = true;
                 setState(() {});
-                audioCache.play('glass.wav', mode: PlayerMode.LOW_LATENCY);
+                _audioService.playAudio();
               },
             ),
           ),
