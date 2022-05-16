@@ -1,10 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:yourlucky/src/1L_Context/SACContext.dart';
-import 'package:yourlucky/src/2L_UI/Base/SAUListTitleVistor.dart';
-import 'package:yourlucky/src/2L_UI/EasyDetail/SAUEasyDetailRoute.dart';
-import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailBusiness.dart';
-import 'package:yourlucky/src/3L_Business/StoreEasy/SABEasyDigitModel.dart';
 
 class SAUHistoryRoute extends StatefulWidget {
   SAUHistoryRoute({Key? key, this.title}) : super(key: key);
@@ -16,67 +10,13 @@ class SAUHistoryRoute extends StatefulWidget {
 }
 
 class SAUHistoryRouteState extends State<SAUHistoryRoute> {
-  late Query<SABEasyDigitModel> _easyQuery;
-  Stream<QuerySnapshot<SABEasyDigitModel>>? _easies;
-
   @override
   void initState() {
     super.initState();
-    _updateQuery();
-  }
-
-  Future<void> _updateQuery() async {
-    setState(() {
-      _easyQuery = SACContext.easyStore().getQueryRes();
-      _easies = _easyQuery.snapshots();
-    });
   }
 
   Widget _buildBody() {
-    if (null == _easies) {
-      return Text('Waiting');
-    } else {
-      return StreamBuilder<QuerySnapshot<SABEasyDigitModel>>(
-        stream: _easies,
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return Center(
-              child: Text(snapshot.error.toString()),
-            );
-          }
-
-          if (!snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
-          }
-
-          final data = snapshot.requireData;
-          var dataSize = data.size;
-          if (dataSize > 0) {
-            return ListView.builder(
-              itemCount: dataSize,
-              itemBuilder: (context, index) {
-                SABEasyDigitModel digitModel = data.docs[index].data();
-                return SAUListTitleVisitor.greyWhite(
-                  index,
-                  digitModel.stringTitle,
-                  () {
-                    SABEasyDetailBusiness detailBusiness =
-                        SABEasyDetailBusiness(digitModel);
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return SAUEasyDetailRoute(
-                          detailBusiness.outputDetailModel());
-                    }));
-                  },
-                );
-              },
-            );
-          } else {
-            return Text('No Data');
-          }
-        },
-      );
-    }
+    return Text('Waiting');
   }
 
   @override

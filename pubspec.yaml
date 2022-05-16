@@ -28,8 +28,8 @@ dependencies:
 
 
   #接入cloud_firestore
-  cloud_firestore: # new
-  firebase_auth:    # new
+  #cloud_firestore: # new
+  #firebase_auth:    # new
   google_fonts:
   provider:         # new
   flutter_mobx: # new
