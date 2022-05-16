@@ -1,5 +1,5 @@
 ﻿import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/2L_UI/EasyDetail/SAUSubDetailRoute.dart';
 
@@ -101,7 +101,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
           decoration: BoxDecoration(
             color: Colors.white,
             border: Border(
-              bottom: BorderSide(width: 1.w, color: Color(0xffe5e5e5)),
+              bottom: BorderSide(width: 1, color: Color(0xffe5e5e5)),
             ),
           ),
           // child: Text("text"),
@@ -132,10 +132,10 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
       child: ConstrainedBox(
         constraints: BoxConstraints(minHeight: double.infinity),
         child: Container(
-          padding: EdgeInsets.only(left: 5.0.w, right: 5.0.w),
+          padding: EdgeInsets.only(left: 5.0, right: 5.0),
           foregroundDecoration: BoxDecoration(
             border: Border(
-              right: BorderSide(width: 1.w, color: Color(0xffe5e5e5)),
+              right: BorderSide(width: 1, color: Color(0xffe5e5e5)),
             ),
           ),
           child: Column(
@@ -144,7 +144,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
               Text(
                 stringItem,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 5.w),
+                style: TextStyle(fontSize: 5),
               )
             ],
           ),

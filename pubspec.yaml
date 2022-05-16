@@ -43,7 +43,7 @@ dependencies:
   flutter_perpttual_calendar: ^1.0.0+5
 
   #---------- third party plugin
-  flutter_screenutil: # new
+  #flutter_screenutil: # new
   cupertino_icons: # new
   bot_toast: # new
 
