@@ -26,19 +26,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-
-  #接入cloud_firestore
-  #cloud_firestore: # new
-  #firebase_auth:    # new
-  google_fonts:
-  provider:         # new
-  flutter_mobx: # new
-
-
   #接入animation
   shared_preferences: # new
-#  audioplayers: # new
-
   #my
   flutter_perpttual_calendar: ^1.0.0+5
 
@@ -54,9 +43,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   test: any
-  mobx_codegen: # new
-  build_runner: # new
-  json_serializable: # new
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
