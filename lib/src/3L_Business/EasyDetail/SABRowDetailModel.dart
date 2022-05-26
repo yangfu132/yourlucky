@@ -163,5 +163,9 @@ class SABRowDetailModel {
       'key': '所属八卦',
       'value': '',
     },
+    {
+      'key': '调试信息',
+      'value': '日志',
+    },
   ];
 }
