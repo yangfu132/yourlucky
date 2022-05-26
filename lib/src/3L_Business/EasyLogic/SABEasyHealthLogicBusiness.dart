@@ -45,6 +45,9 @@ class SABEasyHealthLogicBusiness {
 
   SABSymbolHealthLogicModel fromSymbol(SABSymbolHealthModel healthSymbol) {
     int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
+    healthSymbol.stringHealth =
+        healthDescriptionAtRow(intRow, EasyTypeEnum.from);
+
     return SABSymbolHealthLogicModel(
       healthSymbol: healthSymbol,
       symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.from),
@@ -58,6 +61,7 @@ class SABEasyHealthLogicBusiness {
 
   SABSymbolHealthLogicModel toSymbol(SABSymbolHealthModel healthSymbol) {
     int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
+    healthSymbol.stringHealth = healthDescriptionAtRow(intRow, EasyTypeEnum.to);
     return SABSymbolHealthLogicModel(
       healthSymbol: healthSymbol,
       symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.to),
@@ -70,6 +74,8 @@ class SABEasyHealthLogicBusiness {
 
   SABSymbolHealthLogicModel hideSymbol(SABSymbolHealthModel healthSymbol) {
     int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
+    healthSymbol.stringHealth =
+        healthDescriptionAtRow(intRow, EasyTypeEnum.hide);
     return SABSymbolHealthLogicModel(
         healthSymbol: healthSymbol,
         symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.hide),
@@ -341,6 +347,26 @@ class SABEasyHealthLogicBusiness {
     } else {}
 
     return stringEarth;
+  }
+
+  ///`强弱`//////////////////////////////////////////////////////
+
+  String getStrongTogether(String itemEarth) {
+    return "";
+  }
+
+  String healthDescriptionAtRow(int intRow, EasyTypeEnum easyType) {
+    String strResult = "";
+
+    double fHealth = healthModel().symbolHealthAtRow(intRow, easyType);
+    fHealth -= healthModel().healthCritical;
+    if (fHealth > 0) {
+      strResult = "强";
+    } else {
+      strResult = "弱";
+    }
+    strResult = fHealth.toStringAsFixed(4) + '($strResult)';
+    return strResult;
   }
 
   ///`用神元神忌神仇神章第九`//////////////////////////////////////////////////////

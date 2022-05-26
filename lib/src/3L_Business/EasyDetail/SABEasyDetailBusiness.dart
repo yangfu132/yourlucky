@@ -50,7 +50,8 @@ class SABEasyDetailBusiness {
 
     //health
     String symbolStrong =
-        analysisBusiness().healthDescriptionAtRow(intRow, easyType);
+        healthLogicModel().rowModelAtRow(intRow).getStringHealth(easyType) ??
+            '??';
     if (symbolStrong.isNotEmpty) {
       result = result + symbolStrong + ' ';
     }

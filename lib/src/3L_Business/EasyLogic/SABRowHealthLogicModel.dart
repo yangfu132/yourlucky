@@ -18,6 +18,19 @@ class SABRowHealthLogicModel {
   final SABSymbolHealthLogicModel hideSymbol;
   bool? isSymbolChangeEmpty;
 
+  String? getStringHealth(EasyTypeEnum easyTypeEnum) {
+    if (easyTypeEnum == EasyTypeEnum.from) {
+      return fromSymbol.healthSymbol.stringHealth;
+    } else if (easyTypeEnum == EasyTypeEnum.to) {
+      return toSymbol.healthSymbol.stringHealth;
+    } else if (easyTypeEnum == EasyTypeEnum.hide) {
+      return hideSymbol.healthSymbol.stringHealth;
+    } else {
+      colog('easyTypeEnum:$easyTypeEnum');
+      return 'easyTypeEnum:$easyTypeEnum';
+    }
+  }
+
   String getDeity(EasyTypeEnum easyTypeEnum) {
     if (easyTypeEnum == EasyTypeEnum.from) {
       return fromSymbol.stringDeity;

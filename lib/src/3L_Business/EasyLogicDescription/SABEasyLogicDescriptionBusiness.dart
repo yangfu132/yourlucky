@@ -54,26 +54,6 @@ class SABEasyLogicDescriptionBusiness {
     return strResult;
   }
 
-  ///`强弱`//////////////////////////////////////////////////////
-
-  String getStrongTogether(String itemEarth) {
-    return "";
-  }
-
-  String healthDescriptionAtRow(int intRow, EasyTypeEnum easyType) {
-    String strResult = "";
-
-    double fHealth = healthModel().symbolHealthAtRow(intRow, easyType);
-    fHealth -= healthModel().healthCritical;
-    if (fHealth > 0) {
-      strResult = "强";
-    } else {
-      strResult = "弱";
-    }
-    strResult = fHealth.toStringAsFixed(4) + '($strResult)';
-    return strResult;
-  }
-
   ///`六亲歌章第五`//////////////////////////////////////////////////////
   ///参见 SABEasyHealthLogicBusiness
 

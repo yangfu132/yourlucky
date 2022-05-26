@@ -44,7 +44,7 @@ class SABHealthModel {
   }
 
   void updateHealthAtRow(int nRow, double health) {
-    return rowModelAtRow(nRow).setHealthForEasyType(EasyTypeEnum.from, health);
+    rowModelAtRow(nRow).setHealthForEasyType(EasyTypeEnum.from, health);
   }
 
   void addToFinishArray(int nRow) {
