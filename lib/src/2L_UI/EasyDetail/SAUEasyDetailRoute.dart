@@ -1,4 +1,5 @@
 ﻿import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/2L_UI/EasyDetail/SAUSubDetailRoute.dart';
@@ -19,6 +20,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setEnabledSystemUIOverlays([]);
   }
 
   SABEasyDetailModel detailModel() {
@@ -144,7 +146,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
               Text(
                 stringItem,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 5),
+                style: TextStyle(fontSize: 10),
               )
             ],
           ),
