@@ -30,7 +30,7 @@ class SABEasyDetailModel {
     return _analysisModel.inputHealthLogicModel;
   }
 
-  List<List<String>> staticHaveUsefulDeity() {
+  Map<String, List> staticHaveUsefulDeity() {
     final listResult = <List<String>>[
       [
         '事情',
@@ -55,10 +55,23 @@ class SABEasyDetailModel {
       ];
       listResult.add(listItem);
     }
-    return listResult;
+
+    final mapResult = <String, List>{
+      "key": <String>[
+        '事情',
+        '六神',
+        '六爻冲合',
+        '本月',
+        '本日',
+        '本卦',
+        '世应',
+      ],
+      "value": listResult
+    };
+    return mapResult;
   }
 
-  List<List<String>> staticHideUsefulDeity() {
+  Map<String, List> staticHideUsefulDeity() {
     final listResult = <List<String>>[
       [
         "月",
@@ -89,10 +102,26 @@ class SABEasyDetailModel {
       ];
       listResult.add(listItem);
     }
-    return listResult;
+
+    final mapResult = <String, List>{
+      "key": <String>[
+        '伏月',
+        '伏日',
+        '伏卦',
+        '事情',
+        '六神',
+        '六爻冲合',
+        '本月',
+        '本日',
+        '本卦',
+        '世应',
+      ],
+      "value": listResult
+    };
+    return mapResult;
   }
 
-  List<List<String>> moveHaveUsefulDeity() {
+  Map<String, List> moveHaveUsefulDeity() {
     final listResult = <List<String>>[
       [
         '事情',
@@ -125,10 +154,26 @@ class SABEasyDetailModel {
       ];
       listResult.add(listItem);
     }
-    return listResult;
+    final mapResult = <String, List>{
+      "key": <String>[
+        '事情',
+        '六神',
+        '六爻冲合',
+        '本月',
+        '本日',
+        '本卦',
+        '世应',
+        '进化',
+        '变卦',
+        '变月',
+        '变日'
+      ],
+      "value": listResult
+    };
+    return mapResult;
   }
 
-  List<List<String>> moveHideUsefulDeity() {
+  Map<String, List> moveHideUsefulDeity() {
     final listResult = <List<String>>[
       [
         "月",
@@ -167,32 +212,51 @@ class SABEasyDetailModel {
       ];
       listResult.add(listItem);
     }
-    return listResult;
+    final mapResult = <String, List>{
+      "key": <String>[
+        '伏月',
+        '伏日',
+        '伏卦',
+        '事情',
+        '六神',
+        '六爻冲合',
+        '本月',
+        '本日',
+        '本卦',
+        '世应',
+        '进化',
+        '变卦',
+        '变月',
+        '变日'
+      ],
+      "value": listResult
+    };
+    return mapResult;
   }
 
-  List<List<String>> detailList() {
-    List<List<String>> listResult;
+  Map<String, List> detailList() {
+    Map<String, List> mapResult;
     SABUsefulDeityModel usefulDeity = healthLogicModel().usefulDeity;
     bool bStaticEasy =
         healthLogicModel().inputHealthModel.inputLogicModel.bStaticEasy;
     if (bStaticEasy) {
       if (EasyTypeEnum.from == usefulDeity.easyType) {
-        listResult = staticHaveUsefulDeity();
+        mapResult = staticHaveUsefulDeity();
       } else if (EasyTypeEnum.type_null == usefulDeity.easyType) {
-        listResult = staticHaveUsefulDeity();
+        mapResult = staticHaveUsefulDeity();
       } else {
-        listResult = staticHideUsefulDeity();
+        mapResult = staticHideUsefulDeity();
       }
     } else {
       if (EasyTypeEnum.from == usefulDeity.easyType) {
-        listResult = moveHaveUsefulDeity();
+        mapResult = moveHaveUsefulDeity();
       } else if (EasyTypeEnum.type_null == usefulDeity.easyType) {
-        listResult = moveHaveUsefulDeity();
+        mapResult = moveHaveUsefulDeity();
       } else {
-        listResult = moveHideUsefulDeity();
+        mapResult = moveHideUsefulDeity();
       }
     }
-    return listResult;
+    return mapResult;
   }
 
   void rowDetailList(int intRow) {}

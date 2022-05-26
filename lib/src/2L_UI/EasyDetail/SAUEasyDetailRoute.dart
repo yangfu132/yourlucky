@@ -47,15 +47,18 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
   }
 
   Widget _buildBody() {
-    List listDetail = detailModel().detailList();
+    Map<String, List> mapResult = detailModel().detailList();
+    List listKey = mapResult["key"]!;
+    List listDetail = mapResult['value']!;
     List<Widget> listRow = [];
+
     int intCount = listDetail.length;
     for (int intIndex = 0; intIndex < intCount; intIndex++) {
       if (0 == intIndex) {
-        listRow.add(getTitleRowWidget(listDetail[intIndex]));
+        listRow.add(getTitleRowWidget(listKey, listDetail[intIndex]));
       } else {
-        listRow.add(
-            getContentRowWidget(intIndex, listDetail[0], listDetail[intIndex]));
+        listRow.add(getContentRowWidget(
+            intIndex, listKey, listDetail[0], listDetail[intIndex]));
       }
     }
 
@@ -65,7 +68,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
   }
 
   ///顶部标题行
-  Widget getTitleRowWidget(List<String> listTitle) {
+  Widget getTitleRowWidget(List listKey, List<String> listTitle) {
     return Expanded(
       child: GestureDetector(
         onTap: () {
@@ -82,7 +85,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
           ),
           // child: Text("text"),
           child: Row(
-            children: getSymbolList(listTitle, listTitle),
+            children: getSymbolList(listKey, listTitle, listTitle),
           ),
         ),
       ),
@@ -90,8 +93,8 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
   }
 
   ///内容行
-  Widget getContentRowWidget(
-      int intIndex, List<String> listTitle, List<String> listContent) {
+  Widget getContentRowWidget(int intIndex, List listKey, List<String> listTitle,
+      List<String> listContent) {
     return Expanded(
       child: GestureDetector(
         onTap: () {
@@ -108,27 +111,74 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
           ),
           // child: Text("text"),
           child: Row(
-            children: getSymbolList(listTitle, listContent),
+            children: getSymbolList(listKey, listTitle, listContent),
           ),
         ),
       ),
     );
   }
 
-  List<Widget> getSymbolList(final listTitle, final listContent) {
+  List<Widget> getSymbolList(
+      final listKey, final listTitle, final listContent) {
     List<Widget> result = [];
     for (int nColumn = 0; nColumn < listContent.length; nColumn++) {
+      int weight = listTitle[nColumn].length;
       Widget widgetItem = getSymbolWidget(
-        listTitle[nColumn],
         listContent[nColumn],
+        weight,
+        getColor(listKey[nColumn]),
       );
       result.add(widgetItem);
     }
     return result;
   }
 
-  Widget getSymbolWidget(String stringTitle, String stringItem) {
-    int weight = stringTitle.length;
+  Color getColor(String title) {
+    Color colorResult = Colors.black;
+    switch (title) {
+      case '伏月':
+        colorResult = Color(0xff176ADA);
+        break;
+      case '伏日':
+        colorResult = Color(0xffF64B5E);
+        break;
+      case '伏卦':
+        colorResult = Color.fromRGBO(77, 0, 178, 1);
+        break;
+      case '事情':
+        break;
+      case '六神':
+        break;
+      case '六爻冲合':
+        break;
+      case '本月':
+        colorResult = Color(0xff176ADA);
+        break;
+      case '本日':
+        colorResult = Color(0xffF64B5E);
+        break;
+      case '本卦':
+        colorResult = Color.fromRGBO(77, 0, 178, 1);
+        break;
+      case '世应':
+        break;
+      case '进化':
+        break;
+      case '变卦':
+        colorResult = Color.fromRGBO(77, 0, 178, 1);
+        break;
+      case '变月':
+        colorResult = Color(0xff176ADA);
+        break;
+      case '变日':
+        colorResult = Color(0xffF64B5E);
+        break;
+    }
+
+    return colorResult;
+  }
+
+  Widget getSymbolWidget(String stringItem, int weight, Color colorItem) {
     return Expanded(
       flex: weight,
       child: ConstrainedBox(
@@ -146,7 +196,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
               Text(
                 stringItem,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 10),
+                style: TextStyle(fontSize: 10, color: colorItem),
               )
             ],
           ),
