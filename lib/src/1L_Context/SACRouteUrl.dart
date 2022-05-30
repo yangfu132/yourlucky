@@ -1,13 +1,20 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:yourlucky/src/2L_UI/EasyStrategy/SAUEasyStrategyRoute.dart';
+import 'package:yourlucky/src/2L_UI/User/About/SAUAboutRoute.dart';
 import 'package:yourlucky/src/2L_UI/User/Debug/SAUDebugRoute.dart';
+import 'package:yourlucky/src/2L_UI/User/EasyStrategy/SAUEasyStrategyRoute.dart';
+import 'package:yourlucky/src/2L_UI/User/Feedback/SAUFeedbackRoute.dart';
 import 'package:yourlucky/src/2L_UI/User/History/SAUHistoryRoute.dart';
+import 'package:yourlucky/src/2L_UI/User/Setting/SAUSettingRoute.dart';
 import 'package:yourlucky/src/2L_UI/User/SignIn/SAUSignInRoute.dart';
 import 'package:yourlucky/src/2L_UI/User/SignIn/SAUSignupRoute.dart';
 
 class SACRouteUrl {
+  static const feedback = 'feedback';
+  static const about = 'about';
+  static const rateAndReview = 'rateAndReview';
+  static const setting = 'setting';
   static const history = 'history';
   static const logIn = 'logIn';
   static const signUp = 'signUp';
@@ -22,11 +29,14 @@ class SACRouteUrl {
 Widget mapRouteToPage(String route, Object? arguments) {
   Widget widget = Container();
   switch (route) {
-    case SACRouteUrl.history:
-      widget = SAUHistoryRoute();
+    case SACRouteUrl.feedback:
+      widget = SAUFeedbackRoute();
       break;
-    case SACRouteUrl.debug:
-      widget = SAUDebugRoute();
+    case SACRouteUrl.about:
+      widget = SAUAboutRoute();
+      break;
+    case SACRouteUrl.setting:
+      widget = SAUSettingRoute();
       break;
     case SACRouteUrl.logIn:
       widget = SAUSignInRoute();
@@ -34,8 +44,14 @@ Widget mapRouteToPage(String route, Object? arguments) {
     case SACRouteUrl.signUp:
       widget = SAUSignupRoute();
       break;
+    case SACRouteUrl.debug:
+      widget = SAUDebugRoute();
+      break;
     case SACRouteUrl.expertCategory:
       widget = SAUEasyStrategyRoute();
+      break;
+    case SACRouteUrl.history:
+      widget = SAUHistoryRoute();
       break;
     default:
       break;
