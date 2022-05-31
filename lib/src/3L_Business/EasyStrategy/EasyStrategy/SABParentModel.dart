@@ -1,7 +1,7 @@
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 
-class SABUsefulDeityModel {
-  SABUsefulDeityModel({required this.intRow, required this.easyType});
+class SABParentModel {
+  SABParentModel({required this.intRow, required this.easyType});
   final int intRow;
   final EasyTypeEnum easyType;
   static List baseCategoryArray() {

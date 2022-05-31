@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../EasyDetail/SABDiagramsDetailModel.dart';
 import 'SABEasyStrategyModel.dart';
-import 'SABUsefulDeityModel.dart';
+import 'SABParentModel.dart';
 
 ///note:章，既是预测模型
 ///example:趋避章
@@ -23,7 +23,7 @@ class SABEasyStrategyBusiness {
   ///UI信息
   Map categoryDictionary() {
     return {
-      '基础': SABUsefulDeityModel.baseCategoryArray(),
+      '基础': SABParentModel.baseCategoryArray(),
       '分类': SABEasyStrategyModel.categoryArray(),
     };
   }
