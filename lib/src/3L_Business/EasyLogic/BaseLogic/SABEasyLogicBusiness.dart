@@ -5,7 +5,7 @@ import 'package:yourlucky/src/3L_Business/EasyWords/SABSymbolWordsModel.dart';
 
 import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';
-import '../../BasicEasy/SABElementModel.dart';
+import '../../BasicEasy/SABElementInfoModel.dart';
 import '../../EarthBranch/SABEarthBranchBusiness.dart';
 import '../../EasyWords/SABEasyWordsBusiness.dart';
 import '../../EasyWords/SABEasyWordsModel.dart';
@@ -33,7 +33,8 @@ class SABEasyLogicBusiness {
     if (strTo.isNotEmpty) {
       String fromElement = earthElement(fromEarth);
       String toElement = earthElement(strTo);
-      String parent = SABElementModel.elementRelative(fromElement, toElement);
+      String parent =
+          SABElementInfoModel.elementRelative(fromElement, toElement);
       bResult = "官鬼" == parent;
     }
     //else cont.
@@ -67,7 +68,7 @@ class SABEasyLogicBusiness {
           branchBusiness().earthElement(earthAtFromRow(intIndex));
 
       String tempParent =
-          SABElementModel.elementRelative(strElement, currentElement);
+          SABElementInfoModel.elementRelative(strElement, currentElement);
       if (tempParent == strParent) {
         arrayResult.add(intIndex);
       }
@@ -548,7 +549,8 @@ class SABEasyLogicBusiness {
   String easyParent() {
     String fromElement = wordsModel().stringFromElement;
     String toElement = wordsModel().stringToElement;
-    String strParent = SABElementModel.elementRelative(fromElement, toElement);
+    String strParent =
+        SABElementInfoModel.elementRelative(fromElement, toElement);
     return strParent;
   }
 

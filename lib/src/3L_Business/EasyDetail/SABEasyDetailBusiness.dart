@@ -1,5 +1,5 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
-import 'package:yourlucky/src/3L_Business/BasicEasy/SABAnimalModel.dart';
+import 'package:yourlucky/src/3L_Business/BasicEasy/SABAnimalInfoModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABDiagramsDetailBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABDiagramsDetailModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
@@ -108,7 +108,7 @@ class SABEasyDetailBusiness {
 
   String symbolAnimalLike(int intRow) {
     String animal = wordsModel().getAnimal(intRow);
-    SABAnimalModel animalModel = SABAnimalModel();
+    SABAnimalInfoModel animalModel = SABAnimalInfoModel();
     return animalModel.likeOfAnimal(animal);
   }
 

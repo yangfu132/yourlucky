@@ -1,6 +1,6 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACContext.dart';
 
-import '../BasicEasy/SABElementModel.dart';
+import '../BasicEasy/SABElementInfoModel.dart';
 import 'SABEarthBranchModel.dart';
 
 class SABEarthBranchBusiness {
@@ -57,7 +57,7 @@ class SABEarthBranchBusiness {
   }
 
   String earthRelative(String theEarth, String basicEarth) {
-    return SABElementModel.elementRelative(
+    return SABElementInfoModel.elementRelative(
         earthElement(basicEarth), earthElement(theEarth));
   }
 

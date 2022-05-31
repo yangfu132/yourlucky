@@ -1,5 +1,5 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACContext.dart';
-import 'package:yourlucky/src/3L_Business/BasicEasy/SABEightDiagramsModel.dart';
+import 'package:yourlucky/src/3L_Business/BasicEasy/SABDiagramsInfoModel.dart';
 import 'package:yourlucky/src/4L_Service/SASStringService.dart';
 
 import '../../1L_Context/SACGlobal.dart';
@@ -48,7 +48,7 @@ class SABEasyWordsModel {
     }
   }
 
-  late final SABEightDiagramsModel eightDiagrams;
+  late final SABDiagramsInfoModel eightDiagrams;
 
   final List _listRowModels = List.empty(growable: true);
 

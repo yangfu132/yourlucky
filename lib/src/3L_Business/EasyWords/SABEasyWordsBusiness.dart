@@ -4,8 +4,8 @@ import 'package:yourlucky/src/3L_Business/EasyWords/SABSymbolWordsModel.dart';
 
 import '../../1L_Context/SACContext.dart';
 import '../../1L_Context/SACGlobal.dart';
-import '../BasicEasy/SABEightDiagramsModel.dart';
-import '../BasicEasy/SABElementModel.dart';
+import '../BasicEasy/SABDiagramsInfoModel.dart';
+import '../BasicEasy/SABElementInfoModel.dart';
 import '../StoreEasy/SABEasyDigitModel.dart';
 import 'SABEasyWordsModel.dart';
 import 'SABRowWordsModel.dart';
@@ -18,12 +18,12 @@ class SABEasyWordsBusiness {
 
   String elementOfUsefulDeity() {
     String fromEasyElement = eightDiagrams().elementOfEasy(fromEasyName());
-    return SABElementModel.elementByRelative(
+    return SABElementInfoModel.elementByRelative(
         fromEasyElement, _inputEasyModel.getUsefulDeity());
   }
 
   ///此属性代表八宫数据以及六十四卦信息；
-  late final SABEightDiagramsModel _eightDiagrams = SABEightDiagramsModel();
+  late final SABDiagramsInfoModel _eightDiagrams = SABDiagramsInfoModel();
 
   late final PWBCalendarBusiness _businessCalendar =
       PWBCalendarBusiness(_inputEasyModel.getEasyTime());
@@ -80,7 +80,7 @@ class SABEasyWordsBusiness {
       else
         guaKey = fromEasyKey.substring(3, 6);
 
-      result = SABEightDiagramsModel.palaceNameForKey(guaKey);
+      result = SABDiagramsInfoModel.palaceNameForKey(guaKey);
     } else
       colog("error!");
 
@@ -199,7 +199,7 @@ class SABEasyWordsBusiness {
       String toElement = symbolElement(toSymbol);
 
       String strValue =
-          SABElementModel.elementRelative(fromEasyElement, toElement);
+          SABElementInfoModel.elementRelative(fromEasyElement, toElement);
       stringResult = toSymbol.replaceRange(toSymbol.length - 4, 2, strValue);
     } else {
       stringResult = "error_symbol_index";
@@ -333,7 +333,7 @@ class SABEasyWordsBusiness {
   /// `访问函数`/////////////////////////////////////////////////////////////////
 
   ///此方法加载六十四卦信息
-  SABEightDiagramsModel eightDiagrams() {
+  SABDiagramsInfoModel eightDiagrams() {
     return _eightDiagrams;
   }
 

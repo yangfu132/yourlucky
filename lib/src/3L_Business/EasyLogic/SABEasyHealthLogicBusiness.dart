@@ -1,6 +1,6 @@
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
-import 'package:yourlucky/src/3L_Business/BasicEasy/SABElementModel.dart';
+import 'package:yourlucky/src/3L_Business/BasicEasy/SABElementInfoModel.dart';
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
@@ -387,7 +387,7 @@ class SABEasyHealthLogicBusiness {
             branchBusiness().earthElement(earthAtFromRow(intIndex));
 
         String parent =
-            SABElementModel.elementRelative(usefulElement, currentElement);
+            SABElementInfoModel.elementRelative(usefulElement, currentElement);
         if ("父母" == parent) {
           strResult = "元神";
         } else if ("官鬼" == parent) {
@@ -437,7 +437,7 @@ class SABEasyHealthLogicBusiness {
           branchBusiness().earthElement(earthAtFromRow(intIndex));
 
       String parent =
-          SABElementModel.elementRelative(usefulElement, currentElement);
+          SABElementInfoModel.elementRelative(usefulElement, currentElement);
       if ("父母" == parent) {
         arrayResult.add(intIndex);
       }
@@ -457,7 +457,7 @@ class SABEasyHealthLogicBusiness {
           branchBusiness().earthElement(earthAtFromRow(intIndex));
 
       String parent =
-          SABElementModel.elementRelative(usefulElement, currentElement);
+          SABElementInfoModel.elementRelative(usefulElement, currentElement);
       if ("官鬼" == parent) {
         arrayResult.add(intIndex);
       }
@@ -476,7 +476,7 @@ class SABEasyHealthLogicBusiness {
       String currentElement =
           branchBusiness().earthElement(earthAtFromRow(intIndex));
       String parent =
-          SABElementModel.elementRelative(usefulElement, currentElement);
+          SABElementInfoModel.elementRelative(usefulElement, currentElement);
       if ("妻财" == parent) {
         arrayResult.add(intIndex);
       }
@@ -625,13 +625,13 @@ class SABEasyHealthLogicBusiness {
           branchBusiness().earthElement(earthAtFromRow(intRow));
       //判断月建是否克此爻
 
-      String strMonthParent =
-          SABElementModel.elementRelative(stringBasicElement, monthElement());
+      String strMonthParent = SABElementInfoModel.elementRelative(
+          stringBasicElement, monthElement());
       bool bMonthRestricts = "官鬼" == strMonthParent;
 
       //判断日建是否克此爻
       String strDayParent =
-          SABElementModel.elementRelative(stringBasicElement, dayElement());
+          SABElementInfoModel.elementRelative(stringBasicElement, dayElement());
       bool bDayRestricts = "官鬼" == strDayParent;
 
       bool bMoveRestricts =
@@ -1467,7 +1467,7 @@ class SABEasyHealthLogicBusiness {
     String usefulParent = getUsefulDeity();
     String fromEasyElement = wordsModel().stringFromElement;
     String monthParent =
-        SABElementModel.elementRelative(fromEasyElement, monthElement());
+        SABElementInfoModel.elementRelative(fromEasyElement, monthElement());
     if (monthParent == usefulParent) {
       resultModel = SABParentModel(
         intRow: ROW_MONTH,
@@ -1475,7 +1475,7 @@ class SABEasyHealthLogicBusiness {
       );
     } else {
       String dayParent =
-          SABElementModel.elementRelative(fromEasyElement, dayElement());
+          SABElementInfoModel.elementRelative(fromEasyElement, dayElement());
       if (dayParent == usefulParent) {
         resultModel = SABParentModel(
           intRow: ROW_DAY,

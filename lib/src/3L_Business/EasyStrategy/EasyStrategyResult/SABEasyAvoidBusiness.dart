@@ -1,6 +1,6 @@
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
-import 'package:yourlucky/src/3L_Business/BasicEasy/SABElementModel.dart';
+import 'package:yourlucky/src/3L_Business/BasicEasy/SABElementInfoModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyStrategy/EasyStrategyResult/SABEasyStrategyResultModel.dart';
@@ -95,7 +95,8 @@ class SABEasyAvoidBusiness {
 
   List avoidGodRowArray(EasyTypeEnum easyTypeEnum) {
     String lifeElement = wordsModel().getLifeElement();
-    String emptyElement = SABElementModel.elementByRelative(lifeElement, '官鬼');
+    String emptyElement =
+        SABElementInfoModel.elementByRelative(lifeElement, '官鬼');
     return wordsModel().arrayRowWithElement(emptyElement, easyTypeEnum);
   }
 
@@ -264,7 +265,8 @@ class SABEasyAvoidBusiness {
 
   List bornGodRowArray(EasyTypeEnum easyTypeEnum) {
     String lifeElement = wordsModel().getLifeElement();
-    String emptyElement = SABElementModel.elementByRelative(lifeElement, '父母');
+    String emptyElement =
+        SABElementInfoModel.elementByRelative(lifeElement, '父母');
     return wordsModel().arrayRowWithElement(emptyElement, easyTypeEnum);
   }
 
