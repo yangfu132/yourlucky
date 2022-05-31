@@ -1,5 +1,7 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACContext.dart';
-import 'package:yourlucky/src/3L_Business/BasicEasy/SABDiagramsInfoModel.dart';
+import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
+import 'package:yourlucky/src/3L_Business/MonthDay/SABDayModel.dart';
+import 'package:yourlucky/src/3L_Business/MonthDay/SABMonthModel.dart';
 import 'package:yourlucky/src/4L_Service/SASStringService.dart';
 
 import '../../1L_Context/SACGlobal.dart';
@@ -7,37 +9,22 @@ import '../StoreEasy/SABEasyDigitModel.dart';
 import 'SABRowWordsModel.dart';
 
 class SABEasyWordsModel {
-  final SABEasyDigitModel inputDigitModel;
   SABEasyWordsModel(
-    this.inputDigitModel, {
+    this.inputDigitModel,
+    this.diagramsModel, {
     required this.stringFormatTime,
-    required this.stringDaySky,
-    required this.stringDayEarth,
-    required this.stringDayElement,
-    required this.stringMonthSky,
-    required this.stringMonthEarth,
-    required this.stringMonthElement,
-    required this.stringFromName,
-    required this.stringFromPlace,
-    required this.stringFromElement,
-    required this.stringToName,
-    required this.stringToPlace,
-    required this.stringToElement,
-    required this.mapFromEasy,
-    required this.mapToEasy,
-    required this.mapHideEasy,
-    required this.bFromPureEasy,
-    required this.bToPureEasy,
+    required this.monthModel,
+    required this.dayModel,
     required this.elementOfUsefulDeity,
     required this.intLifeIndex,
     required this.intGoalIndex,
   }) {
     if (this.inputDigitModel.isMovement()) {
       this.inputDigitModel.stringDescribe =
-          "${this.stringFromName}(${this.stringFromPlace})->${this.stringToName}(${this.stringToPlace})";
+          "${this.diagramsModel.stringFromName}(${this.diagramsModel.stringFromPlace})->${this.diagramsModel.stringToName}(${this.diagramsModel.stringToPlace})";
     } else {
       this.inputDigitModel.stringDescribe =
-          "${this.stringFromName}(${this.stringFromPlace})";
+          "${this.diagramsModel.stringFromName}(${this.diagramsModel.stringFromPlace})";
     }
     if (this.inputDigitModel.getEasyGoal().length > 0) {
       this.inputDigitModel.stringTitle =
@@ -47,44 +34,20 @@ class SABEasyWordsModel {
           this.stringFormatTime + this.inputDigitModel.getUsefulDeity();
     }
   }
-
-  late final SABDiagramsInfoModel eightDiagrams;
-
+  final SABDiagramsModel diagramsModel;
+  final SABEasyDigitModel inputDigitModel;
   final List _listRowModels = List.empty(growable: true);
 
   final String elementOfUsefulDeity;
 
   ///时间
   final String stringFormatTime;
-
-  ///日
-  final String stringDayEarth;
-  final String stringDaySky;
-  final String stringDayElement;
-
-  ///月
-  final String stringMonthSky;
-  final String stringMonthEarth;
-  final String stringMonthElement;
+  final SABMonthModel monthModel;
+  final SABDayModel dayModel;
 
   ///世应
   final int intLifeIndex;
   final int intGoalIndex;
-
-  ///卦
-  final String stringFromName;
-  final String stringFromPlace;
-  final String stringFromElement;
-  final String stringToName;
-  final String stringToPlace;
-  final String stringToElement;
-  final Map mapFromEasy;
-  final Map mapToEasy;
-  final Map mapHideEasy;
-
-  ///纯卦
-  final bool bFromPureEasy;
-  final bool bToPureEasy;
 
   /// `MergeRow函数`///////////////////////////////////////////////////////////
   ///MergeRow的定义
@@ -140,7 +103,7 @@ class SABEasyWordsModel {
 
     for (int intItem in arrayRow) {
       arrayEarth.add(earthAtMergeRow(intItem));
-    } //endf
+    } //end for
 
     return arrayEarth;
   }
@@ -151,7 +114,7 @@ class SABEasyWordsModel {
   ///此方法获取本卦的卦名
   String fromEasyName() {
     String stringResult = "";
-    Map fromDict = mapFromEasy;
+    Map fromDict = diagramsModel.mapFromEasy;
     if (fromDict.isNotEmpty) {
       stringResult = fromDict["name"];
     }
@@ -163,7 +126,7 @@ class SABEasyWordsModel {
   ///此方法获取变卦的卦名
   String toEasyName() {
     String stringResult = "";
-    Map toDict = mapToEasy;
+    Map toDict = diagramsModel.mapToEasy;
     if (toDict.isNotEmpty) {
       stringResult = toDict["name"];
     }
@@ -229,11 +192,11 @@ class SABEasyWordsModel {
   }
 
   String monthSkyEarth() {
-    return stringMonthSky + stringMonthEarth + "月";
+    return monthModel.skyEarth();
   }
 
   String daySkyEarth() {
-    return stringDaySky + stringDayEarth + "日";
+    return dayModel.skyEarth();
   }
 
   ///此函数用于判断当前爻是否为动爻

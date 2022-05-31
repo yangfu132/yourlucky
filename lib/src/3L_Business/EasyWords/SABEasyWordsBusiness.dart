@@ -1,6 +1,9 @@
 ﻿import "package:flutter_perpttual_calendar/flutter_perpttual_calendar.dart";
+import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABSymbolWordsModel.dart';
+import 'package:yourlucky/src/3L_Business/MonthDay/SABDayModel.dart';
+import 'package:yourlucky/src/3L_Business/MonthDay/SABMonthModel.dart';
 
 import '../../1L_Context/SACContext.dart';
 import '../../1L_Context/SACGlobal.dart';
@@ -21,9 +24,6 @@ class SABEasyWordsBusiness {
     return SABElementInfoModel.elementByRelative(
         fromEasyElement, _inputEasyModel.getUsefulDeity());
   }
-
-  ///此属性代表八宫数据以及六十四卦信息；
-  late final SABDiagramsInfoModel _eightDiagrams = SABDiagramsInfoModel();
 
   late final PWBCalendarBusiness _businessCalendar =
       PWBCalendarBusiness(_inputEasyModel.getEasyTime());
@@ -64,8 +64,8 @@ class SABEasyWordsBusiness {
   Map placeFirstEasy() {
     String firstKey = eightDiagrams()
         .firstEasyKeyInDiagram(eightDiagrams().easyPlaceByName(fromEasyName()));
-    Map fristEasy = eightDiagrams().getEasyDictionaryForKey(firstKey);
-    return fristEasy;
+    Map firstEasy = eightDiagrams().getEasyDictionaryForKey(firstKey);
+    return firstEasy;
   }
 
   ///此方法获取当前爻所在的八卦
@@ -349,15 +349,36 @@ class SABEasyWordsBusiness {
   SABEasyWordsModel easyWordsModel() {
     return SABEasyWordsModel(
       _inputEasyModel,
+      diagramsModel(),
       intLifeIndex: _getLifeIndex(),
       intGoalIndex: _goalIndex(),
       stringFormatTime: businessCalendar().stringFromDate(),
-      stringDaySky: daySky(),
-      stringDayEarth: dayEarth(),
-      stringDayElement: dayElement(),
-      stringMonthEarth: monthEarth(),
-      stringMonthSky: monthSky(),
-      stringMonthElement: monthElement(),
+      monthModel: monthModel(),
+      dayModel: dayModel(),
+      elementOfUsefulDeity: elementOfUsefulDeity(),
+    );
+  }
+
+  SABMonthModel monthModel() {
+    SABMonthModel result = SABMonthModel(
+      stringEarth: monthEarth(),
+      stringSky: monthSky(),
+      stringElement: monthElement(),
+    );
+    return result;
+  }
+
+  SABDayModel dayModel() {
+    SABDayModel result = SABDayModel(
+      stringEarth: dayEarth(),
+      stringSky: daySky(),
+      stringElement: dayElement(),
+    );
+    return result;
+  }
+
+  SABDiagramsModel diagramsModel() {
+    SABDiagramsModel result = SABDiagramsModel(
       stringFromName: fromEasyName(),
       stringToName: toEasyName(),
       stringFromElement: eightDiagrams().elementOfEasy(fromEasyName()),
@@ -369,8 +390,8 @@ class SABEasyWordsBusiness {
       mapHideEasy: placeFirstEasy(),
       bFromPureEasy: 0 == lifeIndexAtEasy(fromEasyDictionary()),
       bToPureEasy: 0 == lifeIndexAtEasy(toEasyDictionary()),
-      elementOfUsefulDeity: elementOfUsefulDeity(),
     );
+    return result;
   }
 
   SABSymbolWordsModel fromSymbol(int intRow) {
@@ -411,9 +432,6 @@ class SABEasyWordsBusiness {
 
   SABEasyWordsModel _initEasyWordsModel() {
     var wordsModel = easyWordsModel();
-
-    wordsModel.eightDiagrams = eightDiagrams();
-
     for (int intRow = 0; intRow < 6; intRow++) {
       var desOfGoalOrLife = "";
       if (_getLifeIndex() == intRow) {
