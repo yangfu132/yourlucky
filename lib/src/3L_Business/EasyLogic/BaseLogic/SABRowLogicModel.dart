@@ -2,7 +2,7 @@
 
 import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';
-import '../../EasyWords/SABRowWordsModel.dart';
+import '../../EasyWords/SABWordsRowModel.dart';
 
 class SABRowLogicModel {
   SABRowLogicModel({
@@ -17,7 +17,7 @@ class SABRowLogicModel {
     required this.isSymbolChangeForward,
     required this.isSymbolChangeBack,
   });
-  final SABRowWordsModel inputWordsRow;
+  final SABWordsRowModel inputWordsRow;
   final SABSymbolLogicModel fromSymbol;
   final SABSymbolLogicModel toSymbol;
   final SABSymbolLogicModel hideSymbol;

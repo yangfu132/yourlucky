@@ -1,5 +1,5 @@
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
-import 'package:yourlucky/src/3L_Business/EasyWords/SABSymbolWordsModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyWords/SABWordsSymbolModel.dart';
 
 class SABSymbolLogicModel {
   SABSymbolLogicModel({
@@ -19,7 +19,7 @@ class SABSymbolLogicModel {
     required this.stringSeason,
     required this.isEffectAble,
   });
-  final SABSymbolWordsModel wordsSymbol;
+  final SABWordsSymbolModel wordsSymbol;
 
   final bool isOnMonth;
   final bool isMonthPair;

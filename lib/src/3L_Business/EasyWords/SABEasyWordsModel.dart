@@ -6,7 +6,7 @@ import 'package:yourlucky/src/3L_Business/MonthDay/SABMonthModel.dart';
 import 'package:yourlucky/src/4L_Service/SASStringService.dart';
 
 import '../../1L_Context/SACGlobal.dart';
-import 'SABRowWordsModel.dart';
+import 'SABWordsRowModel.dart';
 
 class SABEasyWordsModel {
   SABEasyWordsModel(
@@ -255,11 +255,11 @@ class SABEasyWordsModel {
 
   /// `加载函数`/////////////////////////////////////////////////////////////////
 
-  void addRowModel(SABRowWordsModel rowModel) {
+  void addRowModel(SABWordsRowModel rowModel) {
     _listRowModels.add(rowModel);
   }
 
-  SABRowWordsModel rowModelAtRow(int intRow) {
+  SABWordsRowModel rowModelAtRow(int intRow) {
     if (intRow > _listRowModels.length) {
       colog("intRow:$intRow");
     }

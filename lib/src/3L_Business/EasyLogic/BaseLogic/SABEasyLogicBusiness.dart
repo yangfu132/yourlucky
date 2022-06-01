@@ -1,7 +1,7 @@
 ﻿import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABRowLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyWords/SABRowWordsModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyWords/SABSymbolWordsModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyWords/SABWordsRowModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyWords/SABWordsSymbolModel.dart';
 
 import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';
@@ -1123,7 +1123,7 @@ class SABEasyLogicBusiness {
     return _outLogicModel;
   }
 
-  SABSymbolLogicModel fromSymbol(SABSymbolWordsModel wordsSymbol) {
+  SABSymbolLogicModel fromSymbol(SABWordsSymbolModel wordsSymbol) {
     int intRow = wordsSymbol.intRow;
     String stringSymbol = symbolAtFromRow(intRow);
     return SABSymbolLogicModel(
@@ -1145,7 +1145,7 @@ class SABEasyLogicBusiness {
     );
   }
 
-  SABSymbolLogicModel toSymbol(SABSymbolWordsModel wordsSymbol) {
+  SABSymbolLogicModel toSymbol(SABWordsSymbolModel wordsSymbol) {
     int intRow = wordsSymbol.intRow;
     String stringSymbol = symbolAtToRow(intRow);
     return SABSymbolLogicModel(
@@ -1167,7 +1167,7 @@ class SABEasyLogicBusiness {
     );
   }
 
-  SABSymbolLogicModel hideSymbol(SABSymbolWordsModel wordsSymbol) {
+  SABSymbolLogicModel hideSymbol(SABWordsSymbolModel wordsSymbol) {
     int intRow = wordsSymbol.intRow;
     String stringSymbol = symbolAtHideRow(intRow);
     return SABSymbolLogicModel(
@@ -1213,7 +1213,7 @@ class SABEasyLogicBusiness {
 
     ///爻的基础信息
     for (int intRow = 0; intRow < 6; intRow++) {
-      SABRowWordsModel rowsModel =
+      SABWordsRowModel rowsModel =
           outLogicModel.inputWordsModel.rowModelAtRow(intRow);
       SABRowLogicModel symbol = SABRowLogicModel(
         fromSymbol: fromSymbol(rowsModel.fromSymbol),

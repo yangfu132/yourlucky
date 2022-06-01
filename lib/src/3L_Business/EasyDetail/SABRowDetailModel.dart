@@ -5,7 +5,7 @@ import '../../1L_Context/SACGlobal.dart';
 import '../EasyLogic/BaseLogic/SABRowLogicModel.dart';
 import '../EasyLogic/Health/SABRowHealthModel.dart';
 import '../EasyLogicDescription/SABRowLogicDescriptionModel.dart';
-import '../EasyWords/SABRowWordsModel.dart';
+import '../EasyWords/SABWordsRowModel.dart';
 
 class SABRowDetailModel {
   SABRowDetailModel(this.inputAnalysisRow);
@@ -125,7 +125,7 @@ class SABRowDetailModel {
     return healthModel().inputLogicRow;
   }
 
-  SABRowWordsModel wordsModel() {
+  SABWordsRowModel wordsModel() {
     return logicModel().inputWordsRow;
   }
 
