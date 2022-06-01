@@ -2,7 +2,7 @@
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABDiagramsDetailModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
-import 'package:yourlucky/src/3L_Business/Goal/SABParentModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyStrategyResult/Strategy/SABParentInfoModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:yourlucky/src/3L_Business/StoreEasy/SABEasyDigitModel.dart';
 
@@ -236,7 +236,7 @@ class SABEasyDetailModel {
 
   Map<String, List> detailList() {
     Map<String, List> mapResult;
-    SABParentModel usefulDeity = healthLogicModel().usefulDeity;
+    SABParentInfoModel usefulDeity = healthLogicModel().usefulDeity;
     bool bStaticEasy =
         healthLogicModel().inputHealthModel.inputLogicModel.bStaticEasy;
     if (bStaticEasy) {

@@ -2,7 +2,7 @@ import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart';
-import 'package:yourlucky/src/3L_Business/Goal/SABParentModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyStrategyResult/Strategy/SABParentInfoModel.dart';
 
 class SABEasyHealthLogicModel {
   SABEasyHealthLogicModel({
@@ -17,7 +17,7 @@ class SABEasyHealthLogicModel {
   final SABHealthModel inputHealthModel;
 
   //属性：用神的索引号
-  final SABParentModel usefulDeity;
+  final SABParentInfoModel usefulDeity;
 
   final _listRowModels = <SABRowHealthLogicModel>[];
 

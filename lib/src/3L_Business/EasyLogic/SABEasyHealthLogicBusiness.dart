@@ -14,8 +14,8 @@ import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABSymbolHealthModel.
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABSymbolHealthLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyStrategyResult/Strategy/SABParentInfoModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
-import 'package:yourlucky/src/3L_Business/Goal/SABParentModel.dart';
 import 'package:yourlucky/src/3L_Business/StoreEasy/SABEasyDigitModel.dart';
 
 class SABEasyHealthLogicBusiness {
@@ -24,7 +24,7 @@ class SABEasyHealthLogicBusiness {
 
   late final SABEasyHealthLogicModel _healthLogicModel = initHealthLogicModel();
 
-  late final SABParentModel _deityModel =
+  late final SABParentInfoModel _deityModel =
       indexOfUseDeityInEasy(EasyTypeEnum.from);
 
   late final SABEasyLogicBusiness _logicBusiness =
@@ -248,7 +248,7 @@ class SABEasyHealthLogicBusiness {
 
   double usefulHealth() {
     double fResult = 0;
-    SABParentModel deityModel = usefulDeityRow();
+    SABParentInfoModel deityModel = usefulDeityRow();
     if (EasyTypeEnum.from == deityModel.easyType ||
         EasyTypeEnum.hide == deityModel.easyType) {
       fResult = healthModel()
@@ -287,12 +287,12 @@ class SABEasyHealthLogicBusiness {
     return usefulArray;
   }
 
-  SABParentModel usefulDeityRow() {
+  SABParentInfoModel usefulDeityRow() {
     return _deityModel;
   }
 
   bool isUsefulDeityChangeToConflict() {
-    SABParentModel deityModel = usefulDeityRow();
+    SABParentInfoModel deityModel = usefulDeityRow();
     if (EasyTypeEnum.from == deityModel.easyType) {
       return logicModel().getIsSymbolChangeConflict(deityModel.intRow);
     } else {
@@ -301,7 +301,7 @@ class SABEasyHealthLogicBusiness {
   }
 
   bool isUsefulDeityChangeToRestricts() {
-    SABParentModel deityModel = usefulDeityRow();
+    SABParentInfoModel deityModel = usefulDeityRow();
     if (EasyTypeEnum.from == deityModel.easyType) {
       return logicModel().getIsSymbolChangeRestrict(deityModel.intRow);
     } else {
@@ -311,7 +311,7 @@ class SABEasyHealthLogicBusiness {
 
   bool isUsefulDeityStrong() {
     bool bResult = false;
-    SABParentModel deityModel = usefulDeityRow();
+    SABParentInfoModel deityModel = usefulDeityRow();
     if (EasyTypeEnum.from == deityModel.easyType) {
       bResult =
           logicModel().isSeasonStrong(deityModel.intRow, EasyTypeEnum.from);
@@ -329,7 +329,7 @@ class SABEasyHealthLogicBusiness {
 
   String usefulEarth() {
     String stringEarth = "";
-    SABParentModel deityModel = usefulDeityRow();
+    SABParentInfoModel deityModel = usefulDeityRow();
     if (EasyTypeEnum.from == deityModel.easyType ||
         EasyTypeEnum.hide == deityModel.easyType) {
       stringEarth = logicModel().inputWordsModel.getSymbolEarth(
@@ -374,7 +374,7 @@ class SABEasyHealthLogicBusiness {
     String strResult = "";
 
     if (enumEasyType == EasyTypeEnum.from) {
-      SABParentModel deityModel = indexOfUseDeityInEasy(EasyTypeEnum.from);
+      SABParentInfoModel deityModel = indexOfUseDeityInEasy(EasyTypeEnum.from);
       if (EasyTypeEnum.from == deityModel.easyType &&
           intIndex == deityModel.intRow) {
         strResult = "用神";
@@ -1462,14 +1462,14 @@ class SABEasyHealthLogicBusiness {
 
   ///`两现章第三十二`//////////////////////////////////////////////////////
 
-  SABParentModel noUsefulDeity() {
-    SABParentModel resultModel;
+  SABParentInfoModel noUsefulDeity() {
+    SABParentInfoModel resultModel;
     String usefulParent = getUsefulDeity();
     String fromEasyElement = wordsModel().stringFromElement;
     String monthParent =
         SABElementInfoModel.elementRelative(fromEasyElement, monthElement());
     if (monthParent == usefulParent) {
-      resultModel = SABParentModel(
+      resultModel = SABParentInfoModel(
         intRow: ROW_MONTH,
         easyType: EasyTypeEnum.type_null,
       );
@@ -1477,7 +1477,7 @@ class SABEasyHealthLogicBusiness {
       String dayParent =
           SABElementInfoModel.elementRelative(fromEasyElement, dayElement());
       if (dayParent == usefulParent) {
-        resultModel = SABParentModel(
+        resultModel = SABParentInfoModel(
           intRow: ROW_DAY,
           easyType: EasyTypeEnum.type_null,
         );
@@ -1489,18 +1489,18 @@ class SABEasyHealthLogicBusiness {
     return resultModel;
   }
 
-  SABParentModel indexOfUseDeityInEasy(EasyTypeEnum easyTypeEnum) {
-    SABParentModel resultModel;
+  SABParentInfoModel indexOfUseDeityInEasy(EasyTypeEnum easyTypeEnum) {
+    SABParentInfoModel resultModel;
     List usefulArray =
         wordsModel().arrayRowWithParent(getUsefulDeity(), easyTypeEnum);
 
     if (usefulArray.length == 1) {
-      resultModel = SABParentModel(
+      resultModel = SABParentInfoModel(
         intRow: usefulArray[0],
         easyType: easyTypeEnum,
       );
     } else if (usefulArray.length > 1) {
-      resultModel = SABParentModel(
+      resultModel = SABParentInfoModel(
         intRow: multiUsefulDeity(easyTypeEnum, usefulArray),
         easyType: easyTypeEnum,
       );
