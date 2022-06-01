@@ -37,7 +37,6 @@ class SABEasyWordsModel {
   final SABDiagramsModel diagramsModel;
   final SABEasyDigitModel inputDigitModel;
   final List _listRowModels = List.empty(growable: true);
-
   final String elementOfUsefulDeity;
 
   ///时间

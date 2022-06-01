@@ -27,25 +27,6 @@ class SABEasyWordsBusiness {
 
   late final SABEasyWordsModel _outEasyWordsModel = _initEasyWordsModel();
 
-  /// `此模块获取六爻的数据`/////////////////////////////////////////////////////////////////
-
-  String rowModelAtRow(int intRow, EasyTypeEnum enumEasyType) {
-    String strSymbol;
-
-    if (enumEasyType == EasyTypeEnum.from) {
-      strSymbol = symbolAtFromRow(intRow);
-    } else if (enumEasyType == EasyTypeEnum.to) {
-      strSymbol = symbolAtToRow(intRow);
-    } else if (enumEasyType == EasyTypeEnum.hide) {
-      strSymbol = symbolAtHideRow(intRow);
-    } else {
-      strSymbol = "error_symbol";
-      colog("error!");
-    }
-
-    return strSymbol;
-  }
-
   /// `此模块包含世应相关的方法`///////////////////////////////////////////////////
 
   //在本卦中，获得世的索引号；
@@ -67,10 +48,6 @@ class SABEasyWordsBusiness {
     return 6 - yingIndex;
   }
 
-  String easyTitle() {
-    return _businessCalendar.stringFromDate() + _inputEasyModel.getEasyGoal();
-  }
-
   /// `访问函数`/////////////////////////////////////////////////////////////////
 
   SABDiagramsInfoModel eightDiagrams() {
@@ -83,10 +60,6 @@ class SABEasyWordsBusiness {
 
   PWBCalendarBusiness businessCalendar() {
     return _businessCalendar;
-  }
-
-  SABEarthBranchBusiness branchBusiness() {
-    return _branchBusiness;
   }
 
   /// `子model`/////////////////////////////////////////////////////////////////
