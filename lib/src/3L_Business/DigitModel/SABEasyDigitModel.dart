@@ -1,5 +1,3 @@
-import 'dart:math';
-
 // import 'package:cloud_firestore/cloud_firestore.dart';
 
 ///此Model仅代表占卜时所创造的数据；
@@ -29,7 +27,7 @@ class SABEasyDigitModel {
       : this(
           json['strEasyGoal']! as String,
           json['strUsefulDeity']! as String,
-    json['easyDateTime']! as DateTime,
+          json['easyDateTime']! as DateTime,
           (json['listEasyData']! as List).cast<int>(),
           stringTitle: json['stringTitle']! as String,
           stringDescribe: json['stringDescribe']! as String,
@@ -63,27 +61,6 @@ class SABEasyDigitModel {
   late String stringDescribe;
 
   /// `public 函数`/////////////////////////////////////////////////////////////
-
-  ///利用随机数创造数据
-  static List<int> generateEasyArray() {
-    var listEasyData = List<int>.empty(growable: true);
-    for (int nIndex = 0; nIndex < 6; nIndex++) {
-      int randomNum = Random().nextInt(3);
-      if (2 == randomNum)
-        randomNum = 8;
-      else if (3 == randomNum) randomNum = 9;
-      //else cont.
-      listEasyData.add(randomNum);
-    } //endf
-    //return _listEasyData;
-    print('listEasyData:$listEasyData');
-    //[0, 8, 0, 1, 1, 1]
-    //[8, 8, 0, 8, 0, 0]
-    //[0, 1, 1, 8, 8, 1]
-
-    return listEasyData;
-  }
-
   bool isMovement() {
     bool tempMovement = false;
     for (int intItem in _listEasyData) {
@@ -113,7 +90,7 @@ class SABEasyDigitModel {
         inMovementArray.add(intValue);
       }
       //else cont.
-    } //endf
+    } //end for
 
     return inMovementArray;
   }
@@ -128,7 +105,7 @@ class SABEasyDigitModel {
         outMovementArray.add(intValue);
       }
       //else cont.
-    } //endf
+    } //end for
 
     return outMovementArray;
   }

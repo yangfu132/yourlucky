@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/2L_UI/EasyStrategy/SAUStrategyResultRoute.dart';
 import 'package:yourlucky/src/2L_UI/User/SAUUserRoute.dart';
+import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitBusiness.dart';
+import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailBusiness.dart';
 import 'package:yourlucky/src/4L_Service/SASAudioService.dart';
 import 'package:yourlucky/src/4L_Service/SASLocalizationsService.dart';
 
 import '../../1L_Context/SACContext.dart';
-import '../../3L_Business/StoreEasy/SABEasyDigitModel.dart';
 import 'AnimationDiceWidget.dart';
 
 class SAUHomeBody extends StatefulWidget {
@@ -58,12 +59,7 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
       _bAnimation = false;
       setState(() {});
       Navigator.push(context, MaterialPageRoute(builder: (context) {
-        SABEasyDigitModel outEasyModel = SABEasyDigitModel(
-          '测试',
-          '子孙',
-          DateTime.now(),
-          SABEasyDigitModel.generateEasyArray(),
-        );
+        SABEasyDigitModel outEasyModel = SABEasyDigitBusiness.create();
         SABEasyDetailBusiness detailBusiness =
             SABEasyDetailBusiness(outEasyModel);
         return SAUStrategyResultRoute(detailBusiness.outputDetailModel());

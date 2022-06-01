@@ -1,5 +1,5 @@
-﻿import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailModel.dart';
-import 'package:yourlucky/src/3L_Business/StoreEasy/SABEasyDigitModel.dart';
+﻿import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailModel.dart';
 
 import '../Strategy/SABEasyStrategyInfoModel.dart';
 import 'SABEasyAvoidBusiness.dart';
