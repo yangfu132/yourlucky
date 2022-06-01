@@ -1,9 +1,9 @@
-﻿import 'package:yourlucky/src/3L_Business/EasyWords/SABSymbolWordsModel.dart';
+﻿import 'package:yourlucky/src/3L_Business/EasyWords/SABWordsSymbolModel.dart';
 
 import '../../1L_Context/SACGlobal.dart';
 
-class SABRowWordsModel {
-  SABRowWordsModel({
+class SABWordsRowModel {
+  SABWordsRowModel({
     required this.intDigit,
     required this.fromSymbol,
     required this.toSymbol,
@@ -18,9 +18,9 @@ class SABRowWordsModel {
   final String stringAnimal;
   final String stringDiagrams;
   final String desOfGoalOrLife;
-  final SABSymbolWordsModel fromSymbol;
-  final SABSymbolWordsModel toSymbol;
-  final SABSymbolWordsModel hideSymbol;
+  final SABWordsSymbolModel fromSymbol;
+  final SABWordsSymbolModel toSymbol;
+  final SABWordsSymbolModel hideSymbol;
 
   String getSymbolName(EasyTypeEnum easyTypeEnum) {
     if (easyTypeEnum == EasyTypeEnum.from) {

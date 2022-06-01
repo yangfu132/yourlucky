@@ -4,7 +4,7 @@ import 'package:yourlucky/src/3L_Business/EasyLogicDescription/SABSymbolLogicDes
 import '../../1L_Context/SACContext.dart';
 import '../../1L_Context/SACGlobal.dart';
 import '../EasyLogic/BaseLogic/SABRowLogicModel.dart';
-import '../EasyWords/SABRowWordsModel.dart';
+import '../EasyWords/SABWordsRowModel.dart';
 
 class SABRowLogicDescriptionModel {
   SABRowLogicDescriptionModel(
@@ -111,7 +111,7 @@ class SABRowLogicDescriptionModel {
     return this.healthLogicRow.healthRow.inputLogicRow;
   }
 
-  SABRowWordsModel wordsModel() {
+  SABWordsRowModel wordsModel() {
     return logicModel().inputWordsRow;
   }
 }

@@ -2,7 +2,7 @@
 import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
-import 'package:yourlucky/src/3L_Business/EasyWords/SABSymbolWordsModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyWords/SABWordsSymbolModel.dart';
 import 'package:yourlucky/src/3L_Business/MonthDay/SABDayModel.dart';
 import 'package:yourlucky/src/3L_Business/MonthDay/SABMonthModel.dart';
 
@@ -11,7 +11,7 @@ import '../../1L_Context/SACGlobal.dart';
 import '../BasicEasy/SABDiagramsInfoModel.dart';
 import '../BasicEasy/SABElementInfoModel.dart';
 import 'SABEasyWordsModel.dart';
-import 'SABRowWordsModel.dart';
+import 'SABWordsRowModel.dart';
 
 ///此Business用于将EasyModel与数据进行关联；
 class SABEasyWordsBusiness {
@@ -386,9 +386,9 @@ class SABEasyWordsBusiness {
   }
 
   /// `输出Model`/////////////////////////////////////////////////////////////////
-  SABSymbolWordsModel fromSymbol(int intRow) {
+  SABWordsSymbolModel fromSymbol(int intRow) {
     String stringSymbol = symbolAtFromRow(intRow);
-    return SABSymbolWordsModel(
+    return SABWordsSymbolModel(
       intRow: intRow,
       easyType: EasyTypeEnum.from,
       symbolName: stringSymbol,
@@ -398,9 +398,9 @@ class SABEasyWordsBusiness {
     );
   }
 
-  SABSymbolWordsModel toSymbol(int intRow) {
+  SABWordsSymbolModel toSymbol(int intRow) {
     String stringSymbol = symbolAtToRow(intRow);
-    return SABSymbolWordsModel(
+    return SABWordsSymbolModel(
       intRow: intRow,
       easyType: EasyTypeEnum.to,
       symbolName: stringSymbol,
@@ -410,9 +410,9 @@ class SABEasyWordsBusiness {
     );
   }
 
-  SABSymbolWordsModel hideSymbol(int intRow) {
+  SABWordsSymbolModel hideSymbol(int intRow) {
     String stringSymbol = symbolAtHideRow(intRow);
-    return SABSymbolWordsModel(
+    return SABWordsSymbolModel(
       intRow: intRow,
       easyType: EasyTypeEnum.hide,
       symbolName: stringSymbol,
@@ -441,7 +441,7 @@ class SABEasyWordsBusiness {
         desOfGoalOrLife = "应";
       } //else desOfGoalOrLife = "";
 
-      SABRowWordsModel row = SABRowWordsModel(
+      SABWordsRowModel row = SABWordsRowModel(
         intDigit: _inputEasyModel.digitAtIndex(intRow),
         fromSymbol: fromSymbol(intRow),
         toSymbol: toSymbol(intRow),
