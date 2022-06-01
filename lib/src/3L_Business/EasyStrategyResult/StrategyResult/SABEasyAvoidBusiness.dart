@@ -3,6 +3,7 @@ import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 import 'package:yourlucky/src/3L_Business/BasicEasy/SABElementInfoModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyStrategyResult/Strategy/SABEasyStrategyInfoModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:yourlucky/src/4L_Service/SASStringService.dart';
 
@@ -13,6 +14,7 @@ class SABEasyAvoidBusiness {
   SABEasyAvoidBusiness(this.inputDetail);
   SABEasyStrategyResultModel resultModel() {
     SABEasyStrategyResultModel modelResult = SABEasyStrategyResultModel(
+        strategy: SABEasyStrategyInfoModel.avoid,
         lifeKey: lifeKey(),
         lifeDescription: lifeDescription(),
         enemyDescription: enemyDescription(),

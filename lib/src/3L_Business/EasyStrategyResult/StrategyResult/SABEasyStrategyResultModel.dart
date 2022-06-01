@@ -1,5 +1,6 @@
 ﻿class SABEasyStrategyResultModel {
   SABEasyStrategyResultModel({
+    required this.strategy,
     required this.lifeKey,
     required this.lifeDescription,
     required this.enemyDescription,
@@ -15,6 +16,7 @@
   final String enemyState;
   final String relationAboutEnemy;
   final String relationAboutParentOrSon;
+  final String strategy;
   List resultList() {
     return [
       {'key': lifeKey, 'value': lifeDescription},
@@ -27,7 +29,8 @@
   }
 
   SABEasyStrategyResultModel.empty()
-      : lifeKey = '持世',
+      : strategy = '',
+        lifeKey = '持世',
         lifeDescription = '',
         enemyDescription = '',
         sonState = '',
