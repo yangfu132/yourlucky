@@ -1,6 +1,7 @@
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 import 'package:yourlucky/src/3L_Business/BasicEasy/SABElementInfoModel.dart';
+import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
@@ -16,7 +17,6 @@ import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart'
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABSymbolHealthLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyStrategyResult/Strategy/SABParentInfoModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
-import 'package:yourlucky/src/3L_Business/StoreEasy/SABEasyDigitModel.dart';
 
 class SABEasyHealthLogicBusiness {
   SABEasyHealthLogicBusiness(this._inputEasyModel);
@@ -209,23 +209,23 @@ class SABEasyHealthLogicBusiness {
   }
 
   String monthEarth() {
-    return logicModel().inputWordsModel.stringMonthEarth;
+    return logicModel().inputWordsModel.monthModel.stringEarth;
   }
 
   String daySky() {
-    return logicModel().inputWordsModel.stringDaySky;
+    return logicModel().inputWordsModel.dayModel.stringSky;
   }
 
   String dayEarth() {
-    return logicModel().inputWordsModel.stringDayEarth;
+    return logicModel().inputWordsModel.dayModel.stringEarth;
   }
 
   String monthElement() {
-    return wordsModel().stringMonthElement;
+    return wordsModel().monthModel.stringElement;
   }
 
   String dayElement() {
-    return wordsModel().stringDayElement;
+    return wordsModel().dayModel.stringElement;
   }
 
   ///`六亲歌章第五`//////////////////////////////////////////////////////
@@ -338,9 +338,9 @@ class SABEasyHealthLogicBusiness {
           );
     } else if (EasyTypeEnum.type_null == deityModel.easyType) {
       if (ROW_MONTH == deityModel.intRow) {
-        stringEarth = logicModel().inputWordsModel.stringMonthEarth;
+        stringEarth = logicModel().inputWordsModel.monthModel.stringEarth;
       } else if (ROW_DAY == deityModel.intRow) {
-        stringEarth = logicModel().inputWordsModel.stringDayEarth;
+        stringEarth = logicModel().inputWordsModel.dayModel.stringEarth;
       }
     } else if (EasyTypeEnum.to == deityModel.easyType) {
       colog("EasyTypeEnum.to do not have usefulDeity");
@@ -1465,7 +1465,7 @@ class SABEasyHealthLogicBusiness {
   SABParentInfoModel noUsefulDeity() {
     SABParentInfoModel resultModel;
     String usefulParent = getUsefulDeity();
-    String fromEasyElement = wordsModel().stringFromElement;
+    String fromEasyElement = wordsModel().diagramsModel.stringFromElement;
     String monthParent =
         SABElementInfoModel.elementRelative(fromEasyElement, monthElement());
     if (monthParent == usefulParent) {

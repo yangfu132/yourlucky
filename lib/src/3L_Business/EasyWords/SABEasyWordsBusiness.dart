@@ -16,14 +16,7 @@ import 'SABWordsRowModel.dart';
 ///此Business用于将EasyModel与数据进行关联；
 class SABEasyWordsBusiness {
   final SABEasyDigitModel _inputEasyModel;
-
   SABEasyWordsBusiness(this._inputEasyModel);
-
-  String elementOfUsefulDeity() {
-    String fromEasyElement = eightDiagrams().elementOfEasy(fromEasyName());
-    return SABElementInfoModel.elementByRelative(
-        fromEasyElement, _inputEasyModel.getUsefulDeity());
-  }
 
   late final PWBCalendarBusiness _businessCalendar =
       PWBCalendarBusiness(_inputEasyModel.getEasyTime());
@@ -34,56 +27,7 @@ class SABEasyWordsBusiness {
 
   late final SABEasyWordsModel _outEasyWordsModel = _initEasyWordsModel();
 
-  ///此方法获取当前爻所在的八卦
-  String eightGuaAtFromRow(int nRow) {
-    String result = "";
-
-    String fromEasyKey = _inputEasyModel.fromEasyKey();
-    if (fromEasyKey.length >= 6) {
-      String guaKey = "";
-      if (nRow < 3)
-        guaKey = fromEasyKey.substring(0, 3);
-      else
-        guaKey = fromEasyKey.substring(3, 6);
-
-      result = SABDiagramsInfoModel.palaceNameForKey(guaKey);
-    } else
-      colog("error!");
-
-    return result;
-  }
-
-  ///此方法获取本卦的卦名
-  String fromEasyName() {
-    String stringResult = "";
-    Map fromDict = fromEasyDictionary();
-    if (fromDict.isNotEmpty) {
-      stringResult = fromDict["name"];
-    }
-    //else cont.
-
-    return stringResult;
-  }
-
-  ///此方法获取变卦的卦名
-  String toEasyName() {
-    String stringResult = "";
-    Map toDict = toEasyDictionary();
-    if (toDict.isNotEmpty) {
-      stringResult = toDict["name"];
-    }
-    //else cont.
-    return stringResult;
-  }
-
   /// `此模块获取六爻的数据`/////////////////////////////////////////////////////////////////
-
-  String symbolStringAtRow(int intIndex, Map mapEasy) {
-    String stringResult;
-    List array = mapEasy["data"];
-    stringResult = array[intIndex];
-    return stringResult;
-  }
 
   String rowModelAtRow(int intRow, EasyTypeEnum enumEasyType) {
     String strSymbol;
@@ -102,65 +46,6 @@ class SABEasyWordsBusiness {
     return strSymbol;
   }
 
-  String symbolAtHideRow(int intIndex) {
-    String result;
-    int intHideIndex = intIndex;
-
-    if (intHideIndex >= 0) {
-      result = symbolStringAtRow(intHideIndex, placeFirstEasy());
-    } else
-      result = "卦中用神未现"; //colog("error!");
-
-    return result;
-  }
-
-  String symbolAtFromRow(int intIndex) {
-    String result;
-
-    if (0 <= intIndex && intIndex <= 5) {
-      Map fromDict = fromEasyDictionary();
-      String strSymbol = symbolStringAtRow(intIndex, fromDict);
-
-      if (strSymbol.length >= 4) {
-        String symbolDes =
-            strSymbol.substring(strSymbol.length - 4, strSymbol.length);
-        int nValue = _inputEasyModel.digitAtIndex(intIndex);
-        if (8 == nValue) {
-          result = "×" + symbolDes;
-        } else if (9 == nValue) {
-          result = "○" + symbolDes;
-        } else
-          result = strSymbol;
-      } else {
-        result = "error_symbol_length";
-        colog("error!");
-      }
-    } else {
-      result = "error_symbol_index";
-      colog("error!");
-    }
-    return result;
-  }
-
-  String symbolAtToRow(int intIndex) {
-    String stringResult;
-    if (0 <= intIndex && intIndex <= 5) {
-      String fromEasyElement = eightDiagrams().elementOfEasy(fromEasyName());
-      Map toDict = toEasyDictionary();
-      String toSymbol = symbolStringAtRow(intIndex, toDict);
-      String toElement = symbolElement(toSymbol);
-
-      String strValue =
-          SABElementInfoModel.elementRelative(fromEasyElement, toElement);
-      stringResult = toSymbol.replaceRange(toSymbol.length - 4, 2, strValue);
-    } else {
-      stringResult = "error_symbol_index";
-      colog("error!");
-    }
-
-    return stringResult;
-  }
-
   /// `此模块包含世应相关的方法`///////////////////////////////////////////////////
 
   //在本卦中，获得世的索引号；
@@ -176,106 +61,10 @@ class SABEasyWordsBusiness {
     return 6 - shiIndex;
   }
 
-  String getLifeSymbol() {
-    return rowModelAtRow(_getLifeIndex(), EasyTypeEnum.from);
-  }
-
-  String getGoalSymbol() {
-    return rowModelAtRow(_goalIndex(), EasyTypeEnum.from);
-  }
-
   int _goalIndex() {
     Map fromDict = fromEasyDictionary();
     int yingIndex = fromDict["应"];
     return 6 - yingIndex;
-  }
-
-  /// `此模块包含提取爻信息的方法`///////////////////////////////////////////////////
-  String animalAtRow(int intIndex) {
-    String stringResult = "";
-    String dayName = daySky();
-    if ("甲" == dayName || "乙" == dayName) {
-      List array = ["玄武", "白虎", "螣蛇", "勾陈", "朱雀", "青龙"];
-
-      stringResult = array[intIndex];
-    } else if ("丙" == dayName || "丁" == dayName) {
-      List array = ["青龙", "玄武", "白虎", "螣蛇", "勾陈", "朱雀"];
-
-      stringResult = array[intIndex];
-    } else if ("戊" == dayName) {
-      List array = ["朱雀", "青龙", "玄武", "白虎", "螣蛇", "勾陈"];
-      stringResult = array[intIndex];
-    } else if ("己" == dayName) {
-      List array = [
-        "勾陈",
-        "朱雀",
-        "青龙",
-        "玄武",
-        "白虎",
-        "螣蛇",
-      ];
-      stringResult = array[intIndex];
-    } else if ("庚" == dayName || "辛" == dayName) {
-      List array = [
-        "螣蛇",
-        "勾陈",
-        "朱雀",
-        "青龙",
-        "玄武",
-        "白虎",
-      ];
-      stringResult = array[intIndex];
-    } else if ("壬" == dayName || "癸" == dayName) {
-      List array = ["白虎", "螣蛇", "勾陈", "朱雀", "青龙", "玄武"];
-      stringResult = array[intIndex];
-    }
-
-    return stringResult;
-  }
-
-  String symbolElement(String symbol) {
-    String stringResult = "";
-
-    if (symbol.length >= 1)
-      stringResult = symbol.substring(symbol.length - 1, symbol.length);
-    else
-      colog("");
-
-    return stringResult;
-  }
-
-  String symbolParent(String stringSymbol) {
-    String stringResult = "";
-
-    if (stringSymbol.length >= 4)
-      stringResult = stringSymbol.substring(
-          stringSymbol.length - 4, stringSymbol.length - 2);
-    else
-      colog("");
-
-    return stringResult;
-  }
-
-  bool isSymbolMovement(String stringSymbol) {
-    bool bResult = false;
-    if (stringSymbol.isNotEmpty) {
-      String strMark = stringSymbol.substring(0, 1);
-      bResult = "×" == strMark || "○" == strMark;
-    } else
-      colog("error!");
-
-    return bResult;
-  }
-
-  String symbolEarth(String stringSymbol) {
-    String stringResult = "";
-    if (stringSymbol.length >= 2)
-      stringResult = stringSymbol.substring(
-          stringSymbol.length - 2, stringSymbol.length - 1);
-    else
-      stringResult = "卦中用神未现"; //colog("error!");
-
-    return stringResult;
   }
 
   String easyTitle() {
@@ -284,7 +73,6 @@ class SABEasyWordsBusiness {
 
   /// `访问函数`/////////////////////////////////////////////////////////////////
 
-  ///此方法加载六十四卦信息
   SABDiagramsInfoModel eightDiagrams() {
     return _eightDiagrams;
   }
@@ -297,7 +85,6 @@ class SABEasyWordsBusiness {
     return _businessCalendar;
   }
 
-  /// `加载函数`/////////////////////////////////////////////////////////////////
   SABEarthBranchBusiness branchBusiness() {
     return _branchBusiness;
   }
@@ -363,6 +150,29 @@ class SABEasyWordsBusiness {
     return result;
   }
 
+  ///此方法获取本卦的卦名
+  String fromEasyName() {
+    String stringResult = "";
+    Map fromDict = fromEasyDictionary();
+    if (fromDict.isNotEmpty) {
+      stringResult = fromDict["name"];
+    }
+    //else cont.
+
+    return stringResult;
+  }
+
+  ///此方法获取变卦的卦名
+  String toEasyName() {
+    String stringResult = "";
+    Map toDict = toEasyDictionary();
+    if (toDict.isNotEmpty) {
+      stringResult = toDict["name"];
+    }
+    //else cont.
+    return stringResult;
+  }
+
   ///此方法获取本卦在八宫中的信息
   Map fromEasyDictionary() {
     Map result =
@@ -385,7 +195,119 @@ class SABEasyWordsBusiness {
     return firstEasy;
   }
 
-  /// `输出Model`/////////////////////////////////////////////////////////////////
+  /// `symbol`/////////////////////////////////////////////////////////////////
+
+  String symbolStringAtRow(int intIndex, Map mapEasy) {
+    String stringResult;
+    List array = mapEasy["data"];
+    stringResult = array[intIndex];
+    return stringResult;
+  }
+
+  String symbolAtFromRow(int intIndex) {
+    String result;
+
+    if (0 <= intIndex && intIndex <= 5) {
+      Map fromDict = fromEasyDictionary();
+      String strSymbol = symbolStringAtRow(intIndex, fromDict);
+
+      if (strSymbol.length >= 4) {
+        String symbolDes =
+            strSymbol.substring(strSymbol.length - 4, strSymbol.length);
+        int nValue = _inputEasyModel.digitAtIndex(intIndex);
+        if (8 == nValue) {
+          result = "×" + symbolDes;
+        } else if (9 == nValue) {
+          result = "○" + symbolDes;
+        } else
+          result = strSymbol;
+      } else {
+        result = "error_symbol_length";
+        colog("error!");
+      }
+    } else {
+      result = "error_symbol_index";
+      colog("error!");
+    }
+    return result;
+  }
+
+  String symbolAtToRow(int intIndex) {
+    String stringResult;
+    if (0 <= intIndex && intIndex <= 5) {
+      String fromEasyElement = eightDiagrams().elementOfEasy(fromEasyName());
+      Map toDict = toEasyDictionary();
+      String toSymbol = symbolStringAtRow(intIndex, toDict);
+      String toElement = symbolElement(toSymbol);
+
+      String strValue =
+          SABElementInfoModel.elementRelative(fromEasyElement, toElement);
+      stringResult = toSymbol.replaceRange(toSymbol.length - 4, 2, strValue);
+    } else {
+      stringResult = "error_symbol_index";
+      colog("error!");
+    }
+
+    return stringResult;
+  }
+
+  String symbolAtHideRow(int intIndex) {
+    String result;
+    int intHideIndex = intIndex;
+
+    if (intHideIndex >= 0) {
+      result = symbolStringAtRow(intHideIndex, placeFirstEasy());
+    } else
+      result = "卦中用神未现"; //colog("error!");
+
+    return result;
+  }
+
+  String symbolElement(String symbol) {
+    String stringResult = "";
+
+    if (symbol.length >= 1)
+      stringResult = symbol.substring(symbol.length - 1, symbol.length);
+    else
+      colog("");
+
+    return stringResult;
+  }
+
+  String symbolParent(String stringSymbol) {
+    String stringResult = "";
+
+    if (stringSymbol.length >= 4)
+      stringResult = stringSymbol.substring(
+          stringSymbol.length - 4, stringSymbol.length - 2);
+    else
+      colog("");
+
+    return stringResult;
+  }
+
+  bool isSymbolMovement(String stringSymbol) {
+    bool bResult = false;
+    if (stringSymbol.isNotEmpty) {
+      String strMark = stringSymbol.substring(0, 1);
+      bResult = "×" == strMark || "○" == strMark;
+    } else
+      colog("error!");
+
+    return bResult;
+  }
+
+  String symbolEarth(String stringSymbol) {
+    String stringResult = "";
+    if (stringSymbol.length >= 2)
+      stringResult = stringSymbol.substring(
+          stringSymbol.length - 2, stringSymbol.length - 1);
+    else
+      stringResult = "卦中用神未现"; //colog("error!");
+
+    return stringResult;
+  }
+
   SABWordsSymbolModel fromSymbol(int intRow) {
     String stringSymbol = symbolAtFromRow(intRow);
     return SABWordsSymbolModel(
@@ -420,6 +342,74 @@ class SABEasyWordsBusiness {
       stringEarth: symbolEarth(stringSymbol),
       stringElement: symbolElement(stringSymbol),
     );
+  }
+
+  /// `输出model`/////////////////////////////////////////////////////////////////
+  String animalAtRow(int intIndex) {
+    String stringResult = "";
+    String dayName = daySky();
+    if ("甲" == dayName || "乙" == dayName) {
+      List array = ["玄武", "白虎", "螣蛇", "勾陈", "朱雀", "青龙"];
+
+      stringResult = array[intIndex];
+    } else if ("丙" == dayName || "丁" == dayName) {
+      List array = ["青龙", "玄武", "白虎", "螣蛇", "勾陈", "朱雀"];
+
+      stringResult = array[intIndex];
+    } else if ("戊" == dayName) {
+      List array = ["朱雀", "青龙", "玄武", "白虎", "螣蛇", "勾陈"];
+      stringResult = array[intIndex];
+    } else if ("己" == dayName) {
+      List array = [
+        "勾陈",
+        "朱雀",
+        "青龙",
+        "玄武",
+        "白虎",
+        "螣蛇",
+      ];
+      stringResult = array[intIndex];
+    } else if ("庚" == dayName || "辛" == dayName) {
+      List array = [
+        "螣蛇",
+        "勾陈",
+        "朱雀",
+        "青龙",
+        "玄武",
+        "白虎",
+      ];
+      stringResult = array[intIndex];
+    } else if ("壬" == dayName || "癸" == dayName) {
+      List array = ["白虎", "螣蛇", "勾陈", "朱雀", "青龙", "玄武"];
+      stringResult = array[intIndex];
+    }
+
+    return stringResult;
+  }
+
+  String elementOfUsefulDeity() {
+    String fromEasyElement = eightDiagrams().elementOfEasy(fromEasyName());
+    return SABElementInfoModel.elementByRelative(
+        fromEasyElement, _inputEasyModel.getUsefulDeity());
+  }
+
+  ///此方法获取当前爻所在的八卦
+  String eightGuaAtFromRow(int nRow) {
+    String result = "";
+
+    String fromEasyKey = _inputEasyModel.fromEasyKey();
+    if (fromEasyKey.length >= 6) {
+      String guaKey = "";
+      if (nRow < 3)
+        guaKey = fromEasyKey.substring(0, 3);
+      else
+        guaKey = fromEasyKey.substring(3, 6);
+
+      result = SABDiagramsInfoModel.palaceNameForKey(guaKey);
+    } else
+      colog("error!");
+
+    return result;
   }
 
   SABEasyWordsModel _initEasyWordsModel() {

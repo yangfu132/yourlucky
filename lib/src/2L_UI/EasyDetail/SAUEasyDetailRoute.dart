@@ -35,7 +35,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
         actions: <Widget>[
           TextButton(
             onPressed: () {
-              SACContext.easyStore().addDigitModel(detailModel().digitModel());
+              SACContext.easyStore().save(detailModel().digitModel());
             },
             child: Text('保存'),
             style: SACContext.textButtonStyle(),

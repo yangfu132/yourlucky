@@ -1,8 +1,8 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyStrategyResult/StrategyResult/SABEasyStrategyResultBusiness.dart';
 
-import '../../3L_Business/EasyStrategy/EasyStrategyResult/SABEasyStrategyResultBusiness.dart';
 import '../EasyDetail/SAUEasyDetailRoute.dart';
 
 ///功能：显示策略推断结果

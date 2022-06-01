@@ -1,4 +1,5 @@
-﻿import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
+﻿import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
 import 'package:yourlucky/src/4L_Service/SASStringService.dart';
 
@@ -7,7 +8,6 @@ import '../../1L_Context/SACGlobal.dart';
 import '../EarthBranch/SABEarthBranchBusiness.dart';
 import '../EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 import '../EasyWords/SABEasyWordsModel.dart';
-import '../StoreEasy/SABEasyDigitModel.dart';
 import 'SABEasyLogicDescriptionModel.dart';
 
 class SABEasyLogicDescriptionBusiness {
@@ -266,7 +266,7 @@ class SABEasyLogicDescriptionBusiness {
       //else cont.
 
       String strTwelveDeity = _branchBusiness.earthTwelveDeity(
-          strEarth, wordsModel().stringMonthEarth);
+          strEarth, wordsModel().monthModel.stringEarth);
       if ("长生" == strTwelveDeity ||
           "帝旺" == strTwelveDeity ||
           "绝" == strTwelveDeity) {
@@ -289,7 +289,7 @@ class SABEasyLogicDescriptionBusiness {
     String stringSymbol = wordsModel().getSymbolName(nRow, easyType);
     String strEarth = logicModel().getSymbolEarth(nRow, easyType);
     if ("" != stringSymbol) {
-      String strDayEarth = wordsModel().stringDayEarth;
+      String strDayEarth = wordsModel().dayModel.stringEarth;
       String strTwelveDeity =
           _branchBusiness.earthTwelveDeity(strEarth, strDayEarth);
 
@@ -474,9 +474,10 @@ class SABEasyLogicDescriptionBusiness {
   String earthDayPairDescription(int nRow, EasyTypeEnum easyType) {
     String strResult = "";
     String strEarth = logicModel().getSymbolEarth(nRow, easyType);
-    if (_branchBusiness.isEarthPairDay(strEarth, wordsModel().stringDayEarth)) {
+    if (_branchBusiness.isEarthPairDay(
+        strEarth, wordsModel().dayModel.stringEarth)) {
       strResult = _branchBusiness.sixPairDescription(
-          strEarth, wordsModel().stringDayEarth);
+          strEarth, wordsModel().dayModel.stringEarth);
     }
     //else cont.
 
@@ -485,12 +486,12 @@ class SABEasyLogicDescriptionBusiness {
 
   String earthMonthPairDescription(String strEarth) {
     String strResult = "";
-    String strDay = wordsModel().stringDayEarth;
+    String strDay = wordsModel().dayModel.stringEarth;
     if (!_branchBusiness.isEarthConflict(strDay, strEarth) &&
         !_branchBusiness.isEarthConflict(
-            strDay, wordsModel().stringMonthEarth)) {
+            strDay, wordsModel().monthModel.stringEarth)) {
       strResult = _branchBusiness.sixPairDescription(
-          strEarth, wordsModel().stringMonthEarth);
+          strEarth, wordsModel().monthModel.stringEarth);
     }
     //else cont.
 
@@ -525,7 +526,7 @@ class SABEasyLogicDescriptionBusiness {
   String earthPairedDescription(String basicEarth, String otherEarth) {
     String strResult = "";
     //爻逢合住，遇日建以冲开，谓之合处逢冲，是也。
-    String stringDayEarth = wordsModel().stringDayEarth;
+    String stringDayEarth = wordsModel().dayModel.stringEarth;
     if (!_branchBusiness.isEarthConflict(stringDayEarth, basicEarth) &&
         !_branchBusiness.isEarthConflict(stringDayEarth, otherEarth)) {
       strResult = _branchBusiness.sixPairDescription(basicEarth, otherEarth);

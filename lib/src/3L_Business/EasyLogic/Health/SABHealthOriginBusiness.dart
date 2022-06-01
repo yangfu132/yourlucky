@@ -307,15 +307,17 @@ class SABHealthOriginBusiness {
         if (symbolModel.isEmpty())
           fResult = 0;
         else
-          fResult =
-              earthHealthAtDayEarth(basicEarth, wordsModel().stringDayEarth);
+          fResult = earthHealthAtDayEarth(
+              basicEarth, wordsModel().dayModel.stringEarth);
 
         //月
         if (symbolModel.isConflictMonth)
           fResult += 0;
         else
-          fResult += earthHealthAtMonthAndDay(basicEarth,
-              wordsModel().stringMonthEarth, wordsModel().stringDayEarth);
+          fResult += earthHealthAtMonthAndDay(
+              basicEarth,
+              wordsModel().monthModel.stringEarth,
+              wordsModel().dayModel.stringEarth);
       } else {
         colog("error!");
       }

@@ -1,4 +1,5 @@
-﻿import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABRowLogicModel.dart';
+﻿import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABRowLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABWordsRowModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABWordsSymbolModel.dart';
@@ -9,7 +10,6 @@ import '../../BasicEasy/SABElementInfoModel.dart';
 import '../../EarthBranch/SABEarthBranchBusiness.dart';
 import '../../EasyWords/SABEasyWordsBusiness.dart';
 import '../../EasyWords/SABEasyWordsModel.dart';
-import '../../StoreEasy/SABEasyDigitModel.dart';
 import 'SABEasyLogicModel.dart';
 
 class SABEasyLogicBusiness {
@@ -547,8 +547,8 @@ class SABEasyLogicBusiness {
 
   ///`卦变生克墓绝章第二十四`/////////////////////////////////////////////////////
   String easyParent() {
-    String fromElement = wordsModel().stringFromElement;
-    String toElement = wordsModel().stringToElement;
+    String fromElement = wordsModel().diagramsModel.stringFromElement;
+    String toElement = wordsModel().diagramsModel.stringToElement;
     String strParent =
         SABElementInfoModel.elementRelative(fromElement, toElement);
     return strParent;
@@ -616,8 +616,8 @@ class SABEasyLogicBusiness {
       "兑": "震",
     };
 
-    String fromPlace = wordsModel().stringFromPlace;
-    String toPlace = wordsModel().stringToPlace;
+    String fromPlace = wordsModel().diagramsModel.stringFromPlace;
+    String toPlace = wordsModel().diagramsModel.stringToPlace;
     String strConflictPlace = dictGuaConflict[fromPlace];
     bResult = strConflictPlace == toPlace;
     return bResult;
@@ -1020,19 +1020,19 @@ class SABEasyLogicBusiness {
   }
 
   Map _fromEasyDictionary() {
-    return wordsModel().mapFromEasy;
+    return wordsModel().diagramsModel.mapFromEasy;
   }
 
   Map _toEasyDictionary() {
-    return wordsModel().mapToEasy;
+    return wordsModel().diagramsModel.mapToEasy;
   }
 
   String fromEasyName() {
-    return wordsModel().stringFromName;
+    return wordsModel().diagramsModel.stringFromName;
   }
 
   String toEasyName() {
-    return wordsModel().stringToName;
+    return wordsModel().diagramsModel.stringToName;
   }
 
   String fromEasyKey() {
@@ -1077,15 +1077,15 @@ class SABEasyLogicBusiness {
   }
 
   String monthEarth() {
-    return wordsModel().stringMonthEarth;
+    return wordsModel().monthModel.stringEarth;
   }
 
   String daySky() {
-    return wordsModel().stringDaySky;
+    return wordsModel().dayModel.stringSky;
   }
 
   String dayEarth() {
-    return wordsModel().stringDayEarth;
+    return wordsModel().dayModel.stringEarth;
   }
 
   String earthAtFromRow(int intRow) {

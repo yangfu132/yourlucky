@@ -35,10 +35,10 @@ class SABEasyDigitBusiness {
   }
 
   ///保存
-  static void save(SABEasyDigitModel digitModel) {}
+  void save(SABEasyDigitModel digitModel) {}
 
   ///加载
-  static SABEasyDigitModel load() {
+  SABEasyDigitModel load() {
     SABEasyDigitModel outEasyModel = SABEasyDigitModel(
       '测试',
       '子孙',

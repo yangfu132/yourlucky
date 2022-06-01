@@ -1,14 +1,15 @@
+import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
+import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogicDescription/SABEasyLogicDescriptionModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyStrategy/EasyStrategy/SABParentInfoModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyStrategyResult/Strategy/SABParentInfoModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 
-import '../../1L_Context/SACContext.dart';t '../../1L_Context/SACGlobal.dart';
+import '../../1L_Context/SACContext.dart';
 import '../../4L_Service/SASStringService.dart';
-import '../StoreEasy/SABEasyDigitModel.dart';
 import 'SABDiagramsDetailModel.dart';
 
 class SABDiagramsDetailBusiness {
@@ -63,8 +64,8 @@ class SABDiagramsDetailBusiness {
 
     //因为增删卜易中只出现六纯卦，所以也要求是六纯卦；
 
-    if (logicModel().inputWordsModel.bFromPureEasy &&
-        logicModel().inputWordsModel.bToPureEasy) {
+    if (logicModel().inputWordsModel.diagramsModel.bFromPureEasy &&
+        logicModel().inputWordsModel.diagramsModel.bToPureEasy) {
       //本卦与变卦之间的生克关系
       String strParent = logicModel().stringEasyParent;
 
@@ -669,7 +670,7 @@ class SABDiagramsDetailBusiness {
 
   String outEmptyDate() {
     String strResult = "";
-    String strDayTrunk = logicModel().inputWordsModel.stringDaySky;
+    String strDayTrunk = logicModel().inputWordsModel.dayModel.stringSky;
     String strSkyTrunk = SABEasyLogicModel.skyTrunkString();
     int rangeTrunk = strSkyTrunk.indexOf(strDayTrunk);
 

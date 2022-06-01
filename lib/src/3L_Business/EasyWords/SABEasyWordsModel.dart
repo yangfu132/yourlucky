@@ -228,6 +228,10 @@ class SABEasyWordsModel {
     return getSymbolName(intLifeIndex, EasyTypeEnum.from);
   }
 
+  String getGoalName() {
+    return getSymbolName(intGoalIndex, EasyTypeEnum.from);
+  }
+
   String getLifeElement() {
     return getSymbolElement(intLifeIndex, EasyTypeEnum.from);
   }
