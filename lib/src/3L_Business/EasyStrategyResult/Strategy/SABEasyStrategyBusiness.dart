@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../EasyDetail/SABDiagramsDetailModel.dart';
+import '../../EasyDetail/SABDiagramsDetailModel.dart';
+import '../../Goal/SABParentModel.dart';
 import 'SABEasyStrategyModel.dart';
-import 'SABParentModel.dart';
 
 ///note:章，既是预测模型
 ///example:趋避章
