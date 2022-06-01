@@ -8,6 +8,8 @@ class SABWordsSymbolModel {
     required this.stringParent,
     required this.stringEarth,
     required this.stringElement,
+    required this.earlyPlace,
+    required this.latePlace,
   });
   final int intRow;
   final EasyTypeEnum easyType;
@@ -15,4 +17,6 @@ class SABWordsSymbolModel {
   final String stringParent;
   final String stringEarth;
   final String stringElement;
+  final String earlyPlace;
+  final String latePlace;
 }

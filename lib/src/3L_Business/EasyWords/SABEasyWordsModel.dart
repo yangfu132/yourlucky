@@ -220,6 +220,14 @@ class SABEasyWordsModel {
     return rowModelAtRow(intRow).getSymbolElement(easyTypeEnum);
   }
 
+  String getEarlyPlace(int intRow, EasyTypeEnum easyTypeEnum) {
+    return rowModelAtRow(intRow).getEarlyPlace(easyTypeEnum);
+  }
+
+  String getLatePlace(int intRow, EasyTypeEnum easyTypeEnum) {
+    return rowModelAtRow(intRow).getLatePlace(easyTypeEnum);
+  }
+
   String getLifeParent() {
     return getSymbolParent(intLifeIndex, EasyTypeEnum.from);
   }

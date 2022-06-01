@@ -317,6 +317,8 @@ class SABEasyWordsBusiness {
       stringParent: symbolParent(stringSymbol),
       stringEarth: symbolEarth(stringSymbol),
       stringElement: symbolElement(stringSymbol),
+      earlyPlace: earlyPlace(intRow),
+      latePlace: latePlace(intRow),
     );
   }
 
@@ -329,6 +331,8 @@ class SABEasyWordsBusiness {
       stringParent: symbolParent(stringSymbol),
       stringEarth: symbolEarth(stringSymbol),
       stringElement: symbolElement(stringSymbol),
+      earlyPlace: earlyPlace(intRow),
+      latePlace: latePlace(intRow),
     );
   }
 
@@ -341,7 +345,19 @@ class SABEasyWordsBusiness {
       stringParent: symbolParent(stringSymbol),
       stringEarth: symbolEarth(stringSymbol),
       stringElement: symbolElement(stringSymbol),
+      earlyPlace: earlyPlace(intRow),
+      latePlace: latePlace(intRow),
     );
+  }
+
+  String earlyPlace(int intRow) {
+    String strGua = eightGuaAtFromRow(intRow);
+    return eightDiagrams().earlyPlace()[strGua];
+  }
+
+  String latePlace(int intRow) {
+    String strGua = eightGuaAtFromRow(intRow);
+    return eightDiagrams().latePlace()[strGua];
   }
 
   /// `输出model`/////////////////////////////////////////////////////////////////

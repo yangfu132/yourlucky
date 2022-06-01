@@ -119,11 +119,11 @@ class SABEasyDetailBusiness {
     return result;
   }
 
-  String eightDiagramsPlace(int intRow) {
+  String eightDiagramsPlace(int intRow, EasyTypeEnum easyTypeEnum) {
     String strGua = wordsModel().rowModelAtRow(intRow).stringDiagrams;
     String result = strGua + ':';
-    result = '先天八卦位于' + wordsModel().eightDiagrams.earlyPlace()[strGua] + ',';
-    result += '后天八卦位于' + wordsModel().eightDiagrams.latePlace()[strGua];
+    result = '先天八卦位于' + wordsModel().getEarlyPlace(intRow, easyTypeEnum);
+    result += '后天八卦位于' + wordsModel().getLatePlace(intRow, easyTypeEnum);
     return result;
   }
 
@@ -153,7 +153,7 @@ class SABEasyDetailBusiness {
       resultList[5]['value'] =
           analysisModel().getDayRelation(intRow, EasyTypeEnum.from);
       resultList[6]['value'] = symbolEarthDirection(intRow, EasyTypeEnum.from);
-      resultList[7]['value'] = eightDiagramsPlace(intRow);
+      resultList[7]['value'] = eightDiagramsPlace(intRow, EasyTypeEnum.from);
     }
     return outputDetailModel;
   }

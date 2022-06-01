@@ -22,6 +22,28 @@ class SABWordsRowModel {
   final SABWordsSymbolModel toSymbol;
   final SABWordsSymbolModel hideSymbol;
 
+  String getEarlyPlace(EasyTypeEnum easyTypeEnum) {
+    if (easyTypeEnum == EasyTypeEnum.from) {
+      return fromSymbol.earlyPlace;
+    } else if (easyTypeEnum == EasyTypeEnum.to) {
+      return toSymbol.earlyPlace;
+    } else if (easyTypeEnum == EasyTypeEnum.hide) {
+      return hideSymbol.earlyPlace;
+    } else
+      return 'easyTypeEnum:$easyTypeEnum';
+  }
+
+  String getLatePlace(EasyTypeEnum easyTypeEnum) {
+    if (easyTypeEnum == EasyTypeEnum.from) {
+      return fromSymbol.latePlace;
+    } else if (easyTypeEnum == EasyTypeEnum.to) {
+      return toSymbol.latePlace;
+    } else if (easyTypeEnum == EasyTypeEnum.hide) {
+      return hideSymbol.latePlace;
+    } else
+      return 'easyTypeEnum:$easyTypeEnum';
+  }
+
   String getSymbolName(EasyTypeEnum easyTypeEnum) {
     if (easyTypeEnum == EasyTypeEnum.from) {
       return fromSymbol.symbolName;

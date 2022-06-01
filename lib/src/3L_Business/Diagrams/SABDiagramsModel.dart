@@ -24,6 +24,8 @@ class SABDiagramsModel {
   final Map mapToEasy;
   final Map mapHideEasy;
 
+  final String earlyPlace;
+
   ///纯卦
   final bool bFromPureEasy;
   final bool bToPureEasy;
