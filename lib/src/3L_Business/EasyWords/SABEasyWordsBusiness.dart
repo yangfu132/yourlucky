@@ -34,42 +34,6 @@ class SABEasyWordsBusiness {
 
   late final SABEasyWordsModel _outEasyWordsModel = _initEasyWordsModel();
 
-  /// `此模块获取日期的数据`/////////////////////////////////////////////////////
-
-  String monthEarth() {
-    return businessCalendar().earthBranchMonth().stringName() ?? "未知monthEarth";
-  }
-
-  String monthSky() {
-    return businessCalendar().skyTrunkMonth().stringName() ?? "monthSky";
-  }
-
-  String monthElement() {
-    return _branchBusiness.earthElement(monthEarth());
-  }
-
-  String dayEarth() {
-    return businessCalendar().earthBranchDay().stringName() ?? "未知dayEarth";
-  }
-
-  String daySky() {
-    return businessCalendar().skyTrunkDay().stringName() ?? "未知daySky";
-  }
-
-  String dayElement() {
-    return _branchBusiness.earthElement(dayEarth());
-  }
-
-  /// `此模块获取八宫以及六十四管的数据`/////////////////////////////////////////////
-
-  ///方法注释：获取本卦所在八宫的第一卦
-  Map placeFirstEasy() {
-    String firstKey = eightDiagrams()
-        .firstEasyKeyInDiagram(eightDiagrams().easyPlaceByName(fromEasyName()));
-    Map firstEasy = eightDiagrams().getEasyDictionaryForKey(firstKey);
-    return firstEasy;
-  }
-
   ///此方法获取当前爻所在的八卦
   String eightGuaAtFromRow(int nRow) {
     String result = "";
@@ -86,20 +50,6 @@ class SABEasyWordsBusiness {
     } else
       colog("error!");
 
-    return result;
-  }
-
-  ///此方法获取本卦在八宫中的信息
-  Map fromEasyDictionary() {
-    Map result =
-        eightDiagrams().getEasyDictionaryForKey(_inputEasyModel.fromEasyKey());
-    return result;
-  }
-
-  ///此方法获取变卦在八宫中的信息
-  Map toEasyDictionary() {
-    Map result =
-        eightDiagrams().getEasyDictionaryForKey(_inputEasyModel.toEasyKey());
     return result;
   }
 
@@ -348,18 +298,11 @@ class SABEasyWordsBusiness {
   }
 
   /// `加载函数`/////////////////////////////////////////////////////////////////
-  SABEasyWordsModel easyWordsModel() {
-    return SABEasyWordsModel(
-      _inputEasyModel,
-      diagramsModel(),
-      intLifeIndex: _getLifeIndex(),
-      intGoalIndex: _goalIndex(),
-      stringFormatTime: businessCalendar().stringFromDate(),
-      monthModel: monthModel(),
-      dayModel: dayModel(),
-      elementOfUsefulDeity: elementOfUsefulDeity(),
-    );
+  SABEarthBranchBusiness branchBusiness() {
+    return _branchBusiness;
   }
+
+  /// `子model`/////////////////////////////////////////////////////////////////
 
   SABMonthModel monthModel() {
     SABMonthModel result = SABMonthModel(
@@ -379,6 +322,30 @@ class SABEasyWordsBusiness {
     return result;
   }
 
+  String monthEarth() {
+    return businessCalendar().earthBranchMonth().stringName() ?? "未知monthEarth";
+  }
+
+  String monthSky() {
+    return businessCalendar().skyTrunkMonth().stringName() ?? "monthSky";
+  }
+
+  String monthElement() {
+    return _branchBusiness.earthElement(monthEarth());
+  }
+
+  String dayEarth() {
+    return businessCalendar().earthBranchDay().stringName() ?? "未知dayEarth";
+  }
+
+  String daySky() {
+    return businessCalendar().skyTrunkDay().stringName() ?? "未知daySky";
+  }
+
+  String dayElement() {
+    return _branchBusiness.earthElement(dayEarth());
+  }
+
   SABDiagramsModel diagramsModel() {
     SABDiagramsModel result = SABDiagramsModel(
       stringFromName: fromEasyName(),
@@ -396,6 +363,29 @@ class SABEasyWordsBusiness {
     return result;
   }
 
+  ///此方法获取本卦在八宫中的信息
+  Map fromEasyDictionary() {
+    Map result =
+        eightDiagrams().getEasyDictionaryForKey(_inputEasyModel.fromEasyKey());
+    return result;
+  }
+
+  ///此方法获取变卦在八宫中的信息
+  Map toEasyDictionary() {
+    Map result =
+        eightDiagrams().getEasyDictionaryForKey(_inputEasyModel.toEasyKey());
+    return result;
+  }
+
+  ///方法注释：获取本卦所在八宫的第一卦
+  Map placeFirstEasy() {
+    String firstKey = eightDiagrams()
+        .firstEasyKeyInDiagram(eightDiagrams().easyPlaceByName(fromEasyName()));
+    Map firstEasy = eightDiagrams().getEasyDictionaryForKey(firstKey);
+    return firstEasy;
+  }
+
+  /// `输出Model`/////////////////////////////////////////////////////////////////
   SABSymbolWordsModel fromSymbol(int intRow) {
     String stringSymbol = symbolAtFromRow(intRow);
     return SABSymbolWordsModel(
@@ -433,14 +423,23 @@ class SABEasyWordsBusiness {
   }
 
   SABEasyWordsModel _initEasyWordsModel() {
-    var wordsModel = easyWordsModel();
+    SABEasyWordsModel wordsModel = SABEasyWordsModel(
+      _inputEasyModel,
+      diagramsModel(),
+      intLifeIndex: _getLifeIndex(),
+      intGoalIndex: _goalIndex(),
+      stringFormatTime: businessCalendar().stringFromDate(),
+      monthModel: monthModel(),
+      dayModel: dayModel(),
+      elementOfUsefulDeity: elementOfUsefulDeity(),
+    );
     for (int intRow = 0; intRow < 6; intRow++) {
       var desOfGoalOrLife = "";
       if (_getLifeIndex() == intRow) {
         desOfGoalOrLife = "世";
       } else if (_goalIndex() == intRow) {
         desOfGoalOrLife = "应";
-      } //esle desOfGoalOrLife = "";
+      } //else desOfGoalOrLife = "";
 
       SABRowWordsModel row = SABRowWordsModel(
         intDigit: _inputEasyModel.digitAtIndex(intRow),
@@ -456,9 +455,5 @@ class SABEasyWordsBusiness {
     }
 
     return wordsModel;
-  }
-
-  SABEarthBranchBusiness branchBusiness() {
-    return _branchBusiness;
   }
 }
