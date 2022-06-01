@@ -1,8 +1,8 @@
 ﻿import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyStrategy/EasyStrategy/SABEasyStrategyModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyStrategy/EasyStrategyResult/SABEasyAvoidBusiness.dart';
+import 'package:yourlucky/src/3L_Business/Goal/SABEasyStrategyModel.dart';
 import 'package:yourlucky/src/3L_Business/StoreEasy/SABEasyDigitModel.dart';
 
+import 'SABEasyAvoidBusiness.dart';
 import 'SABEasyStrategyResultModel.dart';
 
 class SABEasyStrategyResultBusiness {

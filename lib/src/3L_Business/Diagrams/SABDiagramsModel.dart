@@ -1,5 +1,3 @@
-import 'package:yourlucky/src/3L_Business/BasicEasy/SABDiagramsInfoModel.dart';
-
 class SABDiagramsModel {
   SABDiagramsModel({
     required this.stringFromName,
@@ -29,6 +27,4 @@ class SABDiagramsModel {
   ///纯卦
   final bool bFromPureEasy;
   final bool bToPureEasy;
-
-  late final SABDiagramsInfoModel eightDiagrams = SABDiagramsInfoModel();
 }

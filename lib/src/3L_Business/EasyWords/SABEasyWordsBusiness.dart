@@ -28,9 +28,11 @@ class SABEasyWordsBusiness {
   late final PWBCalendarBusiness _businessCalendar =
       PWBCalendarBusiness(_inputEasyModel.getEasyTime());
 
-  late final SABEasyWordsModel _outEasyWordsModel = _initEasyWordsModel();
+  late final SABDiagramsInfoModel _eightDiagrams = SABDiagramsInfoModel();
 
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
+
+  late final SABEasyWordsModel _outEasyWordsModel = _initEasyWordsModel();
 
   /// `此模块获取日期的数据`/////////////////////////////////////////////////////
 

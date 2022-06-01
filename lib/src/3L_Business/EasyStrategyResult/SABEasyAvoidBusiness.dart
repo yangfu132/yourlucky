@@ -3,9 +3,10 @@ import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 import 'package:yourlucky/src/3L_Business/BasicEasy/SABElementInfoModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyStrategy/EasyStrategyResult/SABEasyStrategyResultModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:yourlucky/src/4L_Service/SASStringService.dart';
+
+import 'SABEasyStrategyResultModel.dart';
 
 class SABEasyAvoidBusiness {
   final SABEasyDetailModel inputDetail;
