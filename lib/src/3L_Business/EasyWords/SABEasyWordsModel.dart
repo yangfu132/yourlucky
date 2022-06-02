@@ -1,8 +1,8 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
-import 'package:yourlucky/src/3L_Business/MonthDay/SABDayModel.dart';
-import 'package:yourlucky/src/3L_Business/MonthDay/SABMonthModel.dart';
+import 'package:yourlucky/src/3L_Business/Time/SABDayModel.dart';
+import 'package:yourlucky/src/3L_Business/Time/SABMonthModel.dart';
 import 'package:yourlucky/src/4L_Service/SASStringService.dart';
 
 import '../../1L_Context/SACGlobal.dart';
