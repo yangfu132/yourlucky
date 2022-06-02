@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/4L_Service/Base/SABBaseService.dart';
 
 class Dog {
@@ -53,10 +54,10 @@ class SASSqliteService extends SABBaseService {
         // Run the CREATE TABLE statement on the database.
         // 创建多张表
         await db.execute(
-          'CREATE TABLE easy(id INTEGER PRIMARY KEY, name TEXT, age INTEGER)',
+          'CREATE TABLE easy(id INTEGER PRIMARY KEY, easyData TEXT, easyDateTime INTEGER,usefulDeity TEXT,formatTime TEXT)',
         );
         await db.execute(
-          'CREATE TABLE easy_log(id INTEGER PRIMARY KEY, name TEXT, age INTEGER)',
+          'CREATE TABLE easy_log(id INTEGER PRIMARY KEY, easyData TEXT, easyDateTime INTEGER,usefulDeity TEXT,formatTime TEXT)',
         );
 
         return db.execute(
@@ -71,6 +72,63 @@ class SASSqliteService extends SABBaseService {
     return databaseResult;
   }
 
+  // Define a function that inserts dogs into the database
+  Future<void> insertEasy(SABEasyDigitModel easy) async {
+    // Get a reference to the database.
+    final db = await database;
+
+    // Insert the Dog into the correct table. You might also specify the
+    // `conflictAlgorithm` to use in case the same dog is inserted twice.
+    //
+    // In this case, replace any previous data.
+    await db.insert(
+      'easy',
+      easy.toJson(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  // A method that retrieves all the dogs from the dogs table.
+  Future<List<SABEasyDigitModel>> easy() async {
+    // Get a reference to the database.
+    final db = await database;
+
+    // Query the table for all The Dogs.
+    final List<Map<String, dynamic>> maps = await db.query('easy');
+    // Convert the List<Map<String, dynamic> into a List<Dog> (将 List<Map<String, dynamic> 转换成 List<Dog> 数据类型)
+    return List.generate(maps.length, (i) {
+      return SABEasyDigitModel.fromJson(maps[i]);
+    });
+  }
+
+  Future<void> updateEasy(SABEasyDigitModel easy) async {
+    // Get a reference to the database (获得数据库引用)
+    final db = await database;
+    // Update the given Dog (修改给定的狗狗的数据)
+    await db.update(
+      'easy',
+      easy.toJson(),
+      // Ensure that the Dog has a matching id.
+      where: 'id = ?',
+      // Pass the Dog's id as a whereArg to prevent SQL injection.
+      whereArgs: [easy.id],
+    );
+  }
+
+  Future<void> deleteDog(int id) async {
+    // Get a reference to the database (获得数据库引用)
+    final db = await database;
+    // Remove the Dog from the database (将狗狗从数据库移除)
+    await db.delete(
+      'dogs',
+      // Use a `where` clause to delete a specific dog.
+      where: 'id = ?',
+      // Pass the Dog's id as a whereArg to prevent SQL injection.
+      whereArgs: [id],
+    );
+  }
+
+  /// Dog
   // Define a function that inserts dogs into the database
   Future<void> insertDog(Dog dog) async {
     // Get a reference to the database.

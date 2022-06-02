@@ -111,20 +111,20 @@ class SABEasyDigitModel {
 
   SABEasyDigitModel.fromJson(Map<String, Object?> json)
       : this(
-          strEasyGoal: json['strEasyGoal']! as String,
-          strUsefulDeity: json['strUsefulDeity']! as String,
+          strEasyGoal: json['easyGoal']! as String,
+          strUsefulDeity: json['usefulDeity']! as String,
           easyDateTime: json['easyDateTime']! as DateTime,
-          listEasyData: (json['listEasyData']! as List).cast<int>(),
-          stringFormatTime: json['stringFormatTime']! as String,
+          listEasyData: (json['easyData']! as List).cast<int>(),
+          stringFormatTime: json['formatTime']! as String,
         );
 
   Map<String, Object?> toJson() {
     return {
-      'listEasyData': listEasyData,
-      'strEasyGoal': strEasyGoal,
+      'easyData': listEasyData,
+      'easyGoal': strEasyGoal,
       'easyDateTime': easyDateTime,
-      'strUsefulDeity': strUsefulDeity,
-      'stringFormatTime': stringFormatTime,
+      'usefulDeity': strUsefulDeity,
+      'formatTime': stringFormatTime,
     };
   }
 
