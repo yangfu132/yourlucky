@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:yourlucky/src/1L_Context/SABSingletonService.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyStrategyResult/Strategy/SABEasyStrategyInfoBusiness.dart';
-import 'package:yourlucky/src/4L_Service/SABUserAuthService.dart';
+import 'package:yourlucky/src/4L_Service/FireBase/SASFireBaseUserAuthService.dart';
 
 void coLog(String strMsg) {
   print(strMsg);
@@ -12,7 +12,8 @@ void coLog(String strMsg) {
 
 class SACContext {
   final SABEasyDigitBusiness storeBusiness = SABEasyDigitBusiness();
-  final SABUserAuthService userAuthService = SABUserAuthService();
+  final SASFireBaseUserAuthService userAuthService =
+      SASFireBaseUserAuthService();
   final SABEasyStrategyInfoBusiness categoryBusiness =
       SABEasyStrategyInfoBusiness();
   Future<void> initStep() async {
@@ -30,7 +31,7 @@ class SACContext {
     return businessContext.storeBusiness;
   }
 
-  static SABUserAuthService userAuth() {
+  static SASFireBaseUserAuthService userAuth() {
     SACContext businessContext = SABSingletonService.getObject('SACContext');
     return businessContext.userAuthService;
   }

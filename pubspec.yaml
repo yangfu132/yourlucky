@@ -28,11 +28,11 @@ dependencies:
 
   #接入animation
   shared_preferences: # new
-  #my
   flutter_perpttual_calendar: ^1.0.0+5
+  sqflite:
+  path:
 
   #---------- third party plugin
-  #flutter_screenutil: # new
   cupertino_icons: # new
   bot_toast: # new
 

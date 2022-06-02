@@ -11,7 +11,7 @@ enum ApplicationLoginState {
 
 const bool USE_FIRE_AUTH_EMULATOR = false;
 
-class SABUserAuthService extends ChangeNotifier {
+class SASFireBaseUserAuthService extends ChangeNotifier {
   ApplicationLoginState _loginState = ApplicationLoginState.loggedOut;
   ApplicationLoginState get loginState => _loginState;
 

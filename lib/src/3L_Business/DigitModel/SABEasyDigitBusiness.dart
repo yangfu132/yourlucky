@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:yourlucky/src/4L_Service/Sqlite/SASSqliteService.dart';
+
 import 'SABEasyDigitModel.dart';
 
 class SABEasyDigitBusiness {
@@ -35,7 +37,10 @@ class SABEasyDigitBusiness {
   }
 
   ///保存
-  void save(SABEasyDigitModel digitModel) {}
+  void save(SABEasyDigitModel digitModel) {
+    SASSqliteService sqlite = SASSqliteService();
+    sqlite.testDog();
+  }
 
   ///加载
   SABEasyDigitModel load() {
