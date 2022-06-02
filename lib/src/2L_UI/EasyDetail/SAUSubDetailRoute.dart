@@ -33,7 +33,10 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.inputDetailModel.wordsModel().stringFormatTime),
+        title: Text(widget.inputDetailModel
+            .wordsModel()
+            .inputDigitModel
+            .stringFormatTime),
       ),
       body: ListView.builder(
           itemCount: widget.resultList().length * 2,

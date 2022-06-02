@@ -168,9 +168,9 @@ class SABEasyDetailBusiness {
 
   String easyName() {
     String stringResult = '';
-    String formatTime = wordsModel().stringFormatTime;
+    String formatTime = wordsModel().inputDigitModel.stringFormatTime;
     String formatDate = formatTime.split(' ')[0];
-    stringResult += '$formatDate ${_inputEasyModel.getUsefulDeity()} 补充';
+    stringResult += '$formatDate ${_inputEasyModel.strUsefulDeity} 补充';
     return stringResult;
   }
 

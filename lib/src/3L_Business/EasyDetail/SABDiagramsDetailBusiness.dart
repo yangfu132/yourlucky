@@ -22,7 +22,7 @@ class SABDiagramsDetailBusiness {
     SABHealthModel theHealthModel = healthModel();
     List resultList = outputResultModel.resultList;
     if (theHealthModel.bValidEasy()) {
-      resultList[0]['value'] = digitModel().getEasyGoal();
+      resultList[0]['value'] = digitModel().strEasyGoal;
       resultList[1]['value'] = this.resultUsefulDeity();
       resultList[2]['value'] = this.resultEasy();
       resultList[3]['value'] = this.resultRepeatedOrConflict();
@@ -36,7 +36,7 @@ class SABDiagramsDetailBusiness {
 
   ///`用神`//////////////////////////////////////////////////////
   String resultUsefulDeity() {
-    return "${digitModel().getUsefulDeity()}，类像参见用神爻。";
+    return "${digitModel().strUsefulDeity}，类像参见用神爻。";
   }
 
   ///`卦体`//////////////////////////////////////////////////////

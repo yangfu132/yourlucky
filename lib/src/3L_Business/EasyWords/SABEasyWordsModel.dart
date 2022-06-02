@@ -10,28 +10,24 @@ import 'SABWordsRowModel.dart';
 
 class SABEasyWordsModel {
   SABEasyWordsModel(
-    this.inputDigitModel,
-    this.diagramsModel, {
-    required this.stringFormatTime,
+    this.inputDigitModel, {
     required this.monthModel,
     required this.dayModel,
     required this.elementOfUsefulDeity,
-    required this.intLifeIndex,
-    required this.intGoalIndex,
   });
-  final SABDiagramsModel diagramsModel;
+
   final SABEasyDigitModel inputDigitModel;
   final List _listRowModels = List.empty(growable: true);
   final String elementOfUsefulDeity;
 
   ///时间
-  final String stringFormatTime;
   final SABMonthModel monthModel;
   final SABDayModel dayModel;
 
   ///世应
-  final int intLifeIndex;
-  final int intGoalIndex;
+  late final SABDiagramsModel diagramsModel = inputDigitModel.diagramsModel;
+  late final int intLifeIndex = diagramsModel.lifeIndex;
+  late final int intGoalIndex = diagramsModel.goalIndex;
 
   /// `MergeRow函数`///////////////////////////////////////////////////////////
   ///MergeRow的定义

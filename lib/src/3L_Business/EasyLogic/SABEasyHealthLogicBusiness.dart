@@ -155,7 +155,7 @@ class SABEasyHealthLogicBusiness {
 
   ///`桥函数`
   String getUsefulDeity() {
-    return logicModel().inputWordsModel.inputDigitModel.getUsefulDeity();
+    return logicModel().inputWordsModel.inputDigitModel.strUsefulDeity;
   }
 
   bool isEffectAbleRow(int intRow, EasyTypeEnum easyType) {

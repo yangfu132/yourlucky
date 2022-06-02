@@ -1,4 +1,6 @@
-﻿import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
+﻿import 'package:flutter_perpttual_calendar/flutter_perpttual_calendar.dart';
+import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
+import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABWordsSymbolModel.dart';
 import 'package:yourlucky/src/3L_Business/Time/SABDayModel.dart';
@@ -22,9 +24,18 @@ class SABEasyWordsBusiness {
 
   late final SABEasyWordsModel _outEasyWordsModel = _initEasyWordsModel();
 
+  late final SABDiagramsModel diagramsModel = _inputEasyModel.diagramsModel;
+
+  late final PWBCalendarBusiness calendar =
+      PWBCalendarBusiness(_inputEasyModel.easyDateTime);
+
   /// `此模块包含世应相关的方法`///////////////////////////////////////////////////
 
   /// `访问函数`/////////////////////////////////////////////////////////////////
+
+  PWBCalendarBusiness businessCalendar() {
+    return calendar;
+  }
 
   SABDiagramsInfoModel eightDiagrams() {
     return _eightDiagrams;
@@ -91,7 +102,7 @@ class SABEasyWordsBusiness {
     String result;
 
     if (0 <= intIndex && intIndex <= 5) {
-      Map fromDict = fromEasyDictionary();
+      Map fromDict = diagramsModel.mapFromEasy;
       String strSymbol = symbolStringAtRow(intIndex, fromDict);
 
       if (strSymbol.length >= 4) {
@@ -118,8 +129,9 @@ class SABEasyWordsBusiness {
   String symbolAtToRow(int intIndex) {
     String stringResult;
     if (0 <= intIndex && intIndex <= 5) {
-      String fromEasyElement = eightDiagrams().elementOfEasy(fromEasyName());
-      Map toDict = toEasyDictionary();
+      String fromEasyElement =
+          eightDiagrams().elementOfEasy(diagramsModel.stringFromName);
+      Map toDict = diagramsModel.mapToEasy;
       String toSymbol = symbolStringAtRow(intIndex, toDict);
       String toElement = symbolElement(toSymbol);
 
@@ -139,7 +151,7 @@ class SABEasyWordsBusiness {
     int intHideIndex = intIndex;
 
     if (intHideIndex >= 0) {
-      result = symbolStringAtRow(intHideIndex, placeFirstEasy());
+      result = symbolStringAtRow(intHideIndex, diagramsModel.mapHideEasy);
     } else
       result = "卦中用神未现"; //coLog("error!");
 
@@ -287,16 +299,17 @@ class SABEasyWordsBusiness {
   }
 
   String elementOfUsefulDeity() {
-    String fromEasyElement = eightDiagrams().elementOfEasy(fromEasyName());
+    String fromEasyElement =
+        eightDiagrams().elementOfEasy(diagramsModel.stringFromName);
     return SABElementInfoModel.elementByRelative(
-        fromEasyElement, _inputEasyModel.getUsefulDeity());
+        fromEasyElement, _inputEasyModel.strUsefulDeity);
   }
 
   ///此方法获取当前爻所在的八卦
   String eightGuaAtFromRow(int nRow) {
     String result = "";
 
-    String fromEasyKey = _inputEasyModel.fromEasyKey();
+    String fromEasyKey = _inputEasyModel.fromEasyKey;
     if (fromEasyKey.length >= 6) {
       String guaKey = "";
       if (nRow < 3)
@@ -314,19 +327,15 @@ class SABEasyWordsBusiness {
   SABEasyWordsModel _initEasyWordsModel() {
     SABEasyWordsModel wordsModel = SABEasyWordsModel(
       _inputEasyModel,
-      diagramsModel(),
-      intLifeIndex: _getLifeIndex(),
-      intGoalIndex: _goalIndex(),
-      stringFormatTime: businessCalendar().stringFromDate(),
       monthModel: monthModel(),
       dayModel: dayModel(),
       elementOfUsefulDeity: elementOfUsefulDeity(),
     );
     for (int intRow = 0; intRow < 6; intRow++) {
       var desOfGoalOrLife = "";
-      if (_getLifeIndex() == intRow) {
+      if (diagramsModel.lifeIndex == intRow) {
         desOfGoalOrLife = "世";
-      } else if (_goalIndex() == intRow) {
+      } else if (diagramsModel.goalIndex == intRow) {
         desOfGoalOrLife = "应";
       } //else desOfGoalOrLife = "";
 

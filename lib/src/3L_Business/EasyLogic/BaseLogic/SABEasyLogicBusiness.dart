@@ -1,4 +1,5 @@
-﻿import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
+﻿import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
+import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABRowLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABWordsRowModel.dart';
@@ -1036,15 +1037,15 @@ class SABEasyLogicBusiness {
   }
 
   String fromEasyKey() {
-    return wordsModel().inputDigitModel.fromEasyKey();
+    return wordsModel().inputDigitModel.fromEasyKey;
   }
 
   String toEasyKey() {
-    return wordsModel().inputDigitModel.toEasyKey();
+    return wordsModel().inputDigitModel.toEasyKey;
   }
 
   String getUsefulDeity() {
-    return wordsModel().inputDigitModel.getUsefulDeity();
+    return wordsModel().inputDigitModel.strUsefulDeity;
   }
 
   int getLifeIndex() {
@@ -1190,17 +1191,17 @@ class SABEasyLogicBusiness {
   }
 
   SABEasyLogicModel initLogicModel() {
+    final SABDiagramsModel diagramsModel = _inputEasyModel.diagramsModel;
     var outLogicModel = SABEasyLogicModel(
       inputWordsModel: wordsModel(),
       listStaticSeasonStrong: staticSeasonStrong(),
       bStaticEasy: isStaticEasy(),
       bFromEasySixPair: _isEasySixPair(_fromEasyDictionary()),
       bToEasySixPair: _isEasySixPair(_toEasyDictionary()),
-      bHideEasySixPair: _isEasySixPair(wordsBusiness().placeFirstEasy()),
+      bHideEasySixPair: _isEasySixPair(diagramsModel.mapHideEasy),
       bFromEasySixConflict: _isEasySixConflict(_fromEasyDictionary()),
       bToEasySixConflict: _isEasySixConflict(_toEasyDictionary()),
-      bHideEasySixConflict:
-          _isEasySixConflict(wordsBusiness().placeFirstEasy()),
+      bHideEasySixConflict: _isEasySixConflict(diagramsModel.mapHideEasy),
       stringEmptyBranch: emptyEarth(),
       stringEasyParent: easyParent(),
       isEasyRepeatedGroan: isEasyRepeatedGroan(),

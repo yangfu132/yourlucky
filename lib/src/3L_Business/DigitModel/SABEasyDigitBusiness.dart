@@ -36,8 +36,7 @@ class SABEasyDigitBusiness {
       else if (3 == randomNum) randomNum = 9;
       //else cont.
       listEasyData.add(randomNum);
-    } //endf
-    //return _listEasyData;
+    } //end for
     print('listEasyData:$listEasyData');
     //[0, 8, 0, 1, 1, 1]
     //[8, 8, 0, 8, 0, 0]

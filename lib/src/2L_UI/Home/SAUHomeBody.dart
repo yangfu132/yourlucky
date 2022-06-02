@@ -59,7 +59,7 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
       _bAnimation = false;
       setState(() {});
       Navigator.push(context, MaterialPageRoute(builder: (context) {
-        SABEasyDigitModel outEasyModel = SABEasyDigitBusiness.create();
+        SABEasyDigitModel outEasyModel = SACContext.easyStore().create();
         SABEasyDetailBusiness detailBusiness =
             SABEasyDetailBusiness(outEasyModel);
         return SAUStrategyResultRoute(detailBusiness.outputDetailModel());
