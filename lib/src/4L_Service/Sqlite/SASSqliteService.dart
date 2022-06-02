@@ -49,15 +49,15 @@ class SASSqliteService extends SABBaseService {
       join(await getDatabasesPath(), 'sa_database.db'),
       // When the database is first created, create a table to store dogs.
       // 当数据库第一次被创建的时候，创建一个数据表，用以存储狗狗们的数据。
-      onCreate: (db, version) {
+      onCreate: (db, version) async {
         // Run the CREATE TABLE statement on the database.
         // 创建多张表
-        // await db.execute(
-        //           'CREATE TABLE dogs(id INTEGER PRIMARY KEY, name TEXT, age INTEGER)',
-        //         );
-        // await db.execute(
-        //           'CREATE TABLE dogs(id INTEGER PRIMARY KEY, name TEXT, age INTEGER)',
-        //         );
+        await db.execute(
+          'CREATE TABLE easy(id INTEGER PRIMARY KEY, name TEXT, age INTEGER)',
+        );
+        await db.execute(
+          'CREATE TABLE easy_log(id INTEGER PRIMARY KEY, name TEXT, age INTEGER)',
+        );
 
         return db.execute(
           'CREATE TABLE dogs(id INTEGER PRIMARY KEY, name TEXT, age INTEGER)',

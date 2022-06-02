@@ -1,6 +1,4 @@
-﻿import "package:flutter_perpttual_calendar/flutter_perpttual_calendar.dart";
-import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
-import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
+﻿import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABWordsSymbolModel.dart';
 import 'package:yourlucky/src/3L_Business/Time/SABDayModel.dart';
@@ -18,9 +16,6 @@ class SABEasyWordsBusiness {
   final SABEasyDigitModel _inputEasyModel;
   SABEasyWordsBusiness(this._inputEasyModel);
 
-  late final PWBCalendarBusiness _businessCalendar =
-      PWBCalendarBusiness(_inputEasyModel.getEasyTime());
-
   late final SABDiagramsInfoModel _eightDiagrams = SABDiagramsInfoModel();
 
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
@@ -28,25 +23,6 @@ class SABEasyWordsBusiness {
   late final SABEasyWordsModel _outEasyWordsModel = _initEasyWordsModel();
 
   /// `此模块包含世应相关的方法`///////////////////////////////////////////////////
-
-  //在本卦中，获得世的索引号；
-  int _getLifeIndex() {
-    Map fromDict = fromEasyDictionary();
-    int shiIndex = fromDict["世"];
-    return 6 - shiIndex;
-  }
-
-  //在指定卦中，获得世的索引号；
-  int lifeIndexAtEasy(Map easyDict) {
-    int shiIndex = easyDict["世"];
-    return 6 - shiIndex;
-  }
-
-  int _goalIndex() {
-    Map fromDict = fromEasyDictionary();
-    int yingIndex = fromDict["应"];
-    return 6 - yingIndex;
-  }
 
   /// `访问函数`/////////////////////////////////////////////////////////////////
 
@@ -56,10 +32,6 @@ class SABEasyWordsBusiness {
 
   SABEasyWordsModel outEasyWordsModel() {
     return _outEasyWordsModel;
-  }
-
-  PWBCalendarBusiness businessCalendar() {
-    return _businessCalendar;
   }
 
   /// `子model`/////////////////////////////////////////////////////////////////
@@ -104,68 +76,6 @@ class SABEasyWordsBusiness {
 
   String dayElement() {
     return _branchBusiness.earthElement(dayEarth());
-  }
-
-  SABDiagramsModel diagramsModel() {
-    SABDiagramsModel result = SABDiagramsModel(
-      stringFromName: fromEasyName(),
-      stringToName: toEasyName(),
-      stringFromElement: eightDiagrams().elementOfEasy(fromEasyName()),
-      stringToElement: eightDiagrams().elementOfEasy(toEasyName()),
-      stringFromPlace: eightDiagrams().easyPlaceByName(fromEasyName()),
-      stringToPlace: eightDiagrams().easyPlaceByName(toEasyName()),
-      mapFromEasy: fromEasyDictionary(),
-      mapToEasy: toEasyDictionary(),
-      mapHideEasy: placeFirstEasy(),
-      bFromPureEasy: 0 == lifeIndexAtEasy(fromEasyDictionary()),
-      bToPureEasy: 0 == lifeIndexAtEasy(toEasyDictionary()),
-    );
-    return result;
-  }
-
-  ///此方法获取本卦的卦名
-  String fromEasyName() {
-    String stringResult = "";
-    Map fromDict = fromEasyDictionary();
-    if (fromDict.isNotEmpty) {
-      stringResult = fromDict["name"];
-    }
-    //else cont.
-
-    return stringResult;
-  }
-
-  ///此方法获取变卦的卦名
-  String toEasyName() {
-    String stringResult = "";
-    Map toDict = toEasyDictionary();
-    if (toDict.isNotEmpty) {
-      stringResult = toDict["name"];
-    }
-    //else cont.
-    return stringResult;
-  }
-
-  ///此方法获取本卦在八宫中的信息
-  Map fromEasyDictionary() {
-    Map result =
-        eightDiagrams().getEasyDictionaryForKey(_inputEasyModel.fromEasyKey());
-    return result;
-  }
-
-  ///此方法获取变卦在八宫中的信息
-  Map toEasyDictionary() {
-    Map result =
-        eightDiagrams().getEasyDictionaryForKey(_inputEasyModel.toEasyKey());
-    return result;
-  }
-
-  ///方法注释：获取本卦所在八宫的第一卦
-  Map placeFirstEasy() {
-    String firstKey = eightDiagrams()
-        .firstEasyKeyInDiagram(eightDiagrams().easyPlaceByName(fromEasyName()));
-    Map firstEasy = eightDiagrams().getEasyDictionaryForKey(firstKey);
-    return firstEasy;
   }
 
   /// `symbol`/////////////////////////////////////////////////////////////////

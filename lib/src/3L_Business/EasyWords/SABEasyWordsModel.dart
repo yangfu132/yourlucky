@@ -18,22 +18,7 @@ class SABEasyWordsModel {
     required this.elementOfUsefulDeity,
     required this.intLifeIndex,
     required this.intGoalIndex,
-  }) {
-    if (this.inputDigitModel.isMovement()) {
-      this.inputDigitModel.stringDescribe =
-          "${this.diagramsModel.stringFromName}(${this.diagramsModel.stringFromPlace})->${this.diagramsModel.stringToName}(${this.diagramsModel.stringToPlace})";
-    } else {
-      this.inputDigitModel.stringDescribe =
-          "${this.diagramsModel.stringFromName}(${this.diagramsModel.stringFromPlace})";
-    }
-    if (this.inputDigitModel.getEasyGoal().length > 0) {
-      this.inputDigitModel.stringTitle =
-          this.stringFormatTime + this.inputDigitModel.getEasyGoal();
-    } else {
-      this.inputDigitModel.stringTitle =
-          this.stringFormatTime + this.inputDigitModel.getUsefulDeity();
-    }
-  }
+  });
   final SABDiagramsModel diagramsModel;
   final SABEasyDigitModel inputDigitModel;
   final List _listRowModels = List.empty(growable: true);
@@ -181,7 +166,7 @@ class SABEasyWordsModel {
 
     for (int intRow = 0; intRow < 6; intRow++) {
       String stringSymbolParent = getSymbolParent(intRow, easyTypeEnum);
-      if (stringSymbolParent == this.inputDigitModel.getUsefulDeity()) {
+      if (stringSymbolParent == this.inputDigitModel.strUsefulDeity) {
         parentArray.add(intRow);
       }
       //else cont.

@@ -1,69 +1,72 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
+
 ///此Model仅代表占卜时所创造的数据；
 class SABEasyDigitModel {
   //构造函数
-  SABEasyDigitModel(
-    this._strEasyGoal,
-    this._strUsefulDeity,
-    this.easyDateTime,
-    this._listEasyData, {
-    stringTitle,
-    stringDescribe,
-  }) {
-    if (null == stringTitle || stringTitle.isEmpty) {
-      this.stringTitle = "原始";
-    } else {
-      this.stringTitle = stringTitle;
-    }
-
-    if (stringDescribe == null || stringDescribe.isEmpty) {
-      this.stringDescribe = "原始";
-    } else {
-      this.stringDescribe = stringDescribe;
-    }
-  }
-  SABEasyDigitModel.fromJson(Map<String, Object?> json)
-      : this(
-          json['strEasyGoal']! as String,
-          json['strUsefulDeity']! as String,
-          json['easyDateTime']! as DateTime,
-          (json['listEasyData']! as List).cast<int>(),
-          stringTitle: json['stringTitle']! as String,
-          stringDescribe: json['stringDescribe']! as String,
-        );
-
-  Map<String, Object?> toJson() {
-    return {
-      'listEasyData': _listEasyData,
-      'strEasyGoal': _strEasyGoal,
-      'easyDateTime': easyDateTime,
-      'strUsefulDeity': _strUsefulDeity,
-      'stringTitle': stringTitle,
-      'stringDescribe': stringDescribe
-    };
-  }
+  SABEasyDigitModel({
+    required this.strEasyGoal,
+    required this.strUsefulDeity,
+    required this.easyDateTime,
+    required this.listEasyData,
+    required this.stringFormatTime,
+  });
 
   //属性：实例发生时间
   final DateTime easyDateTime;
 
   //属性：实例的随机数数组
-  final List<int> _listEasyData;
+  final List<int> listEasyData;
 
   //属性：实例的发生目的
-  final String _strEasyGoal;
+  final String strEasyGoal;
 
   //属性：实例的用神
-  final String _strUsefulDeity;
+  final String strUsefulDeity;
 
-  late String stringTitle;
+  final String stringFormatTime;
 
-  late String stringDescribe;
+  late String stringDescribe = describe();
 
-  /// `public 函数`/////////////////////////////////////////////////////////////
-  bool isMovement() {
+  late final String fromEasyKey = _getFromEasyKey(listEasyData);
+
+  late final String toEasyKey = _getToEasyKey(listEasyData);
+
+  late final SABDiagramsModel diagramsModel = _getDiagramsModel();
+
+  SABDiagramsModel _getDiagramsModel() {
+    return SABDiagramsModel(
+      fromEasyKey: fromEasyKey,
+      toEasyKey: toEasyKey,
+    );
+  }
+
+  String describe() {
+    String stringDescribe;
+    if (isMovement(listEasyData)) {
+      stringDescribe =
+          "${diagramsModel.stringFromName}(${diagramsModel.stringFromPlace})->${diagramsModel.stringToName}(${diagramsModel.stringToPlace})";
+    } else {
+      stringDescribe =
+          "${diagramsModel.stringFromName}(${diagramsModel.stringFromPlace})";
+    }
+    return stringDescribe;
+  }
+
+  String title() {
+    String stringTitle = '';
+    if (strEasyGoal.length > 0) {
+      stringTitle = stringFormatTime + strEasyGoal;
+    } else {
+      stringTitle = stringFormatTime + strUsefulDeity;
+    }
+    return stringTitle;
+  }
+
+  bool isMovement(List<int> listEasyData) {
     bool tempMovement = false;
-    for (int intItem in _listEasyData) {
+    for (int intItem in listEasyData) {
       if (8 == intItem || 9 == intItem) {
         tempMovement = true;
         break;
@@ -71,6 +74,61 @@ class SABEasyDigitModel {
     } //end for
     return tempMovement;
   }
+
+  String _getFromEasyKey(List<int> listEasyData) {
+    String strFromKey = "";
+    int nValue, nFromValue;
+    for (int nIndex = 0; nIndex < 6; nIndex++) {
+      nValue = listEasyData[nIndex];
+      if (nValue == 8)
+        nFromValue = 0;
+      else if (nValue == 9)
+        nFromValue = 1;
+      else
+        nFromValue = nValue;
+      strFromKey = "$strFromKey$nFromValue";
+    } //end for
+
+    return strFromKey;
+  }
+
+  String _getToEasyKey(List<int> listEasyData) {
+    String strToKey = "";
+    int nValue, nFromValue;
+    for (int nIndex = 0; nIndex < 6; nIndex++) {
+      nValue = listEasyData[nIndex];
+      if (nValue == 8)
+        nFromValue = 1;
+      else if (nValue == 9)
+        nFromValue = 0;
+      else
+        nFromValue = nValue;
+      strToKey = "$strToKey$nFromValue";
+    } //end for
+
+    return strToKey;
+  }
+
+  SABEasyDigitModel.fromJson(Map<String, Object?> json)
+      : this(
+          strEasyGoal: json['strEasyGoal']! as String,
+          strUsefulDeity: json['strUsefulDeity']! as String,
+          easyDateTime: json['easyDateTime']! as DateTime,
+          listEasyData: (json['listEasyData']! as List).cast<int>(),
+          stringFormatTime: json['stringFormatTime']! as String,
+        );
+
+  Map<String, Object?> toJson() {
+    return {
+      'listEasyData': listEasyData,
+      'strEasyGoal': strEasyGoal,
+      'easyDateTime': easyDateTime,
+      'strUsefulDeity': strUsefulDeity,
+      'stringFormatTime': stringFormatTime,
+    };
+  }
+
+  /// `public 函数`/////////////////////////////////////////////////////////////
 
   bool isInGua(int intRow) {
     return 0 <= intRow && intRow <= 3;
@@ -80,12 +138,14 @@ class SABEasyDigitModel {
     return 4 <= intRow && intRow <= 6;
   }
 
+  /// `get and set函数`/////////////////////////////////////////////////////////
+
   ///此函数获取内卦变动的爻列表
   List inGuaMovementArray() {
     List inMovementArray = [];
 
     for (int intIndex = 3; intIndex < 6; intIndex++) {
-      int intValue = _listEasyData[intIndex];
+      int intValue = listEasyData[intIndex];
       if (8 == intValue || 9 == intValue) {
         inMovementArray.add(intValue);
       }
@@ -99,7 +159,7 @@ class SABEasyDigitModel {
   List outGuaMovementArray() {
     List outMovementArray = [];
     for (int intIndex = 0; intIndex < 3; intIndex++) {
-      int intValue = _listEasyData[intIndex];
+      int intValue = listEasyData[intIndex];
 
       if (8 == intValue || 9 == intValue) {
         outMovementArray.add(intValue);
@@ -110,29 +170,13 @@ class SABEasyDigitModel {
     return outMovementArray;
   }
 
-  /// `get and set函数`/////////////////////////////////////////////////////////
-
-  DateTime getEasyTime() {
-    return easyDateTime;
-  }
-
-  //函数：占卜目的
-  String getEasyGoal() {
-    return _strEasyGoal;
-  }
-
-  //函数：用神
-  String getUsefulDeity() {
-    return _strUsefulDeity;
-  }
-
   bool isMovementAtRow(int nRow) {
     bool result = false;
 
     if (0 <= nRow && nRow < 6) {
-      if (8 == _listEasyData[nRow]) {
+      if (8 == listEasyData[nRow]) {
         result = true;
-      } else if (9 == _listEasyData[nRow]) {
+      } else if (9 == listEasyData[nRow]) {
         result = true;
       }
       //else cont.
@@ -143,41 +187,7 @@ class SABEasyDigitModel {
     return result;
   }
 
-  String fromEasyKey() {
-    String strFromKey = "";
-    int nValue, nFromValue;
-    for (int nIndex = 0; nIndex < 6; nIndex++) {
-      nValue = _listEasyData[nIndex];
-      if (nValue == 8)
-        nFromValue = 0;
-      else if (nValue == 9)
-        nFromValue = 1;
-      else
-        nFromValue = nValue;
-      strFromKey = "$strFromKey$nFromValue";
-    } //endf
-
-    return strFromKey;
-  }
-
-  String toEasyKey() {
-    String strToKey = "";
-    int nValue, nFromValue;
-    for (int nIndex = 0; nIndex < 6; nIndex++) {
-      nValue = _listEasyData[nIndex];
-      if (nValue == 8)
-        nFromValue = 1;
-      else if (nValue == 9)
-        nFromValue = 0;
-      else
-        nFromValue = nValue;
-      strToKey = "$strToKey$nFromValue";
-    } //endf
-
-    return strToKey;
-  }
-
   int digitAtIndex(int intSymbolIndex) {
-    return _listEasyData[intSymbolIndex];
+    return listEasyData[intSymbolIndex];
   }
 }

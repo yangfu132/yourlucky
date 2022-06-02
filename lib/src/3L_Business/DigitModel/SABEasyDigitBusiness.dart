@@ -1,17 +1,27 @@
 import 'dart:math';
 
+import 'package:flutter_perpttual_calendar/flutter_perpttual_calendar.dart';
 import 'package:yourlucky/src/4L_Service/Sqlite/SASSqliteService.dart';
 
 import 'SABEasyDigitModel.dart';
 
 class SABEasyDigitBusiness {
   ///创建
-  static SABEasyDigitModel create() {
+  SABEasyDigitModel create() {
+    String strEasyGoal = '测试';
+    String strUsefulDeity = '子孙';
+    List<int> listEasyData = generateEasyArray();
+
+    final DateTime easyDateTime = DateTime.now();
+    PWBCalendarBusiness calendar = PWBCalendarBusiness(easyDateTime);
+    String stringFormatTime = calendar.stringFromDate();
+
     SABEasyDigitModel outEasyModel = SABEasyDigitModel(
-      '测试',
-      '子孙',
-      DateTime.now(),
-      generateEasyArray(),
+      strEasyGoal: strEasyGoal,
+      strUsefulDeity: strUsefulDeity,
+      easyDateTime: easyDateTime,
+      listEasyData: listEasyData,
+      stringFormatTime: stringFormatTime,
     );
     return outEasyModel;
   }
@@ -44,12 +54,6 @@ class SABEasyDigitBusiness {
 
   ///加载
   SABEasyDigitModel load() {
-    SABEasyDigitModel outEasyModel = SABEasyDigitModel(
-      '测试',
-      '子孙',
-      DateTime.now(),
-      generateEasyArray(),
-    );
-    return outEasyModel;
+    return create();
   }
 }
