@@ -21,7 +21,7 @@ class SABEarthBranchBusiness {
     if (null != timeEarth) {
     } else {
       result = false;
-      colog("卦中用神未现!");
+      coLog("卦中用神未现!");
     }
     return result;
   }
@@ -46,7 +46,7 @@ class SABEarthBranchBusiness {
     if (null != oneData) {
       strResult = oneData[atEarth];
     } else {
-      colog("earthTwelveDeity error");
+      coLog("earthTwelveDeity error");
     }
 
     return strResult;

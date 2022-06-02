@@ -3,8 +3,8 @@ import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABWordsSymbolModel.dart';
-import 'package:yourlucky/src/3L_Business/Time/SABMonthModel.dart';
 import 'package:yourlucky/src/3L_Business/Time/SABDayModel.dart';
+import 'package:yourlucky/src/3L_Business/Time/SABMonthModel.dart';
 
 import '../../1L_Context/SACContext.dart';
 import '../../1L_Context/SACGlobal.dart';
@@ -196,11 +196,11 @@ class SABEasyWordsBusiness {
           result = strSymbol;
       } else {
         result = "error_symbol_length";
-        colog("error!");
+        coLog("error!");
       }
     } else {
       result = "error_symbol_index";
-      colog("error!");
+      coLog("error!");
     }
     return result;
   }
@@ -218,7 +218,7 @@ class SABEasyWordsBusiness {
       stringResult = toSymbol.replaceRange(toSymbol.length - 4, 2, strValue);
     } else {
       stringResult = "error_symbol_index";
-      colog("error!");
+      coLog("error!");
     }
 
     return stringResult;
@@ -231,7 +231,7 @@ class SABEasyWordsBusiness {
     if (intHideIndex >= 0) {
       result = symbolStringAtRow(intHideIndex, placeFirstEasy());
     } else
-      result = "卦中用神未现"; //colog("error!");
+      result = "卦中用神未现"; //coLog("error!");
 
     return result;
   }
@@ -242,7 +242,7 @@ class SABEasyWordsBusiness {
     if (symbol.length >= 1)
       stringResult = symbol.substring(symbol.length - 1, symbol.length);
     else
-      colog("");
+      coLog("");
 
     return stringResult;
   }
@@ -254,7 +254,7 @@ class SABEasyWordsBusiness {
       stringResult = stringSymbol.substring(
           stringSymbol.length - 4, stringSymbol.length - 2);
     else
-      colog("");
+      coLog("");
 
     return stringResult;
   }
@@ -265,7 +265,7 @@ class SABEasyWordsBusiness {
       String strMark = stringSymbol.substring(0, 1);
       bResult = "×" == strMark || "○" == strMark;
     } else
-      colog("error!");
+      coLog("error!");
 
     return bResult;
   }
@@ -276,7 +276,7 @@ class SABEasyWordsBusiness {
       stringResult = stringSymbol.substring(
           stringSymbol.length - 2, stringSymbol.length - 1);
     else
-      stringResult = "卦中用神未现"; //colog("error!");
+      stringResult = "卦中用神未现"; //coLog("error!");
 
     return stringResult;
   }
@@ -396,7 +396,7 @@ class SABEasyWordsBusiness {
 
       result = SABDiagramsInfoModel.palaceNameForKey(guaKey);
     } else
-      colog("error!");
+      coLog("error!");
 
     return result;
   }

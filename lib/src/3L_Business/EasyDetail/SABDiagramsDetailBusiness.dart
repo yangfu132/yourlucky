@@ -31,7 +31,7 @@ class SABDiagramsDetailBusiness {
       resultList[6]['value'] = this.resultSymbol(theHealthModel);
       resultList[7]['value'] = this.resultHappenTime();
     } else
-      colog('无效的数据');
+      coLog('无效的数据');
   }
 
   ///`用神`//////////////////////////////////////////////////////
@@ -284,7 +284,7 @@ class SABDiagramsDetailBusiness {
     }
     if (EasyTypeEnum.type_null == usefulDeity.easyType) {
     } else {
-      colog("EasyType do not has usefulDeity.");
+      coLog("EasyType do not has usefulDeity.");
     }
 
     return result;
@@ -310,7 +310,7 @@ class SABDiagramsDetailBusiness {
         strUseful = "日为用神";
       }
     } else {
-      colog("EasyType do not has usefulDeity.");
+      coLog("EasyType do not has usefulDeity.");
     } //end {}
 
     if (EmptyEnum.Empty_NoUseful == emptyState) {
@@ -383,7 +383,7 @@ class SABDiagramsDetailBusiness {
       strResult =
           "世爻(${lifeHealth.toStringAsFixed(4)})、用神(${usefulHealth.toStringAsFixed(4)})两衰，世爻失陷，十分不利";
     } else
-      colog("error!");
+      coLog("error!");
 
     return strResult;
   }
@@ -680,7 +680,7 @@ class SABDiagramsDetailBusiness {
       String subString = emptyEarth.substring(0, 1);
       strResult = "旬空：$length 日后甲$subString 日出空";
     } else
-      colog("error!");
+      coLog("error!");
     return strResult;
   }
 

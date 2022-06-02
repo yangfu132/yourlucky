@@ -6,7 +6,7 @@ import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyStrategyResult/Strategy/SABEasyStrategyInfoBusiness.dart';
 import 'package:yourlucky/src/4L_Service/SABUserAuthService.dart';
 
-void colog(String strMsg) {
+void coLog(String strMsg) {
   print(strMsg);
 }
 

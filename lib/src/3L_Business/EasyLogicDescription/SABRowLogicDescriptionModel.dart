@@ -34,7 +34,7 @@ class SABRowLogicDescriptionModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.dayRelation;
     } else {
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
       return 'easyTypeEnum:$easyTypeEnum';
     }
   }
@@ -47,7 +47,7 @@ class SABRowLogicDescriptionModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       hideSymbol.dayRelation = stringDayRelation;
     } else
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
   }
 
   String getSymbolRelation() {
@@ -66,7 +66,7 @@ class SABRowLogicDescriptionModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.monthRelation;
     } else {
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
       return 'easyTypeEnum:$easyTypeEnum';
     }
   }
@@ -79,7 +79,7 @@ class SABRowLogicDescriptionModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       hideSymbol.monthRelation = stringMonthRelation;
     } else
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
   }
 
   String getEmptyDescription(EasyTypeEnum easyTypeEnum) {
@@ -90,7 +90,7 @@ class SABRowLogicDescriptionModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.emptyDescription;
     } else {
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
       return 'easyTypeEnum:$easyTypeEnum';
     }
   }
@@ -103,7 +103,7 @@ class SABRowLogicDescriptionModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       hideSymbol.emptyDescription = emptyDescription;
     } else
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
   }
 
   /// `加载函数`/////////////////////////////////////////////////////////////////

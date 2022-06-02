@@ -111,7 +111,7 @@ class SABMoveHealthBusiness {
         result = health * originBusiness().conversionRateAtRow(nRow, easyType);
       } //else { moving row }
     } else if (EasyTypeEnum.hide == easyType) {
-      colog("error!");
+      coLog("error!");
     }
     return result;
   }
@@ -244,7 +244,7 @@ class SABMoveHealthBusiness {
         bResult = logicModel().isEffectAble(nEffectingRow, easyType);
       }
     } else
-      colog("error!");
+      coLog("error!");
 
     return bResult;
   }

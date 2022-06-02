@@ -68,7 +68,7 @@ class SABEasyHealthLogicModel {
 
   SABRowHealthLogicModel rowModelAtRow(int intRow) {
     if (intRow > _listRowModels.length) {
-      colog("intRow:$intRow");
+      coLog("intRow:$intRow");
     }
     return _listRowModels[intRow];
   }

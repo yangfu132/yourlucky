@@ -26,7 +26,7 @@ class SABRowHealthLogicModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.healthSymbol.stringHealth;
     } else {
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
       return 'easyTypeEnum:$easyTypeEnum';
     }
   }
@@ -39,7 +39,7 @@ class SABRowHealthLogicModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.stringDeity;
     } else {
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
       return 'easyTypeEnum:$easyTypeEnum';
     }
   }
@@ -52,7 +52,7 @@ class SABRowHealthLogicModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.symbolEmptyState;
     } else {
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
       return EmptyEnum.Empty_Null;
     }
   }
@@ -66,7 +66,7 @@ class SABRowHealthLogicModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       bSymbolDayBroken = hideSymbol.isSymbolDayBroken;
     } else
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
 
     return bSymbolDayBroken;
   }
@@ -80,7 +80,7 @@ class SABRowHealthLogicModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       enumResultConflict = hideSymbol.conflictOnMonthState;
     } else
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
 
     return enumResultConflict;
   }
@@ -94,7 +94,7 @@ class SABRowHealthLogicModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       enumResultConflict = hideSymbol.conflictOnDayState;
     } else
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
 
     return enumResultConflict;
   }

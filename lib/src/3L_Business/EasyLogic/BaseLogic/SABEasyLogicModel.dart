@@ -83,7 +83,7 @@ class SABEasyLogicModel {
     } else if (enumEasyType == EasyTypeEnum.hide) {
       bResult = bHideEasySixPair;
     } else {
-      colog("error!");
+      coLog("error!");
     }
     return bResult;
   }
@@ -97,7 +97,7 @@ class SABEasyLogicModel {
     } else if (enumEasyType == EasyTypeEnum.hide) {
       bResult = bHideEasySixConflict;
     } else {
-      colog("error!");
+      coLog("error!");
     }
     return bResult;
   }
@@ -177,7 +177,7 @@ class SABEasyLogicModel {
 
   SABRowLogicModel rowModelAtRow(int intRow) {
     if (intRow > _listRowModels.length) {
-      colog("intRow:$intRow");
+      coLog("intRow:$intRow");
     }
     return _listRowModels[intRow];
   }

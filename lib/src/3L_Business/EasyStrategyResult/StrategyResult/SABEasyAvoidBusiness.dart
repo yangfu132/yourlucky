@@ -177,7 +177,7 @@ class SABEasyAvoidBusiness {
         stringResult = SASStringService.appendToString(stringResult, "福神安静。");
       }
     } else
-      colog("error");
+      coLog("error");
     return stringResult;
   }
 
@@ -198,7 +198,7 @@ class SABEasyAvoidBusiness {
             stringResult = SASStringService.appendToString(
                 stringResult, "克神若在外卦动而克世，宜在家避之。");
           } else {
-            colog('error');
+            coLog('error');
           }
         } //end for
       } else {
@@ -246,7 +246,7 @@ class SABEasyAvoidBusiness {
           } // else cont.
         } // end for
       } else {
-        colog('error');
+        coLog('error');
       }
     }
     return stringResult;

@@ -129,7 +129,7 @@ class SABHealthOriginBusiness {
     if (-1 != siIndex && -1 != xiangIndex) {
       fResult = intervalSeason() * (siIndex - xiangIndex);
     } else
-      colog("error!");
+      coLog("error!");
 
     return fResult;
   }
@@ -192,7 +192,7 @@ class SABHealthOriginBusiness {
     } else if ("绝" == twelve) {
       fResult = base + interval;
     } else
-      colog("error!");
+      coLog("error!");
 
     return fResult;
   }
@@ -227,7 +227,7 @@ class SABHealthOriginBusiness {
     } else if ("死" == season) {
       fResult = base + interval;
     } else
-      colog("error!");
+      coLog("error!");
 
     return fResult;
   }
@@ -319,10 +319,10 @@ class SABHealthOriginBusiness {
               wordsModel().monthModel.stringEarth,
               wordsModel().dayModel.stringEarth);
       } else {
-        colog("error!");
+        coLog("error!");
       }
     } else {
-      colog("error!");
+      coLog("error!");
     }
 
     return fResult;
@@ -346,7 +346,7 @@ class SABHealthOriginBusiness {
 
       bResult = health > healthCriticalValue();
     } else
-      colog("error!");
+      coLog("error!");
 
     return bResult;
   }
@@ -381,7 +381,7 @@ class SABHealthOriginBusiness {
         } //else cont.
       } //else cont.
     } else {
-      colog("symbolModel is null");
+      coLog("symbolModel is null");
     }
 
     /*******************************************
@@ -439,10 +439,10 @@ class SABHealthOriginBusiness {
           bResult = MAX_DEFENSIVE;
         //else cont.
       } else {
-        colog("error!");
+        coLog("error!");
       }
     } else {
-      colog("error!");
+      coLog("error!");
     }
 
     return bResult;

@@ -279,7 +279,7 @@ class SABEasyDetailModel {
 
   SABRowDetailModel rowModelAtRow(int intRow) {
     if (intRow > _listRowModels.length) {
-      colog("intRow:$intRow");
+      coLog("intRow:$intRow");
     }
     return _rowModelsArray()[intRow];
   }

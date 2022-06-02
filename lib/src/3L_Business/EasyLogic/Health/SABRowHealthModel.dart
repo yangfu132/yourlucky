@@ -27,7 +27,7 @@ class SABRowHealthModel {
     } else if (EasyTypeEnum.hide == easyType) {
       fHealth = hideSymbol.doubleHealth;
     } else
-      colog("error!");
+      coLog("error!");
 
     return fHealth;
   }
@@ -40,7 +40,7 @@ class SABRowHealthModel {
     } else if (EasyTypeEnum.hide == easyType) {
       hideSymbol.doubleHealth = fHealth;
     } else
-      colog("error!");
+      coLog("error!");
   }
 
   void setHealthDesForEasyType(EasyTypeEnum easyType, String stringHealth) {
@@ -51,6 +51,6 @@ class SABRowHealthModel {
     } else if (EasyTypeEnum.hide == easyType) {
       hideSymbol.stringHealth = stringHealth;
     } else
-      colog("error!");
+      coLog("error!");
   }
 }

@@ -38,7 +38,7 @@ class SABRowLogicModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       resultSymbol = hideSymbol;
     } else {
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
     }
     return resultSymbol;
   }
@@ -52,7 +52,7 @@ class SABRowLogicModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       bEffectAble = hideSymbol.isEffectAble;
     } else
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
 
     return bEffectAble;
   }
@@ -66,7 +66,7 @@ class SABRowLogicModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       bResultStrong = hideSymbol.isSeasonStrong;
     } else
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
 
     return bResultStrong;
   }
@@ -80,7 +80,7 @@ class SABRowLogicModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       enumResultEmpty = hideSymbol.basicEmptyState;
     } else
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
 
     return enumResultEmpty;
   }
@@ -94,7 +94,7 @@ class SABRowLogicModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       bResultIsMonthPair = hideSymbol.isMonthPair;
     } else
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
 
     return bResultIsMonthPair;
   }
@@ -108,7 +108,7 @@ class SABRowLogicModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       bResultIsOnMonth = hideSymbol.isOnMonth;
     } else
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
 
     return bResultIsOnMonth;
   }
@@ -122,7 +122,7 @@ class SABRowLogicModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       bResultIsDayPair = hideSymbol.isDayPair;
     } else
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
 
     return bResultIsDayPair;
   }
@@ -136,7 +136,7 @@ class SABRowLogicModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       bResultIsOnDay = hideSymbol.isOnDay;
     } else
-      colog('easyTypeEnum:$easyTypeEnum');
+      coLog('easyTypeEnum:$easyTypeEnum');
 
     return bResultIsOnDay;
   }

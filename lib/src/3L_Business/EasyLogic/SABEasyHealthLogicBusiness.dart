@@ -260,7 +260,7 @@ class SABEasyHealthLogicBusiness {
         fResult = healthModel().dayHealth;
       }
     } else if (EasyTypeEnum.to == deityModel.easyType) {
-      colog("EasyTypeEnum.to do not have usefulDeity");
+      coLog("EasyTypeEnum.to do not have usefulDeity");
     } else {}
 
     return fResult;
@@ -321,7 +321,7 @@ class SABEasyHealthLogicBusiness {
     } else if (EasyTypeEnum.type_null == deityModel.easyType) {
       return true;
     } else if (EasyTypeEnum.to == deityModel.easyType) {
-      colog("EasyTypeEnum.to do not have usefulDeity");
+      coLog("EasyTypeEnum.to do not have usefulDeity");
     }
 
     return bResult;
@@ -343,7 +343,7 @@ class SABEasyHealthLogicBusiness {
         stringEarth = logicModel().inputWordsModel.dayModel.stringEarth;
       }
     } else if (EasyTypeEnum.to == deityModel.easyType) {
-      colog("EasyTypeEnum.to do not have usefulDeity");
+      coLog("EasyTypeEnum.to do not have usefulDeity");
     } else {}
 
     return stringEarth;
@@ -835,7 +835,7 @@ class SABEasyHealthLogicBusiness {
 
       bResult = nValue < 0;
     } else
-      colog("error!");
+      coLog("error!");
 
     return bResult;
   }
@@ -929,7 +929,7 @@ class SABEasyHealthLogicBusiness {
 
       bResult = nValue < 0;
     } else
-      colog("error!");
+      coLog("error!");
 
     return bResult;
   }
@@ -984,7 +984,7 @@ class SABEasyHealthLogicBusiness {
     else if (easyType == EasyTypeEnum.hide)
       stringSymbol = symbolAtHideRow(intIndex);
     else
-      colog("error!");
+      coLog("error!");
 
     for (int numItem in arrayEffects) {
       String stringSymbolItem = symbolAtFromRow(numItem);
@@ -1078,7 +1078,7 @@ class SABEasyHealthLogicBusiness {
         }
       } //else cont.
     } else {
-      colog("error!");
+      coLog("error!");
     }
 
     return nResult;

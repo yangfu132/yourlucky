@@ -34,7 +34,7 @@ class SABOutRightBusiness {
     } else if (EasyTypeEnum.hide == easyType) {
       fResult = hideOutRightAtRow(hashCode, easyType);
     } else
-      colog("error!");
+      coLog("error!");
 
     return fResult;
   }
@@ -81,7 +81,7 @@ class SABOutRightBusiness {
         fResult = OutRightEnum.RIGHT_EMPTY;
       }
     } else {
-      colog("symbolModel is null");
+      coLog("symbolModel is null");
     }
 
     return fResult;

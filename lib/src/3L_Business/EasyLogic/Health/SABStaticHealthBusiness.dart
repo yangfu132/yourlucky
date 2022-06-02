@@ -114,7 +114,7 @@ class SABStaticHealthBusiness {
         originBusiness().symbolOutRightAtRow(nEffectingRow, easyType)) {
       bResult = logicModel().isSeasonStrong(nEffectingRow, easyType);
     } else
-      colog("error!");
+      coLog("error!");
 
     return bResult;
   }

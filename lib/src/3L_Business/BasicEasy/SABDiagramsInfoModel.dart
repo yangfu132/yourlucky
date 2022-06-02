@@ -33,7 +33,7 @@ class SABDiagramsInfoModel {
     if (easyName.length >= 2) {
       result = easyName[easyName.length - 2];
     } else
-      colog("error!");
+      coLog("error!");
 
     return result;
   }
@@ -101,7 +101,7 @@ class SABDiagramsInfoModel {
     if (tableDictionary.length == 64)
       resultDict = tableDictionary[strKey];
     else
-      colog("error!");
+      coLog("error!");
 
     return resultDict;
   }

@@ -134,7 +134,7 @@ class SABEasyLogicBusiness {
     } else if (easyType == EasyTypeEnum.hide)
       stringSymbol = symbolAtHideRow(intIndex);
     else
-      colog("error!");
+      coLog("error!");
 
     if ("" != stringSymbol) {
       List arrayEffects = staticSeasonStrong();
@@ -223,7 +223,7 @@ class SABEasyLogicBusiness {
       if (strTo.isNotEmpty) bResult = isEarthRestricts(strTo, fromEarth);
       //else cont.
     } else
-      colog("error!");
+      coLog("error!");
 
     return bResult;
   }
@@ -254,7 +254,7 @@ class SABEasyLogicBusiness {
       bResult = bResult || "相" == stringSeason;
       bResult = bResult || "余气" == stringSeason;
     } else
-      colog('error');
+      coLog('error');
 
     return bResult;
   }
@@ -394,7 +394,7 @@ class SABEasyLogicBusiness {
       String stringSymbol = rowModelAtRow(intRow, easyType);
       bResult = _isSymbolDayConflict(stringSymbol);
     } else
-      colog("error!");
+      coLog("error!");
 
     return bResult;
   }
@@ -787,7 +787,7 @@ class SABEasyLogicBusiness {
         }
       } //else continue.
     } else {
-      colog("stringSymbol为空");
+      coLog("stringSymbol为空");
     }
 
     return nResult;
@@ -831,7 +831,7 @@ class SABEasyLogicBusiness {
         strResult = strEarthBranch.substring(emptyLocation, emptyLocation + 2);
       }
     } else
-      colog("error!");
+      coLog("error!");
 
     return strResult;
   }
@@ -945,7 +945,7 @@ class SABEasyLogicBusiness {
 
     //TODO:yangfu132丰富用神的选取规则：按旺相休囚死的顺序排列；或者按照强弱顺序排序。
     //其实此时应该已经知道用神衰弱，事情很难成功。
-    //    colog("error!");
+    //    coLog("error!");
 
     return result;
   }
