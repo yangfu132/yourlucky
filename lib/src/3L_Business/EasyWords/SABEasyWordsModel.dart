@@ -1,6 +1,7 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
+import 'package:yourlucky/src/3L_Business/Goal/SABGoalModel.dart';
 import 'package:yourlucky/src/3L_Business/Time/SABDayModel.dart';
 import 'package:yourlucky/src/3L_Business/Time/SABMonthModel.dart';
 import 'package:yourlucky/src/4L_Service/SASStringService.dart';
@@ -13,6 +14,7 @@ class SABEasyWordsModel {
     this.inputDigitModel, {
     required this.monthModel,
     required this.dayModel,
+    required this.goalModel,
     required this.elementOfUsefulDeity,
   });
 
@@ -23,6 +25,7 @@ class SABEasyWordsModel {
   ///时间
   final SABMonthModel monthModel;
   final SABDayModel dayModel;
+  final SABGoalModel goalModel;
 
   ///世应
   late final SABDiagramsModel diagramsModel = inputDigitModel.diagramsModel;

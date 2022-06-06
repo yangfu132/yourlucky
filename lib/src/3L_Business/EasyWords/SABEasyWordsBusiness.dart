@@ -3,6 +3,9 @@ import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABWordsSymbolModel.dart';
+import 'package:yourlucky/src/3L_Business/Goal/SABDeityModel.dart';
+import 'package:yourlucky/src/3L_Business/Goal/SABGoalModel.dart';
+import 'package:yourlucky/src/3L_Business/Goal/SABLifeModel.dart';
 import 'package:yourlucky/src/3L_Business/Time/SABDayModel.dart';
 import 'package:yourlucky/src/3L_Business/Time/SABMonthModel.dart';
 
@@ -328,11 +331,23 @@ class SABEasyWordsBusiness {
     return result;
   }
 
+  SABGoalModel goalModel() {
+    final SABDeityModel deityModel = SABDeityModel();
+
+    final SABLifeModel lifeModel = SABLifeModel();
+
+    return SABGoalModel(
+      deityModel: deityModel,
+      lifeModel: lifeModel,
+    );
+  }
+
   SABEasyWordsModel _initEasyWordsModel() {
     SABEasyWordsModel wordsModel = SABEasyWordsModel(
       _inputEasyModel,
       monthModel: monthModel(),
       dayModel: dayModel(),
+      goalModel: goalModel(),
       elementOfUsefulDeity: elementOfUsefulDeity(),
     );
     for (int intRow = 0; intRow < 6; intRow++) {

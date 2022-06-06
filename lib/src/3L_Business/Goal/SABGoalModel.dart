@@ -7,12 +7,12 @@ class SABGoalModel {
   SABGoalModel({
     required this.deityModel,
     required this.lifeModel,
-    required this.strategyModel,
+    // required this.strategyModel,
   });
 
   final SABDeityModel deityModel;
 
   final SABLifeModel lifeModel;
 
-  final SABEasyStrategyResultModel strategyModel;
+  // final SABEasyStrategyResultModel strategyModel;
 }
