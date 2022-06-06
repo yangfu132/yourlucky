@@ -107,8 +107,8 @@ class SASSqliteService extends SABBaseService {
   }
 
   // A method that retrieves all the dogs from the dogs table.
-  Future<List<SABBaseModel>> query(
-      String table, SABBaseModel createModel(Map<String, Object?> json)) async {
+  Future<List<T>> query<T>(
+      String table, T createModel(Map<String, Object?> json)) async {
     // Get a reference to the database.
     final db = await database;
 
@@ -218,7 +218,7 @@ class SASSqliteService extends SABBaseService {
     await insertModel(fido);
 
     // Now, use the method above to retrieve all the dogs.
-    print(await query(fido.getModelName(), (Map<String, Object?> json) {
+    print(await query<Dog>(fido.getModelName(), (Map<String, Object?> json) {
       return Dog.fromJson(json);
     })); // Prints a list that include Fido.
 
@@ -231,15 +231,17 @@ class SASSqliteService extends SABBaseService {
     await updateModel(fido);
 
     // Print the updated results.
-    print(await query(fido.getModelName(), (Map<String, Object?> json) {
+    print(await query<Dog>(fido.getModelName(), (Map<String, Object?> json) {
       return Dog.fromJson(json);
     })); // Prints Fido with age 42.
 
     // Delete Fido from the database.
     await deleteModel(fido);
     // Print the list of dogs (empty) [打印一个列表的狗狗们 (这里已经空了)]
-    print(await query(fido.getModelName(), (Map<String, Object?> json) {
+    print(await query<Dog>(fido.getModelName(), (Map<String, Object?> json) {
       return Dog.fromJson(json);
     }));
   }
 }
+
+class T {}

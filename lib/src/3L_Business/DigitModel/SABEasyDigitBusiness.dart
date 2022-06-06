@@ -6,6 +6,8 @@ import 'package:yourlucky/src/4L_Service/Sqlite/SASSqliteService.dart';
 import 'SABEasyDigitModel.dart';
 
 class SABEasyDigitBusiness {
+  final SASSqliteService sqlite = SASSqliteService();
+
   ///创建
   SABEasyDigitModel create() {
     String strEasyGoal = '测试';
@@ -47,12 +49,15 @@ class SABEasyDigitBusiness {
 
   ///保存
   void save(SABEasyDigitModel digitModel) {
-    SASSqliteService sqlite = SASSqliteService();
-    sqlite.testDog();
+    sqlite.updateModel(digitModel);
   }
 
   ///加载
-  SABEasyDigitModel load() {
-    return create();
+  void load(void refresh(List<SABEasyDigitModel> dataList)) async {
+    List<SABEasyDigitModel> result = await sqlite.query<SABEasyDigitModel>(
+      'easy',
+      (json) => SABEasyDigitModel.fromJson(json),
+    );
+    refresh(result);
   }
 }

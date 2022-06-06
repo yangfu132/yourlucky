@@ -12,7 +12,7 @@ class SABEasyDigitModel extends SABBaseModel {
     required this.strUsefulDeity,
     required this.listEasyData,
     required this.stringTime,
-  }) {}
+  });
 
   String getModelName() {
     return 'easy';
@@ -35,7 +35,7 @@ class SABEasyDigitModel extends SABBaseModel {
 
   final String stringTime;
 
-  late String stringDescribe = describe();
+  late String stringDescribe = _describe();
 
   late final String fromEasyKey = _getFromEasyKey(listEasyData);
 
@@ -50,7 +50,7 @@ class SABEasyDigitModel extends SABBaseModel {
     );
   }
 
-  String describe() {
+  String _describe() {
     String stringDescribe;
     if (isMovement(listEasyData)) {
       stringDescribe =
