@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
-import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/4L_Service/Base/SABBaseService.dart';
 
 class Dog extends SABBaseModel {
@@ -108,21 +107,16 @@ class SASSqliteService extends SABBaseService {
   }
 
   // A method that retrieves all the dogs from the dogs table.
-  Future<List<SABBaseModel>> query(SABBaseModel sabModel) async {
+  Future<List<SABBaseModel>> query(
+      String table, SABBaseModel createModel(Map<String, Object?> json)) async {
     // Get a reference to the database.
     final db = await database;
 
     // Query the table for all The Dogs.
-    final List<Map<String, dynamic>> maps =
-        await db.query(sabModel.getModelName());
+    final List<Map<String, dynamic>> maps = await db.query(table);
     // Convert the List<Map<String, dynamic> into a List<Dog> (将 List<Map<String, dynamic> 转换成 List<Dog> 数据类型)
     return List.generate(maps.length, (i) {
-      Type tempType = sabModel.runtimeType;
-      if (tempType == SABEasyDigitModel) {
-        return SABEasyDigitModel.fromJson(maps[i]);
-      } else {
-        return Dog.fromJson(maps[i]);
-      }
+      return createModel(maps[i]);
     });
   }
 
@@ -224,7 +218,9 @@ class SASSqliteService extends SABBaseService {
     await insertModel(fido);
 
     // Now, use the method above to retrieve all the dogs.
-    print(await query(fido)); // Prints a list that include Fido.
+    print(await query(fido.getModelName(), (Map<String, Object?> json) {
+      return Dog.fromJson(json);
+    })); // Prints a list that include Fido.
 
     // Update Fido's age and save it to the database.
     fido = Dog(
@@ -235,11 +231,15 @@ class SASSqliteService extends SABBaseService {
     await updateModel(fido);
 
     // Print the updated results.
-    print(await query(fido)); // Prints Fido with age 42.
+    print(await query(fido.getModelName(), (Map<String, Object?> json) {
+      return Dog.fromJson(json);
+    })); // Prints Fido with age 42.
 
     // Delete Fido from the database.
     await deleteModel(fido);
     // Print the list of dogs (empty) [打印一个列表的狗狗们 (这里已经空了)]
-    print(await query(fido));
+    print(await query(fido.getModelName(), (Map<String, Object?> json) {
+      return Dog.fromJson(json);
+    }));
   }
 }
