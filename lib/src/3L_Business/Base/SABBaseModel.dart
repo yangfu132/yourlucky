@@ -1,5 +1,6 @@
 ﻿class SABBaseModel {
   SABBaseModel();
+
   SABBaseModel.fromJson(Map<String, Object?> json);
 
   Map<String, Object?> toJson() {
@@ -12,5 +13,9 @@
 
   int? getModelId() {
     return null;
+  }
+
+  String toString() {
+    return '';
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
+import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/4L_Service/Base/SABBaseService.dart';
 
 class Dog extends SABBaseModel {
@@ -10,12 +11,13 @@ class Dog extends SABBaseModel {
     required this.name,
     required this.age,
   });
-  final int id;
+  final int? id;
   final String name;
   final int age;
 
   // Convert a Dog into a Map. The keys must correspond to the names of the
   // columns in the database.
+  @override
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -24,12 +26,23 @@ class Dog extends SABBaseModel {
     };
   }
 
+  @override
   Dog.fromJson(Map<String, Object?> json)
       : this(
           id: json['id'] as int,
           name: json['name'] as String,
           age: json['age'] as int,
         );
+
+  @override
+  String getModelName() {
+    return 'dogs';
+  }
+
+  @override
+  int? getModelId() {
+    return id;
+  }
 
   // Implement toString to make it easier to see information about
   // each dog when using the print statement.
@@ -60,14 +73,14 @@ class SASSqliteService extends SABBaseService {
         // Run the CREATE TABLE statement on the database.
         // 创建多张表
         await db.execute(
-          'CREATE TABLE easy(id INTEGER PRIMARY KEY, easy TEXT, time TEXT,usefulDeity TEXT)',
+          'CREATE TABLE easy(id INTEGER PRIMARY KEY AUTOINCREMENT, easy TEXT, time TEXT,usefulDeity TEXT)',
         );
         await db.execute(
-          'CREATE TABLE easy(id INTEGER PRIMARY KEY, easy TEXT, time TEXT,usefulDeity TEXT)',
+          'CREATE TABLE easy(id INTEGER PRIMARY KEY AUTOINCREMENT, easy TEXT, time TEXT,usefulDeity TEXT)',
         );
 
         return db.execute(
-          'CREATE TABLE dogs(id INTEGER PRIMARY KEY, name TEXT, age INTEGER)',
+          'CREATE TABLE dogs(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER)',
         );
       },
       // Set the version. This executes the onCreate function and provides a
@@ -104,7 +117,12 @@ class SASSqliteService extends SABBaseService {
         await db.query(sabModel.getModelName());
     // Convert the List<Map<String, dynamic> into a List<Dog> (将 List<Map<String, dynamic> 转换成 List<Dog> 数据类型)
     return List.generate(maps.length, (i) {
-      return SABBaseModel.fromJson(maps[i]);
+      Type tempType = sabModel.runtimeType;
+      if (tempType == SABEasyDigitModel) {
+        return SABEasyDigitModel.fromJson(maps[i]);
+      } else {
+        return Dog.fromJson(maps[i]);
+      }
     });
   }
 
@@ -199,7 +217,7 @@ class SASSqliteService extends SABBaseService {
   Future<void> testDog() async {
     // Create a Dog and add it to the dogs table
     var fido = Dog(
-      id: 0,
+      id: 10,
       name: 'Fido',
       age: 35,
     );

@@ -6,7 +6,7 @@ class SABDiagramsModel {
     required this.toEasyKey,
   }) {
     this.stringFromName = _fromEasyName();
-    this.stringFromName = _toEasyName();
+    this.stringToName = _toEasyName();
     this.stringFromElement = _eightDiagrams.elementOfEasy(_fromEasyName());
     this.stringToElement = _eightDiagrams.elementOfEasy(_toEasyName());
     this.stringFromPlace = _eightDiagrams.easyPlaceByName(_fromEasyName());
