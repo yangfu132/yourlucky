@@ -14,14 +14,14 @@ class SABEasyDigitBusiness {
 
     final DateTime easyDateTime = DateTime.now();
     PWBCalendarBusiness calendar = PWBCalendarBusiness(easyDateTime);
-    String stringFormatTime = calendar.stringFromDate();
+    String stringTime = calendar.stringFromDate();
 
     SABEasyDigitModel outEasyModel = SABEasyDigitModel(
+      modelId: null,
       strEasyGoal: strEasyGoal,
       strUsefulDeity: strUsefulDeity,
-      easyDateTime: easyDateTime,
+      stringTime: stringTime,
       listEasyData: listEasyData,
-      stringFormatTime: stringFormatTime,
     );
     return outEasyModel;
   }

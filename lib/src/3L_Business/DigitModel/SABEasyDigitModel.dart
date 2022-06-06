@@ -1,20 +1,28 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
 
 ///此Model仅代表占卜时所创造的数据；
-class SABEasyDigitModel {
+class SABEasyDigitModel extends SABBaseModel {
   //构造函数
   SABEasyDigitModel({
+    required this.modelId,
     required this.strEasyGoal,
     required this.strUsefulDeity,
-    required this.easyDateTime,
     required this.listEasyData,
-    required this.stringFormatTime,
-  });
+    required this.stringTime,
+  }) {}
 
-  //属性：实例发生时间
-  final DateTime easyDateTime;
+  String getModelName() {
+    return 'easy';
+  }
+
+  int? getModelId() {
+    return modelId;
+  }
+
+  final int? modelId;
 
   //属性：实例的随机数数组
   final List<int> listEasyData;
@@ -25,7 +33,7 @@ class SABEasyDigitModel {
   //属性：实例的用神
   final String strUsefulDeity;
 
-  final String stringFormatTime;
+  final String stringTime;
 
   late String stringDescribe = describe();
 
@@ -57,9 +65,9 @@ class SABEasyDigitModel {
   String title() {
     String stringTitle = '';
     if (strEasyGoal.length > 0) {
-      stringTitle = stringFormatTime + strEasyGoal;
+      stringTitle = stringTime + strEasyGoal;
     } else {
-      stringTitle = stringFormatTime + strUsefulDeity;
+      stringTitle = stringTime + strUsefulDeity;
     }
     return stringTitle;
   }
@@ -111,20 +119,20 @@ class SABEasyDigitModel {
 
   SABEasyDigitModel.fromJson(Map<String, Object?> json)
       : this(
+          modelId: json['modelId'] as int,
           strEasyGoal: json['easyGoal']! as String,
           strUsefulDeity: json['usefulDeity']! as String,
-          easyDateTime: json['easyDateTime']! as DateTime,
-          listEasyData: (json['easyData']! as List).cast<int>(),
-          stringFormatTime: json['formatTime']! as String,
+          stringTime: json['time']! as String,
+          listEasyData: (json['easy']! as List).cast<int>(),
         );
 
   Map<String, Object?> toJson() {
     return {
-      'easyData': listEasyData,
+      'modelId': modelId,
       'easyGoal': strEasyGoal,
-      'easyDateTime': easyDateTime,
       'usefulDeity': strUsefulDeity,
-      'formatTime': stringFormatTime,
+      'time': stringTime,
+      'easy': listEasyData,
     };
   }
 

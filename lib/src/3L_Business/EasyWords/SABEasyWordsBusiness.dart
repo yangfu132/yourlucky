@@ -26,8 +26,7 @@ class SABEasyWordsBusiness {
 
   late final SABDiagramsModel diagramsModel = _inputEasyModel.diagramsModel;
 
-  late final PWBCalendarBusiness calendar =
-      PWBCalendarBusiness(_inputEasyModel.easyDateTime);
+  late final PWBCalendarBusiness calendar = initCalendar();
 
   /// `此模块包含世应相关的方法`///////////////////////////////////////////////////
 
@@ -35,6 +34,11 @@ class SABEasyWordsBusiness {
 
   PWBCalendarBusiness businessCalendar() {
     return calendar;
+  }
+
+  PWBCalendarBusiness initCalendar() {
+    DateTime easyDateTime = DateTime.parse(_inputEasyModel.stringTime);
+    return PWBCalendarBusiness(easyDateTime);
   }
 
   SABDiagramsInfoModel eightDiagrams() {

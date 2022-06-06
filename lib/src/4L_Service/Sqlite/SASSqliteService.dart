@@ -1,29 +1,35 @@
 import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
+import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/4L_Service/Base/SABBaseService.dart';
 
-class Dog {
-  final int id;
-  final String name;
-  final int age;
-
-  const Dog({
+class Dog extends SABBaseModel {
+  Dog({
     required this.id,
     required this.name,
     required this.age,
   });
+  final int id;
+  final String name;
+  final int age;
 
   // Convert a Dog into a Map. The keys must correspond to the names of the
   // columns in the database.
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'id': id,
       'name': name,
       'age': age,
     };
   }
+
+  Dog.fromJson(Map<String, Object?> json)
+      : this(
+          id: json['id'] as int,
+          name: json['name'] as String,
+          age: json['age'] as int,
+        );
 
   // Implement toString to make it easier to see information about
   // each dog when using the print statement.
@@ -54,10 +60,10 @@ class SASSqliteService extends SABBaseService {
         // Run the CREATE TABLE statement on the database.
         // 创建多张表
         await db.execute(
-          'CREATE TABLE easy(id INTEGER PRIMARY KEY, easyData TEXT, easyDateTime INTEGER,usefulDeity TEXT,formatTime TEXT)',
+          'CREATE TABLE easy(id INTEGER PRIMARY KEY, easy TEXT, time TEXT,usefulDeity TEXT)',
         );
         await db.execute(
-          'CREATE TABLE easy_log(id INTEGER PRIMARY KEY, easyData TEXT, easyDateTime INTEGER,usefulDeity TEXT,formatTime TEXT)',
+          'CREATE TABLE easy(id INTEGER PRIMARY KEY, easy TEXT, time TEXT,usefulDeity TEXT)',
         );
 
         return db.execute(
@@ -73,7 +79,7 @@ class SASSqliteService extends SABBaseService {
   }
 
   // Define a function that inserts dogs into the database
-  Future<void> insertEasy(SABEasyDigitModel easy) async {
+  Future<void> insertModel(SABBaseModel sabModel) async {
     // Get a reference to the database.
     final db = await database;
 
@@ -82,124 +88,125 @@ class SASSqliteService extends SABBaseService {
     //
     // In this case, replace any previous data.
     await db.insert(
-      'easy',
-      easy.toJson(),
+      sabModel.getModelName(),
+      sabModel.toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
 
   // A method that retrieves all the dogs from the dogs table.
-  Future<List<SABEasyDigitModel>> easy() async {
+  Future<List<SABBaseModel>> query(SABBaseModel sabModel) async {
     // Get a reference to the database.
     final db = await database;
 
     // Query the table for all The Dogs.
-    final List<Map<String, dynamic>> maps = await db.query('easy');
+    final List<Map<String, dynamic>> maps =
+        await db.query(sabModel.getModelName());
     // Convert the List<Map<String, dynamic> into a List<Dog> (将 List<Map<String, dynamic> 转换成 List<Dog> 数据类型)
     return List.generate(maps.length, (i) {
-      return SABEasyDigitModel.fromJson(maps[i]);
+      return SABBaseModel.fromJson(maps[i]);
     });
   }
 
-  Future<void> updateEasy(SABEasyDigitModel easy) async {
+  Future<void> updateModel(SABBaseModel sabModel) async {
     // Get a reference to the database (获得数据库引用)
     final db = await database;
     // Update the given Dog (修改给定的狗狗的数据)
     await db.update(
-      'easy',
-      easy.toJson(),
+      sabModel.getModelName(),
+      sabModel.toJson(),
       // Ensure that the Dog has a matching id.
       where: 'id = ?',
       // Pass the Dog's id as a whereArg to prevent SQL injection.
-      whereArgs: [easy.id],
+      whereArgs: [sabModel.getModelId()],
     );
   }
 
-  Future<void> deleteDog(int id) async {
+  Future<void> deleteModel(SABBaseModel sabModel) async {
     // Get a reference to the database (获得数据库引用)
     final db = await database;
     // Remove the Dog from the database (将狗狗从数据库移除)
     await db.delete(
-      'dogs',
+      sabModel.getModelName(),
       // Use a `where` clause to delete a specific dog.
       where: 'id = ?',
       // Pass the Dog's id as a whereArg to prevent SQL injection.
-      whereArgs: [id],
+      whereArgs: [sabModel.getModelId()],
     );
   }
-
-  /// Dog
-  // Define a function that inserts dogs into the database
-  Future<void> insertDog(Dog dog) async {
-    // Get a reference to the database.
-    final db = await database;
-
-    // Insert the Dog into the correct table. You might also specify the
-    // `conflictAlgorithm` to use in case the same dog is inserted twice.
-    //
-    // In this case, replace any previous data.
-    await db.insert(
-      'dogs',
-      dog.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
-
-  // A method that retrieves all the dogs from the dogs table.
-  Future<List<Dog>> dogs() async {
-    // Get a reference to the database.
-    final db = await database;
-
-    // Query the table for all The Dogs.
-    final List<Map<String, dynamic>> maps = await db.query('dogs');
-    // Convert the List<Map<String, dynamic> into a List<Dog> (将 List<Map<String, dynamic> 转换成 List<Dog> 数据类型)
-    return List.generate(maps.length, (i) {
-      return Dog(
-        id: maps[i]['id'],
-        name: maps[i]['name'],
-        age: maps[i]['age'],
-      );
-    });
-  }
-
-  Future<void> updateDog(Dog dog) async {
-    // Get a reference to the database (获得数据库引用)
-    final db = await database;
-    // Update the given Dog (修改给定的狗狗的数据)
-    await db.update(
-      'dogs',
-      dog.toMap(),
-      // Ensure that the Dog has a matching id.
-      where: 'id = ?',
-      // Pass the Dog's id as a whereArg to prevent SQL injection.
-      whereArgs: [dog.id],
-    );
-  }
-
-  Future<void> deleteDog(int id) async {
-    // Get a reference to the database (获得数据库引用)
-    final db = await database;
-    // Remove the Dog from the database (将狗狗从数据库移除)
-    await db.delete(
-      'dogs',
-      // Use a `where` clause to delete a specific dog.
-      where: 'id = ?',
-      // Pass the Dog's id as a whereArg to prevent SQL injection.
-      whereArgs: [id],
-    );
-  }
+  //
+  // /// Dog
+  // // Define a function that inserts dogs into the database
+  // Future<void> insertDog(Dog dog) async {
+  //   // Get a reference to the database.
+  //   final db = await database;
+  //
+  //   // Insert the Dog into the correct table. You might also specify the
+  //   // `conflictAlgorithm` to use in case the same dog is inserted twice.
+  //   //
+  //   // In this case, replace any previous data.
+  //   await db.insert(
+  //     'dogs',
+  //     dog.toMap(),
+  //     conflictAlgorithm: ConflictAlgorithm.replace,
+  //   );
+  // }
+  //
+  // // A method that retrieves all the dogs from the dogs table.
+  // Future<List<Dog>> dogs() async {
+  //   // Get a reference to the database.
+  //   final db = await database;
+  //
+  //   // Query the table for all The Dogs.
+  //   final List<Map<String, dynamic>> maps = await db.query('dogs');
+  //   // Convert the List<Map<String, dynamic> into a List<Dog> (将 List<Map<String, dynamic> 转换成 List<Dog> 数据类型)
+  //   return List.generate(maps.length, (i) {
+  //     return Dog(
+  //       id: maps[i]['id'],
+  //       name: maps[i]['name'],
+  //       age: maps[i]['age'],
+  //     );
+  //   });
+  // }
+  //
+  // Future<void> updateDog(Dog dog) async {
+  //   // Get a reference to the database (获得数据库引用)
+  //   final db = await database;
+  //   // Update the given Dog (修改给定的狗狗的数据)
+  //   await db.update(
+  //     'dogs',
+  //     dog.toMap(),
+  //     // Ensure that the Dog has a matching id.
+  //     where: 'id = ?',
+  //     // Pass the Dog's id as a whereArg to prevent SQL injection.
+  //     whereArgs: [dog.id],
+  //   );
+  // }
+  //
+  // Future<void> deleteDog(int id) async {
+  //   // Get a reference to the database (获得数据库引用)
+  //   final db = await database;
+  //   // Remove the Dog from the database (将狗狗从数据库移除)
+  //   await db.delete(
+  //     'dogs',
+  //     // Use a `where` clause to delete a specific dog.
+  //     where: 'id = ?',
+  //     // Pass the Dog's id as a whereArg to prevent SQL injection.
+  //     whereArgs: [id],
+  //   );
+  // }
 
   Future<void> testDog() async {
     // Create a Dog and add it to the dogs table
-    var fido = const Dog(
+    var fido = Dog(
       id: 0,
       name: 'Fido',
       age: 35,
     );
-    await insertDog(fido);
+    await insertModel(fido);
 
     // Now, use the method above to retrieve all the dogs.
-    print(await dogs()); // Prints a list that include Fido.
+    print(await query(fido)); // Prints a list that include Fido.
 
     // Update Fido's age and save it to the database.
     fido = Dog(
@@ -207,14 +214,14 @@ class SASSqliteService extends SABBaseService {
       name: fido.name,
       age: fido.age + 7,
     );
-    await updateDog(fido);
+    await updateModel(fido);
 
     // Print the updated results.
-    print(await dogs()); // Prints Fido with age 42.
+    print(await query(fido)); // Prints Fido with age 42.
 
     // Delete Fido from the database.
-    await deleteDog(fido.id);
+    await deleteModel(fido);
     // Print the list of dogs (empty) [打印一个列表的狗狗们 (这里已经空了)]
-    print(await dogs());
+    print(await query(fido));
   }
 }
