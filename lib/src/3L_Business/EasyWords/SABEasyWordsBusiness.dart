@@ -1,4 +1,5 @@
 ﻿import 'package:flutter_perpttual_calendar/flutter_perpttual_calendar.dart';
+import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
@@ -17,7 +18,7 @@ import 'SABEasyWordsModel.dart';
 import 'SABWordsRowModel.dart';
 
 ///此Business用于将EasyModel与数据进行关联；
-class SABEasyWordsBusiness {
+class SABEasyWordsBusiness extends SABBaseBusiness {
   final SABEasyDigitModel _inputEasyModel;
   SABEasyWordsBusiness(this._inputEasyModel);
 

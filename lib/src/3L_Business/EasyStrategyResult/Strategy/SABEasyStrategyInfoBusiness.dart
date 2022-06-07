@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
 
 import '../../EasyDetail/SABDiagramsDetailModel.dart';
 import 'SABEasyStrategyInfoModel.dart';
@@ -10,7 +11,7 @@ import 'SABParentInfoModel.dart';
 ///对应：COMCategoryAdapter
 ///解释：Expert代表专家，每一章都是对某种情况的专家系统；
 
-class SABEasyStrategyInfoBusiness {
+class SABEasyStrategyInfoBusiness extends SABBaseBusiness {
   String stringStrategyKey = 'ExpertCategory';
 
   String stringStrategy = '趋避';

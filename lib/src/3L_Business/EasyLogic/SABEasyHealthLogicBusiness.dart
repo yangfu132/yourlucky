@@ -1,5 +1,6 @@
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
+import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/3L_Business/BasicEasy/SABElementInfoModel.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
@@ -18,7 +19,7 @@ import 'package:yourlucky/src/3L_Business/EasyLogic/SABSymbolHealthLogicModel.da
 import 'package:yourlucky/src/3L_Business/EasyStrategyResult/Strategy/SABParentInfoModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 
-class SABEasyHealthLogicBusiness {
+class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   SABEasyHealthLogicBusiness(this._inputEasyModel);
   final SABEasyDigitModel _inputEasyModel;
 

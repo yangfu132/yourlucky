@@ -1,11 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter_perpttual_calendar/flutter_perpttual_calendar.dart';
+import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/4L_Service/Sqlite/SASSqliteService.dart';
 
 import 'SABEasyDigitModel.dart';
 
-class SABEasyDigitBusiness {
+class SABEasyDigitBusiness extends SABBaseBusiness {
   final SASSqliteService sqlite = SASSqliteService();
 
   ///创建

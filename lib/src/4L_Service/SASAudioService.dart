@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'Base/SABBaseService.dart';
+
 // import 'package:audioplayers/audioplayers.dart';
 
-class SASAudioService {
+class SASAudioService extends SABBaseService {
   // AudioCache audioCache = AudioCache();
   // AudioPlayer advancedPlayer = AudioPlayer();
 

@@ -1,4 +1,6 @@
-class SASStringService {
+import 'Base/SABBaseService.dart';
+
+class SASStringService extends SABBaseService {
   static String appendToString(String mainString, String appendString) {
     if (appendString != '') {
       if (mainString != '') {

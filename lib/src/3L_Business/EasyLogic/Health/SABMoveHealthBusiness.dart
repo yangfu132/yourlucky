@@ -1,3 +1,4 @@
+import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 
@@ -8,7 +9,7 @@ import 'SABHealthModel.dart';
 import 'SABHealthOriginBusiness.dart';
 
 ///动爻的强弱计算
-class SABMoveHealthBusiness {
+class SABMoveHealthBusiness extends SABBaseBusiness {
   SABMoveHealthBusiness(this._inputLogicModel);
 
   late final SABHealthOriginBusiness _originBusiness =

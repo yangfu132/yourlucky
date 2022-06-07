@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
+import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
 
 typedef SignInCallback = void Function(String code, String message);
 typedef SignUpCallback = void Function(String code, String message);
 typedef SignOutCallback = void Function(String code, String message);
 
-class SABLogInBusiness {
+class SABLogInBusiness extends SABBaseBusiness {
   final emailController = TextEditingController(text: 'yangfu132@163.com');
   final emailFocus = FocusNode();
 

@@ -1,3 +1,4 @@
+import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABRowLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABOutRightBusiness.dart';
@@ -89,7 +90,7 @@ import 'SABRowHealthModel.dart';
  
  */
 
-class SABHealthOriginBusiness {
+class SABHealthOriginBusiness extends SABBaseBusiness {
   SABHealthOriginBusiness(this._inputLogicModel);
 
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();

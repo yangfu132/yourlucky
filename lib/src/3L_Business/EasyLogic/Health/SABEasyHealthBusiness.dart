@@ -1,3 +1,4 @@
+import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 
 import '../../../1L_Context/SACGlobal.dart';
@@ -6,7 +7,7 @@ import 'SABHealthOriginBusiness.dart';
 import 'SABMoveHealthBusiness.dart';
 import 'SABStaticHealthBusiness.dart';
 
-class SABEasyHealthBusiness {
+class SABEasyHealthBusiness extends SABBaseBusiness {
   SABEasyHealthBusiness(this._inputLogicModel);
   final SABEasyLogicModel _inputLogicModel;
 

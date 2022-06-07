@@ -1,9 +1,10 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACContext.dart';
+import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
 
 import '../BasicEasy/SABElementInfoModel.dart';
 import 'SABEarthBranchModel.dart';
 
-class SABEarthBranchBusiness {
+class SABEarthBranchBusiness extends SABBaseBusiness {
   final SABEarthBranchModel _branchModel = SABEarthBranchModel();
 
   String sixPairDescription(String basicEarth, String otherEarth) {

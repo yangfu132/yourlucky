@@ -1,4 +1,5 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
+import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/3L_Business/BasicEasy/SABAnimalInfoModel.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABDiagramsDetailBusiness.dart';
@@ -13,7 +14,7 @@ import 'package:yourlucky/src/4L_Service/SASStringService.dart';
 import '../EasyDetail/SABEasyDetailModel.dart';
 import '../EasyLogicDescription/SABEasyLogicDescriptionBusiness.dart';
 
-class SABEasyDetailBusiness {
+class SABEasyDetailBusiness extends SABBaseBusiness {
   final SABEasyDigitModel _inputEasyModel;
   SABEasyDetailBusiness(this._inputEasyModel);
 

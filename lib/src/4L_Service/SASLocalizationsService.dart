@@ -1,7 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class SASLocalizationsService {
+import 'Base/SABBaseService.dart';
+
+class SASLocalizationsService extends SABBaseService {
   SASLocalizationsService(this.isZh);
   //是否为中文
   bool isZh = false;

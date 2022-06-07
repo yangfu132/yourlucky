@@ -1,10 +1,11 @@
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
+import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 
 import '../BaseLogic/SABEasyLogicModel.dart';
 
-class SABOutRightBusiness {
+class SABOutRightBusiness extends SABBaseBusiness {
   SABOutRightBusiness(this._inputLogicModel);
 
   final SABEasyLogicModel _inputLogicModel;

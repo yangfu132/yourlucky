@@ -1,5 +1,6 @@
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
+import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/3L_Business/BasicEasy/SABElementInfoModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
@@ -9,7 +10,7 @@ import 'package:yourlucky/src/4L_Service/SASStringService.dart';
 
 import 'SABEasyStrategyResultModel.dart';
 
-class SABEasyAvoidBusiness {
+class SABEasyAvoidBusiness extends SABBaseBusiness {
   final SABEasyDetailModel inputDetail;
   SABEasyAvoidBusiness(this.inputDetail);
   SABEasyStrategyResultModel resultModel() {

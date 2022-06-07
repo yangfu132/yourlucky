@@ -1,11 +1,12 @@
-﻿import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
+﻿import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
+import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailModel.dart';
 
 import '../Strategy/SABEasyStrategyInfoModel.dart';
 import 'SABEasyAvoidBusiness.dart';
 import 'SABEasyStrategyResultModel.dart';
 
-class SABEasyStrategyResultBusiness {
+class SABEasyStrategyResultBusiness extends SABBaseBusiness {
   SABEasyStrategyResultBusiness(
       {required this.inputDetail, required this.strategy});
   final String strategy;

@@ -1,3 +1,5 @@
+import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
+
 import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';
 import '../BaseLogic/SABEasyLogicModel.dart';
@@ -6,7 +8,7 @@ import 'SABHealthOriginBusiness.dart';
 import 'SABMoveHealthBusiness.dart';
 
 ///静爻的强弱
-class SABStaticHealthBusiness {
+class SABStaticHealthBusiness extends SABBaseBusiness {
   SABStaticHealthBusiness(this._inputLogicModel);
 
   late final SABMoveHealthBusiness _moveBusiness =
