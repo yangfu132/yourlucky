@@ -3,7 +3,7 @@ import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABSymbolHealthModel.dart';
 
-import '../BaseLogic/SABRowLogicModel.dart';
+import '../BaseLogic/SABLogicRowModel.dart';
 
 class SABRowHealthModel extends SABBaseModel {
   SABRowHealthModel({
@@ -12,7 +12,7 @@ class SABRowHealthModel extends SABBaseModel {
     required this.toSymbol,
     required this.hideSymbol,
   });
-  final SABRowLogicModel inputLogicRow;
+  final SABLogicRowModel inputLogicRow;
 
   final SABSymbolHealthModel fromSymbol;
   final SABSymbolHealthModel toSymbol;

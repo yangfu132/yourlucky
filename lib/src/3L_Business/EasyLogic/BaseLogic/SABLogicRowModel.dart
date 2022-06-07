@@ -5,8 +5,8 @@ import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';
 import '../../EasyWords/SABWordsRowModel.dart';
 
-class SABRowLogicModel extends SABBaseModel {
-  SABRowLogicModel({
+class SABLogicRowModel extends SABBaseModel {
+  SABLogicRowModel({
     required this.fromSymbol,
     required this.toSymbol,
     required this.hideSymbol,

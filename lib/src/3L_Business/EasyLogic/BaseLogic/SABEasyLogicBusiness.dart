@@ -1,7 +1,7 @@
 ﻿import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABRowLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABLogicRowModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABWordsRowModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABWordsSymbolModel.dart';
@@ -1205,7 +1205,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     for (int intRow = 0; intRow < 6; intRow++) {
       SABWordsRowModel rowsModel =
           outLogicModel.inputWordsModel.rowModelAtRow(intRow);
-      SABRowLogicModel symbol = SABRowLogicModel(
+      SABLogicRowModel symbol = SABLogicRowModel(
         fromSymbol: fromSymbol(rowsModel.fromSymbol),
         toSymbol: toSymbol(rowsModel.toSymbol),
         hideSymbol: hideSymbol(rowsModel.hideSymbol),

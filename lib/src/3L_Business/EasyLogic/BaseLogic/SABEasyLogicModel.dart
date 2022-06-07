@@ -5,7 +5,7 @@ import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';
 import '../../EarthBranch/SABEarthBranchModel.dart';
 import '../../EasyWords/SABEasyWordsModel.dart';
-import 'SABRowLogicModel.dart';
+import 'SABLogicRowModel.dart';
 
 class SABEasyLogicModel extends SABBaseModel {
   SABEasyLogicModel({
@@ -172,11 +172,11 @@ class SABEasyLogicModel extends SABBaseModel {
 
   /// `加载函数`/////////////////////////////////////////////////////////////////
 
-  void addSymbol(SABRowLogicModel symbol) {
+  void addSymbol(SABLogicRowModel symbol) {
     _listRowModels.add(symbol);
   }
 
-  SABRowLogicModel rowModelAtRow(int intRow) {
+  SABLogicRowModel rowModelAtRow(int intRow) {
     if (intRow > _listRowModels.length) {
       coLog("intRow:$intRow");
     }

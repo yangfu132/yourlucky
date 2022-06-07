@@ -7,7 +7,7 @@ import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABRowLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABLogicRowModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABEasyHealthBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
@@ -853,7 +853,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     if (EasyTypeEnum.from != easyType) {
       return bResult;
     }
-    SABRowLogicModel rowModel = logicModel().rowModelAtRow(intRow);
+    SABLogicRowModel rowModel = logicModel().rowModelAtRow(intRow);
     bool bBorn = rowModel.isSymbolChangeBorn;
 
     //月克日生或月生日克，是相敌。月破日生或月生日破是不敌等等。

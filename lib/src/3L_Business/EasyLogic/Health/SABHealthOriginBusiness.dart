@@ -1,5 +1,5 @@
 import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABRowLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABLogicRowModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABOutRightBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABSymbolHealthModel.dart';
@@ -512,7 +512,7 @@ class SABHealthOriginBusiness extends SABBaseBusiness {
     );
 
     for (int intRow = 0; intRow < 6; intRow++) {
-      SABRowLogicModel logicModel =
+      SABLogicRowModel logicModel =
           healthModel.inputLogicModel.rowModelAtRow(intRow);
 
       SABRowHealthModel rowModel = SABRowHealthModel(

@@ -3,7 +3,7 @@ import 'package:yourlucky/src/3L_Business/EasyDetail/SABSymbolDetailModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart';
 
 import '../../1L_Context/SACGlobal.dart';
-import '../EasyLogic/BaseLogic/SABRowLogicModel.dart';
+import '../EasyLogic/BaseLogic/SABLogicRowModel.dart';
 import '../EasyLogic/Health/SABRowHealthModel.dart';
 import '../EasyLogicDescription/SABRowLogicDescriptionModel.dart';
 import '../EasyWords/SABWordsRowModel.dart';
@@ -122,7 +122,7 @@ class SABRowDetailModel extends SABBaseModel {
     return analysisModel().healthLogicRow.healthRow;
   }
 
-  SABRowLogicModel logicModel() {
+  SABLogicRowModel logicModel() {
     return healthModel().inputLogicRow;
   }
 
