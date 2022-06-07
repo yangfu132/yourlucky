@@ -49,15 +49,19 @@ class SABEasyDigitBusiness {
 
   ///保存
   void save(SABEasyDigitModel digitModel) {
-    sqlite.updateModel(digitModel);
+    if (null == digitModel.getModelId()) {
+      sqlite.insertModel(digitModel);
+    } else {
+      sqlite.updateModel(digitModel);
+    }
   }
 
   ///加载
-  void load(void refresh(List<SABEasyDigitModel> dataList)) async {
-    List<SABEasyDigitModel> result = await sqlite.query<SABEasyDigitModel>(
-      'easy',
-      (json) => SABEasyDigitModel.fromJson(json),
-    );
-    refresh(result);
+  Future<void> load(void refresh(List<SABEasyDigitModel> dataList)) async {
+    List<SABEasyDigitModel> dataList = <SABEasyDigitModel>[];
+    await sqlite.query('easy', (json) {
+      dataList.add(SABEasyDigitModel.fromJson(json));
+    });
+    refresh(dataList);
   }
 }

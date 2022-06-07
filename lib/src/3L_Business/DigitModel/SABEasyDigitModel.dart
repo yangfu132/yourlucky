@@ -119,20 +119,23 @@ class SABEasyDigitModel extends SABBaseModel {
 
   SABEasyDigitModel.fromJson(Map<String, Object?> json)
       : this(
-          modelId: json['modelId'] as int,
+          modelId: json['id'] as int,
           strEasyGoal: json['easyGoal']! as String,
           strUsefulDeity: json['usefulDeity']! as String,
           stringTime: json['time']! as String,
-          listEasyData: (json['easy']! as List).cast<int>(),
+          listEasyData: (json['easy']! as String)
+              .split(',')
+              .map((e) => int.parse(e))
+              .toList(),
         );
 
   Map<String, Object?> toJson() {
     return {
-      'modelId': modelId,
+      'id': modelId,
       'easyGoal': strEasyGoal,
       'usefulDeity': strUsefulDeity,
       'time': stringTime,
-      'easy': listEasyData,
+      'easy': listEasyData.join(','),
     };
   }
 
