@@ -35,6 +35,8 @@ class SABEasyDigitModel extends SABBaseModel {
 
   final String stringTime;
 
+  late String stringTitle = _title();
+
   late String stringDescribe = _describe();
 
   late final String fromEasyKey = _getFromEasyKey(listEasyData);
@@ -62,7 +64,7 @@ class SABEasyDigitModel extends SABBaseModel {
     return stringDescribe;
   }
 
-  String title() {
+  String _title() {
     String stringTitle = '';
     if (strEasyGoal.length > 0) {
       stringTitle = stringTime + strEasyGoal;

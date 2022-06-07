@@ -24,6 +24,19 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
     });
   }
 
+  Widget _rowWidget(SABEasyDigitModel model) {
+    return ListTile(
+      title: Text(model.stringTitle),
+      trailing: Text(model.stringDescribe),
+      onTap: () async {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          SABEasyDetailBusiness detailBusiness = SABEasyDetailBusiness(model);
+          return SAUStrategyResultRoute(detailBusiness.outputDetailModel());
+        }));
+      },
+    );
+  }
+
   Widget _buildBody() {
     if (historyData.length > 0) {
       return ListView.builder(
@@ -31,38 +44,27 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
           //itemExtent: 50.0, //强制高度为50.0
           itemBuilder: (BuildContext context, int index) {
             SABEasyDigitModel model = historyData[index];
-            return Container(
-              //color: Colors.grey,
-              decoration: BoxDecoration(
-                color: Colors.grey,
-              ),
-              child: ListTile(
-                title: Text(model.stringDescribe),
-                onTap: () async {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    SABEasyDetailBusiness detailBusiness =
-                        SABEasyDetailBusiness(model);
-                    return SAUStrategyResultRoute(
-                        detailBusiness.outputDetailModel());
-                  }));
-                },
-              ),
-            );
+            int kv = index % 2;
+            if (kv == 0) {
+              return _rowWidget(model);
+            } else {
+              return Container(
+                //color: Colors.grey,
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                ),
+                child: _rowWidget(model),
+              );
+            }
           });
     } else {
       return ListView.builder(
           itemCount: 1,
           //itemExtent: 50.0, //强制高度为50.0
           itemBuilder: (BuildContext context, int index) {
-            return Container(
-              //color: Colors.grey,
-              decoration: BoxDecoration(
-                color: Colors.grey,
-              ),
-              child: ListTile(
-                title: Text('waiting'),
-                onTap: null,
-              ),
+            return ListTile(
+              title: Text('waiting'),
+              onTap: null,
             );
           });
     }
