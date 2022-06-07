@@ -3,14 +3,14 @@ import 'package:yourlucky/src/3L_Business/EasyDetail/SABSymbolDetailModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABHealthLogicRowModel.dart';
 
 import '../../1L_Context/SACGlobal.dart';
+import '../EasyAnalysis/SABEasyAnalysisRowModel.dart';
 import '../EasyLogic/BaseLogic/SABLogicRowModel.dart';
 import '../EasyLogic/Health/SABHealthRowModel.dart';
-import '../EasyLogicDescription/SABLogicDescriptionRowModel.dart';
 import '../EasyWords/SABWordsRowModel.dart';
 
 class SABRowDetailModel extends SABBaseModel {
   SABRowDetailModel(this.inputAnalysisRow);
-  final SABLogicDescriptionRowModel inputAnalysisRow;
+  final SABEasyAnalysisRowModel inputAnalysisRow;
 
   late final String stringDeity =
       healthLogicModel().getDeity(EasyTypeEnum.from); //事情
@@ -110,7 +110,7 @@ class SABRowDetailModel extends SABBaseModel {
 
   /// `加载函数`/////////////////////////////////////////////////////////////////
 
-  SABLogicDescriptionRowModel analysisModel() {
+  SABEasyAnalysisRowModel analysisModel() {
     return this.inputAnalysisRow;
   }
 

@@ -2,17 +2,17 @@
 import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/3L_Business/BasicEasy/SABAnimalInfoModel.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyAnalysis/SABEasyAnalysisModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABDiagramsDetailBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABDiagramsDetailModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogicDescription/SABEasyLogicDescriptionModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:yourlucky/src/4L_Service/SASStringService.dart';
 
+import '../EasyAnalysis/SABEasyAnalysisBusiness.dart';
 import '../EasyDetail/SABEasyDetailModel.dart';
-import '../EasyLogicDescription/SABEasyLogicDescriptionBusiness.dart';
 
 class SABEasyDetailBusiness extends SABBaseBusiness {
   final SABEasyDigitModel _inputEasyModel;
@@ -23,10 +23,10 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
   late final SABEasyHealthLogicBusiness _healthLogicBusiness =
       SABEasyHealthLogicBusiness(_inputEasyModel);
 
-  late final SABEasyLogicDescriptionBusiness _analysisBusiness =
-      SABEasyLogicDescriptionBusiness(_healthLogicBusiness.outputModel());
+  late final SABEasyAnalysisBusiness _analysisBusiness =
+      SABEasyAnalysisBusiness(_healthLogicBusiness.outputModel());
 
-  SABEasyLogicDescriptionBusiness analysisBusiness() {
+  SABEasyAnalysisBusiness analysisBusiness() {
     return _analysisBusiness;
   }
 
@@ -183,7 +183,7 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
     return _healthLogicBusiness.logicModel();
   }
 
-  SABEasyLogicDescriptionModel analysisModel() {
+  SABEasyAnalysisModel analysisModel() {
     return analysisBusiness().outAnalysisModel();
   }
 

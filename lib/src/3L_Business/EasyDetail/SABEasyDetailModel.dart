@@ -7,14 +7,14 @@ import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart
 import 'package:yourlucky/src/3L_Business/EasyStrategyResult/Strategy/SABParentInfoModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 
-import '../EasyLogicDescription/SABEasyLogicDescriptionModel.dart';
+import '../EasyAnalysis/SABEasyAnalysisModel.dart';
 import 'SABRowDetailModel.dart';
 
 class SABEasyDetailModel extends SABBaseModel {
   SABEasyDetailModel(
       this._analysisModel, this.stringDetailName, this.diagramsDetailModel);
   final SABDiagramsDetailModel diagramsDetailModel;
-  final SABEasyLogicDescriptionModel _analysisModel;
+  final SABEasyAnalysisModel _analysisModel;
   final String stringDetailName;
   late List _listRowModels = _initRowModelsArray();
 

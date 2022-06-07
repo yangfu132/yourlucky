@@ -3,10 +3,10 @@ import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
 
 import '../../1L_Context/SACGlobal.dart';
-import 'SABLogicDescriptionRowModel.dart';
+import 'SABEasyAnalysisRowModel.dart';
 
-class SABEasyLogicDescriptionModel extends SABBaseModel {
-  SABEasyLogicDescriptionModel(
+class SABEasyAnalysisModel extends SABBaseModel {
+  SABEasyAnalysisModel(
     this.inputHealthLogicModel,
   );
 
@@ -60,14 +60,14 @@ class SABEasyLogicDescriptionModel extends SABBaseModel {
   List _initRowModelsArray() {
     var listRowModels = [];
     for (int intRow = 0; intRow < 6; intRow++) {
-      SABLogicDescriptionRowModel model = SABLogicDescriptionRowModel(
-          inputHealthLogicModel.rowModelAtRow(intRow));
+      SABEasyAnalysisRowModel model =
+          SABEasyAnalysisRowModel(inputHealthLogicModel.rowModelAtRow(intRow));
       listRowModels.add(model);
     }
     return listRowModels;
   }
 
-  SABLogicDescriptionRowModel rowModelAtRow(int intRow) {
+  SABEasyAnalysisRowModel rowModelAtRow(int intRow) {
     if (intRow > _listRowModels.length) {
       coLog("intRow:$intRow");
     }

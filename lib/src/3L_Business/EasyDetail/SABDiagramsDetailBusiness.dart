@@ -3,10 +3,10 @@ import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
+import 'package:yourlucky/src/3L_Business/EasyAnalysis/SABEasyAnalysisModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogicDescription/SABEasyLogicDescriptionModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyStrategyResult/Strategy/SABParentInfoModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 
@@ -16,7 +16,7 @@ import 'SABDiagramsDetailModel.dart';
 
 class SABDiagramsDetailBusiness extends SABBaseBusiness {
   SABDiagramsDetailBusiness(this._inputLogicDesModel);
-  final SABEasyLogicDescriptionModel _inputLogicDesModel;
+  final SABEasyAnalysisModel _inputLogicDesModel;
 
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
 

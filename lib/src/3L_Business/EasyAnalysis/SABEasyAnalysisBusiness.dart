@@ -9,16 +9,16 @@ import '../../1L_Context/SACGlobal.dart';
 import '../EarthBranch/SABEarthBranchBusiness.dart';
 import '../EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 import '../EasyWords/SABEasyWordsModel.dart';
-import 'SABEasyLogicDescriptionModel.dart';
+import 'SABEasyAnalysisModel.dart';
 
-class SABEasyLogicDescriptionBusiness extends SABBaseBusiness {
-  SABEasyLogicDescriptionBusiness(this._inputHealthLogicModel);
+class SABEasyAnalysisBusiness extends SABBaseBusiness {
+  SABEasyAnalysisBusiness(this._inputHealthLogicModel);
 
   final SABEasyHealthLogicModel _inputHealthLogicModel;
 
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
 
-  late final SABEasyLogicDescriptionModel _analysisModel = initAnalysisModel();
+  late final SABEasyAnalysisModel _analysisModel = initAnalysisModel();
 
   ///`basic`//////////////////////////////////////////////////////
 
@@ -817,12 +817,12 @@ class SABEasyLogicDescriptionBusiness extends SABBaseBusiness {
     return wordsModel().inputDigitModel;
   }
 
-  SABEasyLogicDescriptionModel outAnalysisModel() {
+  SABEasyAnalysisModel outAnalysisModel() {
     return _analysisModel;
   }
 
-  SABEasyLogicDescriptionModel initAnalysisModel() {
-    var analysisModel = SABEasyLogicDescriptionModel(_inputHealthLogicModel);
+  SABEasyAnalysisModel initAnalysisModel() {
+    var analysisModel = SABEasyAnalysisModel(_inputHealthLogicModel);
     for (int intRow = 0; intRow < 6; intRow++) {
       ///MonthBrokenDescription
       analysisModel.setMonthRelation(intRow, EasyTypeEnum.from,
