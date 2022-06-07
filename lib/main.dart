@@ -1,11 +1,11 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:yourlucky/src/1L_Context/SABSingletonService.dart';
-import 'package:yourlucky/src/1L_Context/SACContext.dart';
-import 'package:yourlucky/src/5L_Service/SASLocalizationsService.dart';
+import 'package:yourlucky/src/A_Context/SABSingletonService.dart';
+import 'package:yourlucky/src/A_Context/SACContext.dart';
+import 'package:yourlucky/src/E_Service/SASLocalizationsService.dart';
 
-import 'src/2L_UI/Home/SAUHomeRoute.dart';
+import 'src/B_UI/Home/SAUHomeRoute.dart';
 
 void main() {
   runApp(MyApp());
