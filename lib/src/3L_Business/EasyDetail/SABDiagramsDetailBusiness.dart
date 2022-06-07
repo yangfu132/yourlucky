@@ -43,9 +43,9 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
   ///`卦体`//////////////////////////////////////////////////////
   String resultEasy() {
     String strResult = "";
-    String fromName = wordsModel().fromEasyName();
+    String fromName = wordsModel().getFromEasyName();
 
-    String toName = wordsModel().toEasyName();
+    String toName = wordsModel().getToEasyName();
 
     //卦变生克
     String easyParent = resultEasyParent();

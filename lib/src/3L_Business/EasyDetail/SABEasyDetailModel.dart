@@ -39,7 +39,7 @@ class SABEasyDetailModel extends SABBaseModel {
         '六爻冲合',
         wordsModel().monthSkyEarth(),
         wordsModel().daySkyEarth(),
-        "本:${wordsModel().fromEasyName()}",
+        "本:${wordsModel().getFromEasyName()}",
         "世应",
       ]
     ];
@@ -83,7 +83,7 @@ class SABEasyDetailModel extends SABBaseModel {
         '六爻冲合',
         wordsModel().monthSkyEarth(),
         wordsModel().daySkyEarth(),
-        "本:${wordsModel().fromEasyName()}",
+        "本:${wordsModel().getFromEasyName()}",
         "世应",
       ]
     ];
@@ -130,10 +130,10 @@ class SABEasyDetailModel extends SABBaseModel {
         '六爻冲合',
         wordsModel().monthSkyEarth(),
         wordsModel().daySkyEarth(),
-        "本:${wordsModel().fromEasyName()}",
+        "本:${wordsModel().getFromEasyName()}",
         "世应",
         '进化',
-        '变:${wordsModel().toEasyName()}',
+        '变:${wordsModel().getToEasyName()}',
         '${wordsModel().monthSkyEarth()}',
         '${wordsModel().daySkyEarth()}',
       ]
@@ -185,10 +185,10 @@ class SABEasyDetailModel extends SABBaseModel {
         '六爻冲合',
         wordsModel().monthSkyEarth(),
         wordsModel().daySkyEarth(),
-        "本:${wordsModel().fromEasyName()}",
+        "本:${wordsModel().getFromEasyName()}",
         "世应",
         '进化',
-        '变:${wordsModel().toEasyName()}',
+        '变:${wordsModel().getToEasyName()}',
         '${wordsModel().monthSkyEarth()}',
         '${wordsModel().daySkyEarth()}',
       ]

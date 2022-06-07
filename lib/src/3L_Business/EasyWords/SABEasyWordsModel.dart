@@ -23,17 +23,6 @@ class SABEasyWordsModel extends SABBaseModel {
   final SABMonthModel monthModel;
   final SABDayModel dayModel;
 
-  ///世应
-  late final SABDiagramsModel diagramsModel = inputDigitModel.diagramsModel;
-
-  int getLifeIndex() {
-    return diagramsModel.lifeIndex;
-  }
-
-  int getGoalIndex() {
-    return diagramsModel.goalIndex;
-  }
-
   /// `MergeRow函数`///////////////////////////////////////////////////////////
   ///MergeRow的定义
   ///from:0~6
@@ -94,29 +83,23 @@ class SABEasyWordsModel extends SABBaseModel {
   }
 
   /// `Get & Set函数`///////////////////////////////////////////////////////////
-  ///
+
+  int getLifeIndex() {
+    return inputDigitModel.diagramsModel.lifeIndex;
+  }
+
+  int getGoalIndex() {
+    return inputDigitModel.diagramsModel.goalIndex;
+  }
 
   ///此方法获取本卦的卦名
-  String fromEasyName() {
-    String stringResult = "";
-    Map fromDict = diagramsModel.mapFromEasy;
-    if (fromDict.isNotEmpty) {
-      stringResult = fromDict["name"];
-    }
-    //else cont.
-
-    return stringResult;
+  String getFromEasyName() {
+    return inputDigitModel.diagramsModel.stringFromName;
   }
 
   ///此方法获取变卦的卦名
-  String toEasyName() {
-    String stringResult = "";
-    Map toDict = diagramsModel.mapToEasy;
-    if (toDict.isNotEmpty) {
-      stringResult = toDict["name"];
-    }
-    //else cont.
-    return stringResult;
+  String getToEasyName() {
+    return inputDigitModel.diagramsModel.stringToName;
   }
 
   int getDigit(int intRow) {

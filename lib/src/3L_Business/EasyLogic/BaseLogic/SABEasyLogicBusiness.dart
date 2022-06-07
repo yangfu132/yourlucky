@@ -1030,11 +1030,11 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
   }
 
   String fromEasyName() {
-    return wordsModel().diagramsModel.stringFromName;
+    return wordsModel().getFromEasyName();
   }
 
   String toEasyName() {
-    return wordsModel().diagramsModel.stringToName;
+    return wordsModel().getToEasyName();
   }
 
   String fromEasyKey() {
