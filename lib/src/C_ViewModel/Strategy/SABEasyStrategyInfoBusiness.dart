@@ -1,8 +1,8 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
 
-import 'SABEasyStrategyInfoModel.dart';
-import 'SABParentInfoModel.dart';
+import '../../D_Business/Strategy/SABEasyStrategyInfoModel.dart';
+import '../../D_Business/Strategy/SABParentInfoModel.dart';
 
 ///note:章，既是预测模型
 ///example:趋避章

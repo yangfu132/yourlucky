@@ -8,11 +8,11 @@ import 'package:yourlucky/src/D_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:yourlucky/src/D_Business/Strategy/SABEasyStrategyInfoModel.dart';
 import 'package:yourlucky/src/E_Service/SASStringService.dart';
 
-import 'SABEasyStrategyResultModel.dart';
+import '../../C_ViewModel/StrategyResult/SABEasyStrategyResultModel.dart';
 
-class SABEasyAvoidBusiness extends SABBaseBusiness {
+class SABAvoidStrategyBusiness extends SABBaseBusiness {
   final SABEasyDetailModel inputDetail;
-  SABEasyAvoidBusiness(this.inputDetail);
+  SABAvoidStrategyBusiness(this.inputDetail);
   SABEasyStrategyResultModel resultModel() {
     SABEasyStrategyResultModel modelResult = SABEasyStrategyResultModel(
         strategy: SABEasyStrategyInfoModel.avoid,

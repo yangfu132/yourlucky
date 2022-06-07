@@ -2,8 +2,8 @@
 ///问题1：如何全局引用context？
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/A_Context/SABSingletonService.dart';
+import 'package:yourlucky/src/C_ViewModel/Strategy/SABEasyStrategyInfoBusiness.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitBusiness.dart';
-import 'package:yourlucky/src/D_Business/Strategy/SABEasyStrategyInfoBusiness.dart';
 import 'package:yourlucky/src/E_Service/FireBase/SASFireBaseUserAuthService.dart';
 
 void coLog(String strMsg) {

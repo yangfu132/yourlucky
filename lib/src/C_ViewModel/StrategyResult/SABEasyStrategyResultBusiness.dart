@@ -3,7 +3,7 @@ import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/D_Business/Strategy/SABEasyStrategyInfoModel.dart';
 
-import 'SABEasyAvoidBusiness.dart';
+import '../../D_Business/Strategy/SABAvoidStrategyBusiness.dart';
 import 'SABEasyStrategyResultModel.dart';
 
 class SABEasyStrategyResultBusiness extends SABBaseBusiness {
@@ -16,7 +16,8 @@ class SABEasyStrategyResultBusiness extends SABBaseBusiness {
     SABEasyStrategyResultModel modelResult;
     switch (strategy) {
       case SABEasyStrategyInfoModel.avoid:
-        SABEasyAvoidBusiness avoidBusiness = SABEasyAvoidBusiness(inputDetail);
+        SABAvoidStrategyBusiness avoidBusiness =
+            SABAvoidStrategyBusiness(inputDetail);
         modelResult = avoidBusiness.resultModel();
         break;
       default:
