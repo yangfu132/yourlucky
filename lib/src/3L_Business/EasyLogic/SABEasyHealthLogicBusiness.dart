@@ -2,6 +2,7 @@ import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/3L_Business/BasicEasy/SABElementInfoModel.dart';
+import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicBusiness.dart';
@@ -128,6 +129,10 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     return logicBusiness().wordsModel();
   }
 
+  SABDiagramsModel getDiagramsModel() {
+    return wordsModel().inputDigitModel.diagramsModel;
+  }
+
   SABEasyLogicBusiness logicBusiness() {
     return _logicBusiness;
   }
@@ -198,7 +203,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   }
 
   String elementOfUsefulDeity() {
-    return logicModel().inputWordsModel.diagramsModel.deityElement;
+    return getDiagramsModel().deityElement;
   }
 
   String symbolNameAtRow(int intRow, EasyTypeEnum enumEasyType) {
@@ -1466,7 +1471,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   SABParentInfoModel noUsefulDeity() {
     SABParentInfoModel resultModel;
     String usefulParent = getUsefulDeity();
-    String fromEasyElement = wordsModel().diagramsModel.stringFromElement;
+    String fromEasyElement = getDiagramsModel().stringFromElement;
     String monthParent =
         SABElementInfoModel.elementRelative(fromEasyElement, monthElement());
     if (monthParent == usefulParent) {

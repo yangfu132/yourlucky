@@ -549,8 +549,8 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
   ///`卦变生克墓绝章第二十四`/////////////////////////////////////////////////////
   String easyParent() {
-    String fromElement = wordsModel().diagramsModel.stringFromElement;
-    String toElement = wordsModel().diagramsModel.stringToElement;
+    String fromElement = getDiagramsModel().stringFromElement;
+    String toElement = getDiagramsModel().stringToElement;
     String strParent =
         SABElementInfoModel.elementRelative(fromElement, toElement);
     return strParent;
@@ -618,8 +618,8 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       "兑": "震",
     };
 
-    String fromPlace = wordsModel().diagramsModel.stringFromPlace;
-    String toPlace = wordsModel().diagramsModel.stringToPlace;
+    String fromPlace = getDiagramsModel().stringFromPlace;
+    String toPlace = getDiagramsModel().stringToPlace;
     String strConflictPlace = dictGuaConflict[fromPlace];
     bResult = strConflictPlace == toPlace;
     return bResult;
@@ -1022,11 +1022,11 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
   }
 
   Map _fromEasyDictionary() {
-    return wordsModel().diagramsModel.mapFromEasy;
+    return getDiagramsModel().mapFromEasy;
   }
 
   Map _toEasyDictionary() {
-    return wordsModel().diagramsModel.mapToEasy;
+    return getDiagramsModel().mapToEasy;
   }
 
   String fromEasyName() {
@@ -1115,6 +1115,10 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
   SABEasyWordsModel wordsModel() {
     return wordsBusiness().outEasyWordsModel();
+  }
+
+  SABDiagramsModel getDiagramsModel() {
+    return wordsModel().inputDigitModel.diagramsModel;
   }
 
   SABEasyWordsBusiness wordsBusiness() {

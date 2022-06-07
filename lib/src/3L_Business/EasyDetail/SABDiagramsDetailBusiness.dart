@@ -1,5 +1,6 @@
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
+import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
@@ -65,8 +66,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
 
     //因为增删卜易中只出现六纯卦，所以也要求是六纯卦；
 
-    if (logicModel().inputWordsModel.diagramsModel.bFromPureEasy &&
-        logicModel().inputWordsModel.diagramsModel.bToPureEasy) {
+    if (getDiagramsModel().bFromPureEasy && getDiagramsModel().bToPureEasy) {
       //本卦与变卦之间的生克关系
       String strParent = logicModel().stringEasyParent;
 
@@ -707,5 +707,9 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
 
   SABEasyHealthLogicModel healthLogicModel() {
     return _inputLogicDesModel.inputHealthLogicModel;
+  }
+
+  SABDiagramsModel getDiagramsModel() {
+    return wordsModel().inputDigitModel.diagramsModel;
   }
 }
