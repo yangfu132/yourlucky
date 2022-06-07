@@ -1,7 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACNavigator.dart';
-import 'package:yourlucky/src/4L_Service/SASLocalizationsService.dart';
+import 'package:yourlucky/src/5L_Service/SASLocalizationsService.dart';
 
 ///功能：选择策略
 class SAUEasyStrategyRoute extends StatefulWidget {

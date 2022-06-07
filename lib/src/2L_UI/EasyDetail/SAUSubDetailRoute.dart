@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailModel.dart';
+import 'package:yourlucky/src/4L_Business/EasyDetail/SABEasyDetailModel.dart';
 
-import '../../3L_Business/EasyDetail/SABDiagramsDetailModel.dart';
+import '../../4L_Business/EasyDetail/SABDiagramsDetailModel.dart';
 
 ///功能：一般性推断结果
 class SAUSubDetailRoute extends StatefulWidget {

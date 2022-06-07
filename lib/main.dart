@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:yourlucky/src/1L_Context/SABSingletonService.dart';
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
-import 'package:yourlucky/src/4L_Service/SASLocalizationsService.dart';
+import 'package:yourlucky/src/5L_Service/SASLocalizationsService.dart';
 
 import 'src/2L_UI/Home/SAUHomeRoute.dart';
 

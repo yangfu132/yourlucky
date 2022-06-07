@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/2L_UI/EasyDetail/SAUSubDetailRoute.dart';
 
-import '../../3L_Business/EasyDetail/SABEasyDetailModel.dart';
+import '../../4L_Business/EasyDetail/SABEasyDetailModel.dart';
 
 class SAUEasyDetailRoute extends StatefulWidget {
   SAUEasyDetailRoute(this.inputDetailModel);
