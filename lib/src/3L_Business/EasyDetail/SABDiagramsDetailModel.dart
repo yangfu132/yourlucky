@@ -1,6 +1,8 @@
+import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
+
 ///
 ///
-class SABDiagramsDetailModel {
+class SABDiagramsDetailModel extends SABBaseModel {
   List<Map> resultList = [
     {
       'key': '目的',

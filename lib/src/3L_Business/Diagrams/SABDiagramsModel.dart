@@ -1,6 +1,7 @@
+import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/3L_Business/BasicEasy/SABDiagramsInfoModel.dart';
 
-class SABDiagramsModel {
+class SABDiagramsModel extends SABBaseModel {
   SABDiagramsModel({
     required this.fromEasyKey,
     required this.toEasyKey,

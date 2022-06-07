@@ -1,4 +1,6 @@
-﻿class SABEarthBranchModel {
+﻿import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
+
+class SABEarthBranchModel extends SABBaseModel {
   //属性注释：地支名
   // String? _earthName;
 

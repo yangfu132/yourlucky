@@ -1,3 +1,4 @@
+import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogicDescription/SABSymbolLogicDescriptionModel.dart';
 
@@ -6,7 +7,7 @@ import '../../1L_Context/SACGlobal.dart';
 import '../EasyLogic/BaseLogic/SABRowLogicModel.dart';
 import '../EasyWords/SABWordsRowModel.dart';
 
-class SABRowLogicDescriptionModel {
+class SABRowLogicDescriptionModel extends SABBaseModel {
   SABRowLogicDescriptionModel(
     this.healthLogicRow,
   );

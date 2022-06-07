@@ -1,4 +1,6 @@
-class SABHealthOriginModel {
+import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
+
+class SABHealthOriginModel extends SABBaseModel {
   ///`基础函数`//////////////////////////////////////////////////////
 
   List arraySeason() {

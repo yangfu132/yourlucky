@@ -1,4 +1,6 @@
-﻿class SABEasyStrategyResultModel {
+﻿import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
+
+class SABEasyStrategyResultModel extends SABBaseModel {
   SABEasyStrategyResultModel({
     required this.strategy,
     required this.lifeKey,

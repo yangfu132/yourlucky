@@ -1,3 +1,4 @@
+import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyDetail/SABSymbolDetailModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart';
 
@@ -7,7 +8,7 @@ import '../EasyLogic/Health/SABRowHealthModel.dart';
 import '../EasyLogicDescription/SABRowLogicDescriptionModel.dart';
 import '../EasyWords/SABWordsRowModel.dart';
 
-class SABRowDetailModel {
+class SABRowDetailModel extends SABBaseModel {
   SABRowDetailModel(this.inputAnalysisRow);
   final SABRowLogicDescriptionModel inputAnalysisRow;
 

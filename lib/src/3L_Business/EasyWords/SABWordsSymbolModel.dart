@@ -1,6 +1,7 @@
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
+import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
 
-class SABWordsSymbolModel {
+class SABWordsSymbolModel extends SABBaseModel {
   SABWordsSymbolModel({
     required this.intRow,
     required this.easyType,

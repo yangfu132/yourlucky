@@ -1,4 +1,6 @@
-class SABEasyStrategyInfoModel {
+import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
+
+class SABEasyStrategyInfoModel extends SABBaseModel {
   static const String avoid = "趋避";
   static const String department = "署印谋差";
   static const String marriage = "婚姻";

@@ -1,4 +1,5 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACContext.dart';
+import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/Goal/SABGoalModel.dart';
@@ -9,7 +10,7 @@ import 'package:yourlucky/src/4L_Service/SASStringService.dart';
 import '../../1L_Context/SACGlobal.dart';
 import 'SABWordsRowModel.dart';
 
-class SABEasyWordsModel {
+class SABEasyWordsModel extends SABBaseModel {
   SABEasyWordsModel(
     this.inputDigitModel, {
     required this.monthModel,

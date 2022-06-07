@@ -1,4 +1,5 @@
-﻿import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
+﻿import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
 
 import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';
@@ -6,7 +7,7 @@ import '../../EarthBranch/SABEarthBranchModel.dart';
 import '../../EasyWords/SABEasyWordsModel.dart';
 import 'SABRowLogicModel.dart';
 
-class SABEasyLogicModel {
+class SABEasyLogicModel extends SABBaseModel {
   SABEasyLogicModel({
     required this.inputWordsModel,
     required this.listStaticSeasonStrong,

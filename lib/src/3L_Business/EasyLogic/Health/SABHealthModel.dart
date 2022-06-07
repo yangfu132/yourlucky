@@ -1,10 +1,11 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
+import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
 
 import '../BaseLogic/SABEasyLogicModel.dart';
 import 'SABRowHealthModel.dart';
 
-class SABHealthModel {
+class SABHealthModel extends SABBaseModel {
   SABHealthModel({
     required this.inputLogicModel,
     required this.healthCritical,

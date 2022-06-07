@@ -1,8 +1,9 @@
-﻿import 'package:yourlucky/src/3L_Business/EasyWords/SABWordsSymbolModel.dart';
+﻿import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyWords/SABWordsSymbolModel.dart';
 
 import '../../1L_Context/SACGlobal.dart';
 
-class SABWordsRowModel {
+class SABWordsRowModel extends SABBaseModel {
   SABWordsRowModel({
     required this.intDigit,
     required this.fromSymbol,

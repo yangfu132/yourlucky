@@ -1,9 +1,10 @@
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
+import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABRowHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABSymbolHealthLogicModel.dart';
 
-class SABRowHealthLogicModel {
+class SABRowHealthLogicModel extends SABBaseModel {
   SABRowHealthLogicModel({
     required this.healthRow,
     required this.fromSymbol,

@@ -1,10 +1,11 @@
-﻿import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
+﻿import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
 
 import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';
 import '../../EasyWords/SABWordsRowModel.dart';
 
-class SABRowLogicModel {
+class SABRowLogicModel extends SABBaseModel {
   SABRowLogicModel({
     required this.fromSymbol,
     required this.toSymbol,

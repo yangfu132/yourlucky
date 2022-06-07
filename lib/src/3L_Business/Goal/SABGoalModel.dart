@@ -1,9 +1,9 @@
-import 'package:yourlucky/src/3L_Business/EasyStrategyResult/StrategyResult/SABEasyStrategyResultModel.dart';
+import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
 
 import 'SABDeityModel.dart';
 import 'SABLifeModel.dart';
 
-class SABGoalModel {
+class SABGoalModel extends SABBaseModel {
   SABGoalModel({
     required this.deityModel,
     required this.lifeModel,
