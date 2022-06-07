@@ -26,8 +26,8 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
 
   Widget _rowWidget(SABEasyDigitModel model) {
     return ListTile(
-      title: Text(model.stringTitle),
-      trailing: Text(model.stringDescribe),
+      title: Text(model.title()),
+      trailing: Text(model.describe()),
       onTap: () async {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           SABEasyDetailBusiness detailBusiness = SABEasyDetailBusiness(model);

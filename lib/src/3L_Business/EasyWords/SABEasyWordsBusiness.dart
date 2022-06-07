@@ -314,7 +314,7 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
   String eightGuaAtFromRow(int nRow) {
     String result = "";
 
-    String fromEasyKey = _inputEasyModel.fromEasyKey;
+    String fromEasyKey = diagramsModel.fromEasyKey;
     if (fromEasyKey.length >= 6) {
       String guaKey = "";
       if (nRow < 3)

@@ -1,6 +1,5 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
-import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/Time/SABDayModel.dart';
 import 'package:yourlucky/src/3L_Business/Time/SABMonthModel.dart';
@@ -17,11 +16,9 @@ class SABEasyWordsModel extends SABBaseModel {
   });
 
   final SABEasyDigitModel inputDigitModel;
-  final List _listRowModels = List.empty(growable: true);
-
-  ///时间
   final SABMonthModel monthModel;
   final SABDayModel dayModel;
+  final List _listRowModels = List.empty(growable: true);
 
   /// `MergeRow函数`///////////////////////////////////////////////////////////
   ///MergeRow的定义

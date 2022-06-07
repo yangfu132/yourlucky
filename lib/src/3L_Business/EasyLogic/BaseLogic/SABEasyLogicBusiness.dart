@@ -76,7 +76,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       }
       //else cont.
 
-    } //endf
+    } //end for
 
     return arrayResult;
   }
@@ -95,7 +95,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
   ///`动静生克章第十四`//////////////////////////////////////////////////////
   bool isStaticEasy() {
-    return fromEasyName() == toEasyName();
+    return getDiagramsModel().fromEasyKey == getDiagramsModel().toEasyKey;
   }
 
   List staticSeasonStrong() {
@@ -1027,22 +1027,6 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
   Map _toEasyDictionary() {
     return getDiagramsModel().mapToEasy;
-  }
-
-  String fromEasyName() {
-    return wordsModel().getFromEasyName();
-  }
-
-  String toEasyName() {
-    return wordsModel().getToEasyName();
-  }
-
-  String fromEasyKey() {
-    return wordsModel().inputDigitModel.fromEasyKey;
-  }
-
-  String toEasyKey() {
-    return wordsModel().inputDigitModel.toEasyKey;
   }
 
   String getUsefulDeity() {

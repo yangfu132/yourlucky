@@ -14,14 +14,6 @@ class SABEasyDigitModel extends SABBaseModel {
     required this.stringTime,
   });
 
-  String getModelName() {
-    return 'easy';
-  }
-
-  int? getModelId() {
-    return modelId;
-  }
-
   final int? modelId;
 
   //属性：实例的随机数数组
@@ -35,24 +27,24 @@ class SABEasyDigitModel extends SABBaseModel {
 
   final String stringTime;
 
-  late String stringTitle = _title();
-
-  late String stringDescribe = _describe();
-
-  late final String fromEasyKey = _getFromEasyKey(listEasyData);
-
-  late final String toEasyKey = _getToEasyKey(listEasyData);
-
   late final SABDiagramsModel diagramsModel = _getDiagramsModel();
 
   SABDiagramsModel _getDiagramsModel() {
     return SABDiagramsModel(
-      fromEasyKey: fromEasyKey,
-      toEasyKey: toEasyKey,
+      fromEasyKey: _getFromEasyKey(listEasyData),
+      toEasyKey: _getToEasyKey(listEasyData),
     );
   }
 
-  String _describe() {
+  String getModelName() {
+    return 'easy';
+  }
+
+  int? getModelId() {
+    return modelId;
+  }
+
+  String describe() {
     String stringDescribe;
     if (isMovement(listEasyData)) {
       stringDescribe =
@@ -64,7 +56,7 @@ class SABEasyDigitModel extends SABBaseModel {
     return stringDescribe;
   }
 
-  String _title() {
+  String title() {
     String stringTitle = '';
     if (strEasyGoal.length > 0) {
       stringTitle = stringTime + strEasyGoal;
