@@ -1,12 +1,12 @@
 ﻿import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABSymbolHealthModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthSymbolModel.dart';
 
 import '../BaseLogic/SABLogicRowModel.dart';
 
-class SABRowHealthModel extends SABBaseModel {
-  SABRowHealthModel({
+class SABHealthRowModel extends SABBaseModel {
+  SABHealthRowModel({
     required this.inputLogicRow,
     required this.fromSymbol,
     required this.toSymbol,
@@ -14,9 +14,9 @@ class SABRowHealthModel extends SABBaseModel {
   });
   final SABLogicRowModel inputLogicRow;
 
-  final SABSymbolHealthModel fromSymbol;
-  final SABSymbolHealthModel toSymbol;
-  final SABSymbolHealthModel hideSymbol;
+  final SABHealthSymbolModel fromSymbol;
+  final SABHealthSymbolModel toSymbol;
+  final SABHealthSymbolModel hideSymbol;
 
   double healthForEasyType(EasyTypeEnum easyType) {
     double fHealth = 0.0;

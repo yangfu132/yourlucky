@@ -11,9 +11,9 @@ import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABLogicRowModel.d
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABLogicSymbolModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABEasyHealthBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthRowModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthSymbolModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABOutRightBusiness.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABRowHealthModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABSymbolHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABSymbolHealthLogicModel.dart';
@@ -45,7 +45,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     return _healthLogicModel;
   }
 
-  SABSymbolHealthLogicModel fromSymbol(SABSymbolHealthModel healthSymbol) {
+  SABSymbolHealthLogicModel fromSymbol(SABHealthSymbolModel healthSymbol) {
     int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
     healthSymbol.stringHealth =
         healthDescriptionAtRow(intRow, EasyTypeEnum.from);
@@ -61,7 +61,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     );
   }
 
-  SABSymbolHealthLogicModel toSymbol(SABSymbolHealthModel healthSymbol) {
+  SABSymbolHealthLogicModel toSymbol(SABHealthSymbolModel healthSymbol) {
     int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
     healthSymbol.stringHealth = healthDescriptionAtRow(intRow, EasyTypeEnum.to);
     return SABSymbolHealthLogicModel(
@@ -74,7 +74,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     );
   }
 
-  SABSymbolHealthLogicModel hideSymbol(SABSymbolHealthModel healthSymbol) {
+  SABSymbolHealthLogicModel hideSymbol(SABHealthSymbolModel healthSymbol) {
     int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
     healthSymbol.stringHealth =
         healthDescriptionAtRow(intRow, EasyTypeEnum.hide);
@@ -100,7 +100,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     );
     //此信息依赖爻的基础信息
     for (int intRow = 0; intRow < 6; intRow++) {
-      SABRowHealthModel rowHealthModel = healthModel().rowModelAtRow(intRow);
+      SABHealthRowModel rowHealthModel = healthModel().rowModelAtRow(intRow);
       SABRowHealthLogicModel symbol = SABRowHealthLogicModel(
         healthRow: rowHealthModel,
         fromSymbol: fromSymbol(rowHealthModel.fromSymbol),

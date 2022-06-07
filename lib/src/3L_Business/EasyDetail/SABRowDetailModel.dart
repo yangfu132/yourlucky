@@ -4,7 +4,7 @@ import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart'
 
 import '../../1L_Context/SACGlobal.dart';
 import '../EasyLogic/BaseLogic/SABLogicRowModel.dart';
-import '../EasyLogic/Health/SABRowHealthModel.dart';
+import '../EasyLogic/Health/SABHealthRowModel.dart';
 import '../EasyLogicDescription/SABRowLogicDescriptionModel.dart';
 import '../EasyWords/SABWordsRowModel.dart';
 
@@ -118,7 +118,7 @@ class SABRowDetailModel extends SABBaseModel {
     return this.inputAnalysisRow.healthLogicRow;
   }
 
-  SABRowHealthModel healthModel() {
+  SABHealthRowModel healthModel() {
     return analysisModel().healthLogicRow.healthRow;
   }
 

@@ -3,7 +3,7 @@ import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
 
 import '../BaseLogic/SABEasyLogicModel.dart';
-import 'SABRowHealthModel.dart';
+import 'SABHealthRowModel.dart';
 
 class SABHealthModel extends SABBaseModel {
   SABHealthModel({
@@ -20,7 +20,7 @@ class SABHealthModel extends SABBaseModel {
   List listMoveRight;
   final double healthCritical;
   late final _finishedList = <int>[];
-  late final _listRowModels = <SABRowHealthModel>[];
+  late final _listRowModels = <SABHealthRowModel>[];
   late final bool hasBeginMoveRow;
   late final bool hasBeginStaticRow;
 
@@ -75,18 +75,18 @@ class SABHealthModel extends SABBaseModel {
 
   /// `加载函数`/////////////////////////////////////////////////////////////////
 
-  SABRowHealthModel rowModelAtRow(int intRow) {
+  SABHealthRowModel rowModelAtRow(int intRow) {
     if (intRow > _listRowModels.length) {
       coLog("intRow:$intRow");
     }
     return _listRowModels[intRow];
   }
 
-  void setRowModelAtRow(int intRow, SABRowHealthModel rowModel) {
+  void setRowModelAtRow(int intRow, SABHealthRowModel rowModel) {
     _listRowModels[intRow] = rowModel;
   }
 
-  void addRowModel(SABRowHealthModel rowModel) {
+  void addRowModel(SABHealthRowModel rowModel) {
     _listRowModels.add(rowModel);
   }
 }
