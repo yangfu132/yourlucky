@@ -8,7 +8,7 @@ import 'package:yourlucky/src/3L_Business/EarthBranch/SABEarthBranchBusiness.dar
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABLogicRowModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABLogicSymbolModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABEasyHealthBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABOutRightBusiness.dart';
@@ -508,7 +508,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
      */
 
     //忌神旺相或遇日月动爻生扶或临日月者，一也。
-    SABSymbolLogicModel symbolFrom =
+    SABLogicSymbolModel symbolFrom =
         logicModel().symbolAtRow(intRow, EasyTypeEnum.from);
     String strSymbolBase = symbolNameAtRow(intRow, EasyTypeEnum.from);
     bool bStrong = symbolFrom.isSeasonStrong;
@@ -567,7 +567,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
      元神旺动临空化空，五也。
      */
     bool bResult = false;
-    SABSymbolLogicModel symbolFrom =
+    SABLogicSymbolModel symbolFrom =
         logicModel().symbolAtRow(intIndex, EasyTypeEnum.from);
     //元神旺相或临日月或动爻生扶者，一也。
     bool bStrong = logicModel().isSeasonStrong(intIndex, EasyTypeEnum.from);
@@ -860,7 +860,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     //还有月合日克或日合月克是可敌。
 
     bool bBalance = false;
-    SABSymbolLogicModel symbolFrom =
+    SABLogicSymbolModel symbolFrom =
         logicModel().symbolAtRow(intRow, EasyTypeEnum.from);
     bool bOnDay = symbolFrom.isOnDay;
     bool bOnMonth = symbolFrom.isOnMonth;
@@ -1066,7 +1066,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     EmptyEnum nResult = EmptyEnum.Empty_False;
 
     String stringSymbol = symbolNameAtRow(intRow, easyType);
-    SABSymbolLogicModel symbolModel =
+    SABLogicSymbolModel symbolModel =
         logicModel().symbolAtRow(intRow, easyType);
     if ("" != stringSymbol) {
       String earth = symbolModel.wordsSymbol.stringEarth;

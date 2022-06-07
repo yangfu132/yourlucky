@@ -1,5 +1,5 @@
 ﻿import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABLogicSymbolModel.dart';
 
 import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';
@@ -114,8 +114,8 @@ class SABEasyLogicModel extends SABBaseModel {
   /// `Get & Set`//////////////////////////////////////////////////////////////
   ///
 
-  SABSymbolLogicModel symbolAtRow(int intRow, EasyTypeEnum easyType) {
-    SABSymbolLogicModel resultSymbol;
+  SABLogicSymbolModel symbolAtRow(int intRow, EasyTypeEnum easyType) {
+    SABLogicSymbolModel resultSymbol;
     if (easyType == EasyTypeEnum.from) {
       resultSymbol = rowModelAtRow(intRow).fromSymbol;
     } else if (easyType == EasyTypeEnum.to) {

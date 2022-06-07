@@ -1,5 +1,5 @@
 ﻿import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABLogicSymbolModel.dart';
 
 import '../../../1L_Context/SACContext.dart';
 import '../../../1L_Context/SACGlobal.dart';
@@ -19,9 +19,9 @@ class SABLogicRowModel extends SABBaseModel {
     required this.isSymbolChangeBack,
   });
   final SABWordsRowModel inputWordsRow;
-  final SABSymbolLogicModel fromSymbol;
-  final SABSymbolLogicModel toSymbol;
-  final SABSymbolLogicModel hideSymbol;
+  final SABLogicSymbolModel fromSymbol;
+  final SABLogicSymbolModel toSymbol;
+  final SABLogicSymbolModel hideSymbol;
   final bool isSymbolChangeBorn;
   final bool isSymbolChangeRestrict;
   final bool isSymbolChangeConflict;
@@ -30,8 +30,8 @@ class SABLogicRowModel extends SABBaseModel {
   final bool isSymbolChangeForward;
   final bool isSymbolChangeBack;
 
-  SABSymbolLogicModel? symbolModel(EasyTypeEnum easyTypeEnum) {
-    SABSymbolLogicModel? resultSymbol;
+  SABLogicSymbolModel? symbolModel(EasyTypeEnum easyTypeEnum) {
+    SABLogicSymbolModel? resultSymbol;
     if (easyTypeEnum == EasyTypeEnum.from) {
       resultSymbol = fromSymbol;
     } else if (easyTypeEnum == EasyTypeEnum.to) {

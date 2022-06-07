@@ -1,6 +1,6 @@
 import 'package:yourlucky/src/3L_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABLogicRowModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABLogicSymbolModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABOutRightBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABSymbolHealthModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
@@ -462,7 +462,7 @@ class SABHealthOriginBusiness extends SABBaseBusiness {
     return _originModel;
   }
 
-  SABSymbolHealthModel fromSymbol(SABSymbolLogicModel logicSymbol) {
+  SABSymbolHealthModel fromSymbol(SABLogicSymbolModel logicSymbol) {
     int intRow = logicSymbol.wordsSymbol.intRow;
     return SABSymbolHealthModel(
         logicSymbol: logicSymbol,
@@ -472,7 +472,7 @@ class SABHealthOriginBusiness extends SABBaseBusiness {
             outRightBusiness.fromOutRightAtRow(intRow, EasyTypeEnum.from));
   }
 
-  SABSymbolHealthModel toSymbol(SABSymbolLogicModel logicSymbol) {
+  SABSymbolHealthModel toSymbol(SABLogicSymbolModel logicSymbol) {
     int intRow = logicSymbol.wordsSymbol.intRow;
     return SABSymbolHealthModel(
         logicSymbol: logicSymbol,
@@ -481,7 +481,7 @@ class SABHealthOriginBusiness extends SABBaseBusiness {
         outRight: OutRightEnum.RIGHT_NULL);
   }
 
-  SABSymbolHealthModel hideSymbol(SABSymbolLogicModel logicSymbol) {
+  SABSymbolHealthModel hideSymbol(SABLogicSymbolModel logicSymbol) {
     int intRow = logicSymbol.wordsSymbol.intRow;
     return SABSymbolHealthModel(
         logicSymbol: logicSymbol,

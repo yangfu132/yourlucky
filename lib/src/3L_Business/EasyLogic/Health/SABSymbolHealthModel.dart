@@ -1,6 +1,6 @@
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABLogicSymbolModel.dart';
 
 class SABSymbolHealthModel extends SABBaseModel {
   SABSymbolHealthModel({
@@ -9,7 +9,7 @@ class SABSymbolHealthModel extends SABBaseModel {
     required this.stringHealth,
     required this.outRight,
   });
-  final SABSymbolLogicModel logicSymbol;
+  final SABLogicSymbolModel logicSymbol;
   double doubleHealth;
   String? stringHealth;
   OutRightEnum outRight;

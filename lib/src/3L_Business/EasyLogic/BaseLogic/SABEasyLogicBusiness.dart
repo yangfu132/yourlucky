@@ -2,7 +2,7 @@
 import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABLogicRowModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABSymbolLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/BaseLogic/SABLogicSymbolModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABWordsRowModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABWordsSymbolModel.dart';
 
@@ -1113,10 +1113,10 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     return _outLogicModel;
   }
 
-  SABSymbolLogicModel fromSymbol(SABWordsSymbolModel wordsSymbol) {
+  SABLogicSymbolModel fromSymbol(SABWordsSymbolModel wordsSymbol) {
     int intRow = wordsSymbol.intRow;
     String stringSymbol = symbolAtFromRow(intRow);
-    return SABSymbolLogicModel(
+    return SABLogicSymbolModel(
       wordsSymbol: wordsSymbol,
       isOnMonth: _isSymbolOnMonth(stringSymbol),
       bMonthBorn: _isSymbolMonthBorn(stringSymbol),
@@ -1135,10 +1135,10 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     );
   }
 
-  SABSymbolLogicModel toSymbol(SABWordsSymbolModel wordsSymbol) {
+  SABLogicSymbolModel toSymbol(SABWordsSymbolModel wordsSymbol) {
     int intRow = wordsSymbol.intRow;
     String stringSymbol = symbolAtToRow(intRow);
-    return SABSymbolLogicModel(
+    return SABLogicSymbolModel(
       wordsSymbol: wordsSymbol,
       isOnMonth: _isSymbolOnMonth(stringSymbol),
       bMonthBorn: _isSymbolMonthBorn(stringSymbol),
@@ -1157,10 +1157,10 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     );
   }
 
-  SABSymbolLogicModel hideSymbol(SABWordsSymbolModel wordsSymbol) {
+  SABLogicSymbolModel hideSymbol(SABWordsSymbolModel wordsSymbol) {
     int intRow = wordsSymbol.intRow;
     String stringSymbol = symbolAtHideRow(intRow);
-    return SABSymbolLogicModel(
+    return SABLogicSymbolModel(
       wordsSymbol: wordsSymbol,
       isOnMonth: _isSymbolOnMonth(stringSymbol),
       bMonthBorn: _isSymbolMonthBorn(stringSymbol),
