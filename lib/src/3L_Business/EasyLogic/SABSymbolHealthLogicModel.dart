@@ -1,6 +1,6 @@
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABSymbolHealthModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthSymbolModel.dart';
 
 class SABSymbolHealthLogicModel extends SABBaseModel {
   SABSymbolHealthLogicModel({
@@ -11,7 +11,7 @@ class SABSymbolHealthLogicModel extends SABBaseModel {
     required this.symbolEmptyState,
     required this.stringDeity,
   });
-  final SABSymbolHealthModel healthSymbol;
+  final SABHealthSymbolModel healthSymbol;
   final bool isSymbolDayBroken;
   final MonthConflictEnum conflictOnMonthState;
   final DayConflictEnum conflictOnDayState;
