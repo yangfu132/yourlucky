@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/1L_Context/SACContext.dart';
+import 'package:yourlucky/src/2L_UI/EasyStrategy/SAUStrategyResultRoute.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyDetail/SABEasyDetailBusiness.dart';
 
 class SAUHistoryRoute extends StatefulWidget {
   SAUHistoryRoute({Key? key, this.title}) : super(key: key);
@@ -36,7 +38,14 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
               ),
               child: ListTile(
                 title: Text(model.stringDescribe),
-                onTap: null,
+                onTap: () async {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    SABEasyDetailBusiness detailBusiness =
+                        SABEasyDetailBusiness(model);
+                    return SAUStrategyResultRoute(
+                        detailBusiness.outputDetailModel());
+                  }));
+                },
               ),
             );
           });
