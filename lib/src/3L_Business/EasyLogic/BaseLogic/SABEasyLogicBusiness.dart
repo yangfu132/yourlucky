@@ -655,7 +655,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     return bResult;
   }
 
-  bool isEasyOutpartRestricts() {
+  bool isEasyOutPartRestricts() {
     //外卦伏吟
     bool bResult = false;
 
@@ -1198,7 +1198,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       isEasyOutPartRepeated: isEasyOutPartRepeated(),
       isEasyRestrictsGroan: isEasyRestrictsGroan(),
       isEasyInPartRestricts: isEasyInPartRestricts(),
-      isEasyOutpartRestricts: isEasyOutpartRestricts(),
+      isEasyOutPartRestricts: isEasyOutPartRestricts(),
     );
 
     ///爻的基础信息

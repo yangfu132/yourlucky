@@ -152,7 +152,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
       String repeated = "卦反吟：内卦反吟内则不安。";
       result = result + "\r\n    $repeated\r\n    $strAgainst ";
       result = result + "    应期：${restrictsEasyResult()}\r\n";
-    } else if (logicModel().isEasyOutpartRestricts) {
+    } else if (logicModel().isEasyOutPartRestricts) {
       String repeated = "卦反吟：外卦反吟外不宁。";
       result = result + "\r\n    $repeated\r\n    $strAgainst ";
       result = result + "    应期：${restrictsEasyResult()}\r\n";
@@ -613,7 +613,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
       String repeated = "卦反吟：内卦反吟内则不安。";
       result = "\r\n    $repeated\r\n    $strAgainst ";
       result = result + "    应期：${restrictsEasyResult()}\r\n";
-    } else if (logicModel().isEasyOutpartRestricts) {
+    } else if (logicModel().isEasyOutPartRestricts) {
       String repeated = "卦反吟：外卦反吟外不宁。";
       result = "\r\n    $repeated\r\n    $strAgainst ";
       result = result + "    应期：${restrictsEasyResult()}\r\n";

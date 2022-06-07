@@ -25,7 +25,7 @@ class SABEasyLogicModel extends SABBaseModel {
     required this.isEasyOutPartRepeated,
     required this.isEasyRestrictsGroan,
     required this.isEasyInPartRestricts,
-    required this.isEasyOutpartRestricts,
+    required this.isEasyOutPartRestricts,
   });
 
   final SABEasyWordsModel inputWordsModel;
@@ -61,7 +61,7 @@ class SABEasyLogicModel extends SABBaseModel {
 
   final bool isEasyInPartRestricts;
 
-  final bool isEasyOutpartRestricts;
+  final bool isEasyOutPartRestricts;
 
   /// `Public`//////////////////////////////////////////////////////////////
 
