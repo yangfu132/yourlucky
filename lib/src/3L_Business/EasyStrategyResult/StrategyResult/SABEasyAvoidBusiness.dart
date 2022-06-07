@@ -223,7 +223,7 @@ class SABEasyAvoidBusiness extends SABBaseBusiness {
 
     //克在内世在外，宜于外避。克神若在内卦动而克世，宜出外避之。克神若在外卦动而克世，宜在家避之。
     List arrayEnemy = avoidGodRowArray(EasyTypeEnum.from);
-    int lifeRow = wordsModel().intLifeIndex;
+    int lifeRow = wordsModel().getLifeIndex();
 
     if (arrayEnemy.length > 0) {
       if (wordsModel().inputDigitModel.isInGua(lifeRow)) {

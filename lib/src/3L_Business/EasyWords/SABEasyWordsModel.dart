@@ -2,7 +2,6 @@
 import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/3L_Business/Diagrams/SABDiagramsModel.dart';
 import 'package:yourlucky/src/3L_Business/DigitModel/SABEasyDigitModel.dart';
-import 'package:yourlucky/src/3L_Business/Goal/SABGoalModel.dart';
 import 'package:yourlucky/src/3L_Business/Time/SABDayModel.dart';
 import 'package:yourlucky/src/3L_Business/Time/SABMonthModel.dart';
 import 'package:yourlucky/src/4L_Service/SASStringService.dart';
@@ -15,23 +14,25 @@ class SABEasyWordsModel extends SABBaseModel {
     this.inputDigitModel, {
     required this.monthModel,
     required this.dayModel,
-    required this.goalModel,
-    required this.elementOfUsefulDeity,
   });
 
   final SABEasyDigitModel inputDigitModel;
   final List _listRowModels = List.empty(growable: true);
-  final String elementOfUsefulDeity;
 
   ///时间
   final SABMonthModel monthModel;
   final SABDayModel dayModel;
-  final SABGoalModel goalModel;
 
   ///世应
   late final SABDiagramsModel diagramsModel = inputDigitModel.diagramsModel;
-  late final int intLifeIndex = diagramsModel.lifeIndex;
-  late final int intGoalIndex = diagramsModel.goalIndex;
+
+  int getLifeIndex() {
+    return diagramsModel.lifeIndex;
+  }
+
+  int getGoalIndex() {
+    return diagramsModel.goalIndex;
+  }
 
   /// `MergeRow函数`///////////////////////////////////////////////////////////
   ///MergeRow的定义
@@ -213,27 +214,27 @@ class SABEasyWordsModel extends SABBaseModel {
   }
 
   String getLifeParent() {
-    return getSymbolParent(intLifeIndex, EasyTypeEnum.from);
+    return getSymbolParent(getLifeIndex(), EasyTypeEnum.from);
   }
 
   String getLifeName() {
-    return getSymbolName(intLifeIndex, EasyTypeEnum.from);
+    return getSymbolName(getLifeIndex(), EasyTypeEnum.from);
   }
 
   String getGoalName() {
-    return getSymbolName(intGoalIndex, EasyTypeEnum.from);
+    return getSymbolName(getGoalIndex(), EasyTypeEnum.from);
   }
 
   String getLifeElement() {
-    return getSymbolElement(intLifeIndex, EasyTypeEnum.from);
+    return getSymbolElement(getLifeIndex(), EasyTypeEnum.from);
   }
 
   String getLifeAnimal() {
-    return getAnimal(intLifeIndex);
+    return getAnimal(getLifeIndex());
   }
 
   String getLifeDiagrams() {
-    return getDiagrams(intLifeIndex);
+    return getDiagrams(getLifeIndex());
   }
 
   String stringFromSymbolArray(List hideArray, EasyTypeEnum easyTypeEnum) {

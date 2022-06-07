@@ -1050,11 +1050,11 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
   }
 
   int getLifeIndex() {
-    return wordsModel().intLifeIndex;
+    return wordsModel().getLifeIndex();
   }
 
   int getGoalIndex() {
-    return wordsModel().intGoalIndex;
+    return wordsModel().getGoalIndex();
   }
 
   String rowModelAtRow(int intRow, EasyTypeEnum enumEasyType) {

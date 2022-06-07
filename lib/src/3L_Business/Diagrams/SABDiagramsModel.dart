@@ -34,6 +34,7 @@ class SABDiagramsModel extends SABBaseModel {
   late final Map mapHideEasy;
   late final int lifeIndex;
   late final int goalIndex;
+  late final String deityElement;
 
   ///纯卦
   late final bool bFromPureEasy;

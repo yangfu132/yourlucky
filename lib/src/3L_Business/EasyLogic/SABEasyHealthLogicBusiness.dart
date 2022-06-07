@@ -198,7 +198,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   }
 
   String elementOfUsefulDeity() {
-    return logicModel().inputWordsModel.elementOfUsefulDeity;
+    return logicModel().inputWordsModel.diagramsModel.deityElement;
   }
 
   String symbolNameAtRow(int intRow, EasyTypeEnum enumEasyType) {
@@ -242,7 +242,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
   double lifeHealth() {
     double fResult = 0;
-    int lifeIndex = wordsModel().intLifeIndex;
+    int lifeIndex = wordsModel().getLifeIndex();
     fResult = healthModel().symbolHealthAtRow(lifeIndex, EasyTypeEnum.from);
     return fResult;
   }
