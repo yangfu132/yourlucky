@@ -2,10 +2,10 @@ import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthRowModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/SABSymbolHealthLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/SABHealthLogicSymbolModel.dart';
 
-class SABRowHealthLogicModel extends SABBaseModel {
-  SABRowHealthLogicModel({
+class SABHealthLogicRowModel extends SABBaseModel {
+  SABHealthLogicRowModel({
     required this.healthRow,
     required this.fromSymbol,
     required this.toSymbol,
@@ -14,9 +14,9 @@ class SABRowHealthLogicModel extends SABBaseModel {
   });
   final SABHealthRowModel healthRow;
   final bool isSymbolBackMove;
-  final SABSymbolHealthLogicModel fromSymbol;
-  final SABSymbolHealthLogicModel toSymbol;
-  final SABSymbolHealthLogicModel hideSymbol;
+  final SABHealthLogicSymbolModel fromSymbol;
+  final SABHealthLogicSymbolModel toSymbol;
+  final SABHealthLogicSymbolModel hideSymbol;
   bool? isSymbolChangeEmpty;
 
   String? getStringHealth(EasyTypeEnum easyTypeEnum) {

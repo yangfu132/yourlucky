@@ -15,8 +15,8 @@ import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthRowModel.dar
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthSymbolModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABOutRightBusiness.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/SABEasyHealthLogicModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/SABSymbolHealthLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/SABHealthLogicRowModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/SABHealthLogicSymbolModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyStrategyResult/Strategy/SABParentInfoModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyWords/SABEasyWordsModel.dart';
 
@@ -45,12 +45,12 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     return _healthLogicModel;
   }
 
-  SABSymbolHealthLogicModel fromSymbol(SABHealthSymbolModel healthSymbol) {
+  SABHealthLogicSymbolModel fromSymbol(SABHealthSymbolModel healthSymbol) {
     int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
     healthSymbol.stringHealth =
         healthDescriptionAtRow(intRow, EasyTypeEnum.from);
 
-    return SABSymbolHealthLogicModel(
+    return SABHealthLogicSymbolModel(
       healthSymbol: healthSymbol,
       symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.from),
       isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, EasyTypeEnum.from),
@@ -61,10 +61,10 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     );
   }
 
-  SABSymbolHealthLogicModel toSymbol(SABHealthSymbolModel healthSymbol) {
+  SABHealthLogicSymbolModel toSymbol(SABHealthSymbolModel healthSymbol) {
     int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
     healthSymbol.stringHealth = healthDescriptionAtRow(intRow, EasyTypeEnum.to);
-    return SABSymbolHealthLogicModel(
+    return SABHealthLogicSymbolModel(
       healthSymbol: healthSymbol,
       symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.to),
       isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, EasyTypeEnum.to),
@@ -74,11 +74,11 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     );
   }
 
-  SABSymbolHealthLogicModel hideSymbol(SABHealthSymbolModel healthSymbol) {
+  SABHealthLogicSymbolModel hideSymbol(SABHealthSymbolModel healthSymbol) {
     int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
     healthSymbol.stringHealth =
         healthDescriptionAtRow(intRow, EasyTypeEnum.hide);
-    return SABSymbolHealthLogicModel(
+    return SABHealthLogicSymbolModel(
         healthSymbol: healthSymbol,
         symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.hide),
         isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, EasyTypeEnum.hide),
@@ -101,7 +101,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     //此信息依赖爻的基础信息
     for (int intRow = 0; intRow < 6; intRow++) {
       SABHealthRowModel rowHealthModel = healthModel().rowModelAtRow(intRow);
-      SABRowHealthLogicModel symbol = SABRowHealthLogicModel(
+      SABHealthLogicRowModel symbol = SABHealthLogicRowModel(
         healthRow: rowHealthModel,
         fromSymbol: fromSymbol(rowHealthModel.fromSymbol),
         toSymbol: toSymbol(rowHealthModel.toSymbol),

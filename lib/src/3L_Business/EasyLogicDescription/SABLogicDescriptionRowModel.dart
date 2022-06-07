@@ -1,26 +1,26 @@
 import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogicDescription/SABSymbolLogicDescriptionModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/SABHealthLogicRowModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogicDescription/SABLogicDescriptionSymbolModel.dart';
 
 import '../../1L_Context/SACContext.dart';
 import '../../1L_Context/SACGlobal.dart';
 import '../EasyLogic/BaseLogic/SABLogicRowModel.dart';
 import '../EasyWords/SABWordsRowModel.dart';
 
-class SABRowLogicDescriptionModel extends SABBaseModel {
-  SABRowLogicDescriptionModel(
+class SABLogicDescriptionRowModel extends SABBaseModel {
+  SABLogicDescriptionRowModel(
     this.healthLogicRow,
   );
-  final SABRowHealthLogicModel healthLogicRow;
+  final SABHealthLogicRowModel healthLogicRow;
 
-  late final SABSymbolLogicDescriptionModel fromSymbol =
-      SABSymbolLogicDescriptionModel(
+  late final SABLogicDescriptionSymbolModel fromSymbol =
+      SABLogicDescriptionSymbolModel(
           inputHealthLogic: this.healthLogicRow.fromSymbol);
-  late final SABSymbolLogicDescriptionModel toSymbol =
-      SABSymbolLogicDescriptionModel(
+  late final SABLogicDescriptionSymbolModel toSymbol =
+      SABLogicDescriptionSymbolModel(
           inputHealthLogic: this.healthLogicRow.toSymbol);
-  late final SABSymbolLogicDescriptionModel hideSymbol =
-      SABSymbolLogicDescriptionModel(
+  late final SABLogicDescriptionSymbolModel hideSymbol =
+      SABLogicDescriptionSymbolModel(
           inputHealthLogic: this.healthLogicRow.hideSymbol);
 
   String _symbolRelation = '';

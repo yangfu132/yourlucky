@@ -2,7 +2,7 @@ import 'package:yourlucky/src/1L_Context/SACContext.dart';
 import 'package:yourlucky/src/1L_Context/SACGlobal.dart';
 import 'package:yourlucky/src/3L_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyLogic/Health/SABHealthModel.dart';
-import 'package:yourlucky/src/3L_Business/EasyLogic/SABRowHealthLogicModel.dart';
+import 'package:yourlucky/src/3L_Business/EasyLogic/SABHealthLogicRowModel.dart';
 import 'package:yourlucky/src/3L_Business/EasyStrategyResult/Strategy/SABParentInfoModel.dart';
 
 class SABEasyHealthLogicModel extends SABBaseModel {
@@ -20,7 +20,7 @@ class SABEasyHealthLogicModel extends SABBaseModel {
   //属性：用神的索引号
   final SABParentInfoModel usefulDeity;
 
-  final _listRowModels = <SABRowHealthLogicModel>[];
+  final _listRowModels = <SABHealthLogicRowModel>[];
 
   final double lifeHealthWithCritical;
   final double usefulHealthWithCritical;
@@ -63,11 +63,11 @@ class SABEasyHealthLogicModel extends SABBaseModel {
 
   /// `加载函数`/////////////////////////////////////////////////////////////////
 
-  void addSymbol(SABRowHealthLogicModel rowModel) {
+  void addSymbol(SABHealthLogicRowModel rowModel) {
     _listRowModels.add(rowModel);
   }
 
-  SABRowHealthLogicModel rowModelAtRow(int intRow) {
+  SABHealthLogicRowModel rowModelAtRow(int intRow) {
     if (intRow > _listRowModels.length) {
       coLog("intRow:$intRow");
     }
