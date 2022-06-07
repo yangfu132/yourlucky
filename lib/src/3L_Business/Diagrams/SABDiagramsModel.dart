@@ -20,6 +20,9 @@ class SABDiagramsModel extends SABBaseModel {
     this.lifeIndex = _lifeIndex();
     this.goalIndex = _goalIndex();
   }
+
+  final String fromEasyKey;
+  final String toEasyKey;
   late final SABDiagramsInfoModel _eightDiagrams = SABDiagramsInfoModel();
 
   ///卦
@@ -39,10 +42,6 @@ class SABDiagramsModel extends SABBaseModel {
   ///纯卦
   late final bool bFromPureEasy;
   late final bool bToPureEasy;
-
-  ///
-  final String fromEasyKey;
-  final String toEasyKey;
 
   ///此方法获取本卦的卦名
   String _fromEasyName() {

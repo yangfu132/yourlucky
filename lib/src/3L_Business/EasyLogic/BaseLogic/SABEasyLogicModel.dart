@@ -29,6 +29,7 @@ class SABEasyLogicModel extends SABBaseModel {
   });
 
   final SABEasyWordsModel inputWordsModel;
+
   final List listStaticSeasonStrong;
 
   late final SABEarthBranchModel _earthBranchModel = SABEarthBranchModel();

@@ -25,7 +25,6 @@ class SABLogicRowModel extends SABBaseModel {
   final bool isSymbolChangeBorn;
   final bool isSymbolChangeRestrict;
   final bool isSymbolChangeConflict;
-
   final String stringSymbolForwardOrBack;
   final bool isSymbolChangeForward;
   final bool isSymbolChangeBack;
