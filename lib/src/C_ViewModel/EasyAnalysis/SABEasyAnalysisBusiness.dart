@@ -126,7 +126,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
 
     String result = "";
 
-    List arrayEffects = logicModel().listStaticSeasonStrong;
+    List arrayEffects = logicModel().diagramsModel.listStaticSeasonStrong;
     //把自己从列表中移除
     if (EasyTypeEnum.from == easyType) arrayEffects.remove(nIndex);
     //else cont.
