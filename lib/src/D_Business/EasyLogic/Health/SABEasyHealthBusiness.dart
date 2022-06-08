@@ -50,7 +50,7 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
       double fHealth =
           tempHealthModel.symbolHealthAtRow(intRow, EasyTypeEnum.from);
 
-      if (fHealth > tempHealthModel.healthCritical) {
+      if (fHealth > tempHealthModel.diagramsModel.healthCritical) {
         tempHealthModel.rowModelAtRow(intRow).fromSymbol.outRight =
             OutRightEnum.RIGHT_MOVE;
         resultRow.add(intRow);
@@ -63,11 +63,11 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
   }
 
   bool isValidEasy(SABHealthModel tempHealthModel) {
-    tempHealthModel.hasBeginMoveRow =
+    tempHealthModel.diagramsModel.hasBeginMoveRow =
         moveBusiness().isMoveRightLevelHasBeginRow(tempHealthModel);
-    tempHealthModel.hasBeginStaticRow =
+    tempHealthModel.diagramsModel.hasBeginStaticRow =
         staticBusiness().isStaticRightLevelHasBeginRow(tempHealthModel);
-    return tempHealthModel.bValidEasy();
+    return tempHealthModel.diagramsModel.bValidEasy();
   }
 
   ///`SABEasyHealthDelegate`

@@ -17,7 +17,7 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
 
   ///Level:指的是OutRightEnum，Level4代指 RIGHT_STATIC
   void calculateHealthOfAllStaticRight(SABHealthModel tempHealthModel) {
-    bool bHasBeginStatic = tempHealthModel.hasBeginStaticRow;
+    bool bHasBeginStatic = tempHealthModel.diagramsModel.hasBeginStaticRow;
     List arrayStatic =
         originBusiness().rowArrayAtOutRightLevel(OutRightEnum.RIGHT_STATIC);
     for (int nRow in arrayStatic) {

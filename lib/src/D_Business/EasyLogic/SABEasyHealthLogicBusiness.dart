@@ -152,7 +152,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   }
 
   double healthCriticalValue() {
-    return healthModel().healthCritical;
+    return healthModel().diagramsModel.healthCritical;
   }
 
   List moveRightArray() {
@@ -273,11 +273,11 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   }
 
   double lifeHealthWithCritical() {
-    return lifeHealth() - healthModel().healthCritical;
+    return lifeHealth() - healthModel().diagramsModel.healthCritical;
   }
 
   double usefulHealthWithCritical() {
-    return usefulHealth() - healthModel().healthCritical;
+    return usefulHealth() - healthModel().diagramsModel.healthCritical;
   }
 
   ///`用神章第八--用神旺相`//////////////////////////////////////////////////////
@@ -365,7 +365,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     String strResult = "";
 
     double fHealth = healthModel().symbolHealthAtRow(intRow, easyType);
-    fHealth -= healthModel().healthCritical;
+    fHealth -= healthModel().diagramsModel.healthCritical;
     if (fHealth > 0) {
       strResult = "强";
     } else {
@@ -1009,7 +1009,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   bool isSymbolHealthStrong(int intRow, EasyTypeEnum easyType) {
     bool bResult = false;
     final health = healthModel().symbolHealthAtRow(intRow, easyType);
-    bResult = health > healthModel().healthCritical;
+    bResult = health > healthModel().diagramsModel.healthCritical;
     return bResult;
   }
 

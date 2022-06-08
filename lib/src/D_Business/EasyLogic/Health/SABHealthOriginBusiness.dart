@@ -9,6 +9,7 @@ import '../../../A_Context/SACContext.dart';
 import '../../../A_Context/SACGlobal.dart';
 import '../../EarthBranch/SABEarthBranchBusiness.dart';
 import '../BaseLogic/SABEasyLogicModel.dart';
+import 'SABHealthDiagramsModel.dart';
 import 'SABHealthModel.dart';
 import 'SABHealthOriginModel.dart';
 import 'SABHealthRowModel.dart';
@@ -502,10 +503,17 @@ class SABHealthOriginBusiness extends SABBaseBusiness {
     return outRightBusiness.symbolOutRightAtRow(nRow, easyType);
   }
 
+  SABHealthDiagramsModel _diagrams() {
+    return SABHealthDiagramsModel(
+      logicModel: logicModel().diagramsModel,
+      healthCritical: healthCriticalValue(),
+    );
+  }
+
   SABHealthModel initHealthModel() {
     SABHealthModel healthModel = SABHealthModel(
       inputLogicModel: logicModel(),
-      healthCritical: healthCriticalValue(),
+      diagramsModel: _diagrams(),
       monthHealth: originBaseModel().monthHealthValue(),
       dayHealth: originBaseModel().dayHealthValue(),
       listMoveRight: rowArrayAtOutRightLevel(OutRightEnum.RIGHT_MOVE),

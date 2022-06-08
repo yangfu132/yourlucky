@@ -1,32 +1,26 @@
 ﻿import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
+import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 
-import '../BaseLogic/SABEasyLogicModel.dart';
+import 'SABHealthDiagramsModel.dart';
 import 'SABHealthRowModel.dart';
 
 class SABHealthModel extends SABBaseModel {
   SABHealthModel({
     required this.inputLogicModel,
-    required this.healthCritical,
+    required this.diagramsModel,
     required this.monthHealth,
     required this.dayHealth,
     required this.listMoveRight,
   });
+  final SABEasyLogicModel inputLogicModel;
+  final SABHealthDiagramsModel diagramsModel;
   final double monthHealth;
   final double dayHealth;
-
-  final SABEasyLogicModel inputLogicModel;
   List listMoveRight;
-  final double healthCritical;
   late final _finishedList = <int>[];
   late final _listRowModels = <SABHealthRowModel>[];
-  late final bool hasBeginMoveRow;
-  late final bool hasBeginStaticRow;
-
-  bool bValidEasy() {
-    return hasBeginMoveRow && hasBeginStaticRow;
-  }
 
   double symbolHealthAtRow(int nRow, EasyTypeEnum easyType) {
     return rowModelAtRow(nRow).healthForEasyType(easyType);

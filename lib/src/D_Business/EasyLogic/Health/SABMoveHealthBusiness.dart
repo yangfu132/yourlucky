@@ -23,7 +23,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
   }
 
   void calculateHealthOfAllMoveRight(SABHealthModel healthModel, List listRow) {
-    bool hasBegin = healthModel.hasBeginMoveRow;
+    bool hasBegin = healthModel.diagramsModel.hasBeginMoveRow;
     for (int item in listRow) {
       final fromSymbol = healthModel.rowModelAtRow(item).fromSymbol;
       if (healthModel.isUnFinish(item)) {

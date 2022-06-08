@@ -23,7 +23,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
   void configResultModel(SABDiagramsDetailModel outputResultModel) {
     SABHealthModel theHealthModel = healthModel();
     List resultList = outputResultModel.resultList;
-    if (theHealthModel.bValidEasy()) {
+    if (theHealthModel.diagramsModel.bValidEasy()) {
       resultList[0]['value'] = digitModel().strEasyGoal;
       resultList[1]['value'] = this.resultUsefulDeity();
       resultList[2]['value'] = this.resultEasy();
@@ -244,7 +244,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
   ///`基于世爻与用神的判定结果`//////////////////////////////////////////////////////
   String resultSymbol(SABHealthModel theHealthModel) {
     String strResult = '卦体为主，世用为辅，如果是平常卦就以世用为主。';
-    if (theHealthModel.bValidEasy()) {
+    if (theHealthModel.diagramsModel.bValidEasy()) {
       strResult =
           SASStringService.appendToString(strResult, subresultSymbolStandard());
     } else
