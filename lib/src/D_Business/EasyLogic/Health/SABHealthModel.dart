@@ -12,14 +12,12 @@ class SABHealthModel extends SABBaseModel {
     required this.diagramsModel,
     required this.monthHealth,
     required this.dayHealth,
-    required this.listMoveRight,
   });
   final SABEasyLogicModel inputLogicModel;
   final SABHealthDiagramsModel diagramsModel;
   final double monthHealth;
   final double dayHealth;
-  List listMoveRight;
-  late final _finishedList = <int>[];
+
   late final _listRowModels = <SABHealthRowModel>[];
 
   double symbolHealthAtRow(int nRow, EasyTypeEnum easyType) {
@@ -42,13 +40,6 @@ class SABHealthModel extends SABBaseModel {
     rowModelAtRow(nRow).setHealthForEasyType(EasyTypeEnum.from, health);
   }
 
-  void addToFinishArray(int nRow) {
-    if (-1 == _finishedList.indexOf(nRow)) {
-      _finishedList.add(nRow);
-      print("addToFinishArray: $nRow");
-    }
-  }
-
   List moveRightInArray(List arrayRow, easyType) {
     List listMoveRight = List.empty(growable: true);
     for (int intRow in arrayRow) {
@@ -61,10 +52,6 @@ class SABHealthModel extends SABBaseModel {
 
     /// end for
     return listMoveRight;
-  }
-
-  bool isUnFinish(int nRow) {
-    return -1 == _finishedList.indexOf(nRow);
   }
 
   /// `加载函数`/////////////////////////////////////////////////////////////////

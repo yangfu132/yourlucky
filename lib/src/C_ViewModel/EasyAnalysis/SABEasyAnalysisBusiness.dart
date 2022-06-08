@@ -103,7 +103,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
   String movementEffectedAtRow(int intRow, EasyTypeEnum easyType) {
     String result = "";
 
-    List arrayEffects = healthModel().listMoveRight;
+    List arrayEffects = healthModel().diagramsModel.listMoveRight;
 
     //把自己从列表中移除
     if (EasyTypeEnum.from == easyType) arrayEffects.remove(intRow);
@@ -427,7 +427,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
       if (EasyTypeEnum.from == easyType) {
         String strSymbolPair = "";
         //爻与爻合者，二也; 两爻都需要是动爻才能合
-        List movementArray = healthModel().listMoveRight;
+        List movementArray = healthModel().diagramsModel.listMoveRight;
         if (movementArray.length >= 2) {
           for (int item in movementArray) {
             String tempEarth =
@@ -504,7 +504,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
     String basicEarth = logicModel().getSymbolEarth(nRow, easyType);
 
     if (logicModel().isMovementAtRow(nRow)) {
-      List movementArray = healthModel().listMoveRight;
+      List movementArray = healthModel().diagramsModel.listMoveRight;
       for (int item in movementArray) {
         if (nRow != item) {
           String tempEarth =
@@ -578,7 +578,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
     String strResult = "";
 
     //一卦之内有三爻动而合局者，一也。
-    List movementArray = healthModel().listMoveRight;
+    List movementArray = healthModel().diagramsModel.listMoveRight;
     String strThreePair = subResultThreePairOfRowArray(movementArray);
 
     List array = [0, 1, 2, 3, 4, 5];
@@ -601,7 +601,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
 
   int moveCountInArray(List arrayPairRow) {
     int nCount = 0;
-    List movementArray = healthModel().listMoveRight;
+    List movementArray = healthModel().diagramsModel.listMoveRight;
     for (String item in arrayPairRow) {
       if (-1 != movementArray.indexOf(item)) nCount++;
       //else cont.
@@ -695,7 +695,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
     String strResult = "";
     //有内卦初爻三爻动，动而变出之爻成三合者，三也。
 
-    List movementArray = healthModel().listMoveRight;
+    List movementArray = healthModel().diagramsModel.listMoveRight;
     if (-1 != movementArray.indexOf(3) && -1 != movementArray.indexOf(5)) {
       String strPair = "";
       List arrayRow1 = [];
@@ -732,7 +732,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
     //有外卦四爻六爻动，动而变出之爻成合者，四也。
     int nFirst = 0;
     int nSecond = 0;
-    List movementArray = healthModel().listMoveRight;
+    List movementArray = healthModel().diagramsModel.listMoveRight;
     if (-1 != movementArray.indexOf(nFirst) &&
         -1 != movementArray.indexOf(nSecond)) {
       String strPair = "";

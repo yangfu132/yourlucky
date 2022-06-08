@@ -507,6 +507,7 @@ class SABHealthOriginBusiness extends SABBaseBusiness {
     return SABHealthDiagramsModel(
       logicModel: logicModel().diagramsModel,
       healthCritical: healthCriticalValue(),
+      listMoveRight: rowArrayAtOutRightLevel(OutRightEnum.RIGHT_MOVE),
     );
   }
 
@@ -516,7 +517,6 @@ class SABHealthOriginBusiness extends SABBaseBusiness {
       diagramsModel: _diagrams(),
       monthHealth: originBaseModel().monthHealthValue(),
       dayHealth: originBaseModel().dayHealthValue(),
-      listMoveRight: rowArrayAtOutRightLevel(OutRightEnum.RIGHT_MOVE),
     );
 
     for (int intRow = 0; intRow < 6; intRow++) {

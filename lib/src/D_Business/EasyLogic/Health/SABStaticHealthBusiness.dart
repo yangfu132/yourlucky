@@ -21,15 +21,15 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
     List arrayStatic =
         originBusiness().rowArrayAtOutRightLevel(OutRightEnum.RIGHT_STATIC);
     for (int nRow in arrayStatic) {
-      if (tempHealthModel.isUnFinish(nRow)) {
+      if (tempHealthModel.diagramsModel.isUnFinish(nRow)) {
         if (bHasBeginStatic) {
           double doubleHealth = calculateHealthOfStaticRightRow(
               tempHealthModel, nRow, EasyTypeEnum.from);
           tempHealthModel.updateHealthAtRow(nRow, doubleHealth);
-          tempHealthModel.addToFinishArray(nRow);
+          tempHealthModel.diagramsModel.addToFinishArray(nRow);
         } else {
           ///如果找不到开始row，就随便指定一个座位开始row；
-          tempHealthModel.addToFinishArray(nRow);
+          tempHealthModel.diagramsModel.addToFinishArray(nRow);
         }
       }
     }
@@ -41,11 +41,11 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
     List arrayEffectsInLevel4 = effectingArrayAtLevel4Row(nRow, easyType);
 
     for (int effectsItem in arrayEffectsInLevel4) {
-      if (tempHealthModel.isUnFinish(effectsItem)) {
+      if (tempHealthModel.diagramsModel.isUnFinish(effectsItem)) {
         basicHealth = calculateHealthOfStaticRightRow(
             tempHealthModel, effectsItem, easyType);
         tempHealthModel.updateHealthAtRow(nRow, basicHealth);
-        tempHealthModel.addToFinishArray(nRow);
+        tempHealthModel.diagramsModel.addToFinishArray(nRow);
       }
       //else cont.
 
@@ -69,7 +69,7 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
         } else {
           bool allFinish = true;
           for (int itemEffects in arrayEffects) {
-            if (tempHealthModel.isUnFinish(itemEffects)) {
+            if (tempHealthModel.diagramsModel.isUnFinish(itemEffects)) {
               allFinish = false;
               break;
             }
@@ -97,7 +97,7 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
         .effectingArrayAtLevel3Row(tempHealthModel, nRow, easyType);
 
     for (int itemEffects in arrayEffectsInLevel3) {
-      if (tempHealthModel.isUnFinish(itemEffects)) {
+      if (tempHealthModel.diagramsModel.isUnFinish(itemEffects)) {
         moveBusiness().calculateHealthOfMoveRightRow(
             tempHealthModel, itemEffects, easyType);
       } else {

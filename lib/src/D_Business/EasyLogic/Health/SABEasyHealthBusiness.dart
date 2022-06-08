@@ -36,7 +36,7 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
     );
     List<int> conflictMove = updateDayConflictOutRight(tempHealthModel);
     moveBusiness().calculateHealthOfAllMoveRight(tempHealthModel, conflictMove);
-    tempHealthModel.listMoveRight =
+    tempHealthModel.diagramsModel.listMoveRight =
         rowArrayAtOutRightLevel(OutRightEnum.RIGHT_MOVE);
     staticBusiness().calculateHealthOfAllStaticRight(tempHealthModel);
     return tempHealthModel;
@@ -72,7 +72,7 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
 
   ///`SABEasyHealthDelegate`
 
-  List rowArrayAtOutRightLevel(OutRightEnum level) {
+  List<int> rowArrayAtOutRightLevel(OutRightEnum level) {
     return originBusiness().rowArrayAtOutRightLevel(level);
   }
 

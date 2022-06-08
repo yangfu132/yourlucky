@@ -26,7 +26,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
     bool hasBegin = healthModel.diagramsModel.hasBeginMoveRow;
     for (int item in listRow) {
       final fromSymbol = healthModel.rowModelAtRow(item).fromSymbol;
-      if (healthModel.isUnFinish(item)) {
+      if (healthModel.diagramsModel.isUnFinish(item)) {
         double moveHealth = fromSymbol.doubleHealth;
         if (hasBegin) {
           moveHealth = calculateHealthOfMoveRightRow(
@@ -40,7 +40,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
           } else {}
         } //end if
         healthModel.updateHealthAtRow(item, moveHealth);
-        healthModel.addToFinishArray(item);
+        healthModel.diagramsModel.addToFinishArray(item);
       }
       //else cont.
     } //endf
@@ -59,11 +59,11 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
         effectingArrayAtLevel3Row(tempHealthModel, item, easyType);
 
     for (int effectsItem in arrayEffects) {
-      if (tempHealthModel.isUnFinish(effectsItem)) {
+      if (tempHealthModel.diagramsModel.isUnFinish(effectsItem)) {
         moveHealth = calculateHealthOfMoveRightRow(
             tempHealthModel, effectsItem, easyType);
         tempHealthModel.updateHealthAtRow(item, moveHealth);
-        tempHealthModel.addToFinishArray(item);
+        tempHealthModel.diagramsModel.addToFinishArray(item);
       }
       //else cont.
       moveHealth += adjustHealthAtRow(
@@ -107,7 +107,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
       double toHealth = toSymbolHealthAtRow(nRow);
       result = toHealth * originBusiness().conversionRateAtRow(nRow, easyType);
     } else if (EasyTypeEnum.from == easyType) {
-      if (!tempHealthModel.isUnFinish(nRow)) {
+      if (!tempHealthModel.diagramsModel.isUnFinish(nRow)) {
         double health = tempHealthModel.symbolHealthAtRow(nRow, easyType);
         result = health * originBusiness().conversionRateAtRow(nRow, easyType);
       } //else { moving row }
@@ -265,7 +265,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
         } else {
           bool allFinish = true;
           for (int itemEffects in arrayEffects) {
-            if (tempHealthModel.isUnFinish(itemEffects)) {
+            if (tempHealthModel.diagramsModel.isUnFinish(itemEffects)) {
               allFinish = false;
               break;
             } //else cont.
