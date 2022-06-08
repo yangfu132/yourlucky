@@ -1,7 +1,7 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
-import 'package:yourlucky/src/D_Business/Diagrams/SABDiagramsModel.dart';
+import 'package:yourlucky/src/D_Business/DigitModel/SABDigitDiagramsModel.dart';
 
 ///此Model仅代表占卜时所创造的数据；
 class SABEasyDigitModel extends SABBaseModel {
@@ -27,10 +27,10 @@ class SABEasyDigitModel extends SABBaseModel {
 
   final String stringTime;
 
-  late final SABDiagramsModel diagramsModel = _getDiagramsModel();
+  late final SABDigitDiagramsModel diagramsModel = _getDiagramsModel();
 
-  SABDiagramsModel _getDiagramsModel() {
-    return SABDiagramsModel(
+  SABDigitDiagramsModel _getDiagramsModel() {
+    return SABDigitDiagramsModel(
       fromEasyKey: _getFromEasyKey(listEasyData),
       toEasyKey: _getToEasyKey(listEasyData),
     );

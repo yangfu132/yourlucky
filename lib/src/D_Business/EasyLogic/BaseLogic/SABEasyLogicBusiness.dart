@@ -1,5 +1,5 @@
 ﻿import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
-import 'package:yourlucky/src/D_Business/Diagrams/SABDiagramsModel.dart';
+import 'package:yourlucky/src/D_Business/DigitModel/SABDigitDiagramsModel.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABLogicRowModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABLogicSymbolModel.dart';
@@ -1101,7 +1101,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     return wordsBusiness().outEasyWordsModel();
   }
 
-  SABDiagramsModel getDiagramsModel() {
+  SABDigitDiagramsModel getDiagramsModel() {
     return wordsModel().inputDigitModel.diagramsModel;
   }
 
@@ -1180,7 +1180,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
   }
 
   SABEasyLogicModel initLogicModel() {
-    final SABDiagramsModel diagramsModel = _inputEasyModel.diagramsModel;
+    final SABDigitDiagramsModel diagramsModel = _inputEasyModel.diagramsModel;
     var outLogicModel = SABEasyLogicModel(
       inputWordsModel: wordsModel(),
       listStaticSeasonStrong: staticSeasonStrong(),

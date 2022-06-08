@@ -1,7 +1,7 @@
 import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyAnalysis/SABEasyAnalysisModel.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
-import 'package:yourlucky/src/D_Business/Diagrams/SABDiagramsModel.dart';
+import 'package:yourlucky/src/D_Business/DigitModel/SABDigitDiagramsModel.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/D_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
@@ -709,7 +709,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     return _inputLogicDesModel.inputHealthLogicModel;
   }
 
-  SABDiagramsModel getDiagramsModel() {
+  SABDigitDiagramsModel getDiagramsModel() {
     return wordsModel().inputDigitModel.diagramsModel;
   }
 }

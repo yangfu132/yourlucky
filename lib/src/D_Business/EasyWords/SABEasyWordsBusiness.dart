@@ -1,6 +1,6 @@
 ﻿import 'package:flutter_perpttual_calendar/flutter_perpttual_calendar.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
-import 'package:yourlucky/src/D_Business/Diagrams/SABDiagramsModel.dart';
+import 'package:yourlucky/src/D_Business/DigitModel/SABDigitDiagramsModel.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/D_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/D_Business/EasyWords/SABWordsSymbolModel.dart';
@@ -25,7 +25,8 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
 
   late final SABEasyWordsModel _outEasyWordsModel = _initEasyWordsModel();
 
-  late final SABDiagramsModel diagramsModel = _inputEasyModel.diagramsModel;
+  late final SABDigitDiagramsModel diagramsModel =
+      _inputEasyModel.diagramsModel;
 
   late final PWBCalendarBusiness calendar = initCalendar();
 
