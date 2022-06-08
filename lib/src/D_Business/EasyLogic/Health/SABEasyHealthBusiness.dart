@@ -1,9 +1,11 @@
+import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 
 import '../../../A_Context/SACGlobal.dart';
 import 'SABHealthModel.dart';
 import 'SABHealthOriginBusiness.dart';
+import 'SABHealthSymbolModel.dart';
 import 'SABMoveHealthBusiness.dart';
 import 'SABStaticHealthBusiness.dart';
 
@@ -47,16 +49,17 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
     final rowList = originBusiness()
         .rowArrayAtOutRightLevel(OutRightEnum.RIGHT_Day_Conflict);
     for (final intRow in rowList) {
-      double fHealth =
-          tempHealthModel.symbolHealthAtRow(intRow, EasyTypeEnum.from);
-
-      if (fHealth > tempHealthModel.diagramsModel.healthCritical) {
-        tempHealthModel.rowModelAtRow(intRow).fromSymbol.outRight =
-            OutRightEnum.RIGHT_MOVE;
-        resultRow.add(intRow);
+      SABHealthSymbolModel? symbol =
+          tempHealthModel.symbol(intRow, EasyTypeEnum.from);
+      if (null != symbol) {
+        if (symbol!.isStrong()) {
+          symbol!.outRight = OutRightEnum.RIGHT_MOVE;
+          resultRow.add(intRow);
+        } else {
+          symbol!.outRight = OutRightEnum.RIGHT_STATIC;
+        }
       } else {
-        tempHealthModel.rowModelAtRow(intRow).fromSymbol.outRight =
-            OutRightEnum.RIGHT_STATIC;
+        coLog('updateDayConflictOutRight:symbol is null');
       }
     }
     return resultRow;

@@ -47,8 +47,6 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
   SABHealthLogicSymbolModel fromSymbol(SABHealthSymbolModel healthSymbol) {
     int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
-    healthSymbol.stringHealth =
-        healthDescriptionAtRow(intRow, EasyTypeEnum.from);
 
     return SABHealthLogicSymbolModel(
       healthSymbol: healthSymbol,
@@ -63,7 +61,6 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
   SABHealthLogicSymbolModel toSymbol(SABHealthSymbolModel healthSymbol) {
     int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
-    healthSymbol.stringHealth = healthDescriptionAtRow(intRow, EasyTypeEnum.to);
     return SABHealthLogicSymbolModel(
       healthSymbol: healthSymbol,
       symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.to),
@@ -76,8 +73,6 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
   SABHealthLogicSymbolModel hideSymbol(SABHealthSymbolModel healthSymbol) {
     int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
-    healthSymbol.stringHealth =
-        healthDescriptionAtRow(intRow, EasyTypeEnum.hide);
     return SABHealthLogicSymbolModel(
         healthSymbol: healthSymbol,
         symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.hide),
@@ -149,10 +144,6 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
   double symbolHealthAtRow(int nRow, EasyTypeEnum easyType) {
     return healthModel().symbolHealthAtRow(nRow, easyType);
-  }
-
-  double healthCriticalValue() {
-    return healthModel().diagramsModel.healthCritical;
   }
 
   List moveRightArray() {
@@ -359,20 +350,6 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
   String getStrongTogether(String itemEarth) {
     return "";
-  }
-
-  String healthDescriptionAtRow(int intRow, EasyTypeEnum easyType) {
-    String strResult = "";
-
-    double fHealth = healthModel().symbolHealthAtRow(intRow, easyType);
-    fHealth -= healthModel().diagramsModel.healthCritical;
-    if (fHealth > 0) {
-      strResult = "强";
-    } else {
-      strResult = "弱";
-    }
-    strResult = fHealth.toStringAsFixed(4) + '($strResult)';
-    return strResult;
   }
 
   ///`用神元神忌神仇神章第九`//////////////////////////////////////////////////////

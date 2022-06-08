@@ -43,7 +43,7 @@ class SABRowDetailModel extends SABBaseModel {
   String hideSymbolHealthDes() {
     String stringResult = "";
     if ('用神' == this.stringDeity) {
-      final stringHideHealth = healthModel().hideSymbol.stringHealth ?? '??';
+      final stringHideHealth = healthModel().hideSymbol.healthDescription();
       stringResult = wordsModel().getSymbolName(EasyTypeEnum.hide) +
           '[' +
           stringHideHealth +
@@ -54,7 +54,7 @@ class SABRowDetailModel extends SABBaseModel {
 
   String fromSymbolHealthDes() {
     String stringResult = "";
-    final stringFromHealth = healthModel().fromSymbol.stringHealth ??= '??';
+    final stringFromHealth = healthModel().fromSymbol.healthDescription();
     stringResult = wordsModel().getSymbolName(EasyTypeEnum.from) +
         '[' +
         stringFromHealth +
@@ -65,7 +65,7 @@ class SABRowDetailModel extends SABBaseModel {
   String toSymbolHealthDes() {
     String stringResult = "";
     if (wordsModel().bMovement) {
-      final stringToHealth = healthModel().toSymbol.stringHealth ?? '??';
+      final stringToHealth = healthModel().toSymbol.healthDescription();
       stringResult = wordsModel().getSymbolName(EasyTypeEnum.to) +
           '[' +
           stringToHealth +

@@ -43,15 +43,4 @@ class SABHealthRowModel extends SABBaseModel {
     } else
       coLog("error!");
   }
-
-  void setHealthDesForEasyType(EasyTypeEnum easyType, String stringHealth) {
-    if (EasyTypeEnum.from == easyType) {
-      fromSymbol.stringHealth = stringHealth;
-    } else if (EasyTypeEnum.to == easyType) {
-      toSymbol.stringHealth = stringHealth;
-    } else if (EasyTypeEnum.hide == easyType) {
-      hideSymbol.stringHealth = stringHealth;
-    } else
-      coLog("error!");
-  }
 }

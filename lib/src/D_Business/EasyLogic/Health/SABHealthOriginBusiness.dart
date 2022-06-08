@@ -464,31 +464,40 @@ class SABHealthOriginBusiness extends SABBaseBusiness {
     return _inputLogicModel.inputWordsModel;
   }
 
-  SABHealthSymbolModel fromSymbol(SABLogicSymbolModel logicSymbol) {
+  SABHealthSymbolModel fromSymbol(
+    SABLogicSymbolModel logicSymbol,
+    SABHealthDiagramsModel diagrams,
+  ) {
     int intRow = logicSymbol.wordsSymbol.intRow;
     return SABHealthSymbolModel(
         logicSymbol: logicSymbol,
+        critical: healthCriticalValue(),
         doubleHealth: symbolBasicHealthAtRow(intRow, EasyTypeEnum.from),
-        stringHealth: null,
         outRight:
             outRightBusiness.fromOutRightAtRow(intRow, EasyTypeEnum.from));
   }
 
-  SABHealthSymbolModel toSymbol(SABLogicSymbolModel logicSymbol) {
+  SABHealthSymbolModel toSymbol(
+    SABLogicSymbolModel logicSymbol,
+    SABHealthDiagramsModel diagrams,
+  ) {
     int intRow = logicSymbol.wordsSymbol.intRow;
     return SABHealthSymbolModel(
         logicSymbol: logicSymbol,
+        critical: healthCriticalValue(),
         doubleHealth: symbolBasicHealthAtRow(intRow, EasyTypeEnum.to),
-        stringHealth: null,
         outRight: OutRightEnum.RIGHT_NULL);
   }
 
-  SABHealthSymbolModel hideSymbol(SABLogicSymbolModel logicSymbol) {
+  SABHealthSymbolModel hideSymbol(
+    SABLogicSymbolModel logicSymbol,
+    SABHealthDiagramsModel diagrams,
+  ) {
     int intRow = logicSymbol.wordsSymbol.intRow;
     return SABHealthSymbolModel(
         logicSymbol: logicSymbol,
+        critical: healthCriticalValue(),
         doubleHealth: symbolBasicHealthAtRow(intRow, EasyTypeEnum.hide),
-        stringHealth: null,
         outRight: OutRightEnum.RIGHT_HIDE);
   }
 
@@ -516,9 +525,10 @@ class SABHealthOriginBusiness extends SABBaseBusiness {
     SABHealthDayModel dayModel = SABHealthDayModel(
       wordsModel: wordsModel().dayModel,
     );
+    SABHealthDiagramsModel diagrams = _diagrams();
     SABHealthModel healthModel = SABHealthModel(
       inputLogicModel: logicModel(),
-      diagramsModel: _diagrams(),
+      diagramsModel: diagrams,
       monthModel: monthModel,
       dayModel: dayModel,
     );
@@ -528,10 +538,11 @@ class SABHealthOriginBusiness extends SABBaseBusiness {
           healthModel.inputLogicModel.rowModelAtRow(intRow);
 
       SABHealthRowModel rowModel = SABHealthRowModel(
-          inputLogicRow: logicModel,
-          fromSymbol: fromSymbol(logicModel.fromSymbol),
-          toSymbol: toSymbol(logicModel.fromSymbol),
-          hideSymbol: hideSymbol(logicModel.fromSymbol));
+        inputLogicRow: logicModel,
+        fromSymbol: fromSymbol(logicModel.fromSymbol, diagrams),
+        toSymbol: toSymbol(logicModel.fromSymbol, diagrams),
+        hideSymbol: hideSymbol(logicModel.fromSymbol, diagrams),
+      );
 
       healthModel.addRowModel(rowModel);
     } //end for

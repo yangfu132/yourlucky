@@ -7,6 +7,7 @@ import 'SABHealthDayModel.dart';
 import 'SABHealthDiagramsModel.dart';
 import 'SABHealthMonthModel.dart';
 import 'SABHealthRowModel.dart';
+import 'SABHealthSymbolModel.dart';
 
 class SABHealthModel extends SABBaseModel {
   SABHealthModel({
@@ -24,6 +25,18 @@ class SABHealthModel extends SABBaseModel {
 
   double symbolHealthAtRow(int nRow, EasyTypeEnum easyType) {
     return rowModelAtRow(nRow).healthForEasyType(easyType);
+  }
+
+  SABHealthSymbolModel? symbol(int nRow, EasyTypeEnum easyType) {
+    if (EasyTypeEnum.from == easyType) {
+      return rowModelAtRow(nRow).fromSymbol;
+    } else if (EasyTypeEnum.to == easyType) {
+      return rowModelAtRow(nRow).toSymbol;
+    } else if (EasyTypeEnum.hide == easyType) {
+      return rowModelAtRow(nRow).hideSymbol;
+    } else {
+      return null;
+    }
   }
 
   OutRightEnum symbolOutRightAtRow(int nRow, EasyTypeEnum easyType) {
