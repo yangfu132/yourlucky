@@ -13,7 +13,6 @@ import 'SABHealthDayModel.dart';
 import 'SABHealthDiagramsModel.dart';
 import 'SABHealthModel.dart';
 import 'SABHealthMonthModel.dart';
-import 'SABHealthOriginModel.dart';
 import 'SABHealthRowModel.dart';
 
 /*
@@ -94,13 +93,17 @@ import 'SABHealthRowModel.dart';
  */
 
 class SABHealthOriginBusiness extends SABBaseBusiness {
-  SABHealthOriginBusiness(this._inputLogicModel);
+  SABHealthOriginBusiness(this._inputLogicModel) {
+    monthModel = SABHealthMonthModel(
+      wordsModel: wordsModel().monthModel,
+    );
+  }
+  final SABEasyLogicModel _inputLogicModel;
 
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
 
-  final SABEasyLogicModel _inputLogicModel;
+  late final SABHealthMonthModel monthModel;
 
-  SABHealthOriginModel _originModel = SABHealthOriginModel();
   late final SABHealthModel _healthModel = initHealthModel();
 
   late final SABOutRightBusiness outRightBusiness =
@@ -128,8 +131,8 @@ class SABHealthOriginBusiness extends SABBaseBusiness {
 
   double healthMonthPair() {
     double fResult = 0.0;
-    int siIndex = originBaseModel().arraySeason().indexOf("死");
-    int xiangIndex = originBaseModel().arraySeason().indexOf("相");
+    int siIndex = monthModel.arraySeason().indexOf("死");
+    int xiangIndex = monthModel.arraySeason().indexOf("相");
     if (-1 != siIndex && -1 != xiangIndex) {
       fResult = intervalSeason() * (siIndex - xiangIndex);
     } else
@@ -461,10 +464,6 @@ class SABHealthOriginBusiness extends SABBaseBusiness {
     return _inputLogicModel.inputWordsModel;
   }
 
-  SABHealthOriginModel originBaseModel() {
-    return _originModel;
-  }
-
   SABHealthSymbolModel fromSymbol(SABLogicSymbolModel logicSymbol) {
     int intRow = logicSymbol.wordsSymbol.intRow;
     return SABHealthSymbolModel(
@@ -514,13 +513,8 @@ class SABHealthOriginBusiness extends SABBaseBusiness {
   }
 
   SABHealthModel initHealthModel() {
-    SABHealthMonthModel monthModel = SABHealthMonthModel(
-      wordsModel: wordsModel().monthModel,
-      health: originBaseModel().monthHealthValue(),
-    );
     SABHealthDayModel dayModel = SABHealthDayModel(
       wordsModel: wordsModel().dayModel,
-      health: originBaseModel().dayHealthValue(),
     );
     SABHealthModel healthModel = SABHealthModel(
       inputLogicModel: logicModel(),

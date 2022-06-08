@@ -4,8 +4,9 @@ import 'package:yourlucky/src/D_Business/EasyWords/SABWordsDayModel.dart';
 class SABHealthDayModel extends SABBaseModel {
   SABHealthDayModel({
     required this.wordsModel,
-    required this.health,
   });
   final SABWordsDayModel wordsModel;
-  final double health;
+  final double health = 100.0;
+  final double dayOut = 1.2;
+  final double dayOutRight = 100.0;
 }
