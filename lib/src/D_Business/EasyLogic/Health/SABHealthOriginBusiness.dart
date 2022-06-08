@@ -9,8 +9,10 @@ import '../../../A_Context/SACContext.dart';
 import '../../../A_Context/SACGlobal.dart';
 import '../../EarthBranch/SABEarthBranchBusiness.dart';
 import '../BaseLogic/SABEasyLogicModel.dart';
+import 'SABHealthDayModel.dart';
 import 'SABHealthDiagramsModel.dart';
 import 'SABHealthModel.dart';
+import 'SABHealthMonthModel.dart';
 import 'SABHealthOriginModel.dart';
 import 'SABHealthRowModel.dart';
 
@@ -512,9 +514,17 @@ class SABHealthOriginBusiness extends SABBaseBusiness {
   }
 
   SABHealthModel initHealthModel() {
+    SABHealthMonthModel monthModel = SABHealthMonthModel(
+      wordsModel: wordsModel().monthModel,
+    );
+    SABHealthDayModel dayModel = SABHealthDayModel(
+      wordsModel: wordsModel().dayModel,
+    );
     SABHealthModel healthModel = SABHealthModel(
       inputLogicModel: logicModel(),
       diagramsModel: _diagrams(),
+      monthModel: monthModel,
+      dayModel: dayModel,
       monthHealth: originBaseModel().monthHealthValue(),
       dayHealth: originBaseModel().dayHealthValue(),
     );

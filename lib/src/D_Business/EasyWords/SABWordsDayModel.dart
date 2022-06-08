@@ -1,5 +1,5 @@
-class SABDayModel {
-  SABDayModel({
+class SABWordsDayModel {
+  SABWordsDayModel({
     required this.stringSky,
     required this.stringEarth,
     required this.stringElement,

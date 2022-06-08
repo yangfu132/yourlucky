@@ -1,7 +1,7 @@
 ﻿import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABLogicSymbolModel.dart';
-import 'package:yourlucky/src/D_Business/Time/SABDayModel.dart';
-import 'package:yourlucky/src/D_Business/Time/SABMonthModel.dart';
+import 'package:yourlucky/src/D_Business/EasyWords/SABWordsDayModel.dart';
+import 'package:yourlucky/src/D_Business/EasyWords/SABWordsMonthModel.dart';
 
 import '../../../A_Context/SACContext.dart';
 import '../../../A_Context/SACGlobal.dart';
@@ -20,8 +20,8 @@ class SABEasyLogicModel extends SABBaseModel {
 
   final SABEasyWordsModel inputWordsModel;
   final SABLogicDiagramsModel diagramsModel;
-  final SABMonthModel monthModel;
-  final SABDayModel dayModel;
+  final SABWordsMonthModel monthModel;
+  final SABWordsDayModel dayModel;
 
   late final SABEarthBranchModel _earthBranchModel = SABEarthBranchModel();
 

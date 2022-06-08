@@ -3,18 +3,24 @@ import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 
+import 'SABHealthDayModel.dart';
 import 'SABHealthDiagramsModel.dart';
+import 'SABHealthMonthModel.dart';
 import 'SABHealthRowModel.dart';
 
 class SABHealthModel extends SABBaseModel {
   SABHealthModel({
     required this.inputLogicModel,
     required this.diagramsModel,
+    required this.monthModel,
+    required this.dayModel,
     required this.monthHealth,
     required this.dayHealth,
   });
   final SABEasyLogicModel inputLogicModel;
   final SABHealthDiagramsModel diagramsModel;
+  final SABHealthDayModel dayModel;
+  final SABHealthMonthModel monthModel;
   final double monthHealth;
   final double dayHealth;
 

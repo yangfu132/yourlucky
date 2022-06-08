@@ -1,8 +1,8 @@
 ﻿import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
-import 'package:yourlucky/src/D_Business/Time/SABDayModel.dart';
-import 'package:yourlucky/src/D_Business/Time/SABMonthModel.dart';
+import 'package:yourlucky/src/D_Business/EasyWords/SABWordsDayModel.dart';
+import 'package:yourlucky/src/D_Business/EasyWords/SABWordsMonthModel.dart';
 import 'package:yourlucky/src/E_Service/SASStringService.dart';
 
 import '../../A_Context/SACGlobal.dart';
@@ -16,8 +16,8 @@ class SABEasyWordsModel extends SABBaseModel {
   });
 
   final SABEasyDigitModel inputDigitModel;
-  final SABMonthModel monthModel;
-  final SABDayModel dayModel;
+  final SABWordsMonthModel monthModel;
+  final SABWordsDayModel dayModel;
   final List _listRowModels = List.empty(growable: true);
 
   /// `MergeRow函数`///////////////////////////////////////////////////////////
