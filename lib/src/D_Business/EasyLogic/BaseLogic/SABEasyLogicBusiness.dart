@@ -1199,6 +1199,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       isEasyRestrictsGroan: isEasyRestrictsGroan(),
       isEasyInPartRestricts: isEasyInPartRestricts(),
       isEasyOutPartRestricts: isEasyOutPartRestricts(),
+      listStaticSeasonStrong: staticSeasonStrong(),
     );
     return diagramsModel;
   }
@@ -1207,14 +1208,14 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     var outLogicModel = SABEasyLogicModel(
       inputWordsModel: wordsModel(),
       diagramsModel: _diagramsModel(),
-      listStaticSeasonStrong: staticSeasonStrong(),
+      monthModel: wordsModel().monthModel,
+      dayModel: wordsModel().dayModel,
     );
 
     ///爻的基础信息
     for (int intRow = 0; intRow < 6; intRow++) {
-      SABWordsRowModel rowsModel =
-          outLogicModel.inputWordsModel.rowModelAtRow(intRow);
-      SABLogicRowModel symbol = SABLogicRowModel(
+      SABWordsRowModel rowsModel = wordsModel().rowModelAtRow(intRow);
+      SABLogicRowModel logicRow = SABLogicRowModel(
         fromSymbol: fromSymbol(rowsModel.fromSymbol),
         toSymbol: toSymbol(rowsModel.toSymbol),
         hideSymbol: hideSymbol(rowsModel.hideSymbol),
@@ -1226,7 +1227,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
         isSymbolChangeBack: isSymbolChangeBackAtRow(intRow),
         stringSymbolForwardOrBack: symbolForwardOrBack(intRow),
       );
-      outLogicModel.addSymbol(symbol);
+      outLogicModel.addRowModel(logicRow);
     }
 
     return outLogicModel;

@@ -19,6 +19,7 @@ class SABLogicDiagramsModel extends SABBaseModel {
     required this.isEasyRestrictsGroan,
     required this.isEasyInPartRestricts,
     required this.isEasyOutPartRestricts,
+    required this.listStaticSeasonStrong,
   });
   SABDigitDiagramsModel digitModel;
   final bool bStaticEasy;
@@ -49,4 +50,6 @@ class SABLogicDiagramsModel extends SABBaseModel {
   final bool isEasyInPartRestricts;
 
   final bool isEasyOutPartRestricts;
+
+  final List listStaticSeasonStrong;
 }

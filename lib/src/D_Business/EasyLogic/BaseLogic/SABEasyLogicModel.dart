@@ -1,5 +1,7 @@
 ﻿import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABLogicSymbolModel.dart';
+import 'package:yourlucky/src/D_Business/Time/SABDayModel.dart';
+import 'package:yourlucky/src/D_Business/Time/SABMonthModel.dart';
 
 import '../../../A_Context/SACContext.dart';
 import '../../../A_Context/SACGlobal.dart';
@@ -11,13 +13,15 @@ import 'SABLogicRowModel.dart';
 class SABEasyLogicModel extends SABBaseModel {
   SABEasyLogicModel({
     required this.inputWordsModel,
-    required this.listStaticSeasonStrong,
     required this.diagramsModel,
+    required this.monthModel,
+    required this.dayModel,
   });
 
   final SABEasyWordsModel inputWordsModel;
   final SABLogicDiagramsModel diagramsModel;
-  final List listStaticSeasonStrong;
+  final SABMonthModel monthModel;
+  final SABDayModel dayModel;
 
   late final SABEarthBranchModel _earthBranchModel = SABEarthBranchModel();
 
@@ -132,7 +136,7 @@ class SABEasyLogicModel extends SABBaseModel {
 
   /// `加载函数`/////////////////////////////////////////////////////////////////
 
-  void addSymbol(SABLogicRowModel symbol) {
+  void addRowModel(SABLogicRowModel symbol) {
     _listRowModels.add(symbol);
   }
 
