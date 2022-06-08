@@ -8,10 +8,10 @@ class SABHealthMonthModel extends SABBaseModel {
   final SABWordsMonthModel wordsModel;
   final double health = 100.0;
 
-  ///输出权
+  ///输出值
   final double monthOut = 1;
 
-  ///输出值
+  ///输出权
   final double monthOutRight = 100.0;
 
   ///`基础函数`//////////////////////////////////////////////////////
