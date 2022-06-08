@@ -13,6 +13,7 @@ import '../../EarthBranch/SABEarthBranchBusiness.dart';
 import '../../EasyWords/SABEasyWordsBusiness.dart';
 import '../../EasyWords/SABEasyWordsModel.dart';
 import 'SABEasyLogicModel.dart';
+import 'SABLogicDiagramsModel.dart';
 
 class SABEasyLogicBusiness extends SABBaseBusiness {
   SABEasyLogicBusiness(this._inputEasyModel);
@@ -108,7 +109,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
         //else cont.
       }
       //else cont.
-    } //endf
+    } //end for
 
     return _staticStrongArray;
   }
@@ -469,8 +470,8 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
         }
         //else cont.
 
-      } //endf
-    } //endf
+      } //end for
+    } //end for
 
     bResult = (6 == symbolPairArray.length);
 
@@ -1179,18 +1180,17 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     );
   }
 
-  SABEasyLogicModel initLogicModel() {
-    final SABDigitDiagramsModel diagramsModel = _inputEasyModel.diagramsModel;
-    var outLogicModel = SABEasyLogicModel(
-      inputWordsModel: wordsModel(),
-      listStaticSeasonStrong: staticSeasonStrong(),
+  SABLogicDiagramsModel _diagramsModel() {
+    SABDigitDiagramsModel digitModel = _inputEasyModel.diagramsModel;
+    SABLogicDiagramsModel diagramsModel = SABLogicDiagramsModel(
+      digitModel: digitModel,
       bStaticEasy: isStaticEasy(),
       bFromEasySixPair: _isEasySixPair(_fromEasyDictionary()),
       bToEasySixPair: _isEasySixPair(_toEasyDictionary()),
-      bHideEasySixPair: _isEasySixPair(diagramsModel.mapHideEasy),
+      bHideEasySixPair: _isEasySixPair(digitModel.mapHideEasy),
       bFromEasySixConflict: _isEasySixConflict(_fromEasyDictionary()),
       bToEasySixConflict: _isEasySixConflict(_toEasyDictionary()),
-      bHideEasySixConflict: _isEasySixConflict(diagramsModel.mapHideEasy),
+      bHideEasySixConflict: _isEasySixConflict(digitModel.mapHideEasy),
       stringEmptyBranch: emptyEarth(),
       stringEasyParent: easyParent(),
       isEasyRepeatedGroan: isEasyRepeatedGroan(),
@@ -1199,6 +1199,15 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       isEasyRestrictsGroan: isEasyRestrictsGroan(),
       isEasyInPartRestricts: isEasyInPartRestricts(),
       isEasyOutPartRestricts: isEasyOutPartRestricts(),
+    );
+    return diagramsModel;
+  }
+
+  SABEasyLogicModel initLogicModel() {
+    var outLogicModel = SABEasyLogicModel(
+      inputWordsModel: wordsModel(),
+      diagramsModel: _diagramsModel(),
+      listStaticSeasonStrong: staticSeasonStrong(),
     );
 
     ///爻的基础信息

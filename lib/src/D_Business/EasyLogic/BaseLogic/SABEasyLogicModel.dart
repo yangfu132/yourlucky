@@ -5,64 +5,23 @@ import '../../../A_Context/SACContext.dart';
 import '../../../A_Context/SACGlobal.dart';
 import '../../EarthBranch/SABEarthBranchModel.dart';
 import '../../EasyWords/SABEasyWordsModel.dart';
+import 'SABLogicDiagramsModel.dart';
 import 'SABLogicRowModel.dart';
 
 class SABEasyLogicModel extends SABBaseModel {
   SABEasyLogicModel({
     required this.inputWordsModel,
     required this.listStaticSeasonStrong,
-    required this.bFromEasySixPair,
-    required this.bToEasySixPair,
-    required this.bHideEasySixPair,
-    required this.bStaticEasy,
-    required this.bFromEasySixConflict,
-    required this.bToEasySixConflict,
-    required this.bHideEasySixConflict,
-    required this.stringEmptyBranch,
-    required this.stringEasyParent,
-    required this.isEasyRepeatedGroan,
-    required this.isEasyInPartRepeated,
-    required this.isEasyOutPartRepeated,
-    required this.isEasyRestrictsGroan,
-    required this.isEasyInPartRestricts,
-    required this.isEasyOutPartRestricts,
+    required this.diagramsModel,
   });
 
   final SABEasyWordsModel inputWordsModel;
-
+  final SABLogicDiagramsModel diagramsModel;
   final List listStaticSeasonStrong;
 
   late final SABEarthBranchModel _earthBranchModel = SABEarthBranchModel();
 
   late final List _listRowModels = List.empty(growable: true);
-
-  final bool bStaticEasy;
-
-  final bool bFromEasySixPair;
-  final bool bToEasySixPair;
-  final bool bHideEasySixPair;
-
-  final bool bFromEasySixConflict;
-  final bool bToEasySixConflict;
-  final bool bHideEasySixConflict;
-
-  final String stringEmptyBranch;
-
-  ///卦变生克墓绝章第二十四
-  final String stringEasyParent;
-
-  ///反伏章第二十五
-  final bool isEasyRepeatedGroan;
-
-  final bool isEasyInPartRepeated;
-
-  final bool isEasyOutPartRepeated;
-
-  final bool isEasyRestrictsGroan;
-
-  final bool isEasyInPartRestricts;
-
-  final bool isEasyOutPartRestricts;
 
   /// `Public`//////////////////////////////////////////////////////////////
 
@@ -79,11 +38,11 @@ class SABEasyLogicModel extends SABBaseModel {
   bool isEasySixPair(EasyTypeEnum enumEasyType) {
     bool bResult = false;
     if (enumEasyType == EasyTypeEnum.from) {
-      bResult = bFromEasySixPair;
+      bResult = diagramsModel.bFromEasySixPair;
     } else if (enumEasyType == EasyTypeEnum.to) {
-      bResult = bToEasySixPair;
+      bResult = diagramsModel.bToEasySixPair;
     } else if (enumEasyType == EasyTypeEnum.hide) {
-      bResult = bHideEasySixPair;
+      bResult = diagramsModel.bHideEasySixPair;
     } else {
       coLog("error!");
     }
@@ -93,11 +52,11 @@ class SABEasyLogicModel extends SABBaseModel {
   bool isEasySixConflict(EasyTypeEnum enumEasyType) {
     bool bResult = false;
     if (enumEasyType == EasyTypeEnum.from) {
-      bResult = bFromEasySixConflict;
+      bResult = diagramsModel.bFromEasySixConflict;
     } else if (enumEasyType == EasyTypeEnum.to) {
-      bResult = bToEasySixConflict;
+      bResult = diagramsModel.bToEasySixConflict;
     } else if (enumEasyType == EasyTypeEnum.hide) {
-      bResult = bHideEasySixConflict;
+      bResult = diagramsModel.bHideEasySixConflict;
     } else {
       coLog("error!");
     }

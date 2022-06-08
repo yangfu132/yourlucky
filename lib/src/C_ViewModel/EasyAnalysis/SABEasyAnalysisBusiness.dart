@@ -92,7 +92,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
   String parentEffectAtRow(int intRow, EasyTypeEnum easyType) {
     String result = "";
 
-    if (logicModel().bStaticEasy)
+    if (logicModel().diagramsModel.bStaticEasy)
       result = staticEffectedAtRow(intRow, easyType);
     else
       result = movementEffectedAtRow(intRow, easyType);

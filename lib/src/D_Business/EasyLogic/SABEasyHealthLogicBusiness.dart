@@ -1070,7 +1070,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
         logicModel().symbolAtRow(intRow, easyType);
     if ("" != stringSymbol) {
       String earth = symbolModel.wordsSymbol.stringEarth;
-      if (-1 != logicModel().stringEmptyBranch.indexOf(earth)) {
+      if (-1 != logicModel().diagramsModel.stringEmptyBranch.indexOf(earth)) {
         String strDay = dayEarth();
         if (logicBusiness().isEarthConflict(strDay, earth)) {
           //爻遇旬空，日辰冲起而为用，谓之冲空则实。

@@ -68,7 +68,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
 
     if (getDiagramsModel().bFromPureEasy && getDiagramsModel().bToPureEasy) {
       //本卦与变卦之间的生克关系
-      String strParent = logicModel().stringEasyParent;
+      String strParent = logicModel().diagramsModel.stringEasyParent;
 
       if ('父母' == strParent) {
         //卦变回头生，以吉论
@@ -132,27 +132,27 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     占行人在外忧郁。\r\n\
     占彼此之形势者，内卦为我，外卦为他。内伏吟我心不遂，外伏吟他意不安。''';
 
-    if (logicModel().isEasyRepeatedGroan) {
+    if (logicModel().diagramsModel.isEasyRepeatedGroan) {
       String repeated = "卦伏吟：内外伏吟者，内外不安之象也。";
       result = result + "\r\n    $repeated\r\n    $repeatedResult ";
       result = result + "    应期：${repeatedEasyResult()}\r\n";
-    } else if (logicModel().isEasyInPartRepeated) {
+    } else if (logicModel().diagramsModel.isEasyInPartRepeated) {
       String repeated = "卦伏吟：内卦伏吟内则不安。";
       result = result + "\r\n    $repeated\r\n    $repeatedResult ";
       result = result + "    应期：${repeatedEasyResult()}\r\n";
-    } else if (logicModel().isEasyOutPartRepeated) {
+    } else if (logicModel().diagramsModel.isEasyOutPartRepeated) {
       String repeated = "卦伏吟：外卦伏吟外不宁。";
       result = result + "\r\n    $repeated\r\n    $repeatedResult ";
       result = result + "    应期：${repeatedEasyResult()}\r\n";
-    } else if (logicModel().isEasyRestrictsGroan) {
+    } else if (logicModel().diagramsModel.isEasyRestrictsGroan) {
       String repeated = "卦反吟：内外反吟者，内外不安之象也。";
       result = result + "\r\n    $repeated\r\n    $strAgainst ";
       result = result + "    应期：${restrictsEasyResult()}\r\n";
-    } else if (logicModel().isEasyInPartRestricts) {
+    } else if (logicModel().diagramsModel.isEasyInPartRestricts) {
       String repeated = "卦反吟：内卦反吟内则不安。";
       result = result + "\r\n    $repeated\r\n    $strAgainst ";
       result = result + "    应期：${restrictsEasyResult()}\r\n";
-    } else if (logicModel().isEasyOutPartRestricts) {
+    } else if (logicModel().diagramsModel.isEasyOutPartRestricts) {
       String repeated = "卦反吟：外卦反吟外不宁。";
       result = result + "\r\n    $repeated\r\n    $strAgainst ";
       result = result + "    应期：${restrictsEasyResult()}\r\n";
@@ -179,14 +179,14 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
 
     bool bToSixPair = false;
 
-    if (!logicModel().bStaticEasy)
+    if (!logicModel().diagramsModel.bStaticEasy)
       bToSixPair = logicModel().isEasySixPair(EasyTypeEnum.to);
     //else cont. 是静卦
 
     bool bFromConflict = logicModel().isEasySixConflict(EasyTypeEnum.from);
 
     bool bToConflict = false;
-    if (!logicModel().bStaticEasy)
+    if (!logicModel().diagramsModel.bStaticEasy)
       bToConflict = logicModel().isEasySixConflict(EasyTypeEnum.to);
     //else cont. 是静卦
 
@@ -414,14 +414,14 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     bool bFromSixPair = logicModel().isEasySixPair(EasyTypeEnum.from);
 
     bool bToSixPair = false;
-    if (!logicModel().bStaticEasy)
+    if (!logicModel().diagramsModel.bStaticEasy)
       bToSixPair = logicModel().isEasySixPair(EasyTypeEnum.to);
     //else cont. 是静卦
 
     bool bFromConflict = logicModel().isEasySixConflict(EasyTypeEnum.from);
 
     bool bToConflict = false;
-    if (!logicModel().bStaticEasy)
+    if (!logicModel().diagramsModel.bStaticEasy)
       bToConflict = logicModel().isEasySixConflict(EasyTypeEnum.to);
     //else cont. 是静卦
 
@@ -460,14 +460,14 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     bool bFromSixPair = logicModel().isEasySixPair(EasyTypeEnum.from);
 
     bool bToSixPair = false;
-    if (!logicModel().bStaticEasy)
+    if (!logicModel().diagramsModel.bStaticEasy)
       bToSixPair = logicModel().isEasySixPair(EasyTypeEnum.to);
     //else cont. 是静卦
 
     bool bFromConflict = logicModel().isEasySixConflict(EasyTypeEnum.from);
 
     bool bToConflict = false;
-    if (!logicModel().bStaticEasy)
+    if (!logicModel().diagramsModel.bStaticEasy)
       bToConflict = logicModel().isEasySixConflict(EasyTypeEnum.to);
     //else cont. 是静卦
 
@@ -507,14 +507,14 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     bool bFromSixPair = logicModel().isEasySixPair(EasyTypeEnum.from);
 
     bool bToSixPair = false;
-    if (!logicModel().bStaticEasy)
+    if (!logicModel().diagramsModel.bStaticEasy)
       bToSixPair = logicModel().isEasySixPair(EasyTypeEnum.to);
     //else cont. 是静卦
 
     bool bFromConflict = logicModel().isEasySixConflict(EasyTypeEnum.from);
 
     bool bToConflict = false;
-    if (!logicModel().bStaticEasy)
+    if (!logicModel().diagramsModel.bStaticEasy)
       bToConflict = logicModel().isEasySixConflict(EasyTypeEnum.to);
     //else cont. 是静卦
 
@@ -569,15 +569,15 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     占行人在外忧郁。\r\n
     占彼此之形势者，内卦为我，外卦为他。内伏吟我心不遂，外伏吟他意不安。''';
 
-    if (logicModel().isEasyRepeatedGroan) {
+    if (logicModel().diagramsModel.isEasyRepeatedGroan) {
       String repeated = "卦伏吟：内外伏吟者，内外不安之象也。";
       result = "\r\n    $repeated\r\n    $repeatedResult ";
       result = result + "    应期：${repeatedEasyResult()}r\n";
-    } else if (logicModel().isEasyInPartRepeated) {
+    } else if (logicModel().diagramsModel.isEasyInPartRepeated) {
       String repeated = "卦伏吟：内卦伏吟内则不安。";
       result = "\r\n    $repeated\r\n    $repeatedResult ";
       result = result + "    应期：${repeatedEasyResult()}r\n";
-    } else if (logicModel().isEasyOutPartRepeated) {
+    } else if (logicModel().diagramsModel.isEasyOutPartRepeated) {
       String repeated = "卦伏吟：外卦伏吟外不宁。";
       result = "\r\n    $repeated\r\n    $repeatedResult ";
       result = result + "    应期：${repeatedEasyResult()}r\n";
@@ -605,15 +605,15 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     占彼此之形势者，内卦反伏，我乱他定，外卦反伏他乱我定。\r\n
     反吟有冲有克，用神受克得祸不轻。以生用神旺相不变冲克者虽则反伏，事之必成。第恐用神而化回头之冲克者，即是卦变大凶之象。''';
 
-    if (logicModel().isEasyRestrictsGroan) {
+    if (logicModel().diagramsModel.isEasyRestrictsGroan) {
       String repeated = "卦反吟：内外反吟者，内外不安之象也。";
       result = "\r\n    $repeated\r\n    $strAgainst ";
       result = result + "    应期：${restrictsEasyResult()}\r\n";
-    } else if (logicModel().isEasyInPartRestricts) {
+    } else if (logicModel().diagramsModel.isEasyInPartRestricts) {
       String repeated = "卦反吟：内卦反吟内则不安。";
       result = "\r\n    $repeated\r\n    $strAgainst ";
       result = result + "    应期：${restrictsEasyResult()}\r\n";
-    } else if (logicModel().isEasyOutPartRestricts) {
+    } else if (logicModel().diagramsModel.isEasyOutPartRestricts) {
       String repeated = "卦反吟：外卦反吟外不宁。";
       result = "\r\n    $repeated\r\n    $strAgainst ";
       result = result + "    应期：${restrictsEasyResult()}\r\n";
@@ -675,7 +675,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     String strSkyTrunk = SABEasyLogicModel.skyTrunkString();
     int rangeTrunk = strSkyTrunk.indexOf(strDayTrunk);
 
-    String emptyEarth = logicModel().stringEmptyBranch;
+    String emptyEarth = logicModel().diagramsModel.stringEmptyBranch;
     if (emptyEarth.isNotEmpty) {
       int length = strSkyTrunk.length - rangeTrunk;
       String subString = emptyEarth.substring(0, 1);
