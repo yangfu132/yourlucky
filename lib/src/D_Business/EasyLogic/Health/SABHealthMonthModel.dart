@@ -14,9 +14,5 @@ class SABHealthMonthModel extends SABBaseModel {
   ///输出权
   final double monthOutRight = 100.0;
 
-  ///`基础函数`//////////////////////////////////////////////////////
-
-  List arraySeason() {
-    return ["旺", "相", "余气", "休", "囚", "死"];
-  }
+  List<String> arraySeason = ["旺", "相", "余气", "休", "囚", "死"];
 }

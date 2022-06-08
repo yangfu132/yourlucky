@@ -131,8 +131,8 @@ class SABHealthOriginBusiness extends SABBaseBusiness {
 
   double healthMonthPair() {
     double fResult = 0.0;
-    int siIndex = monthModel.arraySeason().indexOf("死");
-    int xiangIndex = monthModel.arraySeason().indexOf("相");
+    int siIndex = monthModel.arraySeason.indexOf("死");
+    int xiangIndex = monthModel.arraySeason.indexOf("相");
     if (-1 != siIndex && -1 != xiangIndex) {
       fResult = intervalSeason() * (siIndex - xiangIndex);
     } else
