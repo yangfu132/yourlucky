@@ -14,15 +14,11 @@ class SABHealthModel extends SABBaseModel {
     required this.diagramsModel,
     required this.monthModel,
     required this.dayModel,
-    required this.monthHealth,
-    required this.dayHealth,
   });
   final SABEasyLogicModel inputLogicModel;
   final SABHealthDiagramsModel diagramsModel;
   final SABHealthDayModel dayModel;
   final SABHealthMonthModel monthModel;
-  final double monthHealth;
-  final double dayHealth;
 
   late final _listRowModels = <SABHealthRowModel>[];
 

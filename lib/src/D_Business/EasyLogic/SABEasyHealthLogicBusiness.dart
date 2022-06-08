@@ -261,9 +261,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
           .symbolHealthAtRow(deityModel.intRow, deityModel.easyType);
     } else if (EasyTypeEnum.type_null == deityModel.easyType) {
       if (ROW_MONTH == deityModel.intRow) {
-        fResult = healthModel().monthHealth;
+        fResult = healthModel().monthModel.health;
       } else if (ROW_DAY == deityModel.intRow) {
-        fResult = healthModel().dayHealth;
+        fResult = healthModel().dayModel.health;
       }
     } else if (EasyTypeEnum.to == deityModel.easyType) {
       coLog("EasyTypeEnum.to do not have usefulDeity");

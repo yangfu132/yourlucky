@@ -516,17 +516,17 @@ class SABHealthOriginBusiness extends SABBaseBusiness {
   SABHealthModel initHealthModel() {
     SABHealthMonthModel monthModel = SABHealthMonthModel(
       wordsModel: wordsModel().monthModel,
+      health: originBaseModel().monthHealthValue(),
     );
     SABHealthDayModel dayModel = SABHealthDayModel(
       wordsModel: wordsModel().dayModel,
+      health: originBaseModel().dayHealthValue(),
     );
     SABHealthModel healthModel = SABHealthModel(
       inputLogicModel: logicModel(),
       diagramsModel: _diagrams(),
       monthModel: monthModel,
       dayModel: dayModel,
-      monthHealth: originBaseModel().monthHealthValue(),
-      dayHealth: originBaseModel().dayHealthValue(),
     );
 
     for (int intRow = 0; intRow < 6; intRow++) {
