@@ -13,20 +13,13 @@ class SACContext {
   final SABEasyDigitBusiness _storeBusiness = SABEasyDigitBusiness();
   final SABEasyStrategyInfoBusiness _categoryBusiness =
       SABEasyStrategyInfoBusiness();
+
+  ///SA 服务目录
   Future<void> initStep() async {
     await _categoryBusiness.getsCategory();
   }
 
-  static SABEasyStrategyInfoBusiness expertCategory() {
-    SACContext businessContext = SABSingletonService.getObject('SACContext');
-    return businessContext._categoryBusiness;
-  }
-
-  static SABEasyDigitBusiness easyStore() {
-    SACContext businessContext = SABSingletonService.getObject('SACContext');
-    return businessContext._storeBusiness;
-  }
-
+  /// UI 服务目录
   static double screenWidth(context) {
     return MediaQuery.of(context).size.width;
   }
@@ -52,5 +45,16 @@ class SACContext {
         },
       ),
     );
+  }
+
+  ///Business 服务目录
+  static SABEasyStrategyInfoBusiness expertCategory() {
+    SACContext businessContext = SABSingletonService.getObject('SACContext');
+    return businessContext._categoryBusiness;
+  }
+
+  static SABEasyDigitBusiness easyStore() {
+    SACContext businessContext = SABSingletonService.getObject('SACContext');
+    return businessContext._storeBusiness;
   }
 }
