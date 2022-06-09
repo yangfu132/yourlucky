@@ -1,39 +1,30 @@
 ///遇到的问题：
 ///问题1：如何全局引用context？
 import 'package:flutter/material.dart';
-import 'package:yourlucky/src/A_Context/SABSingletonService.dart';
 import 'package:yourlucky/src/C_ViewModel/Strategy/SABEasyStrategyInfoBusiness.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitBusiness.dart';
-import 'package:yourlucky/src/E_Service/FireBase/SASFireBaseUserAuthService.dart';
+import 'package:yourlucky/src/E_Service/SABSingletonService.dart';
 
 void coLog(String strMsg) {
   print(strMsg);
 }
 
 class SACContext {
-  final SABEasyDigitBusiness storeBusiness = SABEasyDigitBusiness();
-  final SASFireBaseUserAuthService userAuthService =
-      SASFireBaseUserAuthService();
-  final SABEasyStrategyInfoBusiness categoryBusiness =
+  final SABEasyDigitBusiness _storeBusiness = SABEasyDigitBusiness();
+  final SABEasyStrategyInfoBusiness _categoryBusiness =
       SABEasyStrategyInfoBusiness();
   Future<void> initStep() async {
-    await userAuthService.initFireAuth();
-    await categoryBusiness.getsCategory();
+    await _categoryBusiness.getsCategory();
   }
 
   static SABEasyStrategyInfoBusiness expertCategory() {
     SACContext businessContext = SABSingletonService.getObject('SACContext');
-    return businessContext.categoryBusiness;
+    return businessContext._categoryBusiness;
   }
 
   static SABEasyDigitBusiness easyStore() {
     SACContext businessContext = SABSingletonService.getObject('SACContext');
-    return businessContext.storeBusiness;
-  }
-
-  static SASFireBaseUserAuthService userAuth() {
-    SACContext businessContext = SABSingletonService.getObject('SACContext');
-    return businessContext.userAuthService;
+    return businessContext._storeBusiness;
   }
 
   static double screenWidth(context) {

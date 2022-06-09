@@ -114,6 +114,6 @@ class SASFireBaseUserAuthService extends ChangeNotifier {
 //   }
 
 // bool isLogged() {
-//  return ApplicationLoginState.loggedIn == SACContext.userAuth().loginState;
+//  return ApplicationLoginState.loggedIn == _loginState;
 // }
 }

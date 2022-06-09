@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
+import 'package:yourlucky/src/E_Service/FireBase/SASFireBaseUserAuthService.dart';
 
 typedef SignInCallback = void Function(String code, String message);
 typedef SignUpCallback = void Function(String code, String message);
 typedef SignOutCallback = void Function(String code, String message);
 
 class SABLogInBusiness extends SABBaseBusiness {
+  SABLogInBusiness() {
+    _userAuthService.initFireAuth();
+  }
+  final SASFireBaseUserAuthService _userAuthService =
+      SASFireBaseUserAuthService();
+
   final emailController = TextEditingController(text: 'yangfu132@163.com');
   final emailFocus = FocusNode();
 
@@ -18,7 +24,7 @@ class SABLogInBusiness extends SABBaseBusiness {
 
   //注册
   void signUp(SignUpCallback callback) {
-    // SACContext.userAuth().registerAccount(
+    // _userAuthService.registerAccount(
     //     emailController.text, nameController.text, passwordController.text,
     //     (e) {
     //   callback(e.code, e.message ?? "成功");
@@ -27,7 +33,7 @@ class SABLogInBusiness extends SABBaseBusiness {
 
   //登录
   void signIn(SignInCallback callback) {
-    // SACContext.userAuth().signInWithEmailAndPassword(
+    // _userAuthService.signInWithEmailAndPassword(
     //     emailController.text, passwordController.text, (e) {
     //   callback(e.code, e.message ?? "成功");
     // });
@@ -35,24 +41,24 @@ class SABLogInBusiness extends SABBaseBusiness {
 
   //重置密码
   void sendPasswordResetEmail() {
-    // SACContext.userAuth().sendPasswordResetEmail(emailController.text);
+    // _userAuthService.sendPasswordResetEmail(emailController.text);
   }
 
   void verifyPasswordResetCode(String code) {
-    // SACContext.userAuth().verifyPasswordResetCode(code);
+    // _userAuthService.verifyPasswordResetCode(code);
   }
 
   void signOut(SignOutCallback callback) {
-    // SACContext.userAuth().signOut();
+    // _userAuthService.signOut();
     // callback('', '成功');
   }
 
   String? displayName() {
-    return SACContext.userAuth().displayName;
+    return _userAuthService.displayName;
   }
 
   bool isLogged() {
     return false;
-    // return ApplicationLoginState.loggedIn == SACContext.userAuth().loginState;
+    // return ApplicationLoginState.loggedIn == _userAuthService.loginState;
   }
 }
