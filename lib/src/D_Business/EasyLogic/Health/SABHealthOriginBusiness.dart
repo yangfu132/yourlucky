@@ -1,4 +1,3 @@
-import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABLogicRowModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABLogicSymbolModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/Health/SABHealthSymbolModel.dart';
@@ -7,6 +6,7 @@ import 'package:yourlucky/src/D_Business/EasyWords/SABEasyWordsModel.dart';
 
 import '../../../A_Context/SACContext.dart';
 import '../../../A_Context/SACGlobal.dart';
+import '../../Base/SABLogBusiness.dart';
 import '../../EarthBranch/SABEarthBranchBusiness.dart';
 import '../BaseLogic/SABEasyLogicModel.dart';
 import 'SABHealthDayModel.dart';
@@ -92,8 +92,9 @@ import 'SABHealthRowModel.dart';
  
  */
 
-class SABHealthOriginBusiness extends SABBaseBusiness {
-  SABHealthOriginBusiness(this._inputLogicModel) {
+class SABHealthOriginBusiness extends SABLogBusiness {
+  SABHealthOriginBusiness(this._inputLogicModel)
+      : super(_inputLogicModel.inputWordsModel.inputDigitModel) {
     monthModel = SABHealthMonthModel(
       wordsModel: wordsModel().monthModel,
     );

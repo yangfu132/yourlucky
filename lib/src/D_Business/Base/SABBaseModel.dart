@@ -16,6 +16,7 @@
   }
 
   String toString() {
-    return '';
+    Map<String, Object?> json = toJson();
+    return json.toString();
   }
 }
