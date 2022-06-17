@@ -24,7 +24,9 @@ class SABLogBusiness extends SABBaseBusiness {
   ///保存
   void save(SABLogModel logModel) {
     if (null == digitModel.getModelId()) {
-      sqlite.insertModel(digitModel);
+      sqlite.insertModel(digitModel, (json) {
+        print('SABLogModel:${SABLogModel.fromJson(json)}');
+      });
     } else {
       sqlite.updateModel(digitModel);
     }

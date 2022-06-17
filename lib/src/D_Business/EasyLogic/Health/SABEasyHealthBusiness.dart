@@ -49,14 +49,15 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
     final rowList = originBusiness()
         .rowArrayAtOutRightLevel(OutRightEnum.RIGHT_Day_Conflict);
     for (final intRow in rowList) {
-      SABHealthSymbolModel? symbol =
-          tempHealthModel.symbol(intRow, EasyTypeEnum.from);
-      if (null != symbol) {
-        if (symbol!.isStrong()) {
-          symbol!.outRight = OutRightEnum.RIGHT_MOVE;
+      if (null != tempHealthModel.symbol(intRow, EasyTypeEnum.from)) {
+        SABHealthSymbolModel tempSymbol =
+            tempHealthModel.symbol(intRow, EasyTypeEnum.from)!;
+        bool? isStrong = tempSymbol.isStrong();
+        if (isStrong) {
+          tempSymbol.outRight = OutRightEnum.RIGHT_MOVE;
           resultRow.add(intRow);
         } else {
-          symbol!.outRight = OutRightEnum.RIGHT_STATIC;
+          tempSymbol.outRight = OutRightEnum.RIGHT_STATIC;
         }
       } else {
         coLog('updateDayConflictOutRight:symbol is null');

@@ -96,18 +96,28 @@ class SASSqliteService extends SABBaseService {
   }
 
   // Define a function that inserts dogs into the database
-  Future<void> insertModel(SABBaseModel sabModel) async {
+  Future<void> insertModel(
+    SABBaseModel sabModel,
+    void insertResult(Map<String, Object?> json),
+  ) async {
     // Get a reference to the database.
     await openDataBase((db) async {
       // Insert the Dog into the correct table. You might also specify the
       // `conflictAlgorithm` to use in case the same dog is inserted twice.
       //
       // In this case, replace any previous data.
-      await db.insert(
-        sabModel.getModelName(),
+      String tableName = sabModel.getModelName();
+      Batch theBatch = db.batch();
+      theBatch.insert(
+        tableName,
         sabModel.toJson(),
-        conflictAlgorithm: ConflictAlgorithm.replace,
       );
+      String querySql = 'select id from $tableName order by id desc';
+      theBatch.execute(querySql);
+      final List<Object?> maps = await theBatch.commit();
+      for (Object? data in maps) {
+        insertResult(data as Map<String, dynamic>);
+      }
     });
   }
 
@@ -160,7 +170,9 @@ class SASSqliteService extends SABBaseService {
       name: 'Fido',
       age: 35,
     );
-    await insertModel(fido);
+    await insertModel(fido, (json) {
+      print('Dog:${Dog.fromJson(json)}');
+    });
 
     // Now, use the method above to retrieve all the dogs.
 

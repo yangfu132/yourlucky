@@ -19,6 +19,7 @@ class SABDigitDiagramsModel extends SABBaseModel {
     this.bToPureEasy = 0 == _lifeIndexAtEasy(_toEasyDictionary());
     this.lifeIndex = _lifeIndex();
     this.goalIndex = _goalIndex();
+    this.deityElement = '';
   }
 
   final String fromEasyKey;
