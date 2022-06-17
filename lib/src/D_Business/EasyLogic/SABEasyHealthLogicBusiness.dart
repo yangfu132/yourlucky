@@ -193,10 +193,6 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
         .getSymbolEarth(intRow, EasyTypeEnum.from);
   }
 
-  String elementOfUsefulDeity() {
-    return getDiagramsModel().deityElement;
-  }
-
   String symbolNameAtRow(int intRow, EasyTypeEnum enumEasyType) {
     return logicModel().inputWordsModel.getSymbolName(intRow, enumEasyType);
   }
@@ -365,7 +361,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
           intIndex == deityModel.intRow) {
         strResult = "飞神";
       } else {
-        String usefulElement = elementOfUsefulDeity();
+        String usefulElement = getDiagramsModel().deityElement;
         String currentElement =
             branchBusiness().earthElement(earthAtFromRow(intIndex));
 
@@ -414,7 +410,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
   List bornDeityIndexArray() {
     List arrayResult = List.empty(growable: true);
-    String usefulElement = elementOfUsefulDeity();
+    String usefulElement = getDiagramsModel().deityElement;
     for (int intIndex = 0; intIndex < 6; intIndex++) {
       String currentElement =
           branchBusiness().earthElement(earthAtFromRow(intIndex));
@@ -434,7 +430,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   List restrictsDeityIndexArray() {
     List arrayResult = List.empty(growable: true);
 
-    String usefulElement = elementOfUsefulDeity();
+    String usefulElement = getDiagramsModel().deityElement;
     for (int intIndex = 0; intIndex < 6; intIndex++) {
       String currentElement =
           branchBusiness().earthElement(earthAtFromRow(intIndex));
@@ -454,7 +450,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   List enemyDeityRowArray() {
     List arrayResult = List.empty(growable: true);
 
-    String usefulElement = elementOfUsefulDeity();
+    String usefulElement = getDiagramsModel().deityElement;
     for (int intIndex = 0; intIndex < 6; intIndex++) {
       String currentElement =
           branchBusiness().earthElement(earthAtFromRow(intIndex));

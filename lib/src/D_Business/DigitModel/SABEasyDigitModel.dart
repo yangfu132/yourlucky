@@ -14,7 +14,7 @@ class SABEasyDigitModel extends SABBaseModel {
     required this.stringTime,
   });
 
-  final int? modelId;
+  int? modelId;
 
   //属性：实例的随机数数组
   final List<int> listEasyData;
@@ -33,6 +33,7 @@ class SABEasyDigitModel extends SABBaseModel {
     return SABDigitDiagramsModel(
       fromEasyKey: _getFromEasyKey(listEasyData),
       toEasyKey: _getToEasyKey(listEasyData),
+      strUsefulDeity: strUsefulDeity,
     );
   }
 

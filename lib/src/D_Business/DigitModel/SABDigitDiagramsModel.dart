@@ -1,10 +1,12 @@
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/D_Business/BasicEasy/SABDiagramsInfoModel.dart';
+import 'package:yourlucky/src/D_Business/BasicEasy/SABElementInfoModel.dart';
 
 class SABDigitDiagramsModel extends SABBaseModel {
   SABDigitDiagramsModel({
     required this.fromEasyKey,
     required this.toEasyKey,
+    required this.strUsefulDeity,
   }) {
     this.stringFromName = _fromEasyName();
     this.stringToName = _toEasyName();
@@ -19,9 +21,12 @@ class SABDigitDiagramsModel extends SABBaseModel {
     this.bToPureEasy = 0 == _lifeIndexAtEasy(_toEasyDictionary());
     this.lifeIndex = _lifeIndex();
     this.goalIndex = _goalIndex();
-    this.deityElement = '';
+    this.deityElement = SABElementInfoModel.elementByRelative(
+        this.stringFromElement, strUsefulDeity);
   }
 
+  //属性：实例的用神
+  final String strUsefulDeity;
   final String fromEasyKey;
   final String toEasyKey;
   late final SABDiagramsInfoModel _eightDiagrams = SABDiagramsInfoModel();

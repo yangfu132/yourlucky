@@ -304,13 +304,6 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
     return stringResult;
   }
 
-  String elementOfUsefulDeity() {
-    String fromEasyElement =
-        eightDiagrams().elementOfEasy(diagramsModel.stringFromName);
-    return SABElementInfoModel.elementByRelative(
-        fromEasyElement, _inputEasyModel.strUsefulDeity);
-  }
-
   ///此方法获取当前爻所在的八卦
   String eightGuaAtFromRow(int nRow) {
     String result = "";

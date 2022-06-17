@@ -52,7 +52,9 @@ class SABEasyDigitBusiness extends SABBaseBusiness {
   void save(SABEasyDigitModel digitModel) {
     if (null == digitModel.getModelId()) {
       sqlite.insertModel(digitModel, (json) {
+        SABEasyDigitModel savedModel = SABEasyDigitModel.fromJson(json);
         print('DigitModel:${SABEasyDigitModel.fromJson(json)}');
+        digitModel.modelId = savedModel.modelId;
       });
     } else {
       sqlite.updateModel(digitModel);

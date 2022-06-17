@@ -112,11 +112,15 @@ class SASSqliteService extends SABBaseService {
         tableName,
         sabModel.toJson(),
       );
-      String querySql = 'select id from $tableName order by id desc';
-      theBatch.execute(querySql);
-      final List<Object?> maps = await theBatch.commit();
+      String querySql = 'SELECT * FROM $tableName ORDER BY `id` DESC LIMIT 1';
+      theBatch.rawQuery(querySql);
+      // theBatch.query(tableName, orderBy: 'id', limit: 1);
+      final List<Object?> batchResults = await theBatch.commit();
+      List<Map<String, dynamic>> maps = batchResults[1] as List<Map<String, dynamic>>;
       for (Object? data in maps) {
-        insertResult(data as Map<String, dynamic>);
+        if (data is Map) {
+          insertResult(data as Map<String, dynamic>);
+        }
       }
     });
   }
