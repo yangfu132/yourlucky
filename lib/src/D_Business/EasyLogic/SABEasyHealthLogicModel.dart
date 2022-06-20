@@ -28,6 +28,18 @@ class SABEasyHealthLogicModel extends SABBaseModel {
   final bool isUsefulDeityChangeToRestricts;
   final bool isUsefulDeityChangeToConflict;
 
+  void check() {
+    inputHealthModel.check();
+    usefulDeity.check();
+    for (SABHealthLogicRowModel row in _listRowModels) {
+      row.check();
+    }
+    // if (symbolName.isEmpty) {
+    //   coLog("symbolName.isEmpty");
+    // }
+    super.check();
+  }
+
   EmptyEnum getSymbolEmptyState(int intRow, EasyTypeEnum easyTypeEnum) {
     return rowModelAtRow(intRow).getSymbolEmptyState(easyTypeEnum);
   }

@@ -18,6 +18,20 @@ class SABHealthRowModel extends SABBaseModel {
   final SABHealthSymbolModel toSymbol;
   final SABHealthSymbolModel hideSymbol;
 
+  void check() {
+    inputLogicRow.check();
+    fromSymbol.check();
+    toSymbol.check();
+    hideSymbol.check();
+    // for (SABHealthRowModel row in _listRowModels) {
+    //   row.check();
+    // }
+    // if (stringDeity.isEmpty) {
+    //   coLog("stringDeity.isEmpty");
+    // }
+    super.check();
+  }
+
   double healthForEasyType(EasyTypeEnum easyType) {
     double fHealth = 0.0;
 

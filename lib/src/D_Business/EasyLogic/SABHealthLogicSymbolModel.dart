@@ -1,3 +1,4 @@
+import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/Health/SABHealthSymbolModel.dart';
@@ -17,4 +18,16 @@ class SABHealthLogicSymbolModel extends SABBaseModel {
   final DayConflictEnum conflictOnDayState;
   final EmptyEnum symbolEmptyState;
   final String stringDeity;
+
+  void check() {
+    healthSymbol.check();
+
+    // for (SABHealthLogicRowModel row in _listRowModels) {
+    //   row.check();
+    // }
+    if (stringDeity.isEmpty) {
+      coLog("stringDeity.isEmpty");
+    }
+    super.check();
+  }
 }

@@ -19,6 +19,21 @@ class SABHealthLogicRowModel extends SABBaseModel {
   final SABHealthLogicSymbolModel hideSymbol;
   bool? isSymbolChangeEmpty;
 
+  void check() {
+    healthRow.check();
+    fromSymbol.check();
+    toSymbol.check();
+    hideSymbol.check();
+
+    // for (SABHealthLogicRowModel row in _listRowModels) {
+    //   row.check();
+    // }
+    // if (symbolName.isEmpty) {
+    //   coLog("symbolName.isEmpty");
+    // }
+    super.check();
+  }
+
   String? getStringHealth(EasyTypeEnum easyTypeEnum) {
     if (easyTypeEnum == EasyTypeEnum.from) {
       return fromSymbol.healthSymbol.healthDescription();

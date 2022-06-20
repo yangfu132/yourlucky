@@ -23,6 +23,6 @@ class SABBaseModel {
   }
 
   void check() {
-    coLog('${this.runtimeType} checked');
+    coLog('--- ${this.runtimeType} checked --- ');
   }
 }

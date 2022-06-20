@@ -23,6 +23,20 @@ class SABHealthModel extends SABBaseModel {
 
   late final _listRowModels = <SABHealthRowModel>[];
 
+  void check() {
+    inputLogicModel.check();
+    diagramsModel.check();
+    dayModel.check();
+    monthModel.check();
+    for (SABHealthRowModel row in _listRowModels) {
+      row.check();
+    }
+    // if (stringDeity.isEmpty) {
+    //   coLog("stringDeity.isEmpty");
+    // }
+    super.check();
+  }
+
   double symbolHealthAtRow(int nRow, EasyTypeEnum easyType) {
     return rowModelAtRow(nRow).healthForEasyType(easyType);
   }

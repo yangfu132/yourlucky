@@ -42,6 +42,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
   ///`输出`
   SABEasyHealthLogicModel outputModel() {
+    _healthLogicModel.check();
     return _healthLogicModel;
   }
 

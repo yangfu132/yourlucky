@@ -14,6 +14,17 @@ class SABHealthSymbolModel extends SABBaseModel {
   double doubleHealth;
   OutRightEnum outRight;
 
+  void check() {
+    logicSymbol.check();
+    // for (SABHealthRowModel row in _listRowModels) {
+    //   row.check();
+    // }
+    // if (stringDeity.isEmpty) {
+    //   coLog("stringDeity.isEmpty");
+    // }
+    super.check();
+  }
+
   double healthWithCritical() {
     return doubleHealth - critical;
   }
