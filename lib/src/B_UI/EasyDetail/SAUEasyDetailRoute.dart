@@ -28,21 +28,42 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(detailModel().stringDetailName),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              SACContext.easyStore().save(detailModel().digitModel());
-            },
-            child: Text('保存'),
-            style: SACContext.textButtonStyle(),
+    if (SACContext.simulator()) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(detailModel().stringDetailName),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                SACContext.easyStore().save(detailModel().digitModel());
+              },
+              child: Text('保存'),
+              style: SACContext.textButtonStyle(),
+            ),
+          ],
+        ),
+        body: _buildBody(),
+      );
+    } else {
+      return RotatedBox(
+        quarterTurns: 1,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(detailModel().stringDetailName),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  SACContext.easyStore().save(detailModel().digitModel());
+                },
+                child: Text('保存'),
+                style: SACContext.textButtonStyle(),
+              ),
+            ],
           ),
-        ],
-      ),
-      body: _buildBody(),
-    );
+          body: _buildBody(),
+        ),
+      );
+    }
   }
 
   Widget _buildBody() {

@@ -14,6 +14,10 @@ class SACContext {
   final SABEasyStrategyInfoBusiness _categoryBusiness =
       SABEasyStrategyInfoBusiness();
 
+  static bool simulator() {
+    return true;
+  }
+
   ///SA 服务目录
   Future<void> initStep() async {
     await _categoryBusiness.getsCategory();
