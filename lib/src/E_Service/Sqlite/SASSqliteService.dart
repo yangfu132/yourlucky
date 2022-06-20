@@ -79,7 +79,7 @@ class SASSqliteService extends SABBaseService {
             'CREATE TABLE IF NOT EXISTS easy(id INTEGER PRIMARY KEY AUTOINCREMENT, easyGoal TEXT, easy TEXT, time TEXT,usefulDeity TEXT)',
           );
           await db.execute(
-            'CREATE TABLE IF NOT EXISTS easy_log(id INTEGER PRIMARY KEY AUTOINCREMENT, easyGoal TEXT, easy TEXT, time TEXT,usefulDeity TEXT)',
+            'CREATE TABLE IF NOT EXISTS easy_log(id INTEGER PRIMARY KEY AUTOINCREMENT, dataId INTEGER, dataJson TEXT, msg TEXT)',
           );
 
           await db.execute(
@@ -116,7 +116,8 @@ class SASSqliteService extends SABBaseService {
       theBatch.rawQuery(querySql);
       // theBatch.query(tableName, orderBy: 'id', limit: 1);
       final List<Object?> batchResults = await theBatch.commit();
-      List<Map<String, dynamic>> maps = batchResults[1] as List<Map<String, dynamic>>;
+      List<Map<String, dynamic>> maps =
+          batchResults[1] as List<Map<String, dynamic>>;
       for (Object? data in maps) {
         if (data is Map) {
           insertResult(data as Map<String, dynamic>);

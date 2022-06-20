@@ -30,7 +30,7 @@ class SABLogModel extends SABBaseModel {
   }
 
   String getModelName() {
-    return 'logs';
+    return 'easy_log';
   }
 
   int? getModelId() {

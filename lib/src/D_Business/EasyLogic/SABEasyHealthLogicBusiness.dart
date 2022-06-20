@@ -45,42 +45,19 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     return _healthLogicModel;
   }
 
-  SABHealthLogicSymbolModel fromSymbol(SABHealthSymbolModel healthSymbol) {
-    int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
-
-    return SABHealthLogicSymbolModel(
-      healthSymbol: healthSymbol,
-      symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.from),
-      isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, EasyTypeEnum.from),
-      conflictOnMonthState:
-          symbolConflictStateOnMonth(intRow, EasyTypeEnum.from),
-      conflictOnDayState: symbolDayConflictState(intRow, EasyTypeEnum.from),
-      stringDeity: deityAtRow(intRow, EasyTypeEnum.from),
-    );
-  }
-
-  SABHealthLogicSymbolModel toSymbol(SABHealthSymbolModel healthSymbol) {
+  SABHealthLogicSymbolModel symbol(
+    SABHealthSymbolModel healthSymbol,
+    EasyTypeEnum easyType,
+  ) {
     int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
     return SABHealthLogicSymbolModel(
       healthSymbol: healthSymbol,
-      symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.to),
-      isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, EasyTypeEnum.to),
-      conflictOnMonthState: symbolConflictStateOnMonth(intRow, EasyTypeEnum.to),
-      conflictOnDayState: symbolDayConflictState(intRow, EasyTypeEnum.to),
-      stringDeity: deityAtRow(intRow, EasyTypeEnum.to),
+      symbolEmptyState: symbolEmptyState(intRow, easyType),
+      isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, easyType),
+      conflictOnMonthState: symbolConflictStateOnMonth(intRow, easyType),
+      conflictOnDayState: symbolDayConflictState(intRow, easyType),
+      stringDeity: deityAtRow(intRow, easyType),
     );
-  }
-
-  SABHealthLogicSymbolModel hideSymbol(SABHealthSymbolModel healthSymbol) {
-    int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
-    return SABHealthLogicSymbolModel(
-        healthSymbol: healthSymbol,
-        symbolEmptyState: symbolEmptyState(intRow, EasyTypeEnum.hide),
-        isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, EasyTypeEnum.hide),
-        conflictOnMonthState:
-            symbolConflictStateOnMonth(intRow, EasyTypeEnum.hide),
-        conflictOnDayState: symbolDayConflictState(intRow, EasyTypeEnum.hide),
-        stringDeity: deityAtRow(intRow, EasyTypeEnum.hide));
   }
 
   SABEasyHealthLogicModel initHealthLogicModel() {
@@ -96,14 +73,14 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     //此信息依赖爻的基础信息
     for (int intRow = 0; intRow < 6; intRow++) {
       SABHealthRowModel rowHealthModel = healthModel().rowModelAtRow(intRow);
-      SABHealthLogicRowModel symbol = SABHealthLogicRowModel(
+      SABHealthLogicRowModel rowModel = SABHealthLogicRowModel(
         healthRow: rowHealthModel,
-        fromSymbol: fromSymbol(rowHealthModel.fromSymbol),
-        toSymbol: toSymbol(rowHealthModel.toSymbol),
-        hideSymbol: hideSymbol(rowHealthModel.hideSymbol),
+        fromSymbol: symbol(rowHealthModel.fromSymbol, EasyTypeEnum.from),
+        toSymbol: symbol(rowHealthModel.toSymbol, EasyTypeEnum.to),
+        hideSymbol: symbol(rowHealthModel.hideSymbol, EasyTypeEnum.hide),
         isSymbolBackMove: isSymbolBackMoveAtRow(intRow, EasyTypeEnum.from),
       );
-      logicModel.addSymbol(symbol);
+      logicModel.addSymbol(rowModel);
 
       logicModel.setIsSymbolChangeEmpty(intRow, isSymbolChangeEmpty(intRow));
     }
@@ -1036,8 +1013,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   /// `--旬空章第二十六`///////////////////////////////////////////////////////////
 
   EmptyEnum symbolEmptyState(int intRow, EasyTypeEnum easyType) {
-    EmptyEnum nResult = EmptyEnum.Empty_False;
-
+    EmptyEnum nResult = EmptyEnum.Empty_Null;
     String stringSymbol = symbolNameAtRow(intRow, easyType);
     SABLogicSymbolModel symbolModel =
         logicModel().symbolAtRow(intRow, easyType);
