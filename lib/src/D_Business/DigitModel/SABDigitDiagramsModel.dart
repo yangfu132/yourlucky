@@ -1,3 +1,4 @@
+import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/D_Business/BasicEasy/SABDiagramsInfoModel.dart';
 import 'package:yourlucky/src/D_Business/BasicEasy/SABElementInfoModel.dart';
@@ -48,6 +49,52 @@ class SABDigitDiagramsModel extends SABBaseModel {
   ///纯卦
   late final bool bFromPureEasy;
   late final bool bToPureEasy;
+
+  void check() {
+    _eightDiagrams.check();
+    if (fromEasyKey.isEmpty) {
+      coLog("fromEasyKey.isEmpty");
+    }
+    if (toEasyKey.isEmpty) {
+      coLog("toEasyKey.isEmpty");
+    }
+    if (strUsefulDeity.isEmpty) {
+      coLog("strUsefulDeity.isEmpty");
+    }
+    if (stringFromName.isEmpty) {
+      coLog("stringFromName.isEmpty");
+    }
+    if (stringFromPlace.isEmpty) {
+      coLog("stringFromPlace.isEmpty");
+    }
+
+    if (stringFromElement.isEmpty) {
+      coLog("stringFromElement.isEmpty");
+    }
+    if (stringToName.isEmpty) {
+      coLog("stringToName.isEmpty");
+    }
+    if (stringToPlace.isEmpty) {
+      coLog("stringToPlace.isEmpty");
+    }
+
+    if (stringToElement.isEmpty) {
+      coLog("stringToElement.isEmpty");
+    }
+    if (deityElement.isEmpty) {
+      coLog("deityElement.isEmpty");
+    }
+    if (mapFromEasy.isEmpty) {
+      coLog("mapFromEasy.isEmpty");
+    }
+    if (mapToEasy.isEmpty) {
+      coLog("mapToEasy.isEmpty");
+    }
+    if (mapHideEasy.isEmpty) {
+      coLog("mapHideEasy.isEmpty");
+    }
+    super.check();
+  }
 
   ///此方法获取本卦的卦名
   String _fromEasyName() {

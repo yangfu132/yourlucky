@@ -1,3 +1,4 @@
+import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 
@@ -20,4 +21,26 @@ class SABWordsSymbolModel extends SABBaseModel {
   final String stringElement;
   final String earlyPlace;
   final String latePlace;
+
+  void check() {
+    if (symbolName.isEmpty) {
+      coLog("symbolName.isEmpty");
+    }
+    if (stringParent.isEmpty) {
+      coLog("stringParent.isEmpty");
+    }
+    if (stringEarth.isEmpty) {
+      coLog("stringEarth.isEmpty");
+    }
+    if (stringElement.isEmpty) {
+      coLog("stringElement.isEmpty");
+    }
+    if (earlyPlace.isEmpty) {
+      coLog("earlyPlace.isEmpty");
+    }
+    if (latePlace.isEmpty) {
+      coLog("latePlace.isEmpty");
+    }
+    super.check();
+  }
 }

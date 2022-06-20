@@ -1,4 +1,5 @@
-﻿import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
+﻿import 'package:yourlucky/src/A_Context/SACContext.dart';
+import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/D_Business/EasyWords/SABWordsSymbolModel.dart';
 
 import '../../A_Context/SACGlobal.dart';
@@ -22,6 +23,22 @@ class SABWordsRowModel extends SABBaseModel {
   final SABWordsSymbolModel fromSymbol;
   final SABWordsSymbolModel toSymbol;
   final SABWordsSymbolModel hideSymbol;
+
+  void check() {
+    if (stringAnimal.isEmpty) {
+      coLog("stringAnimal.isEmpty");
+    }
+    if (stringDiagrams.isEmpty) {
+      coLog("stringDiagrams.isEmpty");
+    }
+    if (desOfGoalOrLife.isEmpty) {
+      coLog("desOfGoalOrLife.isEmpty");
+    }
+    fromSymbol.check();
+    toSymbol.check();
+    hideSymbol.check();
+    super.check();
+  }
 
   String getEarlyPlace(EasyTypeEnum easyTypeEnum) {
     if (easyTypeEnum == EasyTypeEnum.from) {

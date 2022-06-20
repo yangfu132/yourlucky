@@ -349,7 +349,7 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
       );
       wordsModel.addRowModel(row);
     }
-
+    wordsModel.check();
     return wordsModel;
   }
 }

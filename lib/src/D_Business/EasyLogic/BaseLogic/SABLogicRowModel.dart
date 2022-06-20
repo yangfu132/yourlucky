@@ -29,6 +29,14 @@ class SABLogicRowModel extends SABBaseModel {
   final bool isSymbolChangeForward;
   final bool isSymbolChangeBack;
 
+  void check() {
+    inputWordsRow.check();
+    fromSymbol.check();
+    toSymbol.check();
+    hideSymbol.check();
+    super.check();
+  }
+
   SABLogicSymbolModel? symbolModel(EasyTypeEnum easyTypeEnum) {
     SABLogicSymbolModel? resultSymbol;
     if (easyTypeEnum == EasyTypeEnum.from) {

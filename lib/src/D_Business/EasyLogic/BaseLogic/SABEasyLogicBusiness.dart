@@ -1229,7 +1229,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       );
       outLogicModel.addRowModel(logicRow);
     }
-
+    outLogicModel.check();
     return outLogicModel;
   }
 }

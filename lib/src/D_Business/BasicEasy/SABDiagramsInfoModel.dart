@@ -1,9 +1,10 @@
 import 'package:yourlucky/src/A_Context/SACContext.dart';
+import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 
 import '../../A_Context/SACContext.dart';
 
 //类注释：此类包含八宫、八卦、六十四卦的信息
-class SABDiagramsInfoModel {
+class SABDiagramsInfoModel extends SABBaseModel {
   late final Map _myAllEasyTableData = initEasyData();
 
   String elementOfDiagram(String diagram) {

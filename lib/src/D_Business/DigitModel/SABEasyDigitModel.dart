@@ -1,5 +1,6 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABDigitDiagramsModel.dart';
 
@@ -28,6 +29,23 @@ class SABEasyDigitModel extends SABBaseModel {
   final String stringTime;
 
   late final SABDigitDiagramsModel diagramsModel = _getDiagramsModel();
+
+  void check() {
+    if (listEasyData.isEmpty) {
+      coLog("listEasyData.isEmpty");
+    }
+    if (strEasyGoal.isEmpty) {
+      coLog("strEasyGoal.isEmpty");
+    }
+    if (strUsefulDeity.isEmpty) {
+      coLog("strUsefulDeity.isEmpty");
+    }
+    if (stringTime.isEmpty) {
+      coLog("strUsefulDeity.isEmpty");
+    }
+    diagramsModel.check();
+    super.check();
+  }
 
   SABDigitDiagramsModel _getDiagramsModel() {
     return SABDigitDiagramsModel(

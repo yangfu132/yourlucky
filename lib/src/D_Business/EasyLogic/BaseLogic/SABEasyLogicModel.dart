@@ -25,7 +25,18 @@ class SABEasyLogicModel extends SABBaseModel {
 
   late final SABEarthBranchModel _earthBranchModel = SABEarthBranchModel();
 
-  late final List _listRowModels = List.empty(growable: true);
+  late final List<SABLogicRowModel> _listRowModels = List.empty(growable: true);
+
+  void check() {
+    inputWordsModel.check();
+    diagramsModel.check();
+    monthModel.check();
+    dayModel.check();
+    for (SABLogicRowModel row in _listRowModels) {
+      row.check();
+    }
+    super.check();
+  }
 
   /// `Public`//////////////////////////////////////////////////////////////
 

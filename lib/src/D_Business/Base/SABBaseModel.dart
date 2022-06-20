@@ -1,4 +1,6 @@
-﻿class SABBaseModel {
+﻿import 'package:yourlucky/src/A_Context/SACContext.dart';
+
+class SABBaseModel {
   SABBaseModel();
 
   SABBaseModel.fromJson(Map<String, Object?> json);
@@ -18,5 +20,9 @@
   String toString() {
     Map<String, Object?> json = toJson();
     return json.toString();
+  }
+
+  void check() {
+    coLog('${this.runtimeType} checked');
   }
 }

@@ -18,7 +18,17 @@ class SABEasyWordsModel extends SABBaseModel {
   final SABEasyDigitModel inputDigitModel;
   final SABWordsMonthModel monthModel;
   final SABWordsDayModel dayModel;
-  final List _listRowModels = List.empty(growable: true);
+  final List<SABWordsRowModel> _listRowModels = List.empty(growable: true);
+
+  void check() {
+    inputDigitModel.check();
+    monthModel.check();
+    dayModel.check();
+    for (SABWordsRowModel row in _listRowModels) {
+      row.check();
+    }
+    super.check();
+  }
 
   /// `MergeRow函数`///////////////////////////////////////////////////////////
   ///MergeRow的定义

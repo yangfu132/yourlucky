@@ -1,3 +1,4 @@
+import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/D_Business/EasyWords/SABWordsSymbolModel.dart';
@@ -38,6 +39,14 @@ class SABLogicSymbolModel extends SABBaseModel {
   final bool isSeasonStrong;
   final String stringSeason;
   final bool isEffectAble;
+
+  void check() {
+    wordsSymbol.check();
+    if (stringSeason.isEmpty) {
+      coLog('stringSeason.isEmpty');
+    }
+    super.check();
+  }
 
   bool isEmpty() {
     return EmptyEnum.Empty_YES == basicEmptyState ||
