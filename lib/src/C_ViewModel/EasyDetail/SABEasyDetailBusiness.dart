@@ -135,7 +135,6 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
   }
 
   SABEasyDetailModel initOutputDetailModel() {
-    //TODO:yangfu132细化detailmodel
     var outputDetailModel = SABEasyDetailModel(
       analysisModel(),
       easyName(),
@@ -156,6 +155,7 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
       resultList[6]['value'] = symbolEarthDirection(intRow, EasyTypeEnum.from);
       resultList[7]['value'] = eightDiagramsPlace(intRow, EasyTypeEnum.from);
     }
+    outputDetailModel.check();
     return outputDetailModel;
   }
 

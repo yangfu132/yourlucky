@@ -16,7 +16,19 @@ class SABEasyDetailModel extends SABBaseModel {
   final SABDiagramsDetailModel diagramsDetailModel;
   final SABEasyAnalysisModel _analysisModel;
   final String stringDetailName;
-  late List _listRowModels = _initRowModelsArray();
+  late List<SABRowDetailModel> _listRowModels = _initRowModelsArray();
+
+  void check() {
+    diagramsDetailModel.check();
+    _analysisModel.check();
+    for (SABRowDetailModel row in _listRowModels) {
+      row.check();
+    }
+    if (stringDetailName.isEmpty) {
+      coLog("stringDetailName.isEmpty");
+    }
+    super.check();
+  }
 
   SABEasyDigitModel digitModel() {
     return wordsModel().inputDigitModel;
@@ -270,8 +282,8 @@ class SABEasyDetailModel extends SABBaseModel {
     return _listRowModels;
   }
 
-  List _initRowModelsArray() {
-    var listRowModels = [];
+  List<SABRowDetailModel> _initRowModelsArray() {
+    var listRowModels = <SABRowDetailModel>[];
     for (int intRow = 0; intRow < 6; intRow++) {
       SABRowDetailModel model =
           SABRowDetailModel(_analysisModel.rowModelAtRow(intRow));

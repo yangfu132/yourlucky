@@ -1,3 +1,4 @@
+import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABLogicRowModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/Health/SABHealthRowModel.dart';
@@ -9,7 +10,23 @@ import '../EasyAnalysis/SABEasyAnalysisRowModel.dart';
 import 'SABSymbolDetailModel.dart';
 
 class SABRowDetailModel extends SABBaseModel {
-  SABRowDetailModel(this.inputAnalysisRow);
+  SABRowDetailModel(this.inputAnalysisRow) {
+    fromSymbol = SABSymbolDetailModel(
+      symbolHealthDes: fromSymbolHealthDes(),
+      monthRelation: analysisModel().getMonthRelation(EasyTypeEnum.from),
+      dayRelation: analysisModel().getDayRelation(EasyTypeEnum.from),
+    );
+    toSymbol = SABSymbolDetailModel(
+      symbolHealthDes: toSymbolHealthDes(),
+      monthRelation: toMonthRelation(),
+      dayRelation: toDayRelation(),
+    );
+    hideSymbol = SABSymbolDetailModel(
+      symbolHealthDes: hideSymbolHealthDes(),
+      monthRelation: hideMonthRelation(),
+      dayRelation: hideDayRelation(),
+    );
+  }
   final SABEasyAnalysisRowModel inputAnalysisRow;
 
   late final String stringDeity =
@@ -24,21 +41,32 @@ class SABRowDetailModel extends SABBaseModel {
   late final String stringConflictOrPair =
       analysisModel().getSymbolRelation(); //六爻冲合
 
-  late final SABSymbolDetailModel fromSymbol = SABSymbolDetailModel(
-    symbolHealthDes: fromSymbolHealthDes(),
-    monthRelation: analysisModel().getMonthRelation(EasyTypeEnum.from),
-    dayRelation: analysisModel().getDayRelation(EasyTypeEnum.from),
-  );
-  late final SABSymbolDetailModel toSymbol = SABSymbolDetailModel(
-    symbolHealthDes: toSymbolHealthDes(),
-    monthRelation: toMonthRelation(),
-    dayRelation: toDayRelation(),
-  );
-  late final SABSymbolDetailModel hideSymbol = SABSymbolDetailModel(
-    symbolHealthDes: hideSymbolHealthDes(),
-    monthRelation: hideMonthRelation(),
-    dayRelation: hideDayRelation(),
-  );
+  late final SABSymbolDetailModel fromSymbol;
+  late final SABSymbolDetailModel toSymbol;
+  late final SABSymbolDetailModel hideSymbol;
+
+  void check() {
+    inputAnalysisRow.check();
+    fromSymbol.check();
+    toSymbol.check();
+    hideSymbol.check();
+    if (stringDeity.isEmpty) {
+      coLog("stringDeity.isEmpty");
+    }
+    if (stringAnimal.isEmpty) {
+      coLog("stringAnimal.isEmpty");
+    }
+    if (stringGoal.isEmpty) {
+      coLog("stringGoal.isEmpty");
+    }
+    if (stringChange.isEmpty) {
+      coLog("stringChange.isEmpty");
+    }
+    if (stringConflictOrPair.isEmpty) {
+      coLog("stringConflictOrPair.isEmpty");
+    }
+    super.check();
+  }
 
   String hideSymbolHealthDes() {
     String stringResult = "";
