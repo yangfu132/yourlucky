@@ -12,6 +12,13 @@ enum EasyTypeEnum {
   hide, //伏卦
 }
 
+enum LogTypeEnum {
+  type_null,
+  error, //错误
+  log, //日志
+  remark, //说明
+}
+
 //note：代表无效的爻索引数，当未被复制的时候使用；
 const GLOBAL_ROW_INVALID = -1;
 

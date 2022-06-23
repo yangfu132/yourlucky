@@ -178,7 +178,7 @@ class SABAvoidStrategyBusiness extends SABBaseBusiness {
         stringResult = SASStringService.appendToString(stringResult, "福神安静。");
       }
     } else
-      coLog("error");
+      coLog(StackTrace.current,LogTypeEnum.error,"error");
     return stringResult;
   }
 
@@ -199,7 +199,7 @@ class SABAvoidStrategyBusiness extends SABBaseBusiness {
             stringResult = SASStringService.appendToString(
                 stringResult, "克神若在外卦动而克世，宜在家避之。");
           } else {
-            coLog('error');
+            coLog(StackTrace.current,LogTypeEnum.error,'error');
           }
         } //end for
       } else {
@@ -247,7 +247,7 @@ class SABAvoidStrategyBusiness extends SABBaseBusiness {
           } // else cont.
         } // end for
       } else {
-        coLog('error');
+        coLog(StackTrace.current,LogTypeEnum.error,'error');
       }
     }
     return stringResult;

@@ -32,7 +32,7 @@ class SABEasyAnalysisRowModel extends SABBaseModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.dayRelation;
     } else {
-      coLog('easyTypeEnum:$easyTypeEnum');
+      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
       return 'easyTypeEnum:$easyTypeEnum';
     }
   }
@@ -44,8 +44,9 @@ class SABEasyAnalysisRowModel extends SABBaseModel {
       toSymbol.dayRelation = stringDayRelation;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       hideSymbol.dayRelation = stringDayRelation;
-    } else
-      coLog('easyTypeEnum:$easyTypeEnum');
+    } else {
+      coLog(StackTrace.current,LogTypeEnum.error, 'easyTypeEnum:$easyTypeEnum');
+    }
   }
 
   String getSymbolRelation() {
@@ -64,7 +65,7 @@ class SABEasyAnalysisRowModel extends SABBaseModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.monthRelation;
     } else {
-      coLog('easyTypeEnum:$easyTypeEnum');
+      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
       return 'easyTypeEnum:$easyTypeEnum';
     }
   }
@@ -76,8 +77,9 @@ class SABEasyAnalysisRowModel extends SABBaseModel {
       toSymbol.monthRelation = stringMonthRelation;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       hideSymbol.monthRelation = stringMonthRelation;
-    } else
-      coLog('easyTypeEnum:$easyTypeEnum');
+    } else {
+      coLog(StackTrace.current,LogTypeEnum.error, 'easyTypeEnum:$easyTypeEnum');
+    }
   }
 
   String getEmptyDescription(EasyTypeEnum easyTypeEnum) {
@@ -88,7 +90,7 @@ class SABEasyAnalysisRowModel extends SABBaseModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.emptyDescription;
     } else {
-      coLog('easyTypeEnum:$easyTypeEnum');
+      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
       return 'easyTypeEnum:$easyTypeEnum';
     }
   }
@@ -100,8 +102,9 @@ class SABEasyAnalysisRowModel extends SABBaseModel {
       toSymbol.emptyDescription = emptyDescription;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       hideSymbol.emptyDescription = emptyDescription;
-    } else
-      coLog('easyTypeEnum:$easyTypeEnum');
+    } else {
+      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
+    }
   }
 
   /// `加载函数`/////////////////////////////////////////////////////////////////

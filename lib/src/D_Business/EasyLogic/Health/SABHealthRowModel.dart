@@ -28,7 +28,7 @@ class SABHealthRowModel extends SABBaseModel {
     } else if (EasyTypeEnum.hide == easyType) {
       fHealth = hideSymbol.doubleHealth;
     } else
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return fHealth;
   }
@@ -41,6 +41,6 @@ class SABHealthRowModel extends SABBaseModel {
     } else if (EasyTypeEnum.hide == easyType) {
       hideSymbol.doubleHealth = fHealth;
     } else
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
   }
 }

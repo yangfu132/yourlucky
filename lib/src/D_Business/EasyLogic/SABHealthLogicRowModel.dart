@@ -27,7 +27,7 @@ class SABHealthLogicRowModel extends SABBaseModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.healthSymbol.healthDescription();
     } else {
-      coLog('easyTypeEnum:$easyTypeEnum');
+      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
       return 'easyTypeEnum:$easyTypeEnum';
     }
   }
@@ -40,7 +40,7 @@ class SABHealthLogicRowModel extends SABBaseModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.stringDeity;
     } else {
-      coLog('easyTypeEnum:$easyTypeEnum');
+      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
       return 'easyTypeEnum:$easyTypeEnum';
     }
   }
@@ -53,7 +53,7 @@ class SABHealthLogicRowModel extends SABBaseModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.symbolEmptyState;
     } else {
-      coLog('easyTypeEnum:$easyTypeEnum');
+      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
       return EmptyEnum.Empty_Null;
     }
   }
@@ -66,9 +66,9 @@ class SABHealthLogicRowModel extends SABBaseModel {
       bSymbolDayBroken = toSymbol.isSymbolDayBroken;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       bSymbolDayBroken = hideSymbol.isSymbolDayBroken;
-    } else
-      coLog('easyTypeEnum:$easyTypeEnum');
-
+    } else {
+      coLog(StackTrace.current,LogTypeEnum.error, 'easyTypeEnum:$easyTypeEnum');
+    }
     return bSymbolDayBroken;
   }
 
@@ -80,9 +80,9 @@ class SABHealthLogicRowModel extends SABBaseModel {
       enumResultConflict = toSymbol.conflictOnMonthState;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       enumResultConflict = hideSymbol.conflictOnMonthState;
-    } else
-      coLog('easyTypeEnum:$easyTypeEnum');
-
+    } else {
+      coLog(StackTrace.current,LogTypeEnum.error, 'easyTypeEnum:$easyTypeEnum');
+    }
     return enumResultConflict;
   }
 
@@ -94,9 +94,9 @@ class SABHealthLogicRowModel extends SABBaseModel {
       enumResultConflict = toSymbol.conflictOnDayState;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       enumResultConflict = hideSymbol.conflictOnDayState;
-    } else
-      coLog('easyTypeEnum:$easyTypeEnum');
-
+    } else {
+      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
+    }
     return enumResultConflict;
   }
 }

@@ -123,11 +123,11 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
           result = strSymbol;
       } else {
         result = "error_symbol_length";
-        coLog("error!");
+        coLog(StackTrace.current,LogTypeEnum.error, "error!");
       }
     } else {
       result = "error_symbol_index";
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
     }
     return result;
   }
@@ -146,7 +146,7 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
       stringResult = toSymbol.replaceRange(toSymbol.length - 4, 2, strValue);
     } else {
       stringResult = "error_symbol_index";
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
     }
 
     return stringResult;
@@ -159,7 +159,7 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
     if (intHideIndex >= 0) {
       result = symbolStringAtRow(intHideIndex, diagramsModel.mapHideEasy);
     } else
-      result = "卦中用神未现"; //coLog("error!");
+      result = "卦中用神未现"; //coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return result;
   }
@@ -170,7 +170,7 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
     if (symbol.length >= 1)
       stringResult = symbol.substring(symbol.length - 1, symbol.length);
     else
-      coLog("");
+      coLog(StackTrace.current,LogTypeEnum.error,"error");
 
     return stringResult;
   }
@@ -182,7 +182,7 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
       stringResult = stringSymbol.substring(
           stringSymbol.length - 4, stringSymbol.length - 2);
     else
-      coLog("");
+      coLog(StackTrace.current,LogTypeEnum.error,"error");
 
     return stringResult;
   }
@@ -193,7 +193,7 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
       String strMark = stringSymbol.substring(0, 1);
       bResult = "×" == strMark || "○" == strMark;
     } else
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return bResult;
   }
@@ -204,7 +204,7 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
       stringResult = stringSymbol.substring(
           stringSymbol.length - 2, stringSymbol.length - 1);
     else
-      stringResult = "卦中用神未现"; //coLog("error!");
+      stringResult = "卦中用神未现"; //coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return stringResult;
   }
@@ -318,7 +318,7 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
 
       result = SABDiagramsInfoModel.palaceNameForKey(guaKey);
     } else
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return result;
   }

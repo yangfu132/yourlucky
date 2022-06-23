@@ -48,7 +48,7 @@ class SABEasyLogicModel extends SABBaseModel {
     } else if (enumEasyType == EasyTypeEnum.hide) {
       bResult = diagramsModel.bHideEasySixPair;
     } else {
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
     }
     return bResult;
   }
@@ -62,7 +62,7 @@ class SABEasyLogicModel extends SABBaseModel {
     } else if (enumEasyType == EasyTypeEnum.hide) {
       bResult = diagramsModel.bHideEasySixConflict;
     } else {
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
     }
     return bResult;
   }
@@ -142,7 +142,7 @@ class SABEasyLogicModel extends SABBaseModel {
 
   SABLogicRowModel rowModelAtRow(int intRow) {
     if (intRow > _listRowModels.length) {
-      coLog("intRow:$intRow");
+      coLog(StackTrace.current,LogTypeEnum.error,"intRow:$intRow");
     }
     return _listRowModels[intRow];
   }

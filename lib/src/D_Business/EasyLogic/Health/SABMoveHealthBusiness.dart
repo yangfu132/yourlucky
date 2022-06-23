@@ -112,7 +112,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
         result = health * originBusiness().conversionRateAtRow(nRow, easyType);
       } //else { moving row }
     } else if (EasyTypeEnum.hide == easyType) {
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
     }
     return result;
   }
@@ -245,7 +245,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
         bResult = logicModel().isEffectAble(nEffectingRow, easyType);
       }
     } else
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return bResult;
   }

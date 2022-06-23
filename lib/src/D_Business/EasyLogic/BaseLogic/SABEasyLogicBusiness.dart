@@ -137,7 +137,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     } else if (easyType == EasyTypeEnum.hide)
       stringSymbol = symbolAtHideRow(intIndex);
     else
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     if ("" != stringSymbol) {
       List arrayEffects = staticSeasonStrong();
@@ -226,7 +226,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       if (strTo.isNotEmpty) bResult = isEarthRestricts(strTo, fromEarth);
       //else cont.
     } else
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return bResult;
   }
@@ -256,9 +256,9 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       bResult = "旺" == stringSeason;
       bResult = bResult || "相" == stringSeason;
       bResult = bResult || "余气" == stringSeason;
-    } else
-      coLog('error');
-
+    } else {
+      coLog(StackTrace.current,LogTypeEnum.error, 'error');
+    }
     return bResult;
   }
 
@@ -397,7 +397,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       String stringSymbol = rowModelAtRow(intRow, easyType);
       bResult = _isSymbolDayConflict(stringSymbol);
     } else
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return bResult;
   }
@@ -790,7 +790,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
         }
       } //else continue.
     } else {
-      coLog("stringSymbol为空");
+      coLog(StackTrace.current,LogTypeEnum.error,"stringSymbol为空");
     }
 
     return nResult;
@@ -834,7 +834,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
         strResult = strEarthBranch.substring(emptyLocation, emptyLocation + 2);
       }
     } else
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return strResult;
   }
@@ -948,7 +948,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     //TODO:yangfu132丰富用神的选取规则：按旺相休囚死的顺序排列；或者按照强弱顺序排序。
     //其实此时应该已经知道用神衰弱，事情很难成功。
-    //    coLog("error!");
+    //    coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return result;
   }

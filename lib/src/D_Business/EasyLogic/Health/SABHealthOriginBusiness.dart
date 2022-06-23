@@ -137,7 +137,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     if (-1 != siIndex && -1 != xiangIndex) {
       fResult = intervalSeason() * (siIndex - xiangIndex);
     } else
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return fResult;
   }
@@ -200,7 +200,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     } else if ("绝" == twelve) {
       fResult = base + interval;
     } else
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return fResult;
   }
@@ -235,7 +235,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     } else if ("死" == season) {
       fResult = base + interval;
     } else
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return fResult;
   }
@@ -327,10 +327,10 @@ class SABHealthOriginBusiness extends SABLogBusiness {
               wordsModel().monthModel.stringEarth,
               wordsModel().dayModel.stringEarth);
       } else {
-        coLog("error!");
+        coLog(StackTrace.current,LogTypeEnum.error, "error!");
       }
     } else {
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
     }
 
     return fResult;
@@ -354,7 +354,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
 
       bResult = health > healthCriticalValue();
     } else
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return bResult;
   }
@@ -389,7 +389,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
         } //else cont.
       } //else cont.
     } else {
-      coLog("symbolModel is null");
+      coLog(StackTrace.current,LogTypeEnum.error,"symbolModel is null");
     }
 
     /*******************************************
@@ -447,10 +447,10 @@ class SABHealthOriginBusiness extends SABLogBusiness {
           bResult = MAX_DEFENSIVE;
         //else cont.
       } else {
-        coLog("error!");
+        coLog(StackTrace.current,LogTypeEnum.error, "error!");
       }
     } else {
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
     }
 
     return bResult;

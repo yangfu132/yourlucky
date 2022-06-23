@@ -73,7 +73,7 @@ class SABHealthModel extends SABBaseModel {
 
   SABHealthRowModel rowModelAtRow(int intRow) {
     if (intRow > _listRowModels.length) {
-      coLog("intRow:$intRow");
+      coLog(StackTrace.current,LogTypeEnum.error,"intRow:$intRow");
     }
     return _listRowModels[intRow];
   }

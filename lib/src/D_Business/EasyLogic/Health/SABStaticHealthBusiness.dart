@@ -116,7 +116,7 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
         originBusiness().symbolOutRightAtRow(nEffectingRow, easyType)) {
       bResult = logicModel().isSeasonStrong(nEffectingRow, easyType);
     } else
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return bResult;
   }

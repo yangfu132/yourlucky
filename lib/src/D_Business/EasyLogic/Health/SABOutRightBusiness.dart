@@ -35,7 +35,7 @@ class SABOutRightBusiness extends SABBaseBusiness {
     } else if (EasyTypeEnum.hide == easyType) {
       fResult = hideOutRightAtRow(hashCode, easyType);
     } else
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return fResult;
   }
@@ -82,7 +82,7 @@ class SABOutRightBusiness extends SABBaseBusiness {
         fResult = OutRightEnum.RIGHT_EMPTY;
       }
     } else {
-      coLog("symbolModel is null");
+      coLog(StackTrace.current,LogTypeEnum.error,"symbolModel is null");
     }
 
     return fResult;
