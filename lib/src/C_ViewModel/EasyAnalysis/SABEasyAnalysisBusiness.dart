@@ -382,7 +382,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
         } else if (EasyTypeEnum.hide == easyType) {
           strMonthPair = "伏神与月合: $strMonthPair; 即使爻值休囚亦有旺相之意。";
         } else
-          coLog("error!");
+          coLog(StackTrace.current,LogTypeEnum.error, "error!");
       }
       //else cont.
 
@@ -411,7 +411,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
       } else if (EasyTypeEnum.hide == easyType) {
         strPairResult = "伏神与日合: $strPairResult; 即使爻值休囚亦有旺相之意。";
       } else
-        coLog("error!");
+        coLog(StackTrace.current,LogTypeEnum.error, "error!");
     }
     //else cont.
 
@@ -640,19 +640,19 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
         if ("" != strLeft)
           strPairItem = strPairItem + "$strLeft、";
         else
-          coLog("error!");
+          coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
         String strMiddle = subResultThreePairdAtRow(arrayPairRow[1]);
         if ("" != strMiddle)
           strPairItem = strPairItem + "$strMiddle";
         else
-          coLog("error!");
+          coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
         String strRight = subResultThreePairdAtRow(arrayPairRow[2]);
         if ("" != strRight)
           strPairItem = strPairItem + "$strRight";
         else
-          coLog("error!");
+          coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
         for (String itemResult in arrayR) {
           strPairItem = strPairItem + itemResult;
@@ -789,7 +789,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
         monthBroken = "[冲动生不破]";
         break;
       default:
-        coLog("error!");
+        coLog(StackTrace.current,LogTypeEnum.error, "error!");
         break;
     }
 

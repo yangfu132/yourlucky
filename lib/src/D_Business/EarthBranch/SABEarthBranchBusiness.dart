@@ -1,4 +1,5 @@
 ﻿import 'package:yourlucky/src/A_Context/SACContext.dart';
+import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
 
 import '../BasicEasy/SABElementInfoModel.dart';
@@ -22,7 +23,7 @@ class SABEarthBranchBusiness extends SABBaseBusiness {
     if (null != timeEarth) {
     } else {
       result = false;
-      coLog("卦中用神未现!");
+      coLog(StackTrace.current,LogTypeEnum.error,"卦中用神未现!");
     }
     return result;
   }
@@ -47,7 +48,7 @@ class SABEarthBranchBusiness extends SABBaseBusiness {
     if (null != oneData) {
       strResult = oneData[atEarth];
     } else {
-      coLog("earthTwelveDeity error");
+      coLog(StackTrace.current,LogTypeEnum.error,"earthTwelveDeity error");
     }
 
     return strResult;

@@ -46,7 +46,7 @@ class SABLogicRowModel extends SABBaseModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       resultSymbol = hideSymbol;
     } else {
-      coLog('easyTypeEnum:$easyTypeEnum');
+      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
     }
     return resultSymbol;
   }
@@ -59,9 +59,9 @@ class SABLogicRowModel extends SABBaseModel {
       bEffectAble = toSymbol.isEffectAble;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       bEffectAble = hideSymbol.isEffectAble;
-    } else
-      coLog('easyTypeEnum:$easyTypeEnum');
-
+    } else {
+      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
+    }
     return bEffectAble;
   }
 
@@ -73,9 +73,9 @@ class SABLogicRowModel extends SABBaseModel {
       bResultStrong = toSymbol.isSeasonStrong;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       bResultStrong = hideSymbol.isSeasonStrong;
-    } else
-      coLog('easyTypeEnum:$easyTypeEnum');
-
+    } else {
+      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
+    }
     return bResultStrong;
   }
 
@@ -88,7 +88,7 @@ class SABLogicRowModel extends SABBaseModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       enumResultEmpty = hideSymbol.basicEmptyState;
     } else
-      coLog('easyTypeEnum:$easyTypeEnum');
+      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
 
     return enumResultEmpty;
   }
@@ -101,9 +101,9 @@ class SABLogicRowModel extends SABBaseModel {
       bResultIsMonthPair = toSymbol.isMonthPair;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       bResultIsMonthPair = hideSymbol.isMonthPair;
-    } else
-      coLog('easyTypeEnum:$easyTypeEnum');
-
+    } else {
+      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
+    }
     return bResultIsMonthPair;
   }
 
@@ -115,9 +115,9 @@ class SABLogicRowModel extends SABBaseModel {
       bResultIsOnMonth = toSymbol.isOnMonth;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       bResultIsOnMonth = hideSymbol.isOnMonth;
-    } else
-      coLog('easyTypeEnum:$easyTypeEnum');
-
+    } else {
+      coLog(StackTrace.current,LogTypeEnum.error, 'easyTypeEnum:$easyTypeEnum');
+    }
     return bResultIsOnMonth;
   }
 
@@ -129,9 +129,9 @@ class SABLogicRowModel extends SABBaseModel {
       bResultIsDayPair = toSymbol.isDayPair;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       bResultIsDayPair = hideSymbol.isDayPair;
-    } else
-      coLog('easyTypeEnum:$easyTypeEnum');
-
+    } else {
+      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
+    }
     return bResultIsDayPair;
   }
 
@@ -143,9 +143,9 @@ class SABLogicRowModel extends SABBaseModel {
       bResultIsOnDay = toSymbol.isOnDay;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       bResultIsOnDay = hideSymbol.isOnDay;
-    } else
-      coLog('easyTypeEnum:$easyTypeEnum');
-
+    } else {
+      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
+    }
     return bResultIsOnDay;
   }
 }

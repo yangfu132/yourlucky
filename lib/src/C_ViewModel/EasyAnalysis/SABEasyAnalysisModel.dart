@@ -69,7 +69,7 @@ class SABEasyAnalysisModel extends SABBaseModel {
 
   SABEasyAnalysisRowModel rowModelAtRow(int intRow) {
     if (intRow > _listRowModels.length) {
-      coLog("intRow:$intRow");
+      coLog(StackTrace.current,LogTypeEnum.error,"intRow:$intRow");
     }
     return _rowModelsArray()[intRow];
   }

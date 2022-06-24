@@ -5,7 +5,10 @@ import 'package:yourlucky/src/C_ViewModel/Strategy/SABEasyStrategyInfoBusiness.d
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitBusiness.dart';
 import 'package:yourlucky/src/E_Service/SABSingletonService.dart';
 
-void coLog(String strMsg) {
+import 'SACGlobal.dart';
+
+void coLog(StackTrace trace,LogTypeEnum logType,String strMsg) {
+  StackTrace trace = StackTrace.current;
   print(strMsg);
 }
 

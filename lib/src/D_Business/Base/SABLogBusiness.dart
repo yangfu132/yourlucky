@@ -3,6 +3,7 @@ import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/E_Service/Sqlite/SASSqliteService.dart';
 
+import '../../A_Context/SACGlobal.dart';
 import 'SABLogModel.dart';
 
 class SABLogBusiness extends SABBaseBusiness {
@@ -11,7 +12,7 @@ class SABLogBusiness extends SABBaseBusiness {
   final SABEasyDigitModel digitModel;
 
   void saLog(String strMsg) {
-    coLog(strMsg);
+    coLog(StackTrace.current,LogTypeEnum.log,strMsg);
     SABLogModel logModel = SABLogModel(
       modelId: null,
       dataId: digitModel.getModelId(),

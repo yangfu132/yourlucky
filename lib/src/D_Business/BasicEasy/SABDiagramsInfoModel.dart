@@ -1,5 +1,6 @@
 import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
+import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 
 import '../../A_Context/SACContext.dart';
 
@@ -34,7 +35,7 @@ class SABDiagramsInfoModel extends SABBaseModel {
     if (easyName.length >= 2) {
       result = easyName[easyName.length - 2];
     } else
-      coLog("error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
 
     return result;
   }
@@ -102,7 +103,7 @@ class SABDiagramsInfoModel extends SABBaseModel {
     if (tableDictionary.length == 64)
       resultDict = tableDictionary[strKey];
     else
-      coLog("error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
 
     return resultDict;
   }

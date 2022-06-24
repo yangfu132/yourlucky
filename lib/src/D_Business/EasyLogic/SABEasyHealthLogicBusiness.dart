@@ -231,7 +231,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
         fResult = healthModel().dayModel.health;
       }
     } else if (EasyTypeEnum.to == deityModel.easyType) {
-      coLog("EasyTypeEnum.to do not have usefulDeity");
+      coLog(StackTrace.current,LogTypeEnum.error,"EasyTypeEnum.to do not have usefulDeity");
     } else {}
 
     return fResult;
@@ -292,7 +292,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     } else if (EasyTypeEnum.type_null == deityModel.easyType) {
       return true;
     } else if (EasyTypeEnum.to == deityModel.easyType) {
-      coLog("EasyTypeEnum.to do not have usefulDeity");
+      coLog(StackTrace.current,LogTypeEnum.error,"EasyTypeEnum.to do not have usefulDeity");
     }
 
     return bResult;
@@ -314,7 +314,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
         stringEarth = logicModel().inputWordsModel.dayModel.stringEarth;
       }
     } else if (EasyTypeEnum.to == deityModel.easyType) {
-      coLog("EasyTypeEnum.to do not have usefulDeity");
+      coLog(StackTrace.current,LogTypeEnum.error,"EasyTypeEnum.to do not have usefulDeity");
     } else {}
 
     return stringEarth;
@@ -792,7 +792,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
       bResult = nValue < 0;
     } else
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return bResult;
   }
@@ -886,7 +886,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
       bResult = nValue < 0;
     } else
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return bResult;
   }
@@ -941,7 +941,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     else if (easyType == EasyTypeEnum.hide)
       stringSymbol = symbolAtHideRow(intIndex);
     else
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     for (int numItem in arrayEffects) {
       String stringSymbolItem = symbolAtFromRow(numItem);
@@ -1034,7 +1034,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
         }
       } //else cont.
     } else {
-      coLog("error!");
+      coLog(StackTrace.current,LogTypeEnum.error, "error!");
     }
 
     return nResult;

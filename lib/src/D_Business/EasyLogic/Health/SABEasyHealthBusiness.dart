@@ -60,7 +60,7 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
           tempSymbol.outRight = OutRightEnum.RIGHT_STATIC;
         }
       } else {
-        coLog('updateDayConflictOutRight:symbol is null');
+        coLog(StackTrace.current,LogTypeEnum.error,'updateDayConflictOutRight:symbol is null');
       }
     }
     return resultRow;
