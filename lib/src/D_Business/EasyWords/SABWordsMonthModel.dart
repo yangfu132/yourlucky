@@ -1,4 +1,5 @@
 import 'package:yourlucky/src/A_Context/SACContext.dart';
+import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 
 class SABWordsMonthModel extends SABBaseModel {
@@ -17,13 +18,13 @@ class SABWordsMonthModel extends SABBaseModel {
 
   void check() {
     if (stringSky.isEmpty) {
-      coLog("stringSky.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringSky.isEmpty");
     }
     if (stringEarth.isEmpty) {
-      coLog("stringEarth.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringEarth.isEmpty");
     }
     if (stringElement.isEmpty) {
-      coLog("stringElement.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringElement.isEmpty");
     }
     super.check();
   }

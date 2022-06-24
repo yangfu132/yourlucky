@@ -31,9 +31,6 @@ class SABHealthModel extends SABBaseModel {
     for (SABHealthRowModel row in _listRowModels) {
       row.check();
     }
-    // if (stringDeity.isEmpty) {
-    //   coLog("stringDeity.isEmpty");
-    // }
     super.check();
   }
 
@@ -87,7 +84,7 @@ class SABHealthModel extends SABBaseModel {
 
   SABHealthRowModel rowModelAtRow(int intRow) {
     if (intRow > _listRowModels.length) {
-      coLog(StackTrace.current,LogTypeEnum.error,"intRow:$intRow");
+      coLog(StackTrace.current, LogTypeEnum.error, "intRow:$intRow");
     }
     return _listRowModels[intRow];
   }

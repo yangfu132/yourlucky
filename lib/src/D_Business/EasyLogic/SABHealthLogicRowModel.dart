@@ -24,13 +24,6 @@ class SABHealthLogicRowModel extends SABBaseModel {
     fromSymbol.check();
     toSymbol.check();
     hideSymbol.check();
-
-    // for (SABHealthLogicRowModel row in _listRowModels) {
-    //   row.check();
-    // }
-    // if (symbolName.isEmpty) {
-    //   coLog("symbolName.isEmpty");
-    // }
     super.check();
   }
 
@@ -42,7 +35,8 @@ class SABHealthLogicRowModel extends SABBaseModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.healthSymbol.healthDescription();
     } else {
-      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
+      coLog(
+          StackTrace.current, LogTypeEnum.error, 'easyTypeEnum:$easyTypeEnum');
       return 'easyTypeEnum:$easyTypeEnum';
     }
   }
@@ -55,7 +49,8 @@ class SABHealthLogicRowModel extends SABBaseModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.stringDeity;
     } else {
-      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
+      coLog(
+          StackTrace.current, LogTypeEnum.error, 'easyTypeEnum:$easyTypeEnum');
       return 'easyTypeEnum:$easyTypeEnum';
     }
   }
@@ -68,7 +63,8 @@ class SABHealthLogicRowModel extends SABBaseModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.symbolEmptyState;
     } else {
-      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
+      coLog(
+          StackTrace.current, LogTypeEnum.error, 'easyTypeEnum:$easyTypeEnum');
       return EmptyEnum.Empty_Null;
     }
   }
@@ -82,7 +78,8 @@ class SABHealthLogicRowModel extends SABBaseModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       bSymbolDayBroken = hideSymbol.isSymbolDayBroken;
     } else {
-      coLog(StackTrace.current,LogTypeEnum.error, 'easyTypeEnum:$easyTypeEnum');
+      coLog(
+          StackTrace.current, LogTypeEnum.error, 'easyTypeEnum:$easyTypeEnum');
     }
     return bSymbolDayBroken;
   }
@@ -96,7 +93,8 @@ class SABHealthLogicRowModel extends SABBaseModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       enumResultConflict = hideSymbol.conflictOnMonthState;
     } else {
-      coLog(StackTrace.current,LogTypeEnum.error, 'easyTypeEnum:$easyTypeEnum');
+      coLog(
+          StackTrace.current, LogTypeEnum.error, 'easyTypeEnum:$easyTypeEnum');
     }
     return enumResultConflict;
   }
@@ -110,7 +108,8 @@ class SABHealthLogicRowModel extends SABBaseModel {
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       enumResultConflict = hideSymbol.conflictOnDayState;
     } else {
-      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
+      coLog(
+          StackTrace.current, LogTypeEnum.error, 'easyTypeEnum:$easyTypeEnum');
     }
     return enumResultConflict;
   }

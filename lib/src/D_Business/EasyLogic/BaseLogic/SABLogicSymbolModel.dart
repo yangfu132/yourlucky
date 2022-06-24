@@ -43,7 +43,7 @@ class SABLogicSymbolModel extends SABBaseModel {
   void check() {
     wordsSymbol.check();
     if (stringSeason.isEmpty) {
-      coLog('stringSeason.isEmpty');
+      coLog(StackTrace.current, LogTypeEnum.check, 'stringSeason.isEmpty');
     }
     super.check();
   }

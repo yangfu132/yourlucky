@@ -26,7 +26,7 @@ class SABHealthLogicSymbolModel extends SABBaseModel {
     //   row.check();
     // }
     if (stringDeity.isEmpty) {
-      coLog("stringDeity.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringDeity.isEmpty");
     }
     super.check();
   }

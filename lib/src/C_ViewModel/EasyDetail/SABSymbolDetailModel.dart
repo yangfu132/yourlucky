@@ -1,4 +1,5 @@
 import 'package:yourlucky/src/A_Context/SACContext.dart';
+import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 
 class SABSymbolDetailModel extends SABBaseModel {
@@ -13,13 +14,13 @@ class SABSymbolDetailModel extends SABBaseModel {
   final String dayRelation;
   void check() {
     if (symbolHealthDes.isEmpty) {
-      coLog("symbolHealthDes.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "symbolHealthDes.isEmpty");
     }
     if (monthRelation.isEmpty) {
-      coLog("monthRelation.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "monthRelation.isEmpty");
     }
     if (dayRelation.isEmpty) {
-      coLog("dayRelation.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "dayRelation.isEmpty");
     }
     super.check();
   }

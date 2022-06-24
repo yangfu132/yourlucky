@@ -51,19 +51,20 @@ class SABRowDetailModel extends SABBaseModel {
     toSymbol.check();
     hideSymbol.check();
     if (stringDeity.isEmpty) {
-      coLog("stringDeity.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringDeity.isEmpty");
     }
     if (stringAnimal.isEmpty) {
-      coLog("stringAnimal.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringAnimal.isEmpty");
     }
     if (stringGoal.isEmpty) {
-      coLog("stringGoal.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringGoal.isEmpty");
     }
     if (stringChange.isEmpty) {
-      coLog("stringChange.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringChange.isEmpty");
     }
     if (stringConflictOrPair.isEmpty) {
-      coLog("stringConflictOrPair.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check,
+          "stringConflictOrPair.isEmpty");
     }
     super.check();
   }

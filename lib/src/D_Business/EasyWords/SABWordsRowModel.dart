@@ -26,13 +26,13 @@ class SABWordsRowModel extends SABBaseModel {
 
   void check() {
     if (stringAnimal.isEmpty) {
-      coLog("stringAnimal.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringAnimal.isEmpty");
     }
     if (stringDiagrams.isEmpty) {
-      coLog("stringDiagrams.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringDiagrams.isEmpty");
     }
     if (desOfGoalOrLife.isEmpty) {
-      coLog("desOfGoalOrLife.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "desOfGoalOrLife.isEmpty");
     }
     fromSymbol.check();
     toSymbol.check();

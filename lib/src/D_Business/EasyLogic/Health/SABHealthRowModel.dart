@@ -27,7 +27,7 @@ class SABHealthRowModel extends SABBaseModel {
     //   row.check();
     // }
     // if (stringDeity.isEmpty) {
-    //   coLog("stringDeity.isEmpty");
+    //   coLog(StackTrace.current,LogTypeEnum.check,"stringDeity.isEmpty");
     // }
     super.check();
   }
@@ -42,7 +42,7 @@ class SABHealthRowModel extends SABBaseModel {
     } else if (EasyTypeEnum.hide == easyType) {
       fHealth = hideSymbol.doubleHealth;
     } else
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
 
     return fHealth;
   }
@@ -55,6 +55,6 @@ class SABHealthRowModel extends SABBaseModel {
     } else if (EasyTypeEnum.hide == easyType) {
       hideSymbol.doubleHealth = fHealth;
     } else
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
   }
 }

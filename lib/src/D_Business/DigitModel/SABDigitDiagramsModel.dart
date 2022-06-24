@@ -1,4 +1,5 @@
 import 'package:yourlucky/src/A_Context/SACContext.dart';
+import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/D_Business/BasicEasy/SABDiagramsInfoModel.dart';
 import 'package:yourlucky/src/D_Business/BasicEasy/SABElementInfoModel.dart';
@@ -53,45 +54,45 @@ class SABDigitDiagramsModel extends SABBaseModel {
   void check() {
     _eightDiagrams.check();
     if (fromEasyKey.isEmpty) {
-      coLog("fromEasyKey.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "fromEasyKey.isEmpty");
     }
     if (toEasyKey.isEmpty) {
-      coLog("toEasyKey.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "toEasyKey.isEmpty");
     }
     if (strUsefulDeity.isEmpty) {
-      coLog("strUsefulDeity.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "strUsefulDeity.isEmpty");
     }
     if (stringFromName.isEmpty) {
-      coLog("stringFromName.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringFromName.isEmpty");
     }
     if (stringFromPlace.isEmpty) {
-      coLog("stringFromPlace.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringFromPlace.isEmpty");
     }
 
     if (stringFromElement.isEmpty) {
-      coLog("stringFromElement.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringFromElement.isEmpty");
     }
     if (stringToName.isEmpty) {
-      coLog("stringToName.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringToName.isEmpty");
     }
     if (stringToPlace.isEmpty) {
-      coLog("stringToPlace.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringToPlace.isEmpty");
     }
 
     if (stringToElement.isEmpty) {
-      coLog("stringToElement.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringToElement.isEmpty");
     }
     if (deityElement.isEmpty) {
-      coLog("deityElement.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "deityElement.isEmpty");
     }
     if (mapFromEasy.isEmpty) {
-      coLog("mapFromEasy.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "mapFromEasy.isEmpty");
     }
     if (mapToEasy.isEmpty) {
-      coLog("mapToEasy.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "mapToEasy.isEmpty");
     }
     if (mapHideEasy.isEmpty) {
-      coLog("mapHideEasy.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "mapHideEasy.isEmpty");
     }
     super.check();
   }

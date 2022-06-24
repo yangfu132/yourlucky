@@ -1,4 +1,5 @@
 ﻿import 'package:yourlucky/src/A_Context/SACContext.dart';
+import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 
 class SABBaseModel {
   SABBaseModel();
@@ -23,6 +24,10 @@ class SABBaseModel {
   }
 
   void check() {
-    coLog('--- ${this.runtimeType} checked --- ');
+    coLog(
+      StackTrace.current,
+      LogTypeEnum.check,
+      '--- ${this.runtimeType} checked --- ',
+    );
   }
 }

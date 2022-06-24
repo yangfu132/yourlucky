@@ -24,22 +24,22 @@ class SABWordsSymbolModel extends SABBaseModel {
 
   void check() {
     if (symbolName.isEmpty) {
-      coLog("symbolName.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "symbolName.isEmpty");
     }
     if (stringParent.isEmpty) {
-      coLog("stringParent.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringParent.isEmpty");
     }
     if (stringEarth.isEmpty) {
-      coLog("stringEarth.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringEarth.isEmpty");
     }
     if (stringElement.isEmpty) {
-      coLog("stringElement.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringElement.isEmpty");
     }
     if (earlyPlace.isEmpty) {
-      coLog("earlyPlace.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "earlyPlace.isEmpty");
     }
     if (latePlace.isEmpty) {
-      coLog("latePlace.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "latePlace.isEmpty");
     }
     super.check();
   }

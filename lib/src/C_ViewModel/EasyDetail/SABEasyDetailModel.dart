@@ -25,7 +25,7 @@ class SABEasyDetailModel extends SABBaseModel {
       row.check();
     }
     if (stringDetailName.isEmpty) {
-      coLog("stringDetailName.isEmpty");
+      coLog(StackTrace.current, LogTypeEnum.check, "stringDetailName.isEmpty");
     }
     super.check();
   }
@@ -295,7 +295,7 @@ class SABEasyDetailModel extends SABBaseModel {
 
   SABRowDetailModel rowModelAtRow(int intRow) {
     if (intRow > _listRowModels.length) {
-      coLog(StackTrace.current,LogTypeEnum.error,"intRow:$intRow");
+      coLog(StackTrace.current, LogTypeEnum.error, "intRow:$intRow");
     }
     return _rowModelsArray()[intRow];
   }

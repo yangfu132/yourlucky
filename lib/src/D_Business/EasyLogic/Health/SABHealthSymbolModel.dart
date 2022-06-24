@@ -16,12 +16,6 @@ class SABHealthSymbolModel extends SABBaseModel {
 
   void check() {
     logicSymbol.check();
-    // for (SABHealthRowModel row in _listRowModels) {
-    //   row.check();
-    // }
-    // if (stringDeity.isEmpty) {
-    //   coLog("stringDeity.isEmpty");
-    // }
     super.check();
   }
 
