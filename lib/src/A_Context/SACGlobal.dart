@@ -20,32 +20,6 @@ enum LogTypeEnum {
   check, //参数检测
 }
 
-//note：代表无效的爻索引数，当未被复制的时候使用；
-const GLOBAL_ROW_INVALID = -1;
-
-//note：代表月柱对应到卦中的爻索引数；
-const ROW_MONTH = 7;
-
-//note：代表日柱对应到卦中的爻索引数；
-const ROW_DAY = 8;
-
-//note：代表伏卦中的爻索引数开始值，相对应的本卦的爻所引述开始值是0；
-const ROW_FLY_BEGIN = 10;
-
-///note：代表伏卦中的爻索引数结束值，相对应的本卦的爻所引述开始值是6；
-///实际的索引数不包括END
-const ROW_FLY_END = 16;
-
-///note：代表变卦中的爻索引数开始值，相对应的本卦的爻所引述开始值是0；
-const ROW_CHANGE_BEGIN = 20;
-
-///note：代表变卦中的爻索引数结束值，相对应的本卦的爻所引述开始值是6；
-///实际的索引数不包括END
-const ROW_CHANGE_END = 26;
-
-///最大防御值，不受生克影响
-const MAX_DEFENSIVE = 1.0;
-
 enum EmptyEnum {
   Empty_Null,
   Empty_NO, //非空
@@ -85,3 +59,29 @@ enum OutRightEnum {
   RIGHT_EMPTY, //5,空
   RIGHT_HIDE, //6,伏神
 }
+
+//note：代表无效的爻索引数，当未被复制的时候使用；
+const GLOBAL_ROW_INVALID = -1;
+
+//note：代表月柱对应到卦中的爻索引数；
+const ROW_MONTH = 7;
+
+//note：代表日柱对应到卦中的爻索引数；
+const ROW_DAY = 8;
+
+//note：代表伏卦中的爻索引数开始值，相对应的本卦的爻所引述开始值是0；
+const ROW_FLY_BEGIN = 10;
+
+///note：代表伏卦中的爻索引数结束值，相对应的本卦的爻所引述开始值是6；
+///实际的索引数不包括END
+const ROW_FLY_END = 16;
+
+///note：代表变卦中的爻索引数开始值，相对应的本卦的爻所引述开始值是0；
+const ROW_CHANGE_BEGIN = 20;
+
+///note：代表变卦中的爻索引数结束值，相对应的本卦的爻所引述开始值是6；
+///实际的索引数不包括END
+const ROW_CHANGE_END = 26;
+
+///最大防御值，不受生克影响
+const MAX_DEFENSIVE = 1.0;
