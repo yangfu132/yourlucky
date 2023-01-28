@@ -137,7 +137,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     } else if (easyType == EasyTypeEnum.hide)
       stringSymbol = symbolAtHideRow(intIndex);
     else
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
 
     if ("" != stringSymbol) {
       List arrayEffects = staticSeasonStrong();
@@ -226,7 +226,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       if (strTo.isNotEmpty) bResult = isEarthRestricts(strTo, fromEarth);
       //else cont.
     } else
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
 
     return bResult;
   }
@@ -257,7 +257,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       bResult = bResult || "相" == stringSeason;
       bResult = bResult || "余气" == stringSeason;
     } else {
-      coLog(StackTrace.current,LogTypeEnum.error, 'error');
+      coLog(StackTrace.current, LogTypeEnum.error, 'error');
     }
     return bResult;
   }
@@ -397,7 +397,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       String stringSymbol = rowModelAtRow(intRow, easyType);
       bResult = _isSymbolDayConflict(stringSymbol);
     } else
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
 
     return bResult;
   }
@@ -790,7 +790,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
         }
       } //else continue.
     } else {
-      coLog(StackTrace.current,LogTypeEnum.error,"stringSymbol为空");
+      coLog(StackTrace.current, LogTypeEnum.error, "stringSymbol为空");
     }
 
     return nResult;
@@ -834,7 +834,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
         strResult = strEarthBranch.substring(emptyLocation, emptyLocation + 2);
       }
     } else
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
 
     return strResult;
   }
@@ -870,12 +870,16 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
   ///`进神退神章第二十九`//////////////////////////////////////////////////////
   String symbolForwardOrBack(int nRow) {
     String result = "";
-    String fromEarth = wordsModel().getSymbolEarth(nRow, EasyTypeEnum.from);
-    String toEarth = wordsModel().getSymbolEarth(nRow, EasyTypeEnum.to);
-    if (branchBusiness().isEarthForward(fromEarth, toEarth))
-      result = "化进";
-    else if (branchBusiness().isEarthBack(fromEarth, toEarth)) result = "化退";
-    //else cont.
+    if (wordsModel().rowModelAtRow(nRow).bMovement) {
+      String fromEarth = wordsModel().getSymbolEarth(nRow, EasyTypeEnum.from);
+      String toEarth = wordsModel().getSymbolEarth(nRow, EasyTypeEnum.to);
+      if (branchBusiness().isEarthForward(fromEarth, toEarth)) {
+        result = "化进";
+      } else if (branchBusiness().isEarthBack(fromEarth, toEarth)) {
+        result = "化退";
+      }
+      //else cont.
+    } // else { static row }
 
     return result;
   }
