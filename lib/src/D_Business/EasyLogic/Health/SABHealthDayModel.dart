@@ -6,6 +6,7 @@ class SABHealthDayModel extends SABBaseModel {
     required this.wordsModel,
   });
   final SABWordsDayModel wordsModel;
+
   final double health = 100.0;
 
   ///输出值

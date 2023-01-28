@@ -6,6 +6,7 @@ class SABHealthMonthModel extends SABBaseModel {
     required this.wordsModel,
   });
   final SABWordsMonthModel wordsModel;
+
   final double health = 100.0;
 
   ///输出值
