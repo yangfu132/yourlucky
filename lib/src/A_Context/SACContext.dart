@@ -7,6 +7,10 @@ import 'package:yourlucky/src/E_Service/SABSingletonService.dart';
 
 import 'SACGlobal.dart';
 
+void testLog(String strMsg) {
+  print(strMsg);
+}
+
 void coLog(StackTrace trace, LogTypeEnum logType, String strMsg) {
   StackTrace trace = StackTrace.current;
   print(strMsg);
