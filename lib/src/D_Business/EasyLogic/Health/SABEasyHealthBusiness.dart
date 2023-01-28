@@ -60,7 +60,8 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
           tempSymbol.outRight = OutRightEnum.RIGHT_STATIC;
         }
       } else {
-        coLog(StackTrace.current,LogTypeEnum.error,'updateDayConflictOutRight:symbol is null');
+        coLog(StackTrace.current, LogTypeEnum.error,
+            'updateDayConflictOutRight:symbol is null');
       }
     }
     return resultRow;
@@ -81,7 +82,7 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
   }
 
   ///`加载函数`
-  SABHealthModel outHealthModel1() {
+  SABHealthModel outHealthModel() {
     return _outHealthModel;
   }
 

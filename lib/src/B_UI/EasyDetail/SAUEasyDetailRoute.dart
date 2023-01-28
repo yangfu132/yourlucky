@@ -1,5 +1,4 @@
 ﻿import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/B_UI/EasyDetail/SAUSubDetailRoute.dart';
@@ -19,7 +18,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    //隐藏状态栏 SystemChrome.setEnabledSystemUIOverlays([]);
   }
 
   SABEasyDetailModel detailModel() {
