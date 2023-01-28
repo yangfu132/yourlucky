@@ -24,16 +24,17 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     SABHealthModel theHealthModel = healthModel();
     List resultList = outputResultModel.resultList;
     if (theHealthModel.diagramsModel.bValidEasy()) {
-      resultList[0]['value'] = digitModel().strEasyGoal;
-      resultList[1]['value'] = this.resultUsefulDeity();
-      resultList[2]['value'] = this.resultEasy();
-      resultList[3]['value'] = this.resultRepeatedOrConflict();
-      resultList[4]['value'] = this.resultSixPairOrConflict();
-      resultList[5]['value'] = this.resultThreePair();
-      resultList[6]['value'] = this.resultSymbol(theHealthModel);
-      resultList[7]['value'] = this.resultHappenTime();
+      resultList[0]['value'] = digitModel().listEasyData.toString();
+      resultList[1]['value'] = digitModel().strEasyGoal;
+      resultList[2]['value'] = this.resultUsefulDeity();
+      resultList[3]['value'] = this.resultEasy();
+      resultList[4]['value'] = this.resultRepeatedOrConflict();
+      resultList[5]['value'] = this.resultSixPairOrConflict();
+      resultList[6]['value'] = this.resultThreePair();
+      resultList[7]['value'] = this.resultSymbol(theHealthModel);
+      resultList[8]['value'] = this.resultHappenTime();
     } else {
-      coLog(StackTrace.current,LogTypeEnum.error, '无效的数据');
+      coLog(StackTrace.current, LogTypeEnum.error, '无效的数据');
     }
   }
 
@@ -286,7 +287,8 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     }
     if (EasyTypeEnum.type_null == usefulDeity.easyType) {
     } else {
-      coLog(StackTrace.current,LogTypeEnum.error,"EasyType do not has usefulDeity.");
+      coLog(StackTrace.current, LogTypeEnum.error,
+          "EasyType do not has usefulDeity.");
     }
 
     return result;
@@ -312,7 +314,8 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
         strUseful = "日为用神";
       }
     } else {
-      coLog(StackTrace.current,LogTypeEnum.error,"EasyType do not has usefulDeity.");
+      coLog(StackTrace.current, LogTypeEnum.error,
+          "EasyType do not has usefulDeity.");
     } //end {}
 
     if (EmptyEnum.Empty_NoUseful == emptyState) {
@@ -385,7 +388,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
       strResult =
           "世爻(${lifeHealth.toStringAsFixed(4)})、用神(${usefulHealth.toStringAsFixed(4)})两衰，世爻失陷，十分不利";
     } else
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
 
     return strResult;
   }
@@ -682,7 +685,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
       String subString = emptyEarth.substring(0, 1);
       strResult = "旬空：$length 日后甲$subString 日出空";
     } else
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
     return strResult;
   }
 

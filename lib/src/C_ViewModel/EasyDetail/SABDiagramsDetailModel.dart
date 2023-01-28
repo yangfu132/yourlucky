@@ -5,6 +5,10 @@ import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 class SABDiagramsDetailModel extends SABBaseModel {
   List<Map> resultList = [
     {
+      'key': '编号',
+      'value': '',
+    },
+    {
       'key': '目的',
       'value': '',
     },
