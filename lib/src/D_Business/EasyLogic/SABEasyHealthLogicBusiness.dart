@@ -13,7 +13,6 @@ import 'package:yourlucky/src/D_Business/EasyLogic/Health/SABEasyHealthBusiness.
 import 'package:yourlucky/src/D_Business/EasyLogic/Health/SABHealthModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/Health/SABHealthRowModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/Health/SABHealthSymbolModel.dart';
-import 'package:yourlucky/src/D_Business/EasyLogic/Health/SABOutRightBusiness.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/SABEasyHealthLogicModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/SABHealthLogicRowModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/SABHealthLogicSymbolModel.dart';
@@ -36,9 +35,6 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
   late final SABEasyHealthBusiness _healthBusiness =
       SABEasyHealthBusiness(logicModel());
-
-  late final SABOutRightBusiness outRightBusiness =
-      SABOutRightBusiness(logicModel());
 
   ///`输出`
   SABEasyHealthLogicModel outputModel() {
