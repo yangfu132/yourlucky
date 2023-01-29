@@ -2,6 +2,7 @@ import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/D_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/D_Business/EasyWords/SABCommonWordsBusiness.dart';
+import 'package:yourlucky/src/D_Business/EasyWords/SABEasyWordsModel.dart';
 
 ///公用函数类，将来需要把logic和word分开
 class SABCommonLogicBusiness extends SABBaseBusiness {
@@ -95,6 +96,19 @@ class SABCommonLogicBusiness extends SABBaseBusiness {
     //    coLog(StackTrace.current,LogTypeEnum.error, "error!");
 
     return result;
+  }
+
+  ///参见HealthLogic
+  List movementInArray(SABEasyWordsModel inputWordsModel, List rowArray) {
+    //舍其静爻而用动爻；
+    List movementArray = List.empty(growable: true);
+    for (int intItem in rowArray) {
+      if (inputWordsModel.isMovementAtRow(intItem)) {
+        movementArray.add(intItem);
+      } //else {}
+    } //end for
+
+    return movementArray;
   }
 
   ///`加载函数`//////////////////////////////////////////////////////

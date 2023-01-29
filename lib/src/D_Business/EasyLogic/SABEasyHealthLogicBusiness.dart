@@ -5,7 +5,6 @@ import 'package:yourlucky/src/D_Business/BasicEasy/SABElementInfoModel.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABDigitDiagramsModel.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/D_Business/EarthBranch/SABEarthBranchBusiness.dart';
-import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABEasyLogicBusiness.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABLogicRowModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABLogicSymbolModel.dart';
@@ -34,9 +33,6 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
   late final SABParentInfoModel _deityModel =
       indexOfUseDeityInEasy(EasyTypeEnum.from);
-
-  late final SABEasyLogicBusiness _logicBusiness =
-      SABEasyLogicBusiness(_inputEasyModel);
 
   late final SABEasyHealthBusiness _healthBusiness =
       SABEasyHealthBusiness(logicModel());
@@ -105,10 +101,6 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
   SABDigitDiagramsModel getDiagramsModel() {
     return wordsModel().inputDigitModel.diagramsModel;
-  }
-
-  SABEasyLogicBusiness logicBusiness() {
-    return _logicBusiness;
   }
 
   SABEasyLogicModel logicModel() {
@@ -1526,7 +1518,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   int emptyUsefulDeity(EasyTypeEnum easyTypeEnum, List usefulArray) {
     int result = GLOBAL_ROW_INVALID;
 
-    List listEmpty = logicBusiness().emptyArray(easyTypeEnum, usefulArray);
+    List listEmpty = emptyInUsefulArray(easyTypeEnum, usefulArray);
 
     if (0 == listEmpty.length) {
       result = movementUsefulDeity(easyTypeEnum, usefulArray);
@@ -1539,10 +1531,24 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     return result;
   }
 
+  List emptyInUsefulArray(EasyTypeEnum easyTypeEnum, List usefulArray) {
+    //舍其旬空而用不空；          野鹤：舍其不空而用旬空；
+    List listEmpty = List.empty(growable: true);
+    for (int intRow in usefulArray) {
+      if (logicModel().symbolAtRow(intRow, easyTypeEnum).basicEmptyState !=
+          EmptyEnum.Empty_NO) {
+        listEmpty.add(intRow);
+      } //else {}
+    } //end for
+
+    return listEmpty;
+  }
+
   int movementUsefulDeity(EasyTypeEnum easyTypeEnum, List usefulArray) {
     int result = GLOBAL_ROW_INVALID;
 
-    List movementArray = logicBusiness().movementArrayInArray(usefulArray);
+    List movementArray =
+        commonLogicBusiness().movementInArray(wordsModel(), usefulArray);
     if (0 == movementArray.length) {
       result = strongUsefulDeity(easyTypeEnum, usefulArray);
     } else if (1 == movementArray.length) {
@@ -1580,11 +1586,10 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     List listMonthBroken = List.empty(growable: true);
     for (int intRow in usefulArray) {
       if (MonthConflictEnum.Conflict_NO !=
-          symbolConflictStateOnMonth(intRow, easyTypeEnum))
+          symbolConflictStateOnMonth(intRow, easyTypeEnum)) {
         listMonthBroken.add(intRow);
-      //else cont.
-
-    } //endf
+      } //else {}
+    } //end for
 
     return listMonthBroken;
   }

@@ -304,7 +304,8 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     bool bBornByMoving = false;
     List arrayEffects = [0, 1, 2, 3, 4, 5];
-    List arrayMovement = movementArrayInArray(arrayEffects);
+    List arrayMovement =
+        commonLogicBusiness().movementInArray(wordsModel(), arrayEffects);
     for (int numItem in arrayMovement) {
       String stringSymbol = symbolAtFromRow(numItem);
       String season = _symbolSeason(stringSymbol);
@@ -889,32 +890,6 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
   ///`两现章第三十二`//////////////////////////////////////////////////////
   ///参见HealthLogic
-
-  List emptyArray(EasyTypeEnum easyTypeEnum, List usefulArray) {
-    //舍其旬空而用不空；          野鹤：舍其不空而用旬空；
-    List listEmpty = List.empty(growable: true);
-    for (int intRow in usefulArray) {
-      String stringSymbol = wordsModel().getSymbolName(intRow, easyTypeEnum);
-      if (_symbolBasicEmptyState(stringSymbol) != EmptyEnum.Empty_NO) {
-        listEmpty.add(intRow);
-      } //else {}
-    } //end for
-
-    return listEmpty;
-  }
-
-  List movementArrayInArray(List usefulArray) {
-    //舍其静爻而用动爻；
-    List movementArray = List.empty(growable: true);
-    for (int intItem in usefulArray) {
-      if (isMovementAtRow(intItem)) {
-        movementArray.add(intItem);
-      }
-      //else cont.
-    } //endf
-
-    return movementArray;
-  }
 
   ///`earthBranch 桥函数`//////////////////////////////////////////////////////
   String earthSixPair(String earth) {
