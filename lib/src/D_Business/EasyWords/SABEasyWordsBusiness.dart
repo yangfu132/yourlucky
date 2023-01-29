@@ -3,6 +3,7 @@ import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABDigitDiagramsModel.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/D_Business/EarthBranch/SABEarthBranchBusiness.dart';
+import 'package:yourlucky/src/D_Business/EasyWords/SABCommonWordsBusiness.dart';
 import 'package:yourlucky/src/D_Business/EasyWords/SABWordsDayModel.dart';
 import 'package:yourlucky/src/D_Business/EasyWords/SABWordsMonthModel.dart';
 import 'package:yourlucky/src/D_Business/EasyWords/SABWordsSymbolModel.dart';
@@ -22,6 +23,9 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
   late final SABDiagramsInfoModel _eightDiagrams = SABDiagramsInfoModel();
 
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
+
+  late final SABCommonWordsBusiness _commonWordsBusiness =
+      SABCommonWordsBusiness();
 
   late final SABEasyWordsModel _outEasyWordsModel = _initEasyWordsModel();
 
@@ -200,18 +204,6 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
     return bResult;
   }
 
-  String symbolEarth(String stringSymbol) {
-    String stringResult = "";
-    if (stringSymbol.length >= 2)
-      stringResult = stringSymbol.substring(
-          stringSymbol.length - 2, stringSymbol.length - 1);
-    else
-      stringResult =
-          "卦中用神未现"; //coLog(StackTrace.current,LogTypeEnum.error, "error!");
-
-    return stringResult;
-  }
-
   SABWordsSymbolModel fromSymbol(int intRow) {
     String stringSymbol = symbolAtFromRow(intRow);
     return SABWordsSymbolModel(
@@ -219,7 +211,7 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
       easyType: EasyTypeEnum.from,
       symbolName: stringSymbol,
       stringParent: symbolParent(stringSymbol),
-      stringEarth: symbolEarth(stringSymbol),
+      stringEarth: commonWordsBusiness().symbolEarth(stringSymbol),
       stringElement: symbolElement(stringSymbol),
       earlyPlace: earlyPlace(intRow),
       latePlace: latePlace(intRow),
@@ -233,7 +225,7 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
       easyType: EasyTypeEnum.to,
       symbolName: stringSymbol,
       stringParent: symbolParent(stringSymbol),
-      stringEarth: symbolEarth(stringSymbol),
+      stringEarth: commonWordsBusiness().symbolEarth(stringSymbol),
       stringElement: symbolElement(stringSymbol),
       earlyPlace: earlyPlace(intRow),
       latePlace: latePlace(intRow),
@@ -247,7 +239,7 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
       easyType: EasyTypeEnum.hide,
       symbolName: stringSymbol,
       stringParent: symbolParent(stringSymbol),
-      stringEarth: symbolEarth(stringSymbol),
+      stringEarth: commonWordsBusiness().symbolEarth(stringSymbol),
       stringElement: symbolElement(stringSymbol),
       earlyPlace: earlyPlace(intRow),
       latePlace: latePlace(intRow),
@@ -354,5 +346,10 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
     }
     wordsModel.check();
     return wordsModel;
+  }
+
+  ///`加载函数`//////////////////////////////////////////////////////
+  SABCommonWordsBusiness commonWordsBusiness() {
+    return _commonWordsBusiness;
   }
 }

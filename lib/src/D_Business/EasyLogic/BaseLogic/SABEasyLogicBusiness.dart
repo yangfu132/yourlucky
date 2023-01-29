@@ -1,6 +1,8 @@
 ﻿import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABDigitDiagramsModel.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
+import 'package:yourlucky/src/D_Business/EarthBranch/SABEarthBranchBusiness.dart';
+import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABCommonLogicBusiness.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABLogicRowModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABLogicSymbolModel.dart';
 import 'package:yourlucky/src/D_Business/EasyWords/SABWordsRowModel.dart';
@@ -9,7 +11,6 @@ import 'package:yourlucky/src/D_Business/EasyWords/SABWordsSymbolModel.dart';
 import '../../../A_Context/SACContext.dart';
 import '../../../A_Context/SACGlobal.dart';
 import '../../BasicEasy/SABElementInfoModel.dart';
-import '../../EarthBranch/SABEarthBranchBusiness.dart';
 import '../../EasyWords/SABEasyWordsBusiness.dart';
 import '../../EasyWords/SABEasyWordsModel.dart';
 import 'SABEasyLogicModel.dart';
@@ -19,6 +20,8 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
   SABEasyLogicBusiness(this._inputEasyModel);
   final SABEasyDigitModel _inputEasyModel;
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
+  late final SABCommonLogicBusiness _commonLogicBusiness =
+      SABCommonLogicBusiness();
   late final SABEasyWordsBusiness _wordsBusiness =
       SABEasyWordsBusiness(_inputEasyModel);
   late final SABEasyLogicModel _outLogicModel = initLogicModel();
@@ -114,19 +117,6 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     return _staticStrongArray;
   }
 
-  bool isSymbolBorn(String stringSymbol, String otherSymbol) {
-    bool bResult = false;
-
-    if ("" != stringSymbol && "" != otherSymbol) {
-      String earth = symbolEarth(stringSymbol);
-      String earthOther = symbolEarth(otherSymbol);
-      bResult = isEarthBorn(earthOther, earth);
-    }
-    //else cont.
-
-    return bResult;
-  }
-
 //被静爻生
   bool isSymbolBornedByStaticAtIndex(int intIndex, EasyTypeEnum easyType) {
     bool bResult = false;
@@ -144,7 +134,8 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
       for (int numItem in arrayEffects) {
         String stringSymbolItem = symbolAtFromRow(numItem);
-        if (isSymbolBorn(stringSymbol, stringSymbolItem)) {
+        if (commonLogicBusiness()
+            .isSymbolBorn(stringSymbol, stringSymbolItem)) {
           bResult = true;
           break;
         }
@@ -157,8 +148,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     return bResult;
   }
 
-//被静爻克
-
+  //被静爻克
   bool isSymbolRestrictedByStaticAtIndex(int intIndex, EasyTypeEnum easyType) {
     bool bResult = false;
     if (!isMovementAtRow(intIndex)) {
@@ -174,7 +164,8 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
         for (int numItem in arrayEffects) {
           String stringSymbolItem = symbolAtFromRow(numItem);
-          if (isSymbolRestrict(stringSymbol, stringSymbolItem)) {
+          if (commonLogicBusiness()
+              .isSymbolRestrict(stringSymbol, stringSymbolItem)) {
             bResult = true;
             break;
           }
@@ -189,18 +180,6 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     return bResult;
   }
 
-  bool isSymbolRestrict(String stringSymbol, String otherSymbol) {
-    bool bResult = false;
-
-    if ("" != stringSymbol && "" != otherSymbol) {
-      String stringEarth = symbolEarth(stringSymbol);
-      String stringEarthOther = symbolEarth(otherSymbol);
-      bResult = isEarthRestricts(stringEarthOther, stringEarth);
-    }
-    //else cont.
-    return bResult;
-  }
-
   /// `动静生克冲合章第十五`/////////////////////////////////////////////
 
   ///动化回头生
@@ -209,7 +188,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     if (isMovementAtRow(intIndex)) {
       String strFrom = earthAtFromRow(intIndex);
       String strTo = earthAtToRow(intIndex);
-      bResult = isEarthBorn(strTo, strFrom);
+      bResult = commonLogicBusiness().isEarthBorn(strTo, strFrom);
     }
     //else cont.
 
@@ -283,7 +262,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     String strEarth = symbolEarth(stringSymbol);
 
-    bool bBorn = isEarthBorn(strMonth, strEarth);
+    bool bBorn = commonLogicBusiness().isEarthBorn(strMonth, strEarth);
 
     return bBorn;
   }
@@ -313,7 +292,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     //1 临日建，日生。
     String strDay = dayEarth();
     bool bOnDay = _isSymbolOnDay(stringSymbol);
-    bool bBornByDay = isEarthBorn(strDay, strEarth);
+    bool bBornByDay = commonLogicBusiness().isEarthBorn(strDay, strEarth);
 
     //2 动变回头生。
     bool bBornByChange = isSymbolChangeBornAtRow(intRow);
@@ -331,7 +310,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       String season = _symbolSeason(stringSymbol);
       if ("旺" == season) {
         String moveEarth = earthAtFromRow(numItem);
-        if (isEarthBorn(moveEarth, strEarth)) {
+        if (commonLogicBusiness().isEarthBorn(moveEarth, strEarth)) {
           bBornByMoving = false;
           break;
         }
@@ -407,7 +386,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     String strEarth = symbolEarth(stringSymbol);
 
-    bool bBorn = isEarthBorn(strDayEarth, strEarth);
+    bool bBorn = commonLogicBusiness().isEarthBorn(strDayEarth, strEarth);
 
     return bBorn;
   }
@@ -911,52 +890,6 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
   ///`两现章第三十二`//////////////////////////////////////////////////////
   ///参见HealthLogic
 
-  int lifeOrGoalUsefulDeity(EasyTypeEnum easyTypeEnum, List usefulArray) {
-    int result = GLOBAL_ROW_INVALID;
-
-    //世爻位置上的用神
-    int lifeIndex = getLifeIndex();
-
-    for (int intItem in usefulArray) {
-      if (lifeIndex == intItem) {
-        result = lifeIndex;
-        break;
-      }
-      //else cont.
-    } //endf
-
-    if (GLOBAL_ROW_INVALID == result) {
-      //应爻位置上的用神
-      int goalIndex = getGoalIndex();
-
-      for (int intItem in usefulArray) {
-        if (goalIndex == intItem) {
-          result = goalIndex;
-          break;
-        }
-        //else cont.
-      } //endf
-    }
-    //else cont.
-
-    if (GLOBAL_ROW_INVALID == result) {
-      result = unKnowUsefulDeity(easyTypeEnum, usefulArray);
-    }
-    //else cont.
-
-    return result;
-  }
-
-  int unKnowUsefulDeity(EasyTypeEnum easyTypeEnum, List usefulArray) {
-    int result = usefulArray[0]; //GLOBAL_ROW_INVALID;
-
-    //TODO:yangfu132丰富用神的选取规则：按旺相休囚死的顺序排列；或者按照强弱顺序排序。
-    //其实此时应该已经知道用神衰弱，事情很难成功。
-    //    coLog(StackTrace.current,LogTypeEnum.error, "error!");
-
-    return result;
-  }
-
   List emptyArray(EasyTypeEnum easyTypeEnum, List usefulArray) {
     //舍其旬空而用不空；          野鹤：舍其不空而用旬空；
     List listEmpty = List.empty(growable: true);
@@ -964,9 +897,8 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       String stringSymbol = wordsModel().getSymbolName(intRow, easyTypeEnum);
       if (_symbolBasicEmptyState(stringSymbol) != EmptyEnum.Empty_NO) {
         listEmpty.add(intRow);
-      }
-      //else cont.
-    } //endf
+      } //else {}
+    } //end for
 
     return listEmpty;
   }
@@ -993,16 +925,12 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     return branchBusiness().getSixConflict(basicEarth);
   }
 
-  bool isEarthBorn(String earth, String basicEarth) {
-    return branchBusiness().isEarthBorn(earth, basicEarth);
-  }
-
   String earthElement(String earth) {
     return branchBusiness().earthElement(earth);
   }
 
   bool isEarthRestricts(String earth, String basicEarth) {
-    return branchBusiness().isEarthRestricts(earth, basicEarth);
+    return commonLogicBusiness().isEarthRestricts(earth, basicEarth);
   }
 
   String earthTwelveDeity(String itemEarth, String atEarth) {
@@ -1023,7 +951,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
   ///`EasyBusiness 桥函数`//////////////////////////////////////////////////////
   String symbolEarth(String stringSymbol) {
-    return wordsBusiness().symbolEarth(stringSymbol);
+    return commonLogicBusiness().wordsBusiness().symbolEarth(stringSymbol);
   }
 
   Map _fromEasyDictionary() {
@@ -1097,9 +1025,13 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
   }
 
   ///`加载函数`//////////////////////////////////////////////////////
-
   SABEarthBranchBusiness branchBusiness() {
     return _branchBusiness;
+  }
+
+  //SABCommonLogicBusiness
+  SABCommonLogicBusiness commonLogicBusiness() {
+    return _commonLogicBusiness;
   }
 
   SABEasyWordsModel wordsModel() {

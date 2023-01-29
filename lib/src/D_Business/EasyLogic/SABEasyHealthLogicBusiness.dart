@@ -19,19 +19,24 @@ import 'package:yourlucky/src/D_Business/EasyLogic/SABHealthLogicSymbolModel.dar
 import 'package:yourlucky/src/D_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:yourlucky/src/D_Business/Strategy/SABParentInfoModel.dart';
 
+import 'BaseLogic/SABCommonLogicBusiness.dart';
+
 class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   SABEasyHealthLogicBusiness(this._inputEasyModel);
   final SABEasyDigitModel _inputEasyModel;
 
   late final SABEasyHealthLogicModel _healthLogicModel = initHealthLogicModel();
 
+  late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
+
+  late final SABCommonLogicBusiness _commonLogicBusiness =
+      SABCommonLogicBusiness();
+
   late final SABParentInfoModel _deityModel =
       indexOfUseDeityInEasy(EasyTypeEnum.from);
 
   late final SABEasyLogicBusiness _logicBusiness =
       SABEasyLogicBusiness(_inputEasyModel);
-
-  late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
 
   late final SABEasyHealthBusiness _healthBusiness =
       SABEasyHealthBusiness(logicModel());
@@ -95,7 +100,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   }
 
   SABEasyWordsModel wordsModel() {
-    return logicBusiness().wordsModel();
+    return logicModel().inputWordsModel;
   }
 
   SABDigitDiagramsModel getDiagramsModel() {
@@ -107,11 +112,16 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   }
 
   SABEasyLogicModel logicModel() {
-    return _logicBusiness.outputLogicModel();
+    return healthModel().inputLogicModel;
   }
 
   SABEarthBranchBusiness branchBusiness() {
     return _branchBusiness;
+  }
+
+  //SABCommonLogicBusiness
+  SABCommonLogicBusiness commonLogicBusiness() {
+    return _commonLogicBusiness;
   }
 
   ///`SABEasyHealthDelegate`
@@ -918,7 +928,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     List arrayEffects = moveRightArray();
     for (int numItem in arrayEffects) {
       String stringSymbolItem = symbolAtFromRow(numItem);
-      if (logicBusiness().isSymbolBorn(stringSymbol, stringSymbolItem)) {
+      if (commonLogicBusiness().isSymbolBorn(stringSymbol, stringSymbolItem)) {
         bResult = true;
         break;
       }
@@ -945,7 +955,8 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     for (int numItem in arrayEffects) {
       String stringSymbolItem = symbolAtFromRow(numItem);
       if (isEffectAbleRow(numItem, EasyTypeEnum.from)) {
-        if (logicBusiness().isSymbolRestrict(stringSymbol, stringSymbolItem)) {
+        if (commonLogicBusiness()
+            .isSymbolRestrict(stringSymbol, stringSymbolItem)) {
           bResult = true;
           break;
         }
@@ -1021,7 +1032,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       String earth = symbolModel.wordsSymbol.stringEarth;
       if (-1 != logicModel().diagramsModel.stringEmptyBranch.indexOf(earth)) {
         String strDay = dayEarth();
-        if (logicBusiness().isEarthConflict(strDay, earth)) {
+        if (branchBusiness().isEarthConflict(strDay, earth)) {
           //爻遇旬空，日辰冲起而为用，谓之冲空则实。
           nResult = EmptyEnum.Empty_Conflict;
         } else if (isFalseEmptyAtRow(intRow, easyType)) {
@@ -1124,7 +1135,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     //伏而被克亦为空
     if (easyType == EasyTypeEnum.hide) {
       String fromSymbol = symbolAtFromRow(intRow);
-      logicBusiness().isSymbolRestrict(stringSymbol, fromSymbol);
+      commonLogicBusiness().isSymbolRestrict(stringSymbol, fromSymbol);
     }
     //else cont.
 
@@ -1389,9 +1400,8 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     for (int numItem in arrayEffects) {
       String stringSymbolItem = symbolAtFromRow(numItem);
       if (isEffectAbleRow(numItem, EasyTypeEnum.from)) {
-        if (logicBusiness().isEarthConflict(
-            logicBusiness().symbolEarth(stringSymbol),
-            logicBusiness().symbolEarth(stringSymbolItem))) {
+        if (commonLogicBusiness()
+            .isSymbolConflict(stringSymbol, stringSymbolItem)) {
           bResult = true;
           break;
         }
@@ -1496,15 +1506,18 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     int result = GLOBAL_ROW_INVALID;
 
     //旺、相、余气, 依次选用,有旺用旺，如果有多个旺，通过动静区分；
-
+    int lifeIndex = wordsModel().getLifeIndex();
+    int goalIndex = wordsModel().getGoalIndex();
     List strongArray = strongUsefulArray(easyTypeEnum, usefulArray);
 
     if (0 == strongArray.length) {
-      result = logicBusiness().lifeOrGoalUsefulDeity(easyTypeEnum, usefulArray);
+      result = commonLogicBusiness().lifeOrGoalUsefulDeity(
+          lifeIndex, goalIndex, easyTypeEnum, usefulArray);
     } else if (1 == strongArray.length) {
       result = strongArray[0];
     } else if (strongArray.length > 1) {
-      result = logicBusiness().lifeOrGoalUsefulDeity(easyTypeEnum, strongArray);
+      result = commonLogicBusiness().lifeOrGoalUsefulDeity(
+          lifeIndex, goalIndex, easyTypeEnum, strongArray);
     }
 
     return result;
