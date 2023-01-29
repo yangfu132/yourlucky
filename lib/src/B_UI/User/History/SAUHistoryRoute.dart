@@ -63,7 +63,7 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
           //itemExtent: 50.0, //强制高度为50.0
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
-              title: Text('waiting'),
+              title: Text('暂无数据，请稍后再试'),
               onTap: null,
             );
           });
