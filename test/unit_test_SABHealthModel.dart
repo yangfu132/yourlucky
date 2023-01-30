@@ -8,23 +8,35 @@ void main() {
     var answer = 42;
     expect(answer, 42);
   });
+
+  test('my first unit test', () {
+    SABHealthModel healthModel;
+    healthModel = generateData([0, 8, 0, 1, 1, 1]);
+    // expect(healthModel.rowModelAtRow(0).bMovement, false);
+    // expect(healthModel.rowModelAtRow(1).bMovement, true);
+    // expect(wordsModel.rowModelAtRow(2).bMovement, false);
+    // expect(wordsModel.rowModelAtRow(3).bMovement, false);
+    // expect(wordsModel.rowModelAtRow(4).bMovement, false);
+    // expect(wordsModel.rowModelAtRow(5).bMovement, false);
+  });
 }
-//
-// SABHealthModel generateData(List<int> listEasyData) {
-//   String strEasyGoal = "单元测试";
-//   String strUsefulDeity = "子孙";
-//   String stringTime = "2023-01-28 15:27:27";
-//   //[0, 8, 0, 1, 1, 1]
-//   //[8, 8, 0, 8, 0, 0]
-//   //[0, 1, 1, 8, 8, 1]
-//   SABEasyDigitModel _inputEasyModel;
-//   _inputEasyModel = SABEasyDigitModel(
-//     modelId: null,
-//     strEasyGoal: strEasyGoal,
-//     strUsefulDeity: strUsefulDeity,
-//     stringTime: stringTime,
-//     listEasyData: listEasyData,
-//   );
-//   // SABEasyHealthBusiness _healthBusiness = SABEasyHealthBusiness(logicModel());
-//   return _healthBusiness.outHealthModel();
-// }
+
+SABHealthModel generateData(List<int> listEasyData) {
+  String strEasyGoal = "单元测试";
+  String strUsefulDeity = "子孙";
+  String stringTime = "2023-01-28 15:27:27";
+  //[0, 8, 0, 1, 1, 1]
+  //[8, 8, 0, 8, 0, 0]
+  //[0, 1, 1, 8, 8, 1]
+  SABEasyDigitModel _inputEasyModel;
+  _inputEasyModel = SABEasyDigitModel(
+    modelId: null,
+    strEasyGoal: strEasyGoal,
+    strUsefulDeity: strUsefulDeity,
+    stringTime: stringTime,
+    listEasyData: listEasyData,
+  );
+  SABEasyHealthBusiness _healthBusiness =
+      SABEasyHealthBusiness(_inputEasyModel);
+  return _healthBusiness.outHealthModel();
+}
