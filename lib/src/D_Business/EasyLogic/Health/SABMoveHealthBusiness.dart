@@ -1,4 +1,5 @@
 import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
+import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/D_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/D_Business/EasyWords/SABEasyWordsModel.dart';
 
@@ -10,17 +11,13 @@ import 'SABHealthOriginBusiness.dart';
 
 ///动爻的强弱计算
 class SABMoveHealthBusiness extends SABBaseBusiness {
-  SABMoveHealthBusiness(this._inputLogicModel);
+  SABMoveHealthBusiness(this._inputEasyModel);
 
   late final SABHealthOriginBusiness _originBusiness =
-      SABHealthOriginBusiness(_inputLogicModel);
-  final SABEasyLogicModel _inputLogicModel;
+      SABHealthOriginBusiness(_inputEasyModel);
+  final SABEasyDigitModel _inputEasyModel;
 
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
-
-  SABHealthOriginBusiness originBusiness() {
-    return _originBusiness;
-  }
 
   void calculateHealthOfAllMoveRight(SABHealthModel healthModel, List listRow) {
     bool hasBegin = healthModel.diagramsModel.hasBeginMoveRow;
@@ -41,9 +38,8 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
         } //end if
         healthModel.updateHealthAtRow(item, moveHealth);
         healthModel.diagramsModel.addToFinishArray(item);
-      }
-      //else cont.
-    } //endf
+      } //else {}
+    } //end for
   }
 
   //calculateHealthOfAllMoveRightRow
@@ -112,7 +108,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
         result = health * originBusiness().conversionRateAtRow(nRow, easyType);
       } //else { moving row }
     } else if (EasyTypeEnum.hide == easyType) {
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
     }
     return result;
   }
@@ -245,7 +241,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
         bResult = logicModel().isEffectAble(nEffectingRow, easyType);
       }
     } else
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
 
     return bResult;
   }
@@ -282,11 +278,15 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
   }
 
   ///`加载函数`//////////////////////////////////////////////////////
+  SABHealthOriginBusiness originBusiness() {
+    return _originBusiness;
+  }
+
   SABEasyLogicModel logicModel() {
-    return _inputLogicModel;
+    return originBusiness().logicModel();
   }
 
   SABEasyWordsModel wordsModel() {
-    return _inputLogicModel.inputWordsModel;
+    return originBusiness().wordsModel();
   }
 }

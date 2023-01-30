@@ -35,7 +35,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       indexOfUseDeityInEasy(EasyTypeEnum.from);
 
   late final SABEasyHealthBusiness _healthBusiness =
-      SABEasyHealthBusiness(logicModel());
+      SABEasyHealthBusiness(_inputEasyModel);
 
   ///`输出`
   SABEasyHealthLogicModel outputModel() {

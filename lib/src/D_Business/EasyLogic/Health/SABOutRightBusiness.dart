@@ -1,14 +1,19 @@
 import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
+import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
+import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABEasyLogicBusiness.dart';
 import 'package:yourlucky/src/D_Business/EasyWords/SABEasyWordsModel.dart';
 
 import '../BaseLogic/SABEasyLogicModel.dart';
 
 class SABOutRightBusiness extends SABBaseBusiness {
-  SABOutRightBusiness(this._inputLogicModel);
+  SABOutRightBusiness(this._inputEasyModel);
 
-  final SABEasyLogicModel _inputLogicModel;
+  final SABEasyDigitModel _inputEasyModel;
+
+  late final SABEasyLogicBusiness _logicBusiness =
+      SABEasyLogicBusiness(_inputEasyModel);
 
   ///原函数名rowArrayAtLevel
   List<int> rowArrayAtOutRightLevel(OutRightEnum level) {
@@ -35,7 +40,7 @@ class SABOutRightBusiness extends SABBaseBusiness {
     } else if (EasyTypeEnum.hide == easyType) {
       fResult = hideOutRightAtRow(hashCode, easyType);
     } else
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
 
     return fResult;
   }
@@ -82,17 +87,17 @@ class SABOutRightBusiness extends SABBaseBusiness {
         fResult = OutRightEnum.RIGHT_EMPTY;
       }
     } else {
-      coLog(StackTrace.current,LogTypeEnum.error,"symbolModel is null");
+      coLog(StackTrace.current, LogTypeEnum.error, "symbolModel is null");
     }
 
     return fResult;
   }
 
   SABEasyLogicModel logicModel() {
-    return _inputLogicModel;
+    return _logicBusiness.outputLogicModel();
   }
 
   SABEasyWordsModel wordsModel() {
-    return _inputLogicModel.inputWordsModel;
+    return logicModel().inputWordsModel;
   }
 }

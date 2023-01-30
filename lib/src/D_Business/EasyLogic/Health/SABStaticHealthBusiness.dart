@@ -1,4 +1,5 @@
 import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
+import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 
 import '../../../A_Context/SACContext.dart';
 import '../../../A_Context/SACGlobal.dart';
@@ -9,11 +10,11 @@ import 'SABMoveHealthBusiness.dart';
 
 ///静爻的强弱
 class SABStaticHealthBusiness extends SABBaseBusiness {
-  SABStaticHealthBusiness(this._inputLogicModel);
+  SABStaticHealthBusiness(this._inputEasyModel);
 
   late final SABMoveHealthBusiness _moveBusiness =
-      SABMoveHealthBusiness(_inputLogicModel);
-  final SABEasyLogicModel _inputLogicModel;
+      SABMoveHealthBusiness(_inputEasyModel);
+  final SABEasyDigitModel _inputEasyModel;
 
   ///Level:指的是OutRightEnum，Level4代指 RIGHT_STATIC
   void calculateHealthOfAllStaticRight(SABHealthModel tempHealthModel) {
@@ -116,7 +117,7 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
         originBusiness().symbolOutRightAtRow(nEffectingRow, easyType)) {
       bResult = logicModel().isSeasonStrong(nEffectingRow, easyType);
     } else
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
 
     return bResult;
   }
@@ -155,6 +156,6 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
   }
 
   SABEasyLogicModel logicModel() {
-    return _inputLogicModel;
+    return moveBusiness().logicModel();
   }
 }

@@ -1,3 +1,4 @@
+import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABLogicRowModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABLogicSymbolModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/Health/SABHealthSymbolModel.dart';
@@ -93,13 +94,12 @@ import 'SABHealthRowModel.dart';
  */
 
 class SABHealthOriginBusiness extends SABLogBusiness {
-  SABHealthOriginBusiness(this._inputLogicModel)
-      : super(_inputLogicModel.inputWordsModel.inputDigitModel) {
+  SABHealthOriginBusiness(this._inputEasyModel) : super(_inputEasyModel) {
     monthModel = SABHealthMonthModel(
       wordsModel: wordsModel().monthModel,
     );
   }
-  final SABEasyLogicModel _inputLogicModel;
+  final SABEasyDigitModel _inputEasyModel;
 
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
 
@@ -108,7 +108,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
   late final SABHealthModel _healthModel = initHealthModel();
 
   late final SABOutRightBusiness outRightBusiness =
-      SABOutRightBusiness(_inputLogicModel);
+      SABOutRightBusiness(_inputEasyModel);
 
   ///`基础函数`//////////////////////////////////////////////////////
 
@@ -137,7 +137,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     if (-1 != siIndex && -1 != xiangIndex) {
       fResult = intervalSeason() * (siIndex - xiangIndex);
     } else
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
 
     return fResult;
   }
@@ -200,7 +200,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     } else if ("绝" == twelve) {
       fResult = base + interval;
     } else
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
 
     return fResult;
   }
@@ -235,7 +235,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     } else if ("死" == season) {
       fResult = base + interval;
     } else
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
 
     return fResult;
   }
@@ -327,10 +327,10 @@ class SABHealthOriginBusiness extends SABLogBusiness {
               wordsModel().monthModel.stringEarth,
               wordsModel().dayModel.stringEarth);
       } else {
-        coLog(StackTrace.current,LogTypeEnum.error, "error!");
+        coLog(StackTrace.current, LogTypeEnum.error, "error!");
       }
     } else {
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
     }
 
     return fResult;
@@ -354,7 +354,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
 
       bResult = health > healthCriticalValue();
     } else
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
 
     return bResult;
   }
@@ -389,7 +389,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
         } //else cont.
       } //else cont.
     } else {
-      coLog(StackTrace.current,LogTypeEnum.error,"symbolModel is null");
+      coLog(StackTrace.current, LogTypeEnum.error, "symbolModel is null");
     }
 
     /*******************************************
@@ -447,10 +447,10 @@ class SABHealthOriginBusiness extends SABLogBusiness {
           bResult = MAX_DEFENSIVE;
         //else cont.
       } else {
-        coLog(StackTrace.current,LogTypeEnum.error, "error!");
+        coLog(StackTrace.current, LogTypeEnum.error, "error!");
       }
     } else {
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
     }
 
     return bResult;
@@ -458,11 +458,11 @@ class SABHealthOriginBusiness extends SABLogBusiness {
 
   ///`加载函数`//////////////////////////////////////////////////////
   SABEasyLogicModel logicModel() {
-    return _inputLogicModel;
+    return outRightBusiness.logicModel();
   }
 
   SABEasyWordsModel wordsModel() {
-    return _inputLogicModel.inputWordsModel;
+    return outRightBusiness.wordsModel();
   }
 
   SABHealthSymbolModel fromSymbol(

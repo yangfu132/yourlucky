@@ -1,6 +1,6 @@
 import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
-import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
+import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 
 import '../../../A_Context/SACGlobal.dart';
 import 'SABHealthModel.dart';
@@ -10,11 +10,11 @@ import 'SABMoveHealthBusiness.dart';
 import 'SABStaticHealthBusiness.dart';
 
 class SABEasyHealthBusiness extends SABBaseBusiness {
-  SABEasyHealthBusiness(this._inputLogicModel);
-  final SABEasyLogicModel _inputLogicModel;
+  SABEasyHealthBusiness(this._inputEasyModel);
+  final SABEasyDigitModel _inputEasyModel;
 
   late final SABStaticHealthBusiness _staticBusiness =
-      SABStaticHealthBusiness(_inputLogicModel);
+      SABStaticHealthBusiness(_inputEasyModel);
 
   late final SABHealthModel _outHealthModel = initHealthModel();
 
@@ -90,10 +90,6 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
     SABHealthModel healthModel = originBusiness().outputHealthModel();
     calculateHealth(healthModel);
     return healthModel;
-  }
-
-  SABEasyLogicModel logicModel() {
-    return _inputLogicModel;
   }
 
   SABStaticHealthBusiness staticBusiness() {
