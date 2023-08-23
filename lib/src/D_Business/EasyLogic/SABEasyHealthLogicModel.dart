@@ -3,7 +3,7 @@ import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/Health/SABHealthModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/SABHealthLogicRowModel.dart';
-import 'package:yourlucky/src/D_Business/Strategy/SABParentInfoModel.dart';
+import 'package:yourlucky/src/D_Business/Strategy/SABUsefulDeityModel.dart';
 
 class SABEasyHealthLogicModel extends SABBaseModel {
   SABEasyHealthLogicModel({
