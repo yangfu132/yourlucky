@@ -249,7 +249,7 @@ class SABEasyDetailModel extends SABBaseModel {
 
   Map<String, List> detailList() {
     Map<String, List> mapResult;
-    SABParentInfoModel usefulDeity = healthLogicModel().usefulDeity;
+    SABUsefulDeityModel usefulDeity = healthLogicModel().usefulDeity;
     bool bStaticEasy = healthLogicModel()
         .inputHealthModel
         .inputLogicModel

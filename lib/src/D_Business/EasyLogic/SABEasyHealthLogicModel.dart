@@ -18,7 +18,7 @@ class SABEasyHealthLogicModel extends SABBaseModel {
   final SABHealthModel inputHealthModel;
 
   //属性：用神的索引号
-  final SABParentInfoModel usefulDeity;
+  final SABUsefulDeityModel usefulDeity;
 
   final _listRowModels = <SABHealthLogicRowModel>[];
 

@@ -31,7 +31,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   late final SABCommonLogicBusiness _commonLogicBusiness =
       SABCommonLogicBusiness();
 
-  late final SABParentInfoModel _deityModel =
+  late final SABUsefulDeityModel _deityModel =
       indexOfUseDeityInEasy(EasyTypeEnum.from);
 
   late final SABEasyHealthBusiness _healthBusiness =
@@ -217,7 +217,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
   double usefulHealth() {
     double fResult = 0;
-    SABParentInfoModel deityModel = usefulDeityRow();
+    SABUsefulDeityModel deityModel = usefulDeityRow();
     if (EasyTypeEnum.from == deityModel.easyType ||
         EasyTypeEnum.hide == deityModel.easyType) {
       fResult = healthModel()
@@ -257,12 +257,12 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     return usefulArray;
   }
 
-  SABParentInfoModel usefulDeityRow() {
+  SABUsefulDeityModel usefulDeityRow() {
     return _deityModel;
   }
 
   bool isUsefulDeityChangeToConflict() {
-    SABParentInfoModel deityModel = usefulDeityRow();
+    SABUsefulDeityModel deityModel = usefulDeityRow();
     if (EasyTypeEnum.from == deityModel.easyType) {
       return logicModel().getIsSymbolChangeConflict(deityModel.intRow);
     } else {
@@ -271,7 +271,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   }
 
   bool isUsefulDeityChangeToRestricts() {
-    SABParentInfoModel deityModel = usefulDeityRow();
+    SABUsefulDeityModel deityModel = usefulDeityRow();
     if (EasyTypeEnum.from == deityModel.easyType) {
       return logicModel().getIsSymbolChangeRestrict(deityModel.intRow);
     } else {
@@ -281,7 +281,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
   bool isUsefulDeityStrong() {
     bool bResult = false;
-    SABParentInfoModel deityModel = usefulDeityRow();
+    SABUsefulDeityModel deityModel = usefulDeityRow();
     if (EasyTypeEnum.from == deityModel.easyType) {
       bResult =
           logicModel().isSeasonStrong(deityModel.intRow, EasyTypeEnum.from);
@@ -300,7 +300,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
   String usefulEarth() {
     String stringEarth = "";
-    SABParentInfoModel deityModel = usefulDeityRow();
+    SABUsefulDeityModel deityModel = usefulDeityRow();
     if (EasyTypeEnum.from == deityModel.easyType ||
         EasyTypeEnum.hide == deityModel.easyType) {
       stringEarth = logicModel().inputWordsModel.getSymbolEarth(
@@ -332,7 +332,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     String strResult = "";
 
     if (enumEasyType == EasyTypeEnum.from) {
-      SABParentInfoModel deityModel = indexOfUseDeityInEasy(EasyTypeEnum.from);
+      SABUsefulDeityModel deityModel = indexOfUseDeityInEasy(EasyTypeEnum.from);
       if (EasyTypeEnum.from == deityModel.easyType &&
           intIndex == deityModel.intRow) {
         strResult = "用神";
@@ -1419,14 +1419,14 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
   ///`两现章第三十二`//////////////////////////////////////////////////////
 
-  SABParentInfoModel noUsefulDeity() {
-    SABParentInfoModel resultModel;
+  SABUsefulDeityModel noUsefulDeity() {
+    SABUsefulDeityModel resultModel;
     String usefulParent = getUsefulDeity();
     String fromEasyElement = getDiagramsModel().stringFromElement;
     String monthParent =
         SABElementInfoModel.elementRelative(fromEasyElement, monthElement());
     if (monthParent == usefulParent) {
-      resultModel = SABParentInfoModel(
+      resultModel = SABUsefulDeityModel(
         intRow: ROW_MONTH,
         easyType: EasyTypeEnum.type_null,
       );
@@ -1434,7 +1434,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       String dayParent =
           SABElementInfoModel.elementRelative(fromEasyElement, dayElement());
       if (dayParent == usefulParent) {
-        resultModel = SABParentInfoModel(
+        resultModel = SABUsefulDeityModel(
           intRow: ROW_DAY,
           easyType: EasyTypeEnum.type_null,
         );
@@ -1446,18 +1446,18 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     return resultModel;
   }
 
-  SABParentInfoModel indexOfUseDeityInEasy(EasyTypeEnum easyTypeEnum) {
-    SABParentInfoModel resultModel;
+  SABUsefulDeityModel indexOfUseDeityInEasy(EasyTypeEnum easyTypeEnum) {
+    SABUsefulDeityModel resultModel;
     List usefulArray =
         wordsModel().arrayRowWithParent(getUsefulDeity(), easyTypeEnum);
 
     if (usefulArray.length == 1) {
-      resultModel = SABParentInfoModel(
+      resultModel = SABUsefulDeityModel(
         intRow: usefulArray[0],
         easyType: easyTypeEnum,
       );
     } else if (usefulArray.length > 1) {
-      resultModel = SABParentInfoModel(
+      resultModel = SABUsefulDeityModel(
         intRow: multiUsefulDeity(easyTypeEnum, usefulArray),
         easyType: easyTypeEnum,
       );

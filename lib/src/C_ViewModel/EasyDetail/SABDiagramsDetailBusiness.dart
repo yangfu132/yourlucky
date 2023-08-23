@@ -8,7 +8,7 @@ import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABEasyLogicModel.d
 import 'package:yourlucky/src/D_Business/EasyLogic/Health/SABHealthModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/SABEasyHealthLogicModel.dart';
 import 'package:yourlucky/src/D_Business/EasyWords/SABEasyWordsModel.dart';
-import 'package:yourlucky/src/D_Business/Strategy/SABParentInfoModel.dart';
+import 'package:yourlucky/src/D_Business/Strategy/SABUsefulDeityModel.dart';
 
 import '../../A_Context/SACContext.dart';
 import '../../E_Service/SASStringService.dart';
@@ -630,7 +630,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
   ///伏吟之卦，用神旺相冲开之年月其志则神，用神休囚，冲开之年月忧郁而已。
   String repeatedEasyResult() {
     String result = "";
-    SABParentInfoModel usefulDeity = healthLogicModel().usefulDeity;
+    SABUsefulDeityModel usefulDeity = healthLogicModel().usefulDeity;
     if (EasyTypeEnum.from == usefulDeity.easyType) {
       if (logicModel().isMovementAtRow(usefulDeity.intRow)) {
         if (healthLogicModel().isUsefulDeityStrong) {
