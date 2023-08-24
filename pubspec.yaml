@@ -28,7 +28,7 @@ dependencies:
 
   #接入animation
   shared_preferences: # new
-  flutter_perpttual_calendar: ^1.0.0+5
+  flutter_perpttual_calendar: ^1.0.0+7
   sqflite:
   path:
 

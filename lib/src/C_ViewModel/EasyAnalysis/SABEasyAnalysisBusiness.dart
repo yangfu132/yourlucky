@@ -396,7 +396,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
   String resultDayPairAtRow(int intRow, EasyTypeEnum easyType) {
     String strResult = "";
 
-    String strPairResult = logicModel().getSymbolEarth(intRow, easyType);
+    String strPairResult = earthDayPairDescription(intRow, easyType);
     if ("" != strPairResult) {
       if (EasyTypeEnum.from == easyType) {
         if (digitModel().isMovementAtRow(intRow)) {
