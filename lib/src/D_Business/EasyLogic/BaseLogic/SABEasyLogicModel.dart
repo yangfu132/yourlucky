@@ -14,24 +14,26 @@ class SABEasyLogicModel extends SABBaseModel {
   SABEasyLogicModel({
     required this.inputWordsModel,
     required this.diagramsModel,
-    required this.monthModel,
-    required this.dayModel,
   });
 
   final SABEasyWordsModel inputWordsModel;
   final SABLogicDiagramsModel diagramsModel;
-  final SABWordsMonthModel monthModel;
-  final SABWordsDayModel dayModel;
 
   late final SABEarthBranchModel _earthBranchModel = SABEarthBranchModel();
 
   late final List<SABLogicRowModel> _listRowModels = List.empty(growable: true);
 
+  SABWordsMonthModel monthModel() {
+    return inputWordsModel.monthModel;
+  }
+
+  SABWordsDayModel dayModel() {
+    return inputWordsModel.dayModel;
+  }
+
   void check() {
     inputWordsModel.check();
     diagramsModel.check();
-    monthModel.check();
-    dayModel.check();
     for (SABLogicRowModel row in _listRowModels) {
       row.check();
     }
@@ -59,7 +61,7 @@ class SABEasyLogicModel extends SABBaseModel {
     } else if (enumEasyType == EasyTypeEnum.hide) {
       bResult = diagramsModel.bHideEasySixPair;
     } else {
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
     }
     return bResult;
   }
@@ -73,7 +75,7 @@ class SABEasyLogicModel extends SABBaseModel {
     } else if (enumEasyType == EasyTypeEnum.hide) {
       bResult = diagramsModel.bHideEasySixConflict;
     } else {
-      coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
     }
     return bResult;
   }
@@ -153,7 +155,7 @@ class SABEasyLogicModel extends SABBaseModel {
 
   SABLogicRowModel rowModelAtRow(int intRow) {
     if (intRow > _listRowModels.length) {
-      coLog(StackTrace.current,LogTypeEnum.error,"intRow:$intRow");
+      coLog(StackTrace.current, LogTypeEnum.error, "intRow:$intRow");
     }
     return _listRowModels[intRow];
   }

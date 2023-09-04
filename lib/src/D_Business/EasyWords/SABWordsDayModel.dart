@@ -14,6 +14,14 @@ class SABWordsDayModel extends SABBaseModel {
   final String stringSky;
   final String stringElement;
 
+  final double health = 100.0;
+
+  ///输出值
+  final double dayOut = 1.2;
+
+  ///输出权
+  final double dayOutRight = 100.0;
+
   String skyEarth() {
     return stringSky + stringEarth + "日";
   }
