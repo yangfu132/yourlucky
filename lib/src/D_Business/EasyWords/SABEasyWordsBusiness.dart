@@ -4,8 +4,8 @@ import 'package:yourlucky/src/D_Business/DigitModel/SABDigitDiagramsModel.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:yourlucky/src/D_Business/EarthBranch/SABEarthBranchBusiness.dart';
 import 'package:yourlucky/src/D_Business/EasyWords/SABCommonWordsBusiness.dart';
-import 'package:yourlucky/src/D_Business/EasyWords/SABWordsDayModel.dart';
-import 'package:yourlucky/src/D_Business/EasyWords/SABWordsMonthModel.dart';
+import 'package:yourlucky/src/D_Business/EasyWords/SABDayModel.dart';
+import 'package:yourlucky/src/D_Business/EasyWords/SABMonthModel.dart';
 import 'package:yourlucky/src/D_Business/EasyWords/SABWordsSymbolModel.dart';
 
 import '../../A_Context/SACContext.dart';
@@ -57,8 +57,8 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
 
   /// `子model`/////////////////////////////////////////////////////////////////
 
-  SABWordsMonthModel monthModel() {
-    SABWordsMonthModel result = SABWordsMonthModel(
+  SABMonthModel monthModel() {
+    SABMonthModel result = SABMonthModel(
       stringEarth: monthEarth(),
       stringSky: monthSky(),
       stringElement: monthElement(),
@@ -66,8 +66,8 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
     return result;
   }
 
-  SABWordsDayModel dayModel() {
-    SABWordsDayModel result = SABWordsDayModel(
+  SABDayModel dayModel() {
+    SABDayModel result = SABDayModel(
       stringEarth: dayEarth(),
       stringSky: daySky(),
       stringElement: dayElement(),

@@ -2,8 +2,8 @@ import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 
-class SABWordsDayModel extends SABBaseModel {
-  SABWordsDayModel({
+class SABDayModel extends SABBaseModel {
+  SABDayModel({
     required this.stringSky,
     required this.stringEarth,
     required this.stringElement,

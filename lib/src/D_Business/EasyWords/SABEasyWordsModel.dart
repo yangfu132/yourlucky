@@ -1,8 +1,8 @@
 ﻿import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
-import 'package:yourlucky/src/D_Business/EasyWords/SABWordsDayModel.dart';
-import 'package:yourlucky/src/D_Business/EasyWords/SABWordsMonthModel.dart';
+import 'package:yourlucky/src/D_Business/EasyWords/SABDayModel.dart';
+import 'package:yourlucky/src/D_Business/EasyWords/SABMonthModel.dart';
 import 'package:yourlucky/src/E_Service/SASStringService.dart';
 
 import '../../A_Context/SACGlobal.dart';
@@ -16,8 +16,8 @@ class SABEasyWordsModel extends SABBaseModel {
   });
 
   final SABEasyDigitModel inputDigitModel;
-  final SABWordsMonthModel monthModel;
-  final SABWordsDayModel dayModel;
+  final SABMonthModel monthModel;
+  final SABDayModel dayModel;
   final List<SABWordsRowModel> _listRowModels = List.empty(growable: true);
 
   void check() {
@@ -248,7 +248,7 @@ class SABEasyWordsModel extends SABBaseModel {
 
   SABWordsRowModel rowModelAtRow(int intRow) {
     if (intRow > _listRowModels.length) {
-      coLog(StackTrace.current,LogTypeEnum.error,"intRow:$intRow");
+      coLog(StackTrace.current, LogTypeEnum.error, "intRow:$intRow");
     }
     return _listRowModels[intRow];
   }

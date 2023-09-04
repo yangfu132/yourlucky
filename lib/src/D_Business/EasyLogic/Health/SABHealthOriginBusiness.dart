@@ -3,9 +3,9 @@ import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABLogicRowModel.da
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABLogicSymbolModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/Health/SABHealthSymbolModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/Health/SABOutRightBusiness.dart';
+import 'package:yourlucky/src/D_Business/EasyWords/SABDayModel.dart';
 import 'package:yourlucky/src/D_Business/EasyWords/SABEasyWordsModel.dart';
-import 'package:yourlucky/src/D_Business/EasyWords/SABWordsDayModel.dart';
-import 'package:yourlucky/src/D_Business/EasyWords/SABWordsMonthModel.dart';
+import 'package:yourlucky/src/D_Business/EasyWords/SABMonthModel.dart';
 
 import '../../../A_Context/SACContext.dart';
 import '../../../A_Context/SACGlobal.dart';
@@ -538,11 +538,11 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     return healthModel;
   }
 
-  SABWordsMonthModel monthModel() {
+  SABMonthModel monthModel() {
     return wordsModel().monthModel;
   }
 
-  SABWordsDayModel dayModel() {
+  SABDayModel dayModel() {
     return wordsModel().dayModel;
   }
 }
