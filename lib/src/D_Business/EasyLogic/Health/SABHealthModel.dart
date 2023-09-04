@@ -3,9 +3,7 @@ import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABEasyLogicModel.dart';
 
-import 'SABHealthDayModel.dart';
 import 'SABHealthDiagramsModel.dart';
-import 'SABHealthMonthModel.dart';
 import 'SABHealthRowModel.dart';
 import 'SABHealthSymbolModel.dart';
 
@@ -13,21 +11,15 @@ class SABHealthModel extends SABBaseModel {
   SABHealthModel({
     required this.inputLogicModel,
     required this.diagramsModel,
-    required this.monthModel,
-    required this.dayModel,
   });
   final SABEasyLogicModel inputLogicModel;
   final SABHealthDiagramsModel diagramsModel;
-  final SABHealthDayModel dayModel;
-  final SABHealthMonthModel monthModel;
 
   late final _listRowModels = <SABHealthRowModel>[];
 
   void check() {
     inputLogicModel.check();
     diagramsModel.check();
-    dayModel.check();
-    monthModel.check();
     for (SABHealthRowModel row in _listRowModels) {
       row.check();
     }
