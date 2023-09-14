@@ -47,9 +47,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     SABHealthSymbolModel healthSymbol,
     EasyTypeEnum easyType,
   ) {
-    int intRow = healthSymbol.logicSymbol.wordsSymbol.intRow;
+    int intRow = healthSymbol.inputLogicSymbol.inputWordsSymbol.intRow;
     return SABHealthLogicSymbolModel(
-      healthSymbol: healthSymbol,
+      inputHealthSymbol: healthSymbol,
       symbolEmptyState: symbolEmptyState(intRow, easyType),
       isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, easyType),
       conflictOnMonthState: symbolConflictStateOnMonth(intRow, easyType),
@@ -486,7 +486,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
           bResult = true;
         } else {
           //忌神长生帝旺于日辰，四也。
-          String stringEarthBase = symbolFrom.wordsSymbol.stringEarth;
+          String stringEarthBase = symbolFrom.inputWordsSymbol.stringEarth;
           String stringTwelveDeity =
               branchBusiness().earthTwelveDeity(stringEarthBase, dayEarth());
           if ("长生" == stringTwelveDeity || "帝旺" == stringTwelveDeity)
@@ -537,7 +537,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
         bResult = true;
       } else {
         //元神长生帝旺于日辰，三也。
-        String stringEarthBase = symbolFrom.wordsSymbol.stringEarth;
+        String stringEarthBase = symbolFrom.inputWordsSymbol.stringEarth;
         String stringTwelveDeity =
             branchBusiness().earthTwelveDeity(stringEarthBase, dayEarth());
         if ("长生" == stringTwelveDeity || "帝旺" == stringTwelveDeity)
@@ -1021,7 +1021,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     SABLogicSymbolModel symbolModel =
         logicModel().symbolAtRow(intRow, easyType);
     if ("" != stringSymbol) {
-      String earth = symbolModel.wordsSymbol.stringEarth;
+      String earth = symbolModel.inputWordsSymbol.stringEarth;
       if (-1 != logicModel().diagramsModel.stringEmptyBranch.indexOf(earth)) {
         String strDay = dayEarth();
         if (branchBusiness().isEarthConflict(strDay, earth)) {
@@ -1155,7 +1155,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     bool conflictMonth = symbolModel.isConflictMonth;
     if (conflictMonth) {
       String stringSymbol = wordsModel().getSymbolName(intRow, easyType);
-      String basicEarth = symbolModel.wordsSymbol.stringEarth;
+      String basicEarth = symbolModel.inputWordsSymbol.stringEarth;
       nResult = MonthConflictEnum.Conflict_Broken;
 
       String strDayEarth = dayEarth();
@@ -1263,7 +1263,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
             bResult = true;
           } else {
             //伏神墓绝于日月飞爻者，四也。
-            String basicEarth = symbolModel.wordsSymbol.stringEarth;
+            String basicEarth = symbolModel.inputWordsSymbol.stringEarth;
             String fromEarth =
                 wordsModel().getSymbolEarth(intRow, EasyTypeEnum.from);
 

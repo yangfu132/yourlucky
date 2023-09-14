@@ -469,9 +469,9 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     SABLogicSymbolModel logicSymbol,
     SABHealthDiagramsModel diagrams,
   ) {
-    int intRow = logicSymbol.wordsSymbol.intRow;
+    int intRow = logicSymbol.inputWordsSymbol.intRow;
     return SABHealthSymbolModel(
-        logicSymbol: logicSymbol,
+        inputLogicSymbol: logicSymbol,
         critical: healthCriticalValue(),
         doubleHealth: symbolBasicHealthAtRow(intRow, EasyTypeEnum.from),
         outRight:
@@ -482,9 +482,9 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     SABLogicSymbolModel logicSymbol,
     SABHealthDiagramsModel diagrams,
   ) {
-    int intRow = logicSymbol.wordsSymbol.intRow;
+    int intRow = logicSymbol.inputWordsSymbol.intRow;
     return SABHealthSymbolModel(
-        logicSymbol: logicSymbol,
+        inputLogicSymbol: logicSymbol,
         critical: healthCriticalValue(),
         doubleHealth: symbolBasicHealthAtRow(intRow, EasyTypeEnum.to),
         outRight: OutRightEnum.RIGHT_NULL);
@@ -494,9 +494,9 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     SABLogicSymbolModel logicSymbol,
     SABHealthDiagramsModel diagrams,
   ) {
-    int intRow = logicSymbol.wordsSymbol.intRow;
+    int intRow = logicSymbol.inputWordsSymbol.intRow;
     return SABHealthSymbolModel(
-        logicSymbol: logicSymbol,
+        inputLogicSymbol: logicSymbol,
         critical: healthCriticalValue(),
         doubleHealth: symbolBasicHealthAtRow(intRow, EasyTypeEnum.hide),
         outRight: OutRightEnum.RIGHT_HIDE);

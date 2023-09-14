@@ -1029,7 +1029,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     int intRow = wordsSymbol.intRow;
     String stringSymbol = symbolAtFromRow(intRow);
     return SABLogicSymbolModel(
-      wordsSymbol: wordsSymbol,
+      inputWordsSymbol: wordsSymbol,
       isOnMonth: _isSymbolOnMonth(stringSymbol),
       bMonthBorn: _isSymbolMonthBorn(stringSymbol),
       isMonthRestrict: _isSymbolMonthRestrict(stringSymbol),
@@ -1051,7 +1051,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     int intRow = wordsSymbol.intRow;
     String stringSymbol = symbolAtToRow(intRow);
     return SABLogicSymbolModel(
-      wordsSymbol: wordsSymbol,
+      inputWordsSymbol: wordsSymbol,
       isOnMonth: _isSymbolOnMonth(stringSymbol),
       bMonthBorn: _isSymbolMonthBorn(stringSymbol),
       isMonthRestrict: _isSymbolMonthRestrict(stringSymbol),
@@ -1073,7 +1073,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     int intRow = wordsSymbol.intRow;
     String stringSymbol = symbolAtHideRow(intRow);
     return SABLogicSymbolModel(
-      wordsSymbol: wordsSymbol,
+      inputWordsSymbol: wordsSymbol,
       isOnMonth: _isSymbolOnMonth(stringSymbol),
       bMonthBorn: _isSymbolMonthBorn(stringSymbol),
       isMonthRestrict: _isSymbolMonthRestrict(stringSymbol),
