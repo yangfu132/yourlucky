@@ -11,21 +11,22 @@ import 'SABSymbolDetailModel.dart';
 
 class SABRowDetailModel extends SABBaseModel {
   SABRowDetailModel(this.inputAnalysisRow) {
-    fromSymbol = SABSymbolDetailModel(
-      symbolHealthDes: fromSymbolHealthDes(),
-      monthRelation: analysisModel().getMonthRelation(EasyTypeEnum.from),
-      dayRelation: analysisModel().getDayRelation(EasyTypeEnum.from),
-    );
-    toSymbol = SABSymbolDetailModel(
-      symbolHealthDes: toSymbolHealthDes(),
-      monthRelation: toMonthRelation(),
-      dayRelation: toDayRelation(),
-    );
-    hideSymbol = SABSymbolDetailModel(
-      symbolHealthDes: hideSymbolHealthDes(),
-      monthRelation: hideMonthRelation(),
-      dayRelation: hideDayRelation(),
-    );
+    // fromSymbol = SABSymbolDetailModel(
+    //   baseInfo: ,
+    //   symbolHealthDes: fromSymbolHealthDes(),
+    //   monthRelation: analysisModel().getMonthRelation(EasyTypeEnum.from),
+    //   dayRelation: analysisModel().getDayRelation(EasyTypeEnum.from),
+    // );
+    // toSymbol = SABSymbolDetailModel(
+    //   symbolHealthDes: toSymbolHealthDes(),
+    //   monthRelation: toMonthRelation(),
+    //   dayRelation: toDayRelation(),
+    // );
+    // hideSymbol = SABSymbolDetailModel(
+    //   symbolHealthDes: hideSymbolHealthDes(),
+    //   monthRelation: hideMonthRelation(),
+    //   dayRelation: hideDayRelation(),
+    // );
   }
   final SABEasyAnalysisRowModel inputAnalysisRow;
 
@@ -67,6 +68,21 @@ class SABRowDetailModel extends SABBaseModel {
           "stringConflictOrPair.isEmpty");
     }
     super.check();
+  }
+
+
+  String getSymbolName(EasyTypeEnum easyTypeEnum) {
+    String strResult = 'SABRowDetailModel.getSymbolName';
+    if (easyTypeEnum == EasyTypeEnum.from) {
+      strResult = fromSymbol.getSymbolName();
+    } else if (easyTypeEnum == EasyTypeEnum.to) {
+      strResult = toSymbol.getSymbolName();
+    } else if (easyTypeEnum == EasyTypeEnum.hide) {
+      strResult = hideSymbol.getSymbolName();
+    } else {
+      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
+    }
+    return strResult;
   }
 
   String hideSymbolHealthDes() {

@@ -27,12 +27,13 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
       resultList[0]['value'] = digitModel().listEasyData.toString();
       resultList[1]['value'] = digitModel().strEasyGoal;
       resultList[2]['value'] = this.resultUsefulDeity();
-      resultList[3]['value'] = this.resultEasy();
-      resultList[4]['value'] = this.resultRepeatedOrConflict();
-      resultList[5]['value'] = this.resultSixPairOrConflict();
-      resultList[6]['value'] = this.resultThreePair();
-      resultList[7]['value'] = this.resultSymbol(theHealthModel);
-      resultList[8]['value'] = this.resultHappenTime();
+      resultList[3]['value'] = digitModel().stringTime;
+      resultList[4]['value'] = this.resultEasy();
+      resultList[5]['value'] = this.resultRepeatedOrConflict();
+      resultList[6]['value'] = this.resultSixPairOrConflict();
+      resultList[7]['value'] = this.resultThreePair();
+      resultList[8]['value'] = this.resultSymbol(theHealthModel);
+      resultList[9]['value'] = this.resultHappenTime();
     } else {
       coLog(StackTrace.current, LogTypeEnum.error, '无效的数据');
     }

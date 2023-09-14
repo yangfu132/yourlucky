@@ -18,6 +18,8 @@ class SABEasyDigitModel extends SABBaseModel {
 
   int? modelId;
 
+  String easyRemark = '未保存';
+
   //属性：实例的随机数数组
   final List<int> listEasyData;
 

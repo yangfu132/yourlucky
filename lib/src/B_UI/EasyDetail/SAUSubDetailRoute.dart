@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABDiagramsDetailModel.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABEasyDetailModel.dart';
+import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABRowDetailModel.dart';
 
 ///功能：一般性推断结果
 class SAUSubDetailRoute extends StatefulWidget {
@@ -20,7 +22,17 @@ class SAUSubDetailRoute extends StatefulWidget {
       return inputDetailModel.rowModelAtRow(intIndex - 1).resultList;
     }
   }
+
+  String resultTitle() {
+    if (0 == intIndex) {
+      return inputDetailModel.digitModel().easyRemark;
+    } else {
+      SABRowDetailModel rowModel = inputDetailModel.rowModelAtRow(intIndex - 1);
+      return inputDetailModel.rowModelAtRow(intIndex - 1).resultList;
+    }
+  }
 }
+
 
 class _SAUEasyResultState extends State<SAUSubDetailRoute> {
   @override
@@ -34,6 +46,14 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
       appBar: AppBar(
         title: Text(
             widget.inputDetailModel.wordsModel().inputDigitModel.stringTime),
+            // actions: <Widget>[
+            //   TextButton(
+            //     onPressed: () {
+            //     },
+            //     child: Text('保存'),
+            //     style: SACContext.textButtonStyle(),
+            //   ),
+            // ],
       ),
       body: ListView.builder(
           itemCount: widget.resultList().length * 2,

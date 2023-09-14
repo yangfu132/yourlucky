@@ -4,18 +4,18 @@ import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABLogicSymbolModel
 
 class SABHealthSymbolModel extends SABBaseModel {
   SABHealthSymbolModel({
-    required this.logicSymbol,
+    required this.inputLogicSymbol,
     required this.doubleHealth,
     required this.outRight,
     required this.critical,
   });
-  final SABLogicSymbolModel logicSymbol;
+  final SABLogicSymbolModel inputLogicSymbol;
   final double critical;
   double doubleHealth;
   OutRightEnum outRight;
 
   void check() {
-    logicSymbol.check();
+    inputLogicSymbol.check();
     super.check();
   }
 

@@ -5,14 +5,14 @@ import 'package:yourlucky/src/D_Business/EasyLogic/Health/SABHealthSymbolModel.d
 
 class SABHealthLogicSymbolModel extends SABBaseModel {
   SABHealthLogicSymbolModel({
-    required this.healthSymbol,
+    required this.inputHealthSymbol,
     required this.isSymbolDayBroken,
     required this.conflictOnMonthState,
     required this.conflictOnDayState,
     required this.symbolEmptyState,
     required this.stringDeity,
   });
-  final SABHealthSymbolModel healthSymbol;
+  final SABHealthSymbolModel inputHealthSymbol;
   final bool isSymbolDayBroken;
   final MonthConflictEnum conflictOnMonthState;
   final DayConflictEnum conflictOnDayState;
@@ -20,7 +20,7 @@ class SABHealthLogicSymbolModel extends SABBaseModel {
   final String stringDeity;
 
   void check() {
-    healthSymbol.check();
+    inputHealthSymbol.check();
 
     // for (SABHealthLogicRowModel row in _listRowModels) {
     //   row.check();
