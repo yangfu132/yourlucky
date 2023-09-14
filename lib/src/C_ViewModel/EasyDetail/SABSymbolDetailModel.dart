@@ -44,6 +44,7 @@ class SABSymbolDetailModel extends SABBaseModel {
   String getSymbolName() {
     return this.inputAnalysisSymbol.inputHealthLogicSymbol.inputHealthSymbol.inputLogicSymbol.inputWordsSymbol.symbolName;
   }
+
   String itemValue(String itemKey) {
     String resultValue = '';
     switch (itemKey) {

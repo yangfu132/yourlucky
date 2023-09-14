@@ -70,6 +70,21 @@ class SABRowDetailModel extends SABBaseModel {
     super.check();
   }
 
+  EasyTypeEnum getNextEasyType(EasyTypeEnum currentType) {
+    EasyTypeEnum resultType = EasyTypeEnum.type_null;
+    switch(currentType) {
+      case EasyTypeEnum.from:
+        resultType = EasyTypeEnum.to;
+        break;
+      case EasyTypeEnum.to:
+        resultType = EasyTypeEnum.hide;
+        break;
+      case EasyTypeEnum.hide:
+        resultType = EasyTypeEnum.from;
+        break;
+    }
+    return resultType;
+  }
 
   String getSymbolName(EasyTypeEnum easyTypeEnum) {
     String strResult = 'SABRowDetailModel.getSymbolName';

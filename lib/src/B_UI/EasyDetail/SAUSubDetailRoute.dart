@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/A_Context/SACContext.dart';
+import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABDiagramsDetailModel.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABEasyDetailModel.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABRowDetailModel.dart';
@@ -9,6 +10,7 @@ class SAUSubDetailRoute extends StatefulWidget {
   SAUSubDetailRoute(this.inputDetailModel, this.intIndex);
   final SABEasyDetailModel inputDetailModel;
   final int intIndex;
+  EasyTypeEnum currentEasyType = EasyTypeEnum.from;
   late final SABDiagramsDetailModel resultModel = SABDiagramsDetailModel();
   @override
   _SAUEasyResultState createState() {
@@ -28,7 +30,15 @@ class SAUSubDetailRoute extends StatefulWidget {
       return inputDetailModel.digitModel().easyRemark;
     } else {
       SABRowDetailModel rowModel = inputDetailModel.rowModelAtRow(intIndex - 1);
-      return inputDetailModel.rowModelAtRow(intIndex - 1).resultList;
+      return rowModel.getSymbolName(currentEasyType);
+    }
+  }
+
+  void switchType(){
+    if (0 == intIndex) {
+    } else {
+      SABRowDetailModel rowModel = inputDetailModel.rowModelAtRow(intIndex - 1);
+      currentEasyType = rowModel.getNextEasyType(currentEasyType);
     }
   }
 }
@@ -45,15 +55,16 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            widget.inputDetailModel.wordsModel().inputDigitModel.stringTime),
-            // actions: <Widget>[
-            //   TextButton(
-            //     onPressed: () {
-            //     },
-            //     child: Text('保存'),
-            //     style: SACContext.textButtonStyle(),
-            //   ),
-            // ],
+            widget.resultTitle()),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  widget.switchType();
+                },
+                child: Text('切换'),
+                style: SACContext.textButtonStyle(),
+              ),
+            ],
       ),
       body: ListView.builder(
           itemCount: widget.resultList().length * 2,
