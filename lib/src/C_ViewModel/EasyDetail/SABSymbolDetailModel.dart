@@ -10,7 +10,6 @@ class SABSymbolDetailModel extends SABBaseModel {
         required this.animalDes,
         required this.earthDes,
         required this.sixPairDes,
-        required this.symbolHealthDes,
         required this.monthRelation,
         required this.dayRelation,
         required this.earthDirection,
@@ -27,7 +26,7 @@ class SABSymbolDetailModel extends SABBaseModel {
 
   final String sixPairDes;
 
-  final String symbolHealthDes;
+  late String symbolHealthDes = getSymbolHealthDes();
 
   final String monthRelation;
 
@@ -43,6 +42,17 @@ class SABSymbolDetailModel extends SABBaseModel {
 
   String getSymbolName() {
     return this.inputAnalysisSymbol.inputHealthLogicSymbol.inputHealthSymbol.inputLogicSymbol.inputWordsSymbol.symbolName;
+  }
+
+
+  String getSymbolHealthDes() {
+    String stringResult = "";
+    final stringHealth = inputAnalysisSymbol.inputHealthLogicSymbol.inputHealthSymbol.healthDescription();
+    stringResult = getSymbolName() +
+        '[' +
+        stringHealth +
+        ']';
+    return stringResult;
   }
 
   String itemValue(String itemKey) {

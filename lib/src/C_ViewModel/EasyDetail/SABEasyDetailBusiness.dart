@@ -1,5 +1,8 @@
 ﻿import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyAnalysis/SABEasyAnalysisModel.dart';
+import 'package:yourlucky/src/C_ViewModel/EasyAnalysis/SABEasyAnalysisRowModel.dart';
+import 'package:yourlucky/src/C_ViewModel/EasyAnalysis/SABEasyAnalysisSymbolModel.dart';
+import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABRowDetailModel.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/D_Business/BasicEasy/SABAnimalInfoModel.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
@@ -13,6 +16,7 @@ import '../EasyAnalysis/SABEasyAnalysisBusiness.dart';
 import '../EasyDetail/SABEasyDetailModel.dart';
 import 'SABDiagramsDetailBusiness.dart';
 import 'SABDiagramsDetailModel.dart';
+import 'SABSymbolDetailModel.dart';
 
 class SABEasyDetailBusiness extends SABBaseBusiness {
   final SABEasyDigitModel _inputEasyModel;
@@ -134,6 +138,26 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
     return _outputDetailModel;
   }
 
+  SABSymbolDetailModel createSymbolModel(
+      SABEasyAnalysisSymbolModel analysisSymbol,
+      int intRow,
+      EasyTypeEnum type){
+
+     SABSymbolDetailModel fromSymbol = SABSymbolDetailModel(
+        inputAnalysisSymbol:analysisSymbol,
+        baseInfo:symbolBasic(intRow, type),
+        animalDes:symbolAnimalLike(intRow),
+        earthDes:symbolEarthLike(intRow, type),
+        sixPairDes:symbolSixPair(intRow, type),
+        monthRelation:analysisModel().getMonthRelation(intRow, type),
+        dayRelation:analysisModel().getDayRelation(intRow, type),
+        earthDirection:symbolEarthDirection(intRow, type),
+        diagramsPlace:eightDiagramsPlace(intRow, type),
+        debugInfo: '未填写debugInfo'
+    );
+     return fromSymbol;
+  }
+
   SABEasyDetailModel initOutputDetailModel() {
     var outputDetailModel = SABEasyDetailModel(
       analysisModel(),
@@ -143,17 +167,16 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
     outputDetailModel.detailList();
 
     for (int intRow = 0; intRow < 6; intRow++) {
-      List<Map> resultList = outputDetailModel.rowModelAtRow(intRow).resultList;
-      resultList[0]['value'] = symbolBasic(intRow, EasyTypeEnum.from);
-      resultList[1]['value'] = symbolAnimalLike(intRow);
-      resultList[2]['value'] = symbolEarthLike(intRow, EasyTypeEnum.from);
-      resultList[3]['value'] = symbolSixPair(intRow, EasyTypeEnum.from);
-      resultList[4]['value'] =
-          analysisModel().getMonthRelation(intRow, EasyTypeEnum.from);
-      resultList[5]['value'] =
-          analysisModel().getDayRelation(intRow, EasyTypeEnum.from);
-      resultList[6]['value'] = symbolEarthDirection(intRow, EasyTypeEnum.from);
-      resultList[7]['value'] = eightDiagramsPlace(intRow, EasyTypeEnum.from);
+      SABEasyAnalysisRowModel analysisRow = analysisModel().rowModelAtRow(intRow);
+      SABSymbolDetailModel fromSymbol = createSymbolModel(analysisRow.fromSymbol,intRow, EasyTypeEnum.from);
+      SABSymbolDetailModel toSymbol = createSymbolModel(analysisRow.toSymbol,intRow, EasyTypeEnum.to);
+      SABSymbolDetailModel hideSymbol = createSymbolModel(analysisRow.hideSymbol,intRow, EasyTypeEnum.hide);
+      SABRowDetailModel rowDetailModel = SABRowDetailModel(
+          inputAnalysisRow:analysisRow,
+          fromSymbol: fromSymbol,
+          toSymbol: toSymbol,
+          hideSymbol: hideSymbol);
+      outputDetailModel.addRow(rowDetailModel);
     }
     outputDetailModel.check();
     return outputDetailModel;

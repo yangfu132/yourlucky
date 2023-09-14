@@ -16,7 +16,7 @@ class SABEasyDetailModel extends SABBaseModel {
   final SABDiagramsDetailModel diagramsDetailModel;
   final SABEasyAnalysisModel _analysisModel;
   final String stringDetailName;
-  late List<SABRowDetailModel> _listRowModels = _initRowModelsArray();
+  final List<SABRowDetailModel> _listRowModels = List<SABRowDetailModel>.empty(growable: true);
 
   void check() {
     diagramsDetailModel.check();
@@ -281,16 +281,20 @@ class SABEasyDetailModel extends SABBaseModel {
   List _rowModelsArray() {
     return _listRowModels;
   }
+  //
+  // List<SABRowDetailModel> _initRowModelsArray() {
+  //   var listRowModels = <SABRowDetailModel>[];
+  //   for (int intRow = 0; intRow < 6; intRow++) {
+  //     SABRowDetailModel model =
+  //         SABRowDetailModel(_analysisModel.rowModelAtRow(intRow));
+  //     listRowModels.add(model);
+  //   }
+  //
+  //   return listRowModels;
+  // }
 
-  List<SABRowDetailModel> _initRowModelsArray() {
-    var listRowModels = <SABRowDetailModel>[];
-    for (int intRow = 0; intRow < 6; intRow++) {
-      SABRowDetailModel model =
-          SABRowDetailModel(_analysisModel.rowModelAtRow(intRow));
-      listRowModels.add(model);
-    }
-
-    return listRowModels;
+  void addRow(SABRowDetailModel detailRow){
+    _listRowModels.add(detailRow);
   }
 
   SABRowDetailModel rowModelAtRow(int intRow) {

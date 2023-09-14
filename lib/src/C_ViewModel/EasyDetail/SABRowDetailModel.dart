@@ -10,7 +10,12 @@ import '../EasyAnalysis/SABEasyAnalysisRowModel.dart';
 import 'SABSymbolDetailModel.dart';
 
 class SABRowDetailModel extends SABBaseModel {
-  SABRowDetailModel(this.inputAnalysisRow) {
+  SABRowDetailModel({
+    required this.inputAnalysisRow,
+    required this.fromSymbol,
+    required this.toSymbol,
+    required this.hideSymbol,
+  }) {
     // fromSymbol = SABSymbolDetailModel(
     //   baseInfo: ,
     //   symbolHealthDes: fromSymbolHealthDes(),
@@ -70,6 +75,7 @@ class SABRowDetailModel extends SABBaseModel {
     super.check();
   }
 
+
   EasyTypeEnum getNextEasyType(EasyTypeEnum currentType) {
     EasyTypeEnum resultType = EasyTypeEnum.type_null;
     switch(currentType) {
@@ -112,15 +118,6 @@ class SABRowDetailModel extends SABBaseModel {
     return stringResult;
   }
 
-  String fromSymbolHealthDes() {
-    String stringResult = "";
-    final stringFromHealth = healthModel().fromSymbol.healthDescription();
-    stringResult = wordsModel().getSymbolName(EasyTypeEnum.from) +
-        '[' +
-        stringFromHealth +
-        ']';
-    return stringResult;
-  }
 
   String toSymbolHealthDes() {
     String stringResult = "";
