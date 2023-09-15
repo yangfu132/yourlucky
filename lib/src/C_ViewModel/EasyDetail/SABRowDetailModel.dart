@@ -75,6 +75,24 @@ class SABRowDetailModel extends SABBaseModel {
     super.check();
   }
 
+  List<Map> resultList(EasyTypeEnum easyType) {
+    List<Map> result ;
+    switch(easyType) {
+      case EasyTypeEnum.from:
+        result = fromSymbol.resultList();
+        break;
+      case EasyTypeEnum.to:
+        result = toSymbol.resultList();
+        break;
+      case EasyTypeEnum.hide:
+        result = hideSymbol.resultList();
+        break;
+      default:
+        result = List<Map>.empty(growable: false);
+        break;
+    }
+    return result;
+  }
 
   EasyTypeEnum getNextEasyType(EasyTypeEnum currentType) {
     EasyTypeEnum resultType = EasyTypeEnum.type_null;
@@ -186,44 +204,4 @@ class SABRowDetailModel extends SABBaseModel {
   SABWordsRowModel wordsModel() {
     return logicModel().inputWordsRow;
   }
-
-  List<Map> resultList = [
-    {
-      ///强弱、动静、四时
-      'key': '基本信息',
-      'value': '',
-    },
-    {
-      'key': '六神类象',
-      'value': '',
-    },
-    {
-      'key': '地支类象',
-      'value': '',
-    },
-    {
-      'key': '六合',
-      'value': '',
-    },
-    {
-      'key': '月将',
-      'value': '',
-    },
-    {
-      'key': '日将',
-      'value': '',
-    },
-    {
-      'key': '地支方位',
-      'value': '',
-    },
-    {
-      'key': '所属八卦',
-      'value': '',
-    },
-    {
-      'key': '调试信息',
-      'value': '日志',
-    },
-  ];
 }

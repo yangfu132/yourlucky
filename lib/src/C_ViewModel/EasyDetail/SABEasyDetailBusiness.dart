@@ -143,7 +143,7 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
       int intRow,
       EasyTypeEnum type){
 
-     SABSymbolDetailModel fromSymbol = SABSymbolDetailModel(
+     SABSymbolDetailModel detailSymbol = SABSymbolDetailModel(
         inputAnalysisSymbol:analysisSymbol,
         baseInfo:symbolBasic(intRow, type),
         animalDes:symbolAnimalLike(intRow),
@@ -155,7 +155,7 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
         diagramsPlace:eightDiagramsPlace(intRow, type),
         debugInfo: '未填写debugInfo'
     );
-     return fromSymbol;
+     return detailSymbol;
   }
 
   SABEasyDetailModel initOutputDetailModel() {

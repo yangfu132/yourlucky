@@ -21,7 +21,8 @@ class SAUSubDetailRoute extends StatefulWidget {
     if (0 == intIndex) {
       return inputDetailModel.diagramsDetailModel.resultList;
     } else {
-      return inputDetailModel.rowModelAtRow(intIndex - 1).resultList;
+      SABRowDetailModel rowModel = inputDetailModel.rowModelAtRow(intIndex - 1);
+      return rowModel.resultList(currentEasyType);
     }
   }
 
@@ -60,6 +61,9 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
               TextButton(
                 onPressed: () {
                   widget.switchType();
+                  setState(() {
+
+                  });
                 },
                 child: Text('切换'),
                 style: SACContext.textButtonStyle(),
