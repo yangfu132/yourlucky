@@ -3,17 +3,17 @@ import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABLogicRowModel.da
 import 'package:yourlucky/src/D_Business/EasyLogic/BaseLogic/SABLogicSymbolModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/Health/SABHealthSymbolModel.dart';
 import 'package:yourlucky/src/D_Business/EasyLogic/Health/SABOutRightBusiness.dart';
+import 'package:yourlucky/src/D_Business/EasyWords/SABDayModel.dart';
 import 'package:yourlucky/src/D_Business/EasyWords/SABEasyWordsModel.dart';
+import 'package:yourlucky/src/D_Business/EasyWords/SABMonthModel.dart';
 
 import '../../../A_Context/SACContext.dart';
 import '../../../A_Context/SACGlobal.dart';
 import '../../Base/SABLogBusiness.dart';
 import '../../EarthBranch/SABEarthBranchBusiness.dart';
 import '../BaseLogic/SABEasyLogicModel.dart';
-import 'SABHealthDayModel.dart';
 import 'SABHealthDiagramsModel.dart';
 import 'SABHealthModel.dart';
-import 'SABHealthMonthModel.dart';
 import 'SABHealthRowModel.dart';
 
 /*
@@ -94,16 +94,10 @@ import 'SABHealthRowModel.dart';
  */
 
 class SABHealthOriginBusiness extends SABLogBusiness {
-  SABHealthOriginBusiness(this._inputEasyModel) : super(_inputEasyModel) {
-    monthModel = SABHealthMonthModel(
-      wordsModel: wordsModel().monthModel,
-    );
-  }
+  SABHealthOriginBusiness(this._inputEasyModel) : super(_inputEasyModel);
   final SABEasyDigitModel _inputEasyModel;
 
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
-
-  late final SABHealthMonthModel monthModel;
 
   late final SABHealthModel _healthModel = initHealthModel();
 
@@ -132,8 +126,8 @@ class SABHealthOriginBusiness extends SABLogBusiness {
 
   double healthMonthPair() {
     double fResult = 0.0;
-    int siIndex = monthModel.arraySeason.indexOf("死");
-    int xiangIndex = monthModel.arraySeason.indexOf("相");
+    int siIndex = monthModel().arraySeason.indexOf("死");
+    int xiangIndex = monthModel().arraySeason.indexOf("相");
     if (-1 != siIndex && -1 != xiangIndex) {
       fResult = intervalSeason() * (siIndex - xiangIndex);
     } else
@@ -323,9 +317,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
           fResult += 0;
         else
           fResult += earthHealthAtMonthAndDay(
-              basicEarth,
-              wordsModel().monthModel.stringEarth,
-              wordsModel().dayModel.stringEarth);
+              basicEarth, monthModel().stringEarth, dayModel().stringEarth);
       } else {
         coLog(StackTrace.current, LogTypeEnum.error, "error!");
       }
@@ -523,15 +515,10 @@ class SABHealthOriginBusiness extends SABLogBusiness {
   }
 
   SABHealthModel initHealthModel() {
-    SABHealthDayModel dayModel = SABHealthDayModel(
-      wordsModel: wordsModel().dayModel,
-    );
     SABHealthDiagramsModel diagrams = _diagrams();
     SABHealthModel healthModel = SABHealthModel(
       inputLogicModel: logicModel(),
       diagramsModel: diagrams,
-      monthModel: monthModel,
-      dayModel: dayModel,
     );
 
     for (int intRow = 0; intRow < 6; intRow++) {
@@ -549,5 +536,13 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     } //end for
 
     return healthModel;
+  }
+
+  SABMonthModel monthModel() {
+    return wordsModel().monthModel;
+  }
+
+  SABDayModel dayModel() {
+    return wordsModel().dayModel;
   }
 }

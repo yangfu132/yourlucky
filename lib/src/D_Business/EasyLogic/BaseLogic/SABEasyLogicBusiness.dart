@@ -1119,8 +1119,6 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     var outLogicModel = SABEasyLogicModel(
       inputWordsModel: wordsModel(),
       diagramsModel: _diagramsModel(),
-      monthModel: wordsModel().monthModel,
-      dayModel: wordsModel().dayModel,
     );
 
     ///爻的基础信息

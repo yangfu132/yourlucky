@@ -2,18 +2,28 @@ import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 
-class SABWordsMonthModel extends SABBaseModel {
-  SABWordsMonthModel({
+class SABDayModel extends SABBaseModel {
+  SABDayModel({
     required this.stringSky,
     required this.stringEarth,
     required this.stringElement,
   });
-  final String stringSky;
+
+  ///日
   final String stringEarth;
+  final String stringSky;
   final String stringElement;
 
+  final double health = 100.0;
+
+  ///输出值
+  final double dayOut = 1.2;
+
+  ///输出权
+  final double dayOutRight = 100.0;
+
   String skyEarth() {
-    return stringSky + stringEarth + "月";
+    return stringSky + stringEarth + "日";
   }
 
   void check() {
