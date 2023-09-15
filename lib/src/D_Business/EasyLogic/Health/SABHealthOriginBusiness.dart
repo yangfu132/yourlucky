@@ -528,8 +528,8 @@ class SABHealthOriginBusiness extends SABLogBusiness {
       SABHealthRowModel rowModel = SABHealthRowModel(
         inputLogicRow: logicModel,
         fromSymbol: fromSymbol(logicModel.fromSymbol, diagrams),
-        toSymbol: toSymbol(logicModel.fromSymbol, diagrams),
-        hideSymbol: hideSymbol(logicModel.fromSymbol, diagrams),
+        toSymbol: toSymbol(logicModel.toSymbol, diagrams),
+        hideSymbol: hideSymbol(logicModel.hideSymbol, diagrams),
       );
 
       healthModel.addRowModel(rowModel);
