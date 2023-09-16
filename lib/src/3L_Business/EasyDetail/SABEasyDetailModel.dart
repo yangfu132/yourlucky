@@ -30,6 +30,49 @@ class SABEasyDetailModel {
     return _analysisModel.inputHealthLogicModel;
   }
 
+
+  List<String> addHideSymbolDes(SABRowDetailModel rowModel) {
+    List<String> valueItem = List<String>.empty(growable: true);
+    if (rowModel.stringDeity == '用神') {
+      valueItem.add(rowModel.hideSymbol.monthRelation);
+      valueItem.add(rowModel.hideSymbol.dayRelation);
+      valueItem.add(rowModel.hideSymbol.symbolHealthDes);
+    } else {
+      valueItem.add('');
+      valueItem.add('');
+      valueItem.add('');
+      valueItem.add('');
+    }
+    return valueItem;
+  }
+
+  List<String> addToSymbolDes(SABRowDetailModel rowModel) {
+    List<String> valueItem = List<String>.empty(growable: true);
+    if (rowModel.logicModel().inputWordsRow.bMovement) {
+      valueItem.add(rowModel.logicModel().stringSymbolForwardOrBack);
+      valueItem.add(rowModel.toSymbol.symbolHealthDes);
+      valueItem.add(rowModel.toSymbol.monthRelation);
+      valueItem.add(rowModel.toSymbol.dayRelation);
+    } else {
+      valueItem.add('');
+      valueItem.add('');
+      valueItem.add('');
+      valueItem.add('');
+    }
+    return valueItem;
+  }
+
+  List<String> addFromSymbolDes(SABRowDetailModel rowModel){
+    List<String> valueItem = List<String>.empty(growable: true);
+    valueItem.add(rowModel.stringConflictOrPair);
+    valueItem.add(rowModel.fromSymbol.monthRelation);
+    valueItem.add(rowModel.fromSymbol.dayRelation);
+    valueItem.add(rowModel.fromSymbol.symbolHealthDes);
+    valueItem.add(rowModel.stringGoal);
+    return valueItem;
+  }
+
+
   Map<String, List> staticHaveUsefulDeity() {
     final listResult = <List<String>>[
       [
@@ -87,20 +130,14 @@ class SABEasyDetailModel {
       ]
     ];
 
+
     for (SABRowDetailModel rowModel in _rowModelsArray()) {
-      final listItem = <String>[
-        rowModel.hideSymbol.monthRelation,
-        rowModel.hideSymbol.dayRelation,
-        rowModel.hideSymbol.symbolHealthDes,
-        rowModel.stringDeity,
-        rowModel.stringAnimal,
-        rowModel.stringConflictOrPair,
-        rowModel.fromSymbol.monthRelation,
-        rowModel.fromSymbol.dayRelation,
-        rowModel.fromSymbol.symbolHealthDes,
-        rowModel.stringGoal,
-      ];
-      listResult.add(listItem);
+      List<String> valueItem = List<String>.empty(growable: true);
+      valueItem.addAll(addHideSymbolDes(rowModel));
+      valueItem.add(rowModel.stringDeity);
+      valueItem.add(rowModel.stringAnimal);
+      valueItem.addAll(addFromSymbolDes(rowModel));
+      listResult.add(valueItem);
     }
 
     final mapResult = <String, List>{
@@ -139,20 +176,12 @@ class SABEasyDetailModel {
     ];
 
     for (SABRowDetailModel rowModel in _rowModelsArray()) {
-      final listItem = <String>[
-        rowModel.stringDeity,
-        rowModel.stringAnimal,
-        rowModel.stringConflictOrPair,
-        rowModel.fromSymbol.monthRelation,
-        rowModel.fromSymbol.dayRelation,
-        rowModel.fromSymbol.symbolHealthDes,
-        rowModel.stringGoal,
-        rowModel.logicModel().stringSymbolForwardOrBack,
-        rowModel.toSymbol.symbolHealthDes,
-        rowModel.toSymbol.monthRelation,
-        rowModel.toSymbol.dayRelation,
-      ];
-      listResult.add(listItem);
+      List<String> valueItem = List<String>.empty(growable: true);
+      valueItem.add(rowModel.stringDeity);
+      valueItem.add(rowModel.stringAnimal);
+      valueItem.addAll(addFromSymbolDes(rowModel));
+      valueItem.addAll(addToSymbolDes(rowModel));
+      listResult.add(valueItem);
     }
     final mapResult = <String, List>{
       "key": <String>[
