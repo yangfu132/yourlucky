@@ -31,7 +31,21 @@ class SAUSubDetailRoute extends StatefulWidget {
       return inputDetailModel.digitModel().easyRemark;
     } else {
       SABRowDetailModel rowModel = inputDetailModel.rowModelAtRow(intIndex - 1);
-      return rowModel.getSymbolName(currentEasyType);
+      String result = 'type：';
+      switch(currentEasyType) {
+        case EasyTypeEnum.from:
+          result = '本：';
+          break;
+        case EasyTypeEnum.to:
+          result = '变：';
+          break;
+        case EasyTypeEnum.hide:
+          result = '伏：';
+          break;
+        default:
+          break;
+      }
+      return result + rowModel.getSymbolName(currentEasyType);
     }
   }
 

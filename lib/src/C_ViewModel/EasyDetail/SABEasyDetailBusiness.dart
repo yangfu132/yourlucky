@@ -165,6 +165,11 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
       diagramsDetailModel(),
     );
     outputDetailModel.detailList();
+    bool bStaticEasy = healthLogicModel()
+        .inputHealthModel
+        .inputLogicModel
+        .diagramsModel
+        .bStaticEasy;
 
     for (int intRow = 0; intRow < 6; intRow++) {
       SABEasyAnalysisRowModel analysisRow = analysisModel().rowModelAtRow(intRow);
@@ -175,7 +180,8 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
           inputAnalysisRow:analysisRow,
           fromSymbol: fromSymbol,
           toSymbol: toSymbol,
-          hideSymbol: hideSymbol);
+          hideSymbol: hideSymbol,
+          bStaticEasy: bStaticEasy);
       outputDetailModel.addRow(rowDetailModel);
     }
     outputDetailModel.check();

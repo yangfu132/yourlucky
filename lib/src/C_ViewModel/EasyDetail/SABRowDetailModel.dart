@@ -15,24 +15,8 @@ class SABRowDetailModel extends SABBaseModel {
     required this.fromSymbol,
     required this.toSymbol,
     required this.hideSymbol,
-  }) {
-    // fromSymbol = SABSymbolDetailModel(
-    //   baseInfo: ,
-    //   symbolHealthDes: fromSymbolHealthDes(),
-    //   monthRelation: analysisModel().getMonthRelation(EasyTypeEnum.from),
-    //   dayRelation: analysisModel().getDayRelation(EasyTypeEnum.from),
-    // );
-    // toSymbol = SABSymbolDetailModel(
-    //   symbolHealthDes: toSymbolHealthDes(),
-    //   monthRelation: toMonthRelation(),
-    //   dayRelation: toDayRelation(),
-    // );
-    // hideSymbol = SABSymbolDetailModel(
-    //   symbolHealthDes: hideSymbolHealthDes(),
-    //   monthRelation: hideMonthRelation(),
-    //   dayRelation: hideDayRelation(),
-    // );
-  }
+    required this.bStaticEasy,
+  }) ;
   final SABEasyAnalysisRowModel inputAnalysisRow;
 
   late final String stringDeity =
@@ -50,6 +34,8 @@ class SABRowDetailModel extends SABBaseModel {
   late final SABSymbolDetailModel fromSymbol;
   late final SABSymbolDetailModel toSymbol;
   late final SABSymbolDetailModel hideSymbol;
+
+  final bool bStaticEasy;
 
   void check() {
     inputAnalysisRow.check();
@@ -95,10 +81,15 @@ class SABRowDetailModel extends SABBaseModel {
   }
 
   EasyTypeEnum getNextEasyType(EasyTypeEnum currentType) {
+    bool hasMove = bStaticEasy;
     EasyTypeEnum resultType = EasyTypeEnum.type_null;
     switch(currentType) {
       case EasyTypeEnum.from:
-        resultType = EasyTypeEnum.to;
+        if (bStaticEasy) {
+          resultType = EasyTypeEnum.hide;
+        }else {
+          resultType = EasyTypeEnum.to;
+        }
         break;
       case EasyTypeEnum.to:
         resultType = EasyTypeEnum.hide;
