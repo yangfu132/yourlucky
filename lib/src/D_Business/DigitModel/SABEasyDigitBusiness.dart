@@ -9,8 +9,9 @@ import 'SABEasyDigitModel.dart';
 class SABEasyDigitBusiness extends SABBaseBusiness {
   final SASSqliteService sqlite = SASSqliteService();
 
-  ///创建
+  ///创建测试
   SABEasyDigitModel create() {
+    SABEasyDigitModel outEasyModel;
     String strEasyGoal = '测试';
     String strUsefulDeity = '子孙';
     List<int> listEasyData = generateEasyArray();
@@ -19,13 +20,14 @@ class SABEasyDigitBusiness extends SABBaseBusiness {
     PWBCalendarBusiness calendar = PWBCalendarBusiness(easyDateTime);
     String stringTime = calendar.stringFromDate();
 
-    SABEasyDigitModel outEasyModel = SABEasyDigitModel(
+    outEasyModel = SABEasyDigitModel(
       modelId: null,
       strEasyGoal: strEasyGoal,
       strUsefulDeity: strUsefulDeity,
       stringTime: stringTime,
       listEasyData: listEasyData,
     );
+    save(outEasyModel);
     return outEasyModel;
   }
 
