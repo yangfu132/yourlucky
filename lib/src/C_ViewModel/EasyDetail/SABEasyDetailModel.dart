@@ -206,9 +206,9 @@ class SABEasyDetailModel extends SABBaseModel {
     final listResult = <List<String>>[];
 
     final listTitle = <String>[
-    "月",
-    "日",
-    "伏神",
+    "伏月",
+    "伏日",
+    "【】伏神【】",
     '事情',
     '六神',
     '六爻冲合',
