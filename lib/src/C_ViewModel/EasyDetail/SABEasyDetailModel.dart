@@ -45,12 +45,11 @@ class SABEasyDetailModel extends SABBaseModel {
 
   List<String> addHideSymbolDes(SABRowDetailModel rowModel) {
     List<String> valueItem = List<String>.empty(growable: true);
-    if (rowModel.stringDeity == '用神') {
+    if (rowModel.stringDeity == '伏神') {
       valueItem.add(rowModel.hideSymbol.monthRelation);
       valueItem.add(rowModel.hideSymbol.dayRelation);
       valueItem.add(rowModel.hideSymbol.symbolHealthDes);
     } else {
-      valueItem.add('');
       valueItem.add('');
       valueItem.add('');
       valueItem.add('');
@@ -204,24 +203,25 @@ class SABEasyDetailModel extends SABBaseModel {
   }
 
   Map<String, List> moveHideUsefulDeity() {
-    final listResult = <List<String>>[
-      [
-        "月",
-        "日",
-        "伏神",
-        '事情',
-        '六神',
-        '六爻冲合',
-        wordsModel().monthSkyEarth(),
-        wordsModel().daySkyEarth(),
-        "本:${wordsModel().getFromEasyName()}",
-        "世应",
-        '进化',
-        '变:${wordsModel().getToEasyName()}',
-        '${wordsModel().monthSkyEarth()}',
-        '${wordsModel().daySkyEarth()}',
-      ]
+    final listResult = <List<String>>[];
+
+    final listTitle = <String>[
+    "月",
+    "日",
+    "伏神",
+    '事情',
+    '六神',
+    '六爻冲合',
+    wordsModel().monthSkyEarth(),
+    wordsModel().daySkyEarth(),
+    "本:${wordsModel().getFromEasyName()}",
+    "世应",
+    '进化',
+    '变:${wordsModel().getToEasyName()}',
+    '${wordsModel().monthSkyEarth()}',
+    '${wordsModel().daySkyEarth()}',
     ];
+    listResult.add(listTitle);
 
     for (SABRowDetailModel rowModel in _rowModelsArray()) {
       List<String> valueItem = List<String>.empty(growable: true);
@@ -230,23 +230,25 @@ class SABEasyDetailModel extends SABBaseModel {
       valueItem.addAll(addToSymbolDes(rowModel));
       listResult.add(valueItem);
     }
+    final listKey =  <String>[
+      '伏月',
+      '伏日',
+      '伏卦',
+      '事情',
+      '六神',
+      '六爻冲合',
+      '本月',
+      '本日',
+      '本卦',
+      '世应',
+      '进化',
+      '变卦',
+      '变月',
+      '变日'
+    ];
+
     final mapResult = <String, List>{
-      "key": <String>[
-        '伏月',
-        '伏日',
-        '伏卦',
-        '事情',
-        '六神',
-        '六爻冲合',
-        '本月',
-        '本日',
-        '本卦',
-        '世应',
-        '进化',
-        '变卦',
-        '变月',
-        '变日'
-      ],
+      "key":listKey,
       "value": listResult
     };
     return mapResult;

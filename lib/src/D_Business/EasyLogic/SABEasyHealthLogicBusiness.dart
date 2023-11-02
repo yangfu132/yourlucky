@@ -338,7 +338,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
         strResult = "用神";
       } else if (EasyTypeEnum.hide == deityModel.easyType &&
           intIndex == deityModel.intRow) {
-        strResult = "飞神";
+        strResult = "伏神";
       } else {
         String usefulElement = getDiagramsModel().deityElement;
         String currentElement =
