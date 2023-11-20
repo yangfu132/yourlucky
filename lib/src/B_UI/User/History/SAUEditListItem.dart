@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 typedef ClickDelete =Function(int position);//定义删除方法
 typedef ClickChange =Function(int position);//定义修改方法
 
-List<GlobalKey<RemoveItemState>> setKey(int length){
-  var list=<GlobalKey<RemoveItemState>>[];
+List<GlobalKey<SAUEditListItemState>> setEditListItemKey(int length){
+  var list=<GlobalKey<SAUEditListItemState>>[];
   for (int i = 0; i < length; i++) {
-    var key=GlobalKey<RemoveItemState>();
+    var key=GlobalKey<SAUEditListItemState>();
     list.add(key);
   }
   return list;
 }
 
-class RemoveItem extends StatefulWidget  {
-  final GlobalKey<RemoveItemState> moveKey;
+class SAUEditListItem extends StatefulWidget  {
+  final GlobalKey<SAUEditListItemState> moveKey;
   final VoidCallback onStart;//开始滑动回调
   final ClickDelete delete;
   final ClickDelete change;
@@ -22,16 +22,16 @@ class RemoveItem extends StatefulWidget  {
 
   final Widget child;//具体显示内容
 
-  RemoveItem(this.position,this.child,{
+  SAUEditListItem(this.position,this.child,{
     required this.moveKey,
     required this.onStart,
     required this.delete,
     required this.change}):super(key:moveKey);
   @override
-  RemoveItemState createState() => RemoveItemState();
+  SAUEditListItemState createState() => SAUEditListItemState();
 }
 
-class RemoveItemState extends State<RemoveItem> with SingleTickerProviderStateMixin{
+class SAUEditListItemState extends State<SAUEditListItem> with SingleTickerProviderStateMixin{
 
 
   // Animation<double> animation;
@@ -69,37 +69,40 @@ class RemoveItemState extends State<RemoveItem> with SingleTickerProviderStateMi
         padding: EdgeInsets.only(left: 15,right: 15,top: 15),
         width:MediaQuery.of(context).size.width,
         child:GestureDetector(
-          child:Stack(children: <Widget>[
-            Positioned(right: 80,
-              child:InkWell(
-                onTap: (){widget.change(widget.position); },
-                child:Container(
-                  width: 80,
-                  height:100,
-                  alignment: Alignment.center,
-                  color: Colors.grey,
-                  child: Text("修改",style: TextStyle(color: Colors.white),),
+          child:Stack(
+            children: <Widget>[
+              Positioned(
+                right: -80+start,
+                child:InkWell(
+                  onTap: (){widget.change(widget.position); },
+                  child:Container(
+                    width: 80,
+                    height:100,
+                    alignment: Alignment.center,
+                    color: Colors.grey,
+                    child: Text("修改",style: TextStyle(color: Colors.white),),
+                  ),
                 ),
               ),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: InkWell(
-                onTap: (){widget.delete(widget.position); },
-                child: Container(
-                  width: 80,
-                  alignment: Alignment.center,
-                  color: Colors.red,
-                  child: Text("删除",style: TextStyle(color: Colors.white)),
+              Positioned(
+                right: -160+start,
+                child: InkWell(
+                  onTap: (){widget.delete(widget.position); },
+                  child: Container(
+                    width: 80,
+                    height:100,
+                    alignment: Alignment.center,
+                    color: Colors.red,
+                    child: Text("删除",style: TextStyle(color: Colors.white)),
+                  ),
                 ),
               ),
-            ),
-            Positioned(
-                left: -start,
-                right:start,
-                child: widget.child
-            ),
-          ],
+              Positioned(
+                  left: -start,
+                  right:start,
+                  child: widget.child
+              ),
+            ],
           ),
           onHorizontalDragDown: (DragDownDetails details){//滑动开始的时候关闭打开的item
             close();

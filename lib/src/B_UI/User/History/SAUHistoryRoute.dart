@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/B_UI/Base/Widget/toast.dart';
 import 'package:yourlucky/src/B_UI/EasyStrategy/SAUStrategyResultRoute.dart';
-import 'package:yourlucky/src/B_UI/User/History/SAUListItem.dart';
+import 'package:yourlucky/src/B_UI/User/History/SAUEditListItem.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABEasyDetailBusiness.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 
@@ -17,7 +17,7 @@ class SAUHistoryRoute extends StatefulWidget {
 
 class SAUHistoryRouteState extends State<SAUHistoryRoute> {
   List<SABEasyDigitModel> historyData = [];
-  List<GlobalKey<RemoveItemState>> listKey = [];
+  List<GlobalKey<SAUEditListItemState>> listKey = [];
   int positionNow=0;
   @override
   void initState() {
@@ -29,7 +29,9 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
   }
 
   Widget _rowWidget(SABEasyDigitModel model,int index) {
-    return RemoveItem(index, new ListTile(
+    return SAUEditListItem(
+      index,
+      new ListTile(
         title: Text(model.title()),
         trailing: Text(model.describe()),
         onTap: () async {
@@ -39,7 +41,7 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
           }));
         },
       ),
-        moveKey: listKey[index],
+      moveKey: listKey[index],
       onStart:(){
         // 1.设置movekey
         listKey.forEach((bankKey){//2.循环关闭其他item
@@ -54,17 +56,6 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
     },change: (position){
       ToastWidget.show("你点击了修改 $position");
     },);
-
-    return ListTile(
-      title: Text(model.title()),
-      trailing: Text(model.describe()),
-      onTap: () async {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          SABEasyDetailBusiness detailBusiness = SABEasyDetailBusiness(model);
-          return SAUStrategyResultRoute(detailBusiness.outputDetailModel());
-        }));
-      },
-    );
   }
 
   void showLoginDialog() {
@@ -75,7 +66,7 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
         Text("删除后将无法看到该条记录，请谨慎操作",style: TextStyle(color: Colors.grey,fontSize: 14),),
         SizedBox(height: 1,),
         Container(height: 50,width:double.infinity,margin:EdgeInsets.only(left: 15,right: 15),
-          child:  FlatButton(onPressed:(){
+          child:  TextButton(onPressed:(){
             Navigator.of(context).pop();
             _deleteBank();
             ToastWidget.show("你点击了删除 $positionNow");
@@ -83,7 +74,7 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
             child: Text("删除",style: TextStyle(fontSize: 16,color:Colors.blue),),),),
         SizedBox(height: 10,),
         Container(height: 50,width:double.infinity,margin:EdgeInsets.only(left: 15,right: 15),
-          child:  FlatButton(onPressed:(){Navigator.of(context).pop();}, child: Text("取消",style: TextStyle(fontSize: 14),),),),
+          child:  TextButton(onPressed:(){Navigator.of(context).pop();}, child: Text("取消",style: TextStyle(fontSize: 14),),),),
       ],),);
     });
   }
@@ -98,7 +89,7 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
 
   Widget _buildBody() {
     if (historyData.length > 0) {
-      listKey = setKey(historyData.length);
+      listKey = setEditListItemKey(historyData.length);
       return ListView.builder(
           itemCount: historyData.length,
           //itemExtent: 50.0, //强制高度为50.0
