@@ -6,6 +6,7 @@ import 'package:yourlucky/src/B_UI/User/Debug/SAUDebugRoute.dart';
 import 'package:yourlucky/src/B_UI/User/EasyStrategy/SAUEasyStrategyRoute.dart';
 import 'package:yourlucky/src/B_UI/User/Feedback/SAUFeedbackRoute.dart';
 import 'package:yourlucky/src/B_UI/User/History/SAUHistoryRoute.dart';
+import 'package:yourlucky/src/B_UI/User/History/SAUListItemDemo.dart';
 import 'package:yourlucky/src/B_UI/User/Setting/SAUSettingRoute.dart';
 import 'package:yourlucky/src/B_UI/User/SignIn/SAUSignInRoute.dart';
 import 'package:yourlucky/src/B_UI/User/SignIn/SAUSignupRoute.dart';
@@ -51,7 +52,7 @@ Widget mapRouteToPage(String route, Object? arguments) {
       widget = SAUEasyStrategyRoute();
       break;
     case SACRouteUrl.history:
-      widget = SAUHistoryRoute();
+      widget = HomeScreen();
       break;
     default:
       break;
