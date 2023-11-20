@@ -71,4 +71,8 @@ class SABEasyDigitBusiness extends SABBaseBusiness {
     });
     refresh(dataList);
   }
+
+  void delete(SABEasyDigitModel digitModel) {
+    sqlite.deleteModel(digitModel);
+  }
 }
