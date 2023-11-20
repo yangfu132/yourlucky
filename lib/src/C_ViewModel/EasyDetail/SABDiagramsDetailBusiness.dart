@@ -328,9 +328,20 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
       strUseful = strUseful + "现在有效";
       strResult = SASStringService.appendToString(strResult, strUseful);
     } else if (EmptyEnum.Empty_NO != emptyState) {
-      //用神旬空
-      strUseful = strUseful + outEmptyDate();
-      strResult = SASStringService.appendToString(strResult, strUseful);
+      if (EmptyEnum.Empty_Null == emptyState) {
+        if (ROW_MONTH == usefulDeity.intRow) {
+          //用神旬空
+          strUseful = strUseful + outEmptyDate();
+          strResult = SASStringService.appendToString(strResult, strUseful);
+        } else if (ROW_DAY == usefulDeity.intRow) {
+          //日为用神不存在旬空
+          strResult = SASStringService.appendToString(strResult, strUseful);
+        } else {
+          //用神旬空
+          strUseful = strUseful + outEmptyDate();
+          strResult = SASStringService.appendToString(strResult, strUseful);
+        }
+      }
     }
     if (EasyTypeEnum.from == usefulDeity.easyType) {
       if (healthLogicModel().getIsSymbolChangeEmpty(usefulDeity.intRow)!) {
