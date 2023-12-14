@@ -16,7 +16,7 @@ class SAUSettingRouteState extends State<SAUSettingRoute> {
   @override
   void initState() {
     super.initState();
-    SACContext.setting().load((dataList) {
+    SACContext.setting().settingList((dataList) {
       settingList = dataList;
       setState(() {});
     });
@@ -24,8 +24,14 @@ class SAUSettingRouteState extends State<SAUSettingRoute> {
 
   Widget _buildBody() {
     // return Text('Waiting');
-    return ListView.builder(itemCount: 10,itemBuilder: (BuildContext context, int index){
-      SABSettingModel settingModel = settingList[index];
+    int itemCount = settingList.length > 0 ? settingList.length : 1;
+    return ListView.builder(itemCount: itemCount,itemBuilder: (BuildContext context, int index){
+      SABSettingModel settingModel;
+      if (settingList.length > index) {
+        settingModel = settingList[index];
+      } else {
+        settingModel = SACContext.setting().errorModel();
+      }
       return _rowWidget(settingModel);
     },);
   }
@@ -39,10 +45,11 @@ class SAUSettingRouteState extends State<SAUSettingRoute> {
             Switch(
               value: settingModel.settingValue,
               onChanged: (value){
+                if (settingModel.settingKey != "waiting") {
                   settingModel.settingValue = !value;
                   SACContext.setting().save(settingModel);
-                  setState(() {
-                });
+                  setState(() {});
+                }
               }
             ),
           ],

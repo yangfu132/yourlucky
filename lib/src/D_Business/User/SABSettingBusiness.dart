@@ -5,6 +5,42 @@ import 'package:yourlucky/src/E_Service/Sqlite/SASSqliteService.dart';
 class SABSettingBusiness extends SABBaseBusiness {
   final SASSqliteService sqlite = SASSqliteService();
 
+  SABSettingModel generateModel (String settingKey, String settingTitle){
+    return SABSettingModel(
+        modelId: null,
+        settingKey: settingKey,
+        settingTitle: settingTitle,
+        settingValue:false,
+        settingRemark: '');
+  }
+
+  SABSettingModel errorModel (){
+    return SABSettingModel(
+        modelId: null,
+        settingKey: "error",
+        settingTitle: "数据加载错误",
+        settingValue:false,
+        settingRemark: '');
+  }
+
+  List<SABSettingModel> settingList (void refresh(List<SABSettingModel> dataList)){
+    SABSettingModel model = generateModel("自动保存","自动保存");
+    List<SABSettingModel> settingList = [model];
+    load((dataList) {
+      for (SABSettingModel saveModel in dataList) {
+        for (SABSettingModel settingModel in settingList) {
+          if (saveModel.settingKey == settingModel.settingKey) {
+            settingModel.modelId = saveModel.modelId;
+            settingModel.settingValue = saveModel.settingValue;
+            settingModel.settingRemark = saveModel.settingRemark;
+          }
+        }
+      }
+      refresh(settingList);
+    });
+    return settingList;
+ }
+
   ///保存
   void save(SABSettingModel model) {
     if (null == model.getModelId()) {
