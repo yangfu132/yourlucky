@@ -17,7 +17,7 @@ class SAUUserRouteState extends State<SAUUserRoute> {
   List<Map> userActionData(BuildContext context) {
     return <Map>[
       {
-        'value': SACRouteUrl.history,
+        'value': SACRouteUrl.feedback,
         'key': SASLocalizationsService.userFeedback(context)
       },
       {
@@ -29,15 +29,15 @@ class SAUUserRouteState extends State<SAUUserRoute> {
         'key': SASLocalizationsService.userFriends(context)
       },
       {
-        'value': SACRouteUrl.history,
+        'value': SACRouteUrl.about,
         'key': SASLocalizationsService.userAbout(context)
       },
       {
-        'value': SACRouteUrl.history,
+        'value': SACRouteUrl.rateAndReview,
         'key': SASLocalizationsService.userRateAndReview(context)
       },
       {
-        'value': SACRouteUrl.history,
+        'value': SACRouteUrl.setting,
         'key': SASLocalizationsService.userSetting(context)
       },
       {
