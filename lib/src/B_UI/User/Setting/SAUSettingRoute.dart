@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:yourlucky/src/A_Context/SACContext.dart';
+import 'package:yourlucky/src/D_Business/User/SABSettingModel.dart';
 
 class SAUSettingRoute extends StatefulWidget {
   SAUSettingRoute({Key? key, this.title}) : super(key: key);
   final String? title;
-  bool switchValue = false;
   @override
   SAUSettingRouteState createState() {
     return SAUSettingRouteState();
@@ -11,29 +12,36 @@ class SAUSettingRoute extends StatefulWidget {
 }
 
 class SAUSettingRouteState extends State<SAUSettingRoute> {
+  List<SABSettingModel> settingList = [];
   @override
   void initState() {
     super.initState();
+    SACContext.setting().load((dataList) {
+      settingList = dataList;
+      setState(() {});
+    });
   }
 
   Widget _buildBody() {
     // return Text('Waiting');
     return ListView.builder(itemCount: 10,itemBuilder: (BuildContext context, int index){
-      return _rowWidget(widget.switchValue);
+      SABSettingModel settingModel = settingList[index];
+      return _rowWidget(settingModel);
     },);
   }
 
-  Widget _rowWidget (bool switchValue){
+  Widget _rowWidget (SABSettingModel settingModel){
     return Container(
       child:
         Row(
           children: [
-            Text('Waiting,WaitingWaitingWaiting'),
+            Text(settingModel.settingTitle),
             Switch(
-              value: switchValue,
+              value: settingModel.settingValue,
               onChanged: (value){
-                widget.switchValue = !switchValue;
-                setState(() {
+                  settingModel.settingValue = !value;
+                  SACContext.setting().save(settingModel);
+                  setState(() {
                 });
               }
             ),

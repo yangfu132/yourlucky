@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/C_ViewModel/Strategy/SABEasyStrategyInfoBusiness.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitBusiness.dart';
+import 'package:yourlucky/src/D_Business/User/SABSettingBusiness.dart';
 import 'package:yourlucky/src/E_Service/SABSingletonService.dart';
 
 import 'SACGlobal.dart';
@@ -20,6 +21,8 @@ class SACContext {
   final SABEasyDigitBusiness _storeBusiness = SABEasyDigitBusiness();
   final SABEasyStrategyInfoBusiness _categoryBusiness =
       SABEasyStrategyInfoBusiness();
+
+  final SABSettingBusiness _settingBusiness = SABSettingBusiness();
 
   static bool simulator() {
     return true;
@@ -67,5 +70,10 @@ class SACContext {
   static SABEasyDigitBusiness easyStore() {
     SACContext businessContext = SABSingletonService.getObject('SACContext');
     return businessContext._storeBusiness;
+  }
+
+  static SABSettingBusiness setting() {
+    SACContext businessContext = SABSingletonService.getObject('SACContext');
+    return businessContext._settingBusiness;
   }
 }
