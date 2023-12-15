@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter_perpttual_calendar/flutter_perpttual_calendar.dart';
+import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/E_Service/Sqlite/SASSqliteService.dart';
 
@@ -27,7 +28,10 @@ class SABEasyDigitBusiness extends SABBaseBusiness {
       stringTime: stringTime,
       listEasyData: listEasyData,
     );
-    save(outEasyModel);
+
+    if (SACContext.setting().autoSave.settingValue) {
+      save(outEasyModel);
+    }
     return outEasyModel;
   }
 

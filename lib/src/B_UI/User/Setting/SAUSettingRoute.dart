@@ -25,18 +25,49 @@ class SAUSettingRouteState extends State<SAUSettingRoute> {
   Widget _buildBody() {
     // return Text('Waiting');
     int itemCount = settingList.length > 0 ? settingList.length : 1;
-    return ListView.builder(itemCount: itemCount,itemBuilder: (BuildContext context, int index){
-      SABSettingModel settingModel;
-      if (settingList.length > index) {
-        settingModel = settingList[index];
-      } else {
-        settingModel = SACContext.setting().errorModel();
-      }
-      return _rowWidget(settingModel);
-    },);
+    return ListView.builder(
+        itemCount: itemCount,
+        itemBuilder: (BuildContext context, int index) {
+          SABSettingModel settingModel;
+          if (settingList.length > index) {
+            settingModel = settingList[index];
+            if (SettingTypeEnum.switchType == settingModel.settingType) {
+              return _textFieldWidget(settingModel);
+            } else if (SettingTypeEnum.switchType == settingModel.settingType) {
+              return _switchRowWidget(settingModel);
+            } else {
+              return Text(settingModel.settingTitle);
+            }
+          } else {
+            settingModel = SACContext.setting().errorModel();
+            return Text(settingModel.settingTitle);
+          }
+        },
+    );
   }
 
-  Widget _rowWidget (SABSettingModel settingModel){
+  Widget _textFieldWidget (SABSettingModel settingModel){
+    return Container(
+      child:
+      Row(
+        children: [
+          Text(settingModel.settingTitle),
+          Switch(
+              value: settingModel.settingValue,
+              onChanged: (value){
+                if (settingModel.settingKey != "waiting") {
+                  settingModel.settingValue = !value;
+                  SACContext.setting().save(settingModel);
+                  setState(() {});
+                }
+              }
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _switchRowWidget (SABSettingModel settingModel){
     return Container(
       child:
         Row(

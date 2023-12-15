@@ -1,9 +1,10 @@
 import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/D_Business/User/SABSettingModel.dart';
 import 'package:yourlucky/src/E_Service/Sqlite/SASSqliteService.dart';
-
+//王志文 天道 黑冰
 class SABSettingBusiness extends SABBaseBusiness {
   final SASSqliteService sqlite = SASSqliteService();
+  late final SABSettingModel autoSave = generateModel("自动保存","自动保存");
 
   SABSettingModel generateModel (String settingKey, String settingTitle){
     return SABSettingModel(
@@ -11,21 +12,16 @@ class SABSettingBusiness extends SABBaseBusiness {
         settingKey: settingKey,
         settingTitle: settingTitle,
         settingValue:false,
-        settingRemark: '');
+        settingRemark: '',
+        settingType: null);
   }
 
   SABSettingModel errorModel (){
-    return SABSettingModel(
-        modelId: null,
-        settingKey: "error",
-        settingTitle: "数据加载错误",
-        settingValue:false,
-        settingRemark: '');
+    return generateModel("error","数据加载错误");
   }
 
   List<SABSettingModel> settingList (void refresh(List<SABSettingModel> dataList)){
-    SABSettingModel model = generateModel("自动保存","自动保存");
-    List<SABSettingModel> settingList = [model];
+    List<SABSettingModel> settingList = [autoSave];
     load((dataList) {
       for (SABSettingModel saveModel in dataList) {
         for (SABSettingModel settingModel in settingList) {
@@ -33,6 +29,7 @@ class SABSettingBusiness extends SABBaseBusiness {
             settingModel.modelId = saveModel.modelId;
             settingModel.settingValue = saveModel.settingValue;
             settingModel.settingRemark = saveModel.settingRemark;
+            settingModel.settingType = saveModel.settingType;
           }
         }
       }
