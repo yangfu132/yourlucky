@@ -52,15 +52,11 @@ class SAUSettingRouteState extends State<SAUSettingRoute> {
       Row(
         children: [
           Text(settingModel.settingTitle),
-          Switch(
-              value: settingModel.settingValue,
-              onChanged: (value){
-                if (settingModel.settingKey != "waiting") {
-                  settingModel.settingValue = !value;
-                  SACContext.setting().save(settingModel);
-                  setState(() {});
-                }
-              }
+          TextFormField(
+            decoration: const InputDecoration(
+              border: UnderlineInputBorder(),
+              labelText: 'Enter your username',
+            ),
           ),
         ],
       ),
