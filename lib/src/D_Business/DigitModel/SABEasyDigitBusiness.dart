@@ -29,7 +29,7 @@ class SABEasyDigitBusiness extends SABBaseBusiness {
       listEasyData: listEasyData,
     );
 
-    if (SACContext.setting().autoSave.settingValue) {
+    if (1 == SACContext.setting().autoSave.intValue) {
       save(outEasyModel);
     }
     return outEasyModel;

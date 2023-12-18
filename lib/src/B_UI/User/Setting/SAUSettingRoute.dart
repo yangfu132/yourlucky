@@ -13,6 +13,7 @@ class SAUSettingRoute extends StatefulWidget {
 
 class SAUSettingRouteState extends State<SAUSettingRoute> {
   List<SABSettingModel> settingList = [];
+  final textController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -31,7 +32,7 @@ class SAUSettingRouteState extends State<SAUSettingRoute> {
           SABSettingModel settingModel;
           if (settingList.length > index) {
             settingModel = settingList[index];
-            if (SettingTypeEnum.switchType == settingModel.settingType) {
+            if (SettingTypeEnum.textField == settingModel.settingType) {
               return _textFieldWidget(settingModel);
             } else if (SettingTypeEnum.switchType == settingModel.settingType) {
               return _switchRowWidget(settingModel);
@@ -47,19 +48,25 @@ class SAUSettingRouteState extends State<SAUSettingRoute> {
   }
 
   Widget _textFieldWidget (SABSettingModel settingModel){
-    return Container(
-      child:
-      Row(
-        children: [
-          Text(settingModel.settingTitle),
-          TextFormField(
-            decoration: const InputDecoration(
-              border: UnderlineInputBorder(),
-              labelText: 'Enter your username',
-            ),
+    return Stack(alignment: Alignment.centerLeft,
+      children: [
+        Text(settingModel.settingTitle),
+        Padding(padding: EdgeInsets.only(left: 80),
+          child:
+          TextField(
+            controller: textController,
+            style: TextStyle(fontSize: 14,color: Color(0xFF333333)),
+            minLines: 1,
+            maxLines: 1,
+            keyboardType: TextInputType.number,
+            onChanged: (value){
+              settingModel.stringValue = value;
+              SACContext.setting().save(settingModel);
+              setState(() {});
+            },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -70,10 +77,10 @@ class SAUSettingRouteState extends State<SAUSettingRoute> {
           children: [
             Text(settingModel.settingTitle),
             Switch(
-              value: settingModel.settingValue,
+              value: 1 == settingModel.intValue,
               onChanged: (value){
                 if (settingModel.settingKey != "waiting") {
-                  settingModel.settingValue = !value;
+                  settingModel.intValue = value ? 1 : 0;
                   SACContext.setting().save(settingModel);
                   setState(() {});
                 }

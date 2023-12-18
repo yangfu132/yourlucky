@@ -13,25 +13,38 @@ class SABSettingModel extends SABBaseModel {
     required this.modelId,
     required this.settingKey,
     required this.settingTitle,
-    required this.settingValue,
-    required this.settingRemark,
+    required this.intValue,
+    required this.stringValue,
     required this.settingType,
+    required this.stringRemark,
   });
   int? modelId;
   String settingKey;
   String settingTitle;
-  bool settingValue;
-  String settingRemark;
+  int intValue;
+  String stringValue;
+  String stringRemark;
   SettingTypeEnum? settingType;
 
+
+  String getModelName() {
+    return 'setting';
+  }
+
+  int? getModelId() {
+    return modelId;
+  }
+  
   SABSettingModel.fromJson(Map<String, Object?> json)
       : this(
     modelId: json['id'] as int,
     settingKey: json['settingKey']! as String,
     settingTitle: json['settingTitle']! as String,
-    settingValue: json['settingValue']! as bool,
-    settingRemark: json['settingRemark']! as String,
-    settingType: json['id'] as SettingTypeEnum,
+    intValue: json['intValue']! as int,
+    stringValue: json['stringValue']! as String,
+    settingType: SettingTypeEnum.values[json['settingType'] as int],
+    stringRemark: json['stringRemark']! as String,
+
   );
 
   Map<String, Object?> toJson() {
@@ -39,9 +52,10 @@ class SABSettingModel extends SABBaseModel {
       'id': modelId,
       'settingKey': settingKey,
       'settingTitle': settingTitle,
-      'settingValue': settingValue,
-      'settingRemark': settingRemark,
-      'settingType': settingType,
+      'intValue': intValue,
+      'stringValue': stringValue,
+      'settingType': settingType!.index,
+      'stringRemark': stringRemark,
     };
   }
 }

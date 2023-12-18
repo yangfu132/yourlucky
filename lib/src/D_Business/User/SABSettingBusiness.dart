@@ -4,31 +4,33 @@ import 'package:yourlucky/src/E_Service/Sqlite/SASSqliteService.dart';
 //王志文 天道 黑冰
 class SABSettingBusiness extends SABBaseBusiness {
   final SASSqliteService sqlite = SASSqliteService();
-  late final SABSettingModel autoSave = generateModel("自动保存","自动保存");
-
-  SABSettingModel generateModel (String settingKey, String settingTitle){
+  late final SABSettingModel autoSave = generateModel("自动保存","自动保存",SettingTypeEnum.switchType);
+  late final SABSettingModel dayHealth = generateModel("日值","日值",SettingTypeEnum.textField);
+  late final SABSettingModel monthHealth = generateModel("月值","月值",SettingTypeEnum.textField);
+  SABSettingModel generateModel (String settingKey, String settingTitle, SettingTypeEnum settingType){
     return SABSettingModel(
         modelId: null,
         settingKey: settingKey,
         settingTitle: settingTitle,
-        settingValue:false,
-        settingRemark: '',
-        settingType: null);
+        intValue:0,
+        stringValue: "",
+        settingType: settingType,
+        stringRemark:"");
   }
 
   SABSettingModel errorModel (){
-    return generateModel("error","数据加载错误");
+    return generateModel("error","数据加载错误",SettingTypeEnum.textType);
   }
 
   List<SABSettingModel> settingList (void refresh(List<SABSettingModel> dataList)){
-    List<SABSettingModel> settingList = [autoSave];
+    List<SABSettingModel> settingList = [autoSave,dayHealth];
     load((dataList) {
       for (SABSettingModel saveModel in dataList) {
         for (SABSettingModel settingModel in settingList) {
           if (saveModel.settingKey == settingModel.settingKey) {
             settingModel.modelId = saveModel.modelId;
-            settingModel.settingValue = saveModel.settingValue;
-            settingModel.settingRemark = saveModel.settingRemark;
+            settingModel.intValue = saveModel.intValue;
+            settingModel.stringValue = saveModel.stringValue;
             settingModel.settingType = saveModel.settingType;
           }
         }
