@@ -18,6 +18,8 @@ class SABSettingBusiness extends SABBaseBusiness {
         stringRemark:"");
   }
 
+
+
   SABSettingModel errorModel (){
     return generateModel("error","数据加载错误",SettingTypeEnum.textType);
   }
@@ -58,7 +60,7 @@ class SABSettingBusiness extends SABBaseBusiness {
     List<SABSettingModel> dataList = <SABSettingModel>[];
     await sqlite.query('setting', (json) {
       dataList.add(SABSettingModel.fromJson(json));
+      refresh(dataList);
     });
-    refresh(dataList);
   }
 }

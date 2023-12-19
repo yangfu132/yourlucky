@@ -72,8 +72,8 @@ class SABEasyDigitBusiness extends SABBaseBusiness {
     List<SABEasyDigitModel> dataList = <SABEasyDigitModel>[];
     await sqlite.query('easy', (json) {
       dataList.add(SABEasyDigitModel.fromJson(json));
+      refresh(dataList);
     });
-    refresh(dataList);
   }
 
   void delete(SABEasyDigitModel digitModel) {

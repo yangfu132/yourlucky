@@ -34,7 +34,7 @@ class SABSettingModel extends SABBaseModel {
   int? getModelId() {
     return modelId;
   }
-  
+
   SABSettingModel.fromJson(Map<String, Object?> json)
       : this(
     modelId: json['id'] as int,
