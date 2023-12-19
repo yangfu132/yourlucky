@@ -1,7 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:yourlucky/src/A_Context/SACContext.dart';
-import 'package:yourlucky/src/B_UI/EasyStrategy/SAUBottomButtonBar.dart';
-import 'package:yourlucky/src/B_UI/EasyStrategy/SAUBottomButtonBarModel.dart';
+import 'package:yourlucky/src/B_UI/Base/Button/SAUBottomButtonBar.dart';
+import 'package:yourlucky/src/B_UI/Base/Button/SAUBottomButtonBarModel.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABEasyDetailModel.dart';
 import 'package:yourlucky/src/C_ViewModel/StrategyResult/SABEasyStrategyResultBusiness.dart';
 
@@ -55,7 +55,7 @@ class _SAUStrategyResultRoute extends State<SAUStrategyResultRoute> {
           SAUBottomButtonBar(
               model:buttonModel(),
               onTap:(SAUButtonModel itemModel){
-                
+
               }
           ),
         ],
