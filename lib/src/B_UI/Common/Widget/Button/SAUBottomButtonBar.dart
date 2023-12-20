@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yourlucky/src/B_UI/Base/Button/SAUBottomButtonBarModel.dart';
+import 'SAUBottomButtonBarModel.dart';
 
 typedef ButtonTapCallback = void Function(SAUButtonModel itemModel);
 

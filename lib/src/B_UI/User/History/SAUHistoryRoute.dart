@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/A_Context/SACContext.dart';
-import 'package:yourlucky/src/B_UI/Base/Widget/toast.dart';
+import 'package:yourlucky/src/B_UI/Common/Widget/toast.dart';
 import 'package:yourlucky/src/B_UI/EasyStrategy/SAUStrategyResultRoute.dart';
 import 'package:yourlucky/src/B_UI/User/History/SAUEditListItem.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABEasyDetailBusiness.dart';
