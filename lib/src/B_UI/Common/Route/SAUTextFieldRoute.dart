@@ -7,8 +7,7 @@ import 'SAUTextFieldRouteModel.dart';
 typedef SaveTextFieldRouteCallback = void Function(SAUTextFieldRouteModel model);
 
 class SAUTextFieldRoute extends StatefulWidget {
-  SAUTextFieldRoute({Key? key, this.title, required this.model,required this.onSave}) : super(key: key);
-  final String? title;
+  SAUTextFieldRoute({Key? key, required this.model,required this.onSave}) : super(key: key);
   final SAUTextFieldRouteModel model;
   final SaveTextFieldRouteCallback onSave;
   @override
@@ -38,6 +37,7 @@ class SAUTextFieldRouteState extends State<SAUTextFieldRoute> {
           SAUBottomButtonBar(
               model:SAUBottomButtonBarModel.save(),
               onTap:(SAUButtonModel itemModel){
+                widget.model.stringValue = textController.text;
                 widget.onSave(widget.model);
               }
           ),
@@ -47,6 +47,7 @@ class SAUTextFieldRouteState extends State<SAUTextFieldRoute> {
   }
 
   Widget _textField (){
+    textController.text = widget.model.stringValue;
     return TextField(
       controller: textController,
       style: TextStyle(fontSize: 14,color: Color(0xFF333333)),

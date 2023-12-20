@@ -23,7 +23,7 @@ class _SAUBottomButtonBarState extends State<SAUBottomButtonBar> {
   @override
   Widget build(BuildContext context) {
     final children = <Widget>[];
-    final buttons = [""];
+    final buttons = widget.model.itemList;
     final lastIndex = buttons.length - 1;
     for (int i = 0; i < buttons.length; i++) {
       SAUButtonModel item = widget.model.itemList[i];

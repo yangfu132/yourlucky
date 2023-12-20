@@ -1,5 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:yourlucky/src/A_Context/SACContext.dart';
+import 'package:yourlucky/src/B_UI/Common/Route/SAUTextFieldRoute.dart';
+import 'package:yourlucky/src/B_UI/Common/Route/SAUTextFieldRouteModel.dart';
 import 'package:yourlucky/src/B_UI/Common/Widget/Button/SAUBottomButtonBar.dart';
 import 'package:yourlucky/src/B_UI/Common/Widget/Button/SAUBottomButtonBarModel.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABEasyDetailModel.dart';
@@ -55,17 +57,41 @@ class _SAUStrategyResultRoute extends State<SAUStrategyResultRoute> {
           SAUBottomButtonBar(
               model:buttonModel(),
               onTap:(SAUButtonModel itemModel){
-
+                if ("save" == itemModel.code) {
+                  SACContext.easyStore().save(widget.inputDetail.digitModel());
+                }
+                if ("goal" == itemModel.code) {
+                  onGoalTapped();
+                }
               }
-          ),
+            ),
         ],
       ),
     );
   }
 
+  void onGoalTapped(){
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) {
+          SAUTextFieldRouteModel model = SAUTextFieldRouteModel(
+              stringTitle: "修改目的",
+              stringValue: widget.inputDetail.digitModel().strEasyGoal,
+              stringPlaceholder:"请输入",
+          );
+          return SAUTextFieldRoute(
+            model: model,
+            onSave: (SAUTextFieldRouteModel model){
+              widget.inputDetail.digitModel().strEasyGoal = model.stringValue;
+              SACContext.easyStore().save(widget.inputDetail.digitModel());
+              Navigator.pop(context);
+            },);
+        }));
+  }
+
   SAUBottomButtonBarModel buttonModel() {
-    SAUButtonModel model = SAUButtonModel(title: "保存",code: "save");
-    final SAUBottomButtonBarModel buttonModel = SAUBottomButtonBarModel(itemList: [model]);
+    SAUButtonModel save = SAUButtonModel(title: "保存",code: "save");
+    SAUButtonModel goal = SAUButtonModel(title: "目的",code: "goal");
+    final SAUBottomButtonBarModel buttonModel = SAUBottomButtonBarModel(itemList: [save,goal]);
     return  buttonModel;
   }
 

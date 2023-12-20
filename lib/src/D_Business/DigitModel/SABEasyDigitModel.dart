@@ -24,7 +24,7 @@ class SABEasyDigitModel extends SABBaseModel {
   final List<int> listEasyData;
 
   //属性：实例的发生目的
-  final String strEasyGoal;
+  String strEasyGoal = "";
 
   //属性：实例的用神
   final String strUsefulDeity;
