@@ -1,6 +1,9 @@
 
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 
+import 'SAUButtonModel.dart';
+typedef ButtonTapCallback = void Function(SAUButtonModel itemModel);
+
 class SAUBottomButtonBarModel extends SABBaseModel {
   SAUBottomButtonBarModel({required this.itemList});
   final List<SAUButtonModel> itemList;
@@ -10,11 +13,4 @@ class SAUBottomButtonBarModel extends SABBaseModel {
     final SAUBottomButtonBarModel buttonModel = SAUBottomButtonBarModel(itemList: [model]);
     return  buttonModel;
   }
-}
-
-class SAUButtonModel extends SABBaseModel {
-  SAUButtonModel({required this.title, required this.code, this.highLight = true});
-  final String title;
-  final String code;
-  bool highLight;
 }

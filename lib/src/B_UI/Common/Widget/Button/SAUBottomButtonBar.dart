@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'SAUBottomButtonBarModel.dart';
-
-typedef ButtonTapCallback = void Function(SAUButtonModel itemModel);
+import 'SAUButtonModel.dart';
 
 ///功能：显示策略推断结果
 class SAUBottomButtonBar extends StatefulWidget {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/B_UI/Common/Widget/Button/SAUBottomButtonBar.dart';
 import 'package:yourlucky/src/B_UI/Common/Widget/Button/SAUBottomButtonBarModel.dart';
+import 'package:yourlucky/src/B_UI/Common/Widget/Button/SAUButtonModel.dart';
 
 import 'SAUTextFieldRouteModel.dart';
 
