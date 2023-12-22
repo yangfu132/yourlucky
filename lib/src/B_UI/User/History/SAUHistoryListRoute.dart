@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/A_Context/SACContext.dart';
+import 'package:yourlucky/src/B_UI/Common/Widget/ListCell/SAUListCell.dart';
+import 'package:yourlucky/src/B_UI/Common/Widget/ListCell/SAUListCellModel.dart';
 import 'package:yourlucky/src/B_UI/Common/Widget/toast.dart';
 import 'package:yourlucky/src/B_UI/EasyStrategy/SAUStrategyResultRoute.dart';
 import 'package:yourlucky/src/B_UI/User/History/SAUEditListItem.dart';
@@ -95,18 +97,16 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
           //itemExtent: 50.0, //强制高度为50.0
           itemBuilder: (BuildContext context, int index) {
             SABEasyDigitModel model = historyData[index];
-            int kv = index % 2;
-            if (kv == 0) {
-              return _rowWidget(model,index);
-            } else {
-              return Container(
-                //color: Colors.grey,
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                ),
-                child: _rowWidget(model,index),
-              );
-            }
+            SAUListCellModel cellModel = SAUListCellModel.fromEasyDigitModel(model);
+            return SAUListCell(
+              model: cellModel,
+              onTap: (value) => {
+
+              },
+              buttonsClick: (value) => {
+
+              },
+            );
           });
     } else {
       return ListView.builder(

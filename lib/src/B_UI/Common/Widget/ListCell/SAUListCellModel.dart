@@ -2,6 +2,7 @@
 import 'package:yourlucky/src/B_UI/Common/Widget/Button/SAUBottomButtonBarModel.dart';
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/B_UI/Common/Widget/Button/SAUButtonModel.dart';
+import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 
 enum SAUListCellModelItemType {
   keyValue,
@@ -44,4 +45,8 @@ class SAUListCellModel {
         this.statusStr,
         this.tips,
         this.carrierId});
+
+  static SAUListCellModel fromEasyDigitModel (SABEasyDigitModel model) {
+    return SAUListCellModel(title: model.title(),taskId: model.modelId.toString());
+  }
 }
