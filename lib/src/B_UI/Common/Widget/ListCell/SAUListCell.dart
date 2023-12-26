@@ -75,7 +75,6 @@ class _SAUListCellState extends State<SAUListCell> {
     if (widget.buttonsClick != null) {
       widget.buttonsClick!(value);
     }
-    widget.onTap(widget.model);
   }
 
   Widget _buildBody(BuildContext context) {
@@ -89,15 +88,15 @@ class _SAUListCellState extends State<SAUListCell> {
   }
 
   Widget _buildContents() {
-    var childs = <Widget>[];
-    childs.add(Container(
+    var children = <Widget>[];
+    children.add(Container(
         padding: EdgeInsets.only(top: 5, bottom: 5),
         child: _buildContent()));
     if (!haveTitle && widget.model.showStatus) {
-      childs.add(_buildTitle());
+      children.add(_buildTitle());
     }
     return Stack(
-      children: childs,
+      children: children,
     );
   }
 
