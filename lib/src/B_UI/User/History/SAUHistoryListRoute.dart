@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/B_UI/Common/Widget/ListCell/SAUListCell.dart';
 import 'package:yourlucky/src/B_UI/Common/Widget/ListCell/SAUListCellModel.dart';
-import 'package:yourlucky/src/B_UI/Common/Widget/toast.dart';
+import 'package:yourlucky/src/B_UI/Common/Widget/SAUToastWidget.dart';
 import 'package:yourlucky/src/B_UI/EasyStrategy/SAUStrategyResultRoute.dart';
 import 'package:yourlucky/src/B_UI/User/History/SAUEditListItem.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABEasyDetailBusiness.dart';
@@ -41,7 +41,7 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
           child:  TextButton(onPressed:(){
             Navigator.of(context).pop();
             //_deleteBank();
-            ToastWidget.show("你点击了删除 $positionNow");
+            SAUToastWidget.show("你点击了删除 $positionNow");
           },
             child: Text("删除",style: TextStyle(fontSize: 16,color:Colors.blue),),),),
         SizedBox(height: 10,),

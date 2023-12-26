@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/A_Context/SACNavigator.dart';
 import 'package:yourlucky/src/A_Context/SACRouteUrl.dart';
-import 'package:yourlucky/src/B_UI/Common/Widget/toast.dart';
+import 'package:yourlucky/src/B_UI/Common/Widget/SAUToastWidget.dart';
 import 'package:yourlucky/src/D_Business/User/SABLogInBusiness.dart';
 import 'package:yourlucky/src/E_Service/SASLocalizationsService.dart';
 
@@ -84,7 +84,7 @@ class SAUSignInRouteState extends State<SAUSignInRoute> {
             case 2:
               return TextButton(
                 onPressed: () => business.signIn((String code, String message) {
-                  ToastWidget.show("message:" + message);
+                  SAUToastWidget.show("message:" + message);
                   print(message);
                   if ('成功' == message) {
                     SACNavigator.pop(context);
@@ -96,7 +96,7 @@ class SAUSignInRouteState extends State<SAUSignInRoute> {
               return TextButton(
                 onPressed: () {
                   business.sendPasswordResetEmail();
-                  ToastWidget.show("请前往邮箱查看重置邮件。");
+                  SAUToastWidget.show("请前往邮箱查看重置邮件。");
                 },
                 child: Text(SASLocalizationsService.userForget(context)),
               );
