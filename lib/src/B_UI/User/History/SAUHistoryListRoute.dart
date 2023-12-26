@@ -90,9 +90,18 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: backIconButton(context),
         title: Text('历史'),
       ),
       body: _buildBody(),
+    );
+  }
+
+
+  IconButton backIconButton(BuildContext context) {
+    return IconButton(
+        icon: Icon(Icons.arrow_back_ios),
+        onPressed: (){}
     );
   }
 }
