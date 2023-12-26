@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/B_UI/Common/Widget/Button/SAUButtonModel.dart';
-import 'SAUDividerView.dart';
+import '../SAUDividerView.dart';
 
 typedef ButtonRowsButtonClick = Function(SAUButtonModel value);
 

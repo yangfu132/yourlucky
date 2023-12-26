@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/B_UI/Common/Widget/Button/SAUBottomButtonBarModel.dart';
 import 'package:yourlucky/src/B_UI/Common/Widget/Button/SAUButtonModel.dart';
-import 'SAUButtonRowsView.dart';
-import 'SAUDividerView.dart';
-import 'SAUImageInputView.dart';
+import '../Button/SAUButtonRowsView.dart';
+import '../SAUDividerView.dart';
+import '../Image/SAUImageInputView.dart';
 import 'SAUListCellModel.dart';
 import 'SAUListItemView.dart';
 
@@ -126,7 +126,7 @@ class _SAUListCellState extends State<SAUListCell> {
 
   Widget _buildTitle() {
     var haveDivider = haveTitle ? true : false;
-    double titleWidth = widget.model.showStatus ? 260 : 320;
+    double titleWidth = widget.model.showStatus ? 200 : 260;
     double titleFontSize = widget.model.title.isNotEmpty ? 16 : 14;
     var title = widget.model.title.isNotEmpty ? widget.model.title : widget.model.tips;
     var titleColor =
@@ -164,7 +164,9 @@ class _SAUListCellState extends State<SAUListCell> {
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.normal,
-                          color: widget.model.statusStrColor))),
+                          color: widget.model.statusStrColor)
+                  )
+              ),
             ],
           ),
           Offstage(

@@ -8,16 +8,16 @@ import 'package:yourlucky/src/B_UI/User/History/SAUEditListItem.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABEasyDetailBusiness.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 
-class SAUHistoryRoute extends StatefulWidget {
-  SAUHistoryRoute({Key? key, this.title}) : super(key: key);
+class SAUHistoryListRoute extends StatefulWidget {
+  SAUHistoryListRoute({Key? key, this.title}) : super(key: key);
   final String? title;
   @override
-  SAUHistoryRouteState createState() {
-    return SAUHistoryRouteState();
+  SAUHistoryListRouteState createState() {
+    return SAUHistoryListRouteState();
   }
 }
 
-class SAUHistoryRouteState extends State<SAUHistoryRoute> {
+class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
   List<SABEasyDigitModel> historyData = [];
   List<GlobalKey<SAUEditListItemState>> listKey = [];
   int positionNow=0;
@@ -30,36 +30,6 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
     });
   }
 
-  Widget _rowWidget(SABEasyDigitModel model,int index) {
-    return SAUEditListItem(
-      index,
-      new ListTile(
-        title: Text(model.title()),
-        trailing: Text(model.describe()),
-        onTap: () async {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            SABEasyDetailBusiness detailBusiness = SABEasyDetailBusiness(model);
-            return SAUStrategyResultRoute(detailBusiness.outputDetailModel());
-          }));
-        },
-      ),
-      moveKey: listKey[index],
-      onStart:(){
-        // 1.设置movekey
-        listKey.forEach((bankKey){//2.循环关闭其他item
-          if (bankKey!=listKey[index]) {
-            bankKey.currentState?.close();
-          }
-        });
-      }
-    ,delete: (position){
-      positionNow=position;
-      showLoginDialog();
-    },change: (position){
-      ToastWidget.show("你点击了修改 $position");
-    },);
-  }
-
   void showLoginDialog() {
 
     showModalBottomSheet(context: context, builder: (context){
@@ -70,7 +40,7 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
         Container(height: 50,width:double.infinity,margin:EdgeInsets.only(left: 15,right: 15),
           child:  TextButton(onPressed:(){
             Navigator.of(context).pop();
-            _deleteBank();
+            //_deleteBank();
             ToastWidget.show("你点击了删除 $positionNow");
           },
             child: Text("删除",style: TextStyle(fontSize: 16,color:Colors.blue),),),),
@@ -81,8 +51,7 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
     });
   }
 
-  void _deleteBank(){
-    SABEasyDigitModel model = historyData[positionNow];
+  void _deleteBank(SABEasyDigitModel model){
     SACContext.easyStore().delete(model);
     listKey.removeAt(positionNow);
     historyData.removeAt(positionNow);
@@ -101,10 +70,17 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
             return SAUListCell(
               model: cellModel,
               onTap: (value) => {
-
+                Navigator.push(context,
+                  MaterialPageRoute(builder: (context) {
+                    SABEasyDetailBusiness detailBusiness = SABEasyDetailBusiness(model);
+                    return SAUStrategyResultRoute(detailBusiness.outputDetailModel());
+                  })
+                )
               },
               buttonsClick: (value) => {
-
+                if ('delete' == value.code) {
+                  _deleteBank(model)
+                }
               },
             );
           });
