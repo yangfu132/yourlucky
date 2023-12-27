@@ -21,11 +21,11 @@ class SAUUserRouteState extends State<SAUUserRoute> {
         'key': SASLocalizationsService.userFeedback(context)
       },
       {
-        'value': SACRouteUrl.history,
+        'value': SACRouteUrl.developer,
         'key': SASLocalizationsService.userDevelopTask(context)
       },
       {
-        'value': SACRouteUrl.history,
+        'value': SACRouteUrl.friends,
         'key': SASLocalizationsService.userFriends(context)
       },
       {
@@ -55,6 +55,10 @@ class SAUUserRouteState extends State<SAUUserRoute> {
       {
         'value': SACRouteUrl.history,
         'key': SASLocalizationsService.userHistory(context)
+      },
+      {
+        'value': SACRouteUrl.detail,
+        'key': SASLocalizationsService.detail(context)
       },
     ];
   }

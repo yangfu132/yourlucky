@@ -55,23 +55,7 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
           //itemExtent: 50.0, //强制高度为50.0
           itemBuilder: (BuildContext context, int index) {
             SABEasyDigitModel model = historyData[index];
-            SAUListCellModel cellModel = SAUListCellModel.fromEasyDigitModel(model);
-            return SAUListCell(
-              model: cellModel,
-              onTap: (value) => {
-                Navigator.push(context,
-                  MaterialPageRoute(builder: (context) {
-                    SABEasyDetailBusiness detailBusiness = SABEasyDetailBusiness(model);
-                    return SAUStrategyResultRoute(detailBusiness.outputDetailModel());
-                  })
-                )
-              },
-              buttonsClick: (value) => {
-                if ('delete' == value.code) {
-                  _deleteHistory(model)
-                }
-              },
-            );
+            return listCell(model);
           });
     } else {
       return ListView.builder(
@@ -84,6 +68,26 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
             );
           });
     }
+  }
+
+  Widget listCell (SABEasyDigitModel model) {
+    SAUListCellModel cellModel = SAUListCellModel.fromEasyDigitModel(model);
+    return SAUListCell(
+      model: cellModel,
+      onTap: (value) => {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) {
+              SABEasyDetailBusiness detailBusiness = SABEasyDetailBusiness(model);
+              return SAUStrategyResultRoute(detailBusiness.outputDetailModel());
+            })
+        )
+      },
+      buttonsClick: (value) => {
+        if ('delete' == value.code) {
+          _deleteHistory(model)
+        }
+      },
+    );
   }
 
   @override

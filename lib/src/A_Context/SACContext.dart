@@ -1,6 +1,7 @@
 ///遇到的问题：
 ///问题1：如何全局引用context？
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:yourlucky/src/C_ViewModel/Strategy/SABEasyStrategyInfoBusiness.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitBusiness.dart';
 import 'package:yourlucky/src/D_Business/User/SABSettingBusiness.dart';
@@ -59,6 +60,11 @@ class SACContext {
         },
       ),
     );
+  }
+
+  ///拷贝到剪切板
+  static void copyInfoToClipboard(String detail) {
+    Clipboard.setData(ClipboardData(text: detail));
   }
 
   ///Business 服务目录
