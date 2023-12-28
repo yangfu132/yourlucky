@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/A_Context/SACNavigator.dart';
-import 'package:yourlucky/src/B_UI/Base/Widget/toast.dart';
+import 'package:yourlucky/src/B_UI/Common/Widget/SAUToastWidget.dart';
 import 'package:yourlucky/src/D_Business/User/SABLogInBusiness.dart';
 import 'package:yourlucky/src/E_Service/SASLocalizationsService.dart';
 
@@ -75,7 +75,7 @@ class SAUSignupRouteState extends State<SAUSignupRoute> {
             case 3:
               return TextButton(
                 onPressed: () => business.signUp((String code, String message) {
-                  ToastWidget.show("message:" + message);
+                  SAUToastWidget.show("message:" + message);
                   SACNavigator.pop(context);
                 }),
                 child: Text(SASLocalizationsService.userSignUp(context)),

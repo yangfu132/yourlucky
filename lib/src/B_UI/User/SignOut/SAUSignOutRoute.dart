@@ -13,16 +13,16 @@ class SAUSignOutRoute extends StatefulWidget {
 
 class SAUSignOutRouteState extends State<SAUSignOutRoute> {
   List settingsList = <Map>[
-    {'value': SACRouteUrl.history, 'key': 'Feedback'},
-    {'value': SACRouteUrl.history, 'key': 'Develop Task'},
-    {'value': SACRouteUrl.history, 'key': 'Friends'},
-    {'value': SACRouteUrl.history, 'key': 'About'},
-    {'value': SACRouteUrl.history, 'key': 'Rate And Review'},
-    {'value': SACRouteUrl.history, 'key': 'Setting'},
+    {'value': SACRouteUrl.feedback, 'key': 'Feedback'},
+    {'value': SACRouteUrl.developer, 'key': 'Develop Task'},
+    {'value': SACRouteUrl.friends, 'key': 'Friends'},
+    {'value': SACRouteUrl.about, 'key': 'About'},
+    {'value': SACRouteUrl.rateAndReview, 'key': 'Rate And Review'},
+    {'value': SACRouteUrl.setting, 'key': 'Setting'},
     {'value': SACRouteUrl.logIn, 'key': 'Log In'},
-    {'value': SACRouteUrl.history, 'key': 'Log Out'},
-    {'value': SACRouteUrl.history, 'key': 'Debug'},
-    {'value': SACRouteUrl.history, 'key': '趋避'},
+    {'value': SACRouteUrl.logOut, 'key': 'Log Out'},
+    {'value': SACRouteUrl.debug, 'key': 'Debug'},
+    {'value': SACRouteUrl.expertCategory, 'key': '趋避'},
     {'value': SACRouteUrl.history, 'key': 'History'},
   ];
 

@@ -17,6 +17,10 @@ class SABDiagramsDetailModel extends SABBaseModel {
       'value': '',
     },
     {
+      'key': '时间',
+      'value': '',
+    },
+    {
       'key': '卦体',
       'value': '',
     },

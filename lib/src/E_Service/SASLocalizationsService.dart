@@ -80,6 +80,10 @@ class SASLocalizationsService extends SABBaseService {
   static String userCategory(BuildContext context) {
     return localizationsString(context, "门类", "Category");
   }
+
+  static String detail(BuildContext context) {
+    return localizationsString(context, "详情", "Detail");
+  }
 }
 
 //Locale代理类

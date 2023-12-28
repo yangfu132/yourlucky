@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter_perpttual_calendar/flutter_perpttual_calendar.dart';
+import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseBusiness.dart';
 import 'package:yourlucky/src/E_Service/Sqlite/SASSqliteService.dart';
 
@@ -9,8 +10,9 @@ import 'SABEasyDigitModel.dart';
 class SABEasyDigitBusiness extends SABBaseBusiness {
   final SASSqliteService sqlite = SASSqliteService();
 
-  ///创建
+  ///创建测试
   SABEasyDigitModel create() {
+    SABEasyDigitModel outEasyModel;
     String strEasyGoal = '测试';
     String strUsefulDeity = '子孙';
     List<int> listEasyData = generateEasyArray();
@@ -19,13 +21,17 @@ class SABEasyDigitBusiness extends SABBaseBusiness {
     PWBCalendarBusiness calendar = PWBCalendarBusiness(easyDateTime);
     String stringTime = calendar.stringFromDate();
 
-    SABEasyDigitModel outEasyModel = SABEasyDigitModel(
+    outEasyModel = SABEasyDigitModel(
       modelId: null,
       strEasyGoal: strEasyGoal,
       strUsefulDeity: strUsefulDeity,
       stringTime: stringTime,
       listEasyData: listEasyData,
     );
+
+    if (1 == SACContext.setting().autoSave.intValue) {
+      save(outEasyModel);
+    }
     return outEasyModel;
   }
 
@@ -66,7 +72,11 @@ class SABEasyDigitBusiness extends SABBaseBusiness {
     List<SABEasyDigitModel> dataList = <SABEasyDigitModel>[];
     await sqlite.query('easy', (json) {
       dataList.add(SABEasyDigitModel.fromJson(json));
+      refresh(dataList);
     });
-    refresh(dataList);
+  }
+
+  void delete(SABEasyDigitModel digitModel) {
+    sqlite.deleteModel(digitModel);
   }
 }

@@ -31,6 +31,7 @@ dependencies:
   flutter_perpttual_calendar: ^1.0.0+7
   sqflite:
   path:
+  cached_network_image:
 
   #---------- third party plugin
   cupertino_icons: # new

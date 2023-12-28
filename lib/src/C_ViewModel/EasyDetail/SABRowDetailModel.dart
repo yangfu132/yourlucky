@@ -10,23 +10,13 @@ import '../EasyAnalysis/SABEasyAnalysisRowModel.dart';
 import 'SABSymbolDetailModel.dart';
 
 class SABRowDetailModel extends SABBaseModel {
-  SABRowDetailModel(this.inputAnalysisRow) {
-    fromSymbol = SABSymbolDetailModel(
-      symbolHealthDes: fromSymbolHealthDes(),
-      monthRelation: analysisModel().getMonthRelation(EasyTypeEnum.from),
-      dayRelation: analysisModel().getDayRelation(EasyTypeEnum.from),
-    );
-    toSymbol = SABSymbolDetailModel(
-      symbolHealthDes: toSymbolHealthDes(),
-      monthRelation: toMonthRelation(),
-      dayRelation: toDayRelation(),
-    );
-    hideSymbol = SABSymbolDetailModel(
-      symbolHealthDes: hideSymbolHealthDes(),
-      monthRelation: hideMonthRelation(),
-      dayRelation: hideDayRelation(),
-    );
-  }
+  SABRowDetailModel({
+    required this.inputAnalysisRow,
+    required this.fromSymbol,
+    required this.toSymbol,
+    required this.hideSymbol,
+    required this.bStaticEasy,
+  }) ;
   final SABEasyAnalysisRowModel inputAnalysisRow;
 
   late final String stringDeity =
@@ -44,6 +34,8 @@ class SABRowDetailModel extends SABBaseModel {
   late final SABSymbolDetailModel fromSymbol;
   late final SABSymbolDetailModel toSymbol;
   late final SABSymbolDetailModel hideSymbol;
+
+  final bool bStaticEasy;
 
   void check() {
     inputAnalysisRow.check();
@@ -69,6 +61,60 @@ class SABRowDetailModel extends SABBaseModel {
     super.check();
   }
 
+  List<Map> resultList(EasyTypeEnum easyType) {
+    List<Map> result ;
+    switch(easyType) {
+      case EasyTypeEnum.from:
+        result = fromSymbol.resultList();
+        break;
+      case EasyTypeEnum.to:
+        result = toSymbol.resultList();
+        break;
+      case EasyTypeEnum.hide:
+        result = hideSymbol.resultList();
+        break;
+      default:
+        result = List<Map>.empty(growable: false);
+        break;
+    }
+    return result;
+  }
+
+  EasyTypeEnum getNextEasyType(EasyTypeEnum currentType) {
+    bool hasMove = bStaticEasy;
+    EasyTypeEnum resultType = EasyTypeEnum.type_null;
+    switch(currentType) {
+      case EasyTypeEnum.from:
+        if (bStaticEasy) {
+          resultType = EasyTypeEnum.hide;
+        }else {
+          resultType = EasyTypeEnum.to;
+        }
+        break;
+      case EasyTypeEnum.to:
+        resultType = EasyTypeEnum.hide;
+        break;
+      case EasyTypeEnum.hide:
+        resultType = EasyTypeEnum.from;
+        break;
+    }
+    return resultType;
+  }
+
+  String getSymbolName(EasyTypeEnum easyTypeEnum) {
+    String strResult = 'SABRowDetailModel.getSymbolName';
+    if (easyTypeEnum == EasyTypeEnum.from) {
+      strResult = fromSymbol.getSymbolName();
+    } else if (easyTypeEnum == EasyTypeEnum.to) {
+      strResult = toSymbol.getSymbolName();
+    } else if (easyTypeEnum == EasyTypeEnum.hide) {
+      strResult = hideSymbol.getSymbolName();
+    } else {
+      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
+    }
+    return strResult;
+  }
+
   String hideSymbolHealthDes() {
     String stringResult = "";
     if ('用神' == this.stringDeity) {
@@ -81,15 +127,6 @@ class SABRowDetailModel extends SABBaseModel {
     return stringResult;
   }
 
-  String fromSymbolHealthDes() {
-    String stringResult = "";
-    final stringFromHealth = healthModel().fromSymbol.healthDescription();
-    stringResult = wordsModel().getSymbolName(EasyTypeEnum.from) +
-        '[' +
-        stringFromHealth +
-        ']';
-    return stringResult;
-  }
 
   String toSymbolHealthDes() {
     String stringResult = "";
@@ -158,44 +195,4 @@ class SABRowDetailModel extends SABBaseModel {
   SABWordsRowModel wordsModel() {
     return logicModel().inputWordsRow;
   }
-
-  List<Map> resultList = [
-    {
-      ///强弱、动静、四时
-      'key': '基本信息',
-      'value': '',
-    },
-    {
-      'key': '六神类象',
-      'value': '',
-    },
-    {
-      'key': '地支类象',
-      'value': '',
-    },
-    {
-      'key': '六合',
-      'value': '',
-    },
-    {
-      'key': '月将',
-      'value': '',
-    },
-    {
-      'key': '日将',
-      'value': '',
-    },
-    {
-      'key': '地支方位',
-      'value': '',
-    },
-    {
-      'key': '所属八卦',
-      'value': '',
-    },
-    {
-      'key': '调试信息',
-      'value': '日志',
-    },
-  ];
 }

@@ -14,6 +14,7 @@ class SABDayModel extends SABBaseModel {
   final String stringSky;
   final String stringElement;
 
+  //假设日的健康值为10/365,也就是日实际代表的是一旬；爻的健康值实际上是根据日月计算出来的；
   final double health = 100.0;
 
   ///输出值

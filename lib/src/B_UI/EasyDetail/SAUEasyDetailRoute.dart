@@ -1,6 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourlucky/src/A_Context/SACContext.dart';
+import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/B_UI/EasyDetail/SAUSubDetailRoute.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABEasyDetailModel.dart';
 
@@ -140,12 +141,29 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
   List<Widget> getSymbolList(
       final listKey, final listTitle, final listContent) {
     List<Widget> result = [];
-    for (int nColumn = 0; nColumn < listContent.length; nColumn++) {
-      int weight = listTitle[nColumn].length;
+    int listContentLength = listContent.length;
+    int listTitleLength = listTitle.length;
+    int listKeyLength = listKey.length;
+    int weight = 1;
+    String strKey = 'Error';
+    for (int nColumn = 0; nColumn < listContentLength; nColumn++) {
+
+      if (nColumn < listTitleLength) {
+        weight = listTitle[nColumn].length;
+      } else {
+        coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      }
+
+      if (nColumn < listKeyLength) {
+        strKey = listContent[nColumn];
+      } else {
+        coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      }
+
       Widget widgetItem = getSymbolWidget(
         listContent[nColumn],
         weight,
-        getColor(listKey[nColumn]),
+        getColor(strKey),
       );
       result.add(widgetItem);
     }

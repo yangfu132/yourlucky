@@ -1,8 +1,10 @@
 ///遇到的问题：
 ///问题1：如何全局引用context？
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:yourlucky/src/C_ViewModel/Strategy/SABEasyStrategyInfoBusiness.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABEasyDigitBusiness.dart';
+import 'package:yourlucky/src/D_Business/User/SABSettingBusiness.dart';
 import 'package:yourlucky/src/E_Service/SABSingletonService.dart';
 
 import 'SACGlobal.dart';
@@ -20,6 +22,8 @@ class SACContext {
   final SABEasyDigitBusiness _storeBusiness = SABEasyDigitBusiness();
   final SABEasyStrategyInfoBusiness _categoryBusiness =
       SABEasyStrategyInfoBusiness();
+
+  final SABSettingBusiness _settingBusiness = SABSettingBusiness();
 
   static bool simulator() {
     return true;
@@ -58,6 +62,11 @@ class SACContext {
     );
   }
 
+  ///拷贝到剪切板
+  static void copyInfoToClipboard(String detail) {
+    Clipboard.setData(ClipboardData(text: detail));
+  }
+
   ///Business 服务目录
   static SABEasyStrategyInfoBusiness expertCategory() {
     SACContext businessContext = SABSingletonService.getObject('SACContext');
@@ -67,5 +76,10 @@ class SACContext {
   static SABEasyDigitBusiness easyStore() {
     SACContext businessContext = SABSingletonService.getObject('SACContext');
     return businessContext._storeBusiness;
+  }
+
+  static SABSettingBusiness setting() {
+    SACContext businessContext = SABSingletonService.getObject('SACContext');
+    return businessContext._settingBusiness;
   }
 }

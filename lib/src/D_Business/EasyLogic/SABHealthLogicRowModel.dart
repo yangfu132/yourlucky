@@ -29,11 +29,11 @@ class SABHealthLogicRowModel extends SABBaseModel {
 
   String? getStringHealth(EasyTypeEnum easyTypeEnum) {
     if (easyTypeEnum == EasyTypeEnum.from) {
-      return fromSymbol.healthSymbol.healthDescription();
+      return fromSymbol.inputHealthSymbol.healthDescription();
     } else if (easyTypeEnum == EasyTypeEnum.to) {
-      return toSymbol.healthSymbol.healthDescription();
+      return toSymbol.inputHealthSymbol.healthDescription();
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
-      return hideSymbol.healthSymbol.healthDescription();
+      return hideSymbol.inputHealthSymbol.healthDescription();
     } else {
       coLog(
           StackTrace.current, LogTypeEnum.error, 'easyTypeEnum:$easyTypeEnum');

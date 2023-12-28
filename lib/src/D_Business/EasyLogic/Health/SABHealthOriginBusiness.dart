@@ -461,9 +461,9 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     SABLogicSymbolModel logicSymbol,
     SABHealthDiagramsModel diagrams,
   ) {
-    int intRow = logicSymbol.wordsSymbol.intRow;
+    int intRow = logicSymbol.inputWordsSymbol.intRow;
     return SABHealthSymbolModel(
-        logicSymbol: logicSymbol,
+        inputLogicSymbol: logicSymbol,
         critical: healthCriticalValue(),
         doubleHealth: symbolBasicHealthAtRow(intRow, EasyTypeEnum.from),
         outRight:
@@ -474,9 +474,9 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     SABLogicSymbolModel logicSymbol,
     SABHealthDiagramsModel diagrams,
   ) {
-    int intRow = logicSymbol.wordsSymbol.intRow;
+    int intRow = logicSymbol.inputWordsSymbol.intRow;
     return SABHealthSymbolModel(
-        logicSymbol: logicSymbol,
+        inputLogicSymbol: logicSymbol,
         critical: healthCriticalValue(),
         doubleHealth: symbolBasicHealthAtRow(intRow, EasyTypeEnum.to),
         outRight: OutRightEnum.RIGHT_NULL);
@@ -486,9 +486,9 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     SABLogicSymbolModel logicSymbol,
     SABHealthDiagramsModel diagrams,
   ) {
-    int intRow = logicSymbol.wordsSymbol.intRow;
+    int intRow = logicSymbol.inputWordsSymbol.intRow;
     return SABHealthSymbolModel(
-        logicSymbol: logicSymbol,
+        inputLogicSymbol: logicSymbol,
         critical: healthCriticalValue(),
         doubleHealth: symbolBasicHealthAtRow(intRow, EasyTypeEnum.hide),
         outRight: OutRightEnum.RIGHT_HIDE);
@@ -528,8 +528,8 @@ class SABHealthOriginBusiness extends SABLogBusiness {
       SABHealthRowModel rowModel = SABHealthRowModel(
         inputLogicRow: logicModel,
         fromSymbol: fromSymbol(logicModel.fromSymbol, diagrams),
-        toSymbol: toSymbol(logicModel.fromSymbol, diagrams),
-        hideSymbol: hideSymbol(logicModel.fromSymbol, diagrams),
+        toSymbol: toSymbol(logicModel.toSymbol, diagrams),
+        hideSymbol: hideSymbol(logicModel.hideSymbol, diagrams),
       );
 
       healthModel.addRowModel(rowModel);

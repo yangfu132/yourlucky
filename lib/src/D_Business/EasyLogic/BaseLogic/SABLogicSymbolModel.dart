@@ -5,7 +5,7 @@ import 'package:yourlucky/src/D_Business/EasyWords/SABWordsSymbolModel.dart';
 
 class SABLogicSymbolModel extends SABBaseModel {
   SABLogicSymbolModel({
-    required this.wordsSymbol,
+    required this.inputWordsSymbol,
     required this.isOnMonth,
     required this.isMonthPair,
     required this.bMonthBorn,
@@ -21,7 +21,7 @@ class SABLogicSymbolModel extends SABBaseModel {
     required this.stringSeason,
     required this.isEffectAble,
   });
-  final SABWordsSymbolModel wordsSymbol;
+  final SABWordsSymbolModel inputWordsSymbol;
 
   final bool isOnMonth;
   final bool isMonthPair;
@@ -41,7 +41,7 @@ class SABLogicSymbolModel extends SABBaseModel {
   final bool isEffectAble;
 
   void check() {
-    wordsSymbol.check();
+    inputWordsSymbol.check();
     if (stringSeason.isEmpty) {
       coLog(StackTrace.current, LogTypeEnum.check, 'stringSeason.isEmpty');
     }

@@ -18,11 +18,13 @@ class SABEasyDigitModel extends SABBaseModel {
 
   int? modelId;
 
+  String easyRemark = '未保存';
+
   //属性：实例的随机数数组
   final List<int> listEasyData;
 
   //属性：实例的发生目的
-  final String strEasyGoal;
+  String strEasyGoal = "";
 
   //属性：实例的用神
   final String strUsefulDeity;

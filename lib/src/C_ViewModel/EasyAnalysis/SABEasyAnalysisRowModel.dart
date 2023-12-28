@@ -14,11 +14,11 @@ class SABEasyAnalysisRowModel extends SABBaseModel {
   final SABHealthLogicRowModel healthLogicRow;
 
   late final SABEasyAnalysisSymbolModel fromSymbol = SABEasyAnalysisSymbolModel(
-      inputHealthLogic: this.healthLogicRow.fromSymbol);
+      inputHealthLogicSymbol: this.healthLogicRow.fromSymbol);
   late final SABEasyAnalysisSymbolModel toSymbol = SABEasyAnalysisSymbolModel(
-      inputHealthLogic: this.healthLogicRow.toSymbol);
+      inputHealthLogicSymbol: this.healthLogicRow.toSymbol);
   late final SABEasyAnalysisSymbolModel hideSymbol = SABEasyAnalysisSymbolModel(
-      inputHealthLogic: this.healthLogicRow.hideSymbol);
+      inputHealthLogicSymbol: this.healthLogicRow.hideSymbol);
 
   String _symbolRelation = '';
 

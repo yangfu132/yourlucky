@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:yourlucky/src/A_Context/SACContext.dart';
+import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABDiagramsDetailModel.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABEasyDetailModel.dart';
+import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABRowDetailModel.dart';
 
 ///功能：一般性推断结果
 class SAUSubDetailRoute extends StatefulWidget {
@@ -13,35 +16,46 @@ class SAUSubDetailRoute extends StatefulWidget {
     return _SAUEasyResultState();
   }
 
-  List<Map> resultList() {
-    if (0 == intIndex) {
-      return inputDetailModel.diagramsDetailModel.resultList;
-    } else {
-      return inputDetailModel.rowModelAtRow(intIndex - 1).resultList;
-    }
-  }
 }
 
+
 class _SAUEasyResultState extends State<SAUSubDetailRoute> {
+  EasyTypeEnum currentEasyType = EasyTypeEnum.from;
   @override
   void initState() {
     super.initState();
   }
 
+  Widget resultActionTitle() {
+    if (0 == widget.intIndex) {
+      return Text('备注');
+    } else {
+      return Text('切换');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            widget.inputDetailModel.wordsModel().inputDigitModel.stringTime),
+            resultTitle()),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  resultAction();
+                },
+                child: resultActionTitle(),
+                style: SACContext.textButtonStyle(),
+              ),
+            ],
       ),
       body: ListView.builder(
-          itemCount: widget.resultList().length * 2,
+          itemCount: resultList().length * 2,
           //itemExtent: 50.0, //强制高度为50.0
           itemBuilder: (BuildContext context, int index) {
             int dataIndex = index ~/ 2;
             int kv = index % 2;
-            Map value = widget.resultList()[dataIndex];
+            Map value = resultList()[dataIndex];
             if (kv > 0)
               return ListTile(title: Text(value['value']));
             else
@@ -55,5 +69,47 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
             //return ListTile(title: Text(value['key']));
           }),
     );
+  }
+
+  List<Map> resultList() {
+    if (0 == widget.intIndex) {
+      return widget.inputDetailModel.diagramsDetailModel.resultList;
+    } else {
+      SABRowDetailModel rowModel = widget.inputDetailModel.rowModelAtRow(widget.intIndex - 1);
+      return rowModel.resultList(currentEasyType);
+    }
+  }
+
+  String resultTitle() {
+    if (0 == widget.intIndex) {
+      return widget.inputDetailModel.digitModel().easyRemark;
+    } else {
+      SABRowDetailModel rowModel = widget.inputDetailModel.rowModelAtRow(widget.intIndex - 1);
+      String result = 'type：';
+      switch(currentEasyType) {
+        case EasyTypeEnum.from:
+          result = '本：';
+          break;
+        case EasyTypeEnum.to:
+          result = '变：';
+          break;
+        case EasyTypeEnum.hide:
+          result = '伏：';
+          break;
+        default:
+          break;
+      }
+      return result + rowModel.getSymbolName(currentEasyType);
+    }
+  }
+
+  void resultAction(){
+    if (0 == widget.intIndex) {
+    } else {
+      SABRowDetailModel rowModel = widget.inputDetailModel.rowModelAtRow(widget.intIndex - 1);
+      currentEasyType = rowModel.getNextEasyType(currentEasyType);
+      setState(() {
+      });
+    }
   }
 }

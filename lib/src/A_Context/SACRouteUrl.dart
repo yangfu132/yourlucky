@@ -1,22 +1,29 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:yourlucky/src/B_UI/Common/Route/SAUDetailRoute.dart';
 import 'package:yourlucky/src/B_UI/User/About/SAUAboutRoute.dart';
 import 'package:yourlucky/src/B_UI/User/Debug/SAUDebugRoute.dart';
 import 'package:yourlucky/src/B_UI/User/EasyStrategy/SAUEasyStrategyRoute.dart';
 import 'package:yourlucky/src/B_UI/User/Feedback/SAUFeedbackRoute.dart';
+import 'package:yourlucky/src/B_UI/User/History/SAUHistoryListRoute.dart';
 import 'package:yourlucky/src/B_UI/User/History/SAUHistoryRoute.dart';
 import 'package:yourlucky/src/B_UI/User/Setting/SAUSettingRoute.dart';
 import 'package:yourlucky/src/B_UI/User/SignIn/SAUSignInRoute.dart';
 import 'package:yourlucky/src/B_UI/User/SignIn/SAUSignupRoute.dart';
+import 'package:yourlucky/src/B_UI/User/SignOut/SAUSignOutRoute.dart';
 
 class SACRouteUrl {
   static const feedback = 'feedback';
+  static const developer = 'developer';
+  static const friends = 'friends';
   static const about = 'about';
   static const rateAndReview = 'rateAndReview';
   static const setting = 'setting';
   static const history = 'history';
+  static const detail = 'detail';
   static const logIn = 'logIn';
+  static const logOut = 'logOut';
   static const signUp = 'signUp';
   static const expertCategory = 'expertCategory';
   static const debug = 'debug';
@@ -32,6 +39,12 @@ Widget mapRouteToPage(String route, Object? arguments) {
     case SACRouteUrl.feedback:
       widget = SAUFeedbackRoute();
       break;
+    case SACRouteUrl.developer:
+      widget = SAUAboutRoute();
+      break;
+    case SACRouteUrl.friends:
+      widget = SAUAboutRoute();
+      break;
     case SACRouteUrl.about:
       widget = SAUAboutRoute();
       break;
@@ -40,6 +53,9 @@ Widget mapRouteToPage(String route, Object? arguments) {
       break;
     case SACRouteUrl.logIn:
       widget = SAUSignInRoute();
+      break;
+    case SACRouteUrl.logOut:
+      widget = SAUSignOutRoute();
       break;
     case SACRouteUrl.signUp:
       widget = SAUSignupRoute();
@@ -51,7 +67,10 @@ Widget mapRouteToPage(String route, Object? arguments) {
       widget = SAUEasyStrategyRoute();
       break;
     case SACRouteUrl.history:
-      widget = SAUHistoryRoute();
+      widget = SAUHistoryListRoute();
+      break;
+    case SACRouteUrl.detail:
+      widget = SAUDetailRoute();
       break;
     default:
       break;
