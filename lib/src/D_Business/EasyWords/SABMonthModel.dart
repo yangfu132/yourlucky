@@ -13,7 +13,8 @@ class SABMonthModel extends SABBaseModel {
   final String stringElement;
 
   //假设日的健康值为30/365,也就是月实际代表的是一月，爻的健康值实际上是根据日月计算出来的；
-  final double health = 100.0;
+  final double health =
+      double.parse(SACContext.setting().monthHealth.stringValue);
 
   ///输出值
   final double monthOut = 1;
