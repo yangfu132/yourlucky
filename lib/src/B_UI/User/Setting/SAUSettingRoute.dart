@@ -13,7 +13,6 @@ class SAUSettingRoute extends StatefulWidget {
 
 class SAUSettingRouteState extends State<SAUSettingRoute> {
   List<SABSettingModel> settingList = [];
-  final textController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -27,39 +26,42 @@ class SAUSettingRouteState extends State<SAUSettingRoute> {
     // return Text('Waiting');
     int itemCount = settingList.length > 0 ? settingList.length : 1;
     return ListView.builder(
-        itemCount: itemCount,
-        itemBuilder: (BuildContext context, int index) {
-          SABSettingModel settingModel;
-          if (settingList.length > index) {
-            settingModel = settingList[index];
-            if (SettingTypeEnum.textField == settingModel.settingType) {
-              return _textFieldWidget(settingModel);
-            } else if (SettingTypeEnum.switchType == settingModel.settingType) {
-              return _switchRowWidget(settingModel);
-            } else {
-              return Text(settingModel.settingTitle);
-            }
+      itemCount: itemCount,
+      itemBuilder: (BuildContext context, int index) {
+        SABSettingModel settingModel;
+        if (settingList.length > index) {
+          settingModel = settingList[index];
+          if (SettingTypeEnum.textField == settingModel.settingType) {
+            return _textFieldWidget(settingModel);
+          } else if (SettingTypeEnum.switchType == settingModel.settingType) {
+            return _switchRowWidget(settingModel);
           } else {
-            settingModel = SACContext.setting().errorModel();
             return Text(settingModel.settingTitle);
           }
-        },
+        } else {
+          settingModel = SACContext.setting().errorModel();
+          return Text(settingModel.settingTitle);
+        }
+      },
     );
   }
 
-  Widget _textFieldWidget (SABSettingModel settingModel){
-    return Stack(alignment: Alignment.centerLeft,
+  Widget _textFieldWidget(SABSettingModel settingModel) {
+    final textController = TextEditingController();
+    textController.text = settingModel.stringValue;
+    return Stack(
+      alignment: Alignment.centerLeft,
       children: [
         Text(settingModel.settingTitle),
-        Padding(padding: EdgeInsets.only(left: 80),
-          child:
-          TextField(
+        Padding(
+          padding: EdgeInsets.only(left: 80),
+          child: TextField(
             controller: textController,
-            style: TextStyle(fontSize: 14,color: Color(0xFF333333)),
+            style: TextStyle(fontSize: 14, color: Color(0xFF333333)),
             minLines: 1,
             maxLines: 1,
             keyboardType: TextInputType.number,
-            onChanged: (value){
+            onChanged: (value) {
               settingModel.stringValue = value;
               SACContext.setting().save(settingModel);
               setState(() {});
@@ -70,24 +72,22 @@ class SAUSettingRouteState extends State<SAUSettingRoute> {
     );
   }
 
-  Widget _switchRowWidget (SABSettingModel settingModel){
+  Widget _switchRowWidget(SABSettingModel settingModel) {
     return Container(
-      child:
-        Row(
-          children: [
-            Text(settingModel.settingTitle),
-            Switch(
+      child: Row(
+        children: [
+          Text(settingModel.settingTitle),
+          Switch(
               value: 1 == settingModel.intValue,
-              onChanged: (value){
+              onChanged: (value) {
                 if (settingModel.settingKey != "waiting") {
                   settingModel.intValue = value ? 1 : 0;
                   SACContext.setting().save(settingModel);
                   setState(() {});
                 }
-              }
-            ),
-          ],
-        ),
+              }),
+        ],
+      ),
     );
   }
 

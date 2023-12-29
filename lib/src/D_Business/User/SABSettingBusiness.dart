@@ -33,12 +33,11 @@ class SABSettingBusiness extends SABBaseBusiness {
     return generateModel("error", "数据加载错误", SettingTypeEnum.textType);
   }
 
-  List<SABSettingModel> settingList(
-      void refresh(List<SABSettingModel> dataList)) {
-    List<SABSettingModel> settingList = [autoSave, dayHealth];
+  void settingList(void refresh(List<SABSettingModel> dataList)) {
     load((dataList) {
-      for (SABSettingModel saveModel in dataList) {
-        for (SABSettingModel settingModel in settingList) {
+      List<SABSettingModel> settingList = [autoSave, monthHealth, dayHealth];
+      for (SABSettingModel settingModel in settingList) {
+        for (SABSettingModel saveModel in dataList) {
           if (saveModel.settingKey == settingModel.settingKey) {
             settingModel.modelId = saveModel.modelId;
             settingModel.intValue = saveModel.intValue;
@@ -49,7 +48,6 @@ class SABSettingBusiness extends SABBaseBusiness {
       }
       refresh(settingList);
     });
-    return settingList;
   }
 
   ///保存
@@ -70,6 +68,7 @@ class SABSettingBusiness extends SABBaseBusiness {
     List<SABSettingModel> dataList = <SABSettingModel>[];
     await sqlite.query('setting', (json) {
       dataList.add(SABSettingModel.fromJson(json));
+    }, () {
       refresh(dataList);
     });
   }

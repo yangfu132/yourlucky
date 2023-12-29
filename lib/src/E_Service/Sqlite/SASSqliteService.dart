@@ -132,8 +132,8 @@ class SASSqliteService extends SABBaseService {
   }
 
   // A method that retrieves all the dogs from the dogs table.
-  Future<void> query(
-      String table, void createModel(Map<String, Object?> json)) async {
+  Future<void> query(String table, void createModel(Map<String, Object?> json),
+      void finish()) async {
     // Get a reference to the database.
     await openDataBase((db) async {
       // Query the table for all The Dogs.
@@ -141,6 +141,7 @@ class SASSqliteService extends SABBaseService {
       for (Map<String, dynamic> data in maps) {
         createModel(data);
       }
+      finish();
     });
   }
 
@@ -189,7 +190,7 @@ class SASSqliteService extends SABBaseService {
     query(fido.getModelName(), (json) {
       Dog.fromJson(json);
       print(Dog.fromJson(json));
-    });
+    }, () {});
 
     // Update Fido's age and save it to the database.
     fido = Dog(
@@ -203,7 +204,7 @@ class SASSqliteService extends SABBaseService {
     query(fido.getModelName(), (json) {
       Dog.fromJson(json);
       print(Dog.fromJson(json));
-    });
+    }, () {});
 
     // Delete Fido from the database.
     await deleteModel(fido);
@@ -211,7 +212,7 @@ class SASSqliteService extends SABBaseService {
     query(fido.getModelName(), (json) {
       Dog.fromJson(json);
       print(Dog.fromJson(json));
-    });
+    }, () {});
   }
 }
 

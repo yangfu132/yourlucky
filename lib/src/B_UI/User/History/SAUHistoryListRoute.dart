@@ -21,7 +21,7 @@ class SAUHistoryListRoute extends StatefulWidget {
 class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
   List<SABEasyDigitModel> historyData = [];
   List<GlobalKey<SAUEditListItemState>> listKey = [];
-  int positionNow=0;
+  int positionNow = 0;
   @override
   void initState() {
     super.initState();
@@ -31,7 +31,7 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
     });
   }
 
-  void _deleteHistory(SABEasyDigitModel model){
+  void _deleteHistory(SABEasyDigitModel model) {
     SAUAlertWidget.showTitle(context, '删除后将无法看到该条记录，请谨慎操作', [
       SAUAlertAction(title: '取消', isColorGrey: true),
       SAUAlertAction(
@@ -70,22 +70,18 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
     }
   }
 
-  Widget listCell (SABEasyDigitModel model) {
+  Widget listCell(SABEasyDigitModel model) {
     SAUListCellModel cellModel = SAUListCellModel.fromEasyDigitModel(model);
     return SAUListCell(
       model: cellModel,
       onTap: (value) => {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) {
-              SABEasyDetailBusiness detailBusiness = SABEasyDetailBusiness(model);
-              return SAUStrategyResultRoute(detailBusiness.outputDetailModel());
-            })
-        )
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          SABEasyDetailBusiness detailBusiness = SABEasyDetailBusiness(model);
+          return SAUStrategyResultRoute(detailBusiness.outputDetailModel());
+        }))
       },
       buttonsClick: (value) => {
-        if ('delete' == value.code) {
-          _deleteHistory(model)
-        }
+        if ('delete' == value.code) {_deleteHistory(model)}
       },
     );
   }
@@ -101,11 +97,11 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
     );
   }
 
-
   IconButton backIconButton(BuildContext context) {
     return IconButton(
         icon: Icon(Icons.arrow_back_ios),
-        onPressed: (){}
-    );
+        onPressed: () {
+          Navigator.pop(context);
+        });
   }
 }
