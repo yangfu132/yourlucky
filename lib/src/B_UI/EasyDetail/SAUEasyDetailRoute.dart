@@ -50,6 +50,15 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
         child: Scaffold(
           appBar: AppBar(
             title: Text(detailModel().stringDetailName),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  SACContext.easyStore().save(detailModel().digitModel());
+                },
+                child: Text('保存'),
+                style: SACContext.textButtonStyle(),
+              ),
+            ],
           ),
           body: _buildBody(),
         ),

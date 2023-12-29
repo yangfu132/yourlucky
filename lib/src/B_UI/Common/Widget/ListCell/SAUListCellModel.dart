@@ -51,6 +51,7 @@ class SAUListCellModel {
     cellModel.contents = contents;
 
     contents.add(SAUListCellItemModel(title: '目的', content: model.strEasyGoal));
+    contents.add(SAUListCellItemModel(title: '门类', content: model.strStrategy));
     contents
         .add(SAUListCellItemModel(title: '用神', content: model.strUsefulDeity));
     contents.add(SAUListCellItemModel(
