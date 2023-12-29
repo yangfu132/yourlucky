@@ -4,6 +4,7 @@ import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:yourlucky/src/D_Business/DigitModel/SABDigitDiagramsModel.dart';
+import 'package:yourlucky/src/D_Business/Strategy/SABEasyStrategyInfoModel.dart';
 
 ///此Model仅代表占卜时所创造的数据；
 class SABEasyDigitModel extends SABBaseModel {
@@ -14,11 +15,15 @@ class SABEasyDigitModel extends SABBaseModel {
     required this.strUsefulDeity,
     required this.listEasyData,
     required this.stringTime,
+    this.strStrategy = SABEasyStrategyInfoModel.avoid,
+    this.dataJson = '',
   });
 
   int? modelId;
 
-  String easyRemark = '未保存';
+  String dataJson;
+
+  String strStrategy;
 
   //属性：实例的随机数数组
   final List<int> listEasyData;
@@ -139,6 +144,8 @@ class SABEasyDigitModel extends SABBaseModel {
           strEasyGoal: json['easyGoal']! as String,
           strUsefulDeity: json['usefulDeity']! as String,
           stringTime: json['time']! as String,
+          strStrategy: json['strategy']! as String,
+          dataJson: json['dataJson']! as String,
           listEasyData: (json['easy']! as String)
               .split(',')
               .map((e) => int.parse(e))
@@ -151,6 +158,8 @@ class SABEasyDigitModel extends SABBaseModel {
       'easyGoal': strEasyGoal,
       'usefulDeity': strUsefulDeity,
       'time': stringTime,
+      'strategy': strStrategy,
+      'dataJson': dataJson,
       'easy': listEasyData.join(','),
     };
   }

@@ -50,15 +50,6 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
         child: Scaffold(
           appBar: AppBar(
             title: Text(detailModel().stringDetailName),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  SACContext.easyStore().save(detailModel().digitModel());
-                },
-                child: Text('保存'),
-                style: SACContext.textButtonStyle(),
-              ),
-            ],
           ),
           body: _buildBody(),
         ),
@@ -147,17 +138,16 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
     int weight = 1;
     String strKey = 'Error';
     for (int nColumn = 0; nColumn < listContentLength; nColumn++) {
-
       if (nColumn < listTitleLength) {
         weight = listTitle[nColumn].length;
       } else {
-        coLog(StackTrace.current,LogTypeEnum.error, "error!");
+        coLog(StackTrace.current, LogTypeEnum.error, "error!");
       }
 
       if (nColumn < listKeyLength) {
         strKey = listContent[nColumn];
       } else {
-        coLog(StackTrace.current,LogTypeEnum.error, "error!");
+        coLog(StackTrace.current, LogTypeEnum.error, "error!");
       }
 
       Widget widgetItem = getSymbolWidget(

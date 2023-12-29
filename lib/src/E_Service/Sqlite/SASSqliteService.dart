@@ -76,7 +76,7 @@ class SASSqliteService extends SABBaseService {
           // Run the CREATE TABLE statement on the database.
           // 创建多张表
           await db.execute(
-            'CREATE TABLE IF NOT EXISTS easy(id INTEGER PRIMARY KEY AUTOINCREMENT, easyGoal TEXT, easy TEXT, time TEXT,usefulDeity TEXT)',
+            'CREATE TABLE IF NOT EXISTS easy(id INTEGER PRIMARY KEY AUTOINCREMENT, easyGoal TEXT, easy TEXT, time TEXT,usefulDeity TEXT,strategy TEXT,dataJson TEXT)',
           );
 
           await db.execute(
