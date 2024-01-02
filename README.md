@@ -24,7 +24,9 @@ samples, guidance on mobile development, and a full API reference.
 
 待完成内容：
 历史列表增加用神，门类，备注；（完成）
-每次easy的批注，批注列表；
+每次easy的批注，（完成）
+增加隐藏批注功能
+增加批注列表；
 历史列表增加隐藏功能；
 在爻的详细里增加保存、目的、针对爻的备注按钮
 数据库导出，安卓的永久存储，永久存储的删除
