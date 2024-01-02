@@ -20,7 +20,10 @@ class SABEasyDigitModel extends SABBaseModel {
     this.strStrategy = SABEasyStrategyInfoModel.avoid,
     this.dataJson = '',
   }) {
-    this.extraData = json.decode(this.dataJson);
+    if (this.dataJson.isNotEmpty) {
+      this.extraData = Map<String, dynamic>.from(json.decode(this.dataJson));
+      this.strAnnotate = this.extraData["annotate"] ?? "";
+    }
   }
 
   int? modelId;
@@ -42,7 +45,7 @@ class SABEasyDigitModel extends SABBaseModel {
 
   String dataJson;
 
-  Map<String, String> extraData = {"": ""};
+  Map<String, dynamic> extraData = {};
 
   String strAnnotate = "";
 
@@ -167,7 +170,14 @@ class SABEasyDigitModel extends SABBaseModel {
         );
 
   Map<String, Object?> toJson() {
-    this.dataJson = json.encode(this.extraData);
+    if (this.strAnnotate.isNotEmpty) {
+      this.extraData["annotate"] = this.strAnnotate;
+    }
+
+    if (this.extraData.isNotEmpty) {
+      this.dataJson = json.encode(this.extraData);
+    }
+
     return {
       'id': modelId,
       'easyGoal': strEasyGoal,
