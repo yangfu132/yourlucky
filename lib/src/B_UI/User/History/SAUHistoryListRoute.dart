@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/A_Context/SACContext.dart';
+import 'package:yourlucky/src/B_UI/Common/Route/SAUTextFieldRoute.dart';
+import 'package:yourlucky/src/B_UI/Common/Route/SAUTextFieldRouteModel.dart';
 import 'package:yourlucky/src/B_UI/Common/Widget/ListCell/SAUListCell.dart';
 import 'package:yourlucky/src/B_UI/Common/Widget/ListCell/SAUListCellModel.dart';
 import 'package:yourlucky/src/B_UI/Common/Widget/SAUAlertView.dart';
@@ -29,6 +31,24 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
       historyData = dataList;
       setState(() {});
     });
+  }
+
+  void onAnnotateTapped(SABEasyDigitModel digitModel) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      SAUTextFieldRouteModel model = SAUTextFieldRouteModel(
+        stringTitle: "修改批注",
+        stringValue: digitModel.strAnnotate,
+        stringPlaceholder: "请输入",
+      );
+      return SAUTextFieldRoute(
+        model: model,
+        onSave: (SAUTextFieldRouteModel model) {
+          digitModel.strAnnotate = model.stringValue;
+          SACContext.easyStore().save(digitModel);
+          Navigator.pop(context);
+        },
+      );
+    }));
   }
 
   void _deleteHistory(SABEasyDigitModel model) {
@@ -80,8 +100,13 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
           return SAUStrategyResultRoute(detailBusiness.outputDetailModel());
         }))
       },
-      buttonsClick: (value) => {
-        if ('delete' == value.code) {_deleteHistory(model)}
+      buttonsClick: (value) {
+        if ('delete' == value.code) {
+          _deleteHistory(model);
+        }
+        if ('annotate' == value.code) {
+          onAnnotateTapped(model);
+        }
       },
     );
   }

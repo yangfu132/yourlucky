@@ -1,5 +1,7 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'dart:convert';
+
 import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/A_Context/SACGlobal.dart';
 import 'package:yourlucky/src/D_Business/Base/SABBaseModel.dart';
@@ -17,11 +19,11 @@ class SABEasyDigitModel extends SABBaseModel {
     required this.stringTime,
     this.strStrategy = SABEasyStrategyInfoModel.avoid,
     this.dataJson = '',
-  });
+  }) {
+    this.extraData = json.decode(this.dataJson);
+  }
 
   int? modelId;
-
-  String dataJson;
 
   String strStrategy;
 
@@ -37,6 +39,12 @@ class SABEasyDigitModel extends SABBaseModel {
   final String stringTime;
 
   late final SABDigitDiagramsModel diagramsModel = _getDiagramsModel();
+
+  String dataJson;
+
+  Map<String, String> extraData = {"": ""};
+
+  String strAnnotate = "";
 
   void check() {
     if (listEasyData.isEmpty) {
@@ -55,6 +63,12 @@ class SABEasyDigitModel extends SABBaseModel {
     super.check();
   }
 
+  ///注解，相当于经验
+  void setAnnotate(String annotate) {
+    strAnnotate = annotate;
+  }
+
+  ///Mark -
   SABDigitDiagramsModel _getDiagramsModel() {
     return SABDigitDiagramsModel(
       fromEasyKey: _getFromEasyKey(listEasyData),
@@ -153,6 +167,7 @@ class SABEasyDigitModel extends SABBaseModel {
         );
 
   Map<String, Object?> toJson() {
+    this.dataJson = json.encode(this.extraData);
     return {
       'id': modelId,
       'easyGoal': strEasyGoal,
