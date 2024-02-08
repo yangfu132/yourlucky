@@ -21,11 +21,13 @@ class SABEasyDigitBusiness extends SABBaseBusiness {
     PWBCalendarBusiness calendar = PWBCalendarBusiness(easyDateTime);
     String stringTime = calendar.stringFromDate();
 
+    String strStrategy = SACContext.expertCategory().stringStrategy;
     outEasyModel = SABEasyDigitModel(
       modelId: null,
       strEasyGoal: strEasyGoal,
       strUsefulDeity: strUsefulDeity,
       stringTime: stringTime,
+      strStrategy: strStrategy,
       listEasyData: listEasyData,
     );
 
@@ -72,6 +74,8 @@ class SABEasyDigitBusiness extends SABBaseBusiness {
     List<SABEasyDigitModel> dataList = <SABEasyDigitModel>[];
     await sqlite.query('easy', (json) {
       dataList.add(SABEasyDigitModel.fromJson(json));
+      refresh(dataList);
+    }, () {
       refresh(dataList);
     });
   }

@@ -12,7 +12,7 @@ class SABLogBusiness extends SABBaseBusiness {
   final SABEasyDigitModel digitModel;
 
   void saLog(String strMsg) {
-    coLog(StackTrace.current,LogTypeEnum.log,strMsg);
+    coLog(StackTrace.current, LogTypeEnum.log, strMsg);
     SABLogModel logModel = SABLogModel(
       modelId: null,
       dataId: digitModel.getModelId(),
@@ -38,7 +38,7 @@ class SABLogBusiness extends SABBaseBusiness {
     List<SABLogModel> dataList = <SABLogModel>[];
     await sqlite.query('logs', (json) {
       dataList.add(SABLogModel.fromJson(json));
-    });
+    }, () {});
     refresh(dataList);
   }
 }

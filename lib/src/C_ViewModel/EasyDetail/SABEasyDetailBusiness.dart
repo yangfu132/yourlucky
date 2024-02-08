@@ -141,21 +141,19 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
   SABSymbolDetailModel createSymbolModel(
       SABEasyAnalysisSymbolModel analysisSymbol,
       int intRow,
-      EasyTypeEnum type){
-
-     SABSymbolDetailModel detailSymbol = SABSymbolDetailModel(
-        inputAnalysisSymbol:analysisSymbol,
-        baseInfo:symbolBasic(intRow, type),
-        animalDes:symbolAnimalLike(intRow),
-        earthDes:symbolEarthLike(intRow, type),
-        sixPairDes:symbolSixPair(intRow, type),
-        monthRelation:analysisModel().getMonthRelation(intRow, type),
-        dayRelation:analysisModel().getDayRelation(intRow, type),
-        earthDirection:symbolEarthDirection(intRow, type),
-        diagramsPlace:eightDiagramsPlace(intRow, type),
-        debugInfo: '未填写debugInfo'
-    );
-     return detailSymbol;
+      EasyTypeEnum type) {
+    SABSymbolDetailModel detailSymbol = SABSymbolDetailModel(
+        inputAnalysisSymbol: analysisSymbol,
+        baseInfo: symbolBasic(intRow, type),
+        animalDes: symbolAnimalLike(intRow),
+        earthDes: symbolEarthLike(intRow, type),
+        sixPairDes: symbolSixPair(intRow, type),
+        monthRelation: analysisModel().getMonthRelation(intRow, type),
+        dayRelation: analysisModel().getDayRelation(intRow, type),
+        earthDirection: symbolEarthDirection(intRow, type),
+        diagramsPlace: eightDiagramsPlace(intRow, type),
+        debugInfo: '未填写debugInfo');
+    return detailSymbol;
   }
 
   SABEasyDetailModel initOutputDetailModel() {
@@ -172,12 +170,16 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
         .bStaticEasy;
 
     for (int intRow = 0; intRow < 6; intRow++) {
-      SABEasyAnalysisRowModel analysisRow = analysisModel().rowModelAtRow(intRow);
-      SABSymbolDetailModel fromSymbol = createSymbolModel(analysisRow.fromSymbol,intRow, EasyTypeEnum.from);
-      SABSymbolDetailModel toSymbol = createSymbolModel(analysisRow.toSymbol,intRow, EasyTypeEnum.to);
-      SABSymbolDetailModel hideSymbol = createSymbolModel(analysisRow.hideSymbol,intRow, EasyTypeEnum.hide);
+      SABEasyAnalysisRowModel analysisRow =
+          analysisModel().rowModelAtRow(intRow);
+      SABSymbolDetailModel fromSymbol =
+          createSymbolModel(analysisRow.fromSymbol, intRow, EasyTypeEnum.from);
+      SABSymbolDetailModel toSymbol =
+          createSymbolModel(analysisRow.toSymbol, intRow, EasyTypeEnum.to);
+      SABSymbolDetailModel hideSymbol =
+          createSymbolModel(analysisRow.hideSymbol, intRow, EasyTypeEnum.hide);
       SABRowDetailModel rowDetailModel = SABRowDetailModel(
-          inputAnalysisRow:analysisRow,
+          inputAnalysisRow: analysisRow,
           fromSymbol: fromSymbol,
           toSymbol: toSymbol,
           hideSymbol: hideSymbol,
@@ -200,7 +202,7 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
     String stringResult = '';
     String formatTime = wordsModel().inputDigitModel.stringTime;
     String formatDate = formatTime.split(' ')[0];
-    stringResult += '$formatDate ${_inputEasyModel.strUsefulDeity} 补充';
+    stringResult += '$formatDate ${_inputEasyModel.strUsefulDeity}';
     return stringResult;
   }
 

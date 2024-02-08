@@ -147,17 +147,16 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
     int weight = 1;
     String strKey = 'Error';
     for (int nColumn = 0; nColumn < listContentLength; nColumn++) {
-
       if (nColumn < listTitleLength) {
         weight = listTitle[nColumn].length;
       } else {
-        coLog(StackTrace.current,LogTypeEnum.error, "error!");
+        coLog(StackTrace.current, LogTypeEnum.error, "error!");
       }
 
       if (nColumn < listKeyLength) {
         strKey = listContent[nColumn];
       } else {
-        coLog(StackTrace.current,LogTypeEnum.error, "error!");
+        coLog(StackTrace.current, LogTypeEnum.error, "error!");
       }
 
       Widget widgetItem = getSymbolWidget(

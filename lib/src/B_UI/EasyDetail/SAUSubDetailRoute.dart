@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yourlucky/src/A_Context/SACContext.dart';
 import 'package:yourlucky/src/A_Context/SACGlobal.dart';
+import 'package:yourlucky/src/B_UI/Common/Route/SAUTextFieldRoute.dart';
+import 'package:yourlucky/src/B_UI/Common/Route/SAUTextFieldRouteModel.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABDiagramsDetailModel.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABEasyDetailModel.dart';
 import 'package:yourlucky/src/C_ViewModel/EasyDetail/SABRowDetailModel.dart';
@@ -15,9 +17,7 @@ class SAUSubDetailRoute extends StatefulWidget {
   _SAUEasyResultState createState() {
     return _SAUEasyResultState();
   }
-
 }
-
 
 class _SAUEasyResultState extends State<SAUSubDetailRoute> {
   EasyTypeEnum currentEasyType = EasyTypeEnum.from;
@@ -33,21 +33,21 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
       return Text('切换');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            resultTitle()),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  resultAction();
-                },
-                child: resultActionTitle(),
-                style: SACContext.textButtonStyle(),
-              ),
-            ],
+        title: Text(resultTitle()),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              resultAction();
+            },
+            child: resultActionTitle(),
+            style: SACContext.textButtonStyle(),
+          ),
+        ],
       ),
       body: ListView.builder(
           itemCount: resultList().length * 2,
@@ -75,18 +75,20 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
     if (0 == widget.intIndex) {
       return widget.inputDetailModel.diagramsDetailModel.resultList;
     } else {
-      SABRowDetailModel rowModel = widget.inputDetailModel.rowModelAtRow(widget.intIndex - 1);
+      SABRowDetailModel rowModel =
+          widget.inputDetailModel.rowModelAtRow(widget.intIndex - 1);
       return rowModel.resultList(currentEasyType);
     }
   }
 
   String resultTitle() {
     if (0 == widget.intIndex) {
-      return widget.inputDetailModel.digitModel().easyRemark;
+      return widget.inputDetailModel.digitModel().strStrategy;
     } else {
-      SABRowDetailModel rowModel = widget.inputDetailModel.rowModelAtRow(widget.intIndex - 1);
+      SABRowDetailModel rowModel =
+          widget.inputDetailModel.rowModelAtRow(widget.intIndex - 1);
       String result = 'type：';
-      switch(currentEasyType) {
+      switch (currentEasyType) {
         case EasyTypeEnum.from:
           result = '本：';
           break;
@@ -103,13 +105,29 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
     }
   }
 
-  void resultAction(){
+  void resultAction() {
     if (0 == widget.intIndex) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        SAUTextFieldRouteModel model = SAUTextFieldRouteModel(
+          stringTitle: "修改目的",
+          stringValue: widget.inputDetailModel.digitModel().strEasyGoal,
+          stringPlaceholder: "请输入",
+        );
+        return SAUTextFieldRoute(
+          model: model,
+          onSave: (SAUTextFieldRouteModel model) {
+            widget.inputDetailModel.digitModel().strEasyGoal =
+                model.stringValue;
+            SACContext.easyStore().save(widget.inputDetailModel.digitModel());
+            Navigator.pop(context);
+          },
+        );
+      }));
     } else {
-      SABRowDetailModel rowModel = widget.inputDetailModel.rowModelAtRow(widget.intIndex - 1);
+      SABRowDetailModel rowModel =
+          widget.inputDetailModel.rowModelAtRow(widget.intIndex - 1);
       currentEasyType = rowModel.getNextEasyType(currentEasyType);
-      setState(() {
-      });
+      setState(() {});
     }
   }
 }

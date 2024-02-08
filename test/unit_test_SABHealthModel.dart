@@ -11,7 +11,7 @@ void main() {
 
   test('my first unit test', () {
     SABHealthModel healthModel;
-    healthModel = generateData([0, 8, 0, 1, 1, 1]);
+    healthModel = generateTestModel([0, 8, 0, 1, 1, 1]);
     // expect(healthModel.rowModelAtRow(0).bMovement, false);
     // expect(healthModel.rowModelAtRow(1).bMovement, true);
     // expect(wordsModel.rowModelAtRow(2).bMovement, false);
@@ -21,7 +21,7 @@ void main() {
   });
 }
 
-SABHealthModel generateData(List<int> listEasyData) {
+SABHealthModel generateTestModel(List<int> listEasyData) {
   String strEasyGoal = "单元测试";
   String strUsefulDeity = "子孙";
   String stringTime = "2023-01-28 15:27:27";

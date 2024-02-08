@@ -11,7 +11,7 @@ void main() {
 
   test('bMovement', () {
     SABEasyWordsModel wordsModel;
-    wordsModel = generateData([0, 8, 0, 1, 1, 1]);
+    wordsModel = generateTestModel([0, 8, 0, 1, 1, 1]);
     expect(wordsModel.rowModelAtRow(0).bMovement, false);
     expect(wordsModel.rowModelAtRow(1).bMovement, true);
     expect(wordsModel.rowModelAtRow(2).bMovement, false);
@@ -19,7 +19,7 @@ void main() {
     expect(wordsModel.rowModelAtRow(4).bMovement, false);
     expect(wordsModel.rowModelAtRow(5).bMovement, false);
 
-    wordsModel = generateData([8, 8, 0, 8, 0, 0]);
+    wordsModel = generateTestModel([8, 8, 0, 8, 0, 0]);
     expect(wordsModel.rowModelAtRow(0).bMovement, true);
     expect(wordsModel.rowModelAtRow(1).bMovement, true);
     expect(wordsModel.rowModelAtRow(2).bMovement, false);
@@ -27,7 +27,7 @@ void main() {
     expect(wordsModel.rowModelAtRow(4).bMovement, false);
     expect(wordsModel.rowModelAtRow(5).bMovement, false);
 
-    wordsModel = generateData([0, 1, 1, 8, 8, 1]);
+    wordsModel = generateTestModel([0, 1, 1, 8, 8, 1]);
     expect(wordsModel.rowModelAtRow(0).bMovement, false);
     expect(wordsModel.rowModelAtRow(1).bMovement, false);
     expect(wordsModel.rowModelAtRow(2).bMovement, false);
@@ -37,7 +37,7 @@ void main() {
   });
 }
 
-SABEasyWordsModel generateData(List<int> listEasyData) {
+SABEasyWordsModel generateTestModel(List<int> listEasyData) {
   String strEasyGoal = "单元测试";
   String strUsefulDeity = "子孙";
   String stringTime = "2023-01-28 15:27:27";

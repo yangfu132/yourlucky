@@ -27,7 +27,6 @@ class SAUStrategyResultRoute extends StatefulWidget {
 }
 
 class _SAUStrategyResultRoute extends State<SAUStrategyResultRoute> {
-
   @override
   void initState() {
     super.initState();
@@ -50,62 +49,81 @@ class _SAUStrategyResultRoute extends State<SAUStrategyResultRoute> {
           )
         ],
       ),
-      body:Column(
-        children:[
-          Expanded(
-              child:_buildList()
-          ),
+      body: Column(
+        children: [
+          Expanded(child: _buildList()),
           SAUBottomButtonBar(
-              model:buttonModel(),
-              onTap:(SAUButtonModel itemModel){
+              model: buttonModel(),
+              onTap: (SAUButtonModel itemModel) {
                 if ("save" == itemModel.code) {
                   SACContext.easyStore().save(widget.inputDetail.digitModel());
                 }
                 if ("goal" == itemModel.code) {
                   onGoalTapped();
                 }
-              }
-            ),
+                if ("annotate" == itemModel.code) {
+                  onAnnotateTapped();
+                }
+              }),
         ],
       ),
     );
   }
 
-  void onGoalTapped(){
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) {
-          SAUTextFieldRouteModel model = SAUTextFieldRouteModel(
-              stringTitle: "修改目的",
-              stringValue: widget.inputDetail.digitModel().strEasyGoal,
-              stringPlaceholder:"请输入",
-          );
-          return SAUTextFieldRoute(
-            model: model,
-            onSave: (SAUTextFieldRouteModel model){
-              widget.inputDetail.digitModel().strEasyGoal = model.stringValue;
-              SACContext.easyStore().save(widget.inputDetail.digitModel());
-              Navigator.pop(context);
-            },);
-        }));
+  void onGoalTapped() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      SAUTextFieldRouteModel model = SAUTextFieldRouteModel(
+        stringTitle: "修改目的",
+        stringValue: widget.inputDetail.digitModel().strEasyGoal,
+        stringPlaceholder: "请输入",
+      );
+      return SAUTextFieldRoute(
+        model: model,
+        onSave: (SAUTextFieldRouteModel model) {
+          widget.inputDetail.digitModel().strEasyGoal = model.stringValue;
+          SACContext.easyStore().save(widget.inputDetail.digitModel());
+          Navigator.pop(context);
+        },
+      );
+    }));
+  }
+
+  void onAnnotateTapped() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      SAUTextFieldRouteModel model = SAUTextFieldRouteModel(
+        stringTitle: "修改批注",
+        stringValue: widget.inputDetail.digitModel().strAnnotate,
+        stringPlaceholder: "请输入",
+      );
+      return SAUTextFieldRoute(
+        model: model,
+        onSave: (SAUTextFieldRouteModel model) {
+          widget.inputDetail.digitModel().strAnnotate = model.stringValue;
+          SACContext.easyStore().save(widget.inputDetail.digitModel());
+          Navigator.pop(context);
+        },
+      );
+    }));
   }
 
   SAUBottomButtonBarModel buttonModel() {
-    SAUButtonModel save = SAUButtonModel(title: "保存",code: "save");
-    SAUButtonModel goal = SAUButtonModel(title: "目的",code: "goal");
-    final SAUBottomButtonBarModel buttonModel = SAUBottomButtonBarModel(itemList: [save,goal]);
-    return  buttonModel;
+    SAUButtonModel save = SAUButtonModel(title: "保存", code: "save");
+    SAUButtonModel goal = SAUButtonModel(title: "目的", code: "goal");
+    SAUButtonModel annotate = SAUButtonModel(title: "批注", code: "annotate");
+    final SAUBottomButtonBarModel buttonModel =
+        SAUBottomButtonBarModel(itemList: [save, goal, annotate]);
+    return buttonModel;
   }
 
   Widget _buildList() {
     return ListView.builder(
-        itemCount:
-        widget.resultBusiness.resultModel().resultList().length * 2,
+        itemCount: widget.resultBusiness.resultModel().resultList().length * 2,
         //itemExtent: 50.0, //强制高度为50.0
         itemBuilder: (BuildContext context, int index) {
           int dataIndex = index ~/ 2;
           int kv = index % 2;
           Map value =
-          widget.resultBusiness.resultModel().resultList()[dataIndex];
+              widget.resultBusiness.resultModel().resultList()[dataIndex];
           if (kv > 0)
             return ListTile(title: Text(value['value']));
           else
