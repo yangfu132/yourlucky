@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yourlucky/src/E_Service/SASFileService.dart';
 
 class SAUDetailRoute extends StatefulWidget {
   SAUDetailRoute({Key? key, this.title}) : super(key: key);
@@ -10,13 +11,21 @@ class SAUDetailRoute extends StatefulWidget {
 }
 
 class SAUDetailRouteState extends State<SAUDetailRoute> {
+  var content = 'loading';
+
   @override
   void initState() {
     super.initState();
+    SASFileService.readFile((content) {
+      this.content = content;
+      setState(() {
+
+      });
+    });
   }
 
   Widget _buildBody() {
-    return Text('Waiting');
+    return Text(this.content);
   }
 
   @override
