@@ -8,10 +8,18 @@ class SABEasyTextBusiness extends SABBaseBusiness {
   }
 
   String getSymbolText(String key, int index) {
+    String result = "";
     String name = "name";
+    String nextName = "name";
     String content = "content";
-    content.inde
-    return "";
+    int start = content.indexOf(name);
+    if (-1 != start) {
+      int end = content.indexOf(nextName);
+      if (-1 != end) {
+        result = content.substring(start,end);
+      } // end if
+    } // end if
+    return result;
   }
 
   String getEasyText(String key) {
