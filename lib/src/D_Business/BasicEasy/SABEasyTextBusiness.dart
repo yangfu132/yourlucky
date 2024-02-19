@@ -6,4 +6,19 @@ class SABEasyTextBusiness extends SABBaseBusiness {
     final _loadedData = await rootBundle.loadString('assets/easy_text.txt');
     finish(_loadedData);
   }
+
+  String getSymbolText(String key, int index) {
+    String name = "name";
+    String content = "content";
+    content.inde
+    return "";
+  }
+
+  String getEasyText(String key) {
+    return "";
+  }
+
+  String getEasyAllText(String key) {
+    return "";
+  }
 }
