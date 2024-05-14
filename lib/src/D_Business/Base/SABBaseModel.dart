@@ -1,4 +1,5 @@
-﻿import 'package:your_lucky/src/A_Context/SACContext.dart';
+﻿import 'package:flutter/foundation.dart';
+import 'package:your_lucky/src/A_Context/SACContext.dart';
 import 'package:your_lucky/src/A_Context/SACGlobal.dart';
 
 class SABBaseModel {
@@ -37,6 +38,10 @@ class SABBaseModel {
       LogTypeEnum.error,
       '--- ${this.runtimeType} error --- ',
     );
-    print("");
+    debugPrint("");
+  }
+
+  void printMsg (String message) {
+    debugPrint(message);
   }
 }

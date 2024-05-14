@@ -4,9 +4,10 @@ class SASStringService extends SABBaseService {
   static String appendToString(String mainString, String appendString) {
     if (appendString != '') {
       if (mainString != '') {
-        mainString = mainString + '\r\n' + appendString;
-      } else
+        mainString = '$mainString\r\n$appendString';
+      } else {
         mainString = appendString;
+      }
     }
     //else cont.
 

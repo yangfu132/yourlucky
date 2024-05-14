@@ -7,7 +7,6 @@ import 'package:your_lucky/src/B_UI/User/Debug/SAUDebugRoute.dart';
 import 'package:your_lucky/src/B_UI/User/EasyStrategy/SAUEasyStrategyRoute.dart';
 import 'package:your_lucky/src/B_UI/User/Feedback/SAUFeedbackRoute.dart';
 import 'package:your_lucky/src/B_UI/User/History/SAUHistoryListRoute.dart';
-import 'package:your_lucky/src/B_UI/User/History/SAUHistoryRoute.dart';
 import 'package:your_lucky/src/B_UI/User/Setting/SAUSettingRoute.dart';
 import 'package:your_lucky/src/B_UI/User/SignIn/SAUSignInRoute.dart';
 import 'package:your_lucky/src/B_UI/User/SignIn/SAUSignupRoute.dart';

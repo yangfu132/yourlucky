@@ -48,7 +48,7 @@ class SABEasyDigitBusiness extends SABBaseBusiness {
       //else cont.
       listEasyData.add(randomNum);
     } //end for
-    print('listEasyData:$listEasyData');
+    SABBaseBusiness.staticPrintMsg('listEasyData:$listEasyData');
     //[0, 8, 0, 1, 1, 1]
     //[8, 8, 0, 8, 0, 0]
     //[0, 1, 1, 8, 8, 1]
@@ -61,7 +61,7 @@ class SABEasyDigitBusiness extends SABBaseBusiness {
     if (null == digitModel.getModelId()) {
       sqlite.insertModel(digitModel, (json) {
         SABEasyDigitModel savedModel = SABEasyDigitModel.fromJson(json);
-        print('DigitModel:${SABEasyDigitModel.fromJson(json)}');
+        printMsg('DigitModel:${SABEasyDigitModel.fromJson(json)}');
         digitModel.modelId = savedModel.modelId;
       });
     } else {

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import 'Base/SABBaseService.dart';
@@ -9,9 +10,9 @@ class SASFileService extends SABBaseService {
     try {
       // 向文件写入字符串
       await file.writeAsString(content);
-      print('Data written.');
+      printMsg('Data written.');
     } catch (e) {
-      print(e);
+      printMsg(e as String?);
     }
   }
 
@@ -22,10 +23,10 @@ class SASFileService extends SABBaseService {
       final temp = await rootBundle.load("assets/easy.txt");
       final aaa = temp as String;
       result = null != aaa ? aaa : "failed";
-      print(result);
+      SABBaseService.staticPrintMsg(result);
     }catch(e){
       result = "failed";
-      print(e);
+      SABBaseService.staticPrintMsg(e as String?);
     }
     refresh(result);
   }
@@ -35,10 +36,10 @@ class SASFileService extends SABBaseService {
     File file = new File('assets/easy.txt');
     try{
       result = await file.readAsString();
-      print(result);
+      SABBaseService.staticPrintMsg(result);
     }catch(e){
       result = "failed";
-      print(e);
+      SABBaseService.staticPrintMsg(e as String?);
     }
     refresh(result);
   }

@@ -39,6 +39,6 @@ class SABEasyStrategyResultModel extends SABBaseModel {
         enemyState = '',
         relationAboutEnemy = '',
         relationAboutParentOrSon = '' {
-    print('');
+    printMsg('');
   }
 }

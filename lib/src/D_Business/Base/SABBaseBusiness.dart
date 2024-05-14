@@ -1,4 +1,5 @@
-﻿import 'package:your_lucky/src/A_Context/SACContext.dart';
+﻿import 'package:flutter/foundation.dart';
+import 'package:your_lucky/src/A_Context/SACContext.dart';
 import 'package:your_lucky/src/A_Context/SACGlobal.dart';
 
 class SABBaseBusiness {
@@ -6,8 +7,16 @@ class SABBaseBusiness {
     coLog(
       StackTrace.current,
       LogTypeEnum.error,
-      '--- ${this.runtimeType} error --- ',
+      '--- $runtimeType error --- ',
     );
-    print("");
+    debugPrint("");
+  }
+
+  void printMsg (String? message) {
+    debugPrint(message);
+  }
+
+  static void staticPrintMsg (String? message) {
+    debugPrint(message);
   }
 }

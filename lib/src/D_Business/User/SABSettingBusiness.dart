@@ -55,7 +55,7 @@ class SABSettingBusiness extends SABBaseBusiness {
     if (null == model.getModelId()) {
       sqlite.insertModel(model, (json) {
         SABSettingModel savedModel = SABSettingModel.fromJson(json);
-        print('SABSettingModel:${SABSettingModel.fromJson(json)}');
+        printMsg('SABSettingModel:${SABSettingModel.fromJson(json)}');
         model.modelId = savedModel.modelId;
       });
     } else {

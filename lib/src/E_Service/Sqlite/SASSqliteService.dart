@@ -69,10 +69,10 @@ class SASSqliteService extends SABBaseService {
         join(await getDatabasesPath(), 'sa_database.db'),
         // When the database is first created, create a table to store dogs.
         onCreate: (db, version) async {
-          print('onCreate');
+          printMsg('onCreate');
         },
         onOpen: (db) async {
-          print('onOpen:${db.path}');
+          printMsg('onOpen:${db.path}');
           // Run the CREATE TABLE statement on the database.
           // 创建多张表
           await db.execute(
@@ -182,14 +182,14 @@ class SASSqliteService extends SABBaseService {
       age: 35,
     );
     await insertModel(fido, (json) {
-      print('Dog:${Dog.fromJson(json)}');
+      printMsg('Dog:${Dog.fromJson(json)}');
     });
 
     // Now, use the method above to retrieve all the dogs.
 
     query(fido.getModelName(), (json) {
       Dog.fromJson(json);
-      print(Dog.fromJson(json));
+      printMsg(Dog.fromJson(json) as String?);
     }, () {});
 
     // Update Fido's age and save it to the database.
@@ -203,7 +203,7 @@ class SASSqliteService extends SABBaseService {
     // Print the updated results.
     query(fido.getModelName(), (json) {
       Dog.fromJson(json);
-      print(Dog.fromJson(json));
+      printMsg(Dog.fromJson(json) as String?);
     }, () {});
 
     // Delete Fido from the database.
@@ -211,7 +211,7 @@ class SASSqliteService extends SABBaseService {
     // Print the list of dogs (empty) [打印一个列表的狗狗们 (这里已经空了)]
     query(fido.getModelName(), (json) {
       Dog.fromJson(json);
-      print(Dog.fromJson(json));
+      printMsg(Dog.fromJson(json) as String?);
     }, () {});
   }
 }

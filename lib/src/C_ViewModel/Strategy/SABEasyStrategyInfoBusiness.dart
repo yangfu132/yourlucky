@@ -30,7 +30,7 @@ class SABEasyStrategyInfoBusiness extends SABBaseBusiness {
   Future<String> getsCategory() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     stringStrategy = prefs.getString(stringStrategyKey) ?? '趋避';
-    print(stringStrategy);
+    printMsg(stringStrategy);
     return stringStrategy;
   }
 

@@ -98,7 +98,7 @@ class SASLocalizationsDelegate
   // Flutter会调用此类加载相应的Locale资源类
   @override
   Future<SASLocalizationsService> load(Locale locale) {
-    print("$locale");
+    SABBaseService.staticPrintMsg("$locale");
     return SynchronousFuture<SASLocalizationsService>(
         SASLocalizationsService(locale.languageCode == "zh"));
   }
