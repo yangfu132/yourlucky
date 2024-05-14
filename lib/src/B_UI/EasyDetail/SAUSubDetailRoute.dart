@@ -28,9 +28,9 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
 
   Widget resultActionTitle() {
     if (0 == widget.intIndex) {
-      return Text('备注');
+      return const Text('备注');
     } else {
-      return Text('切换');
+      return const Text('切换');
     }
   }
 

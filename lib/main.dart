@@ -22,16 +22,16 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       builder: BotToastInit(),
-      localizationsDelegates: [
+      localizationsDelegates: const [
         // 本地化的代理类
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         SASLocalizationsDelegate(),
       ],
-      supportedLocales: [
-        const Locale('en', 'US'), // 美国英语
-        const Locale('zh', 'CN'), // 中文简体
+      supportedLocales: const [
+        Locale('en', 'US'), // 美国英语
+        Locale('zh', 'CN'), // 中文简体
         //其它Locales
       ],
       title: 'Flutter Demo',
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         // useMaterial3: true,
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        appBarTheme:AppBarTheme(
+        appBarTheme:const AppBarTheme(
           centerTitle: true,
         ),
         // This is the theme of your application.

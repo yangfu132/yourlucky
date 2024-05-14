@@ -31,7 +31,7 @@ class SAUAlertWidget {
         context,
         Text(
           title,
-          style: titleStyle ?? TextStyle(fontWeight: FontWeight.normal),
+          style: titleStyle ?? const TextStyle(fontWeight: FontWeight.normal),
         ),
         null,
         actions);
@@ -41,8 +41,8 @@ class SAUAlertWidget {
       List<SAUAlertAction> actions) {
     showCustom(
         context,
-        Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
-        Text(message, style: TextStyle(fontWeight: FontWeight.normal)),
+        Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+        Text(message, style: const TextStyle(fontWeight: FontWeight.normal)),
         actions);
   }
 

@@ -1,5 +1,7 @@
 ///遇到的问题：
 ///问题1：如何全局引用context？
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:your_lucky/src/C_ViewModel/Strategy/SABEasyStrategyInfoBusiness.dart';

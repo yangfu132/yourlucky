@@ -81,7 +81,6 @@ class SABRowDetailModel extends SABBaseModel {
   }
 
   EasyTypeEnum getNextEasyType(EasyTypeEnum currentType) {
-    bool hasMove = bStaticEasy;
     EasyTypeEnum resultType = EasyTypeEnum.type_null;
     switch(currentType) {
       case EasyTypeEnum.from:

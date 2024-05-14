@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import 'Base/SABBaseService.dart';
@@ -21,8 +20,8 @@ class SASFileService extends SABBaseService {
     String result = "waiting";
     try{
       final temp = await rootBundle.load("assets/easy.txt");
-      final aaa = temp as String;
-      result = null != aaa ? aaa : "failed";
+      final aaa = temp as String?;
+      result = aaa ?? "failed";
       SABBaseService.staticPrintMsg(result);
     }catch(e){
       result = "failed";

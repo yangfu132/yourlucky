@@ -4,6 +4,7 @@
 ///Branch：地支
 ///Trunk：天干
 ///EightDiagrams：八卦
+library;
 
 enum EasyTypeEnum {
   type_null,

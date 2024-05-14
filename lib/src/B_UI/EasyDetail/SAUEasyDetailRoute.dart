@@ -37,8 +37,8 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
               onPressed: () {
                 SACContext.easyStore().save(detailModel().digitModel());
               },
-              child: Text('保存'),
               style: SACContext.textButtonStyle(),
+              child: const Text('保存'),
             ),
           ],
         ),
@@ -55,7 +55,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
                 onPressed: () {
                   SACContext.easyStore().save(detailModel().digitModel());
                 },
-                child: Text('保存'),
+                child: const Text('保存'),
                 style: SACContext.textButtonStyle(),
               ),
             ],
@@ -97,7 +97,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
           }));
         },
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xffeeeeee),
             border: Border(
               bottom: BorderSide(width: 1, color: Color(0xffe5e5e5)),
@@ -123,7 +123,7 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
           }));
         },
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white,
             border: Border(
               bottom: BorderSide(width: 1, color: Color(0xffe5e5e5)),
@@ -173,13 +173,13 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
     Color colorResult = Colors.black;
     switch (title) {
       case '伏月':
-        colorResult = Color(0xff176ADA);
+        colorResult = const Color(0xff176ADA);
         break;
       case '伏日':
-        colorResult = Color(0xffF64B5E);
+        colorResult = const Color(0xffF64B5E);
         break;
       case '伏卦':
-        colorResult = Color.fromRGBO(77, 0, 178, 1);
+        colorResult = const Color.fromRGBO(77, 0, 178, 1);
         break;
       case '事情':
         break;
@@ -188,26 +188,26 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
       case '六爻冲合':
         break;
       case '本月':
-        colorResult = Color(0xff176ADA);
+        colorResult = const Color(0xff176ADA);
         break;
       case '本日':
-        colorResult = Color(0xffF64B5E);
+        colorResult = const Color(0xffF64B5E);
         break;
       case '本卦':
-        colorResult = Color.fromRGBO(77, 0, 178, 1);
+        colorResult = const Color.fromRGBO(77, 0, 178, 1);
         break;
       case '世应':
         break;
       case '进化':
         break;
       case '变卦':
-        colorResult = Color.fromRGBO(77, 0, 178, 1);
+        colorResult = const Color.fromRGBO(77, 0, 178, 1);
         break;
       case '变月':
-        colorResult = Color(0xff176ADA);
+        colorResult = const Color(0xff176ADA);
         break;
       case '变日':
-        colorResult = Color(0xffF64B5E);
+        colorResult = const Color(0xffF64B5E);
         break;
     }
 
@@ -218,12 +218,12 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
     return Expanded(
       flex: weight,
       child: ConstrainedBox(
-        constraints: BoxConstraints(minHeight: double.infinity),
+        constraints: const BoxConstraints(minHeight: double.infinity),
         child: Container(
-          padding: EdgeInsets.only(left: 5.0, right: 5.0),
-          foregroundDecoration: BoxDecoration(
+          padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+          foregroundDecoration: const BoxDecoration(
             border: Border(
-              right: BorderSide(width: 1, color: Color(0xffe5e5e5)),
+              right: BorderSide(width: 1, color:Color(0xffe5e5e5)),
             ),
           ),
           child: Column(

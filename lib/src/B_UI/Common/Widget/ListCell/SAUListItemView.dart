@@ -33,7 +33,7 @@ class SAUListItemView extends StatelessWidget {
           constraints: BoxConstraints(minWidth: titleWidth),
           child: Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14,
               color: Color(0xFF666666),
             ),
@@ -50,12 +50,12 @@ class SAUListItemView extends StatelessWidget {
                     ? Text(secondContent ?? '',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
                       color: Color(0xFF999999),
                     ))
                     : Text(secondContent ?? '',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
                       color: Color(0xFF999999),
                     )),
@@ -73,13 +73,13 @@ class SAUListItemView extends StatelessWidget {
       ret = Text(content,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14,
             color: Color(0xFF333333),
           ));
     } else {
       ret = Text(content,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14,
             color: Color(0xFF333333),
           ));
