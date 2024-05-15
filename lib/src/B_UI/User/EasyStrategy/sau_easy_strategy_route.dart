@@ -49,7 +49,7 @@ class _SAUEasyStrategyRoute extends State<SAUEasyStrategyRoute> {
             if (category['value']) {
               return Container(
                 //color: Colors.grey,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.grey,
                 ),
                 child: ListTile(
@@ -67,7 +67,7 @@ class _SAUEasyStrategyRoute extends State<SAUEasyStrategyRoute> {
                   },
                 ),
                 // 下边框
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   border: Border(top: BorderSide(width: 1, color: Colors.grey)),
                 ),
               );

@@ -35,7 +35,7 @@ class SAUSignInRouteState extends State<SAUSignInRoute> {
         itemBuilder: (BuildContext context, int index) {
           switch (index) {
             case 0:
-              return Text("你已经登录！");
+              return const Text("你已经登录！");
             case 1:
               return TextButton(
                 onPressed: () => business.signOut((code, message) {
@@ -60,8 +60,8 @@ class SAUSignInRouteState extends State<SAUSignInRoute> {
             case 0:
               return TextField(
                 controller: business.emailController,
-                style: TextStyle(fontSize: 14, color: Color(0xFF333333)),
-                decoration: InputDecoration(
+                style: const TextStyle(fontSize: 14, color: Color(0xFF333333)),
+                decoration: const InputDecoration(
                   hintText: '请输入email',
                   hintStyle: TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
                   border: InputBorder.none,
@@ -72,8 +72,8 @@ class SAUSignInRouteState extends State<SAUSignInRoute> {
             case 1:
               return TextField(
                 controller: business.passwordController,
-                style: TextStyle(fontSize: 14, color: Color(0xFF333333)),
-                decoration: InputDecoration(
+                style: const TextStyle(fontSize: 14, color: Color(0xFF333333)),
+                decoration: const InputDecoration(
                   hintText: '请输入密码',
                   hintStyle: TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
                   border: InputBorder.none,

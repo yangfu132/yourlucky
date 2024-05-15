@@ -126,7 +126,7 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
             child: TextButton(
               child: Text(
                 SASLocalizationsService.homeEasy(context),
-                style: TextStyle(
+                style: const TextStyle(
                   color: Color(0xFFE5CC69),
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -145,7 +145,7 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
             child: TextButton(
                 child: Text(
                   SASLocalizationsService.homeUser(context),
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color(0xFFE5CC69),
                     fontSize: 28,
                     fontWeight: FontWeight.bold,

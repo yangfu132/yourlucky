@@ -16,14 +16,14 @@ class SAUAboutRouteState extends State<SAUAboutRoute> {
   }
 
   Widget _buildBody() {
-    return Text('Waiting');
+    return const Text('Waiting');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('关于'),
+        title: const Text('关于'),
       ),
       body: _buildBody(),
     );

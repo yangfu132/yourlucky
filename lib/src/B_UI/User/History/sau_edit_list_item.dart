@@ -47,7 +47,7 @@ class SAUEditListItemState extends State<SAUEditListItem> with SingleTickerProvi
   void initState() {
     super.initState();
 //初始化动画，让item可以实现自动滑动
-    controller = new AnimationController( lowerBound: 0,
+    controller = AnimationController( lowerBound: 0,
         upperBound: moveMaxLength,duration: const Duration(milliseconds: 300), vsync: this)
       ..addListener((){
         start=controller.value;
@@ -66,7 +66,7 @@ class SAUEditListItemState extends State<SAUEditListItem> with SingleTickerProvi
   Widget build(BuildContext context) {
     return Container(
         height:115,
-        padding: EdgeInsets.only(left: 15,right: 15,top: 15),
+        padding: const EdgeInsets.only(left: 15,right: 15,top: 15),
         width:MediaQuery.of(context).size.width,
         child:GestureDetector(
           child:Stack(
@@ -80,7 +80,7 @@ class SAUEditListItemState extends State<SAUEditListItem> with SingleTickerProvi
                     height:100,
                     alignment: Alignment.center,
                     color: Colors.grey,
-                    child: Text("修改",style: TextStyle(color: Colors.white),),
+                    child: const Text("修改",style: TextStyle(color: Colors.white),),
                   ),
                 ),
               ),
@@ -93,7 +93,7 @@ class SAUEditListItemState extends State<SAUEditListItem> with SingleTickerProvi
                     height:100,
                     alignment: Alignment.center,
                     color: Colors.red,
-                    child: Text("删除",style: TextStyle(color: Colors.white)),
+                    child: const Text("删除",style: TextStyle(color: Colors.white)),
                   ),
                 ),
               ),

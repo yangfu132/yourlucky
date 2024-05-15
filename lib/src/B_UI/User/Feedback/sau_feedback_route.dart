@@ -16,14 +16,14 @@ class SAUFeedbackRouteState extends State<SAUFeedbackRoute> {
   }
 
   Widget _buildBody() {
-    return Text('Waiting');
+    return const Text('Waiting');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('反馈'),
+        title: const Text('反馈'),
       ),
       body: _buildBody(),
     );

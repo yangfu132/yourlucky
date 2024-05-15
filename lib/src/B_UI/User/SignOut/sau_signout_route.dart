@@ -30,7 +30,7 @@ class SAUSignOutRouteState extends State<SAUSignOutRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Log Out'),
+        title: const Text('Log Out'),
       ),
       body: ListView.builder(
           itemCount: settingsList.length,
@@ -39,7 +39,7 @@ class SAUSignOutRouteState extends State<SAUSignOutRoute> {
             int kv = index % 2;
             if (kv > 0) {
               return ListTile(
-                trailing: Icon(Icons.chevron_right, color: Colors.grey),
+                trailing: const Icon(Icons.chevron_right, color: Colors.grey),
                 title: Text(settingsList[index]['key']),
                 onTap: () {
                   SACNavigator.pushNamed(
@@ -51,11 +51,11 @@ class SAUSignOutRouteState extends State<SAUSignOutRoute> {
             } else {
               return Container(
                 //color: Colors.grey,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.grey,
                 ),
                 child: ListTile(
-                  trailing: Icon(Icons.chevron_right, color: Colors.white),
+                  trailing: const Icon(Icons.chevron_right, color: Colors.white),
                   title: Text(settingsList[index]['key']),
                   onTap: () {
                     SACNavigator.pushNamed(
