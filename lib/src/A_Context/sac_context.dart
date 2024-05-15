@@ -4,7 +4,7 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:your_lucky/src/C_ViewModel/Strategy/SABEasyStrategyInfoBusiness.dart';
+import 'package:your_lucky/src/C_ViewModel/Strategy/sab_easy_strategy_info_business.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/SABEasyDigitBusiness.dart';
 import 'package:your_lucky/src/D_Business/User/SABSettingBusiness.dart';
 import 'package:your_lucky/src/E_Service/SABSingletonService.dart';

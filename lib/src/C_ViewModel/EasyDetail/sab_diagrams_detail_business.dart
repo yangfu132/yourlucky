@@ -1,5 +1,5 @@
 import 'package:your_lucky/src/A_Context/sac_global.dart';
-import 'package:your_lucky/src/C_ViewModel/EasyAnalysis/SABEasyAnalysisModel.dart';
+import 'package:your_lucky/src/C_ViewModel/EasyAnalysis/sab_easy_analysis_model.dart';
 import 'package:your_lucky/src/D_Business/Base/SABBaseBusiness.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/SABDigitDiagramsModel.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
@@ -12,7 +12,7 @@ import 'package:your_lucky/src/D_Business/Strategy/SABUsefulDeityModel.dart';
 
 import '../../A_Context/sac_context.dart';
 import '../../E_Service/SASStringService.dart';
-import 'SABDiagramsDetailModel.dart';
+import 'sab_diagrams_detail_model.dart';
 
 class SABDiagramsDetailBusiness extends SABBaseBusiness {
   SABDiagramsDetailBusiness(this._inputLogicDesModel);

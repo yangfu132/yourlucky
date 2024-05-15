@@ -6,9 +6,9 @@ import 'package:your_lucky/src/D_Business/EasyLogic/SABEasyHealthLogicModel.dart
 import 'package:your_lucky/src/D_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:your_lucky/src/D_Business/Strategy/SABUsefulDeityModel.dart';
 
-import '../EasyAnalysis/SABEasyAnalysisModel.dart';
-import 'SABDiagramsDetailModel.dart';
-import 'SABRowDetailModel.dart';
+import '../EasyAnalysis/sab_easy_analysis_model.dart';
+import 'sab_diagrams_detail_model.dart';
+import 'sab_row_detail_model.dart';
 
 class SABEasyDetailModel extends SABBaseModel {
   SABEasyDetailModel(

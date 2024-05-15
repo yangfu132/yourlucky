@@ -6,8 +6,8 @@ import 'package:your_lucky/src/D_Business/EasyLogic/SABHealthLogicRowModel.dart'
 import 'package:your_lucky/src/D_Business/EasyWords/SABWordsRowModel.dart';
 
 import '../../A_Context/sac_global.dart';
-import '../EasyAnalysis/SABEasyAnalysisRowModel.dart';
-import 'SABSymbolDetailModel.dart';
+import '../EasyAnalysis/sab_easy_analysis_row_model.dart';
+import 'sab_symbol_detail_model.dart';
 
 class SABRowDetailModel extends SABBaseModel {
   SABRowDetailModel({

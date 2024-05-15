@@ -1,8 +1,8 @@
 ﻿import 'package:your_lucky/src/A_Context/sac_global.dart';
-import 'package:your_lucky/src/C_ViewModel/EasyAnalysis/SABEasyAnalysisModel.dart';
-import 'package:your_lucky/src/C_ViewModel/EasyAnalysis/SABEasyAnalysisRowModel.dart';
-import 'package:your_lucky/src/C_ViewModel/EasyAnalysis/SABEasyAnalysisSymbolModel.dart';
-import 'package:your_lucky/src/C_ViewModel/EasyDetail/SABRowDetailModel.dart';
+import 'package:your_lucky/src/C_ViewModel/EasyAnalysis/sab_easy_analysis_model.dart';
+import 'package:your_lucky/src/C_ViewModel/EasyAnalysis/sab_easy_analysis_row_model.dart';
+import 'package:your_lucky/src/C_ViewModel/EasyAnalysis/sab_easy_analysis_symbol_model.dart';
+import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_row_detail_model.dart';
 import 'package:your_lucky/src/D_Business/Base/SABBaseBusiness.dart';
 import 'package:your_lucky/src/D_Business/BasicEasy/SABAnimalInfoModel.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
@@ -12,11 +12,11 @@ import 'package:your_lucky/src/D_Business/EasyLogic/SABEasyHealthLogicModel.dart
 import 'package:your_lucky/src/D_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:your_lucky/src/E_Service/SASStringService.dart';
 
-import '../EasyAnalysis/SABEasyAnalysisBusiness.dart';
-import '../EasyDetail/SABEasyDetailModel.dart';
-import 'SABDiagramsDetailBusiness.dart';
-import 'SABDiagramsDetailModel.dart';
-import 'SABSymbolDetailModel.dart';
+import '../EasyAnalysis/sab_easy_analysis_business.dart';
+import '../EasyDetail/sab_easy_detail_model.dart';
+import 'sab_diagrams_detail_business.dart';
+import 'sab_diagrams_detail_model.dart';
+import 'sab_symbol_detail_model.dart';
 
 class SABEasyDetailBusiness extends SABBaseBusiness {
   final SABEasyDigitModel _inputEasyModel;

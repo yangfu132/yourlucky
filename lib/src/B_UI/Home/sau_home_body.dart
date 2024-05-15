@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:your_lucky/src/B_UI/EasyStrategy/SAUStrategyResultRoute.dart';
-import 'package:your_lucky/src/B_UI/User/SAUUserRoute.dart';
-import 'package:your_lucky/src/C_ViewModel/EasyDetail/SABEasyDetailBusiness.dart';
+import 'package:your_lucky/src/B_UI/EasyStrategy/sau_strategy_result_route.dart';
+import 'package:your_lucky/src/B_UI/User/sau_user_route.dart';
+import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_business.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:your_lucky/src/E_Service/SASAudioService.dart';
 import 'package:your_lucky/src/E_Service/SASLocalizationsService.dart';
 
 import '../../A_Context/sac_context.dart';
-import 'AnimationDiceWidget.dart';
+import 'animation_dice_widget.dart';
 
 class SAUHomeBody extends StatefulWidget {
   SAUHomeBody({this.title});

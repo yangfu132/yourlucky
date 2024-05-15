@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 
-import 'AnimationMutileImage.dart';
+import 'animation_mutile_image.dart';
 
 ///note：三个色子转动的动画
 class AnimationDiceWidget extends StatefulWidget {

@@ -1,10 +1,10 @@
-﻿import 'package:your_lucky/src/C_ViewModel/EasyDetail/SABEasyDetailModel.dart';
+﻿import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_model.dart';
 import 'package:your_lucky/src/D_Business/Base/SABBaseBusiness.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:your_lucky/src/D_Business/Strategy/SABEasyStrategyInfoModel.dart';
 
 import '../../D_Business/Strategy/SABAvoidStrategyBusiness.dart';
-import 'SABEasyStrategyResultModel.dart';
+import 'sab_easy_strategy_result_model.dart';
 
 class SABEasyStrategyResultBusiness extends SABBaseBusiness {
   SABEasyStrategyResultBusiness(

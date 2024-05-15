@@ -2,15 +2,15 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_detail_route.dart';
-import 'package:your_lucky/src/B_UI/User/About/SAUAboutRoute.dart';
-import 'package:your_lucky/src/B_UI/User/Debug/SAUDebugRoute.dart';
-import 'package:your_lucky/src/B_UI/User/EasyStrategy/SAUEasyStrategyRoute.dart';
-import 'package:your_lucky/src/B_UI/User/Feedback/SAUFeedbackRoute.dart';
-import 'package:your_lucky/src/B_UI/User/History/SAUHistoryListRoute.dart';
-import 'package:your_lucky/src/B_UI/User/Setting/SAUSettingRoute.dart';
-import 'package:your_lucky/src/B_UI/User/SignIn/SAUSignInRoute.dart';
-import 'package:your_lucky/src/B_UI/User/SignIn/SAUSignupRoute.dart';
-import 'package:your_lucky/src/B_UI/User/SignOut/SAUSignOutRoute.dart';
+import 'package:your_lucky/src/B_UI/User/About/sau_about_route.dart';
+import 'package:your_lucky/src/B_UI/User/Debug/sau_debug_route.dart';
+import 'package:your_lucky/src/B_UI/User/EasyStrategy/sau_easy_strategy_route.dart';
+import 'package:your_lucky/src/B_UI/User/Feedback/sau_feedback_route.dart';
+import 'package:your_lucky/src/B_UI/User/History/sau_history_list_route.dart';
+import 'package:your_lucky/src/B_UI/User/Setting/sau_setting_route.dart';
+import 'package:your_lucky/src/B_UI/User/SignIn/sau_signin_route.dart';
+import 'package:your_lucky/src/B_UI/User/SignIn/sau_signup_route.dart';
+import 'package:your_lucky/src/B_UI/User/SignOut/sau_signout_route.dart';
 
 class SACRouteUrl {
   static const feedback = 'feedback';

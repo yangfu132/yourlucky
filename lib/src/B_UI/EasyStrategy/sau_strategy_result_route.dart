@@ -5,8 +5,8 @@ import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route_model.dart'
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/SAUBottomButtonBar.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/SAUBottomButtonBarModel.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/SAUButtonModel.dart';
-import 'package:your_lucky/src/C_ViewModel/EasyDetail/SABEasyDetailModel.dart';
-import 'package:your_lucky/src/C_ViewModel/StrategyResult/SABEasyStrategyResultBusiness.dart';
+import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_model.dart';
+import 'package:your_lucky/src/C_ViewModel/StrategyResult/sab_easy_strategy_result_business.dart';
 
 import '../EasyDetail/sau_easy_detail_route.dart';
 

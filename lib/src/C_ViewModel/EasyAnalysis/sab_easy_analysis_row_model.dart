@@ -5,7 +5,7 @@ import 'package:your_lucky/src/D_Business/EasyWords/SABWordsRowModel.dart';
 
 import '../../A_Context/sac_context.dart';
 import '../../A_Context/sac_global.dart';
-import 'SABEasyAnalysisSymbolModel.dart';
+import 'sab_easy_analysis_symbol_model.dart';
 
 class SABEasyAnalysisRowModel extends SABBaseModel {
   SABEasyAnalysisRowModel(

@@ -9,7 +9,7 @@ import 'package:your_lucky/src/E_Service/SASStringService.dart';
 
 import '../../A_Context/sac_context.dart';
 import '../../A_Context/sac_global.dart';
-import 'SABEasyAnalysisModel.dart';
+import 'sab_easy_analysis_model.dart';
 
 class SABEasyAnalysisBusiness extends SABBaseBusiness {
   SABEasyAnalysisBusiness(this._inputHealthLogicModel);
