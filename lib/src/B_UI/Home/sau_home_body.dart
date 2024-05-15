@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:your_lucky/src/B_UI/EasyStrategy/sau_strategy_result_route.dart';
 import 'package:your_lucky/src/B_UI/User/sau_user_route.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_business.dart';
-import 'package:your_lucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
-import 'package:your_lucky/src/E_Service/SASAudioService.dart';
-import 'package:your_lucky/src/E_Service/SASLocalizationsService.dart';
+import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
+import 'package:your_lucky/src/E_Service/sas_audio_service.dart';
+import 'package:your_lucky/src/E_Service/sas_localizations_service.dart';
 
 import '../../A_Context/sac_context.dart';
 import 'animation_dice_widget.dart';

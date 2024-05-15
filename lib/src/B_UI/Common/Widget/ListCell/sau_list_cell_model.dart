@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/sau_button_model.dart';
-import 'package:your_lucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
+import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
 
 enum SAUListCellModelItemType {
   keyValue,

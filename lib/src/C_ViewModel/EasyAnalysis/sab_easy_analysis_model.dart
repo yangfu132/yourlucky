@@ -1,6 +1,6 @@
 import 'package:your_lucky/src/A_Context/sac_context.dart';
-import 'package:your_lucky/src/D_Business/Base/SABBaseModel.dart';
-import 'package:your_lucky/src/D_Business/EasyLogic/SABEasyHealthLogicModel.dart';
+import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/sab_easy_health_logic_model.dart';
 
 import '../../A_Context/sac_global.dart';
 import 'sab_easy_analysis_row_model.dart';

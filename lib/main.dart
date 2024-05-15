@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
-import 'package:your_lucky/src/E_Service/SABSingletonService.dart';
-import 'package:your_lucky/src/E_Service/SASLocalizationsService.dart';
+import 'package:your_lucky/src/E_Service/sab_singleton_service.dart';
+import 'package:your_lucky/src/E_Service/sas_localizations_service.dart';
 
 import 'src/B_UI/Home/sau_home_route.dart';
 void main() {

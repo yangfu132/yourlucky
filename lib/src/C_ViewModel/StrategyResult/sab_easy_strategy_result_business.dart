@@ -1,9 +1,9 @@
 ﻿import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_model.dart';
-import 'package:your_lucky/src/D_Business/Base/SABBaseBusiness.dart';
-import 'package:your_lucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
-import 'package:your_lucky/src/D_Business/Strategy/SABEasyStrategyInfoModel.dart';
+import 'package:your_lucky/src/D_Business/Base/sab_base_business.dart';
+import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
+import 'package:your_lucky/src/D_Business/Strategy/sab_easy_strategy_info_model.dart';
 
-import '../../D_Business/Strategy/SABAvoidStrategyBusiness.dart';
+import '../../D_Business/Strategy/sab_avoid_strategy_business.dart';
 import 'sab_easy_strategy_result_model.dart';
 
 class SABEasyStrategyResultBusiness extends SABBaseBusiness {

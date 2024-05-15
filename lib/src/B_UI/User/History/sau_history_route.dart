@@ -4,7 +4,7 @@ import 'package:your_lucky/src/B_UI/Common/Widget/sau_toast_widget.dart';
 import 'package:your_lucky/src/B_UI/EasyStrategy/sau_strategy_result_route.dart';
 import 'package:your_lucky/src/B_UI/User/History/sau_edit_list_item.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_business.dart';
-import 'package:your_lucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
+import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
 
 class SAUHistoryRoute extends StatefulWidget {
   SAUHistoryRoute({Key? key, this.title}) : super(key: key);
