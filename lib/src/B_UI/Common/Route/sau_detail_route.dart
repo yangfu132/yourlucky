@@ -32,7 +32,7 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('示例'),
+        title: const Text('示例'),
       ),
       body: _buildBody(),
     );
