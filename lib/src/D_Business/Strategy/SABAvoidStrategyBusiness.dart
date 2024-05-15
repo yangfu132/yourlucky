@@ -1,6 +1,6 @@
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
-import 'package:your_lucky/src/C_ViewModel/EasyDetail/SABEasyDetailModel.dart';
+import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_model.dart';
 import 'package:your_lucky/src/D_Business/Base/SABBaseBusiness.dart';
 import 'package:your_lucky/src/D_Business/BasicEasy/SABElementInfoModel.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/SABHealthModel.dart';
@@ -8,7 +8,7 @@ import 'package:your_lucky/src/D_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:your_lucky/src/D_Business/Strategy/SABEasyStrategyInfoModel.dart';
 import 'package:your_lucky/src/E_Service/SASStringService.dart';
 
-import '../../C_ViewModel/StrategyResult/SABEasyStrategyResultModel.dart';
+import '../../C_ViewModel/StrategyResult/sab_easy_strategy_result_model.dart';
 
 class SABAvoidStrategyBusiness extends SABBaseBusiness {
   final SABEasyDetailModel inputDetail;
