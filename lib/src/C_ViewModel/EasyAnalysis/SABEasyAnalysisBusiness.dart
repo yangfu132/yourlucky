@@ -771,21 +771,21 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
   String monthBrokenDescriptionAtRow(int nRow, EasyTypeEnum easyType) {
     String monthBroken = "";
     switch (healthLogicModel().getConflictOnMonthState(nRow, easyType)) {
-      case MonthConflictEnum.Conflict_NO:
+      case MonthConflictEnum.conflictNO:
         break;
-      case MonthConflictEnum.Conflict_Broken:
+      case MonthConflictEnum.conflictBroken:
         monthBroken = "[月破]";
         break;
-      case MonthConflictEnum.Conflict_OnDay:
+      case MonthConflictEnum.conflictOnDay:
         monthBroken = "[冲日建不破]";
         break;
-      case MonthConflictEnum.Conflict_Move:
+      case MonthConflictEnum.conflictMove:
         monthBroken = "[冲动不破]";
         break;
-      case MonthConflictEnum.Conflict_DayBorn:
+      case MonthConflictEnum.conflictDayBorn:
         monthBroken = "[冲日生不破]";
         break;
-      case MonthConflictEnum.Conflict_MoveBorn:
+      case MonthConflictEnum.conflictMoveBorn:
         monthBroken = "[冲动生不破]";
         break;
       default:

@@ -625,7 +625,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     } else {
       //忌神静临空破，二也。
       bool bEmpty = isEmptyAtRow(intRow, EasyTypeEnum.from);
-      bool bBroken = MonthConflictEnum.Conflict_Broken ==
+      bool bBroken = MonthConflictEnum.conflictBroken ==
           symbolConflictStateOnMonth(intRow, EasyTypeEnum.from);
       bool bMoving = isMovementAtRow(intRow);
       if ((!bMoving && bEmpty && bBroken))
@@ -661,7 +661,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
               bool bToDayBroken = false;
               bool bToMonthBroken = false;
               bToDayBroken = isSymbolDayBrokenAtRow(intRow, enumEasyType);
-              bToMonthBroken = (MonthConflictEnum.Conflict_Broken ==
+              bToMonthBroken = (MonthConflictEnum.conflictBroken ==
                   symbolConflictStateOnMonth(intRow, EasyTypeEnum.to));
 
               if (bRestrict || bToDayBroken || bToMonthBroken) {
@@ -703,7 +703,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       //元神休囚又逢旬空月破，二也。
       bool bStrong = logicModel().isSeasonStrong(intRow, EasyTypeEnum.from);
       bool bEmpty = isEmptyAtRow(intRow, EasyTypeEnum.from);
-      bool bBroken = MonthConflictEnum.Conflict_Broken ==
+      bool bBroken = MonthConflictEnum.conflictBroken ==
           symbolConflictStateOnMonth(intRow, EasyTypeEnum.from);
       if ((!bStrong && bEmpty) || (!bStrong && bBroken))
         bResult = true;
@@ -735,7 +735,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
               bool bToDayBroken = false;
               bool bToMonthBroken = false;
               bToDayBroken = isSymbolDayBrokenAtRow(intRow, easyType);
-              bToMonthBroken = (MonthConflictEnum.Conflict_Broken ==
+              bToMonthBroken = (MonthConflictEnum.conflictBroken ==
                   symbolConflictStateOnMonth(intRow, EasyTypeEnum.to));
 
               if (!bStrong) {
@@ -1108,9 +1108,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     //月破为空
     MonthConflictEnum stateEmpty = symbolConflictStateOnMonth(intRow, easyType);
 
-    if (MonthConflictEnum.Conflict_NO == stateEmpty ||
-        MonthConflictEnum.Conflict_Move == stateEmpty ||
-        MonthConflictEnum.Conflict_MoveBorn == stateEmpty) {
+    if (MonthConflictEnum.conflictNO == stateEmpty ||
+        MonthConflictEnum.conflictMove == stateEmpty ||
+        MonthConflictEnum.conflictMoveBorn == stateEmpty) {
     } else
       bResult = true;
 
@@ -1150,25 +1150,25 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   ///`月破章第二十七`//////////////////////////////////////////////////////
   MonthConflictEnum symbolConflictStateOnMonth(
       int intRow, EasyTypeEnum easyType) {
-    MonthConflictEnum nResult = MonthConflictEnum.Conflict_NO;
+    MonthConflictEnum nResult = MonthConflictEnum.conflictNO;
     final symbolModel = logicModel().symbolAtRow(intRow, easyType);
     bool conflictMonth = symbolModel.isConflictMonth;
     if (conflictMonth) {
       String stringSymbol = wordsModel().getSymbolName(intRow, easyType);
       String basicEarth = symbolModel.inputWordsSymbol.stringEarth;
-      nResult = MonthConflictEnum.Conflict_Broken;
+      nResult = MonthConflictEnum.conflictBroken;
 
       String strDayEarth = dayEarth();
       if (strDayEarth == basicEarth)
-        nResult = MonthConflictEnum.Conflict_OnDay;
+        nResult = MonthConflictEnum.conflictOnDay;
       else if (isMovementAtRow(intRow)) {
-        nResult = MonthConflictEnum.Conflict_Move;
+        nResult = MonthConflictEnum.conflictMove;
       } else {
         //唯静而不动，又无日辰动爻生助，实则到底而破矣。
         if (branchBusiness().isEarthBorn(dayEarth(), basicEarth)) {
-          nResult = MonthConflictEnum.Conflict_DayBorn;
+          nResult = MonthConflictEnum.conflictDayBorn;
         } else if (_isSymbolMoveBorn(stringSymbol)) {
-          nResult = MonthConflictEnum.Conflict_MoveBorn;
+          nResult = MonthConflictEnum.conflictMoveBorn;
         }
         //else cont.
       } //end if
@@ -1196,23 +1196,23 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
   ///冲衰弱之静爻则为日破
   DayConflictEnum symbolDayConflictState(int intRow, EasyTypeEnum easyType) {
-    DayConflictEnum nResult = DayConflictEnum.Conflict_NO;
+    DayConflictEnum nResult = DayConflictEnum.conflictNO;
     final symbolModel = logicModel().symbolAtRow(intRow, easyType);
     bool bConflict = branchBusiness().isEarthConflict(
         dayEarth(), wordsModel().getSymbolEarth(intRow, easyType));
     if (bConflict) {
-      nResult = DayConflictEnum.Conflict_YES;
+      nResult = DayConflictEnum.conflictYES;
 
       if (wordsModel().isMovementAtRow(intRow)) {
         if (symbolModel.isSeasonStrong)
-          nResult = DayConflictEnum.Conflict_SAN;
+          nResult = DayConflictEnum.conflictSAN;
         else
-          nResult = DayConflictEnum.Conflict_SAN;
+          nResult = DayConflictEnum.conflictSAN;
       } else {
         if (symbolModel.isSeasonStrong)
-          nResult = DayConflictEnum.Conflict_BackMove;
+          nResult = DayConflictEnum.conflictBackMove;
         else
-          nResult = DayConflictEnum.Conflict_BROKEN;
+          nResult = DayConflictEnum.conflictBROKEN;
       } //endi
     }
     //else cont.
@@ -1242,9 +1242,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
         bResult = true;
       } else {
         //伏神被日月冲克者，二也。
-        bool bFromDayConflict = DayConflictEnum.Conflict_NO !=
+        bool bFromDayConflict = DayConflictEnum.conflictNO !=
             symbolDayConflictState(intRow, EasyTypeEnum.hide);
-        bool bFromMonthConflict = MonthConflictEnum.Conflict_NO !=
+        bool bFromMonthConflict = MonthConflictEnum.conflictNO !=
             symbolConflictStateOnMonth(intRow, EasyTypeEnum.hide);
         bool bFromMonthRestrict = symbolModel.isMonthRestrict;
         bool bFromDayRestrict = symbolModel.isDayRestrict;
@@ -1281,7 +1281,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
               //伏神休囚值旬空月破者，五也。
 
               bool bEmpty = isEmptyAtRow(intRow, EasyTypeEnum.hide);
-              bool bMonthBroken = MonthConflictEnum.Conflict_Broken ==
+              bool bMonthBroken = MonthConflictEnum.conflictBroken ==
                   symbolConflictStateOnMonth(intRow, EasyTypeEnum.from);
               if (bEmpty || bMonthBroken || !bStrong) {
                 bResult = true;
@@ -1334,9 +1334,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
               bResult = true;
             } else {
               //伏神得遇日月动爻冲克飞神者，五也。
-              bool bFromDayConflict = DayConflictEnum.Conflict_NO !=
+              bool bFromDayConflict = DayConflictEnum.conflictNO !=
                   symbolDayConflictState(intRow, EasyTypeEnum.from);
-              bool bFromMonthConflict = MonthConflictEnum.Conflict_NO !=
+              bool bFromMonthConflict = MonthConflictEnum.conflictNO !=
                   symbolConflictStateOnMonth(intRow, EasyTypeEnum.from);
               bool bFromMoveConflict = _isSymbolMoveConflict(fromSymbol);
               bool bFromMonthRestrict = symbolFrom.isMonthRestrict;
@@ -1354,9 +1354,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
               } else {
                 //伏神得遇飞神空破休囚墓绝者，六也。
                 bool bFromEmpty = isEmptyAtRow(intRow, EasyTypeEnum.hide);
-                bool bFromMonthBroken = MonthConflictEnum.Conflict_Broken ==
+                bool bFromMonthBroken = MonthConflictEnum.conflictBroken ==
                     symbolConflictStateOnMonth(intRow, EasyTypeEnum.from);
-                bool bFromDayBroken = DayConflictEnum.Conflict_BROKEN ==
+                bool bFromDayBroken = DayConflictEnum.conflictBROKEN ==
                     symbolDayConflictState(intRow, EasyTypeEnum.from);
                 bool bFromStrong =
                     logicModel().isSeasonStrong(intRow, EasyTypeEnum.from);
@@ -1585,7 +1585,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     //古法：舍其月破而用不破；     野鹤：舍其不破而用月破(采用)；
     List listMonthBroken = List.empty(growable: true);
     for (int intRow in usefulArray) {
-      if (MonthConflictEnum.Conflict_NO !=
+      if (MonthConflictEnum.conflictNO !=
           symbolConflictStateOnMonth(intRow, easyTypeEnum)) {
         listMonthBroken.add(intRow);
       } //else {}

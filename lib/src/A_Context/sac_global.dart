@@ -32,22 +32,22 @@ enum EmptyEnum {
 }
 
 enum MonthConflictEnum {
-  Conflict_Null,
-  Conflict_NO, //非月破
-  Conflict_Broken, //月破
-  Conflict_OnDay, //临日柱，不破
-  Conflict_Move, //动爻，不破
-  Conflict_DayBorn, //日生，不破
-  Conflict_MoveBorn, //动生，不破
+  conflictNull,
+  conflictNO, //非月破
+  conflictBroken, //月破
+  conflictOnDay, //临日柱，不破
+  conflictMove, //动爻，不破
+  conflictDayBorn, //日生，不破
+  conflictMoveBorn, //动生，不破
 }
 
 enum DayConflictEnum {
-  Conflict_Null,
-  Conflict_NO, //非日冲
-  Conflict_YES, //日冲
-  Conflict_BROKEN, //日冲，弱而破
-  Conflict_SAN, //旺相冲之不散，衰弱冲之则散,TODO:yangfu132程序中都是按照散写的
-  Conflict_BackMove, //日冲，强而暗动
+  conflictNull,
+  conflictNO, //非日冲
+  conflictYES, //日冲
+  conflictBROKEN, //日冲，弱而破
+  conflictSAN, //旺相冲之不散，衰弱冲之则散,TODO:yangfu132程序中都是按照散写的
+  conflictBackMove, //日冲，强而暗动
 }
 
 //输出权利：有权对其他爻发生作用的权利

@@ -358,9 +358,9 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
       MonthConflictEnum monthBrokenState = healthLogicModel()
           .getConflictOnMonthState(usefulDeity.intRow, usefulDeity.easyType);
 
-      if (MonthConflictEnum.Conflict_OnDay == monthBrokenState ||
-          MonthConflictEnum.Conflict_Move == monthBrokenState ||
-          MonthConflictEnum.Conflict_DayBorn == monthBrokenState) {
+      if (MonthConflictEnum.conflictOnDay == monthBrokenState ||
+          MonthConflictEnum.conflictMove == monthBrokenState ||
+          MonthConflictEnum.conflictDayBorn == monthBrokenState) {
         strResult =
             SASStringService.appendToString(strResult, monthBrokenResult());
       }

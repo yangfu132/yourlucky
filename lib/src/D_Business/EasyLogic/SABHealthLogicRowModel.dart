@@ -85,7 +85,7 @@ class SABHealthLogicRowModel extends SABBaseModel {
   }
 
   MonthConflictEnum getConflictOnMonthState(EasyTypeEnum easyTypeEnum) {
-    MonthConflictEnum enumResultConflict = MonthConflictEnum.Conflict_Null;
+    MonthConflictEnum enumResultConflict = MonthConflictEnum.conflictNull;
     if (easyTypeEnum == EasyTypeEnum.from) {
       enumResultConflict = fromSymbol.conflictOnMonthState;
     } else if (easyTypeEnum == EasyTypeEnum.to) {
@@ -100,7 +100,7 @@ class SABHealthLogicRowModel extends SABBaseModel {
   }
 
   DayConflictEnum getConflictOnDayState(EasyTypeEnum easyTypeEnum) {
-    DayConflictEnum enumResultConflict = DayConflictEnum.Conflict_Null;
+    DayConflictEnum enumResultConflict = DayConflictEnum.conflictNull;
     if (easyTypeEnum == EasyTypeEnum.from) {
       enumResultConflict = fromSymbol.conflictOnDayState;
     } else if (easyTypeEnum == EasyTypeEnum.to) {
