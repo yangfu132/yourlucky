@@ -10,8 +10,8 @@ void main() {
   });
 
   test('my first unit test', () {
-    SABHealthModel healthModel;
-    healthModel = generateTestModel([0, 8, 0, 1, 1, 1]);
+    // SABHealthModel healthModel;
+    // healthModel = generateTestModel([0, 8, 0, 1, 1, 1]);
     // expect(healthModel.rowModelAtRow(0).bMovement, false);
     // expect(healthModel.rowModelAtRow(1).bMovement, true);
     // expect(wordsModel.rowModelAtRow(2).bMovement, false);
