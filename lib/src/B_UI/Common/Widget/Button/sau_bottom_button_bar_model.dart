@@ -1,7 +1,7 @@
 
 import 'package:your_lucky/src/D_Business/Base/SABBaseModel.dart';
 
-import 'SAUButtonModel.dart';
+import 'sau_button_model.dart';
 typedef ButtonTapCallback = void Function(SAUButtonModel itemModel);
 
 class SAUBottomButtonBarModel extends SABBaseModel {

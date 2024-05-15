@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'SAUUploadImageView.dart';
+import 'sau_upload_image_view.dart';
 
 class SAUImageInputView extends StatelessWidget {
   final String title;

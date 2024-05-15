@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:your_lucky/src/B_UI/Common/Widget/SAUDividerView.dart';
+import 'package:your_lucky/src/B_UI/Common/Widget/sau_divider_view.dart';
 
-import 'SAUDetailModel.dart';
+import 'sau_detail_model.dart';
 
 class SAUDetailCell extends StatefulWidget {
   final SAUDetailModel model;
