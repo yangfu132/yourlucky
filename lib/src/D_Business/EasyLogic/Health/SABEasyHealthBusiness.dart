@@ -30,7 +30,7 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
 
     isValidEasy(tempHealthModel);
     List arrayMoveRightRow = originBusiness().rowArrayAtOutRightLevel(
-      OutRightEnum.RIGHT_MOVE,
+      OutRightEnum.rightTypeMove,
     );
     moveBusiness().calculateHealthOfAllMoveRight(
       tempHealthModel,
@@ -39,7 +39,7 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
     List<int> conflictMove = updateDayConflictOutRight(tempHealthModel);
     moveBusiness().calculateHealthOfAllMoveRight(tempHealthModel, conflictMove);
     tempHealthModel.diagramsModel.listMoveRight =
-        rowArrayAtOutRightLevel(OutRightEnum.RIGHT_MOVE);
+        rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove);
     staticBusiness().calculateHealthOfAllStaticRight(tempHealthModel);
     return tempHealthModel;
   }
@@ -47,17 +47,17 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
   List<int> updateDayConflictOutRight(SABHealthModel tempHealthModel) {
     final resultRow = <int>[];
     final rowList = originBusiness()
-        .rowArrayAtOutRightLevel(OutRightEnum.RIGHT_Day_Conflict);
+        .rowArrayAtOutRightLevel(OutRightEnum.rightTypeDayConflict);
     for (final intRow in rowList) {
       if (null != tempHealthModel.symbol(intRow, EasyTypeEnum.from)) {
         SABHealthSymbolModel tempSymbol =
             tempHealthModel.symbol(intRow, EasyTypeEnum.from)!;
         bool? isStrong = tempSymbol.isStrong();
         if (isStrong) {
-          tempSymbol.outRight = OutRightEnum.RIGHT_MOVE;
+          tempSymbol.outRight = OutRightEnum.rightTypeMove;
           resultRow.add(intRow);
         } else {
-          tempSymbol.outRight = OutRightEnum.RIGHT_STATIC;
+          tempSymbol.outRight = OutRightEnum.rightTypeStatic;
         }
       } else {
         coLog(StackTrace.current, LogTypeEnum.error,

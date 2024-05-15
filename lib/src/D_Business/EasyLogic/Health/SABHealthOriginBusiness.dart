@@ -373,7 +373,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
       if (symbolModel.isEmpty())
         fResult = 0.0;
       else {
-        if (rowArrayAtOutRightLevel(OutRightEnum.RIGHT_MOVE).length > 0) {
+        if (rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove).length > 0) {
           //动卦中静爻的作用没有那么大
           if (!wordsModel().isMovementAtRow(nRow)) {
             fResult = 0.5;
@@ -479,7 +479,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
         inputLogicSymbol: logicSymbol,
         critical: healthCriticalValue(),
         doubleHealth: symbolBasicHealthAtRow(intRow, EasyTypeEnum.to),
-        outRight: OutRightEnum.RIGHT_NULL);
+        outRight: OutRightEnum.rightTypeNull);
   }
 
   SABHealthSymbolModel hideSymbol(
@@ -491,7 +491,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
         inputLogicSymbol: logicSymbol,
         critical: healthCriticalValue(),
         doubleHealth: symbolBasicHealthAtRow(intRow, EasyTypeEnum.hide),
-        outRight: OutRightEnum.RIGHT_HIDE);
+        outRight: OutRightEnum.rightTypeHide);
   }
 
   SABHealthModel outputHealthModel() {
@@ -510,7 +510,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     return SABHealthDiagramsModel(
       logicModel: logicModel().diagramsModel,
       healthCritical: healthCriticalValue(),
-      listMoveRight: rowArrayAtOutRightLevel(OutRightEnum.RIGHT_MOVE),
+      listMoveRight: rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove),
     );
   }
 

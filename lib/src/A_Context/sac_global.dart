@@ -52,13 +52,13 @@ enum DayConflictEnum {
 
 //输出权利：有权对其他爻发生作用的权利
 enum OutRightEnum {
-  RIGHT_NULL, //0
-  RIGHT_NULL1, //1,占位符，无意义
-  RIGHT_Day_Conflict, //2,占位符，无意义
-  RIGHT_MOVE, //3,动
-  RIGHT_STATIC, //4,静
-  RIGHT_EMPTY, //5,空
-  RIGHT_HIDE, //6,伏神
+  rightTypeNull, //0
+  rightTypeNull1, //1,占位符，无意义
+  rightTypeDayConflict, //2,日冲
+  rightTypeMove, //3,动
+  rightTypeStatic, //4,静
+  rightTypeEmpty, //5,空
+  rightTypeHide, //6,伏神
 }
 
 //note：代表无效的爻索引数，当未被复制的时候使用；

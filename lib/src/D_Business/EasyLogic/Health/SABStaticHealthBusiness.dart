@@ -16,11 +16,11 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
       SABMoveHealthBusiness(_inputEasyModel);
   final SABEasyDigitModel _inputEasyModel;
 
-  ///Level:指的是OutRightEnum，Level4代指 RIGHT_STATIC
+  ///Level:指的是OutRightEnum，Level4代指 rightTypeStatic
   void calculateHealthOfAllStaticRight(SABHealthModel tempHealthModel) {
     bool bHasBeginStatic = tempHealthModel.diagramsModel.hasBeginStaticRow;
     List arrayStatic =
-        originBusiness().rowArrayAtOutRightLevel(OutRightEnum.RIGHT_STATIC);
+        originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeStatic);
     for (int nRow in arrayStatic) {
       if (tempHealthModel.diagramsModel.isUnFinish(nRow)) {
         if (bHasBeginStatic) {
@@ -59,7 +59,7 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
   bool isStaticRightLevelHasBeginRow(SABHealthModel tempHealthModel) {
     bool bHasBegin = false;
     List arrayLevel =
-        originBusiness().rowArrayAtOutRightLevel(OutRightEnum.RIGHT_STATIC);
+        originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeStatic);
     if (arrayLevel.length > 0) {
       for (int item in arrayLevel) {
         List arrayEffects = effectingArrayAtLevel4Row(item, EasyTypeEnum.from);
@@ -113,7 +113,7 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
   bool isEffectingLevel4AtRow(int nEffectingRow, EasyTypeEnum easyType) {
     bool bResult = false;
 
-    if (OutRightEnum.RIGHT_STATIC ==
+    if (OutRightEnum.rightTypeStatic ==
         originBusiness().symbolOutRightAtRow(nEffectingRow, easyType)) {
       bResult = logicModel().isSeasonStrong(nEffectingRow, easyType);
     } else
@@ -127,7 +127,7 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
     String basicEarth = logicModel().getSymbolEarth(nRow, easyType);
 
     List levelArray =
-        originBusiness().rowArrayAtOutRightLevel(OutRightEnum.RIGHT_STATIC);
+        originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeStatic);
 
     for (int itemRow in levelArray) {
       if (nRow != itemRow) {

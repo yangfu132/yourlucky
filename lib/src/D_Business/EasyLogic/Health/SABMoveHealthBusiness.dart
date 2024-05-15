@@ -176,7 +176,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
         logicModel().isOnMonth(nLevel3Row, easyType)) {
       String basicEarth = logicModel().getSymbolEarth(nLevel3Row, easyType);
       List level3Array =
-          originBusiness().rowArrayAtOutRightLevel(OutRightEnum.RIGHT_MOVE);
+          originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove);
 
       for (int itemRow in level3Array) {
         if (nLevel3Row != itemRow) {
@@ -213,7 +213,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
     String basicEarth = logicModel().getSymbolEarth(nRow, easyType);
 
     List levelArray =
-        originBusiness().rowArrayAtOutRightLevel(OutRightEnum.RIGHT_MOVE);
+        originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove);
     levelArray.add(nRow);
 
     for (int itemRow in levelArray) {
@@ -249,7 +249,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
   bool isMoveRightLevelHasBeginRow(SABHealthModel tempHealthModel) {
     bool bHasBegin = false;
     List arrayMoveRightRow =
-        originBusiness().rowArrayAtOutRightLevel(OutRightEnum.RIGHT_MOVE);
+        originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove);
     if (arrayMoveRightRow.length > 0) {
       for (int intItem in arrayMoveRightRow) {
         List arrayEffects = effectingArrayAtLevel3Row(

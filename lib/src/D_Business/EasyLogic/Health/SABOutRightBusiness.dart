@@ -31,7 +31,7 @@ class SABOutRightBusiness extends SABBaseBusiness {
   ///`输出值与输出权`//////////////////////////////////////////////////////
 
   OutRightEnum symbolOutRightAtRow(int nRow, EasyTypeEnum easyType) {
-    OutRightEnum fResult = OutRightEnum.RIGHT_NULL;
+    OutRightEnum fResult = OutRightEnum.rightTypeNull;
 
     if (EasyTypeEnum.from == easyType) {
       fResult = fromOutRightAtRow(nRow, easyType);
@@ -46,11 +46,11 @@ class SABOutRightBusiness extends SABBaseBusiness {
   }
 
   OutRightEnum hideOutRightAtRow(int nRow, EasyTypeEnum easyType) {
-    return OutRightEnum.RIGHT_HIDE;
+    return OutRightEnum.rightTypeHide;
   }
 
   OutRightEnum toOutRightAtRow(int nRow, EasyTypeEnum easyType) {
-    OutRightEnum fResult = OutRightEnum.RIGHT_NULL;
+    OutRightEnum fResult = OutRightEnum.rightTypeNull;
 
     return fResult;
   }
@@ -65,26 +65,26 @@ class SABOutRightBusiness extends SABBaseBusiness {
      1、2代表日月：可以生克所有爻
      合是一种势，一种联系，日冲能打破这种势
      */
-    OutRightEnum fResult = OutRightEnum.RIGHT_NULL;
+    OutRightEnum fResult = OutRightEnum.rightTypeNull;
     final symbolModel = logicModel().rowModelAtRow(nRow).symbolModel(easyType);
     if (null != symbolModel) {
       if (!symbolModel.isEmpty()) {
         bool bPairDay = symbolModel.isDayPair;
         bool bPairMonth = symbolModel.isMonthPair;
         if (bPairDay || bPairMonth) {
-          fResult = OutRightEnum.RIGHT_MOVE;
+          fResult = OutRightEnum.rightTypeMove;
         } else {
           bool bConflictDay = symbolModel.isConflictDay;
           bool bMove = wordsModel().rowModelAtRow(nRow).bMovement;
           if (bMove)
-            fResult = OutRightEnum.RIGHT_MOVE;
+            fResult = OutRightEnum.rightTypeMove;
           else if (bConflictDay)
-            fResult = OutRightEnum.RIGHT_Day_Conflict;
+            fResult = OutRightEnum.rightTypeDayConflict;
           else
-            fResult = OutRightEnum.RIGHT_STATIC;
+            fResult = OutRightEnum.rightTypeStatic;
         } //end if
       } else {
-        fResult = OutRightEnum.RIGHT_EMPTY;
+        fResult = OutRightEnum.rightTypeEmpty;
       }
     } else {
       coLog(StackTrace.current, LogTypeEnum.error, "symbolModel is null");

@@ -50,7 +50,7 @@ class SABHealthModel extends SABBaseModel {
     } else if (EasyTypeEnum.hide == easyType) {
       return rowModelAtRow(nRow).hideSymbol.outRight;
     } else {
-      return OutRightEnum.RIGHT_NULL;
+      return OutRightEnum.rightTypeNull;
     }
   }
 
@@ -61,7 +61,7 @@ class SABHealthModel extends SABBaseModel {
   List moveRightInArray(List arrayRow, easyType) {
     List listMoveRight = List.empty(growable: true);
     for (int intRow in arrayRow) {
-      if (OutRightEnum.RIGHT_MOVE == symbolOutRightAtRow(intRow, easyType)) {
+      if (OutRightEnum.rightTypeMove == symbolOutRightAtRow(intRow, easyType)) {
         listMoveRight.add(intRow);
       }
 

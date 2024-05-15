@@ -165,7 +165,7 @@ class SABAvoidStrategyBusiness extends SABBaseBusiness {
           stringResult = symbol;
         }
         if (!hasOutright) {
-          hasOutright = OutRightEnum.RIGHT_MOVE ==
+          hasOutright = OutRightEnum.rightTypeMove ==
               healthModel().symbolOutRightAtRow(intRow, easyType);
           hasOutright = true;
         }
@@ -228,7 +228,7 @@ class SABAvoidStrategyBusiness extends SABBaseBusiness {
     if (arrayEnemy.length > 0) {
       if (wordsModel().inputDigitModel.isInGua(lifeRow)) {
         for (int intRow in arrayEnemy) {
-          if (OutRightEnum.RIGHT_MOVE ==
+          if (OutRightEnum.rightTypeMove ==
               healthModel().symbolOutRightAtRow(intRow, EasyTypeEnum.from)) {
             if (wordsModel().inputDigitModel.isInGua(intRow)) {
               stringResult = SASStringService.appendToString(
@@ -238,7 +238,7 @@ class SABAvoidStrategyBusiness extends SABBaseBusiness {
         }
       } else if (wordsModel().inputDigitModel.isOutGua(lifeRow)) {
         for (int intRow in arrayEnemy) {
-          if (OutRightEnum.RIGHT_MOVE ==
+          if (OutRightEnum.rightTypeMove ==
               healthModel().symbolOutRightAtRow(intRow, EasyTypeEnum.from)) {
             if (wordsModel().inputDigitModel.isOutGua(intRow)) {
               stringResult = SASStringService.appendToString(

@@ -73,7 +73,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
     } else {
       OutRightEnum outright =
           healthModel().symbolOutRightAtRow(intRow, EasyTypeEnum.from);
-      if (OutRightEnum.RIGHT_MOVE == outright) {
+      if (OutRightEnum.rightTypeMove == outright) {
         result = "暗动";
       } else {
         result = '静';
