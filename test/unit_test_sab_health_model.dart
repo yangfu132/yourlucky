@@ -28,15 +28,15 @@ SABHealthModel generateTestModel(List<int> listEasyData) {
   //[0, 8, 0, 1, 1, 1]
   //[8, 8, 0, 8, 0, 0]
   //[0, 1, 1, 8, 8, 1]
-  SABEasyDigitModel _inputEasyModel;
-  _inputEasyModel = SABEasyDigitModel(
+  SABEasyDigitModel inputEasyModel;
+  inputEasyModel = SABEasyDigitModel(
     modelId: null,
     strEasyGoal: strEasyGoal,
     strUsefulDeity: strUsefulDeity,
     stringTime: stringTime,
     listEasyData: listEasyData,
   );
-  SABEasyHealthBusiness _healthBusiness =
-      SABEasyHealthBusiness(_inputEasyModel);
-  return _healthBusiness.outHealthModel();
+  SABEasyHealthBusiness healthBusiness =
+      SABEasyHealthBusiness(inputEasyModel);
+  return healthBusiness.outHealthModel();
 }

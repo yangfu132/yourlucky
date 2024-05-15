@@ -36,14 +36,14 @@ SABEasyLogicModel generateTestModel(List<int> listEasyData) {
   //[0, 8, 0, 1, 1, 1]
   //[8, 8, 0, 8, 0, 0]
   //[0, 1, 1, 8, 8, 1]
-  SABEasyDigitModel _inputEasyModel;
-  _inputEasyModel = SABEasyDigitModel(
+  SABEasyDigitModel inputEasyModel;
+  inputEasyModel = SABEasyDigitModel(
     modelId: null,
     strEasyGoal: strEasyGoal,
     strUsefulDeity: strUsefulDeity,
     stringTime: stringTime,
     listEasyData: listEasyData,
   );
-  SABEasyLogicBusiness _logicBusiness = SABEasyLogicBusiness(_inputEasyModel);
-  return _logicBusiness.outputLogicModel();
+  SABEasyLogicBusiness logicBusiness = SABEasyLogicBusiness(inputEasyModel);
+  return logicBusiness.outputLogicModel();
 }

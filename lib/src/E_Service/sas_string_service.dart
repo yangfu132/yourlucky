@@ -15,6 +15,6 @@ class SASStringService extends SABBaseService {
   }
 
   static String appendSentence(String stringMain, String stringContain) {
-    return stringMain + ',' + stringContain;
+    return '$stringMain,$stringContain';
   }
 }
