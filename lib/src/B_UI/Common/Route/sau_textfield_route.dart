@@ -3,7 +3,7 @@ import 'package:your_lucky/src/B_UI/Common/Widget/Button/SAUBottomButtonBar.dart
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/SAUBottomButtonBarModel.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/SAUButtonModel.dart';
 
-import 'SAUTextFieldRouteModel.dart';
+import 'sau_textfield_route_model.dart';
 
 typedef SaveTextFieldRouteCallback = void Function(SAUTextFieldRouteModel model);
 

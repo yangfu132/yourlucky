@@ -2,7 +2,7 @@
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
-import 'package:your_lucky/src/B_UI/EasyDetail/SAUSubDetailRoute.dart';
+import 'package:your_lucky/src/B_UI/EasyDetail/sau_subdetail_route.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/SABEasyDetailModel.dart';
 
 class SAUEasyDetailRoute extends StatefulWidget {

@@ -1,14 +1,14 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
-import 'package:your_lucky/src/B_UI/Common/Route/SAUTextFieldRoute.dart';
-import 'package:your_lucky/src/B_UI/Common/Route/SAUTextFieldRouteModel.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/SAUBottomButtonBar.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/SAUBottomButtonBarModel.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/SAUButtonModel.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/SABEasyDetailModel.dart';
 import 'package:your_lucky/src/C_ViewModel/StrategyResult/SABEasyStrategyResultBusiness.dart';
 
-import '../EasyDetail/SAUEasyDetailRoute.dart';
+import '../EasyDetail/sau_easy_detail_route.dart';
 
 ///功能：显示策略推断结果
 class SAUStrategyResultRoute extends StatefulWidget {
