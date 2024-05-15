@@ -33,7 +33,7 @@ class SABSettingBusiness extends SABBaseBusiness {
     return generateModel("error", "数据加载错误", SettingTypeEnum.textType);
   }
 
-  void settingList(void refresh(List<SABSettingModel> dataList)) {
+  void settingList(void Function(List<SABSettingModel> dataList) refresh) {
     load((dataList) {
       List<SABSettingModel> settingList = [autoSave, monthHealth, dayHealth];
       for (SABSettingModel settingModel in settingList) {
@@ -64,7 +64,7 @@ class SABSettingBusiness extends SABBaseBusiness {
   }
 
   ///加载
-  Future<void> load(void refresh(List<SABSettingModel> dataList)) async {
+  Future<void> load(void Function(List<SABSettingModel> dataList) refresh) async {
     List<SABSettingModel> dataList = <SABSettingModel>[];
     await sqlite.query('setting', (json) {
       dataList.add(SABSettingModel.fromJson(json));

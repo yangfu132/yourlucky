@@ -15,7 +15,7 @@ class SASFileService extends SABBaseService {
     }
   }
 
-  static Future<void> readFile(void refresh(String content)) async {
+  static Future<void> readFile(void Function(String content) refresh) async {
     String result = "waiting";
     try{
       final temp = await rootBundle.load("assets/easy.txt");
@@ -29,7 +29,7 @@ class SASFileService extends SABBaseService {
     refresh(result);
   }
 
-  static Future<void> readFileOld(void refresh(String content)) async {
+  static Future<void> readFileOld(void Function(String content) refresh) async {
     String result = "waiting";
     File file = File('assets/easy.txt');
     try{

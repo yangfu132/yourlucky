@@ -54,7 +54,7 @@ class Dog extends SABBaseModel {
 
 class SASSqliteService extends SABBaseService {
   Database? database;
-  Future<void> openDataBase(void databaseFunc(Database db)) async {
+  Future<void> openDataBase(void Function(Database db) databaseFunc) async {
     if (null == database) {
       // Avoid errors caused by flutter upgrade.
       // Importing 'package:flutter/widgets.dart' is required.
@@ -103,7 +103,7 @@ class SASSqliteService extends SABBaseService {
   // Define a function that inserts dogs into the database
   Future<void> insertModel(
     SABBaseModel sabModel,
-    void insertResult(Map<String, Object?> json),
+    void Function(Map<String, Object?> json) insertResult,
   ) async {
     // Get a reference to the database.
     await openDataBase((db) async {
@@ -132,8 +132,8 @@ class SASSqliteService extends SABBaseService {
   }
 
   // A method that retrieves all the dogs from the dogs table.
-  Future<void> query(String table, void createModel(Map<String, Object?> json),
-      void finish()) async {
+  Future<void> query(String table, void Function(Map<String, Object?> json) createModel,
+      void Function() finish) async {
     // Get a reference to the database.
     await openDataBase((db) async {
       // Query the table for all The Dogs.
