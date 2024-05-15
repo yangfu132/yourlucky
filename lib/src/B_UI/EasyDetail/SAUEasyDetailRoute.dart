@@ -1,7 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:your_lucky/src/A_Context/SACContext.dart';
-import 'package:your_lucky/src/A_Context/SACGlobal.dart';
+import 'package:your_lucky/src/A_Context/sac_context.dart';
+import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/B_UI/EasyDetail/SAUSubDetailRoute.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/SABEasyDetailModel.dart';
 

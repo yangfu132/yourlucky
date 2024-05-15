@@ -8,8 +8,8 @@ import 'package:your_lucky/src/D_Business/EasyWords/SABDayModel.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/SABMonthModel.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/SABWordsSymbolModel.dart';
 
-import '../../A_Context/SACContext.dart';
-import '../../A_Context/SACGlobal.dart';
+import '../../A_Context/sac_context.dart';
+import '../../A_Context/sac_global.dart';
 import '../BasicEasy/SABDiagramsInfoModel.dart';
 import '../BasicEasy/SABElementInfoModel.dart';
 import 'SABEasyWordsModel.dart';

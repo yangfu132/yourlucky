@@ -9,7 +9,7 @@ import 'package:your_lucky/src/D_Business/DigitModel/SABEasyDigitBusiness.dart';
 import 'package:your_lucky/src/D_Business/User/SABSettingBusiness.dart';
 import 'package:your_lucky/src/E_Service/SABSingletonService.dart';
 
-import 'SACGlobal.dart';
+import 'sac_global.dart';
 void testLog(String strMsg) {
   debugPrint(strMsg);
 }

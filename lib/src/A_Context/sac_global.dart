@@ -7,14 +7,14 @@
 library;
 
 enum EasyTypeEnum {
-  type_null,
+  typeNull,
   from, //本卦
   to, //变卦
   hide, //伏卦
 }
 
 enum LogTypeEnum {
-  type_null,
+  typeNull,
   error, //错误
   log, //日志
   remark, //说明
@@ -22,13 +22,13 @@ enum LogTypeEnum {
 }
 
 enum EmptyEnum {
-  Empty_Null,
-  Empty_NO, //非空
-  Empty_YES, //空
-  Empty_Conflict, //冲空不空
-  Empty_False, //假空
-  Empty_Real, //真空
-  Empty_NoUseful, //用神未现
+  emptyNull,
+  emptyNO, //非空
+  emptyYES, //空
+  emptyConflict, //冲空不空
+  emptyFalse, //假空
+  emptyReal, //真空
+  emptyNoUseful, //用神未现
 }
 
 enum MonthConflictEnum {

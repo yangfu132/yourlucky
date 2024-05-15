@@ -1,11 +1,11 @@
-import 'package:your_lucky/src/A_Context/SACContext.dart';
+import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/SABLogicRowModel.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/SABHealthRowModel.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/SABHealthLogicRowModel.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/SABWordsRowModel.dart';
 
-import '../../A_Context/SACGlobal.dart';
+import '../../A_Context/sac_global.dart';
 import '../EasyAnalysis/SABEasyAnalysisRowModel.dart';
 import 'SABSymbolDetailModel.dart';
 
@@ -81,7 +81,7 @@ class SABRowDetailModel extends SABBaseModel {
   }
 
   EasyTypeEnum getNextEasyType(EasyTypeEnum currentType) {
-    EasyTypeEnum resultType = EasyTypeEnum.type_null;
+    EasyTypeEnum resultType = EasyTypeEnum.typeNull;
     switch(currentType) {
       case EasyTypeEnum.from:
         if (bStaticEasy) {
@@ -96,7 +96,7 @@ class SABRowDetailModel extends SABBaseModel {
       case EasyTypeEnum.hide:
         resultType = EasyTypeEnum.from;
         break;
-      case EasyTypeEnum.type_null:
+      case EasyTypeEnum.typeNull:
         error();
     }
     return resultType;

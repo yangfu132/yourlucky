@@ -1,8 +1,8 @@
-﻿import 'package:your_lucky/src/A_Context/SACContext.dart';
+﻿import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/SABWordsSymbolModel.dart';
 
-import '../../A_Context/SACGlobal.dart';
+import '../../A_Context/sac_global.dart';
 
 class SABWordsRowModel extends SABBaseModel {
   SABWordsRowModel({

@@ -3,8 +3,8 @@ import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/SABLogicRowModel.d
 import 'package:your_lucky/src/D_Business/EasyLogic/SABHealthLogicRowModel.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/SABWordsRowModel.dart';
 
-import '../../A_Context/SACContext.dart';
-import '../../A_Context/SACGlobal.dart';
+import '../../A_Context/sac_context.dart';
+import '../../A_Context/sac_global.dart';
 import 'SABEasyAnalysisSymbolModel.dart';
 
 class SABEasyAnalysisRowModel extends SABBaseModel {

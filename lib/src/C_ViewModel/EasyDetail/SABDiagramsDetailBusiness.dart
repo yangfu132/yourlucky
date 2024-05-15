@@ -1,4 +1,4 @@
-import 'package:your_lucky/src/A_Context/SACGlobal.dart';
+import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyAnalysis/SABEasyAnalysisModel.dart';
 import 'package:your_lucky/src/D_Business/Base/SABBaseBusiness.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/SABDigitDiagramsModel.dart';
@@ -10,7 +10,7 @@ import 'package:your_lucky/src/D_Business/EasyLogic/SABEasyHealthLogicModel.dart
 import 'package:your_lucky/src/D_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:your_lucky/src/D_Business/Strategy/SABUsefulDeityModel.dart';
 
-import '../../A_Context/SACContext.dart';
+import '../../A_Context/sac_context.dart';
 import '../../E_Service/SASStringService.dart';
 import 'SABDiagramsDetailModel.dart';
 
@@ -286,7 +286,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
 
       result = SASStringService.appendToString(result, "用神月破：目下虽破，出月则不破");
     }
-    if (EasyTypeEnum.type_null == usefulDeity.easyType) {
+    if (EasyTypeEnum.typeNull == usefulDeity.easyType) {
     } else {
       coLog(StackTrace.current, LogTypeEnum.error,
           "EasyType do not has usefulDeity.");
@@ -300,7 +300,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
 
     final usefulDeity = healthLogicModel().usefulDeity;
 
-    EmptyEnum emptyState = EmptyEnum.Empty_Null;
+    EmptyEnum emptyState = EmptyEnum.emptyNull;
     String strUseful = "";
     if (EasyTypeEnum.from == usefulDeity.easyType ||
         EasyTypeEnum.hide == usefulDeity.easyType) {
@@ -308,7 +308,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
           usefulDeity.intRow, usefulDeity.easyType);
       emptyState = logicModel()
           .getBasicEmptyState(usefulDeity.intRow, usefulDeity.easyType);
-    } else if (EasyTypeEnum.type_null == usefulDeity.easyType) {
+    } else if (EasyTypeEnum.typeNull == usefulDeity.easyType) {
       if (ROW_MONTH == usefulDeity.intRow) {
         strUseful = "月为用神";
       } else if (ROW_DAY == usefulDeity.intRow) {
@@ -319,16 +319,16 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
           "EasyType do not has usefulDeity.");
     } //end {}
 
-    if (EmptyEnum.Empty_NoUseful == emptyState) {
+    if (EmptyEnum.emptyNoUseful == emptyState) {
       //用神没有出现
       strUseful = strUseful + "卦中用神未现";
       strResult = SASStringService.appendToString(strResult, strUseful);
-    } else if (EmptyEnum.Empty_Conflict == emptyState) {
+    } else if (EmptyEnum.emptyConflict == emptyState) {
       //用神冲空 出空
       strUseful = strUseful + "现在有效";
       strResult = SASStringService.appendToString(strResult, strUseful);
-    } else if (EmptyEnum.Empty_NO != emptyState) {
-      if (EmptyEnum.Empty_Null == emptyState) {
+    } else if (EmptyEnum.emptyNO != emptyState) {
+      if (EmptyEnum.emptyNull == emptyState) {
         if (ROW_MONTH == usefulDeity.intRow) {
           //用神旬空
           strUseful = strUseful + outEmptyDate();

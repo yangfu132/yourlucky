@@ -1,8 +1,8 @@
 ﻿import 'package:your_lucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/SABLogicSymbolModel.dart';
 
-import '../../../A_Context/SACContext.dart';
-import '../../../A_Context/SACGlobal.dart';
+import '../../../A_Context/sac_context.dart';
+import '../../../A_Context/sac_global.dart';
 import '../../EasyWords/SABWordsRowModel.dart';
 
 class SABLogicRowModel extends SABBaseModel {
@@ -80,7 +80,7 @@ class SABLogicRowModel extends SABBaseModel {
   }
 
   EmptyEnum getBasicEmptyState(EasyTypeEnum easyTypeEnum) {
-    EmptyEnum enumResultEmpty = EmptyEnum.Empty_Null;
+    EmptyEnum enumResultEmpty = EmptyEnum.emptyNull;
     if (easyTypeEnum == EasyTypeEnum.from) {
       enumResultEmpty = fromSymbol.basicEmptyState;
     } else if (easyTypeEnum == EasyTypeEnum.to) {

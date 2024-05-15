@@ -8,8 +8,8 @@ import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/SABLogicSymbolMode
 import 'package:your_lucky/src/D_Business/EasyWords/SABWordsRowModel.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/SABWordsSymbolModel.dart';
 
-import '../../../A_Context/SACContext.dart';
-import '../../../A_Context/SACGlobal.dart';
+import '../../../A_Context/sac_context.dart';
+import '../../../A_Context/sac_global.dart';
 import '../../BasicEasy/SABElementInfoModel.dart';
 import '../../EasyWords/SABEasyWordsBusiness.dart';
 import '../../EasyWords/SABEasyWordsModel.dart';
@@ -757,16 +757,16 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
   /// `--旬空章第二十六`///////////////////////////////////////////////////////////
 
   EmptyEnum _symbolBasicEmptyState(String stringSymbol) {
-    EmptyEnum nResult = EmptyEnum.Empty_False;
+    EmptyEnum nResult = EmptyEnum.emptyFalse;
     if ("" != stringSymbol) {
       String earth = symbolEarth(stringSymbol);
       if (-1 != emptyEarth().indexOf(earth)) {
         String strDay = dayEarth();
         if (isEarthConflict(strDay, earth)) {
           //爻遇旬空，日辰冲起而为用，谓之冲空则实。
-          nResult = EmptyEnum.Empty_Conflict;
+          nResult = EmptyEnum.emptyConflict;
         } else {
-          nResult = EmptyEnum.Empty_YES;
+          nResult = EmptyEnum.emptyYES;
         }
       } //else continue.
     } else {
@@ -778,7 +778,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
   bool isEmptyAtRow(int intRow, EasyTypeEnum easyType) {
     String stringSymbol = rowModelAtRow(intRow, easyType);
-    bool bResult = _symbolBasicEmptyState(stringSymbol) == EmptyEnum.Empty_YES;
+    bool bResult = _symbolBasicEmptyState(stringSymbol) == EmptyEnum.emptyYES;
 
     return bResult;
   }

@@ -1,5 +1,5 @@
-import 'package:your_lucky/src/A_Context/SACContext.dart';
-import 'package:your_lucky/src/A_Context/SACGlobal.dart';
+import 'package:your_lucky/src/A_Context/sac_context.dart';
+import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/D_Business/Base/SABBaseBusiness.dart';
 import 'package:your_lucky/src/D_Business/BasicEasy/SABElementInfoModel.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/SABDigitDiagramsModel.dart';
@@ -222,7 +222,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
         EasyTypeEnum.hide == deityModel.easyType) {
       fResult = healthModel()
           .symbolHealthAtRow(deityModel.intRow, deityModel.easyType);
-    } else if (EasyTypeEnum.type_null == deityModel.easyType) {
+    } else if (EasyTypeEnum.typeNull == deityModel.easyType) {
       if (ROW_MONTH == deityModel.intRow) {
         fResult = wordsModel().monthModel.health;
       } else if (ROW_DAY == deityModel.intRow) {
@@ -288,7 +288,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     } else if (EasyTypeEnum.hide == deityModel.easyType) {
       bResult =
           logicModel().isSeasonStrong(deityModel.intRow, EasyTypeEnum.hide);
-    } else if (EasyTypeEnum.type_null == deityModel.easyType) {
+    } else if (EasyTypeEnum.typeNull == deityModel.easyType) {
       return true;
     } else if (EasyTypeEnum.to == deityModel.easyType) {
       coLog(StackTrace.current, LogTypeEnum.error,
@@ -307,7 +307,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
             deityModel.intRow,
             deityModel.easyType,
           );
-    } else if (EasyTypeEnum.type_null == deityModel.easyType) {
+    } else if (EasyTypeEnum.typeNull == deityModel.easyType) {
       if (ROW_MONTH == deityModel.intRow) {
         stringEarth = logicModel().inputWordsModel.monthModel.stringEarth;
       } else if (ROW_DAY == deityModel.intRow) {
@@ -1016,7 +1016,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   /// `--旬空章第二十六`///////////////////////////////////////////////////////////
 
   EmptyEnum symbolEmptyState(int intRow, EasyTypeEnum easyType) {
-    EmptyEnum nResult = EmptyEnum.Empty_Null;
+    EmptyEnum nResult = EmptyEnum.emptyNull;
     String stringSymbol = symbolNameAtRow(intRow, easyType);
     SABLogicSymbolModel symbolModel =
         logicModel().symbolAtRow(intRow, easyType);
@@ -1026,13 +1026,13 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
         String strDay = dayEarth();
         if (branchBusiness().isEarthConflict(strDay, earth)) {
           //爻遇旬空，日辰冲起而为用，谓之冲空则实。
-          nResult = EmptyEnum.Empty_Conflict;
+          nResult = EmptyEnum.emptyConflict;
         } else if (isFalseEmptyAtRow(intRow, easyType)) {
-          nResult = EmptyEnum.Empty_False;
+          nResult = EmptyEnum.emptyFalse;
         } else if (isRealEmpty(intRow, easyType)) {
-          nResult = EmptyEnum.Empty_Real;
+          nResult = EmptyEnum.emptyReal;
         } else {
-          nResult = EmptyEnum.Empty_YES;
+          nResult = EmptyEnum.emptyYES;
         }
       } //else cont.
     } else {
@@ -1428,7 +1428,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     if (monthParent == usefulParent) {
       resultModel = SABUsefulDeityModel(
         intRow: ROW_MONTH,
-        easyType: EasyTypeEnum.type_null,
+        easyType: EasyTypeEnum.typeNull,
       );
     } else {
       String dayParent =
@@ -1436,7 +1436,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       if (dayParent == usefulParent) {
         resultModel = SABUsefulDeityModel(
           intRow: ROW_DAY,
-          easyType: EasyTypeEnum.type_null,
+          easyType: EasyTypeEnum.typeNull,
         );
       } else {
         resultModel = indexOfUseDeityInEasy(EasyTypeEnum.hide);
@@ -1536,7 +1536,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     List listEmpty = List.empty(growable: true);
     for (int intRow in usefulArray) {
       if (logicModel().symbolAtRow(intRow, easyTypeEnum).basicEmptyState !=
-          EmptyEnum.Empty_NO) {
+          EmptyEnum.emptyNO) {
         listEmpty.add(intRow);
       } //else {}
     } //end for

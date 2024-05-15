@@ -1,5 +1,5 @@
-﻿import 'package:your_lucky/src/A_Context/SACContext.dart';
-import 'package:your_lucky/src/A_Context/SACGlobal.dart';
+﻿import 'package:your_lucky/src/A_Context/sac_context.dart';
+import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/SABEasyHealthLogicModel.dart';
@@ -265,7 +265,7 @@ class SABEasyDetailModel extends SABBaseModel {
     if (bStaticEasy) {
       if (EasyTypeEnum.from == usefulDeity.easyType) {
         mapResult = staticHaveUsefulDeity();
-      } else if (EasyTypeEnum.type_null == usefulDeity.easyType) {
+      } else if (EasyTypeEnum.typeNull == usefulDeity.easyType) {
         mapResult = staticHaveUsefulDeity();
       } else {
         mapResult = staticHideUsefulDeity();
@@ -273,7 +273,7 @@ class SABEasyDetailModel extends SABBaseModel {
     } else {
       if (EasyTypeEnum.from == usefulDeity.easyType) {
         mapResult = moveHaveUsefulDeity();
-      } else if (EasyTypeEnum.type_null == usefulDeity.easyType) {
+      } else if (EasyTypeEnum.typeNull == usefulDeity.easyType) {
         mapResult = moveHaveUsefulDeity();
       } else {
         mapResult = moveHideUsefulDeity();

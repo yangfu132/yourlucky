@@ -1,11 +1,11 @@
-﻿import 'package:your_lucky/src/A_Context/SACContext.dart';
+﻿import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/SABEasyDigitModel.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/SABDayModel.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/SABMonthModel.dart';
 import 'package:your_lucky/src/E_Service/SASStringService.dart';
 
-import '../../A_Context/SACGlobal.dart';
+import '../../A_Context/sac_global.dart';
 import 'SABWordsRowModel.dart';
 
 class SABEasyWordsModel extends SABBaseModel {
@@ -52,7 +52,7 @@ class SABEasyWordsModel extends SABBaseModel {
   }
 
   EasyTypeEnum easyTypeOfMergeRow(int intRow) {
-    EasyTypeEnum enumResultType = EasyTypeEnum.type_null;
+    EasyTypeEnum enumResultType = EasyTypeEnum.typeNull;
     if (0 <= intRow && intRow < 6) {
       enumResultType = EasyTypeEnum.from;
     } else if (ROW_CHANGE_BEGIN <= intRow && intRow < ROW_CHANGE_END) {

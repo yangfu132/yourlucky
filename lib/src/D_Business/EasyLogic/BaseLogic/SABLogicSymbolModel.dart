@@ -1,5 +1,5 @@
-import 'package:your_lucky/src/A_Context/SACContext.dart';
-import 'package:your_lucky/src/A_Context/SACGlobal.dart';
+import 'package:your_lucky/src/A_Context/sac_context.dart';
+import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/SABWordsSymbolModel.dart';
 
@@ -49,7 +49,7 @@ class SABLogicSymbolModel extends SABBaseModel {
   }
 
   bool isEmpty() {
-    return EmptyEnum.Empty_YES == basicEmptyState ||
-        EmptyEnum.Empty_Real == basicEmptyState;
+    return EmptyEnum.emptyYES == basicEmptyState ||
+        EmptyEnum.emptyReal == basicEmptyState;
   }
 }

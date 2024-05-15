@@ -1,5 +1,5 @@
-import 'package:your_lucky/src/A_Context/SACContext.dart';
-import 'package:your_lucky/src/A_Context/SACGlobal.dart';
+import 'package:your_lucky/src/A_Context/sac_context.dart';
+import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/D_Business/Base/SABBaseModel.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/SABHealthRowModel.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/SABHealthLogicSymbolModel.dart';
@@ -65,7 +65,7 @@ class SABHealthLogicRowModel extends SABBaseModel {
     } else {
       coLog(
           StackTrace.current, LogTypeEnum.error, 'easyTypeEnum:$easyTypeEnum');
-      return EmptyEnum.Empty_Null;
+      return EmptyEnum.emptyNull;
     }
   }
 

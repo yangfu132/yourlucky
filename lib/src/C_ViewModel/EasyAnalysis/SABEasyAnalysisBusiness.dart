@@ -7,8 +7,8 @@ import 'package:your_lucky/src/D_Business/EasyLogic/SABEasyHealthLogicModel.dart
 import 'package:your_lucky/src/D_Business/EasyWords/SABEasyWordsModel.dart';
 import 'package:your_lucky/src/E_Service/SASStringService.dart';
 
-import '../../A_Context/SACContext.dart';
-import '../../A_Context/SACGlobal.dart';
+import '../../A_Context/sac_context.dart';
+import '../../A_Context/sac_global.dart';
 import 'SABEasyAnalysisModel.dart';
 
 class SABEasyAnalysisBusiness extends SABBaseBusiness {
@@ -336,18 +336,18 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
   String resultSymbolEmpty(int nRow, EasyTypeEnum easyType) {
     String strEmpty = "";
     switch (healthLogicModel().getSymbolEmptyState(nRow, easyType)) {
-      case EmptyEnum.Empty_NO:
+      case EmptyEnum.emptyNO:
         break;
-      case EmptyEnum.Empty_YES:
+      case EmptyEnum.emptyYES:
         strEmpty = "[空]";
         break;
-      case EmptyEnum.Empty_False:
+      case EmptyEnum.emptyFalse:
         strEmpty = "[假空]";
         break;
-      case EmptyEnum.Empty_Real:
+      case EmptyEnum.emptyReal:
         strEmpty = "[真空]";
         break;
-      case EmptyEnum.Empty_Conflict:
+      case EmptyEnum.emptyConflict:
         strEmpty = "[冲空不空]";
         break;
       default:
