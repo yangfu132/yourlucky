@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:your_lucky/src/A_Context/sac_navigator.dart';
-import 'package:your_lucky/src/A_Context/sac_routeUrl.dart';
+import 'package:your_lucky/src/A_Context/sac_route_url.dart';
 
 class SAUSignOutRoute extends StatefulWidget {
   SAUSignOutRoute({Key? key, this.title}) : super(key: key);
