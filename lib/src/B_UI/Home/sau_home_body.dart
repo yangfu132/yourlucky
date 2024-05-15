@@ -77,8 +77,8 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
             fit: BoxFit.fill,
           ),
           Positioned(
-            child: imageWan,
             top: 40,
+            child: imageWan,
           ),
           Positioned(
             top: widthBg / 2,
@@ -86,8 +86,8 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
             width: 45 * screenRate,
             height: 45 * screenRate,
             child: Visibility(
-              child: Image.asset('images/1@2x.png'),
               visible: !_bAnimation,
+              child: Image.asset('images/1@2x.png'),
             ),
           ),
           Positioned(
@@ -96,8 +96,8 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
             width: 45 * screenRate,
             height: 45 * screenRate,
             child: Visibility(
-              child: Image.asset('images/2@2x.png'),
               visible: !_bAnimation,
+              child: Image.asset('images/2@2x.png'),
             ),
           ),
           Positioned(
@@ -106,19 +106,19 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
             width: 45 * screenRate,
             height: 45 * screenRate,
             child: Visibility(
-              child: Image.asset('images/4@2x.png'),
               visible: !_bAnimation,
+              child: Image.asset('images/4@2x.png'),
             ),
           ),
           Positioned(
-            child: Visibility(
-              child: animationDice,
-              visible: _bAnimation,
-            ),
             top: 50,
             bottom: 50,
             left: 0,
             right: 50,
+            child: Visibility(
+              visible: _bAnimation,
+              child: animationDice,
+            ),
           ),
           Positioned(
             bottom: 50,

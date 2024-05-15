@@ -46,9 +46,9 @@ class _WOActionImageState extends State<AnimationMutileImage> {
 
       _container = Container(
         color: widget.backColor,
-        child: imageValue,
         height: widget.height,
         width: widget.width,
+        child: imageValue,
       );
       if (widget.bRandom) {
         _imageIndex = Random().nextInt(widget.imageCaches.length) + 1;

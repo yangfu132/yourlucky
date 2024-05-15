@@ -59,16 +59,15 @@ class _SAUEasyStrategyRoute extends State<SAUEasyStrategyRoute> {
               );
             } else {
               return Container(
+                decoration: const BoxDecoration(
+                  border: Border(top: BorderSide(width: 1, color: Colors.grey)),
+                ),
                 child: ListTile(
                   title: Text(category['key']),
                   onTap: () {
                     SACContext.expertCategory().setCategory(category['key']);
                     SACNavigator.pop(context);
                   },
-                ),
-                // 下边框
-                decoration: const BoxDecoration(
-                  border: Border(top: BorderSide(width: 1, color: Colors.grey)),
                 ),
               );
             }

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 
@@ -52,42 +50,42 @@ class AnimationDiceState extends State<AnimationDiceWidget>
     double rate = 1 / 50;
     double offsetX = 30 * rate;
     double offsetY = 20 * rate;
-    Offset _offset0 = Offset(
+    Offset offset0 = Offset(
       140.0 * rate,
       200.0 * rate + offsetY,
     );
-    Offset _offset1 = Offset(
+    Offset offset1 = Offset(
       85.0 * rate + offsetX,
       115.0 * rate + offsetY,
     );
-    Offset _offset2 = Offset(
+    Offset offset2 = Offset(
       165.0 * rate + offsetX,
       100.0 * rate + offsetY,
     );
-    Offset _offset3 = Offset(
+    Offset offset3 = Offset(
       240.0 * rate + offsetX,
       160.0 * rate + offsetY,
     );
-    Offset _offset4 = Offset(
+    Offset offset4 = Offset(
       140.0 * rate + offsetX,
       200.0 * rate + offsetY,
     );
     return TweenSequence<Offset>([
       //使用TweenSequence进行多组补间动画
       TweenSequenceItem<Offset>(
-        tween: Tween(begin: _offset0, end: _offset1),
+        tween: Tween(begin: offset0, end: offset1),
         weight: 1,
       ),
       TweenSequenceItem<Offset>(
-        tween: Tween(begin: _offset1, end: _offset2),
+        tween: Tween(begin: offset1, end: offset2),
         weight: 1,
       ),
       TweenSequenceItem<Offset>(
-        tween: Tween(begin: _offset2, end: _offset3),
+        tween: Tween(begin: offset2, end: offset3),
         weight: 1,
       ),
       TweenSequenceItem<Offset>(
-        tween: Tween(begin: _offset3, end: _offset4),
+        tween: Tween(begin: offset3, end: offset4),
         weight: 1,
       ),
     ]);
@@ -98,42 +96,42 @@ class AnimationDiceState extends State<AnimationDiceWidget>
     double offsetX = 50 * rate;
     double offsetY = 20 * rate;
     //Tween(begin: _offsetBegin, end: _offsetEnd)
-    Offset _offset0 = Offset(
+    Offset offset0 = Offset(
       100.0 * rate + offsetX,
       130.0 * rate + offsetY,
     );
-    Offset _offset1 = Offset(
+    Offset offset1 = Offset(
       195.0 * rate + offsetX,
       115.0 * rate + offsetY,
     );
-    Offset _offset2 = Offset(
+    Offset offset2 = Offset(
       175.0 * rate + offsetX,
       95.0 * rate + offsetY,
     );
-    Offset _offset3 = Offset(
+    Offset offset3 = Offset(
       140.0 * rate + offsetX,
       220.0 * rate + offsetY,
     );
-    Offset _offset4 = Offset(
+    Offset offset4 = Offset(
       100.0 * rate + offsetX,
       130.0 * rate + offsetY,
     );
     return TweenSequence<Offset>([
       //使用TweenSequence进行多组补间动画
       TweenSequenceItem<Offset>(
-        tween: Tween(begin: _offset0, end: _offset1),
+        tween: Tween(begin: offset0, end: offset1),
         weight: 1,
       ),
       TweenSequenceItem<Offset>(
-        tween: Tween(begin: _offset1, end: _offset2),
+        tween: Tween(begin: offset1, end: offset2),
         weight: 1,
       ),
       TweenSequenceItem<Offset>(
-        tween: Tween(begin: _offset2, end: _offset3),
+        tween: Tween(begin: offset2, end: offset3),
         weight: 1,
       ),
       TweenSequenceItem<Offset>(
-        tween: Tween(begin: _offset3, end: _offset4),
+        tween: Tween(begin: offset3, end: offset4),
         weight: 1,
       ),
     ]);
@@ -144,42 +142,42 @@ class AnimationDiceState extends State<AnimationDiceWidget>
     double offsetX = 50 * rate;
     double offsetY = 20 * rate;
     //Tween(begin: _offsetBegin, end: _offsetEnd)
-    Offset _offset0 = Offset(
+    Offset offset0 = Offset(
       230.0 * rate + offsetX,
       110.0 * rate + offsetY,
     );
-    Offset _offset1 = Offset(
+    Offset offset1 = Offset(
       200.0 * rate + offsetX,
       180.0 * rate + offsetY,
     );
-    Offset _offset2 = Offset(
+    Offset offset2 = Offset(
       90.0 * rate + offsetX,
       190.0 * rate + offsetY,
     );
-    Offset _offset3 = Offset(
+    Offset offset3 = Offset(
       70.0 * rate + offsetX,
       140.0 * rate + offsetY,
     );
-    Offset _offset4 = Offset(
+    Offset offset4 = Offset(
       230.0 * rate + offsetX,
       110.0 * rate + offsetY,
     );
     return TweenSequence<Offset>([
       //使用TweenSequence进行多组补间动画
       TweenSequenceItem<Offset>(
-        tween: Tween(begin: _offset0, end: _offset1),
+        tween: Tween(begin: offset0, end: offset1),
         weight: 1,
       ),
       TweenSequenceItem<Offset>(
-        tween: Tween(begin: _offset1, end: _offset2),
+        tween: Tween(begin: offset1, end: offset2),
         weight: 1,
       ),
       TweenSequenceItem<Offset>(
-        tween: Tween(begin: _offset2, end: _offset3),
+        tween: Tween(begin: offset2, end: offset3),
         weight: 1,
       ),
       TweenSequenceItem<Offset>(
-        tween: Tween(begin: _offset3, end: _offset4),
+        tween: Tween(begin: offset3, end: offset4),
         weight: 1,
       ),
     ]);

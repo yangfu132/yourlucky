@@ -9,7 +9,7 @@ enum ApplicationLoginState {
   register,
 }
 
-const bool USE_FIRE_AUTH_EMULATOR = false;
+const bool constUseFireAuthEmulator = false;
 
 class SASFireBaseUserAuthService extends ChangeNotifier {
   ApplicationLoginState _loginState = ApplicationLoginState.loggedOut;
@@ -22,7 +22,7 @@ class SASFireBaseUserAuthService extends ChangeNotifier {
   String? get displayName => _displayName;
 //
   Future<void> initFireAuth() async {
-//     if (USE_FIRE_AUTH_EMULATOR) {
+//     if (constUseFireAuthEmulator) {
 //       await FirebaseAuth.instance.useAuthEmulator("http://localhost", 9099);
 //     }
 //     FirebaseAuth.instance.userChanges().listen((user) {
