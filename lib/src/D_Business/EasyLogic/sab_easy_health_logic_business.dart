@@ -377,10 +377,11 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
     List arrayRestricts = restrictsDeityIndexArray();
     if (-1 != arrayRestricts.indexOf(intIndex)) {
-      if (isRestrictDeityInvalidAtRow(intIndex))
+      if (isRestrictDeityInvalidAtRow(intIndex)) {
         bResult = false;
-      else
+      } else {
         bResult = isRestrictDeityValidAtRow(intIndex);
+      }
     }
     //else cont.
 
@@ -489,9 +490,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
           String stringEarthBase = symbolFrom.inputWordsSymbol.stringEarth;
           String stringTwelveDeity =
               branchBusiness().earthTwelveDeity(stringEarthBase, dayEarth());
-          if ("长生" == stringTwelveDeity || "帝旺" == stringTwelveDeity)
+          if ("长生" == stringTwelveDeity || "帝旺" == stringTwelveDeity) {
             bResult = true;
-          else {
+          } else {
             //忌神与仇神同动，五也。
             bool bMoving = isMovementAtRow(intRow);
             bool bEnemyMoving = false;

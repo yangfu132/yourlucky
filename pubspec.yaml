@@ -39,7 +39,7 @@ dependencies:
   flutter_perpttual_calendar: ^1.0.0+9
   sqflite:
   cached_network_image:
-  #---------- third party plugin
+  path:
   bot_toast: # new
   cupertino_icons: # new #^1.0.6
 dev_dependencies:
