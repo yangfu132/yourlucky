@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'Base/sas_base_service.dart';
 class SASFileService extends SABBaseService {
   void writeFile (String content) async {
-    File file = new File('test.txt');
+    File file = File('test.txt');
     try {
       // 向文件写入字符串
       await file.writeAsString(content);
@@ -14,7 +14,6 @@ class SASFileService extends SABBaseService {
       printMsg(e as String?);
     }
   }
-
 
   static Future<void> readFile(void refresh(String content)) async {
     String result = "waiting";
@@ -32,7 +31,7 @@ class SASFileService extends SABBaseService {
 
   static Future<void> readFileOld(void refresh(String content)) async {
     String result = "waiting";
-    File file = new File('assets/easy.txt');
+    File file = File('assets/easy.txt');
     try{
       result = await file.readAsString();
       SABBaseService.staticPrintMsg(result);

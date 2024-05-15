@@ -1,7 +1,7 @@
 ///全App唯一的单利
 ///
 class SABSingletonService {
-  static SABSingletonService _instance = new SABSingletonService._internal();
+  static final SABSingletonService _instance = SABSingletonService._internal();
   static SABSingletonService _getInstance() {
     return _instance;
   }
