@@ -355,10 +355,11 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
         }
         //else cont.
       }
-    } else if (EasyTypeEnum.to == enumEasyType)
+    } else if (EasyTypeEnum.to == enumEasyType) {
       strResult = "变爻";
-    else if (EasyTypeEnum.hide == enumEasyType) strResult = "伏神";
-    //else cont.
+    } else if (EasyTypeEnum.hide == enumEasyType)  {
+      strResult = "伏神";
+    }//else cont.
 
     return strResult;
   }
@@ -368,10 +369,11 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     bool bResult = true;
     List arrayBorns = bornDeityIndexArray();
     if (-1 != arrayBorns.indexOf(intIndex)) {
-      if (isBornDeityInValidAtRow(intIndex))
+      if (isBornDeityInValidAtRow(intIndex)) {
         bResult = false;
-      else
+      } else {
         bResult = isBornDeityValidAtRow(intIndex);
+      }
     }
     //else cont.
 
@@ -541,9 +543,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
         String stringEarthBase = symbolFrom.inputWordsSymbol.stringEarth;
         String stringTwelveDeity =
             branchBusiness().earthTwelveDeity(stringEarthBase, dayEarth());
-        if ("长生" == stringTwelveDeity || "帝旺" == stringTwelveDeity)
+        if ("长生" == stringTwelveDeity || "帝旺" == stringTwelveDeity) {
           bResult = true;
-        else {
+        } else {
           //元神与忌神同动，四也。
           bool bMoving = isMovementAtRow(intIndex);
           bool bRestrictMoving = false;
@@ -629,13 +631,13 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       bool bBroken = MonthConflictEnum.conflictBroken ==
           symbolConflictStateOnMonth(intRow, EasyTypeEnum.from);
       bool bMoving = isMovementAtRow(intRow);
-      if ((!bMoving && bEmpty && bBroken))
+      if ((!bMoving && bEmpty && bBroken)) {
         bResult = true;
-      else {
+      } else {
         //忌神入三墓，三也。
-        if (isSymbolMuAtRow(intRow, enumEasyType))
+        if (isSymbolMuAtRow(intRow, enumEasyType)) {
           bResult = true;
-        else {
+        } else {
           //忌神衰动化退神，四也。
           bool bShuai = isSymbolShuaiAtRow(intRow, enumEasyType);
           bool bFrowardBack = isSymbolChangeBackAtRow(intRow);
@@ -645,18 +647,18 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
           } else {
             //忌神衰而又绝，五也。
             bool bJue = isSymbolJueAtRow(intRow, enumEasyType);
-            if (bShuai && bJue)
+            if (bShuai && bJue) {
               bResult = true;
-            else {
+            } else {
               //忌神动化绝化克化破化散，六也。
               bool bRestrict = false;
               String fromEarth = earthAtFromRow(intRow);
               String toEarth = earthAtToRow(intRow);
 
               //化克
-              if ("" != toEarth)
+              if ("" != toEarth) {
                 bRestrict = isEarthRestricts(toEarth, fromEarth);
-              //else cont.
+              } //else cont.
 
               //化破
               bool bToDayBroken = false;
@@ -706,9 +708,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       bool bEmpty = isEmptyAtRow(intRow, EasyTypeEnum.from);
       bool bBroken = MonthConflictEnum.conflictBroken ==
           symbolConflictStateOnMonth(intRow, EasyTypeEnum.from);
-      if ((!bStrong && bEmpty) || (!bStrong && bBroken))
+      if ((!bStrong && bEmpty) || (!bStrong && bBroken)) {
         bResult = true;
-      else {
+      } else {
         //元神休囚动化退神，三也。
         bool bFrowardBack = isSymbolChangeBackAtRow(intRow);
         if (!bStrong && bFrowardBack) {
@@ -717,20 +719,20 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
           //元神衰而又绝，四也。
           bool bShuai = isSymbolShuaiAtRow(intRow, easyType);
           bool bJue = isSymbolJueAtRow(intRow, easyType);
-          if (bShuai && bJue)
+          if (bShuai && bJue) {
             bResult = true;
-          else {
+          } else {
             //元神入三墓，五也。
-            if (isSymbolMuAtRow(intRow, easyType))
+            if (isSymbolMuAtRow(intRow, easyType)) {
               bResult = true;
-            else {
+            } else {
               //元神休囚动而化绝化克化破化散，六也。
               bool bRestrict = false;
               String fromEarth = earthAtFromRow(intRow);
               String toEarth = earthAtToRow(intRow);
-              if ("" != toEarth)
+              if ("" != toEarth) {
                 bRestrict = isEarthRestricts(toEarth, fromEarth);
-              //else cont.
+              } //else cont.
 
               //化破
               bool bToDayBroken = false;
@@ -740,19 +742,15 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
                   symbolConflictStateOnMonth(intRow, EasyTypeEnum.to));
 
               if (!bStrong) {
-                if (bJue || bRestrict || bToMonthBroken || bToDayBroken)
+                if (bJue || bRestrict || bToMonthBroken || bToDayBroken) {
                   bResult = true;
-                //else cont.
-              }
-              //else cont.
-
-            } //endi
-          } //endi
-        } //endi
-
-      } //endi
-
-    } //endi
+                } //else cont.
+              }//else cont.
+            } //end if
+          } //end if
+        } //end if
+      } //end if
+    } //end if
     return bResult;
   }
 
@@ -793,8 +791,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       //else cont.
 
       bResult = nValue < 0;
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
+    } //end if
 
     return bResult;
   }
@@ -818,9 +817,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     bool bOnDay = symbolFrom.isOnDay;
     bool bOnMonth = symbolFrom.isOnMonth;
 
-    if (bOnDay || bOnMonth)
+    if (bOnDay || bOnMonth) {
       bBalance = true;
-    else {
+    } else {
       //生克
       bool bMonthBorn = symbolFrom.bMonthBorn;
       bool bDayBorn = symbolFrom.bDayBorn;
@@ -841,9 +840,10 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
         bBalance = bDayPair;
       } else if (bDayConflict) {
         bBalance = bMonthPair;
-      } else
+      } else {
         bBalance = true;
-    } //endi
+      } //end if
+    } //end if
 
     bResult = !bBorn && !bBalance;
 
@@ -887,9 +887,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       //else cont.
 
       bResult = nValue < 0;
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
-
+    } //end if
     return bResult;
   }
 
@@ -902,11 +902,11 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     if (isEffectAbleRow(intIndex, easyType)) {
       String stringSymbol = "";
 
-      if (easyType == EasyTypeEnum.from)
+      if (easyType == EasyTypeEnum.from) {
         stringSymbol = symbolAtFromRow(intIndex);
-      else if (easyType == EasyTypeEnum.hide)
+      } else if (easyType == EasyTypeEnum.hide) {
         stringSymbol = symbolAtHideRow(intIndex);
-      //else cont.
+      } //else cont.
 
       bResult = _isSymbolMoveBorn(stringSymbol);
     }
@@ -938,12 +938,13 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
     String stringSymbol = "";
 
-    if (easyType == EasyTypeEnum.from)
+    if (easyType == EasyTypeEnum.from) {
       stringSymbol = symbolAtFromRow(intIndex);
-    else if (easyType == EasyTypeEnum.hide)
+    } else if (easyType == EasyTypeEnum.hide) {
       stringSymbol = symbolAtHideRow(intIndex);
-    else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
+    }
 
     for (int numItem in arrayEffects) {
       String stringSymbolItem = symbolAtFromRow(numItem);
@@ -1112,8 +1113,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     if (MonthConflictEnum.conflictNO == stateEmpty ||
         MonthConflictEnum.conflictMove == stateEmpty ||
         MonthConflictEnum.conflictMoveBorn == stateEmpty) {
-    } else
+    } else {
       bResult = true;
+    } //end if
 
     //有气不动亦为空
     final symbolModel = logicModel().symbolAtRow(intRow, easyType);
@@ -1160,9 +1162,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       nResult = MonthConflictEnum.conflictBroken;
 
       String strDayEarth = dayEarth();
-      if (strDayEarth == basicEarth)
+      if (strDayEarth == basicEarth) {
         nResult = MonthConflictEnum.conflictOnDay;
-      else if (isMovementAtRow(intRow)) {
+      } else if (isMovementAtRow(intRow)) {
         nResult = MonthConflictEnum.conflictMove;
       } else {
         //唯静而不动，又无日辰动爻生助，实则到底而破矣。
@@ -1170,11 +1172,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
           nResult = MonthConflictEnum.conflictDayBorn;
         } else if (_isSymbolMoveBorn(stringSymbol)) {
           nResult = MonthConflictEnum.conflictMoveBorn;
-        }
-        //else cont.
+        } //else cont.
       } //end if
-    }
-    //else cont.
+    }//else cont.
 
     return nResult;
   }
@@ -1205,15 +1205,18 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       nResult = DayConflictEnum.conflictYES;
 
       if (wordsModel().isMovementAtRow(intRow)) {
-        if (symbolModel.isSeasonStrong)
+        if (symbolModel.isSeasonStrong) {
           nResult = DayConflictEnum.conflictSAN;
-        else
+        }
+        else {
           nResult = DayConflictEnum.conflictSAN;
+        } //end if
       } else {
-        if (symbolModel.isSeasonStrong)
+        if (symbolModel.isSeasonStrong) {
           nResult = DayConflictEnum.conflictBackMove;
-        else
+        } else {
           nResult = DayConflictEnum.conflictBROKEN;
+        } //end if
       } //endi
     }
     //else cont.

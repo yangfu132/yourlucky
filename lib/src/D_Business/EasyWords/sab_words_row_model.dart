@@ -24,7 +24,7 @@ class SABWordsRowModel extends SABBaseModel {
   final SABWordsSymbolModel toSymbol;
   final SABWordsSymbolModel hideSymbol;
 
-  void check() {
+  @override void check() {
     if (stringAnimal.isEmpty) {
       coLog(StackTrace.current, LogTypeEnum.check, "stringAnimal.isEmpty");
     }
@@ -47,8 +47,9 @@ class SABWordsRowModel extends SABBaseModel {
       return toSymbol.earlyPlace;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.earlyPlace;
-    } else
+    } else {
       return 'easyTypeEnum:$easyTypeEnum';
+    }
   }
 
   String getLatePlace(EasyTypeEnum easyTypeEnum) {
@@ -58,8 +59,9 @@ class SABWordsRowModel extends SABBaseModel {
       return toSymbol.latePlace;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.latePlace;
-    } else
+    } else {
       return 'easyTypeEnum:$easyTypeEnum';
+    }
   }
 
   String getSymbolName(EasyTypeEnum easyTypeEnum) {
@@ -69,8 +71,9 @@ class SABWordsRowModel extends SABBaseModel {
       return toSymbol.symbolName;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.symbolName;
-    } else
+    } else {
       return 'easyTypeEnum:$easyTypeEnum';
+    }
   }
 
   String getSymbolParent(EasyTypeEnum easyTypeEnum) {
@@ -80,8 +83,9 @@ class SABWordsRowModel extends SABBaseModel {
       return toSymbol.stringParent;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.stringParent;
-    } else
+    } else {
       return 'easyTypeEnum:$easyTypeEnum';
+    }
   }
 
   String getSymbolEarth(EasyTypeEnum easyTypeEnum) {
@@ -91,8 +95,9 @@ class SABWordsRowModel extends SABBaseModel {
       return toSymbol.stringEarth;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.stringEarth;
-    } else
+    } else {
       return 'easyTypeEnum:$easyTypeEnum';
+    }
   }
 
   String getSymbolElement(EasyTypeEnum easyTypeEnum) {
@@ -102,7 +107,8 @@ class SABWordsRowModel extends SABBaseModel {
       return toSymbol.stringElement;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       return hideSymbol.stringElement;
-    } else
+    } else {
       return 'easyTypeEnum:$easyTypeEnum';
+    }
   }
 }

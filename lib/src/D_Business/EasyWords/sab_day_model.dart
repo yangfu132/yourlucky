@@ -25,10 +25,10 @@ class SABDayModel extends SABBaseModel {
   final double dayOutRight = 100.0;
 
   String skyEarth() {
-    return stringSky + stringEarth + "日";
+    return "$stringSky$stringEarth日";
   }
 
-  void check() {
+  @override void check() {
     if (stringSky.isEmpty) {
       coLog(StackTrace.current, LogTypeEnum.check, "stringSky.isEmpty");
     }

@@ -84,7 +84,7 @@ class SAUSignInRouteState extends State<SAUSignInRoute> {
             case 2:
               return TextButton(
                 onPressed: () => business.signIn((String code, String message) {
-                  SAUToastWidget.show("message:" + message);
+                  SAUToastWidget.show("message:$message");
                   debugPrint(message);
                   if ('成功' == message) {
                     SACNavigator.pop(context);

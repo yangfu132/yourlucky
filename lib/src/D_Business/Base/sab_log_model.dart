@@ -20,7 +20,7 @@ class SABLogModel extends SABBaseModel {
           msg: json['msg']! as String,
         );
 
-  Map<String, Object?> toJson() {
+  @override Map<String, Object?> toJson() {
     return {
       'id': modelId,
       'dataId': dataId,
@@ -29,15 +29,15 @@ class SABLogModel extends SABBaseModel {
     };
   }
 
-  String getModelName() {
+  @override String getModelName() {
     return 'easy_log';
   }
 
-  int? getModelId() {
+  @override int? getModelId() {
     return modelId;
   }
 
-  String toString() {
+  @override String toString() {
     return '';
   }
 }

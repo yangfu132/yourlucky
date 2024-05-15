@@ -19,7 +19,7 @@ class SABHealthLogicSymbolModel extends SABBaseModel {
   final EmptyEnum symbolEmptyState;
   final String stringDeity;
 
-  void check() {
+  @override void check() {
     inputHealthSymbol.check();
 
     // for (SABHealthLogicRowModel row in _listRowModels) {

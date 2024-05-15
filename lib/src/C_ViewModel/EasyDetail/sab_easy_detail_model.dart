@@ -18,7 +18,7 @@ class SABEasyDetailModel extends SABBaseModel {
   final String stringDetailName;
   final List<SABRowDetailModel> _listRowModels = List<SABRowDetailModel>.empty(growable: true);
 
-  void check() {
+  @override void check() {
     diagramsDetailModel.check();
     _analysisModel.check();
     for (SABRowDetailModel row in _listRowModels) {
@@ -172,8 +172,8 @@ class SABEasyDetailModel extends SABBaseModel {
         "世应",
         '进化',
         '变:${wordsModel().getToEasyName()}',
-        '${wordsModel().monthSkyEarth()}',
-        '${wordsModel().daySkyEarth()}',
+        (wordsModel().monthSkyEarth()),
+        (wordsModel().daySkyEarth()),
       ]
     ];
 
@@ -218,8 +218,8 @@ class SABEasyDetailModel extends SABBaseModel {
     "世应",
     '进化',
     '变:${wordsModel().getToEasyName()}',
-    '${wordsModel().monthSkyEarth()}',
-    '${wordsModel().daySkyEarth()}',
+    (wordsModel().monthSkyEarth()),
+    (wordsModel().daySkyEarth()),
     ];
     listResult.add(listTitle);
 

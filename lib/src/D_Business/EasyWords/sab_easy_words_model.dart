@@ -20,7 +20,7 @@ class SABEasyWordsModel extends SABBaseModel {
   final SABDayModel dayModel;
   final List<SABWordsRowModel> _listRowModels = List.empty(growable: true);
 
-  void check() {
+  @override void check() {
     inputDigitModel.check();
     monthModel.check();
     dayModel.check();
@@ -157,7 +157,7 @@ class SABEasyWordsModel extends SABBaseModel {
 
     for (int intRow = 0; intRow < 6; intRow++) {
       String stringSymbolParent = getSymbolParent(intRow, easyTypeEnum);
-      if (stringSymbolParent == this.inputDigitModel.strUsefulDeity) {
+      if (stringSymbolParent == inputDigitModel.strUsefulDeity) {
         parentArray.add(intRow);
       }
       //else cont.

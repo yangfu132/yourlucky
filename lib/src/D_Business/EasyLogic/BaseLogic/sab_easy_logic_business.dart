@@ -103,18 +103,17 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
   }
 
   List staticSeasonStrong() {
-    List _staticStrongArray = List.empty(growable: true);
+    List staticStrongArray = List.empty(growable: true);
     for (int intIndex = 0; intIndex < 6; intIndex++) {
       if (!isMovementAtRow(intIndex)) {
         String stringSymbol = symbolAtFromRow(intIndex);
-        if (isSymbolSeasonStrong(stringSymbol))
-          _staticStrongArray.add(intIndex);
-        //else cont.
-      }
-      //else cont.
+        if (isSymbolSeasonStrong(stringSymbol)) {
+          staticStrongArray.add(intIndex);
+        } //else cont.
+      } //else cont.
     } //end for
 
-    return _staticStrongArray;
+    return staticStrongArray;
   }
 
 //被静爻生
@@ -124,10 +123,11 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     if (easyType == EasyTypeEnum.from) {
       if (!isMovementAtRow(intIndex)) stringSymbol = symbolAtFromRow(intIndex);
       //else cont.
-    } else if (easyType == EasyTypeEnum.hide)
+    } else if (easyType == EasyTypeEnum.hide) {
       stringSymbol = symbolAtHideRow(intIndex);
-    else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
+    }
 
     if ("" != stringSymbol) {
       List arrayEffects = staticSeasonStrong();
@@ -153,11 +153,11 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     bool bResult = false;
     if (!isMovementAtRow(intIndex)) {
       String stringSymbol = "";
-      if (easyType == EasyTypeEnum.from)
+      if (easyType == EasyTypeEnum.from) {
         stringSymbol = symbolAtFromRow(intIndex);
-      else if (easyType == EasyTypeEnum.hide)
+      } else if (easyType == EasyTypeEnum.hide) {
         stringSymbol = symbolAtHideRow(intIndex);
-      //else cont.
+      } //else cont.
 
       if (!isSymbolSeasonStrong(stringSymbol)) {
         List arrayEffects = staticSeasonStrong();
@@ -204,9 +204,9 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       String strTo = earthAtToRow(intRow);
       if (strTo.isNotEmpty) bResult = isEarthRestricts(strTo, fromEarth);
       //else cont.
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
-
+    }
     return bResult;
   }
 
@@ -376,8 +376,9 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     if (0 <= intRow && intRow < 6) {
       String stringSymbol = rowModelAtRow(intRow, easyType);
       bResult = _isSymbolDayConflict(stringSymbol);
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
+    }
 
     return bResult;
   }
@@ -437,13 +438,13 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
           String strPair =
               branchBusiness().sixPairDescription(basicEarth, otherEarth);
           if ("" != strPair) {
-            if (-1 == symbolPairArray.indexOf(index))
+            if (-1 == symbolPairArray.indexOf(index)) {
               symbolPairArray.add(index);
-            //else cont.
+            } //else cont.
 
-            if (-1 == symbolPairArray.indexOf(indexOther))
+            if (-1 == symbolPairArray.indexOf(indexOther)) {
               symbolPairArray.add(indexOther);
-            //else cont.
+            } //else cont.
 
             break;
           }
@@ -546,9 +547,9 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     List outMovementArray = wordsModel().outGuaMovementArray();
 
-    if (inMovementArray.length > 0 && outMovementArray.length > 0)
+    if (inMovementArray.length > 0 && outMovementArray.length > 0) {
       bResult = isEasySame();
-    //else cont.
+    } //else cont.
 
     return bResult;
   }
@@ -561,9 +562,9 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     List outMovementArray = wordsModel().outGuaMovementArray();
 
-    if (inMovementArray.length > 0 && outMovementArray.length == 0)
+    if (inMovementArray.length > 0 && outMovementArray.length == 0) {
       bResult = isEasySame();
-    //else cont.
+    } //else cont.
 
     return bResult;
   }
@@ -576,9 +577,9 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     List outMovementArray = wordsModel().outGuaMovementArray();
 
-    if (inMovementArray.length == 0 && outMovementArray.length > 0)
+    if (inMovementArray.length == 0 && outMovementArray.length > 0) {
       bResult = isEasySame();
-    //else cont.
+    } //else cont.
 
     return bResult;
   }
@@ -614,9 +615,9 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     List outMovementArray = wordsModel().outGuaMovementArray();
 
-    if (inMovementArray.length > 0 && outMovementArray.length > 0)
+    if (inMovementArray.length > 0 && outMovementArray.length > 0) {
       bResult = isEasyRestricts();
-    //else cont.
+    } //else cont.
 
     return bResult;
   }
@@ -629,9 +630,9 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     List outMovementArray = wordsModel().outGuaMovementArray();
 
-    if (inMovementArray.length > 0 && outMovementArray.length == 0)
+    if (inMovementArray.length > 0 && outMovementArray.length == 0) {
       bResult = isEasyRestricts();
-    //else cont.
+    } //else cont.
 
     return bResult;
   }
@@ -644,9 +645,9 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     List outMovementArray = wordsModel().outGuaMovementArray();
 
-    if (inMovementArray.length == 0 && outMovementArray.length > 0)
+    if (inMovementArray.length == 0 && outMovementArray.length > 0) {
       bResult = isEasyRestricts();
-    //else cont.
+    }//else cont.
 
     return bResult;
   }
@@ -813,9 +814,9 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
         strEarthBranch += strEarthBranch;
         strResult = strEarthBranch.substring(emptyLocation, emptyLocation + 2);
       }
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
-
+    }
     return strResult;
   }
 

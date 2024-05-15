@@ -29,7 +29,7 @@ class SABLogicRowModel extends SABBaseModel {
   final bool isSymbolChangeForward;
   final bool isSymbolChangeBack;
 
-  void check() {
+  @override void check() {
     inputWordsRow.check();
     fromSymbol.check();
     toSymbol.check();
@@ -87,8 +87,10 @@ class SABLogicRowModel extends SABBaseModel {
       enumResultEmpty = toSymbol.basicEmptyState;
     } else if (easyTypeEnum == EasyTypeEnum.hide) {
       enumResultEmpty = hideSymbol.basicEmptyState;
-    } else
-      coLog(StackTrace.current,LogTypeEnum.error,'easyTypeEnum:$easyTypeEnum');
+    } else {
+      coLog(
+          StackTrace.current, LogTypeEnum.error, 'easyTypeEnum:$easyTypeEnum');
+    }
 
     return enumResultEmpty;
   }

@@ -5,7 +5,4 @@ class SABUsefulDeityModel extends SABBaseModel {
   SABUsefulDeityModel({required this.intRow, required this.easyType});
   final int intRow;
   final EasyTypeEnum easyType;
-  void check() {
-    super.check();
-  }
 }

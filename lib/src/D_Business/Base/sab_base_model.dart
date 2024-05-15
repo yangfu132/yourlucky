@@ -19,7 +19,7 @@ class SABBaseModel {
     return null;
   }
 
-  String toString() {
+  @override String toString() {
     Map<String, Object?> json = toJson();
     return json.toString();
   }
@@ -28,7 +28,7 @@ class SABBaseModel {
     coLog(
       StackTrace.current,
       LogTypeEnum.check,
-      '--- ${this.runtimeType} checked --- ',
+      '--- $runtimeType checked --- ',
     );
   }
 
@@ -36,7 +36,7 @@ class SABBaseModel {
     coLog(
       StackTrace.current,
       LogTypeEnum.error,
-      '--- ${this.runtimeType} error --- ',
+      '--- $runtimeType error --- ',
     );
     debugPrint("");
   }

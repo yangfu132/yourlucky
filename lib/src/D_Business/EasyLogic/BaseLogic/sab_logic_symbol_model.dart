@@ -40,7 +40,7 @@ class SABLogicSymbolModel extends SABBaseModel {
   final String stringSeason;
   final bool isEffectAble;
 
-  void check() {
+  @override void check() {
     inputWordsSymbol.check();
     if (stringSeason.isEmpty) {
       coLog(StackTrace.current, LogTypeEnum.check, 'stringSeason.isEmpty');

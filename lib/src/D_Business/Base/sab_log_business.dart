@@ -34,7 +34,7 @@ class SABLogBusiness extends SABBaseBusiness {
   }
 
   ///加载
-  Future<void> load(void refresh(List<SABLogModel> dataList)) async {
+  Future<void> load(void Function(List<SABLogModel> dataList) refresh) async {
     List<SABLogModel> dataList = <SABLogModel>[];
     await sqlite.query('logs', (json) {
       dataList.add(SABLogModel.fromJson(json));

@@ -31,9 +31,9 @@ class SABDiagramsInfoModel extends SABBaseModel {
 
     if (easyName.length >= 2) {
       result = easyName[easyName.length - 2];
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
-
+    }
     return result;
   }
 
@@ -97,11 +97,11 @@ class SABDiagramsInfoModel extends SABBaseModel {
     Map resultDict = {};
 
     Map tableDictionary = easyData();
-    if (tableDictionary.length == 64)
+    if (tableDictionary.length == 64) {
       resultDict = tableDictionary[strKey];
-    else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
-
+    }
     return resultDict;
   }
 
@@ -213,7 +213,7 @@ class SABDiagramsInfoModel extends SABBaseModel {
   }
 
   Map easyData() {
-    return this._myAllEasyTableData;
+    return _myAllEasyTableData;
   }
 
   Map initEasyData() {

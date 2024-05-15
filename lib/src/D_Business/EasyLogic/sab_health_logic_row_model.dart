@@ -19,7 +19,7 @@ class SABHealthLogicRowModel extends SABBaseModel {
   final SABHealthLogicSymbolModel hideSymbol;
   bool? isSymbolChangeEmpty;
 
-  void check() {
+  @override void check() {
     healthRow.check();
     fromSymbol.check();
     toSymbol.check();

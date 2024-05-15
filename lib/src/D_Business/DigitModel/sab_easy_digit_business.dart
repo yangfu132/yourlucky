@@ -42,9 +42,11 @@ class SABEasyDigitBusiness extends SABBaseBusiness {
     var listEasyData = List<int>.empty(growable: true);
     for (int nIndex = 0; nIndex < 6; nIndex++) {
       int randomNum = Random().nextInt(3);
-      if (2 == randomNum)
+      if (2 == randomNum) {
         randomNum = 8;
-      else if (3 == randomNum) randomNum = 9;
+      } else if (3 == randomNum)  {
+        randomNum = 9;
+      }
       //else cont.
       listEasyData.add(randomNum);
     } //end for
@@ -70,7 +72,7 @@ class SABEasyDigitBusiness extends SABBaseBusiness {
   }
 
   ///加载
-  Future<void> load(void refresh(List<SABEasyDigitModel> dataList)) async {
+  Future<void> load(void Function(List<SABEasyDigitModel> dataList) refresh) async {
     List<SABEasyDigitModel> dataList = <SABEasyDigitModel>[];
     await sqlite.query('easy', (json) {
       dataList.add(SABEasyDigitModel.fromJson(json));

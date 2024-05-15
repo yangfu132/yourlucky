@@ -20,9 +20,9 @@ class SABEasyDigitModel extends SABBaseModel {
     this.strStrategy = SABEasyStrategyInfoModel.avoid,
     this.dataJson = '',
   }) {
-    if (this.dataJson.isNotEmpty) {
-      this.extraData = Map<String, dynamic>.from(json.decode(this.dataJson));
-      this.strAnnotate = this.extraData["annotate"] ?? "";
+    if (dataJson.isNotEmpty) {
+       extraData = Map<String, dynamic>.from(json.decode(dataJson));
+       strAnnotate = extraData["annotate"] ?? "";
     }
   }
 
@@ -49,7 +49,7 @@ class SABEasyDigitModel extends SABBaseModel {
 
   String strAnnotate = "";
 
-  void check() {
+  @override void check() {
     if (listEasyData.isEmpty) {
       coLog(StackTrace.current, LogTypeEnum.check, "listEasyData.isEmpty");
     }
@@ -80,15 +80,15 @@ class SABEasyDigitModel extends SABBaseModel {
     );
   }
 
-  String getModelName() {
+  @override String getModelName() {
     return 'easy';
   }
 
-  int? getModelId() {
+  @override int? getModelId() {
     return modelId;
   }
 
-  String describe() {
+  @override String describe() {
     String stringDescribe;
     if (isMovement(listEasyData)) {
       stringDescribe =
@@ -126,12 +126,13 @@ class SABEasyDigitModel extends SABBaseModel {
     int nValue, nFromValue;
     for (int nIndex = 0; nIndex < 6; nIndex++) {
       nValue = listEasyData[nIndex];
-      if (nValue == 8)
+      if (nValue == 8) {
         nFromValue = 0;
-      else if (nValue == 9)
+      } else if (nValue == 9) {
         nFromValue = 1;
-      else
+      } else  {
         nFromValue = nValue;
+      }
       strFromKey = "$strFromKey$nFromValue";
     } //end for
 
@@ -143,12 +144,13 @@ class SABEasyDigitModel extends SABBaseModel {
     int nValue, nFromValue;
     for (int nIndex = 0; nIndex < 6; nIndex++) {
       nValue = listEasyData[nIndex];
-      if (nValue == 8)
+      if (nValue == 8) {
         nFromValue = 1;
-      else if (nValue == 9)
+      } else if (nValue == 9) {
         nFromValue = 0;
-      else
+      } else {
         nFromValue = nValue;
+      }
       strToKey = "$strToKey$nFromValue";
     } //end for
 
@@ -169,13 +171,13 @@ class SABEasyDigitModel extends SABBaseModel {
               .toList(),
         );
 
-  Map<String, Object?> toJson() {
-    if (this.strAnnotate.isNotEmpty) {
-      this.extraData["annotate"] = this.strAnnotate;
+  @override Map<String, Object?> toJson() {
+    if (strAnnotate.isNotEmpty) {
+       extraData["annotate"] = strAnnotate;
     }
 
-    if (this.extraData.isNotEmpty) {
-      this.dataJson = json.encode(this.extraData);
+    if (extraData.isNotEmpty) {
+       dataJson = json.encode(extraData);
     }
 
     return {
@@ -241,9 +243,9 @@ class SABEasyDigitModel extends SABBaseModel {
         result = true;
       }
       //else cont.
-    } else
+    } else {
       result = false;
-    //CO_LOG(@"error!");
+    } // end if
 
     return result;
   }

@@ -75,7 +75,7 @@ class SAUSignupRouteState extends State<SAUSignupRoute> {
             case 3:
               return TextButton(
                 onPressed: () => business.signUp((String code, String message) {
-                  SAUToastWidget.show("message:" + message);
+                  SAUToastWidget.show("message:$message");
                   SACNavigator.pop(context);
                 }),
                 child: Text(SASLocalizationsService.userSignUp(context)),

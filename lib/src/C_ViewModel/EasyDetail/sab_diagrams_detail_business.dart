@@ -26,14 +26,14 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     if (theHealthModel.diagramsModel.bValidEasy()) {
       resultList[0]['value'] = digitModel().listEasyData.toString();
       resultList[1]['value'] = digitModel().strEasyGoal;
-      resultList[2]['value'] = this.resultUsefulDeity();
+      resultList[2]['value'] = resultUsefulDeity();
       resultList[3]['value'] = digitModel().stringTime;
-      resultList[4]['value'] = this.resultEasy();
-      resultList[5]['value'] = this.resultRepeatedOrConflict();
-      resultList[6]['value'] = this.resultSixPairOrConflict();
-      resultList[7]['value'] = this.resultThreePair();
-      resultList[8]['value'] = this.resultSymbol(theHealthModel);
-      resultList[9]['value'] = this.resultHappenTime();
+      resultList[4]['value'] = resultEasy();
+      resultList[5]['value'] = resultRepeatedOrConflict();
+      resultList[6]['value'] = resultSixPairOrConflict();
+      resultList[7]['value'] = resultThreePair();
+      resultList[8]['value'] = resultSymbol(theHealthModel);
+      resultList[9]['value'] = resultHappenTime();
     } else {
       coLog(StackTrace.current, LogTypeEnum.error, '无效的数据');
     }
@@ -57,7 +57,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     strResult = "$fromName 之 $toName";
 
     if ("" != easyParent) {
-      strResult = strResult + "\r\n" + easyParent;
+      strResult = "$strResult\r\n$easyParent";
     }
     //else cont.
 
@@ -75,10 +75,10 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
 
       if ('父母' == strParent) {
         //卦变回头生，以吉论
-        result = result + '，卦变回头生，以吉论；事物的发展对你有利。';
+        result = '$result，卦变回头生，以吉论；事物的发展对你有利。';
       } else if ('官鬼' == strParent) {
         //卦变回头克，以凶论
-        result = result + '，卦变回头克，以凶论；事物的发展对你不利。';
+        result = '$result，卦变回头克，以凶论；事物的发展对你不利。';
       }
       //else cont.
     }
@@ -100,7 +100,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     if ('' != easyRI) {
       result = result + easyRI;
     } else {
-      result = result + "非反吟卦，非伏吟卦";
+      result = "$result非反吟卦，非伏吟卦";
     }
     return result;
   }
@@ -109,56 +109,56 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     String result = "";
 
     String strAgainst =
-        '''主成而败，败而成，有而即无，无而即有，得而失，失而得，来而去，去而来，聚而散，散而聚，动而思静，静而思动。\r\n \
-    占功名者，用神旺相迁而又迁，升往他乡仍复来。用神失陷，有或降或升或得或失。\r\n\
-    占财物，聚散不常，卖买经营兴废往来不定。\r\n\
-    占坟茔，宅舍欲迁不迁，或迁之而再迁，或目下就有迁移之事。\r\n\
-    占已经久远之事者，目前就有变动。\r\n\
-    占天时晴而即雨，雨而又晴。\r\n\
-    占婚姻反复难成。\r\n\
-    占疾病愈而又病。\r\n\
-    占盗贼官非见而又见。\r\n\
-    占出行则行至中途亦反，即使到彼一事无成。\r\n\
-    占行人外卦反伏者，用神旺相必归，不然亦移他处。在外之人而占家宅者，内卦反伏，家庭人口不安。\r\n\
-    占彼此之形势者，内卦反伏，我乱他定，外卦反伏他乱我定。\r\n\
+        '''主成而败，败而成，有而即无，无而即有，得而失，失而得，来而去，去而来，聚而散，散而聚，动而思静，静而思动。\r\n
+    占功名者，用神旺相迁而又迁，升往他乡仍复来。用神失陷，有或降或升或得或失。\r\n
+    占财物，聚散不常，卖买经营兴废往来不定。\r\n
+    占坟茔，宅舍欲迁不迁，或迁之而再迁，或目下就有迁移之事。\r\n
+    占已经久远之事者，目前就有变动。\r\n
+    占天时晴而即雨，雨而又晴。\r\n
+    占婚姻反复难成。\r\n
+    占疾病愈而又病。\r\n
+    占盗贼官非见而又见。\r\n
+    占出行则行至中途亦反，即使到彼一事无成。\r\n
+    占行人外卦反伏者，用神旺相必归，不然亦移他处。在外之人而占家宅者，内卦反伏，家庭人口不安。\r\n
+    占彼此之形势者，内卦反伏，我乱他定，外卦反伏他乱我定。\r\n
     反吟有冲有克，用神受克得祸不轻。以生用神旺相不变冲克者虽则反伏，事之必成。第恐用神而化回头之冲克者，即是卦变大凶之象。''';
 
     String repeatedResult =
-        '''内外伏吟者，内外忧虑呻吟之象。亦有内卦动变伏吟内则呻吟，外卦动变伏吟外则不宁，诸占皆不如意，动如不动，焦恼呻吟。\r\n\
-    占名者久困官途淹留仕路。\r\n\
-    占利者财源耗散，水利消之。\r\n\
-    占坟宅舍欲迁而不能，守之而不利。\r\n\
-    占婚姻忧而不乐。\r\n\
-    占疾病久疾呻吟。\r\n\
-    占口舌官非事之难结。\r\n\
-    占出行难于移动，\r\n\
-    占行人在外忧郁。\r\n\
+        '''内外伏吟者，内外忧虑呻吟之象。亦有内卦动变伏吟内则呻吟，外卦动变伏吟外则不宁，诸占皆不如意，动如不动，焦恼呻吟。\r\n
+    占名者久困官途淹留仕路。\r\n
+    占利者财源耗散，水利消之。\r\n
+    占坟宅舍欲迁而不能，守之而不利。\r\n
+    占婚姻忧而不乐。\r\n
+    占疾病久疾呻吟。\r\n
+    占口舌官非事之难结。\r\n
+    占出行难于移动，\r\n
+    占行人在外忧郁。\r\n
     占彼此之形势者，内卦为我，外卦为他。内伏吟我心不遂，外伏吟他意不安。''';
 
     if (logicModel().diagramsModel.isEasyRepeatedGroan) {
       String repeated = "卦伏吟：内外伏吟者，内外不安之象也。";
-      result = result + "\r\n    $repeated\r\n    $repeatedResult ";
-      result = result + "    应期：${repeatedEasyResult()}\r\n";
+      result = "$result\r\n    $repeated\r\n    $repeatedResult ";
+      result = "$result    应期：${repeatedEasyResult()}\r\n";
     } else if (logicModel().diagramsModel.isEasyInPartRepeated) {
       String repeated = "卦伏吟：内卦伏吟内则不安。";
-      result = result + "\r\n    $repeated\r\n    $repeatedResult ";
-      result = result + "    应期：${repeatedEasyResult()}\r\n";
+      result = "$result\r\n    $repeated\r\n    $repeatedResult ";
+      result = "$result    应期：${repeatedEasyResult()}\r\n";
     } else if (logicModel().diagramsModel.isEasyOutPartRepeated) {
       String repeated = "卦伏吟：外卦伏吟外不宁。";
-      result = result + "\r\n    $repeated\r\n    $repeatedResult ";
-      result = result + "    应期：${repeatedEasyResult()}\r\n";
+      result = "$result\r\n    $repeated\r\n    $repeatedResult ";
+      result = "$result    应期：${repeatedEasyResult()}\r\n";
     } else if (logicModel().diagramsModel.isEasyRestrictsGroan) {
       String repeated = "卦反吟：内外反吟者，内外不安之象也。";
-      result = result + "\r\n    $repeated\r\n    $strAgainst ";
-      result = result + "    应期：${restrictsEasyResult()}\r\n";
+      result = "$result\r\n    $repeated\r\n    $strAgainst ";
+      result = "$result    应期：${restrictsEasyResult()}\r\n";
     } else if (logicModel().diagramsModel.isEasyInPartRestricts) {
       String repeated = "卦反吟：内卦反吟内则不安。";
-      result = result + "\r\n    $repeated\r\n    $strAgainst ";
-      result = result + "    应期：${restrictsEasyResult()}\r\n";
+      result = "$result\r\n    $repeated\r\n    $strAgainst ";
+      result = "$result    应期：${restrictsEasyResult()}\r\n";
     } else if (logicModel().diagramsModel.isEasyOutPartRestricts) {
       String repeated = "卦反吟：外卦反吟外不宁。";
-      result = result + "\r\n    $repeated\r\n    $strAgainst ";
-      result = result + "    应期：${restrictsEasyResult()}\r\n";
+      result = "$result\r\n    $repeated\r\n    $strAgainst ";
+      result = "$result    应期：${restrictsEasyResult()}\r\n";
     }
     //else cont.
 
@@ -182,16 +182,16 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
 
     bool bToSixPair = false;
 
-    if (!logicModel().diagramsModel.bStaticEasy)
+    if (!logicModel().diagramsModel.bStaticEasy) {
       bToSixPair = logicModel().isEasySixPair(EasyTypeEnum.to);
-    //else cont. 是静卦
+    } //else cont. 是静卦
 
     bool bFromConflict = logicModel().isEasySixConflict(EasyTypeEnum.from);
 
     bool bToConflict = false;
-    if (!logicModel().diagramsModel.bStaticEasy)
+    if (!logicModel().diagramsModel.bStaticEasy) {
       bToConflict = logicModel().isEasySixConflict(EasyTypeEnum.to);
-    //else cont. 是静卦
+    } //else cont. 是静卦
 
     if (bFromSixPair && !bToConflict && !bToSixPair) {
       //卦逢六合，四也;
@@ -250,8 +250,10 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     if (theHealthModel.diagramsModel.bValidEasy()) {
       strResult =
           SASStringService.appendToString(strResult, subresultSymbolStandard());
-    } else
-      strResult = SASStringService.appendToString(strResult, '六爻乱动，必须重新占卜！');
+    } else {
+      strResult =
+          SASStringService.appendToString(strResult, '六爻乱动，必须重新占卜！');
+    }
     return strResult;
   }
 
@@ -321,11 +323,11 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
 
     if (EmptyEnum.emptyNoUseful == emptyState) {
       //用神没有出现
-      strUseful = strUseful + "卦中用神未现";
+      strUseful = "$strUseful卦中用神未现";
       strResult = SASStringService.appendToString(strResult, strUseful);
     } else if (EmptyEnum.emptyConflict == emptyState) {
       //用神冲空 出空
-      strUseful = strUseful + "现在有效";
+      strUseful = "$strUseful现在有效";
       strResult = SASStringService.appendToString(strResult, strUseful);
     } else if (EmptyEnum.emptyNO != emptyState) {
       if (EmptyEnum.emptyNull == emptyState) {
@@ -399,9 +401,9 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     } else if (lifeHealth < 0 && usefulHealth < 0) {
       strResult =
           "世爻(${lifeHealth.toStringAsFixed(4)})、用神(${usefulHealth.toStringAsFixed(4)})两衰，世爻失陷，十分不利";
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
-
+    }
     return strResult;
   }
 
@@ -430,16 +432,16 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     bool bFromSixPair = logicModel().isEasySixPair(EasyTypeEnum.from);
 
     bool bToSixPair = false;
-    if (!logicModel().diagramsModel.bStaticEasy)
+    if (!logicModel().diagramsModel.bStaticEasy) {
       bToSixPair = logicModel().isEasySixPair(EasyTypeEnum.to);
-    //else cont. 是静卦
+    } //else cont. 是静卦
 
     bool bFromConflict = logicModel().isEasySixConflict(EasyTypeEnum.from);
 
     bool bToConflict = false;
-    if (!logicModel().diagramsModel.bStaticEasy)
+    if (!logicModel().diagramsModel.bStaticEasy) {
       bToConflict = logicModel().isEasySixConflict(EasyTypeEnum.to);
-    //else cont. 是静卦
+    } //else cont. 是静卦
 
     if (bFromSixPair && !bToConflict && !bToSixPair) {
       //卦逢六合，四也;
@@ -476,16 +478,16 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     bool bFromSixPair = logicModel().isEasySixPair(EasyTypeEnum.from);
 
     bool bToSixPair = false;
-    if (!logicModel().diagramsModel.bStaticEasy)
+    if (!logicModel().diagramsModel.bStaticEasy) {
       bToSixPair = logicModel().isEasySixPair(EasyTypeEnum.to);
-    //else cont. 是静卦
+    } //else cont. 是静卦
 
     bool bFromConflict = logicModel().isEasySixConflict(EasyTypeEnum.from);
 
     bool bToConflict = false;
-    if (!logicModel().diagramsModel.bStaticEasy)
+    if (!logicModel().diagramsModel.bStaticEasy) {
       bToConflict = logicModel().isEasySixConflict(EasyTypeEnum.to);
-    //else cont. 是静卦
+    } //else cont. 是静卦
 
     if (bFromConflict && !bToConflict && !bToSixPair) {
       //卦逢六冲，二也。
@@ -523,16 +525,16 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     bool bFromSixPair = logicModel().isEasySixPair(EasyTypeEnum.from);
 
     bool bToSixPair = false;
-    if (!logicModel().diagramsModel.bStaticEasy)
+    if (!logicModel().diagramsModel.bStaticEasy) {
       bToSixPair = logicModel().isEasySixPair(EasyTypeEnum.to);
-    //else cont. 是静卦
+    } //else cont. 是静卦
 
     bool bFromConflict = logicModel().isEasySixConflict(EasyTypeEnum.from);
 
     bool bToConflict = false;
-    if (!logicModel().diagramsModel.bStaticEasy)
+    if (!logicModel().diagramsModel.bStaticEasy) {
       bToConflict = logicModel().isEasySixConflict(EasyTypeEnum.to);
-    //else cont. 是静卦
+    } //else cont. 是静卦
 
     if (bFromSixPair && !bToConflict && !bToSixPair) {
       //卦逢六合，四也;
@@ -588,15 +590,15 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     if (logicModel().diagramsModel.isEasyRepeatedGroan) {
       String repeated = "卦伏吟：内外伏吟者，内外不安之象也。";
       result = "\r\n    $repeated\r\n    $repeatedResult ";
-      result = result + "    应期：${repeatedEasyResult()}r\n";
+      result = "$result    应期：${repeatedEasyResult()}r\n";
     } else if (logicModel().diagramsModel.isEasyInPartRepeated) {
       String repeated = "卦伏吟：内卦伏吟内则不安。";
       result = "\r\n    $repeated\r\n    $repeatedResult ";
-      result = result + "    应期：${repeatedEasyResult()}r\n";
+      result = "$result    应期：${repeatedEasyResult()}r\n";
     } else if (logicModel().diagramsModel.isEasyOutPartRepeated) {
       String repeated = "卦伏吟：外卦伏吟外不宁。";
       result = "\r\n    $repeated\r\n    $repeatedResult ";
-      result = result + "    应期：${repeatedEasyResult()}r\n";
+      result = "$result    应期：${repeatedEasyResult()}r\n";
     }
     //else cont.
 
@@ -614,7 +616,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     占已经久远之事者，目前就有变动。\r\n
     占天时晴而即雨，雨而又晴。\r\n
     占婚姻反复难成。\r\n
-    占疾病愈而又病。\r\n\
+    占疾病愈而又病。\r\n
     占盗贼官非见而又见。\r\n
     占出行则行至中途亦反，即使到彼一事无成。\r\n
     占行人外卦反伏者，用神旺相必归，不然亦移他处。在外之人而占家宅者，内卦反伏，家庭人口不安。\r\n
@@ -624,15 +626,15 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     if (logicModel().diagramsModel.isEasyRestrictsGroan) {
       String repeated = "卦反吟：内外反吟者，内外不安之象也。";
       result = "\r\n    $repeated\r\n    $strAgainst ";
-      result = result + "    应期：${restrictsEasyResult()}\r\n";
+      result = "$result    应期：${restrictsEasyResult()}\r\n";
     } else if (logicModel().diagramsModel.isEasyInPartRestricts) {
       String repeated = "卦反吟：内卦反吟内则不安。";
       result = "\r\n    $repeated\r\n    $strAgainst ";
-      result = result + "    应期：${restrictsEasyResult()}\r\n";
+      result = "$result    应期：${restrictsEasyResult()}\r\n";
     } else if (logicModel().diagramsModel.isEasyOutPartRestricts) {
       String repeated = "卦反吟：外卦反吟外不宁。";
       result = "\r\n    $repeated\r\n    $strAgainst ";
-      result = result + "    应期：${restrictsEasyResult()}\r\n";
+      result = "$result    应期：${restrictsEasyResult()}\r\n";
     }
     //else cont.
 
@@ -651,13 +653,13 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
           String timeEarth = _branchBusiness.getSixConflict(fromEarth);
 
           result =
-              result + "伏吟之卦，用神旺相冲开之年月其志则神，预计 $timeEarth 年或者 $timeEarth 月冲开。";
+              "$result伏吟之卦，用神旺相冲开之年月其志则神，预计 $timeEarth 年或者 $timeEarth 月冲开。";
         } else if (healthLogicModel().isUsefulDeityChangeToRestricts ||
             healthLogicModel().isUsefulDeityChangeToConflict) {
           String fromEarth = wordsModel()
               .getSymbolEarth(usefulDeity.intRow, usefulDeity.easyType);
           String timeEarth = _branchBusiness.getSixConflict(fromEarth);
-          result = result + "用神休囚，冲开之年月忧郁而已,预计 $timeEarth 年或者 $timeEarth 月冲开。";
+          result = "$result用神休囚，冲开之年月忧郁而已,预计 $timeEarth 年或者 $timeEarth 月冲开。";
         }
         //else cont.
       }
@@ -696,8 +698,9 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
       int length = strSkyTrunk.length - rangeTrunk;
       String subString = emptyEarth.substring(0, 1);
       strResult = "旬空：$length 日后甲$subString 日出空";
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
+    }
     return strResult;
   }
 

@@ -37,7 +37,7 @@ class SABRowDetailModel extends SABBaseModel {
 
   final bool bStaticEasy;
 
-  void check() {
+  @override void check() {
     inputAnalysisRow.check();
     fromSymbol.check();
     toSymbol.check();
@@ -118,12 +118,9 @@ class SABRowDetailModel extends SABBaseModel {
 
   String hideSymbolHealthDes() {
     String stringResult = "";
-    if ('用神' == this.stringDeity) {
+    if ('用神' == stringDeity) {
       final stringHideHealth = healthModel().hideSymbol.healthDescription();
-      stringResult = wordsModel().getSymbolName(EasyTypeEnum.hide) +
-          '[' +
-          stringHideHealth +
-          ']';
+      stringResult = '${wordsModel().getSymbolName(EasyTypeEnum.hide)}[$stringHideHealth]';
     } else {}
     return stringResult;
   }
@@ -133,17 +130,14 @@ class SABRowDetailModel extends SABBaseModel {
     String stringResult = "";
     if (wordsModel().bMovement) {
       final stringToHealth = healthModel().toSymbol.healthDescription();
-      stringResult = wordsModel().getSymbolName(EasyTypeEnum.to) +
-          '[' +
-          stringToHealth +
-          ']';
+      stringResult = '${wordsModel().getSymbolName(EasyTypeEnum.to)}[$stringToHealth]';
     } else {}
     return stringResult;
   }
 
   String hideDayRelation() {
     String stringResult = "";
-    if ('用神' == this.stringDeity) {
+    if ('用神' == stringDeity) {
       stringResult = analysisModel().getDayRelation(EasyTypeEnum.hide);
     } else {
       stringResult = '';
@@ -153,7 +147,7 @@ class SABRowDetailModel extends SABBaseModel {
 
   String hideMonthRelation() {
     String stringResult = "";
-    if ('用神' == this.stringDeity) {
+    if ('用神' == stringDeity) {
       stringResult = analysisModel().getMonthRelation(EasyTypeEnum.hide);
     } else {}
     return stringResult;
@@ -178,11 +172,11 @@ class SABRowDetailModel extends SABBaseModel {
   /// `加载函数`/////////////////////////////////////////////////////////////////
 
   SABEasyAnalysisRowModel analysisModel() {
-    return this.inputAnalysisRow;
+    return inputAnalysisRow;
   }
 
   SABHealthLogicRowModel healthLogicModel() {
-    return this.inputAnalysisRow.healthLogicRow;
+    return inputAnalysisRow.healthLogicRow;
   }
 
   SABHealthRowModel healthModel() {

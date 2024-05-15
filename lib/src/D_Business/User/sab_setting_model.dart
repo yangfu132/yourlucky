@@ -27,11 +27,11 @@ class SABSettingModel extends SABBaseModel {
   SettingTypeEnum? settingType;
 
 
-  String getModelName() {
+  @override String getModelName() {
     return 'setting';
   }
 
-  int? getModelId() {
+  @override int? getModelId() {
     return modelId;
   }
 
@@ -47,7 +47,7 @@ class SABSettingModel extends SABBaseModel {
 
   );
 
-  Map<String, Object?> toJson() {
+  @override Map<String, Object?> toJson() {
     return {
       'id': modelId,
       'settingKey': settingKey,

@@ -3,13 +3,12 @@ import 'package:your_lucky/src/D_Business/Base/sab_base_business.dart';
 class SABCommonWordsBusiness extends SABBaseBusiness {
   String symbolEarth(String stringSymbol) {
     String stringResult = "";
-    if (stringSymbol.length >= 2)
+    if (stringSymbol.length >= 2) {
       stringResult = stringSymbol.substring(
           stringSymbol.length - 2, stringSymbol.length - 1);
-    else
-      stringResult =
-          "卦中用神未现"; //coLog(StackTrace.current,LogTypeEnum.error, "error!");
-
+    } else {
+      stringResult = "卦中用神未现";
+    }
     return stringResult;
   }
 }

@@ -83,8 +83,9 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
         } //endi
 
       } //endf
-    } else
+    } else {
       bHasBegin = true;
+    }
 
     return bHasBegin;
   }
@@ -116,9 +117,9 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
     if (OutRightEnum.rightTypeStatic ==
         originBusiness().symbolOutRightAtRow(nEffectingRow, easyType)) {
       bResult = logicModel().isSeasonStrong(nEffectingRow, easyType);
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
-
+    }
     return bResult;
   }
 
@@ -132,9 +133,9 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
     for (int itemRow in levelArray) {
       if (nRow != itemRow) {
         if (isEffectingLevel4AtRow(itemRow, easyType)) {
-          if (moveBusiness().isEffectingEarth(basicEarth, itemRow))
+          if (moveBusiness().isEffectingEarth(basicEarth, itemRow)) {
             arrayEffects.add(itemRow);
-          //else cont.
+          } //else cont.
         }
         //else 日冲休囚静爻算是日破
       }

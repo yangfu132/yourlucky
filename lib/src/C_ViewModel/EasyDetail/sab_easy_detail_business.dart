@@ -40,17 +40,17 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
     //用神
     String symbolGod = healthLogicModel().getDeity(intRow, easyType);
     if (symbolGod.isNotEmpty) {
-      result = result + symbolGod + ' ';
+      result = '$result$symbolGod ';
     }
 
     //动静
     String symbolMovement = analysisBusiness().movementDescriptionAtRow(intRow);
-    result = result + symbolMovement + ' ';
+    result = '$result$symbolMovement ';
 
     //世应
     String symbolRole = analysisBusiness().roleDescriptionAtRow(intRow);
     if (symbolRole.isNotEmpty) {
-      result = result + symbolRole + ' ';
+      result = '$result$symbolRole ';
     }
 
     //health
@@ -58,13 +58,13 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
         healthLogicModel().rowModelAtRow(intRow).getStringHealth(easyType) ??
             '??';
     if (symbolStrong.isNotEmpty) {
-      result = result + symbolStrong + ' ';
+      result = '$result$symbolStrong ';
     }
 
     //change
     String symbolChange = analysisBusiness().changeAnalysisAtRow(intRow);
     if (symbolChange.isNotEmpty) {
-      result = result + symbolChange + ' ';
+      result = '$result$symbolChange ';
     }
     return result;
   }
@@ -84,21 +84,21 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
     } //else nothing
 
     String resultDay = analysisBusiness().resultDayPairAtRow(intRow, easyType);
-    if (resultDay.isNotEmpty)
+    if (resultDay.isNotEmpty) {
       strResult = SASStringService.appendToString(strResult, resultDay);
-    //else cont.
+    } //else cont.
 
     String resultMove =
         analysisBusiness().resultMovePairAtRow(intRow, easyType);
-    if (resultMove.isNotEmpty)
+    if (resultMove.isNotEmpty) {
       strResult = SASStringService.appendToString(strResult, resultMove);
-    //else cont.
+    } //else cont.
 
     String resultChange =
         analysisBusiness().resultChangePairAtRow(intRow, easyType);
-    if (resultChange.isNotEmpty)
+    if (resultChange.isNotEmpty) {
       strResult = SASStringService.appendToString(strResult, resultChange);
-    //else cont.
+    } //else cont.
 
     return strResult;
   }
@@ -108,7 +108,7 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
 
     String symbolName = wordsModel().getSymbolName(intRow, easyType);
 
-    return strPosition + ' ' + symbolName;
+    return '$strPosition $symbolName';
   }
 
   String symbolAnimalLike(int intRow) {
@@ -120,15 +120,15 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
   String symbolEarthDirection(int intRow, EasyTypeEnum easyType) {
     String earth = wordsModel().getSymbolEarth(intRow, easyType);
     String result =
-        earth + ' ' + logicModel().earthBranchModel().earthDirection()[earth];
+        '$earth ${logicModel().earthBranchModel().earthDirection()[earth]}';
     return result;
   }
 
   String eightDiagramsPlace(int intRow, EasyTypeEnum easyTypeEnum) {
     String strGua = wordsModel().rowModelAtRow(intRow).stringDiagrams;
-    String result = strGua + ':';
-    result = '先天八卦位于' + wordsModel().getEarlyPlace(intRow, easyTypeEnum);
-    result += '后天八卦位于' + wordsModel().getLatePlace(intRow, easyTypeEnum);
+    String result = '$strGua:';
+    result = '先天八卦位于${wordsModel().getEarlyPlace(intRow, easyTypeEnum)}';
+    result += '后天八卦位于${wordsModel().getLatePlace(intRow, easyTypeEnum)}';
     return result;
   }
 

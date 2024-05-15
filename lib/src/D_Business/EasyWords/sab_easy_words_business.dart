@@ -120,11 +120,12 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
             strSymbol.substring(strSymbol.length - 4, strSymbol.length);
         int nValue = _inputEasyModel.digitAtIndex(intIndex);
         if (8 == nValue) {
-          result = "×" + symbolDes;
+          result = "×$symbolDes";
         } else if (9 == nValue) {
-          result = "○" + symbolDes;
-        } else
+          result = "○$symbolDes";
+        } else {
           result = strSymbol;
+        }
       } else {
         result = "error_symbol_length";
         coLog(StackTrace.current, LogTypeEnum.error, "error!");
@@ -163,33 +164,32 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
 
     if (intHideIndex >= 0) {
       result = symbolStringAtRow(intHideIndex, diagramsModel.mapHideEasy);
-    } else
-      result =
-          "卦中用神未现"; //coLog(StackTrace.current,LogTypeEnum.error, "error!");
-
+    } else {
+      result = "卦中用神未现";
+    }
     return result;
   }
 
   String symbolElement(String symbol) {
     String stringResult = "";
 
-    if (symbol.length >= 1)
+    if (symbol.length >= 1) {
       stringResult = symbol.substring(symbol.length - 1, symbol.length);
-    else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error");
-
+    }
     return stringResult;
   }
 
   String symbolParent(String stringSymbol) {
     String stringResult = "";
 
-    if (stringSymbol.length >= 4)
+    if (stringSymbol.length >= 4) {
       stringResult = stringSymbol.substring(
           stringSymbol.length - 4, stringSymbol.length - 2);
-    else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error");
-
+    }
     return stringResult;
   }
 
@@ -198,9 +198,9 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
     if (stringSymbol.isNotEmpty) {
       String strMark = stringSymbol.substring(0, 1);
       bResult = "×" == strMark || "○" == strMark;
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
-
+    }
     return bResult;
   }
 
@@ -306,15 +306,15 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
     String fromEasyKey = diagramsModel.fromEasyKey;
     if (fromEasyKey.length >= 6) {
       String guaKey = "";
-      if (nRow < 3)
+      if (nRow < 3) {
         guaKey = fromEasyKey.substring(0, 3);
-      else
+      } else {
         guaKey = fromEasyKey.substring(3, 6);
-
+      }
       result = SABDiagramsInfoModel.palaceNameForKey(guaKey);
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
-
+    }
     return result;
   }
 

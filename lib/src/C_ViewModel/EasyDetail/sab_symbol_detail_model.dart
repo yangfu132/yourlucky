@@ -41,17 +41,14 @@ class SABSymbolDetailModel extends SABBaseModel {
   final List<String> itemKeyList = ['基本信息','六神类象','地支类象', '六合','月将','日将','地支方位','所属八卦','调试信息'];
 
   String getSymbolName() {
-    return this.inputAnalysisSymbol.inputHealthLogicSymbol.inputHealthSymbol.inputLogicSymbol.inputWordsSymbol.symbolName;
+    return inputAnalysisSymbol.inputHealthLogicSymbol.inputHealthSymbol.inputLogicSymbol.inputWordsSymbol.symbolName;
   }
 
 
   String getSymbolHealthDes() {
     String stringResult = "";
     final stringHealth = inputAnalysisSymbol.inputHealthLogicSymbol.inputHealthSymbol.healthDescription();
-    stringResult = getSymbolName() +
-        '[' +
-        stringHealth +
-        ']';
+    stringResult = '${getSymbolName()}[$stringHealth]';
     return stringResult;
   }
 
@@ -59,34 +56,34 @@ class SABSymbolDetailModel extends SABBaseModel {
     String resultValue = '';
     switch (itemKey) {
       case '基本信息':
-        resultValue = this.baseInfo;
+        resultValue = baseInfo;
         break;
       case '六神类象':
-        resultValue = this.animalDes;
+        resultValue = animalDes;
         break;
       case '地支类象':
-        resultValue = this.earthDes;
+        resultValue = earthDes;
         break;
       case '六合':
-        resultValue = this.sixPairDes;
+        resultValue = sixPairDes;
         break;
       case '月将':
-        resultValue = this.monthRelation;
+        resultValue = monthRelation;
         break;
       case '日将':
-        resultValue = this.dayRelation;
+        resultValue = dayRelation;
         break;
       case '地支方位':
-        resultValue = this.earthDirection;
+        resultValue = earthDirection;
         break;
       case '所属八卦':
-        resultValue = this.diagramsPlace;
+        resultValue = diagramsPlace;
         break;
       case '调试信息':
-        resultValue = this.debugInfo;
+        resultValue = debugInfo;
         break;
       default:
-        resultValue = itemKey + ' 未找到值 ';
+        resultValue = '$itemKey 未找到值 ';
         break;
     }
     return resultValue;
@@ -94,13 +91,13 @@ class SABSymbolDetailModel extends SABBaseModel {
 
   List<Map> resultList() {
     var result = List<Map>.empty(growable: true);
-    for (String itemKey in this.itemKeyList) {
-      result.add({'key':itemKey,'value':this.itemValue(itemKey)});
+    for (String itemKey in itemKeyList) {
+      result.add({'key':itemKey,'value':itemValue(itemKey)});
     }
     return result;
   }
 
-  void check() {
+  @override void check() {
     if (symbolHealthDes.isEmpty) {
       coLog(StackTrace.current, LogTypeEnum.check, "symbolHealthDes.isEmpty");
     }

@@ -130,9 +130,9 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     int xiangIndex = monthModel().arraySeason.indexOf("相");
     if (-1 != siIndex && -1 != xiangIndex) {
       fResult = intervalSeason() * (siIndex - xiangIndex);
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
-
+    }
     return fResult;
   }
 
@@ -193,9 +193,9 @@ class SABHealthOriginBusiness extends SABLogBusiness {
       fResult = base + interval * 1;
     } else if ("绝" == twelve) {
       fResult = base + interval;
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
-
+    }
     return fResult;
   }
 
@@ -228,9 +228,9 @@ class SABHealthOriginBusiness extends SABLogBusiness {
       fResult = base + interval * 1;
     } else if ("死" == season) {
       fResult = base + interval;
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
-
+    }
     return fResult;
   }
 
@@ -272,9 +272,9 @@ class SABHealthOriginBusiness extends SABLogBusiness {
          */
 
       //月合
-      if (fResult < healthCriticalValue())
+      if (fResult < healthCriticalValue()) {
         fResult = healthCriticalValue() * 1.1;
-      //else cont.
+      } //else cont.
     }
     //else cont.
 
@@ -288,9 +288,9 @@ class SABHealthOriginBusiness extends SABLogBusiness {
       fResult = healthDayOrMonthOn();
     } else if (_branchBusiness.isEarthPairDay(basicEarth, dayEarth)) {
       //日合
-      if (fResult < healthCriticalValue())
+      if (fResult < healthCriticalValue()) {
         fResult = healthCriticalValue() * 1.1;
-      //else cont.
+      } //else cont.
     }
     //else cont.
 
@@ -306,18 +306,20 @@ class SABHealthOriginBusiness extends SABLogBusiness {
       if ("" != basicEarth) {
         //日
 
-        if (symbolModel.isEmpty())
+        if (symbolModel.isEmpty()) {
           fResult = 0;
-        else
+        } else {
           fResult = earthHealthAtDayEarth(
               basicEarth, wordsModel().dayModel.stringEarth);
+        } //end if
 
         //月
-        if (symbolModel.isConflictMonth)
+        if (symbolModel.isConflictMonth) {
           fResult += 0;
-        else
+        } else {
           fResult += earthHealthAtMonthAndDay(
               basicEarth, monthModel().stringEarth, dayModel().stringEarth);
+        } //end if
       } else {
         coLog(StackTrace.current, LogTypeEnum.error, "error!");
       }
@@ -345,9 +347,9 @@ class SABHealthOriginBusiness extends SABLogBusiness {
       double health = symbolBasicHealthAtRow(nRow, easyType);
 
       bResult = health > healthCriticalValue();
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
-
+    } //end if
     return bResult;
   }
 
@@ -370,9 +372,9 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     //TODO:yangfu132转化率到底是多少
     final symbolModel = logicModel().rowModelAtRow(nRow).symbolModel(easyType);
     if (null != symbolModel) {
-      if (symbolModel.isEmpty())
+      if (symbolModel.isEmpty()) {
         fResult = 0.0;
-      else {
+      } else {
         if (rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove).length > 0) {
           //动卦中静爻的作用没有那么大
           if (!wordsModel().isMovementAtRow(nRow)) {
@@ -427,17 +429,17 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     final symbolModel = logicModel().rowModelAtRow(nRow).symbolModel(easyType);
     if (null != symbolModel) {
       if (EasyTypeEnum.to != easyType) {
-        if (logicModel().isOnMonth(nRow, easyType))
+        if (logicModel().isOnMonth(nRow, easyType)) {
           bResult = globalMaxDefensive;
-        else if (logicModel().isOnDay(nRow, easyType))
+        } else if (logicModel().isOnDay(nRow, easyType)) {
           bResult = globalMaxDefensive;
-        else if (symbolModel.isEmpty())
+        } else if (symbolModel.isEmpty()) {
           bResult = globalMaxDefensive;
-        else if (logicModel().isMonthPair(nRow, easyType))
+        } else if (logicModel().isMonthPair(nRow, easyType)) {
           bResult = globalMaxDefensive;
-        else if (logicModel().isDayPair(nRow, easyType))
+        } else if (logicModel().isDayPair(nRow, easyType)) {
           bResult = globalMaxDefensive;
-        //else cont.
+        } //else cont.
       } else {
         coLog(StackTrace.current, LogTypeEnum.error, "error!");
       }

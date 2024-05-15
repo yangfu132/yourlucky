@@ -22,7 +22,7 @@ class SABWordsSymbolModel extends SABBaseModel {
   final String earlyPlace;
   final String latePlace;
 
-  void check() {
+  @override void check() {
     if (symbolName.isEmpty) {
       coLog(StackTrace.current, LogTypeEnum.check, "symbolName.isEmpty");
     }

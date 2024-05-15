@@ -17,7 +17,7 @@ class SABHealthModel extends SABBaseModel {
 
   late final _listRowModels = <SABHealthRowModel>[];
 
-  void check() {
+  @override void check() {
     inputLogicModel.check();
     diagramsModel.check();
     for (SABHealthRowModel row in _listRowModels) {

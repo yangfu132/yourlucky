@@ -14,11 +14,11 @@ class SABEasyAnalysisRowModel extends SABBaseModel {
   final SABHealthLogicRowModel healthLogicRow;
 
   late final SABEasyAnalysisSymbolModel fromSymbol = SABEasyAnalysisSymbolModel(
-      inputHealthLogicSymbol: this.healthLogicRow.fromSymbol);
+      inputHealthLogicSymbol: healthLogicRow.fromSymbol);
   late final SABEasyAnalysisSymbolModel toSymbol = SABEasyAnalysisSymbolModel(
-      inputHealthLogicSymbol: this.healthLogicRow.toSymbol);
+      inputHealthLogicSymbol: healthLogicRow.toSymbol);
   late final SABEasyAnalysisSymbolModel hideSymbol = SABEasyAnalysisSymbolModel(
-      inputHealthLogicSymbol: this.healthLogicRow.hideSymbol);
+      inputHealthLogicSymbol: healthLogicRow.hideSymbol);
 
   String _symbolRelation = '';
 
@@ -109,7 +109,7 @@ class SABEasyAnalysisRowModel extends SABBaseModel {
 
   /// `加载函数`/////////////////////////////////////////////////////////////////
   SABLogicRowModel logicModel() {
-    return this.healthLogicRow.healthRow.inputLogicRow;
+    return healthLogicRow.healthRow.inputLogicRow;
   }
 
   SABWordsRowModel wordsModel() {

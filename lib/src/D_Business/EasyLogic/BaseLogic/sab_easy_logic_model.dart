@@ -31,7 +31,7 @@ class SABEasyLogicModel extends SABBaseModel {
     return inputWordsModel.dayModel;
   }
 
-  void check() {
+  @override void check() {
     inputWordsModel.check();
     diagramsModel.check();
     for (SABLogicRowModel row in _listRowModels) {

@@ -85,18 +85,18 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
   String resultParentEffectAtRow(int nRow, EasyTypeEnum easyType) {
     String strResult = parentEffectAtRow(nRow, easyType);
     String strPair = symbolMovePairDescriptionAtRow(nRow, easyType);
-    strResult = strResult + "\r\n" + strPair;
+    strResult = "$strResult\r\n$strPair";
     return strResult;
   }
 
   String parentEffectAtRow(int intRow, EasyTypeEnum easyType) {
     String result = "";
 
-    if (logicModel().diagramsModel.bStaticEasy)
+    if (logicModel().diagramsModel.bStaticEasy) {
       result = staticEffectedAtRow(intRow, easyType);
-    else
+    } else {
       result = movementEffectedAtRow(intRow, easyType);
-
+    }
     return result;
   }
 
@@ -154,33 +154,15 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
 
       if (_branchBusiness.isEarthBorn(earth, basicEarth)) {
         if ("" == strResult) {
-          strResult = strEffect +
-              positionAtMerge(numItem) +
-              earth +
-              stringElement +
-              "生";
+          strResult = "$strEffect${positionAtMerge(numItem)}$earth$stringElement生";
         } else {
-          strResult = "\r\n" +
-              strEffect +
-              positionAtMerge(numItem) +
-              earth +
-              stringElement +
-              "生";
+          strResult = "\r\n$strEffect${positionAtMerge(numItem)}$earth$stringElement生";
         } //endi
       } else if (_branchBusiness.isEarthRestricts(earth, basicEarth)) {
         if ("" == strResult) {
-          strResult = strEffect +
-              positionAtMerge(numItem) +
-              earth +
-              stringElement +
-              "克";
+          strResult = "$strEffect${positionAtMerge(numItem)}$earth$stringElement克";
         } else {
-          strResult = "\r\n" +
-              strEffect +
-              positionAtMerge(numItem) +
-              earth +
-              stringElement +
-              "克";
+          strResult = "\r\n$strEffect${positionAtMerge(numItem)}$earth$stringElement克";
         } //endi
       }
       //else cont.
@@ -197,27 +179,27 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
     String fromEarth = wordsModel().getSymbolEarth(nRow, EasyTypeEnum.from);
     String toEarth = wordsModel().getSymbolEarth(nRow, EasyTypeEnum.to);
     if ("" != toEarth) {
-      if (logicModel().getIsSymbolChangeBorn(nRow))
+      if (logicModel().getIsSymbolChangeBorn(nRow)) {
         result = SASStringService.appendToString(result, "回头生");
-      //else cont.
+      } //else cont.
 
-      if (logicModel().getIsSymbolChangeRestrict(nRow))
+      if (logicModel().getIsSymbolChangeRestrict(nRow)) {
         result = SASStringService.appendToString(result, "回头克");
-      //else cont.
+      } //else cont.
 
-      if (logicModel().getIsSymbolChangeConflict(nRow))
+      if (logicModel().getIsSymbolChangeConflict(nRow)) {
         result = SASStringService.appendToString(result, "回头冲");
-      //else cont.
+      } //else cont.
 
       String strPair = changePairDescriptionAtRow(nRow);
-      if ("" != strPair)
+      if ("" != strPair) {
         result = SASStringService.appendToString(result, strPair);
-      //else cont.
+      } //else cont.
 
       String strForwardOrBack = logicModel().getSymbolForwardOrBack(nRow);
-      if ("" != strForwardOrBack)
+      if ("" != strForwardOrBack) {
         result = SASStringService.appendToString(result, strForwardOrBack);
-      //else cont.
+      } //else cont.
 
       String strTwelveDeity =
           _branchBusiness.earthTwelveDeity(fromEarth, toEarth);
@@ -225,17 +207,18 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
           "帝旺" == strTwelveDeity ||
           "墓" == strTwelveDeity ||
           "绝" == strTwelveDeity) {
-        if ("" != result)
+        if ("" != result) {
           result = "\r\n化$strTwelveDeity";
-        else
+        } else {
           result = "化$strTwelveDeity";
+        }
       }
       //else cont.
 
       bool? bToEmpty = healthLogicModel().getIsSymbolChangeEmpty(nRow);
-      if (null != bToEmpty && bToEmpty)
+      if (null != bToEmpty && bToEmpty) {
         result = SASStringService.appendToString(result, "化空");
-      //else cont.
+      } //else cont.
     }
     //else cont.
 
@@ -252,19 +235,19 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
     if ("" != stringSymbol) {
       String strEarth = logicModel().getSymbolEarth(nRow, easyType);
 
-      if (logicModel().isOnMonth(nRow, easyType))
+      if (logicModel().isOnMonth(nRow, easyType)) {
         strResult = SASStringService.appendToString(strResult, "[临]");
-      //else cont.
+      } //else cont.
 
       String monthBroken = monthBrokenDescriptionAtRow(nRow, easyType);
-      if ("" != monthBroken)
+      if ("" != monthBroken) {
         strResult = SASStringService.appendToString(strResult, monthBroken);
-      //else cont.
+      } //else cont.
 
       String strPair = earthMonthPairDescription(strEarth);
-      if ("" != strPair)
+      if ("" != strPair) {
         strResult = SASStringService.appendToString(strResult, strPair);
-      //else cont.
+      } //else cont.
 
       String strTwelveDeity = _branchBusiness.earthTwelveDeity(
           strEarth, wordsModel().monthModel.stringEarth);
@@ -294,30 +277,31 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
       String strTwelveDeity =
           _branchBusiness.earthTwelveDeity(strEarth, strDayEarth);
 
-      if (logicModel().isOnDay(nRow, easyType))
+      if (logicModel().isOnDay(nRow, easyType)) {
         strResult = SASStringService.appendToString(strResult, "[临]");
-      //else cont.
+      } //else cont.
 
       bool bConflicted = _branchBusiness.isEarthConflict(strDayEarth, strEarth);
       if (bConflicted) {
-        if (healthLogicModel().getIsSymbolBackMove(nRow))
+        if (healthLogicModel().getIsSymbolBackMove(nRow)) {
           strResult = SASStringService.appendToString(strResult, "[暗动]");
-        else if (healthLogicModel().getIsSymbolDayBroken(nRow, easyType))
+        } else if (healthLogicModel().getIsSymbolDayBroken(nRow, easyType)) {
           strResult = SASStringService.appendToString(strResult, "[日破]");
-        else
+        } else {
           strResult = SASStringService.appendToString(strResult, "[冲]");
+        }
       }
       //else cont.
 
       String strPair = earthDayPairDescription(nRow, easyType);
-      if ("" != strPair)
+      if ("" != strPair) {
         strResult = SASStringService.appendToString(strResult, strPair);
-      //else cont.
+      } //else cont.
 
       String strEmpty = resultSymbolEmpty(nRow, easyType);
-      if ("" != strEmpty)
+      if ("" != strEmpty) {
         strResult = SASStringService.appendToString(strResult, strEmpty);
-      //else cont.
+      } //else cont.
 
       if ("长生" == strTwelveDeity ||
           "帝旺" == strTwelveDeity ||
@@ -381,8 +365,9 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
           strMonthPair = "变爻与月合: $strMonthPair; 即使爻值休囚亦有旺相之意。";
         } else if (EasyTypeEnum.hide == easyType) {
           strMonthPair = "伏神与月合: $strMonthPair; 即使爻值休囚亦有旺相之意。";
-        } else
-          coLog(StackTrace.current,LogTypeEnum.error, "error!");
+        } else {
+          coLog(StackTrace.current, LogTypeEnum.error, "error!");
+        }
       }
       //else cont.
 
@@ -410,8 +395,9 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
         strPairResult = "变爻与日合: $strPairResult; 即使爻值休囚亦有旺相之意。";
       } else if (EasyTypeEnum.hide == easyType) {
         strPairResult = "伏神与日合: $strPairResult; 即使爻值休囚亦有旺相之意。";
-      } else
-        coLog(StackTrace.current,LogTypeEnum.error, "error!");
+      } else {
+        coLog(StackTrace.current, LogTypeEnum.error, "error!");
+      }
     }
     //else cont.
 
@@ -510,10 +496,10 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
           String tempEarth =
               logicModel().getSymbolEarth(item, EasyTypeEnum.from);
           String strPair = earthPairedDescription(basicEarth, tempEarth);
-          if ("" != strPair)
+          if ("" != strPair) {
             strSymbolPair =
                 SASStringService.appendToString(strSymbolPair, strPair);
-          //else cont.
+          } //else cont.
         }
         //else cont.
 
@@ -541,9 +527,9 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
     String result = "";
     String fromEarth = logicModel().getSymbolEarth(intRow, EasyTypeEnum.from);
     String toEarth = logicModel().getSymbolEarth(intRow, EasyTypeEnum.to);
-    if ("" != fromEarth && "" != toEarth)
+    if ("" != fromEarth && "" != toEarth) {
       result = earthPairedDescription(fromEarth, toEarth);
-    //else cont.
+    } //else cont.
     return result;
   }
 
@@ -586,13 +572,13 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
     if ("" != strThreePair || "" != strVirtual) {
       strResult = SASStringService.appendToString(strResult, "动爻三合");
 
-      if ("" != strThreePair)
+      if ("" != strThreePair) {
         strResult = SASStringService.appendToString(strResult, strThreePair);
-      //else cont.
+      } //else cont.
 
-      if ("" != strVirtual)
+      if ("" != strVirtual) {
         strResult = SASStringService.appendToString(strResult, strVirtual);
-      //else cont.
+      } //else cont.
     }
     //else cont.
 
@@ -616,12 +602,14 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
     String posionLeft = positionAtMerge(nRow);
 
     if (0 <= nRow && nRow < 6) {
-      if (digitModel().isMovementAtRow(nRow))
+      if (digitModel().isMovementAtRow(nRow)) {
         strResult = strResult + posionLeft;
-      else
-        strResult = strResult + "$posionLeft(待)";
-    } else
+      } else {
+        strResult = "$strResult$posionLeft(待)";
+      }
+    } else {
       strResult = strResult + posionLeft;
+    }
 
     return strResult;
   }
@@ -637,22 +625,25 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
         String strPairItem = "";
 
         String strLeft = subResultThreePairdAtRow(arrayPairRow[0]);
-        if ("" != strLeft)
-          strPairItem = strPairItem + "$strLeft、";
-        else
-          coLog(StackTrace.current,LogTypeEnum.error, "error!");
+        if ("" != strLeft) {
+          strPairItem = "$strPairItem$strLeft、";
+        } else {
+          coLog(StackTrace.current, LogTypeEnum.error, "error!");
+        }
 
         String strMiddle = subResultThreePairdAtRow(arrayPairRow[1]);
-        if ("" != strMiddle)
-          strPairItem = strPairItem + "$strMiddle";
-        else
-          coLog(StackTrace.current,LogTypeEnum.error, "error!");
+        if ("" != strMiddle) {
+          strPairItem = "$strPairItem$strMiddle";
+        } else {
+          coLog(StackTrace.current, LogTypeEnum.error, "error!");
+        }
 
         String strRight = subResultThreePairdAtRow(arrayPairRow[2]);
-        if ("" != strRight)
-          strPairItem = strPairItem + "$strRight";
-        else
-          coLog(StackTrace.current,LogTypeEnum.error, "error!");
+        if ("" != strRight) {
+          strPairItem = "$strPairItem$strRight";
+        } else {
+          coLog(StackTrace.current, LogTypeEnum.error, "error!");
+        }
 
         for (String itemResult in arrayR) {
           strPairItem = strPairItem + itemResult;
@@ -678,10 +669,10 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
             int itemRight = arrayRow[nThird];
             String itemResult =
                 subThreePairAtRowArray([itemLeft, itemMiddle, itemRight]);
-            if ("" != itemResult)
+            if ("" != itemResult) {
               strThreePair =
                   SASStringService.appendToString(strThreePair, itemResult);
-            //else cont.
+            } //else cont.
           } //endf
         } //endf
       } //endf
@@ -703,18 +694,18 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
       arrayRow1.add(3 + globalRowChangeBegin);
       arrayRow1.add(5);
       String tempResult1 = subResultThreePairOfRowArray(arrayRow1);
-      if ("" != tempResult1)
+      if ("" != tempResult1) {
         strPair = SASStringService.appendToString(strPair, tempResult1);
-      //else cont.
+      } //else cont.
 
       List arrayRow2 = [];
       arrayRow2.add(3);
       arrayRow2.add(5);
       arrayRow2.add(5 + globalRowChangeBegin);
       String tempResult2 = subResultThreePairOfRowArray(arrayRow2);
-      if ("" != tempResult2)
+      if ("" != tempResult2) {
         strPair = SASStringService.appendToString(strPair, tempResult2);
-      //else cont.
+      } //else cont.
 
       if ("" != strPair) {
         strResult = SASStringService.appendToString(strResult, "内卦三合:");
@@ -741,9 +732,9 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
       arrayRow1.add(nFirst + globalRowChangeBegin);
       arrayRow1.add(nSecond);
       String tempResult1 = subResultThreePairOfRowArray(arrayRow1);
-      if ("" != tempResult1)
+      if ("" != tempResult1) {
         strPair = SASStringService.appendToString(strPair, tempResult1);
-      //else cont.
+      } //else cont.
 
       List arrayRow2 = [];
       arrayRow2.add(nFirst);
@@ -751,9 +742,9 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
       arrayRow2.add(nSecond + globalRowChangeBegin);
 
       String tempResult2 = subResultThreePairOfRowArray(arrayRow2);
-      if ("" != tempResult2)
+      if ("" != tempResult2) {
         strPair = SASStringService.appendToString(strPair, tempResult2);
-      //else cont.
+      } //else cont.
 
       if ("" != strPair) {
         strResult = SASStringService.appendToString(strResult, "外卦三合:");

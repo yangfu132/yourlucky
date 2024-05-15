@@ -25,10 +25,10 @@ class SABMonthModel extends SABBaseModel {
   List<String> arraySeason = ["旺", "相", "余气", "休", "囚", "死"];
 
   String skyEarth() {
-    return stringSky + stringEarth + "月";
+    return "$stringSky$stringEarth月";
   }
 
-  void check() {
+  @override void check() {
     if (stringSky.isEmpty) {
       coLog(StackTrace.current, LogTypeEnum.check, "stringSky.isEmpty");
     }

@@ -10,21 +10,21 @@ class SABDigitDiagramsModel extends SABBaseModel {
     required this.toEasyKey,
     required this.strUsefulDeity,
   }) {
-    this.stringFromName = _fromEasyName();
-    this.stringToName = _toEasyName();
-    this.stringFromElement = _eightDiagrams.elementOfEasy(_fromEasyName());
-    this.stringToElement = _eightDiagrams.elementOfEasy(_toEasyName());
-    this.stringFromPlace = _eightDiagrams.easyPlaceByName(_fromEasyName());
-    this.stringToPlace = _eightDiagrams.easyPlaceByName(_toEasyName());
-    this.mapFromEasy = _fromEasyDictionary();
-    this.mapToEasy = _toEasyDictionary();
-    this.mapHideEasy = _placeFirstEasy();
-    this.bFromPureEasy = 0 == _lifeIndexAtEasy(_fromEasyDictionary());
-    this.bToPureEasy = 0 == _lifeIndexAtEasy(_toEasyDictionary());
-    this.lifeIndex = _lifeIndex();
-    this.goalIndex = _goalIndex();
-    this.deityElement = SABElementInfoModel.elementByRelative(
-        this.stringFromElement, strUsefulDeity);
+     stringFromName = _fromEasyName();
+     stringToName = _toEasyName();
+     stringFromElement = _eightDiagrams.elementOfEasy(_fromEasyName());
+     stringToElement = _eightDiagrams.elementOfEasy(_toEasyName());
+     stringFromPlace = _eightDiagrams.easyPlaceByName(_fromEasyName());
+     stringToPlace = _eightDiagrams.easyPlaceByName(_toEasyName());
+     mapFromEasy = _fromEasyDictionary();
+     mapToEasy = _toEasyDictionary();
+     mapHideEasy = _placeFirstEasy();
+     bFromPureEasy = 0 == _lifeIndexAtEasy(_fromEasyDictionary());
+     bToPureEasy = 0 == _lifeIndexAtEasy(_toEasyDictionary());
+     lifeIndex = _lifeIndex();
+     goalIndex = _goalIndex();
+     deityElement = SABElementInfoModel.elementByRelative(
+         stringFromElement, strUsefulDeity);
   }
 
   //属性：实例的用神
@@ -51,7 +51,7 @@ class SABDigitDiagramsModel extends SABBaseModel {
   late final bool bFromPureEasy;
   late final bool bToPureEasy;
 
-  void check() {
+  @override void check() {
     _eightDiagrams.check();
     if (fromEasyKey.isEmpty) {
       coLog(StackTrace.current, LogTypeEnum.check, "fromEasyKey.isEmpty");

@@ -28,7 +28,7 @@ class SABEasyHealthLogicModel extends SABBaseModel {
   final bool isUsefulDeityChangeToRestricts;
   final bool isUsefulDeityChangeToConflict;
 
-  void check() {
+  @override void check() {
     inputHealthModel.check();
     usefulDeity.check();
     for (SABHealthLogicRowModel row in _listRowModels) {
