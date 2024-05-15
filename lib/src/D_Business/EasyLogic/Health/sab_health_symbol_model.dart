@@ -14,7 +14,7 @@ class SABHealthSymbolModel extends SABBaseModel {
   double doubleHealth;
   OutRightEnum outRight;
 
-  void check() {
+  @override void check() {
     inputLogicSymbol.check();
     super.check();
   }
@@ -34,7 +34,7 @@ class SABHealthSymbolModel extends SABBaseModel {
     } else {
       strResult = "弱";
     }
-    strResult = healthWithCritical().toStringAsFixed(4) + '($strResult)';
+    strResult = '${healthWithCritical().toStringAsFixed(4)}($strResult)';
     return strResult;
   }
 }

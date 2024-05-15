@@ -18,7 +18,7 @@ class SABHealthRowModel extends SABBaseModel {
   final SABHealthSymbolModel toSymbol;
   final SABHealthSymbolModel hideSymbol;
 
-  void check() {
+  @override void check() {
     inputLogicRow.check();
     fromSymbol.check();
     toSymbol.check();
@@ -41,9 +41,9 @@ class SABHealthRowModel extends SABBaseModel {
       fHealth = toSymbol.doubleHealth;
     } else if (EasyTypeEnum.hide == easyType) {
       fHealth = hideSymbol.doubleHealth;
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
-
+    } //end if
     return fHealth;
   }
 
@@ -54,7 +54,8 @@ class SABHealthRowModel extends SABBaseModel {
       toSymbol.doubleHealth = fHealth;
     } else if (EasyTypeEnum.hide == easyType) {
       hideSymbol.doubleHealth = fHealth;
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
+    } //end if
   }
 }

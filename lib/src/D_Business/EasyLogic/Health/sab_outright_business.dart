@@ -39,9 +39,9 @@ class SABOutRightBusiness extends SABBaseBusiness {
       fResult = toOutRightAtRow(nRow, easyType);
     } else if (EasyTypeEnum.hide == easyType) {
       fResult = hideOutRightAtRow(hashCode, easyType);
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
-
+    }
     return fResult;
   }
 
@@ -76,12 +76,13 @@ class SABOutRightBusiness extends SABBaseBusiness {
         } else {
           bool bConflictDay = symbolModel.isConflictDay;
           bool bMove = wordsModel().rowModelAtRow(nRow).bMovement;
-          if (bMove)
+          if (bMove) {
             fResult = OutRightEnum.rightTypeMove;
-          else if (bConflictDay)
+          } else if (bConflictDay) {
             fResult = OutRightEnum.rightTypeDayConflict;
-          else
+          } else {
             fResult = OutRightEnum.rightTypeStatic;
+          } //end if
         } //end if
       } else {
         fResult = OutRightEnum.rightTypeEmpty;

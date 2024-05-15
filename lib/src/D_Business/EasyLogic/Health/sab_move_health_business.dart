@@ -46,10 +46,11 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
   double calculateHealthOfMoveRightRow(
       SABHealthModel tempHealthModel, int item, EasyTypeEnum easyType) {
     double moveHealth = 0;
-    if (wordsModel().isMovementAtRow(item))
+    if (wordsModel().isMovementAtRow(item)) {
       moveHealth = moveSymbolBasicHealthAtRow(tempHealthModel, item);
-    else
+    } else {
       moveHealth = originBusiness().symbolBasicHealthAtRow(item, easyType);
+    } //end if
 
     List arrayEffects =
         effectingArrayAtLevel3Row(tempHealthModel, item, easyType);
@@ -181,16 +182,13 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
       for (int itemRow in level3Array) {
         if (nLevel3Row != itemRow) {
           if (isEffectingLevel3AtRow(tempHealthModel, itemRow, easyType)) {
-            if (isEffectingEarth(basicEarth, itemRow))
+            if (isEffectingEarth(basicEarth, itemRow)) {
               arrayEffects.add(itemRow);
-            //else cont.
-          }
-          //else 日冲休囚静爻算是日破
-        }
-        //else cont.
-
-      } //endf
-    }
+            } //else cont.
+          } //else 日冲休囚静爻算是日破
+        }//else cont.
+      } //end for
+    } // else cont.
 
     return arrayEffects;
   }
@@ -240,9 +238,9 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
         //被日冲的爻只有在strong时才是暗动，才能生克动爻
         bResult = logicModel().isEffectAble(nEffectingRow, easyType);
       }
-    } else
+    } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
-
+    } //end if
     return bResult;
   }
 
@@ -269,11 +267,10 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
 
           bHasBegin = allFinish;
         } //end if
-
       } //end for
-    } else
+    } else {
       bHasBegin = true;
-
+    } //end if
     return bHasBegin;
   }
 

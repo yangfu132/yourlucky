@@ -117,8 +117,8 @@ class SABEarthBranchBusiness extends SABBaseBusiness {
     return _branchModel.earthElement()[earth];
   }
 
-  String seasonDescription(String monthEarth, String _earthName) {
-    return _branchModel.getSeasonStrong()[_earthName][monthEarth];
+  String seasonDescription(String monthEarth, String earthName) {
+    return _branchModel.getSeasonStrong()[earthName][monthEarth];
   }
 
   bool isEarthPairDay(String basicEarth, String dayEarth) {
