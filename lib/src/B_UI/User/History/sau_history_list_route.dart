@@ -68,7 +68,7 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
   }
 
   Widget _buildBody() {
-    if (historyData.length > 0) {
+    if (historyData.isNotEmpty) {
       listKey = setEditListItemKey(historyData.length);
       return ListView.builder(
           itemCount: historyData.length,

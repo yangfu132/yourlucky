@@ -547,7 +547,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     List outMovementArray = wordsModel().outGuaMovementArray();
 
-    if (inMovementArray.length > 0 && outMovementArray.length > 0) {
+    if (inMovementArray.isNotEmpty && outMovementArray.isNotEmpty) {
       bResult = isEasySame();
     } //else cont.
 
@@ -562,7 +562,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     List outMovementArray = wordsModel().outGuaMovementArray();
 
-    if (inMovementArray.length > 0 && outMovementArray.length == 0) {
+    if (inMovementArray.isNotEmpty && outMovementArray.length == 0) {
       bResult = isEasySame();
     } //else cont.
 
@@ -577,7 +577,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     List outMovementArray = wordsModel().outGuaMovementArray();
 
-    if (inMovementArray.length == 0 && outMovementArray.length > 0) {
+    if (inMovementArray.length == 0 && outMovementArray.isNotEmpty) {
       bResult = isEasySame();
     } //else cont.
 
@@ -615,7 +615,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     List outMovementArray = wordsModel().outGuaMovementArray();
 
-    if (inMovementArray.length > 0 && outMovementArray.length > 0) {
+    if (inMovementArray.isNotEmpty && outMovementArray.isNotEmpty) {
       bResult = isEasyRestricts();
     } //else cont.
 
@@ -630,7 +630,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     List outMovementArray = wordsModel().outGuaMovementArray();
 
-    if (inMovementArray.length > 0 && outMovementArray.length == 0) {
+    if (inMovementArray.isNotEmpty && outMovementArray.length == 0) {
       bResult = isEasyRestricts();
     } //else cont.
 
@@ -645,7 +645,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     List outMovementArray = wordsModel().outGuaMovementArray();
 
-    if (inMovementArray.length == 0 && outMovementArray.length > 0) {
+    if (inMovementArray.length == 0 && outMovementArray.isNotEmpty) {
       bResult = isEasyRestricts();
     }//else cont.
 
@@ -691,7 +691,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 //
 //    List outMovementArray = outGuaMovementArray();
 //
-//    if ( inMovementArray.length > 0 && outMovementArray.length > 0)
+//    if ( inMovementArray.isNotEmpty && outMovementArray.isNotEmpty)
 //        bResult = [self isMovementSame:inMovementArray] && [self isMovementSame:outMovementArray];
 //    //else cont.
 //
@@ -708,7 +708,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 //
 //    List outMovementArray = outGuaMovementArray();
 //
-//    if ( inMovementArray.length > 0 && outMovementArray.length == 0)
+//    if ( inMovementArray.isNotEmpty && outMovementArray.length == 0)
 //        bResult = [self isMovementSame:inMovementArray];
 //    //else cont.
 //
@@ -724,7 +724,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 //
 //    List outMovementArray = outGuaMovementArray();
 //
-//    if ( inMovementArray.length == 0 && outMovementArray.length > 0)
+//    if ( inMovementArray.length == 0 && outMovementArray.isNotEmpty)
 //        bResult = [self isMovementSame:outMovementArray];
 //    //else cont.
 //

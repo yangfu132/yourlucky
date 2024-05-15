@@ -102,7 +102,7 @@ class SABEasyDigitModel extends SABBaseModel {
 
   String title() {
     String stringTitle = '';
-    if (strEasyGoal.length > 0) {
+    if (strEasyGoal.isNotEmpty) {
       stringTitle = stringTime + strEasyGoal;
     } else {
       stringTitle = stringTime + strUsefulDeity;

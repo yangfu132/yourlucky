@@ -93,7 +93,7 @@ class SABEarthBranchBusiness extends SABBaseBusiness {
   bool isEarthForward(String fromEarth, String toEarth) {
     String strItem = fromEarth + toEarth;
     List jinArray = ["亥子", "寅卯", "巳午", "申酉", "丑辰", "辰未", "未戌"];
-    return -1 != jinArray.indexOf(strItem);
+    return jinArray.contains(strItem);
   }
 
   bool isEarthBack(String fromEarth, String toEarth) {

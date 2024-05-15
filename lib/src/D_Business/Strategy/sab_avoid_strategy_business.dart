@@ -109,7 +109,7 @@ class SABAvoidStrategyBusiness extends SABBaseBusiness {
     String stringResult = "";
     EasyTypeEnum easyTypeEnum = EasyTypeEnum.from;
     List avoidRowArray = avoidGodRowArray(easyTypeEnum);
-    if (avoidRowArray.length == 0) {
+    if (avoidRowArray.isEmpty) {
       easyTypeEnum = EasyTypeEnum.hide;
       avoidRowArray = avoidGodRowArray(easyTypeEnum);
       stringResult = "克害没有上挂，以下为伏神信息：";
@@ -149,14 +149,14 @@ class SABAvoidStrategyBusiness extends SABBaseBusiness {
     EasyTypeEnum easyType = EasyTypeEnum.from;
     List usefulArray = wordsModel().arrayRowWithParent('子孙', easyType);
 
-    if (usefulArray.length == 0) {
+    if (usefulArray.isEmpty) {
       easyType = EasyTypeEnum.hide;
       usefulArray = wordsModel().arrayRowWithParent('子孙', easyType);
       stringResult = "子孙没有上挂，以下为伏神信息：";
     }
     //else cont.
 
-    if (usefulArray.length > 0) {
+    if (usefulArray.isNotEmpty     ) {
       bool hasOutright = false;
       for (int intRow in usefulArray) {
         String symbol = wordsModel().getSymbolName(intRow, easyType);
@@ -190,9 +190,9 @@ class SABAvoidStrategyBusiness extends SABBaseBusiness {
     List avoidRowArray = avoidGodRowArray(easyType);
     //克在内世在外，宜于外避。克神若在内卦动而克世，宜出外避之。克神若在外卦动而克世，宜在家避之。
 
-    if (avoidRowArray.length > 0) {
+    if (avoidRowArray.isNotEmpty     ) {
       List moveArray = healthModel().moveRightInArray(avoidRowArray, easyType);
-      if (moveArray.length > 0) {
+      if (moveArray.isNotEmpty     ) {
         for (int intRow in moveArray) {
           if (wordsModel().inputDigitModel.isInGua(intRow)) {
             stringResult = SASStringService.appendToString(
@@ -227,7 +227,7 @@ class SABAvoidStrategyBusiness extends SABBaseBusiness {
     List arrayEnemy = avoidGodRowArray(EasyTypeEnum.from);
     int lifeRow = wordsModel().getLifeIndex();
 
-    if (arrayEnemy.length > 0) {
+    if (arrayEnemy.isNotEmpty     ) {
       if (wordsModel().inputDigitModel.isInGua(lifeRow)) {
         for (int intRow in arrayEnemy) {
           if (OutRightEnum.rightTypeMove ==
@@ -258,7 +258,7 @@ class SABAvoidStrategyBusiness extends SABBaseBusiness {
   String directionAtRow(int intRow) {
     String stringResult = "";
     String earth = wordsModel().getSymbolEarth(intRow, EasyTypeEnum.from);
-    if (earth.length > 0) {
+    if (earth.isNotEmpty) {
       String direction = healthModel()
           .inputLogicModel
           .earthBranchModel()

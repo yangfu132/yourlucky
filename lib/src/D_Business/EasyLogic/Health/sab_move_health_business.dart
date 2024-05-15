@@ -248,12 +248,12 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
     bool bHasBegin = false;
     List arrayMoveRightRow =
         originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove);
-    if (arrayMoveRightRow.length > 0) {
+    if (arrayMoveRightRow.isNotEmpty) {
       for (int intItem in arrayMoveRightRow) {
         List arrayEffects = effectingArrayAtLevel3Row(
             tempHealthModel, intItem, EasyTypeEnum.from);
 
-        if (0 == arrayEffects.length) {
+        if (arrayEffects.isEmpty) {
           ///这个分支是对的，下面那个分支可能永远也不会走到。因为在一个Level中，总会有不受同级生克的；而上一级对本级的生克已经计算完成。
           bHasBegin = true;
         } else {

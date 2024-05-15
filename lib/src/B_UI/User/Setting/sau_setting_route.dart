@@ -24,7 +24,7 @@ class SAUSettingRouteState extends State<SAUSettingRoute> {
 
   Widget _buildBody() {
     // return Text('Waiting');
-    int itemCount = settingList.length > 0 ? settingList.length : 1;
+    int itemCount = settingList.isNotEmpty ? settingList.length : 1;
     return ListView.builder(
       itemCount: itemCount,
       itemBuilder: (BuildContext context, int index) {

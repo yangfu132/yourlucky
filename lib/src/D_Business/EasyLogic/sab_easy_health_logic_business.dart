@@ -368,7 +368,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   bool isDeityValid(int intIndex) {
     bool bResult = true;
     List arrayBorns = bornDeityIndexArray();
-    if (-1 != arrayBorns.indexOf(intIndex)) {
+    if (arrayBorns.contains(intIndex)) {
       if (isBornDeityInValidAtRow(intIndex)) {
         bResult = false;
       } else {
@@ -378,7 +378,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     //else cont.
 
     List arrayRestricts = restrictsDeityIndexArray();
-    if (-1 != arrayRestricts.indexOf(intIndex)) {
+    if (arrayRestricts.contains(intIndex)) {
       if (isRestrictDeityInvalidAtRow(intIndex)) {
         bResult = false;
       } else {
@@ -980,7 +980,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
     List arrayRowPaired = [];
     for (String item in arrayPair) {
-      if (-1 != arrayEarth.indexOf(item)) {
+      if (arrayEarth.contains(item)) {
         arrayRowPaired.add(arrayEarth.indexOf(item));
       }
       //else cont.
@@ -990,7 +990,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       List movementArray = moveRightArray();
 
       for (String item in arrayRowPaired) {
-        if (-1 == movementArray.indexOf(item)) arrayResult.add(item);
+        if (!movementArray.contains(item)) arrayResult.add(item);
         //else cont.
       } //endf
     }
@@ -1024,7 +1024,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
         logicModel().symbolAtRow(intRow, easyType);
     if ("" != stringSymbol) {
       String earth = symbolModel.inputWordsSymbol.stringEarth;
-      if (-1 != logicModel().diagramsModel.stringEmptyBranch.indexOf(earth)) {
+      if (logicModel().diagramsModel.stringEmptyBranch.contains(earth)) {
         String strDay = dayEarth();
         if (branchBusiness().isEarthConflict(strDay, earth)) {
           //爻遇旬空，日辰冲起而为用，谓之冲空则实。

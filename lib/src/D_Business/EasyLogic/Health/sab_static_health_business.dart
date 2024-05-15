@@ -60,11 +60,11 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
     bool bHasBegin = false;
     List arrayLevel =
         originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeStatic);
-    if (arrayLevel.length > 0) {
+    if (arrayLevel.isNotEmpty) {
       for (int item in arrayLevel) {
         List arrayEffects = effectingArrayAtLevel4Row(item, EasyTypeEnum.from);
 
-        if (0 == arrayEffects.length) {
+        if (arrayEffects.isEmpty) {
           //这个分支是对的，下面那个分支可能永远也不会走到。因为在一个Level中，总会有不受同级生克的；而上一级对本级的生克已经计算完成。
           bHasBegin = true;
         } else {

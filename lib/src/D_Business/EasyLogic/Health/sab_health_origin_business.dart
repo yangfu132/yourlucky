@@ -375,7 +375,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
       if (symbolModel.isEmpty()) {
         fResult = 0.0;
       } else {
-        if (rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove).length > 0) {
+        if (rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove).isNotEmpty) {
           //动卦中静爻的作用没有那么大
           if (!wordsModel().isMovementAtRow(nRow)) {
             fResult = 0.5;
