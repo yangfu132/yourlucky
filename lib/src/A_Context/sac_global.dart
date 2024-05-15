@@ -62,27 +62,27 @@ enum OutRightEnum {
 }
 
 //note：代表无效的爻索引数，当未被复制的时候使用；
-const GLOBAL_ROW_INVALID = -1;
+const globalRowInvalid = -1;
 
 //note：代表月柱对应到卦中的爻索引数；
-const ROW_MONTH = 7;
+const globalRowMonth = 7;
 
 //note：代表日柱对应到卦中的爻索引数；
-const ROW_DAY = 8;
+const globalRowDay = 8;
 
 //note：代表伏卦中的爻索引数开始值，相对应的本卦的爻所引述开始值是0；
-const ROW_FLY_BEGIN = 10;
+const globalRowFlyBegin = 10;
 
 ///note：代表伏卦中的爻索引数结束值，相对应的本卦的爻所引述开始值是6；
 ///实际的索引数不包括END
-const ROW_FLY_END = 16;
+const globalRowFlyEnd = 16;
 
 ///note：代表变卦中的爻索引数开始值，相对应的本卦的爻所引述开始值是0；
-const ROW_CHANGE_BEGIN = 20;
+const globalRowChangeBegin = 20;
 
 ///note：代表变卦中的爻索引数结束值，相对应的本卦的爻所引述开始值是6；
 ///实际的索引数不包括END
-const ROW_CHANGE_END = 26;
+const globalRowChangeEnd = 26;
 
 ///最大防御值，不受生克影响
-const MAX_DEFENSIVE = 1.0;
+const globalMaxDefensive = 1.0;

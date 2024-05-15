@@ -223,9 +223,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       fResult = healthModel()
           .symbolHealthAtRow(deityModel.intRow, deityModel.easyType);
     } else if (EasyTypeEnum.typeNull == deityModel.easyType) {
-      if (ROW_MONTH == deityModel.intRow) {
+      if (globalRowMonth == deityModel.intRow) {
         fResult = wordsModel().monthModel.health;
-      } else if (ROW_DAY == deityModel.intRow) {
+      } else if (globalRowDay == deityModel.intRow) {
         fResult = wordsModel().dayModel.health;
       }
     } else if (EasyTypeEnum.to == deityModel.easyType) {
@@ -308,9 +308,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
             deityModel.easyType,
           );
     } else if (EasyTypeEnum.typeNull == deityModel.easyType) {
-      if (ROW_MONTH == deityModel.intRow) {
+      if (globalRowMonth == deityModel.intRow) {
         stringEarth = logicModel().inputWordsModel.monthModel.stringEarth;
-      } else if (ROW_DAY == deityModel.intRow) {
+      } else if (globalRowDay == deityModel.intRow) {
         stringEarth = logicModel().inputWordsModel.dayModel.stringEarth;
       }
     } else if (EasyTypeEnum.to == deityModel.easyType) {
@@ -1427,7 +1427,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
         SABElementInfoModel.elementRelative(fromEasyElement, monthElement());
     if (monthParent == usefulParent) {
       resultModel = SABUsefulDeityModel(
-        intRow: ROW_MONTH,
+        intRow: globalRowMonth,
         easyType: EasyTypeEnum.typeNull,
       );
     } else {
@@ -1435,7 +1435,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
           SABElementInfoModel.elementRelative(fromEasyElement, dayElement());
       if (dayParent == usefulParent) {
         resultModel = SABUsefulDeityModel(
-          intRow: ROW_DAY,
+          intRow: globalRowDay,
           easyType: EasyTypeEnum.typeNull,
         );
       } else {
@@ -1495,7 +1495,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   }
 
   int strongUsefulDeity(EasyTypeEnum easyTypeEnum, List usefulArray) {
-    int result = GLOBAL_ROW_INVALID;
+    int result = globalRowInvalid;
 
     //旺、相、余气, 依次选用,有旺用旺，如果有多个旺，通过动静区分；
     int lifeIndex = wordsModel().getLifeIndex();
@@ -1516,7 +1516,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   }
 
   int emptyUsefulDeity(EasyTypeEnum easyTypeEnum, List usefulArray) {
-    int result = GLOBAL_ROW_INVALID;
+    int result = globalRowInvalid;
 
     List listEmpty = emptyInUsefulArray(easyTypeEnum, usefulArray);
 
@@ -1545,7 +1545,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   }
 
   int movementUsefulDeity(EasyTypeEnum easyTypeEnum, List usefulArray) {
-    int result = GLOBAL_ROW_INVALID;
+    int result = globalRowInvalid;
 
     List movementArray =
         commonLogicBusiness().movementInArray(wordsModel(), usefulArray);
@@ -1568,7 +1568,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   ///  ****************************************************************/
 
   int multiUsefulDeity(EasyTypeEnum easyTypeEnum, List usefulArray) {
-    int result = GLOBAL_ROW_INVALID;
+    int result = globalRowInvalid;
 
     List listMonthBroken = monthBrokenArray(easyTypeEnum, usefulArray);
     if (0 == listMonthBroken.length) {

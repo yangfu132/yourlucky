@@ -428,15 +428,15 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     if (null != symbolModel) {
       if (EasyTypeEnum.to != easyType) {
         if (logicModel().isOnMonth(nRow, easyType))
-          bResult = MAX_DEFENSIVE;
+          bResult = globalMaxDefensive;
         else if (logicModel().isOnDay(nRow, easyType))
-          bResult = MAX_DEFENSIVE;
+          bResult = globalMaxDefensive;
         else if (symbolModel.isEmpty())
-          bResult = MAX_DEFENSIVE;
+          bResult = globalMaxDefensive;
         else if (logicModel().isMonthPair(nRow, easyType))
-          bResult = MAX_DEFENSIVE;
+          bResult = globalMaxDefensive;
         else if (logicModel().isDayPair(nRow, easyType))
-          bResult = MAX_DEFENSIVE;
+          bResult = globalMaxDefensive;
         //else cont.
       } else {
         coLog(StackTrace.current, LogTypeEnum.error, "error!");

@@ -41,10 +41,10 @@ class SABEasyWordsModel extends SABBaseModel {
     String stringResult = "";
     if (0 <= intRow && intRow < 6) {
       stringResult = getSymbolName(intRow, EasyTypeEnum.from);
-    } else if (ROW_CHANGE_BEGIN <= intRow && intRow < ROW_CHANGE_END) {
-      stringResult = getSymbolName(intRow - ROW_CHANGE_BEGIN, EasyTypeEnum.to);
-    } else if (ROW_FLY_BEGIN <= intRow && intRow < ROW_FLY_END) {
-      stringResult = getSymbolName(intRow - ROW_FLY_BEGIN, EasyTypeEnum.hide);
+    } else if (globalRowChangeBegin <= intRow && intRow < globalRowChangeEnd) {
+      stringResult = getSymbolName(intRow - globalRowChangeBegin, EasyTypeEnum.to);
+    } else if (globalRowFlyBegin <= intRow && intRow < globalRowFlyEnd) {
+      stringResult = getSymbolName(intRow - globalRowFlyBegin, EasyTypeEnum.hide);
     }
     //else cont.
 
@@ -55,9 +55,9 @@ class SABEasyWordsModel extends SABBaseModel {
     EasyTypeEnum enumResultType = EasyTypeEnum.typeNull;
     if (0 <= intRow && intRow < 6) {
       enumResultType = EasyTypeEnum.from;
-    } else if (ROW_CHANGE_BEGIN <= intRow && intRow < ROW_CHANGE_END) {
+    } else if (globalRowChangeBegin <= intRow && intRow < globalRowChangeEnd) {
       enumResultType = EasyTypeEnum.to;
-    } else if (ROW_FLY_BEGIN <= intRow && intRow < ROW_FLY_END) {
+    } else if (globalRowFlyBegin <= intRow && intRow < globalRowFlyEnd) {
       enumResultType = EasyTypeEnum.hide;
     }
     //else cont.
@@ -69,10 +69,10 @@ class SABEasyWordsModel extends SABBaseModel {
     String stringResult = "";
     if (0 <= intRow && intRow < 6) {
       stringResult = getSymbolEarth(intRow, EasyTypeEnum.from);
-    } else if (ROW_CHANGE_BEGIN <= intRow && intRow < ROW_CHANGE_END) {
-      stringResult = getSymbolEarth(intRow - ROW_CHANGE_BEGIN, EasyTypeEnum.to);
-    } else if (ROW_FLY_BEGIN <= intRow && intRow < ROW_FLY_END) {
-      stringResult = getSymbolEarth(intRow - ROW_FLY_BEGIN, EasyTypeEnum.hide);
+    } else if (globalRowChangeBegin <= intRow && intRow < globalRowChangeEnd) {
+      stringResult = getSymbolEarth(intRow - globalRowChangeBegin, EasyTypeEnum.to);
+    } else if (globalRowFlyBegin <= intRow && intRow < globalRowFlyEnd) {
+      stringResult = getSymbolEarth(intRow - globalRowFlyBegin, EasyTypeEnum.hide);
     }
     //else cont.
 

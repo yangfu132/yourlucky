@@ -87,7 +87,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
     //else cont.
 
     if (_branchBusiness.isEarthRestricts(effectsEarth, basicEarth)) {
-      fHealth -= (MAX_DEFENSIVE - basicDefense) *
+      fHealth -= (globalMaxDefensive - basicDefense) *
           symbolOutAtRow(tempHealthModel, effectsRow, effectsEasyType);
     }
     //else cont.
@@ -150,7 +150,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
      */
     bool bResult = false;
     bResult =
-        MAX_DEFENSIVE != originBusiness().symbolDefensiveAtRow(nRow, easyType);
+        globalMaxDefensive != originBusiness().symbolDefensiveAtRow(nRow, easyType);
     return bResult;
   }
 

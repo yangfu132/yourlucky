@@ -27,10 +27,10 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
 
     if (0 <= nRow && nRow < 6) {
       strResult = positionAtRow(nRow, EasyTypeEnum.from);
-    } else if (ROW_CHANGE_BEGIN <= nRow && nRow < ROW_CHANGE_END) {
-      strResult = positionAtRow(nRow - ROW_CHANGE_BEGIN, EasyTypeEnum.to);
-    } else if (ROW_FLY_BEGIN <= nRow && nRow < ROW_FLY_END) {
-      strResult = positionAtRow(nRow - ROW_FLY_BEGIN, EasyTypeEnum.hide);
+    } else if (globalRowChangeBegin <= nRow && nRow < globalRowChangeEnd) {
+      strResult = positionAtRow(nRow - globalRowChangeBegin, EasyTypeEnum.to);
+    } else if (globalRowFlyBegin <= nRow && nRow < globalRowFlyEnd) {
+      strResult = positionAtRow(nRow - globalRowFlyBegin, EasyTypeEnum.hide);
     }
     //else cont.
 
@@ -700,7 +700,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
       String strPair = "";
       List arrayRow1 = [];
       arrayRow1.add(3);
-      arrayRow1.add(3 + ROW_CHANGE_BEGIN);
+      arrayRow1.add(3 + globalRowChangeBegin);
       arrayRow1.add(5);
       String tempResult1 = subResultThreePairOfRowArray(arrayRow1);
       if ("" != tempResult1)
@@ -710,7 +710,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
       List arrayRow2 = [];
       arrayRow2.add(3);
       arrayRow2.add(5);
-      arrayRow2.add(5 + ROW_CHANGE_BEGIN);
+      arrayRow2.add(5 + globalRowChangeBegin);
       String tempResult2 = subResultThreePairOfRowArray(arrayRow2);
       if ("" != tempResult2)
         strPair = SASStringService.appendToString(strPair, tempResult2);
@@ -738,7 +738,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
       String strPair = "";
       List arrayRow1 = [];
       arrayRow1.add(nFirst);
-      arrayRow1.add(nFirst + ROW_CHANGE_BEGIN);
+      arrayRow1.add(nFirst + globalRowChangeBegin);
       arrayRow1.add(nSecond);
       String tempResult1 = subResultThreePairOfRowArray(arrayRow1);
       if ("" != tempResult1)
@@ -748,7 +748,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
       List arrayRow2 = [];
       arrayRow2.add(nFirst);
       arrayRow2.add(nSecond);
-      arrayRow2.add(nSecond + ROW_CHANGE_BEGIN);
+      arrayRow2.add(nSecond + globalRowChangeBegin);
 
       String tempResult2 = subResultThreePairOfRowArray(arrayRow2);
       if ("" != tempResult2)

@@ -59,7 +59,7 @@ class SABCommonLogicBusiness extends SABBaseBusiness {
 
   int lifeOrGoalUsefulDeity(int lifeIndex, int goalIndex,
       EasyTypeEnum easyTypeEnum, List usefulArray) {
-    int result = GLOBAL_ROW_INVALID;
+    int result = globalRowInvalid;
 
     //世爻位置上的用神
     for (int intItem in usefulArray) {
@@ -69,7 +69,7 @@ class SABCommonLogicBusiness extends SABBaseBusiness {
       } //else {}
     } //end for
 
-    if (GLOBAL_ROW_INVALID == result) {
+    if (globalRowInvalid == result) {
       //应爻位置上的用神
       for (int intItem in usefulArray) {
         if (goalIndex == intItem) {
@@ -80,7 +80,7 @@ class SABCommonLogicBusiness extends SABBaseBusiness {
     }
     //else cont.
 
-    if (GLOBAL_ROW_INVALID == result) {
+    if (globalRowInvalid == result) {
       result = unKnowUsefulDeity(easyTypeEnum, usefulArray);
     }
     //else cont.
@@ -89,7 +89,7 @@ class SABCommonLogicBusiness extends SABBaseBusiness {
   }
 
   int unKnowUsefulDeity(EasyTypeEnum easyTypeEnum, List usefulArray) {
-    int result = usefulArray[0]; //GLOBAL_ROW_INVALID;
+    int result = usefulArray[0]; //globalRowInvalid;
 
     //TODO:yangfu132丰富用神的选取规则：按旺相休囚死的顺序排列；或者按照强弱顺序排序。
     //其实此时应该已经知道用神衰弱，事情很难成功。

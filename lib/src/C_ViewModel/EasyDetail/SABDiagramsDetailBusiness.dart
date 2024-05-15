@@ -309,9 +309,9 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
       emptyState = logicModel()
           .getBasicEmptyState(usefulDeity.intRow, usefulDeity.easyType);
     } else if (EasyTypeEnum.typeNull == usefulDeity.easyType) {
-      if (ROW_MONTH == usefulDeity.intRow) {
+      if (globalRowMonth == usefulDeity.intRow) {
         strUseful = "月为用神";
-      } else if (ROW_DAY == usefulDeity.intRow) {
+      } else if (globalRowDay == usefulDeity.intRow) {
         strUseful = "日为用神";
       }
     } else {
@@ -329,11 +329,11 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
       strResult = SASStringService.appendToString(strResult, strUseful);
     } else if (EmptyEnum.emptyNO != emptyState) {
       if (EmptyEnum.emptyNull == emptyState) {
-        if (ROW_MONTH == usefulDeity.intRow) {
+        if (globalRowMonth == usefulDeity.intRow) {
           //用神旬空
           strUseful = strUseful + outEmptyDate();
           strResult = SASStringService.appendToString(strResult, strUseful);
-        } else if (ROW_DAY == usefulDeity.intRow) {
+        } else if (globalRowDay == usefulDeity.intRow) {
           //日为用神不存在旬空
           strResult = SASStringService.appendToString(strResult, strUseful);
         } else {
