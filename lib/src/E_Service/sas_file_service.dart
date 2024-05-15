@@ -30,7 +30,7 @@ class SASFileService extends SABBaseService {
     refresh(result);
   }
 
-  static Future<void> readFile_old(void refresh(String content)) async {
+  static Future<void> readFileOld(void refresh(String content)) async {
     String result = "waiting";
     File file = new File('assets/easy.txt');
     try{

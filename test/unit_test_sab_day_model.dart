@@ -23,14 +23,14 @@ SABDayModel generateTestModel(List<int> listEasyData) {
   //[0, 8, 0, 1, 1, 1]
   //[8, 8, 0, 8, 0, 0]
   //[0, 1, 1, 8, 8, 1]
-  SABEasyDigitModel _inputEasyModel;
-  _inputEasyModel = SABEasyDigitModel(
+  SABEasyDigitModel inputEasyModel;
+  inputEasyModel = SABEasyDigitModel(
     modelId: null,
     strEasyGoal: strEasyGoal,
     strUsefulDeity: strUsefulDeity,
     stringTime: stringTime,
     listEasyData: listEasyData,
   );
-  SABEasyWordsBusiness _wordsBusiness = SABEasyWordsBusiness(_inputEasyModel);
-  return _wordsBusiness.outEasyWordsModel().dayModel;
+  SABEasyWordsBusiness wordsBusiness = SABEasyWordsBusiness(inputEasyModel);
+  return wordsBusiness.outEasyWordsModel().dayModel;
 }
