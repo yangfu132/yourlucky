@@ -25,7 +25,7 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
   }
 
   Widget _buildBody() {
-    return Text(this.content);
+    return Text(content);
   }
 
   @override

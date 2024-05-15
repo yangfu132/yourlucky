@@ -82,7 +82,7 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
           itemCount: 1,
           //itemExtent: 50.0, //强制高度为50.0
           itemBuilder: (BuildContext context, int index) {
-            return ListTile(
+            return const ListTile(
               title: Text('暂无数据，请稍后再试'),
               onTap: null,
             );
@@ -116,7 +116,7 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
     return Scaffold(
       appBar: AppBar(
         leading: backIconButton(context),
-        title: Text('历史'),
+        title: const Text('历史'),
       ),
       body: _buildBody(),
     );
@@ -124,7 +124,7 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
 
   IconButton backIconButton(BuildContext context) {
     return IconButton(
-        icon: Icon(Icons.arrow_back_ios),
+        icon: const Icon(Icons.arrow_back_ios),
         onPressed: () {
           Navigator.pop(context);
         });

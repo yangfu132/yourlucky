@@ -44,7 +44,7 @@ class _SAUStrategyResultRoute extends State<SAUStrategyResultRoute> {
                 return SAUEasyDetailRoute(widget.inputDetail);
               }));
             },
-            child: Text('详细'),
+            child: const Text('详细'),
             style: SACContext.textButtonStyle(),
           )
         ],
@@ -129,7 +129,7 @@ class _SAUStrategyResultRoute extends State<SAUStrategyResultRoute> {
           else
             return Container(
               //color: Colors.grey,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.grey,
               ),
               child: ListTile(

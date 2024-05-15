@@ -6,18 +6,18 @@ class SAUListTitleVisitor {
     int kv = index % 2;
     if (kv > 0) {
       return ListTile(
-        trailing: Icon(Icons.chevron_right, color: Colors.grey),
+        trailing: const Icon(Icons.chevron_right, color: Colors.grey),
         title: Text(stringTitle),
         onTap: tapCallback,
       );
     } else {
       return Container(
         //color: Colors.grey,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.grey,
         ),
         child: ListTile(
-          trailing: Icon(Icons.chevron_right, color: Colors.white),
+          trailing: const Icon(Icons.chevron_right, color: Colors.white),
           title: Text(stringTitle),
           onTap: tapCallback,
         ),

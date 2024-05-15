@@ -16,12 +16,12 @@ class AnimationPositionedRouteState extends State<AnimationPositionedRoute>
   void initState() {
     super.initState();
     _controller =
-        AnimationController(duration: Duration(seconds: 2), vsync: this);
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
     _curve = CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn);
 
     _animation = RelativeRectTween(
-            begin: RelativeRect.fromLTRB(400.0, 400.0, 0.0, 0.0),
-            end: RelativeRect.fromLTRB(0.0, 0.0, 400.0, 400.0))
+            begin: const RelativeRect.fromLTRB(400.0, 400.0, 0.0, 0.0),
+            end: const RelativeRect.fromLTRB(0.0, 0.0, 400.0, 400.0))
         .animate(_curve)
           ..addListener(() {
             setState(() {});
@@ -41,7 +41,7 @@ class AnimationPositionedRouteState extends State<AnimationPositionedRoute>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('title'),
+        title: const Text('title'),
         centerTitle: true,
       ),
       body: Stack(

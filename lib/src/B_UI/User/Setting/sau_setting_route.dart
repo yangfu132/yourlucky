@@ -54,10 +54,10 @@ class SAUSettingRouteState extends State<SAUSettingRoute> {
       children: [
         Text(settingModel.settingTitle),
         Padding(
-          padding: EdgeInsets.only(left: 80),
+          padding: const EdgeInsets.only(left: 80),
           child: TextField(
             controller: textController,
-            style: TextStyle(fontSize: 14, color: Color(0xFF333333)),
+            style: const TextStyle(fontSize: 14, color: Color(0xFF333333)),
             minLines: 1,
             maxLines: 1,
             keyboardType: TextInputType.number,
@@ -95,7 +95,7 @@ class SAUSettingRouteState extends State<SAUSettingRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('设置'),
+        title: const Text('设置'),
       ),
       body: _buildBody(),
     );

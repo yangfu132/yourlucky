@@ -39,12 +39,12 @@ class SAUButtonRowsView extends StatelessWidget {
     buttonList.forEach((element) {
       final backColor =
       element.highLight ? Colors.blue : Colors.transparent;
-      final textColor = element.highLight ? Colors.white : Color(0xFF333333);
+      final textColor = element.highLight ? Colors.white : const Color(0xFF333333);
       final bolderColor =
       element.highLight ? Colors.transparent : Colors.blue;
       buttons.add(Container(
           height: 30,
-          padding: EdgeInsets.only(left: 8),
+          padding: const EdgeInsets.only(left: 8),
           child: Center(
             child: Material(
               shape: StadiumBorder(
@@ -58,8 +58,8 @@ class SAUButtonRowsView extends StatelessWidget {
               child: InkWell(
                   onTap: () => {onButtonTap(element)},
                   child: Container(
-                    padding: EdgeInsets.only(left: 10, right: 10),
-                    constraints: BoxConstraints(minWidth: 80),
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    constraints: const BoxConstraints(minWidth: 80),
                     height: 30,
                     child: Center(
                       child: Text(element.title,

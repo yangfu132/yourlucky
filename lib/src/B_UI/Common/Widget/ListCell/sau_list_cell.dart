@@ -46,20 +46,20 @@ class _SAUListCellState extends State<SAUListCell> {
       child: Container(
         decoration: BoxDecoration(
             color: Colors.white,
-            boxShadow: [
+            boxShadow: const [
               //阴影
-              const BoxShadow(
+              BoxShadow(
                   color: Color(0x270E567F),
                   offset: Offset(0, 0),
                   blurRadius: 10,
                   spreadRadius: 0)
             ],
             borderRadius: BorderRadius.circular(6)),
-        margin: EdgeInsets.only(),
+        margin: const EdgeInsets.only(),
         child: InkWell(
           onTap: () => {_cellClick()},
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: _buildBody(context),
           ),
         ),
@@ -90,7 +90,7 @@ class _SAUListCellState extends State<SAUListCell> {
   Widget _buildContents() {
     var children = <Widget>[];
     children.add(Container(
-        padding: EdgeInsets.only(top: 5, bottom: 5),
+        padding: const EdgeInsets.only(top: 5, bottom: 5),
         child: _buildContent()));
     if (!haveTitle && widget.model.showStatus) {
       children.add(_buildTitle());
@@ -129,13 +129,13 @@ class _SAUListCellState extends State<SAUListCell> {
     double titleFontSize = widget.model.title.isNotEmpty ? 16 : 14;
     var title = widget.model.title.isNotEmpty ? widget.model.title : widget.model.tips;
     var titleColor =
-    widget.model.title.isNotEmpty ? Color(0xFF000000) : Color(0xFF666666);
+    widget.model.title.isNotEmpty ? const Color(0xFF000000) : const Color(0xFF666666);
     var titleFont =
     widget.model.title.isNotEmpty ? FontWeight.w500 : FontWeight.normal;
     var tips = widget.model.title.isNotEmpty ? widget.model.tips : null;
     title ??= '';
     return Container(
-      padding: EdgeInsets.only(top: 12, bottom: 0),
+      padding: const EdgeInsets.only(top: 12, bottom: 0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,14 +171,14 @@ class _SAUListCellState extends State<SAUListCell> {
           Offstage(
               offstage: tips == null,
               child: Container(
-                padding: EdgeInsets.only(top: 8, bottom: 0),
+                padding: const EdgeInsets.only(top: 8, bottom: 0),
                 child: Text(tips ?? '',
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.normal,
                         color: Color(0xFF666666))),
               )),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
           Offstage(
@@ -207,8 +207,8 @@ class _SAUListCellState extends State<SAUListCell> {
           title: element.title,
           isEdit: false,
           urls: [element.content],
-          padding: EdgeInsets.symmetric(vertical: 5),
-          imagePadding: EdgeInsets.only(top: 0, bottom: 3),
+          padding: const EdgeInsets.symmetric(vertical: 5),
+          imagePadding: const EdgeInsets.only(top: 0, bottom: 3),
         );
         list.add(item);
       }

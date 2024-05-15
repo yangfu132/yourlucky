@@ -32,13 +32,13 @@ class _SAUDetailCellState extends State<SAUDetailCell> {
         children: [
           _buildTitleWithRightRow('违章信息', model),
           SAUDividerView(),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           _buildInfoCell('分公司', '分公司', model),
           _buildInfoCell('违章条数','违章条数', model),
           _buildInfoCell('车牌前缀', '车牌前缀', model),
           _buildInfoCell('合计罚分', '合计罚分', model),
           _buildInfoCell('合计罚款', '合计罚款', model),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
         ],
       ),
     );
@@ -46,18 +46,18 @@ class _SAUDetailCellState extends State<SAUDetailCell> {
 
   Widget _buildTitleWithRightRow(String title, SAUDetailModel store) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 15),
+      padding: const EdgeInsets.symmetric(vertical: 15),
       child: Row(
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
-          Spacer(),
-          Material(
+          const Spacer(),
+          const Material(
             color: Colors.white,
             child: Row(
               children: [
@@ -99,7 +99,7 @@ class _SAUDetailCellState extends State<SAUDetailCell> {
         constraints: BoxConstraints(minWidth: leftMargin),
         child: Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14,
             color: Color(0xFF666666),
           ),
@@ -108,7 +108,7 @@ class _SAUDetailCellState extends State<SAUDetailCell> {
       Expanded(
         child: Text(
           detail,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14,
             color: Color(0xFF333333),
           ),
@@ -122,7 +122,7 @@ class _SAUDetailCellState extends State<SAUDetailCell> {
     }
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 5),
+      padding: const EdgeInsets.symmetric(vertical: 5),
       child: InkWell(
         onTap: () {},
         child: Row(

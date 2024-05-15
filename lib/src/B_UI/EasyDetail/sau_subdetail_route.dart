@@ -61,7 +61,7 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
             else
               return Container(
                 //color: Colors.grey,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.grey,
                 ),
                 child: ListTile(title: Text(value['key'])),

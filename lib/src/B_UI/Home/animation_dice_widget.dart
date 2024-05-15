@@ -209,8 +209,8 @@ class AnimationDiceState extends State<AnimationDiceWidget>
     int width = 45;
     int height = 45;
     theImage.image
-        .resolve(new ImageConfiguration())
-        .addListener(new ImageStreamListener((ImageInfo info, bool _) {
+        .resolve(const ImageConfiguration())
+        .addListener(ImageStreamListener((ImageInfo info, bool _) {
       width = info.image.width;
       height = info.image.height;
     }));
@@ -277,7 +277,7 @@ class AnimationRouteState extends State<AnimationRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('title'),
+        title: const Text('title'),
         centerTitle: true,
       ),
       body: AnimationDiceWidget(() {}),

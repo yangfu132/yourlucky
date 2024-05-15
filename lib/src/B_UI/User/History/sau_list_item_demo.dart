@@ -26,11 +26,11 @@ class _HomeScreenState extends State<HomeScreen> {
         width: double.infinity,
         //这个组件是用来下拉刷新使用的
         child: ListView.builder(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             itemCount: _list.length,
             itemBuilder: (_,index){
               return AnimatedSwitcher(
-                duration: Duration(seconds: 1),
+                duration: const Duration(seconds: 1),
                 transitionBuilder: (child,animation){
                   return SlideTransition(
                     position: Tween<Offset>(
@@ -50,17 +50,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           "item $index dismissed remove!"
                       )));
                     },
-                    resizeDuration: Duration(seconds: 1),
+                    resizeDuration: const Duration(seconds: 1),
                     confirmDismiss: (direction) async{
                       await _alertDialog();
                       return delete;
                     },
                     child: AnimatedSwitcher(
-                      duration: Duration(seconds: 1),
+                      duration: const Duration(seconds: 1),
                       transitionBuilder: (child,animation){
                         return SlideTransition(
                           position: Tween<Offset>(
-                              begin: Offset(0.25,0.0),
+                              begin: const Offset(0.25,0.0),
                               end: Offset.zero
                           ).animate(animation),
                           child: child,
@@ -89,18 +89,18 @@ class _HomeScreenState extends State<HomeScreen> {
         context: context,
         builder: (context){
           return AlertDialog(
-            title: Text("提醒"),
-            content: Text("确定要删除吗"),
+            title: const Text("提醒"),
+            content: const Text("确定要删除吗"),
             actions: [
               ElevatedButton(onPressed: (){
                 Navigator.of(context).pop();
                 delete = true;
-              }, child: Text("删除")),
+              }, child: const Text("删除")),
 
               ElevatedButton(onPressed: (){
                 Navigator.of(context).pop();
                 delete = false;
-              }, child: Text("取消"))
+              }, child: const Text("取消"))
             ],
           );
         }

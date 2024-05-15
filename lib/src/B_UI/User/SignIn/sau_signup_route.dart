@@ -27,7 +27,7 @@ class SAUSignupRouteState extends State<SAUSignupRoute> {
   }
 
   Widget buildLogged(BuildContext context) {
-    return Text("你已经登录！");
+    return const Text("你已经登录！");
   }
 
   Widget buildLogIn(BuildContext context) {
@@ -39,8 +39,8 @@ class SAUSignupRouteState extends State<SAUSignupRoute> {
             case 0:
               return TextField(
                 controller: business.emailController,
-                style: TextStyle(fontSize: 14, color: Color(0xFF333333)),
-                decoration: InputDecoration(
+                style: const TextStyle(fontSize: 14, color: Color(0xFF333333)),
+                decoration: const InputDecoration(
                   hintText: '请输入email',
                   hintStyle: TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
                   border: InputBorder.none,
@@ -51,8 +51,8 @@ class SAUSignupRouteState extends State<SAUSignupRoute> {
             case 1:
               return TextField(
                 controller: business.nameController,
-                style: TextStyle(fontSize: 14, color: Color(0xFF333333)),
-                decoration: InputDecoration(
+                style: const TextStyle(fontSize: 14, color: Color(0xFF333333)),
+                decoration: const InputDecoration(
                   hintText: '请输入用户名',
                   hintStyle: TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
                   border: InputBorder.none,
@@ -63,8 +63,8 @@ class SAUSignupRouteState extends State<SAUSignupRoute> {
             case 2:
               return TextField(
                 controller: business.passwordController,
-                style: TextStyle(fontSize: 14, color: Color(0xFF333333)),
-                decoration: InputDecoration(
+                style: const TextStyle(fontSize: 14, color: Color(0xFF333333)),
+                decoration: const InputDecoration(
                   hintText: '请输入密码',
                   hintStyle: TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
                   border: InputBorder.none,

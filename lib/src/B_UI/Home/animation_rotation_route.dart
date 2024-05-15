@@ -15,7 +15,7 @@ class RotationDemoRouteState extends State<RotationDemoRoute>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 4),
+      duration: const Duration(seconds: 4),
     );
     _controller.forward();
   }
@@ -24,14 +24,9 @@ class RotationDemoRouteState extends State<RotationDemoRoute>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('data'),
+        title: const Text('data'),
       ),
       body: RotationTransition(
-        child: CircleAvatar(
-          radius: 25,
-          backgroundImage: ExactAssetImage('images/dong1@2x.png'),
-          child: Icon(Icons.queue_music),
-        ),
         turns: _controller
           ..addStatusListener(
             (status) {
@@ -41,6 +36,11 @@ class RotationDemoRouteState extends State<RotationDemoRoute>
               }
             },
           ),
+        child: const CircleAvatar(
+          radius: 25,
+          backgroundImage: ExactAssetImage('images/dong1@2x.png'),
+          child: Icon(Icons.queue_music),
+        ),
       ),
     );
   }

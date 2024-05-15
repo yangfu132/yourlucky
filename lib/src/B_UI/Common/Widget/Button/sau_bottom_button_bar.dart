@@ -28,14 +28,14 @@ class _SAUBottomButtonBarState extends State<SAUBottomButtonBar> {
       SAUButtonModel item = widget.model.itemList[i];
       children.add(_buildButton(item, i == lastIndex));
       if (i != lastIndex) {
-        children.add(SizedBox(width: 10));
+        children.add(const SizedBox(width: 10));
       }
     }
 
     return Container(
       height: 65,
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      decoration: const BoxDecoration(
         color: Colors.white,
         boxShadow: [
           BoxShadow(

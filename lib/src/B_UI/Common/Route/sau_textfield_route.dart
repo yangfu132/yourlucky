@@ -51,10 +51,10 @@ class SAUTextFieldRouteState extends State<SAUTextFieldRoute> {
     textController.text = widget.model.stringValue;
     return TextField(
       controller: textController,
-      style: TextStyle(fontSize: 14,color: Color(0xFF333333)),
+      style: const TextStyle(fontSize: 14,color: Color(0xFF333333)),
       decoration: InputDecoration(
         hintText: widget.model.stringPlaceholder,
-        hintStyle: TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
+        hintStyle: const TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
         border: InputBorder.none,
       ),
       minLines: 1,

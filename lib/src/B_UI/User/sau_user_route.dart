@@ -79,7 +79,7 @@ class SAUUserRouteState extends State<SAUUserRoute> {
             final key = userActionList[index]['key'];
             if (kv > 0) {
               return ListTile(
-                trailing: Icon(Icons.chevron_right, color: Colors.grey),
+                trailing: const Icon(Icons.chevron_right, color: Colors.grey),
                 title: Text(key),
                 onTap: () async {
                   await SACNavigator.pushNamed(
@@ -93,11 +93,11 @@ class SAUUserRouteState extends State<SAUUserRoute> {
             } else {
               return Container(
                 //color: Colors.grey,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.grey,
                 ),
                 child: ListTile(
-                  trailing: Icon(Icons.chevron_right, color: Colors.white),
+                  trailing: const Icon(Icons.chevron_right, color: Colors.white),
                   title: Text(key),
                   onTap: () async {
                     await SACNavigator.pushNamed(

@@ -100,14 +100,14 @@ class _SAUUploadImageViewState extends State<SAUUploadImageView> {
         child: Material(
           color: Colors.white,
           child: Padding(
-            padding: EdgeInsets.fromLTRB(0, 5, 5, 5),
+            padding: const EdgeInsets.fromLTRB(0, 5, 5, 5),
             child: InkWell(
               onTap: () => updateImage(index),
               child: Container(
                 decoration: BoxDecoration(
-                    border: Border.all(color: Color(0xFFDDDDDD)),
-                    borderRadius: BorderRadius.all(Radius.circular(6))),
-                child: Image(
+                    border: Border.all(color: const Color(0xFFDDDDDD)),
+                    borderRadius: const BorderRadius.all(Radius.circular(6))),
+                child: const Image(
                   image: AssetImage('assets/transfer/image/imagepicker_add.png'),
                 ),
               ),
@@ -122,7 +122,7 @@ class _SAUUploadImageViewState extends State<SAUUploadImageView> {
         alignment: AlignmentDirectional.topEnd,
         children: [
           Padding(
-            padding: EdgeInsets.fromLTRB(0, 5, 5, 5),
+            padding: const EdgeInsets.fromLTRB(0, 5, 5, 5),
             child: InkWell(
               onTap: () => updateImage(index),
               child: CachedNetworkImage(
@@ -133,13 +133,13 @@ class _SAUUploadImageViewState extends State<SAUUploadImageView> {
                         image: imageProvider,
                         fit: BoxFit.fill,
                       ),
-                      borderRadius: BorderRadius.all(
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(6),
                       ),
                     ),
                   ),
                   errorWidget: (context, url, error) {
-                    var imageSize = Size(90, 70);
+                    var imageSize = const Size(90, 70);
                     final renderObject = context.findRenderObject();
                     if (null != renderObject) {
                       imageSize = renderObject.semanticBounds.size;
@@ -157,16 +157,16 @@ class _SAUUploadImageViewState extends State<SAUUploadImageView> {
             offstage: !widget.isEdit,
             child: Container(
               child: Material(
-                color: Color(0x00000000),
+                color: const Color(0x00000000),
                 child: InkWell(
                   onTap: () => isEdit ? deleteImage(index) : null,
                   child: Container(
                     alignment: Alignment.center,
                     width: 15,
                     height: 15,
-                    decoration: ShapeDecoration(
+                    decoration: const ShapeDecoration(
                         color: Color(0xFF333333), shape: CircleBorder()),
-                    child: Text(
+                    child: const Text(
                       'X',
                       style: TextStyle(
                           color: Color(0xFFFFFFFF),
@@ -194,10 +194,10 @@ class _SAUUploadImageViewState extends State<SAUUploadImageView> {
     }
     return GridView.custom(
       padding:
-      widget.padding ?? EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+      widget.padding ?? const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         mainAxisSpacing: 15,
         crossAxisSpacing: 6,

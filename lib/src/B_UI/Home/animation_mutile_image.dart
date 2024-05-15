@@ -16,13 +16,13 @@ class AnimationMutileImage extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return new _WOActionImageState();
+    return _WOActionImageState();
   }
 }
 
 class _WOActionImageState extends State<AnimationMutileImage> {
   bool _disposed = false;
-  Duration _duration = Duration(milliseconds: 50);
+  final Duration _duration = const Duration(milliseconds: 50);
   int _imageIndex = 1;
   late Container _container;
   late Timer _timer;

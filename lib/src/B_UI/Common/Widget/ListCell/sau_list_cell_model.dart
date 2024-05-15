@@ -31,7 +31,7 @@ class SAUListCellModel {
   String? statusStr;
   String? transportTaskStatusStr;
   bool showStatus = false;
-  Color statusStrColor = Color(0xFFF56C6C);
+  Color statusStrColor = const Color(0xFFF56C6C);
   final String taskId;
   final String? carrierId;
   Object? dataModel;
