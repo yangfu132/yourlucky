@@ -115,7 +115,7 @@ class SABEasyInfoModel extends SABBaseModel {
       symbol5,
       symbol6
     ];
-    SABEasyInfoSymbolModel info;
+    // SABEasyInfoSymbolModel info;
     //dictionary["111111"] = {"name": "乾为天(乾)", "data": array, "世": 6, "应": 3};
     dictionary["111111"] = {
       "textClassical": "乾：元，亨，利，贞。",

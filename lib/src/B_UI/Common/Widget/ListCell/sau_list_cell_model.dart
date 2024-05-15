@@ -55,10 +55,10 @@ class SAUListCellModel {
     contents
         .add(SAUListCellItemModel(title: '用神', content: model.strUsefulDeity));
     contents.add(SAUListCellItemModel(
-        title: 'FROM', content: "${model.diagramsModel.stringFromName}"));
+        title: 'FROM', content: model.diagramsModel.stringFromName));
     if (model.isMovement(model.listEasyData)) {
       contents.add(SAUListCellItemModel(
-          title: 'TO', content: "${model.diagramsModel.stringToName}"));
+          title: 'TO', content: model.diagramsModel.stringToName));
     }
     contents.add(SAUListCellItemModel(title: '批注', content: model.strAnnotate));
 

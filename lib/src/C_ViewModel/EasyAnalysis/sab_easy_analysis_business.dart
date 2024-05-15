@@ -589,7 +589,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
     int nCount = 0;
     List movementArray = healthModel().diagramsModel.listMoveRight;
     for (String item in arrayPairRow) {
-      if (-1 != movementArray.indexOf(item)) nCount++;
+      if (movementArray.contains(item)) nCount++;
       //else cont.
     } //endf
 
@@ -687,7 +687,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
     //有内卦初爻三爻动，动而变出之爻成三合者，三也。
 
     List movementArray = healthModel().diagramsModel.listMoveRight;
-    if (-1 != movementArray.indexOf(3) && -1 != movementArray.indexOf(5)) {
+    if (movementArray.contains(3) && movementArray.contains(5)) {
       String strPair = "";
       List arrayRow1 = [];
       arrayRow1.add(3);
@@ -724,8 +724,8 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
     int nFirst = 0;
     int nSecond = 0;
     List movementArray = healthModel().diagramsModel.listMoveRight;
-    if (-1 != movementArray.indexOf(nFirst) &&
-        -1 != movementArray.indexOf(nSecond)) {
+    if (movementArray.contains(nFirst) &&
+        movementArray.contains(nSecond)) {
       String strPair = "";
       List arrayRow1 = [];
       arrayRow1.add(nFirst);

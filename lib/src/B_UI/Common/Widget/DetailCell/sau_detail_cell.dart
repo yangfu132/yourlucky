@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/sau_divider_view.dart';
 
@@ -15,7 +14,7 @@ class SAUDetailCell extends StatefulWidget {
 }
 
 class _SAUDetailCellState extends State<SAUDetailCell> {
-  void initState() {
+  @override void initState() {
     super.initState();
   }
 

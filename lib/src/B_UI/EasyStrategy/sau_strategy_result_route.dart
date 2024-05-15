@@ -44,8 +44,8 @@ class _SAUStrategyResultRoute extends State<SAUStrategyResultRoute> {
                 return SAUEasyDetailRoute(widget.inputDetail);
               }));
             },
-            child: const Text('详细'),
             style: SACContext.textButtonStyle(),
+            child: const Text('详细'),
           )
         ],
       ),
@@ -124,9 +124,9 @@ class _SAUStrategyResultRoute extends State<SAUStrategyResultRoute> {
           int kv = index % 2;
           Map value =
               widget.resultBusiness.resultModel().resultList()[dataIndex];
-          if (kv > 0)
+          if (kv > 0) {
             return ListTile(title: Text(value['value']));
-          else
+          } else {
             return Container(
               //color: Colors.grey,
               decoration: const BoxDecoration(
@@ -136,6 +136,7 @@ class _SAUStrategyResultRoute extends State<SAUStrategyResultRoute> {
                 title: Text(value['key']),
               ),
             );
+          }
           //return ListTile(title: Text(value['key']));
         });
   }

@@ -100,7 +100,7 @@ class SABEarthBranchBusiness extends SABBaseBusiness {
     String strItem = fromEarth + toEarth;
     List tuiArray = ["子亥", "卯寅", "午巳", "酉申", "辰丑", "未辰", "戌未"];
 
-    return -1 != tuiArray.indexOf(strItem);
+    return tuiArray.contains(strItem);
   }
 
   bool isEarthBorn(String earth, String basicEarth) {
@@ -134,29 +134,29 @@ class SABEarthBranchBusiness extends SABBaseBusiness {
   List earthThreePairInArray(List arrayEarth) {
     List arrayResult = [];
 
-    if (-1 != arrayEarth.indexOf("子")) {
-      if (-1 != arrayEarth.indexOf("申") && -1 != arrayEarth.indexOf("辰")) {
+    if (arrayEarth.contains("子")) {
+      if (arrayEarth.contains("申") && arrayEarth.contains("辰")) {
         arrayResult.add("申子辰合成水局");
       }
       //else cont.
     }
 
-    if (-1 != arrayEarth.indexOf("酉")) {
-      if (-1 != arrayEarth.indexOf("巳") && -1 != arrayEarth.indexOf("丑")) {
+    if (arrayEarth.contains("酉")) {
+      if (arrayEarth.contains("巳") && arrayEarth.contains("丑")) {
         arrayResult.add("巳酉丑合成金局");
       }
       //else cont.
     }
 
-    if (-1 != arrayEarth.indexOf("午")) {
-      if (-1 != arrayEarth.indexOf("寅") && -1 != arrayEarth.indexOf("戌")) {
+    if (arrayEarth.contains("午")) {
+      if (arrayEarth.contains("寅") && arrayEarth.contains("戌")) {
         arrayResult.add("寅午戌合成火局");
       }
       //else cont.
     }
 
-    if (-1 != arrayEarth.indexOf("卯")) {
-      if (-1 != arrayEarth.indexOf("亥") && -1 != arrayEarth.indexOf("未")) {
+    if (arrayEarth.contains("卯")) {
+      if (arrayEarth.contains("亥") && arrayEarth.contains("未")) {
         arrayResult.add("亥卯未合成木局");
       }
       //else cont.

@@ -173,7 +173,7 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
   String symbolElement(String symbol) {
     String stringResult = "";
 
-    if (symbol.length >= 1) {
+    if (symbol.isNotEmpty) {
       stringResult = symbol.substring(symbol.length - 1, symbol.length);
     } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error");

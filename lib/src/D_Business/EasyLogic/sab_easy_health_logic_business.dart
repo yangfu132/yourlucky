@@ -1506,7 +1506,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     int goalIndex = wordsModel().getGoalIndex();
     List strongArray = strongUsefulArray(easyTypeEnum, usefulArray);
 
-    if (0 == strongArray.length) {
+    if (strongArray.isEmpty) {
       result = commonLogicBusiness().lifeOrGoalUsefulDeity(
           lifeIndex, goalIndex, easyTypeEnum, usefulArray);
     } else if (1 == strongArray.length) {
@@ -1524,7 +1524,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
     List listEmpty = emptyInUsefulArray(easyTypeEnum, usefulArray);
 
-    if (0 == listEmpty.length) {
+    if (listEmpty.isEmpty) {
       result = movementUsefulDeity(easyTypeEnum, usefulArray);
     } else if (1 == listEmpty.length) {
       result = listEmpty[0];
@@ -1553,7 +1553,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
     List movementArray =
         commonLogicBusiness().movementInArray(wordsModel(), usefulArray);
-    if (0 == movementArray.length) {
+    if (movementArray.isEmpty) {
       result = strongUsefulDeity(easyTypeEnum, usefulArray);
     } else if (1 == movementArray.length) {
       result = movementArray[0];
@@ -1575,7 +1575,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     int result = globalRowInvalid;
 
     List listMonthBroken = monthBrokenArray(easyTypeEnum, usefulArray);
-    if (0 == listMonthBroken.length) {
+    if (listMonthBroken.isEmpty) {
       result = emptyUsefulDeity(easyTypeEnum, usefulArray);
     } else if (1 == listMonthBroken.length) {
       result = listMonthBroken[0];

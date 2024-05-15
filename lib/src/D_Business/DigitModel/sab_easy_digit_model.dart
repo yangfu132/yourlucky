@@ -88,7 +88,7 @@ class SABEasyDigitModel extends SABBaseModel {
     return modelId;
   }
 
-  @override String describe() {
+  String describe() {
     String stringDescribe;
     if (isMovement(listEasyData)) {
       stringDescribe =

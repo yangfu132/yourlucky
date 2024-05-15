@@ -191,10 +191,10 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
   }
 
   SABDiagramsDetailModel diagramsDetailModel() {
-    SABDiagramsDetailBusiness _diagramsDetailBusiness =
+    SABDiagramsDetailBusiness diagramsDetailBusiness =
         SABDiagramsDetailBusiness(analysisModel());
     SABDiagramsDetailModel diagramsDetailModel = SABDiagramsDetailModel();
-    _diagramsDetailBusiness.configResultModel(diagramsDetailModel);
+    diagramsDetailBusiness.configResultModel(diagramsDetailModel);
     return diagramsDetailModel;
   }
 

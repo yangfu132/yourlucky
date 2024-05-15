@@ -19,13 +19,13 @@ class SABHealthDiagramsModel extends SABBaseModel {
   }
 
   void addToFinishArray(int nRow) {
-    if (-1 == _finishedList.indexOf(nRow)) {
+    if (!_finishedList.contains(nRow)) {
       _finishedList.add(nRow);
       printMsg("addToFinishArray: $nRow");
     }
   }
 
   bool isUnFinish(int nRow) {
-    return -1 == _finishedList.indexOf(nRow);
+    return !_finishedList.contains(nRow);
   }
 }

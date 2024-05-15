@@ -438,11 +438,11 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
           String strPair =
               branchBusiness().sixPairDescription(basicEarth, otherEarth);
           if ("" != strPair) {
-            if (-1 == symbolPairArray.indexOf(index)) {
+            if (!symbolPairArray.contains(index)) {
               symbolPairArray.add(index);
             } //else cont.
 
-            if (-1 == symbolPairArray.indexOf(indexOther)) {
+            if (!symbolPairArray.contains(indexOther)) {
               symbolPairArray.add(indexOther);
             } //else cont.
 
@@ -562,7 +562,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     List outMovementArray = wordsModel().outGuaMovementArray();
 
-    if (inMovementArray.isNotEmpty && outMovementArray.length == 0) {
+    if (inMovementArray.isNotEmpty && outMovementArray.isEmpty) {
       bResult = isEasySame();
     } //else cont.
 
@@ -577,7 +577,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     List outMovementArray = wordsModel().outGuaMovementArray();
 
-    if (inMovementArray.length == 0 && outMovementArray.isNotEmpty) {
+    if (inMovementArray.isEmpty && outMovementArray.isNotEmpty) {
       bResult = isEasySame();
     } //else cont.
 
@@ -630,7 +630,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     List outMovementArray = wordsModel().outGuaMovementArray();
 
-    if (inMovementArray.isNotEmpty && outMovementArray.length == 0) {
+    if (inMovementArray.isNotEmpty && outMovementArray.isEmpty) {
       bResult = isEasyRestricts();
     } //else cont.
 
@@ -645,7 +645,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
     List outMovementArray = wordsModel().outGuaMovementArray();
 
-    if (inMovementArray.length == 0 && outMovementArray.isNotEmpty) {
+    if (inMovementArray.isEmpty && outMovementArray.isNotEmpty) {
       bResult = isEasyRestricts();
     }//else cont.
 
@@ -761,7 +761,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     EmptyEnum nResult = EmptyEnum.emptyFalse;
     if ("" != stringSymbol) {
       String earth = symbolEarth(stringSymbol);
-      if (-1 != emptyEarth().indexOf(earth)) {
+      if (emptyEarth().contains(earth)) {
         String strDay = dayEarth();
         if (isEarthConflict(strDay, earth)) {
           //爻遇旬空，日辰冲起而为用，谓之冲空则实。
@@ -921,8 +921,8 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     return branchBusiness().sixPairDescription(basicEarth, otherEarth);
   }
 
-  String seasonDescription(String monthEarth, String _earthName) {
-    return branchBusiness().seasonDescription(monthEarth, _earthName);
+  String seasonDescription(String monthEarth, String earthName) {
+    return branchBusiness().seasonDescription(monthEarth, earthName);
   }
 
   ///`EasyBusiness 桥函数`//////////////////////////////////////////////////////
