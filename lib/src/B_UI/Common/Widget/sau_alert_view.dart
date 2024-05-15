@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:your_lucky/src/B_UI/Common/sau_common_color.dart';
 
 class SAUAlertAction {

@@ -44,8 +44,8 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
             onPressed: () {
               resultAction();
             },
-            child: resultActionTitle(),
             style: SACContext.textButtonStyle(),
+            child: resultActionTitle(),
           ),
         ],
       ),
@@ -56,9 +56,9 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
             int dataIndex = index ~/ 2;
             int kv = index % 2;
             Map value = resultList()[dataIndex];
-            if (kv > 0)
+            if (kv > 0) {
               return ListTile(title: Text(value['value']));
-            else
+            } else {
               return Container(
                 //color: Colors.grey,
                 decoration: const BoxDecoration(
@@ -66,6 +66,7 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
                 ),
                 child: ListTile(title: Text(value['key'])),
               );
+            }
             //return ListTile(title: Text(value['key']));
           }),
     );

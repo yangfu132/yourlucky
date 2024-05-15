@@ -55,8 +55,8 @@ class _SAUEasyDetailRouteState extends State<SAUEasyDetailRoute> {
                 onPressed: () {
                   SACContext.easyStore().save(detailModel().digitModel());
                 },
-                child: const Text('保存'),
                 style: SACContext.textButtonStyle(),
+                child: const Text('保存'),
               ),
             ],
           ),
