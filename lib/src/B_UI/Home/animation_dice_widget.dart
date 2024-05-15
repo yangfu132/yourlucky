@@ -41,7 +41,7 @@ class AnimationDiceState extends State<AnimationDiceWidget>
     super.initState();
 
     _controller =
-        AnimationController(duration: Duration(milliseconds: 10), vsync: this);
+        AnimationController(duration: const Duration(milliseconds: 10), vsync: this);
 
     _controller.forward();
   }
@@ -215,6 +215,10 @@ class AnimationDiceState extends State<AnimationDiceWidget>
     return SlideTransition(
       position: animationOffset,
       child: RotationTransition(
+        turns: _controller
+          ..addStatusListener(
+            (status) {},
+          ),
         child: AnimationMutileImage(
           {
             1: Image.asset(
@@ -241,11 +245,6 @@ class AnimationDiceState extends State<AnimationDiceWidget>
           Colors.transparent,
           true,
         ),
-        // child: images, //Image.asset('images/dong1@2x.png'),
-        turns: _controller
-          ..addStatusListener(
-            (status) {},
-          ),
       ),
     );
   }

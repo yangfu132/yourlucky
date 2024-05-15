@@ -31,7 +31,7 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
   Widget _rowWidget(SABEasyDigitModel model,int index) {
     return SAUEditListItem(
       index,
-      new ListTile(
+      ListTile(
         title: Text(model.title()),
         trailing: Text(model.describe()),
         onTap: () async {
