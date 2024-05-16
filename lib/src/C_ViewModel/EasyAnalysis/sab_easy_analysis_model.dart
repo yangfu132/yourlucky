@@ -12,7 +12,7 @@ class SABEasyAnalysisModel extends SABBaseModel {
 
   final SABEasyHealthLogicModel inputHealthLogicModel;
 
-  late List _listRowModels = _initRowModelsArray();
+  late final List _listRowModels = _initRowModelsArray();
 
   /// `Public`//////////////////////////////////////////////////////////////
 

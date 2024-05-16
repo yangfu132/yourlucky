@@ -1,11 +1,11 @@
-import 'package:flutter/services.dart' show rootBundle;
+// import 'package:flutter/services.dart' show rootBundle;
 import 'package:your_lucky/src/D_Business/Base/sab_base_business.dart';
 
 class SABEasyTextBusiness extends SABBaseBusiness {
-  Future<void> _loadData(void Function(String content) finish) async {
-    final loadedData = await rootBundle.loadString('assets/easy_text.txt');
-    finish(loadedData);
-  }
+  // Future<void> _loadData(void Function(String content) finish) async {
+  //   final loadedData = await rootBundle.loadString('assets/easy_text.txt');
+  //   finish(loadedData);
+  // }
 
   String getSymbolText(String key, int index) {
     String result = "";
