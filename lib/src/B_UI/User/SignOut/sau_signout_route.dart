@@ -3,7 +3,7 @@ import 'package:your_lucky/src/A_Context/sac_navigator.dart';
 import 'package:your_lucky/src/A_Context/sac_route_url.dart';
 
 class SAUSignOutRoute extends StatefulWidget {
-  SAUSignOutRoute({Key? key, this.title}) : super(key: key);
+  const SAUSignOutRoute({super.key, this.title});
   final String? title;
   @override
   SAUSignOutRouteState createState() {

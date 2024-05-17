@@ -5,7 +5,7 @@ import 'package:your_lucky/src/E_Service/sas_localizations_service.dart';
 
 ///功能：选择策略
 class SAUEasyStrategyRoute extends StatefulWidget {
-  SAUEasyStrategyRoute();
+  const SAUEasyStrategyRoute({super.key});
 
   @override
   _SAUEasyStrategyRoute createState() {

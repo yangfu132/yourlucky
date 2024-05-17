@@ -4,8 +4,9 @@ import 'package:your_lucky/src/A_Context/sac_navigator.dart';
 import 'package:your_lucky/src/A_Context/sac_route_url.dart';
 import 'package:your_lucky/src/E_Service/sas_localizations_service.dart';
 
+@immutable
 class SAUUserRoute extends StatefulWidget {
-  SAUUserRoute({Key? key, this.title}) : super(key: key);
+  const SAUUserRoute({super.key, this.title});
   final String? title;
   @override
   SAUUserRouteState createState() {

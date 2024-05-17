@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SAUDebugRoute extends StatefulWidget {
-  SAUDebugRoute({Key? key, this.title}) : super(key: key);
+  const SAUDebugRoute({super.key, this.title});
   final String? title;
   @override
   SAUDebugRouteState createState() {

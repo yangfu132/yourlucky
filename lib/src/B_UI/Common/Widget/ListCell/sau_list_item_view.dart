@@ -11,7 +11,8 @@ class SAUListItemView extends StatelessWidget {
   bool secondEllipsis = true;
 
   SAUListItemView(
-      {required this.title,
+      {super.key,
+        required this.title,
         required this.content,
         this.secondContent,
         this.titleWidth = 104,

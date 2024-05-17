@@ -12,7 +12,7 @@ class AnimationMutileImage extends StatefulWidget {
   final bool? bCancel;
   AnimationMutileImage(
       this.imageCaches, this.width, this.height, this.backColor, this.bRandom,
-      {this.bCancel});
+      {super.key, this.bCancel});
 
   @override
   State<StatefulWidget> createState() {

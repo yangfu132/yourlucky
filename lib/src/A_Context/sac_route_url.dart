@@ -36,40 +36,40 @@ Widget mapRouteToPage(String route, Object? arguments) {
   Widget widget = Container();
   switch (route) {
     case SACRouteUrl.feedback:
-      widget = SAUFeedbackRoute();
+      widget = const SAUFeedbackRoute();
       break;
     case SACRouteUrl.developer:
-      widget = SAUAboutRoute();
+      widget = const SAUAboutRoute();
       break;
     case SACRouteUrl.friends:
-      widget = SAUAboutRoute();
+      widget = const SAUAboutRoute();
       break;
     case SACRouteUrl.about:
-      widget = SAUAboutRoute();
+      widget = const SAUAboutRoute();
       break;
     case SACRouteUrl.setting:
-      widget = SAUSettingRoute();
+      widget = const SAUSettingRoute();
       break;
     case SACRouteUrl.logIn:
-      widget = SAUSignInRoute();
+      widget = const SAUSignInRoute();
       break;
     case SACRouteUrl.logOut:
-      widget = SAUSignOutRoute();
+      widget = const SAUSignOutRoute();
       break;
     case SACRouteUrl.signUp:
-      widget = SAUSignupRoute();
+      widget = const SAUSignupRoute();
       break;
     case SACRouteUrl.debug:
-      widget = SAUDebugRoute();
+      widget = const SAUDebugRoute();
       break;
     case SACRouteUrl.expertCategory:
-      widget = SAUEasyStrategyRoute();
+      widget = const SAUEasyStrategyRoute();
       break;
     case SACRouteUrl.history:
-      widget = SAUHistoryListRoute();
+      widget = const SAUHistoryListRoute();
       break;
     case SACRouteUrl.detail:
-      widget = SAUDetailRoute();
+      widget = const SAUDetailRoute();
       break;
     default:
       break;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SAUFeedbackRoute extends StatefulWidget {
-  SAUFeedbackRoute({Key? key, this.title}) : super(key: key);
+  const SAUFeedbackRoute({super.key, this.title});
   final String? title;
   @override
   SAUFeedbackRouteState createState() {

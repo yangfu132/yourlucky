@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'sau_home_body.dart';
 
 class SAUHomeRoute extends StatefulWidget {
-  SAUHomeRoute({Key? key, this.title}) : super(key: key);
+  const SAUHomeRoute({super.key, this.title});
   final String? title;
   @override
   SAUHomeRouteState createState() {

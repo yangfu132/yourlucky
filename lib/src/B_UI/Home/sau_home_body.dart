@@ -10,7 +10,7 @@ import '../../A_Context/sac_context.dart';
 import 'animation_dice_widget.dart';
 
 class SAUHomeBody extends StatefulWidget {
-  SAUHomeBody({this.title});
+  SAUHomeBody({super.key, this.title});
   final String? title;
 
   @override
@@ -153,7 +153,7 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
                 ),
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return SAUUserRoute();
+                    return const SAUUserRoute();
                   }));
                 }),
           ),

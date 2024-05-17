@@ -6,7 +6,7 @@ import 'package:your_lucky/src/D_Business/User/sab_login_business.dart';
 import 'package:your_lucky/src/E_Service/sas_localizations_service.dart';
 
 class SAUSignInRoute extends StatefulWidget {
-  SAUSignInRoute({Key? key, this.title}) : super(key: key);
+  const SAUSignInRoute({super.key, this.title});
   final String? title;
   @override
   SAUSignInRouteState createState() {

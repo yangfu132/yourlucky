@@ -25,7 +25,9 @@ class SAUUploadImageView extends StatefulWidget {
   SAUUploadImageView(
       this.urls,
       this.isEdit,
-      this.maxCount, {
+      this.maxCount,
+      {
+        super.key,
         this.iOSNativePath = 'OPMContext/UploadImage',
         this.changeBack,
         this.padding,

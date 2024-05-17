@@ -7,7 +7,7 @@ import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_business.d
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
 
 class SAUHistoryRoute extends StatefulWidget {
-  SAUHistoryRoute({Key? key, this.title}) : super(key: key);
+  const SAUHistoryRoute({super.key, this.title});
   final String? title;
   @override
   SAUHistoryRouteState createState() {

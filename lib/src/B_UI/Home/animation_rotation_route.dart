@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class RotationDemoRoute extends StatefulWidget {
+  const RotationDemoRoute({super.key});
+
   @override
   RotationDemoRouteState createState() {
     return RotationDemoRouteState();

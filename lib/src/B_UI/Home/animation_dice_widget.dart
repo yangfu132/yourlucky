@@ -6,7 +6,7 @@ import 'animation_mutile_image.dart';
 ///note：三个色子转动的动画
 class AnimationDiceWidget extends StatefulWidget {
   final VoidCallback callbackFinish;
-  AnimationDiceWidget(this.callbackFinish);
+  AnimationDiceWidget(this.callbackFinish, {super.key});
   @override
   AnimationDiceState createState() {
     return AnimationDiceState();
@@ -263,6 +263,8 @@ class AnimationDiceState extends State<AnimationDiceWidget>
 
 ///note：测试界面
 class AnimationRoute extends StatefulWidget {
+  const AnimationRoute({super.key});
+
   @override
   AnimationRouteState createState() {
     return AnimationRouteState();

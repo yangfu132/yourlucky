@@ -9,7 +9,7 @@ import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_row_detail_model.dart'
 
 ///功能：一般性推断结果
 class SAUSubDetailRoute extends StatefulWidget {
-  SAUSubDetailRoute(this.inputDetailModel, this.intIndex);
+  SAUSubDetailRoute(this.inputDetailModel, this.intIndex, {super.key});
   final SABEasyDetailModel inputDetailModel;
   final int intIndex;
   late final SABDiagramsDetailModel resultModel = SABDiagramsDetailModel();

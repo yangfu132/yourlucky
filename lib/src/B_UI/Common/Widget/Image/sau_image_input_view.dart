@@ -12,7 +12,7 @@ class SAUImageInputView extends StatelessWidget {
   final EdgeInsets? imagePadding;
 
   SAUImageInputView(
-      {required this.title,
+      {super.key, required this.title,
         required this.urls,
         this.imageChanged,
         this.isEdit = true,

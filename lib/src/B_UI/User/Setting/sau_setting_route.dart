@@ -3,7 +3,7 @@ import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/D_Business/User/sab_setting_model.dart';
 
 class SAUSettingRoute extends StatefulWidget {
-  SAUSettingRoute({Key? key, this.title}) : super(key: key);
+  const SAUSettingRoute({super.key, this.title});
   final String? title;
   @override
   SAUSettingRouteState createState() {

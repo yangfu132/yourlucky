@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
 
       ),
-      home: SAUHomeRoute(title: 'Flutter Demo Home Page'),
+      home: const SAUHomeRoute(title: 'Flutter Demo Home Page'),
     );
   }
 }

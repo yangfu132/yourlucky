@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SAUBaseRoute extends StatefulWidget {
-  SAUBaseRoute({Key? key, this.title}) : super(key: key);
+  const SAUBaseRoute({super.key, this.title});
   final String? title;
   @override
   SAUBaseRouteState createState() {

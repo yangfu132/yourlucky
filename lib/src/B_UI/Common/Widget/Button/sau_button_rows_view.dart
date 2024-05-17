@@ -10,9 +10,12 @@ class SAUButtonRowsView extends StatelessWidget {
   final bool showDivider;
 
   SAUButtonRowsView(
-      {required this.buttonList,
+      {
+        super.key,
+        required this.buttonList,
         required this.onButtonTap,
-        this.showDivider = false});
+        this.showDivider = false
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class SAUButtonRowsView extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Offstage(offstage: !showDivider, child: SAUDividerView()),
+          Offstage(offstage: !showDivider, child: const SAUDividerView()),
           Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,

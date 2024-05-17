@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AnimationPositionedRoute extends StatefulWidget {
+  const AnimationPositionedRoute({super.key});
+
   @override
   AnimationPositionedRouteState createState() {
     return AnimationPositionedRouteState();

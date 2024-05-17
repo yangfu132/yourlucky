@@ -12,7 +12,7 @@ import '../EasyDetail/sau_easy_detail_route.dart';
 
 ///功能：显示策略推断结果
 class SAUStrategyResultRoute extends StatefulWidget {
-  SAUStrategyResultRoute(this.inputDetail) {
+  SAUStrategyResultRoute(this.inputDetail, {super.key}) {
     resultBusiness = SABEasyStrategyResultBusiness(
       inputDetail: inputDetail,
       strategy: SACContext.expertCategory().stringStrategy,

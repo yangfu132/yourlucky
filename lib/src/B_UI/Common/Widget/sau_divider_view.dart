@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SAUDividerView extends StatelessWidget {
+  const SAUDividerView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 1,
-      color: Color(0xFFE5E5E5),
+      color: const Color(0xFFE5E5E5),
     );
   }
 }

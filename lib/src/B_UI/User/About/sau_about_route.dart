@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SAUAboutRoute extends StatefulWidget {
-  SAUAboutRoute({Key? key, this.title}) : super(key: key);
+  const SAUAboutRoute({super.key, this.title});
   final String? title;
   @override
   SAUAboutRouteState createState() {
