@@ -8,7 +8,7 @@ class SAUBottomButtonBar extends StatefulWidget {
   final SAUBottomButtonBarModel model;
   final ButtonTapCallback onTap;
   @override
-  _SAUBottomButtonBarState createState() {
+  State<SAUBottomButtonBar> createState() {
     return _SAUBottomButtonBarState();
   }
 }

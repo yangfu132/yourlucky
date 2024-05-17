@@ -17,7 +17,7 @@ class SAUListCell extends StatefulWidget {
   final ListCellClick onTap;
   final ButtonTapCallback? buttonsClick;
   @override
-  _SAUListCellState createState() {
+  State<SAUListCell> createState() {
     return _SAUListCellState();
   }
 }

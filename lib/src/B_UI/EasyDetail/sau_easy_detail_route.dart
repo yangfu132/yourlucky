@@ -10,7 +10,7 @@ class SAUEasyDetailRoute extends StatefulWidget {
   final SABEasyDetailModel inputDetailModel;
 
   @override
-  _SAUEasyDetailRouteState createState() {
+  State<SAUEasyDetailRoute> createState() {
     return _SAUEasyDetailRouteState();
   }
 }

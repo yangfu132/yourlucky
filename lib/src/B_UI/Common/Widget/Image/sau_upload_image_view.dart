@@ -35,7 +35,7 @@ class SAUUploadImageView extends StatefulWidget {
       });
 
   @override
-  State<StatefulWidget> createState() => _SAUUploadImageViewState(urls, isEdit);
+  State<SAUUploadImageView> createState() => _SAUUploadImageViewState(urls, isEdit);
 }
 
 class _SAUUploadImageViewState extends State<SAUUploadImageView> {

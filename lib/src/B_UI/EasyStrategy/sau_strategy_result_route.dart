@@ -21,7 +21,7 @@ class SAUStrategyResultRoute extends StatefulWidget {
   final SABEasyDetailModel inputDetail;
   late final SABEasyStrategyResultBusiness resultBusiness;
   @override
-  _SAUStrategyResultRoute createState() {
+  State<SAUStrategyResultRoute> createState() {
     return _SAUStrategyResultRoute();
   }
 }

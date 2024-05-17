@@ -8,7 +8,7 @@ class SAUTextField extends StatefulWidget {
   const SAUTextField({super.key, required this.textField, required this.focusNode});
 
   @override
-  _SAUTextFieldState createState() => _SAUTextFieldState();
+  State<SAUTextField> createState() => _SAUTextFieldState();
 }
 
 class _SAUTextFieldState extends State<SAUTextField> {

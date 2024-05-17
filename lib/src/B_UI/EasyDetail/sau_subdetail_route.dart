@@ -14,7 +14,7 @@ class SAUSubDetailRoute extends StatefulWidget {
   final int intIndex;
   late final SABDiagramsDetailModel resultModel = SABDiagramsDetailModel();
   @override
-  _SAUEasyResultState createState() {
+  State<SAUSubDetailRoute> createState() {
     return _SAUEasyResultState();
   }
 }

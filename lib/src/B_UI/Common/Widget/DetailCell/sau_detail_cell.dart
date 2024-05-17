@@ -9,7 +9,7 @@ class SAUDetailCell extends StatefulWidget {
   const SAUDetailCell({super.key, required this.model});
 
   @override
-  _SAUDetailCellState createState() => _SAUDetailCellState();
+  State<SAUDetailCell> createState() => _SAUDetailCellState();
 }
 
 class _SAUDetailCellState extends State<SAUDetailCell> {

@@ -8,7 +8,7 @@ class SAUEasyStrategyRoute extends StatefulWidget {
   const SAUEasyStrategyRoute({super.key});
 
   @override
-  _SAUEasyStrategyRoute createState() {
+  State<SAUEasyStrategyRoute> createState() {
     return _SAUEasyStrategyRoute();
   }
 }
