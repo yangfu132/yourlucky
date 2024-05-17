@@ -9,7 +9,7 @@ class SAUButtonRowsView extends StatelessWidget {
   final ButtonRowsButtonClick onButtonTap;
   final bool showDivider;
 
-  SAUButtonRowsView(
+  const SAUButtonRowsView(
       {
         super.key,
         required this.buttonList,

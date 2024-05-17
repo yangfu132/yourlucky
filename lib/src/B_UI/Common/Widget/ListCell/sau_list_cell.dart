@@ -12,7 +12,7 @@ typedef ListCellClick = Function(SAUListCellModel model);
 
 ///功能：显示策略推断结果
 class SAUListCell extends StatefulWidget {
-  SAUListCell({super.key, required this.model,required this.onTap,required this.buttonsClick});
+  const SAUListCell({super.key, required this.model,required this.onTap,required this.buttonsClick});
   final SAUListCellModel model;
   final ListCellClick onTap;
   final ButtonTapCallback? buttonsClick;

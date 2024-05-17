@@ -6,7 +6,7 @@ import 'package:your_lucky/src/B_UI/EasyDetail/sau_subdetail_route.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_model.dart';
 
 class SAUEasyDetailRoute extends StatefulWidget {
-  SAUEasyDetailRoute(this.inputDetailModel, {super.key});
+  const SAUEasyDetailRoute(this.inputDetailModel, {super.key});
   final SABEasyDetailModel inputDetailModel;
 
   @override

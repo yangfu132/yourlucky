@@ -8,7 +8,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List _list = [];
+  final List _list = [];
   @override
   void initState() {
     for(int i = 1; i < 100; i++){

@@ -8,7 +8,7 @@ import 'sau_textfield_route_model.dart';
 typedef SaveTextFieldRouteCallback = void Function(SAUTextFieldRouteModel model);
 
 class SAUTextFieldRoute extends StatefulWidget {
-  SAUTextFieldRoute({super.key, required this.model,required this.onSave});
+  const SAUTextFieldRoute({super.key, required this.model,required this.onSave});
   final SAUTextFieldRouteModel model;
   final SaveTextFieldRouteCallback onSave;
   @override

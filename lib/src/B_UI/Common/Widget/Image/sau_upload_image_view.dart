@@ -22,7 +22,7 @@ class SAUUploadImageView extends StatefulWidget {
 
   final EdgeInsetsGeometry? padding;
 
-  SAUUploadImageView(
+  const SAUUploadImageView(
       this.urls,
       this.isEdit,
       this.maxCount,

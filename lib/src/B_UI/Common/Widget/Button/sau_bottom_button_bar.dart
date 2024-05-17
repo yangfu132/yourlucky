@@ -4,7 +4,7 @@ import 'sau_button_model.dart';
 
 ///功能：显示策略推断结果
 class SAUBottomButtonBar extends StatefulWidget {
-  SAUBottomButtonBar({super.key, required this.model,required this.onTap});
+  const SAUBottomButtonBar({super.key, required this.model,required this.onTap});
   final SAUBottomButtonBarModel model;
   final ButtonTapCallback onTap;
   @override

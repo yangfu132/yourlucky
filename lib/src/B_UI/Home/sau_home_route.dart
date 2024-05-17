@@ -14,7 +14,7 @@ class SAUHomeRoute extends StatefulWidget {
 class SAUHomeRouteState extends State<SAUHomeRoute> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       // appBar: AppBar(
       //   title: Text(widget.title),
       // ),

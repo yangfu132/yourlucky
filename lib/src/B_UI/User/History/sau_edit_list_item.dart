@@ -22,7 +22,7 @@ class SAUEditListItem extends StatefulWidget  {
 
   final Widget child;//具体显示内容
 
-  SAUEditListItem(this.position,this.child,{
+  const SAUEditListItem(this.position,this.child,{
     required this.moveKey,
     required this.onStart,
     required this.delete,

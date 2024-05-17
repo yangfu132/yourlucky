@@ -10,7 +10,7 @@ import '../../A_Context/sac_context.dart';
 import 'animation_dice_widget.dart';
 
 class SAUHomeBody extends StatefulWidget {
-  SAUHomeBody({super.key, this.title});
+  const SAUHomeBody({super.key, this.title});
   final String? title;
 
   @override

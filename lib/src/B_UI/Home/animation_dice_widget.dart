@@ -6,7 +6,7 @@ import 'animation_mutile_image.dart';
 ///note：三个色子转动的动画
 class AnimationDiceWidget extends StatefulWidget {
   final VoidCallback callbackFinish;
-  AnimationDiceWidget(this.callbackFinish, {super.key});
+  const AnimationDiceWidget(this.callbackFinish, {super.key});
   @override
   AnimationDiceState createState() {
     return AnimationDiceState();

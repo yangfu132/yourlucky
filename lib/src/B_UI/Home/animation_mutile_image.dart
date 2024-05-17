@@ -10,7 +10,7 @@ class AnimationMutileImage extends StatefulWidget {
   final Color backColor;
   final bool bRandom;
   final bool? bCancel;
-  AnimationMutileImage(
+  const AnimationMutileImage(
       this.imageCaches, this.width, this.height, this.backColor, this.bRandom,
       {super.key, this.bCancel});
 
