@@ -35,20 +35,23 @@ class SAUUploadImageView extends StatefulWidget {
       });
 
   @override
-  State<SAUUploadImageView> createState() => _SAUUploadImageViewState(urls, isEdit);
+  State<SAUUploadImageView> createState() => _SAUUploadImageViewState();
 }
 
 class _SAUUploadImageViewState extends State<SAUUploadImageView> {
   ///所有图片的url
-  List<String> imageUrls;
+  late List<String> imageUrls;
 
   ///是否可以编辑
-  final bool isEdit;
+  late final bool isEdit;
 
   ///当前图片index
   int? currentIndex;
 
-  _SAUUploadImageViewState(this.imageUrls, this.isEdit);
+  _SAUUploadImageViewState() {
+    isEdit = widget.isEdit;
+    imageUrls = widget.urls;
+  }
 
   // Future<ZCUploadImageResponseModel?> _getImageUrlFromNative(int index) async {
   //   final dataRequest = <String, dynamic>{
