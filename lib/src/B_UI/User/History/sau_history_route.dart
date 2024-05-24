@@ -44,11 +44,11 @@ class SAUHistoryRouteState extends State<SAUHistoryRoute> {
       moveKey: listKey[index],
       onStart:(){
         // 1.设置movekey
-        listKey.forEach((bankKey){//2.循环关闭其他item
+        for (GlobalKey<SAUEditListItemState> bankKey in listKey) {
           if (bankKey!=listKey[index]) {
             bankKey.currentState?.close();
           }
-        });
+        }
       }
     ,delete: (position){
       positionNow=position;

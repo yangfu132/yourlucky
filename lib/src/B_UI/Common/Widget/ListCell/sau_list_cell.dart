@@ -192,7 +192,7 @@ class _SAUListCellState extends State<SAUListCell> {
 
   Widget _buildContent() {
     var list = List<Widget>.empty(growable: true);
-    widget.model.contents.forEach((element) {
+    for (SAUListCellItemModel element in widget.model.contents) {
       if (element.type == SAUListCellModelItemType.keyValue) {
         var item = SAUListItemView(title: element.title, content: element.content);
         if (element.secondContent != null) {
@@ -212,7 +212,7 @@ class _SAUListCellState extends State<SAUListCell> {
         );
         list.add(item);
       }
-    });
+    }
     return Column(
       children: list,
     );

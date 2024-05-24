@@ -38,7 +38,7 @@ class SAUButtonRowsView extends StatelessWidget {
 
   List<Widget> _buildButtons() {
     var buttons = List<Widget>.empty(growable: true);
-    buttonList.forEach((element) {
+    for (SAUButtonModel element in buttonList) {
       final backColor =
       element.highLight ? Colors.blue : Colors.transparent;
       final textColor = element.highLight ? Colors.white : const Color(0xFF333333);
@@ -74,7 +74,7 @@ class SAUButtonRowsView extends StatelessWidget {
                   )),
             ),
           )));
-    });
+    }
     return buttons;
   }
 }
