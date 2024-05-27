@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_text_route.dart';
 import 'package:your_lucky/src/B_UI/User/About/sau_about_route.dart';
 import 'package:your_lucky/src/B_UI/User/Debug/sau_debug_route.dart';
+import 'package:your_lucky/src/B_UI/User/Developer/sau_develop_list_route.dart';
 import 'package:your_lucky/src/B_UI/User/EasyStrategy/sau_easy_strategy_route.dart';
 import 'package:your_lucky/src/B_UI/User/Feedback/sau_feedback_route.dart';
 import 'package:your_lucky/src/B_UI/User/History/sau_history_list_route.dart';
@@ -39,7 +40,7 @@ Widget mapRouteToPage(String route, Object? arguments) {
       widget = const SAUFeedbackRoute();
       break;
     case SACRouteUrl.developer:
-      widget = const SAUAboutRoute();
+      widget = const SAUDevelopListRoute();
       break;
     case SACRouteUrl.friends:
       widget = const SAUAboutRoute();
