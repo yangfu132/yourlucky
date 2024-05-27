@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:your_lucky/src/B_UI/Common/Route/sau_detail_route.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/sau_text_route.dart';
 import 'package:your_lucky/src/B_UI/User/About/sau_about_route.dart';
 import 'package:your_lucky/src/B_UI/User/Debug/sau_debug_route.dart';
 import 'package:your_lucky/src/B_UI/User/EasyStrategy/sau_easy_strategy_route.dart';
