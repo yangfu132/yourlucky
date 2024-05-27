@@ -29,7 +29,7 @@ class _WOActionImageState extends State<AnimationMutileImage> {
   @override
   void initState() {
     super.initState();
-    _container = Container(height: widget.height, width: widget.width);
+    _container = Container(height: widget.height, width: widget.width,color: widget.backColor);
     _updateImage();
   }
 

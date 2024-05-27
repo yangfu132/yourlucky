@@ -143,7 +143,7 @@ class _SAUListCellState extends State<SAUListCell> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              SizedBox(
                 width: titleWidth,
                 child: Text(title,
                     //maxLines: 2,
