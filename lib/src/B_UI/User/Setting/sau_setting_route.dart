@@ -73,21 +73,19 @@ class SAUSettingRouteState extends State<SAUSettingRoute> {
   }
 
   Widget _switchRowWidget(SABSettingModel settingModel) {
-    return Container(
-      child: Row(
-        children: [
-          Text(settingModel.settingTitle),
-          Switch(
-              value: 1 == settingModel.intValue,
-              onChanged: (value) {
-                if (settingModel.settingKey != "waiting") {
-                  settingModel.intValue = value ? 1 : 0;
-                  SACContext.setting().save(settingModel);
-                  setState(() {});
-                }
-              }),
-        ],
-      ),
+    return Row(
+      children: [
+        Text(settingModel.settingTitle),
+        Switch(
+            value: 1 == settingModel.intValue,
+            onChanged: (value) {
+              if (settingModel.settingKey != "waiting") {
+                settingModel.intValue = value ? 1 : 0;
+                SACContext.setting().save(settingModel);
+                setState(() {});
+              }
+            }),
+      ],
     );
   }
 

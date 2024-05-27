@@ -100,90 +100,85 @@ class _SAUUploadImageViewState extends State<SAUUploadImageView> {
   }
 
   Widget _buildAddNewPhotoView(int index) {
-    return Container(
-        child: Material(
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 5, 5, 5),
-            child: InkWell(
-              onTap: () => updateImage(index),
-              child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(color: const Color(0xFFDDDDDD)),
-                    borderRadius: const BorderRadius.all(Radius.circular(6))),
-                child: const Image(
-                  image: AssetImage('assets/transfer/image/imagepicker_add.png'),
-                ),
-              ),
+    return Material(
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 5, 5, 5),
+        child: InkWell(
+          onTap: () => updateImage(index),
+          child: Container(
+            decoration: BoxDecoration(
+                border: Border.all(color: const Color(0xFFDDDDDD)),
+                borderRadius: const BorderRadius.all(Radius.circular(6))),
+            child: const Image(
+              image: AssetImage('assets/transfer/image/imagepicker_add.png'),
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   Widget _buildImagePhotoView(int index) {
-    return Container(
-      child: Stack(
-        alignment: AlignmentDirectional.topEnd,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 5, 5, 5),
-            child: InkWell(
-              onTap: () => updateImage(index),
-              child: CachedNetworkImage(
-                  imageUrl: imageUrls[index],
-                  imageBuilder: (context, imageProvider) => Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.fill,
-                      ),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(6),
-                      ),
-                    ),
-                  ),
-                  errorWidget: (context, url, error) {
-                    var imageSize = const Size(90, 70);
-                    final renderObject = context.findRenderObject();
-                    if (null != renderObject) {
-                      imageSize = renderObject.semanticBounds.size;
-                    }
-                    return Image.asset(
-                      'assets/common/image/photo_load_error.png',
+    return Stack(
+      alignment: AlignmentDirectional.topEnd,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0, 5, 5, 5),
+          child: InkWell(
+            onTap: () => updateImage(index),
+            child: CachedNetworkImage(
+                imageUrl: imageUrls[index],
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
                       fit: BoxFit.fill,
-                      height: imageSize.height,
-                      width: imageSize.width,
-                    );
-                  }),
-            ),
-          ),
-          Offstage(
-            offstage: !widget.isEdit,
-            child: Container(
-              child: Material(
-                color: const Color(0x00000000),
-                child: InkWell(
-                  onTap: () => isEdit ? deleteImage(index) : null,
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: 15,
-                    height: 15,
-                    decoration: const ShapeDecoration(
-                        color: Color(0xFF333333), shape: CircleBorder()),
-                    child: const Text(
-                      'X',
-                      style: TextStyle(
-                          color: Color(0xFFFFFFFF),
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold),
+                    ),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(6),
                     ),
                   ),
+                ),
+                errorWidget: (context, url, error) {
+                  var imageSize = const Size(90, 70);
+                  final renderObject = context.findRenderObject();
+                  if (null != renderObject) {
+                    imageSize = renderObject.semanticBounds.size;
+                  }
+                  return Image.asset(
+                    'assets/common/image/photo_load_error.png',
+                    fit: BoxFit.fill,
+                    height: imageSize.height,
+                    width: imageSize.width,
+                  );
+                }),
+          ),
+        ),
+        Offstage(
+          offstage: !widget.isEdit,
+          child: Material(
+            color: const Color(0x00000000),
+            child: InkWell(
+              onTap: () => isEdit ? deleteImage(index) : null,
+              child: Container(
+                alignment: Alignment.center,
+                width: 15,
+                height: 15,
+                decoration: const ShapeDecoration(
+                    color: Color(0xFF333333), shape: CircleBorder()),
+                child: const Text(
+                  'X',
+                  style: TextStyle(
+                      color: Color(0xFFFFFFFF),
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

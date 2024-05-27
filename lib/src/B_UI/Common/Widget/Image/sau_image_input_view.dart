@@ -22,36 +22,33 @@ class SAUImageInputView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final padding = this.padding ?? const EdgeInsets.only(top: 16);
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: padding,
-            child: Text(
-              title,
-              style: const TextStyle(
-                fontSize: 14,
-                color: Color(0xFF666666),
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: padding,
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 14,
+              color: Color(0xFF666666),
             ),
           ),
-          _buildImage(),
-        ],
-      ),
+        ),
+        _buildImage(),
+      ],
     );
   }
 
   Widget _buildImage() {
     final imagePadding =
         this.imagePadding ?? const EdgeInsets.only(top: 5, bottom: 8);
-    return Container(
-        child: SAUUploadImageView(
-          urls,
-          isEdit,
-          1,
-          padding: imagePadding,
-          changeBack: imageChanged,
-        ));
+    return SAUUploadImageView(
+      urls,
+      isEdit,
+      1,
+      padding: imagePadding,
+      changeBack: imageChanged,
+    );
   }
 }
