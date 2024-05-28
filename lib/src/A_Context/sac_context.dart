@@ -9,6 +9,7 @@ import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_business.dar
 import 'package:your_lucky/src/D_Business/User/sab_setting_business.dart';
 import 'package:your_lucky/src/E_Service/sab_singleton_service.dart';
 
+import '../D_Business/Develop/sab_develop_business.dart';
 import 'sac_global.dart';
 void testLog(String strMsg) {
   debugPrint(strMsg);
@@ -24,6 +25,8 @@ class SACContext {
       SABEasyStrategyInfoBusiness();
 
   final SABSettingBusiness _settingBusiness = SABSettingBusiness();
+
+  final SABDevelopBusiness _developBusiness = SABDevelopBusiness();
 
   static bool simulator() {
     return true;
@@ -81,5 +84,10 @@ class SACContext {
   static SABSettingBusiness setting() {
     SACContext businessContext = SABSingletonService.getObject('SACContext');
     return businessContext._settingBusiness;
+  }
+
+  static SABDevelopBusiness develop() {
+    SACContext businessContext = SABSingletonService.getObject('SACContext');
+    return businessContext._developBusiness;
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/sau_button_model.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
 
+import '../../../../D_Business/Develop/sab_develop_model.dart';
+
 enum SAUListCellModelItemType {
   keyValue,
   picture,
@@ -60,6 +62,24 @@ class SAUListCellModel {
       contents.add(SAUListCellItemModel(
           title: 'TO', content: model.diagramsModel.stringToName));
     }
+    contents.add(SAUListCellItemModel(title: '批注', content: model.strAnnotate));
+
+    SAUButtonModel deleteButton = SAUButtonModel(title: '删除', code: 'delete');
+    SAUButtonModel annotate = SAUButtonModel(title: "批注", code: "annotate");
+    cellModel.buttons = [deleteButton, annotate];
+    return cellModel;
+  }
+
+  static SAUListCellModel fromDevelopModel(SABDevelopModel model) {
+    SAUListCellModel cellModel = SAUListCellModel(
+        title: model.stringTime, taskId: model.modelId.toString());
+    var contents = List<SAUListCellItemModel>.empty(growable: true);
+    cellModel.contents = contents;
+
+    contents.add(SAUListCellItemModel(title: '目的', content: model.strGoal));
+    contents.add(SAUListCellItemModel(title: '门类', content: model.strStrategy));
+    contents
+        .add(SAUListCellItemModel(title: '用神', content: model.strUsefulDeity));
     contents.add(SAUListCellItemModel(title: '批注', content: model.strAnnotate));
 
     SAUButtonModel deleteButton = SAUButtonModel(title: '删除', code: 'delete');

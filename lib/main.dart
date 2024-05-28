@@ -41,7 +41,12 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         appBarTheme:const AppBarTheme(
           centerTitle: true,
-          color: Colors.blue,
+          backgroundColor: Colors.blue,
+          titleTextStyle: TextStyle(color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold
+          )
+          // primaryColor: Colors.blue,
         ),
         // This is the theme of your application.
         //
