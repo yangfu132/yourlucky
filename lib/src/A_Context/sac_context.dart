@@ -16,6 +16,9 @@ void testLog(String strMsg) {
 }
 
 void coLog(StackTrace trace, LogTypeEnum logType, String strMsg) {
+  if (LogTypeEnum.error == logType) {
+    debugPrint('error');
+  }
   debugPrint(strMsg);
 }
 

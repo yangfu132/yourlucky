@@ -64,7 +64,20 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
                 decoration: const BoxDecoration(
                   color: Colors.grey,
                 ),
-                child: ListTile(title: Text(value['key'])),
+                child: ListTile(
+                    title: Text(value['key']),
+                    onTap: (){
+                      if ('用神' == value['key']) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                          return SAUSubDetailRoute(
+                              widget.inputDetailModel,
+                              7,
+                              //widget.inputDetailModel.getUsefulDeity().intRow
+                          );
+                        }));
+                      }
+                    },
+                ),
               );
             }
             //return ListTile(title: Text(value['key']));

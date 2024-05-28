@@ -256,7 +256,7 @@ class SABEasyDetailModel extends SABBaseModel {
 
   Map<String, List> detailList() {
     Map<String, List> mapResult;
-    SABUsefulDeityModel usefulDeity = healthLogicModel().usefulDeity;
+    SABUsefulDeityModel usefulDeity = getUsefulDeity();
     bool bStaticEasy = healthLogicModel()
         .inputHealthModel
         .inputLogicModel
@@ -308,6 +308,11 @@ class SABEasyDetailModel extends SABBaseModel {
     if (intRow > _listRowModels.length) {
       coLog(StackTrace.current, LogTypeEnum.error, "intRow:$intRow");
     }
+
     return _rowModelsArray()[intRow];
+  }
+
+  SABUsefulDeityModel getUsefulDeity() {
+    return healthLogicModel().usefulDeity;
   }
 }
