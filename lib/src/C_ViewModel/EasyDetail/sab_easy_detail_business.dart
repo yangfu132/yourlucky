@@ -12,6 +12,8 @@ import 'package:your_lucky/src/D_Business/EasyLogic/sab_easy_health_logic_model.
 import 'package:your_lucky/src/D_Business/EasyWords/sab_easy_words_model.dart';
 import 'package:your_lucky/src/E_Service/sas_string_service.dart';
 
+import '../../D_Business/EasyWords/sab_day_model.dart';
+import '../../D_Business/EasyWords/sab_month_model.dart';
 import '../EasyAnalysis/sab_easy_analysis_business.dart';
 import '../EasyDetail/sab_easy_detail_model.dart';
 import 'sab_diagrams_detail_business.dart';
@@ -142,8 +144,10 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
       SABEasyAnalysisSymbolModel analysisSymbol,
       int intRow,
       EasyTypeEnum type) {
+    String strSymbolName = analysisSymbol.inputHealthLogicSymbol.inputHealthSymbol.inputLogicSymbol.inputWordsSymbol.symbolName;
+    String stringHealth = analysisSymbol.inputHealthLogicSymbol.inputHealthSymbol.healthDescription();
     SABSymbolDetailModel detailSymbol = SABSymbolDetailModel(
-        inputAnalysisSymbol: analysisSymbol,
+        strSymbolName: strSymbolName,
         baseInfo: symbolBasic(intRow, type),
         animalDes: symbolAnimalLike(intRow),
         earthDes: symbolEarthLike(intRow, type),
@@ -152,7 +156,46 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
         dayRelation: analysisModel().getDayRelation(intRow, type),
         earthDirection: symbolEarthDirection(intRow, type),
         diagramsPlace: eightDiagramsPlace(intRow, type),
-        debugInfo: '未填写debugInfo');
+        debugInfo: '未填写debugInfo',
+        stringHealth: stringHealth);
+    return detailSymbol;
+  }
+
+  SABSymbolDetailModel createMonthModel(SABMonthModel inputModel) {
+    String strSymbolName = inputModel.skyEarth();
+    String stringHealth = inputModel.healthDes();
+    String earth = inputModel.stringEarth;
+    SABSymbolDetailModel detailSymbol = SABSymbolDetailModel(
+        strSymbolName: strSymbolName,
+        baseInfo: strSymbolName,
+        animalDes: strSymbolName,
+        earthDes: logicModel().earthBranchModel().likeDescription(earth),
+        sixPairDes: 'symbolSixPair(intRow, type)',
+        monthRelation: strSymbolName,
+        dayRelation: 'analysisModel().getDayRelation(intRow, type)',
+        earthDirection: '$earth ${logicModel().earthBranchModel().earthDirection()[earth]}',
+        diagramsPlace: strSymbolName,
+        debugInfo: '未填写debugInfo',
+        stringHealth: stringHealth);
+    return detailSymbol;
+  }
+
+  SABSymbolDetailModel createDayModel(SABDayModel inputModel) {
+    String strSymbolName = inputModel.skyEarth();
+    String stringHealth = inputModel.healthDes();
+    String earth = inputModel.stringEarth;
+    SABSymbolDetailModel detailSymbol = SABSymbolDetailModel(
+        strSymbolName: strSymbolName,
+        baseInfo: strSymbolName,
+        animalDes: strSymbolName,
+        earthDes: logicModel().earthBranchModel().likeDescription(earth),
+        sixPairDes: 'symbolSixPair(intRow, type)',
+        monthRelation: 'analysisModel().getMonthRelation(intRow, type)',
+        dayRelation: strSymbolName,
+        earthDirection: '$earth ${logicModel().earthBranchModel().earthDirection()[earth]}',
+        diagramsPlace: strSymbolName,
+        debugInfo: '未填写debugInfo',
+        stringHealth: stringHealth);
     return detailSymbol;
   }
 
@@ -161,6 +204,8 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
       analysisModel(),
       easyName(),
       diagramsDetailModel(),
+      createDayModel(wordsModel().dayModel),
+      createMonthModel(wordsModel().monthModel),
     );
     outputDetailModel.detailList();
     bool bStaticEasy = healthLogicModel()
@@ -183,7 +228,8 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
           fromSymbol: fromSymbol,
           toSymbol: toSymbol,
           hideSymbol: hideSymbol,
-          bStaticEasy: bStaticEasy);
+          bStaticEasy: bStaticEasy,
+      );
       outputDetailModel.addRow(rowDetailModel);
     }
     outputDetailModel.check();

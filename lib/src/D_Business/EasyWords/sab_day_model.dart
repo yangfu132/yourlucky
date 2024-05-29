@@ -28,6 +28,10 @@ class SABDayModel extends SABBaseModel {
     return "$stringSky$stringEarth日";
   }
 
+  String healthDes() {
+    return SACContext.setting().dayHealth.stringValue;
+  }
+
   @override void check() {
     if (stringSky.isEmpty) {
       coLog(StackTrace.current, LogTypeEnum.check, "stringSky.isEmpty");

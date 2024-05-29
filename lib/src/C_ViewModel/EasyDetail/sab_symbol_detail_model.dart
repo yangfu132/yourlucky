@@ -4,8 +4,8 @@ import 'package:your_lucky/src/C_ViewModel/EasyAnalysis/sab_easy_analysis_symbol
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 
 class SABSymbolDetailModel extends SABBaseModel {
-  SABSymbolDetailModel(
-      {required this.inputAnalysisSymbol,
+  SABSymbolDetailModel({
+        required this.strSymbolName,
         required this.baseInfo,
         required this.animalDes,
         required this.earthDes,
@@ -14,9 +14,11 @@ class SABSymbolDetailModel extends SABBaseModel {
         required this.dayRelation,
         required this.earthDirection,
         required this.diagramsPlace,
-        required this.debugInfo});
+        required this.debugInfo,
+        required this.stringHealth,
+  });
 
-  final SABEasyAnalysisSymbolModel inputAnalysisSymbol;
+  final String strSymbolName;
 
   final String baseInfo;
 
@@ -38,16 +40,19 @@ class SABSymbolDetailModel extends SABBaseModel {
 
   final String debugInfo;
 
+  final String stringHealth;
+
   final List<String> itemKeyList = ['基本信息','六神类象','地支类象', '六合','月将','日将','地支方位','所属八卦','调试信息'];
 
   String getSymbolName() {
-    return inputAnalysisSymbol.inputHealthLogicSymbol.inputHealthSymbol.inputLogicSymbol.inputWordsSymbol.symbolName;
+    return strSymbolName;
+    //return inputAnalysisSymbol.inputHealthLogicSymbol.inputHealthSymbol.inputLogicSymbol.inputWordsSymbol.symbolName;
   }
 
 
   String getSymbolHealthDes() {
     String stringResult = "";
-    final stringHealth = inputAnalysisSymbol.inputHealthLogicSymbol.inputHealthSymbol.healthDescription();
+    //final stringHealth = inputAnalysisSymbol.inputHealthLogicSymbol.inputHealthSymbol.healthDescription();
     stringResult = '${getSymbolName()}[$stringHealth]';
     return stringResult;
   }

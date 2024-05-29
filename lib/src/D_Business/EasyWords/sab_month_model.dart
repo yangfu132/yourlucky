@@ -28,6 +28,10 @@ class SABMonthModel extends SABBaseModel {
     return "$stringSky$stringEarth月";
   }
 
+  String healthDes() {
+    return SACContext.setting().monthHealth.stringValue;
+  }
+
   @override void check() {
     if (stringSky.isEmpty) {
       coLog(StackTrace.current, LogTypeEnum.check, "stringSky.isEmpty");

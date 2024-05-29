@@ -9,15 +9,22 @@ import 'package:your_lucky/src/D_Business/Strategy/sab_useful_deity_model.dart';
 import '../EasyAnalysis/sab_easy_analysis_model.dart';
 import 'sab_diagrams_detail_model.dart';
 import 'sab_row_detail_model.dart';
+import 'sab_symbol_detail_model.dart';
 
 class SABEasyDetailModel extends SABBaseModel {
   SABEasyDetailModel(
-      this._analysisModel, this.stringDetailName, this.diagramsDetailModel);
+      this._analysisModel,
+      this.stringDetailName,
+      this.diagramsDetailModel,
+      this.monthModel,
+      this.dayModel,
+      );
   final SABDiagramsDetailModel diagramsDetailModel;
   final SABEasyAnalysisModel _analysisModel;
   final String stringDetailName;
   final List<SABRowDetailModel> _listRowModels = List<SABRowDetailModel>.empty(growable: true);
-
+  final SABSymbolDetailModel monthModel;
+  final SABSymbolDetailModel dayModel;
   @override void check() {
     diagramsDetailModel.check();
     _analysisModel.check();

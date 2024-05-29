@@ -68,11 +68,11 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
                     title: Text(value['key']),
                     onTap: (){
                       if ('用神' == value['key']) {
+                        int symbolRow = widget.inputDetailModel.getUsefulDeity().intRow + 1;
                         Navigator.push(context, MaterialPageRoute(builder: (context) {
                           return SAUSubDetailRoute(
                               widget.inputDetailModel,
-                              7,
-                              //widget.inputDetailModel.getUsefulDeity().intRow
+                              symbolRow,
                           );
                         }));
                       }
@@ -88,6 +88,10 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
   List<Map> resultList() {
     if (0 == widget.intIndex) {
       return widget.inputDetailModel.diagramsDetailModel.resultList;
+    } else if (globalRowDay == widget.intIndex) {
+      return widget.inputDetailModel.dayModel.resultList();
+    } else if (globalRowMonth == widget.intIndex) {
+      return widget.inputDetailModel.monthModel.resultList();
     } else {
       SABRowDetailModel rowModel =
           widget.inputDetailModel.rowModelAtRow(widget.intIndex - 1);
@@ -98,6 +102,10 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
   String resultTitle() {
     if (0 == widget.intIndex) {
       return widget.inputDetailModel.digitModel().strStrategy;
+    } else if (globalRowDay == widget.intIndex) {
+      return widget.inputDetailModel.dayModel.strSymbolName;
+    } else if (globalRowMonth == widget.intIndex) {
+      return widget.inputDetailModel.monthModel.strSymbolName;
     } else {
       SABRowDetailModel rowModel =
           widget.inputDetailModel.rowModelAtRow(widget.intIndex - 1);
