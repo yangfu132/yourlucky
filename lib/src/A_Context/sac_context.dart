@@ -15,6 +15,10 @@ void testLog(String strMsg) {
   debugPrint(strMsg);
 }
 
+void coPrint(String strMsg) {
+  coLog(StackTrace.current, LogTypeEnum.print, strMsg);
+}
+
 void coLog(StackTrace trace, LogTypeEnum logType, String strMsg) {
   if (LogTypeEnum.error == logType) {
     debugPrint('error');

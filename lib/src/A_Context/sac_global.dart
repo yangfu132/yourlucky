@@ -16,6 +16,7 @@ enum EasyTypeEnum {
 enum LogTypeEnum {
   typeNull,
   error, //错误
+  print,
   log, //日志
   remark, //说明
   check, //参数检测

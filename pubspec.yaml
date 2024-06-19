@@ -42,6 +42,7 @@ dependencies:
   path:
   bot_toast: # new
   cupertino_icons: # new #^1.0.6
+  cloud_firestore: ^5.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
