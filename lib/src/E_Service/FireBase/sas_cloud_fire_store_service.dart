@@ -6,6 +6,21 @@ import '../../A_Context/sac_global.dart';
 class SASCloudFireStoreService {
   // 初始化 Cloud FireStore 的实例：
   FirebaseFirestore db = FirebaseFirestore.instance;
+
+  void addData(String collectionName,Map<String, dynamic> data) {
+    db.collection(collectionName).add(data).then((DocumentReference doc) =>
+        coPrint('DocumentSnapshot added with ID: ${doc.id}'));
+  }
+
+  Future<void> queryCollection(String collectionName) async {
+    // 您也可以使用“get”方法来检索整个集合。
+    await db.collection(collectionName).get().then((event) {
+      for (var doc in event.docs) {
+        coPrint("${doc.id} => ${doc.data()}");
+      }
+    });
+  }
+
   Future<void> demo () async {
     addUser1();
     addUser2();
@@ -16,8 +31,6 @@ class SASCloudFireStoreService {
         coPrint("${doc.id} => ${doc.data()}");
       }
     });
-
-
   }
 
   void addUser1() {
