@@ -125,6 +125,7 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
   IconButton backIconButton(BuildContext context) {
     return IconButton(
         icon: const Icon(Icons.arrow_back_ios),
+        color: Colors.white,
         onPressed: () {
           Navigator.pop(context);
         });
