@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:your_lucky/src/E_Service/sas_file_service.dart';
 
-class SAUDetailRoute extends StatefulWidget {
-  const SAUDetailRoute({super.key, this.title});
+class SAUTextRoute extends StatefulWidget {
+  const SAUTextRoute({super.key, this.title});
   final String? title;
   @override
-  SAUDetailRouteState createState() {
-    return SAUDetailRouteState();
+  SAUTextRouteState createState() {
+    return SAUTextRouteState();
   }
 }
 
-class SAUDetailRouteState extends State<SAUDetailRoute> {
+class SAUTextRouteState extends State<SAUTextRoute> {
   var content = 'loading';
 
   @override

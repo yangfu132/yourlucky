@@ -70,7 +70,7 @@ Widget mapRouteToPage(String route, Object? arguments) {
       widget = const SAUHistoryListRoute();
       break;
     case SACRouteUrl.detail:
-      widget = const SAUDetailRoute();
+      widget = const SAUTextRoute();
       break;
     default:
       break;
