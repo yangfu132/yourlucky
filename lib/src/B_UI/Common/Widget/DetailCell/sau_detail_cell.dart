@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:your_lucky/src/B_UI/Common/Widget/sau_divider_view.dart';
+import 'package:your_lucky/src/B_UI/Common/Widget/sau_divider_widget.dart';
 
 import 'sau_detail_model.dart';
 
@@ -29,7 +29,7 @@ class _SAUDetailCellState extends State<SAUDetailCell> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildTitleWithRightRow('违章信息', model),
-          const SAUDividerView(),
+          const SAUDividerWidget(),
           const SizedBox(height: 10),
           _buildInfoCell('分公司', '分公司', model),
           _buildInfoCell('违章条数','违章条数', model),

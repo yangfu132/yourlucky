@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/sau_button_model.dart';
-import '../sau_divider_view.dart';
+import '../sau_divider_widget.dart';
 
 typedef ButtonRowsButtonClick = Function(SAUButtonModel value);
 
@@ -24,7 +24,7 @@ class SAUButtonRowsView extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Offstage(offstage: !showDivider, child: const SAUDividerView()),
+          Offstage(offstage: !showDivider, child: const SAUDividerWidget()),
           Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,

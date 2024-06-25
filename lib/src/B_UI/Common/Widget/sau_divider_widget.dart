@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SAUDividerView extends StatelessWidget {
-  const SAUDividerView({super.key});
+class SAUDividerWidget extends StatelessWidget {
+  const SAUDividerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

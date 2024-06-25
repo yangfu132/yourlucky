@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/sau_bottom_button_bar_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/sau_button_model.dart';
 import '../Button/sau_button_rows_view.dart';
-import '../sau_divider_view.dart';
+import '../sau_divider_widget.dart';
 import '../Image/sau_image_input_view.dart';
 import 'sau_list_cell_model.dart';
 import 'sau_list_item_view.dart';
@@ -183,7 +183,7 @@ class _SAUListCellState extends State<SAUListCell> {
           ),
           Offstage(
             offstage: !haveDivider,
-            child: const SAUDividerView(),
+            child: const SAUDividerWidget(),
           ),
         ],
       ),
