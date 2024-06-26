@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route_store_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route_model.dart';
-import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_diagrams_detail_model.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_model.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_row_detail_model.dart';
 
 ///功能：一般性推断结果
 class SAUSubDetailRoute extends StatefulWidget {
-  SAUSubDetailRoute(this.inputDetailModel, this.intIndex, {super.key});
+  const SAUSubDetailRoute(this.inputDetailModel, this.intIndex, {super.key});
   final SABEasyDetailModel inputDetailModel;
   final int intIndex;
-  late final SABDiagramsDetailModel resultModel = SABDiagramsDetailModel();
   @override
   State<SAUSubDetailRoute> createState() {
     return _SAUEasyResultState();
@@ -70,10 +70,16 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
                       if ('用神' == value['key']) {
                         int symbolRow = widget.inputDetailModel.getUsefulDeity().intRow + 1;
                         Navigator.push(context, MaterialPageRoute(builder: (context) {
-                          return SAUSubDetailRoute(
-                              widget.inputDetailModel,
-                              symbolRow,
+                          final store = SAUDetailRouteStoreModel(
+                              inputDetailModel:widget.inputDetailModel,
+                            intIndex: symbolRow,
+                            easyType: EasyTypeEnum.from
                           );
+                          return SAUDetailRoute(store:store);
+                          // return SAUSubDetailRoute(
+                          //     widget.inputDetailModel,
+                          //     symbolRow,
+                          // );
                         }));
                       }
                     },

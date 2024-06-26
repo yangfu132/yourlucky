@@ -1,25 +1,25 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:your_lucky/src/B_UI/Common/Route/sau_detail_route_model.dart';
+import 'package:your_lucky/src/B_UI/Common/Widget/Image/sau_upload_image_view.dart';
+import 'package:your_lucky/src/B_UI/Common/Widget/TaskProgress/sau_task_progress_widget.dart';
+import 'package:your_lucky/src/B_UI/Common/Widget/TaskProgress/sau_task_step_model.dart';
+import 'package:your_lucky/src/B_UI/Common/Widget/sau_divider_widget.dart';
 import 'package:your_lucky/src/E_Service/sas_file_service.dart';
 
-import '../Widget/Image/sau_upload_image_view.dart';
-import '../Widget/TaskProgress/sau_task_step_model.dart';
-import 'sau_detail_route_store_model.dart';
-import '../Widget/sau_divider_widget.dart';
-import '../Widget/TaskProgress/sau_task_progress_widget.dart';
+import 'sau_detail_demo_route_model.dart';
+import 'sau_detail_demo_route_store_model.dart';
 
-class SAUDetailRoute extends StatefulWidget {
-  const SAUDetailRoute({super.key, this.title, required this.store});
+class SAUDetailDemoRoute extends StatefulWidget {
+  const SAUDetailDemoRoute({super.key, this.title, required this.store});
   final String? title;
   final TransferTaskDetailStore store;
   @override
-  SAUDetailRouteState createState() {
-    return SAUDetailRouteState();
+  SAUDetailDemoRouteState createState() {
+    return SAUDetailDemoRouteState();
   }
 }
 
-class SAUDetailRouteState extends State<SAUDetailRoute> {
+class SAUDetailDemoRouteState extends State<SAUDetailDemoRoute> {
   var content = 'loading';
 
   @override

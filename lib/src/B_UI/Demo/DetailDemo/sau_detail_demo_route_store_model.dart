@@ -1,5 +1,4 @@
-
-import 'package:your_lucky/src/B_UI/Common/Route/sau_detail_route_model.dart';
+import 'sau_detail_demo_route_model.dart';
 
 class TransferTaskDetailStore {
   TransferTaskDetailStore(this.data);

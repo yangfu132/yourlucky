@@ -1,8 +1,8 @@
 
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 
-class SAUDetailRouteModel extends SABBaseModel {
-  SAUDetailRouteModel({required this.stringTitle, this.data, this.stringRemark, this.stringPlaceholder});
+class SAUDetailDemoRouteModel extends SABBaseModel {
+  SAUDetailDemoRouteModel({required this.stringTitle, this.data, this.stringRemark, this.stringPlaceholder});
   final String stringTitle;
   final String? data;
   String? stringPlaceholder;
