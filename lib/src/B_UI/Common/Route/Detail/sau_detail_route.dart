@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:your_lucky/src/A_Context/sac_context.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/sau_button_model.dart';
 import 'package:your_lucky/src/E_Service/sas_file_service.dart';
 
@@ -29,9 +31,14 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
   }
 
   Widget _buildBody() {
-    final children = <Widget>[
-      _buildBoxContainer(_buildAllocateInfo(widget.store)),
-    ];
+    if (widget.store.data.cardList.isEmpty) {
+      return Container();
+    }
+
+    List<Widget> children = <Widget>[];
+    for (int index = 0; index < 3; index++) {
+      children.add(_buildBoxContainer(_buildCardInfo(widget.store.data.getCardModel(index))));
+    }
     children.add(const SizedBox(height: 40));
     final body = Container(
       color: Colors.white,
@@ -41,7 +48,7 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
         ),
       ),
     );
-    if (widget.store.data!.buttonRoles!.isEmpty) {
+    if (widget.store.data.buttonRoles.isEmpty) {
       return body;
     } else {
       return Column(
@@ -55,17 +62,16 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
     }
   }
 
-  Widget _buildAllocateInfo(SAUDetailRouteStoreModel store) {
-    final resultList = store.data!.resultList;
+  Widget _buildCardInfo(SAUDetailCardModel model) {
+    final resultList = model.resultList;
 
     List<Widget> children = [
-      _buildTitleWithAction('调拨信息',store.gotoOutInfo),
+      _buildTitleWithAction(model.title,model.tapTitle),
       const SAUDividerWidget(),
       const SizedBox(height: 10)
     ];
     for (int index = 0; index < resultList.length; index++) {
-      int dataIndex = index ~/ 2;
-      Map value = resultList[dataIndex];
+      Map value = resultList[index];
       children.add(_buildInfoCell(value['key'], value['value']));
     }
     children.add(const SizedBox(height: 10));
@@ -78,7 +84,7 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
 
   Widget _buildBottomButtons(SAUDetailRouteStoreModel store) {
     final children = <Widget>[];
-    final buttons = store.data!.buttonRoles!;
+    final buttons = store.data.buttonRoles;
     final lastIndex = buttons.length - 1;
     for (int i = 0; i < buttons.length; i++) {
       children.add(_buildButton(store, buttons[i], i == lastIndex));
@@ -148,11 +154,11 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
     );
   }
 
-  Widget _buildTitleWithAction(String title, VoidCallback action) {
+  Widget _buildTitleWithAction(String title, ContextCallback action) {
     return Material(
       color: Colors.white,
       child: InkWell(
-        onTap: () => action(),
+        onTap: () => action(context,(){setState(() {});}),
         child: Row(
           children: [
             Expanded(
@@ -230,7 +236,16 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
     return Scaffold(
       appBar: AppBar(
         leading: backIconButton(context),
-        title: Text(widget.store.data!.title),
+        title: Text(widget.store.data.titleModel.title),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              widget.store.data.titleModel.tapTitle(context,(){setState(() {});});
+            },
+            style: SACContext.textButtonStyle(),
+            child: Text(widget.store.data.titleModel.actionTitle),
+          ),
+        ],
       ),
       body: _buildBody(),
     );
