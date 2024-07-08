@@ -5,6 +5,8 @@ import 'package:your_lucky/src/A_Context/sac_global.dart';
 class SABBaseModel {
   SABBaseModel();
 
+  late final String cloudId;
+
   SABBaseModel.fromJson(Map<String, Object?> json);
 
   Map<String, Object?> toJson() {

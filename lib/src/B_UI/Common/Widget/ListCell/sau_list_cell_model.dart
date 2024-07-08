@@ -84,6 +84,8 @@ class SAUListCellModel {
 
     SAUButtonModel deleteButton = SAUButtonModel(title: '删除', code: 'delete');
     SAUButtonModel annotate = SAUButtonModel(title: "批注", code: "annotate");
+    SAUButtonModel upload = SAUButtonModel(title: "上传", code: "upload");
+    SAUButtonModel removeUpload = SAUButtonModel(title: "移除上传", code: "removeUpload");
     cellModel.buttons = [deleteButton, annotate];
     return cellModel;
   }

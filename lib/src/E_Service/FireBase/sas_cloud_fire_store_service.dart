@@ -1,18 +1,37 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 
 import '../../A_Context/sac_context.dart';
 import '../../A_Context/sac_global.dart';
 
 class SASCloudFireStoreService {
   // 初始化 Cloud FireStore 的实例：
-  FirebaseFirestore db = FirebaseFirestore.instance;
+  late final FirebaseFirestore db = FirebaseFirestore.instance;
+  late final easyCollectionRef = db.collection("easy");
+  late final easyDocRef = easyCollectionRef.doc("something");
 
-  void addData(String collectionName,Map<String, dynamic> data) {
-    db.collection(collectionName).add(data).then((DocumentReference doc) =>
-        coPrint('DocumentSnapshot added with ID: ${doc.id}'));
+  void addModel(String collectionName,SABBaseModel model, VoidCallback finishBlock) {
+    db.collection(collectionName).add(model.toJson()).then((DocumentReference doc) {
+      coPrint('DocumentSnapshot added with ID: ${doc.id}');
+      model.cloudId = doc.id;
+      finishBlock();
+    });
   }
 
-  Future<void> queryCollection(String collectionName) async {
+  void addJson(String collectionName,Map<String, dynamic> data, VoidCallback finishBlock) {
+    db.collection(collectionName).add(data).then((DocumentReference doc) {
+      coPrint('DocumentSnapshot added with ID: ${doc.id}');
+      finishBlock();
+    });
+  }
+
+  void removeModel(String collectionName,SABBaseModel model, VoidCallback finishBlock){
+    db.collection(collectionName).doc(model.cloudId).delete();
+  }
+
+  Future<void> queryCollection(String collectionName ) async {
     // 您也可以使用“get”方法来检索整个集合。
     await db.collection(collectionName).get().then((event) {
       for (var doc in event.docs) {

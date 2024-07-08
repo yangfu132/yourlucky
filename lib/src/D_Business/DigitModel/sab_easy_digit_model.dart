@@ -23,6 +23,7 @@ class SABEasyDigitModel extends SABBaseModel {
     if (dataJson.isNotEmpty) {
        extraData = Map<String, dynamic>.from(json.decode(dataJson));
        strAnnotate = extraData["annotate"] ?? "";
+       cloudId = extraData["cloudId"] ?? "";
     }
   }
 
@@ -174,6 +175,10 @@ class SABEasyDigitModel extends SABBaseModel {
   @override Map<String, Object?> toJson() {
     if (strAnnotate.isNotEmpty) {
        extraData["annotate"] = strAnnotate;
+    }
+
+    if (cloudId.isNotEmpty) {
+      extraData["cloudId"] = cloudId;
     }
 
     if (extraData.isNotEmpty) {

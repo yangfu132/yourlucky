@@ -67,7 +67,7 @@ Widget mapRouteToPage(String route, Object? arguments) {
       widget = const SAUEasyStrategyRoute();
       break;
     case SACRouteUrl.history:
-      widget = const SAUHistoryListRoute();
+      widget = SAUHistoryListRoute();
       break;
     case SACRouteUrl.detail:
       widget = const SAUTextRoute();
