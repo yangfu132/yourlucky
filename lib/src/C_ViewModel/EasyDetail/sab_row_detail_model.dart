@@ -22,9 +22,9 @@ class SABRowDetailModel extends SABBaseModel {
   late final String stringDeity =
       healthLogicModel().getDeity(EasyTypeEnum.from); //事情
 
-  late final String stringAnimal = wordsModel().stringAnimal; //六神
+  late final String stringAnimal = wordsModel().getAnimal(); //六神
 
-  late final String stringGoal = wordsModel().desOfGoalOrLife; //世应
+  late final String stringGoal = wordsModel().getDesOfGoalOrLife(); //世应
 
   late final String stringChange = logicModel().stringSymbolForwardOrBack; //进化
 
@@ -128,7 +128,7 @@ class SABRowDetailModel extends SABBaseModel {
 
   String toSymbolHealthDes() {
     String stringResult = "";
-    if (wordsModel().bMovement) {
+    if (wordsModel().isMovement()) {
       final stringToHealth = healthModel().toSymbol.healthDescription();
       stringResult = '${wordsModel().getSymbolName(EasyTypeEnum.to)}[$stringToHealth]';
     } else {}
@@ -155,7 +155,7 @@ class SABRowDetailModel extends SABBaseModel {
 
   String toMonthRelation() {
     String stringResult = "";
-    if (wordsModel().bMovement) {
+    if (wordsModel().isMovement()) {
       stringResult = analysisModel().getMonthRelation(EasyTypeEnum.to);
     } else {}
     return stringResult;
@@ -163,7 +163,7 @@ class SABRowDetailModel extends SABBaseModel {
 
   String toDayRelation() {
     String stringResult = "";
-    if (wordsModel().bMovement) {
+    if (wordsModel().isMovement()) {
       stringResult = analysisModel().getDayRelation(EasyTypeEnum.to);
     } else {}
     return stringResult;

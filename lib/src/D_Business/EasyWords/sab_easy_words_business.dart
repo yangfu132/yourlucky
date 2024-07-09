@@ -204,6 +204,16 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
     return bResult;
   }
 
+  String getDesOfGoalOrLife (int intRow) {
+    var desOfGoalOrLife = "";
+    if (diagramsModel.lifeIndex == intRow) {
+      desOfGoalOrLife = "世";
+    } else if (diagramsModel.goalIndex == intRow) {
+      desOfGoalOrLife = "应";
+    } //else desOfGoalOrLife = "";
+    return desOfGoalOrLife;
+  }
+
   SABWordsSymbolModel fromSymbol(int intRow) {
     String stringSymbol = symbolAtFromRow(intRow);
     return SABWordsSymbolModel(
@@ -215,6 +225,10 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
       stringElement: symbolElement(stringSymbol),
       earlyPlace: earlyPlace(intRow),
       latePlace: latePlace(intRow),
+      bMovement: _inputEasyModel.isMovementAtRow(intRow),
+      stringAnimal: animalAtRow(intRow),
+      desOfGoalOrLife: getDesOfGoalOrLife(intRow),
+      stringDiagrams: eightGuaAtFromRow(intRow),
     );
   }
 
@@ -229,6 +243,10 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
       stringElement: symbolElement(stringSymbol),
       earlyPlace: earlyPlace(intRow),
       latePlace: latePlace(intRow),
+      bMovement: _inputEasyModel.isMovementAtRow(intRow),
+      stringAnimal: animalAtRow(intRow),
+      desOfGoalOrLife: getDesOfGoalOrLife(intRow),
+      stringDiagrams: eightGuaAtFromRow(intRow),
     );
   }
 
@@ -243,6 +261,10 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
       stringElement: symbolElement(stringSymbol),
       earlyPlace: earlyPlace(intRow),
       latePlace: latePlace(intRow),
+      bMovement: _inputEasyModel.isMovementAtRow(intRow),
+      stringAnimal: animalAtRow(intRow),
+      desOfGoalOrLife: getDesOfGoalOrLife(intRow),
+      stringDiagrams: eightGuaAtFromRow(intRow),
     );
   }
 
@@ -325,21 +347,10 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
       dayModel: dayModel(),
     );
     for (int intRow = 0; intRow < 6; intRow++) {
-      var desOfGoalOrLife = "";
-      if (diagramsModel.lifeIndex == intRow) {
-        desOfGoalOrLife = "世";
-      } else if (diagramsModel.goalIndex == intRow) {
-        desOfGoalOrLife = "应";
-      } //else desOfGoalOrLife = "";
-
       SABWordsRowModel row = SABWordsRowModel(
         fromSymbol: fromSymbol(intRow),
         toSymbol: toSymbol(intRow),
         hideSymbol: hideSymbol(intRow),
-        bMovement: _inputEasyModel.isMovementAtRow(intRow),
-        stringAnimal: animalAtRow(intRow),
-        desOfGoalOrLife: desOfGoalOrLife,
-        stringDiagrams: eightGuaAtFromRow(intRow),
       );
       wordsModel.addRowModel(row);
     }

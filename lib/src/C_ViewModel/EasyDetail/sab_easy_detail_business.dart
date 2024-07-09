@@ -127,7 +127,7 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
   }
 
   String eightDiagramsPlace(int intRow, EasyTypeEnum easyTypeEnum) {
-    String strGua = wordsModel().rowModelAtRow(intRow).stringDiagrams;
+    String strGua = wordsModel().getDiagrams(intRow);
     String result = '$strGua:';
     result = '先天八卦位于${wordsModel().getEarlyPlace(intRow, easyTypeEnum)}';
     result += '后天八卦位于${wordsModel().getLatePlace(intRow, easyTypeEnum)}';

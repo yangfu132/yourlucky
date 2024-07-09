@@ -61,7 +61,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
   ///`世应章第六 -- 世（Life） 应（Goal）`/////////////////////////////////////////
 
   String roleDescriptionAtRow(int intRow) {
-    return wordsModel().rowModelAtRow(intRow).desOfGoalOrLife;
+    return wordsModel().rowModelAtRow(intRow).getDesOfGoalOrLife();
   }
 
   ///`动静生克章第十四`//////////////////////////////////////////////////////

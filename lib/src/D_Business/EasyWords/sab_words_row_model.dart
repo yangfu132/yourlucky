@@ -9,33 +9,38 @@ class SABWordsRowModel extends SABBaseModel {
     required this.fromSymbol,
     required this.toSymbol,
     required this.hideSymbol,
-    required this.bMovement,
-    required this.stringAnimal,
-    required this.desOfGoalOrLife,
-    required this.stringDiagrams,
   });
-  final bool bMovement;
-  final String stringAnimal;
-  final String stringDiagrams;
-  final String desOfGoalOrLife;
+
   final SABWordsSymbolModel fromSymbol;
   final SABWordsSymbolModel toSymbol;
   final SABWordsSymbolModel hideSymbol;
 
   @override void check() {
-    if (stringAnimal.isEmpty) {
+    if (fromSymbol.stringAnimal.isEmpty) {
       coLog(StackTrace.current, LogTypeEnum.check, "stringAnimal.isEmpty");
     }
-    if (stringDiagrams.isEmpty) {
+    if (fromSymbol.stringDiagrams.isEmpty) {
       coLog(StackTrace.current, LogTypeEnum.check, "stringDiagrams.isEmpty");
     }
-    if (desOfGoalOrLife.isEmpty) {
+    if (fromSymbol.desOfGoalOrLife.isEmpty) {
       coLog(StackTrace.current, LogTypeEnum.check, "desOfGoalOrLife.isEmpty");
     }
     fromSymbol.check();
     toSymbol.check();
     hideSymbol.check();
     super.check();
+  }
+
+  String getAnimal() {
+    return fromSymbol.stringAnimal;
+  }
+
+  String getDesOfGoalOrLife() {
+    return fromSymbol.desOfGoalOrLife;
+  }
+
+  bool isMovement() {
+    return fromSymbol.bMovement;
   }
 
   String getEarlyPlace(EasyTypeEnum easyTypeEnum) {

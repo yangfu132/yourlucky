@@ -66,7 +66,7 @@ class SABEasyDetailModel extends SABBaseModel {
 
   List<String> addToSymbolDes(SABRowDetailModel rowModel) {
     List<String> valueItem = List<String>.empty(growable: true);
-    if (rowModel.logicModel().inputWordsRow.bMovement) {
+    if (rowModel.logicModel().inputWordsRow.isMovement()) {
       valueItem.add(rowModel.logicModel().stringSymbolForwardOrBack);
       valueItem.add(rowModel.toSymbol.symbolHealthDes);
       valueItem.add(rowModel.toSymbol.monthRelation);

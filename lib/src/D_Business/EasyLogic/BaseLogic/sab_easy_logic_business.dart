@@ -851,7 +851,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
   ///`进神退神章第二十九`//////////////////////////////////////////////////////
   String symbolForwardOrBack(int nRow) {
     String result = "";
-    if (wordsModel().rowModelAtRow(nRow).bMovement) {
+    if (wordsModel().isMovementAtRow(nRow)) {
       String fromEarth = wordsModel().getSymbolEarth(nRow, EasyTypeEnum.from);
       String toEarth = wordsModel().getSymbolEarth(nRow, EasyTypeEnum.to);
       if (branchBusiness().isEarthForward(fromEarth, toEarth)) {

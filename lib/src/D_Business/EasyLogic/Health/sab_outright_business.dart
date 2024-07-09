@@ -75,7 +75,7 @@ class SABOutRightBusiness extends SABBaseBusiness {
           fResult = OutRightEnum.rightTypeMove;
         } else {
           bool bConflictDay = symbolModel.isConflictDay;
-          bool bMove = wordsModel().rowModelAtRow(nRow).bMovement;
+          bool bMove = wordsModel().isMovementAtRow(nRow);
           if (bMove) {
             fResult = OutRightEnum.rightTypeMove;
           } else if (bConflictDay) {

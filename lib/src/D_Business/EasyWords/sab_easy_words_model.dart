@@ -114,11 +114,11 @@ class SABEasyWordsModel extends SABBaseModel {
   }
 
   String getAnimal(int intRow) {
-    return rowModelAtRow(intRow).stringAnimal;
+    return rowModelAtRow(intRow).fromSymbol.stringAnimal;
   }
 
   String getDiagrams(int intRow) {
-    return rowModelAtRow(intRow).stringDiagrams;
+    return rowModelAtRow(intRow).fromSymbol.stringDiagrams;
   }
 
   List arrayFromRowOfParent(String parent) {
@@ -176,7 +176,7 @@ class SABEasyWordsModel extends SABBaseModel {
 
   ///此函数用于判断当前爻是否为动爻
   bool isMovementAtRow(int intRow) {
-    return rowModelAtRow(intRow).bMovement;
+    return rowModelAtRow(intRow).isMovement();
   }
 
   String getSymbolName(int intRow, EasyTypeEnum easyTypeEnum) {

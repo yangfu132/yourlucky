@@ -12,28 +12,28 @@ void main() {
   test('bMovement', () {
     SABEasyWordsModel wordsModel;
     wordsModel = generateTestModel([0, 8, 0, 1, 1, 1]);
-    expect(wordsModel.rowModelAtRow(0).bMovement, false);
-    expect(wordsModel.rowModelAtRow(1).bMovement, true);
-    expect(wordsModel.rowModelAtRow(2).bMovement, false);
-    expect(wordsModel.rowModelAtRow(3).bMovement, false);
-    expect(wordsModel.rowModelAtRow(4).bMovement, false);
-    expect(wordsModel.rowModelAtRow(5).bMovement, false);
+    expect(wordsModel.isMovementAtRow(0), false);
+    expect(wordsModel.isMovementAtRow(1), true);
+    expect(wordsModel.isMovementAtRow(2), false);
+    expect(wordsModel.isMovementAtRow(3), false);
+    expect(wordsModel.isMovementAtRow(4), false);
+    expect(wordsModel.isMovementAtRow(5), false);
 
     wordsModel = generateTestModel([8, 8, 0, 8, 0, 0]);
-    expect(wordsModel.rowModelAtRow(0).bMovement, true);
-    expect(wordsModel.rowModelAtRow(1).bMovement, true);
-    expect(wordsModel.rowModelAtRow(2).bMovement, false);
-    expect(wordsModel.rowModelAtRow(3).bMovement, true);
-    expect(wordsModel.rowModelAtRow(4).bMovement, false);
-    expect(wordsModel.rowModelAtRow(5).bMovement, false);
+    expect(wordsModel.isMovementAtRow(0), true);
+    expect(wordsModel.isMovementAtRow(1), true);
+    expect(wordsModel.isMovementAtRow(2), false);
+    expect(wordsModel.isMovementAtRow(3), true);
+    expect(wordsModel.isMovementAtRow(4), false);
+    expect(wordsModel.isMovementAtRow(5), false);
 
     wordsModel = generateTestModel([0, 1, 1, 8, 8, 1]);
-    expect(wordsModel.rowModelAtRow(0).bMovement, false);
-    expect(wordsModel.rowModelAtRow(1).bMovement, false);
-    expect(wordsModel.rowModelAtRow(2).bMovement, false);
-    expect(wordsModel.rowModelAtRow(3).bMovement, true);
-    expect(wordsModel.rowModelAtRow(4).bMovement, true);
-    expect(wordsModel.rowModelAtRow(5).bMovement, false);
+    expect(wordsModel.isMovementAtRow(0), false);
+    expect(wordsModel.isMovementAtRow(1), false);
+    expect(wordsModel.isMovementAtRow(2), false);
+    expect(wordsModel.isMovementAtRow(3), true);
+    expect(wordsModel.isMovementAtRow(4), true);
+    expect(wordsModel.isMovementAtRow(5), false);
   });
 }
 

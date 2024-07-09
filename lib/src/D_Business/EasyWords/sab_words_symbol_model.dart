@@ -12,6 +12,10 @@ class SABWordsSymbolModel extends SABBaseModel {
     required this.stringElement,
     required this.earlyPlace,
     required this.latePlace,
+    required this.bMovement,
+    required this.stringAnimal,
+    required this.stringDiagrams,
+    required this.desOfGoalOrLife,
   }) {
     SACContext.addBoard(toJson().toString());
   }
@@ -23,7 +27,10 @@ class SABWordsSymbolModel extends SABBaseModel {
   final String stringElement;
   final String earlyPlace;
   final String latePlace;
-
+  final bool bMovement;
+  final String stringAnimal;
+  final String stringDiagrams;
+  final String desOfGoalOrLife;
 
   SABWordsSymbolModel.fromJson(Map<String, Object?> json)
       : this(
@@ -35,6 +42,10 @@ class SABWordsSymbolModel extends SABBaseModel {
     stringElement: json['stringElement']! as String,
     earlyPlace: json['earlyPlace']! as String,
     latePlace: json['latePlace']! as String,
+    bMovement: json['bMovement'] as bool,
+    stringAnimal: json['stringAnimal']! as String,
+    stringDiagrams: json['stringDiagrams']! as String,
+    desOfGoalOrLife: json['desOfGoalOrLife']! as String,
   );
 
   @override Map<String, Object?> toJson() {
@@ -46,6 +57,10 @@ class SABWordsSymbolModel extends SABBaseModel {
       'stringElement': stringElement,
       'earlyPlace': earlyPlace,
       'latePlace': latePlace,
+      'bMovement': bMovement,
+      'stringAnimal': stringAnimal,
+      'stringDiagrams': stringDiagrams,
+      'desOfGoalOrLife': desOfGoalOrLife,
     };
   }
 
