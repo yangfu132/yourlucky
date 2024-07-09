@@ -51,6 +51,10 @@ class SABEasyDigitModel extends SABBaseModel {
 
   String strAnnotate = "";
 
+  int getDigit(int nRow) {
+    return listEasyData[nRow];
+  }
+
   @override void check() {
     if (listEasyData.isEmpty) {
       coLog(StackTrace.current, LogTypeEnum.check, "listEasyData.isEmpty");
@@ -127,7 +131,7 @@ class SABEasyDigitModel extends SABBaseModel {
     String strFromKey = "";
     int nValue, nFromValue;
     for (int nIndex = 0; nIndex < 6; nIndex++) {
-      nValue = listEasyData[nIndex];
+      nValue = getDigit(nIndex);
       if (nValue == 8) {
         nFromValue = 0;
       } else if (nValue == 9) {
@@ -145,7 +149,7 @@ class SABEasyDigitModel extends SABBaseModel {
     String strToKey = "";
     int nValue, nFromValue;
     for (int nIndex = 0; nIndex < 6; nIndex++) {
-      nValue = listEasyData[nIndex];
+      nValue = getDigit(nIndex);
       if (nValue == 8) {
         nFromValue = 1;
       } else if (nValue == 9) {
@@ -213,8 +217,8 @@ class SABEasyDigitModel extends SABBaseModel {
   List inGuaMovementArray() {
     List inMovementArray = [];
 
-    for (int intIndex = 3; intIndex < 6; intIndex++) {
-      int intValue = listEasyData[intIndex];
+    for (int nIndex = 3; nIndex < 6; nIndex++) {
+      int intValue = getDigit(nIndex);
       if (8 == intValue || 9 == intValue) {
         inMovementArray.add(intValue);
       }
@@ -227,8 +231,8 @@ class SABEasyDigitModel extends SABBaseModel {
   ///此函数获取外卦变动的爻列表
   List outGuaMovementArray() {
     List outMovementArray = [];
-    for (int intIndex = 0; intIndex < 3; intIndex++) {
-      int intValue = listEasyData[intIndex];
+    for (int nIndex = 0; nIndex < 3; nIndex++) {
+      int intValue = getDigit(nIndex);
 
       if (8 == intValue || 9 == intValue) {
         outMovementArray.add(intValue);
@@ -243,9 +247,9 @@ class SABEasyDigitModel extends SABBaseModel {
     bool result = false;
 
     if (0 <= nRow && nRow < 6) {
-      if (8 == listEasyData[nRow]) {
+      if (8 == getDigit(nRow)) {
         result = true;
-      } else if (9 == listEasyData[nRow]) {
+      } else if (9 == getDigit(nRow)) {
         result = true;
       }
       //else cont.
@@ -256,7 +260,4 @@ class SABEasyDigitModel extends SABBaseModel {
     return result;
   }
 
-  int digitAtIndex(int intSymbolIndex) {
-    return listEasyData[intSymbolIndex];
-  }
 }

@@ -109,8 +109,8 @@ class SABEasyWordsModel extends SABBaseModel {
     return inputDigitModel.diagramsModel.stringToName;
   }
 
-  int getDigit(int intRow) {
-    return rowModelAtRow(intRow).intDigit;
+  int getDigit(int nRow) {
+    return inputDigitModel.getDigit(nRow);
   }
 
   String getAnimal(int intRow) {

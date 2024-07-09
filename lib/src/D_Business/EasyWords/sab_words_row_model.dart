@@ -6,7 +6,6 @@ import '../../A_Context/sac_global.dart';
 
 class SABWordsRowModel extends SABBaseModel {
   SABWordsRowModel({
-    required this.intDigit,
     required this.fromSymbol,
     required this.toSymbol,
     required this.hideSymbol,
@@ -15,7 +14,6 @@ class SABWordsRowModel extends SABBaseModel {
     required this.desOfGoalOrLife,
     required this.stringDiagrams,
   });
-  final int intDigit;
   final bool bMovement;
   final String stringAnimal;
   final String stringDiagrams;

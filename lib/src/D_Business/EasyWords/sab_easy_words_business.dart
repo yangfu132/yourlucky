@@ -118,7 +118,7 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
       if (strSymbol.length >= 4) {
         String symbolDes =
             strSymbol.substring(strSymbol.length - 4, strSymbol.length);
-        int nValue = _inputEasyModel.digitAtIndex(intIndex);
+        int nValue = _inputEasyModel.getDigit(intIndex);
         if (8 == nValue) {
           result = "×$symbolDes";
         } else if (9 == nValue) {
@@ -333,7 +333,6 @@ class SABEasyWordsBusiness extends SABBaseBusiness {
       } //else desOfGoalOrLife = "";
 
       SABWordsRowModel row = SABWordsRowModel(
-        intDigit: _inputEasyModel.digitAtIndex(intRow),
         fromSymbol: fromSymbol(intRow),
         toSymbol: toSymbol(intRow),
         hideSymbol: hideSymbol(intRow),
