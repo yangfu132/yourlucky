@@ -12,7 +12,9 @@ class SABWordsSymbolModel extends SABBaseModel {
     required this.stringElement,
     required this.earlyPlace,
     required this.latePlace,
-  });
+  }) {
+    SACContext.addBoard(toJson().toString());
+  }
   final int intRow;
   final EasyTypeEnum easyType;
   final String symbolName;
@@ -21,6 +23,31 @@ class SABWordsSymbolModel extends SABBaseModel {
   final String stringElement;
   final String earlyPlace;
   final String latePlace;
+
+
+  SABWordsSymbolModel.fromJson(Map<String, Object?> json)
+      : this(
+    intRow: json['intRow'] as int,
+    easyType: json['easyType'] as EasyTypeEnum,
+    symbolName: json['symbolName']! as String,
+    stringParent: json['stringParent']! as String,
+    stringEarth: json['stringEarth']! as String,
+    stringElement: json['stringElement']! as String,
+    earlyPlace: json['earlyPlace']! as String,
+    latePlace: json['latePlace']! as String,
+  );
+
+  @override Map<String, Object?> toJson() {
+    return {
+      'intRow': intRow,
+      'easyType': easyType,
+      'symbolName': symbolName,
+      'stringParent': stringParent,
+      'stringElement': stringElement,
+      'earlyPlace': earlyPlace,
+      'latePlace': latePlace,
+    };
+  }
 
   @override void check() {
     if (symbolName.isEmpty) {

@@ -5,6 +5,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:your_lucky/src/C_ViewModel/Strategy/sab_easy_strategy_info_business.dart';
+import 'package:your_lucky/src/D_Business/Board/sab_board_model.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_business.dart';
 import 'package:your_lucky/src/D_Business/User/sab_setting_business.dart';
 import 'package:your_lucky/src/E_Service/sab_singleton_service.dart';
@@ -30,6 +31,8 @@ class SACContext {
   final SABEasyDigitBusiness _storeBusiness = SABEasyDigitBusiness();
   final SABEasyStrategyInfoBusiness _categoryBusiness =
       SABEasyStrategyInfoBusiness();
+
+  final SABBoardModel logModel = SABBoardModel();
 
   final SABSettingBusiness _settingBusiness = SABSettingBusiness();
 
@@ -96,5 +99,10 @@ class SACContext {
   static SABDevelopBusiness develop() {
     SACContext businessContext = SABSingletonService.getObject('SACContext');
     return businessContext._developBusiness;
+  }
+
+  static addBoard(String message) {
+    SACContext businessContext = SABSingletonService.getObject('SACContext');
+    businessContext.logModel.addBoard(message);
   }
 }

@@ -25,6 +25,7 @@ class SABEasyDigitModel extends SABBaseModel {
        strAnnotate = extraData["annotate"] ?? "";
        cloudId = extraData["cloudId"] ?? "";
     }
+    SACContext.addBoard(toJson().toString());
   }
 
   int? modelId;
