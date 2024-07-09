@@ -4,19 +4,28 @@ import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_logic_symbol_m
 
 class SABHealthSymbolModel extends SABBaseModel {
   SABHealthSymbolModel({
-    required this.inputLogicSymbol,
     required this.doubleHealth,
     required this.outRight,
     required this.critical,
   });
-  final SABLogicSymbolModel inputLogicSymbol;
   final double critical;
   double doubleHealth;
   OutRightEnum outRight;
 
-  @override void check() {
-    inputLogicSymbol.check();
-    super.check();
+
+  SABHealthSymbolModel.fromJson(Map<String, Object?> json)
+      : this(
+    critical: json['critical'] as double,
+    doubleHealth: json['doubleHealth'] as double,
+    outRight: json['outRight']! as OutRightEnum,
+  );
+
+  @override Map<String, Object?> toJson() {
+    return {
+      'critical': critical,
+      'doubleHealth': doubleHealth,
+      'outRight': outRight,
+    };
   }
 
   double healthWithCritical() {
@@ -37,4 +46,6 @@ class SABHealthSymbolModel extends SABBaseModel {
     strResult = '${healthWithCritical().toStringAsFixed(4)}($strResult)';
     return strResult;
   }
+
+
 }

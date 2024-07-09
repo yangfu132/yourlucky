@@ -468,7 +468,6 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     const easyType = EasyTypeEnum.from;
     final logicSymbol = logicModel().symbolAtRow(intRow, easyType);
     return SABHealthSymbolModel(
-        inputLogicSymbol: logicSymbol,
         critical: healthCriticalValue(),
         doubleHealth: symbolBasicHealthAtRow(intRow, easyType),
         outRight:
@@ -482,7 +481,6 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     const easyType = EasyTypeEnum.to;
     final logicSymbol = logicModel().symbolAtRow(intRow, easyType);
     return SABHealthSymbolModel(
-        inputLogicSymbol: logicSymbol,
         critical: healthCriticalValue(),
         doubleHealth: symbolBasicHealthAtRow(intRow, easyType),
         outRight: outRightBusiness.symbolOutRightAtRow(intRow, easyType));
@@ -495,7 +493,6 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     const easyType = EasyTypeEnum.hide;
     final logicSymbol = logicModel().symbolAtRow(intRow, easyType);
     return SABHealthSymbolModel(
-        inputLogicSymbol: logicSymbol,
         critical: healthCriticalValue(),
         doubleHealth: symbolBasicHealthAtRow(intRow, easyType),
         outRight: outRightBusiness.symbolOutRightAtRow(intRow, easyType));
