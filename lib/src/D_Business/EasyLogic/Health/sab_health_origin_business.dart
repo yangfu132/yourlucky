@@ -472,7 +472,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
         critical: healthCriticalValue(),
         doubleHealth: symbolBasicHealthAtRow(intRow, easyType),
         outRight:
-            outRightBusiness.fromOutRightAtRow(intRow, easyType));
+            outRightBusiness.symbolOutRightAtRow(intRow, easyType));
   }
 
   SABHealthSymbolModel toSymbol(
@@ -485,7 +485,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
         inputLogicSymbol: logicSymbol,
         critical: healthCriticalValue(),
         doubleHealth: symbolBasicHealthAtRow(intRow, easyType),
-        outRight: OutRightEnum.rightTypeNull);
+        outRight: outRightBusiness.symbolOutRightAtRow(intRow, easyType));
   }
 
   SABHealthSymbolModel hideSymbol(
@@ -498,7 +498,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
         inputLogicSymbol: logicSymbol,
         critical: healthCriticalValue(),
         doubleHealth: symbolBasicHealthAtRow(intRow, easyType),
-        outRight: OutRightEnum.rightTypeHide);
+        outRight: outRightBusiness.symbolOutRightAtRow(intRow, easyType));
   }
 
   SABHealthModel outputHealthModel() {
