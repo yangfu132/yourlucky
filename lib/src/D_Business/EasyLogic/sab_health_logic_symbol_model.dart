@@ -12,7 +12,7 @@ class SABHealthLogicSymbolModel extends SABBaseModel {
     required this.symbolEmptyState,
     required this.stringDeity,
   });
-  final SABHealthSymbolModel inputHealthSymbol;
+  final SABHealthSymbolModel? inputHealthSymbol;
   final bool isSymbolDayBroken;
   final MonthConflictEnum conflictOnMonthState;
   final DayConflictEnum conflictOnDayState;
@@ -20,7 +20,7 @@ class SABHealthLogicSymbolModel extends SABBaseModel {
   final String stringDeity;
 
   @override void check() {
-    inputHealthSymbol.check();
+    inputHealthSymbol?.check();
 
     // for (SABHealthLogicRowModel row in _listRowModels) {
     //   row.check();

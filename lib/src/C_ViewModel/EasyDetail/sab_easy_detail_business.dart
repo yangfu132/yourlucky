@@ -143,19 +143,19 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
   SABSymbolDetailModel createSymbolModel(
       SABEasyAnalysisSymbolModel analysisSymbol,
       int intRow,
-      EasyTypeEnum type) {
-    String strSymbolName = analysisSymbol.inputHealthLogicSymbol.inputHealthSymbol.inputLogicSymbol.inputWordsSymbol.symbolName;
-    String stringHealth = analysisSymbol.inputHealthLogicSymbol.inputHealthSymbol.healthDescription();
+      EasyTypeEnum easyType) {
+    String strSymbolName = wordsModel().getSymbolName(intRow, easyType);
+    String stringHealth = healthLogicModel().getHealthDescription(intRow,easyType);
     SABSymbolDetailModel detailSymbol = SABSymbolDetailModel(
         strSymbolName: strSymbolName,
-        baseInfo: symbolBasic(intRow, type),
+        baseInfo: symbolBasic(intRow, easyType),
         animalDes: symbolAnimalLike(intRow),
-        earthDes: symbolEarthLike(intRow, type),
-        sixPairDes: symbolSixPair(intRow, type),
-        monthRelation: analysisModel().getMonthRelation(intRow, type),
-        dayRelation: analysisModel().getDayRelation(intRow, type),
-        earthDirection: symbolEarthDirection(intRow, type),
-        diagramsPlace: eightDiagramsPlace(intRow, type),
+        earthDes: symbolEarthLike(intRow, easyType),
+        sixPairDes: symbolSixPair(intRow, easyType),
+        monthRelation: analysisModel().getMonthRelation(intRow, easyType),
+        dayRelation: analysisModel().getDayRelation(intRow, easyType),
+        earthDirection: symbolEarthDirection(intRow, easyType),
+        diagramsPlace: eightDiagramsPlace(intRow, easyType),
         debugInfo: '未填写debugInfo',
         stringHealth: stringHealth);
     return detailSymbol;

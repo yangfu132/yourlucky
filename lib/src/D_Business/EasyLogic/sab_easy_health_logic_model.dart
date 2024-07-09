@@ -37,6 +37,10 @@ class SABEasyHealthLogicModel extends SABBaseModel {
     super.check();
   }
 
+  String getHealthDescription(int nRow, EasyTypeEnum easyType) {
+    return inputHealthModel.symbol(nRow, easyType)?.healthDescription() ?? "easyType:$easyType empty";
+  }
+
   EmptyEnum getSymbolEmptyState(int intRow, EasyTypeEnum easyTypeEnum) {
     return rowModelAtRow(intRow).getSymbolEmptyState(easyTypeEnum);
   }

@@ -44,12 +44,11 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   }
 
   SABHealthLogicSymbolModel symbol(
-    SABHealthSymbolModel healthSymbol,
+    int intRow,
     EasyTypeEnum easyType,
   ) {
-    int intRow = healthSymbol.inputLogicSymbol.inputWordsSymbol.intRow;
     return SABHealthLogicSymbolModel(
-      inputHealthSymbol: healthSymbol,
+      inputHealthSymbol: healthModel().symbol(intRow,easyType),
       symbolEmptyState: symbolEmptyState(intRow, easyType),
       isSymbolDayBroken: isSymbolDayBrokenAtRow(intRow, easyType),
       conflictOnMonthState: symbolConflictStateOnMonth(intRow, easyType),
@@ -73,9 +72,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       SABHealthRowModel rowHealthModel = healthModel().rowModelAtRow(intRow);
       SABHealthLogicRowModel rowModel = SABHealthLogicRowModel(
         healthRow: rowHealthModel,
-        fromSymbol: symbol(rowHealthModel.fromSymbol, EasyTypeEnum.from),
-        toSymbol: symbol(rowHealthModel.toSymbol, EasyTypeEnum.to),
-        hideSymbol: symbol(rowHealthModel.hideSymbol, EasyTypeEnum.hide),
+        fromSymbol: symbol(intRow, EasyTypeEnum.from),
+        toSymbol: symbol(intRow, EasyTypeEnum.to),
+        hideSymbol: symbol(intRow, EasyTypeEnum.hide),
         isSymbolBackMove: isSymbolBackMoveAtRow(intRow, EasyTypeEnum.from),
       );
       logicModel.addSymbol(rowModel);
@@ -489,7 +488,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
           bResult = true;
         } else {
           //忌神长生帝旺于日辰，四也。
-          String stringEarthBase = symbolFrom.inputWordsSymbol.stringEarth;
+          String stringEarthBase = wordsModel().getSymbolEarth(intRow, EasyTypeEnum.from);
           String stringTwelveDeity =
               branchBusiness().earthTwelveDeity(stringEarthBase, dayEarth());
           if ("长生" == stringTwelveDeity || "帝旺" == stringTwelveDeity) {
@@ -540,7 +539,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
         bResult = true;
       } else {
         //元神长生帝旺于日辰，三也。
-        String stringEarthBase = symbolFrom.inputWordsSymbol.stringEarth;
+        String stringEarthBase = wordsModel().getSymbolEarth(intIndex, EasyTypeEnum.from);;
         String stringTwelveDeity =
             branchBusiness().earthTwelveDeity(stringEarthBase, dayEarth());
         if ("长生" == stringTwelveDeity || "帝旺" == stringTwelveDeity) {
@@ -1023,7 +1022,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     SABLogicSymbolModel symbolModel =
         logicModel().symbolAtRow(intRow, easyType);
     if ("" != stringSymbol) {
-      String earth = symbolModel.inputWordsSymbol.stringEarth;
+      String earth = wordsModel().getSymbolEarth(intRow, easyType);
       if (logicModel().diagramsModel.stringEmptyBranch.contains(earth)) {
         String strDay = dayEarth();
         if (branchBusiness().isEarthConflict(strDay, earth)) {
@@ -1158,7 +1157,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     bool conflictMonth = symbolModel.isConflictMonth;
     if (conflictMonth) {
       String stringSymbol = wordsModel().getSymbolName(intRow, easyType);
-      String basicEarth = symbolModel.inputWordsSymbol.stringEarth;
+      String basicEarth = wordsModel().getSymbolEarth(intRow, easyType);
       nResult = MonthConflictEnum.conflictBroken;
 
       String strDayEarth = dayEarth();
@@ -1238,10 +1237,11 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
      */
 
     String basicSymbol = symbolAtHideRow(intRow);
-    final symbolModel = logicModel().symbolAtRow(intRow, EasyTypeEnum.hide);
+    EasyTypeEnum easyType = EasyTypeEnum.hide;
+    final symbolModel = logicModel().symbolAtRow(intRow, easyType);
     if (basicSymbol.isNotEmpty) {
       //伏神休囚无气者，一也。
-      bool bStrong = isSymbolHealthStrong(intRow, EasyTypeEnum.hide);
+      bool bStrong = isSymbolHealthStrong(intRow, easyType);
       if (!bStrong) {
         bResult = true;
       } else {
@@ -1262,12 +1262,12 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
           //伏神被旺相之飞神克害者，三也。
           String strRelative = _symbolRelative(intRow);
           bool bFromStrong =
-              logicModel().isSeasonStrong(intRow, EasyTypeEnum.hide);
+              logicModel().isSeasonStrong(intRow, easyType);
           if ("官鬼" == strRelative && bFromStrong) {
             bResult = true;
           } else {
             //伏神墓绝于日月飞爻者，四也。
-            String basicEarth = symbolModel.inputWordsSymbol.stringEarth;
+            String basicEarth = wordsModel().getSymbolEarth(intRow, easyType);
             String fromEarth =
                 wordsModel().getSymbolEarth(intRow, EasyTypeEnum.from);
 
@@ -1284,7 +1284,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
             } else {
               //伏神休囚值旬空月破者，五也。
 
-              bool bEmpty = isEmptyAtRow(intRow, EasyTypeEnum.hide);
+              bool bEmpty = isEmptyAtRow(intRow, easyType);
               bool bMonthBroken = MonthConflictEnum.conflictBroken ==
                   symbolConflictStateOnMonth(intRow, EasyTypeEnum.from);
               if (bEmpty || bMonthBroken || !bStrong) {

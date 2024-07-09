@@ -125,11 +125,11 @@ class SABEasyWordsModel extends SABBaseModel {
     return arrayRowWithParent(parent, EasyTypeEnum.from);
   }
 
-  List arrayRowWithParent(String parent, EasyTypeEnum easyTypeEnum) {
+  List arrayRowWithParent(String parent, EasyTypeEnum easyType) {
     List parentArray = List.empty(growable: true);
 
     for (int intRow = 0; intRow < 6; intRow++) {
-      String stringSymbolParent = getSymbolParent(intRow, easyTypeEnum);
+      String stringSymbolParent = getSymbolParent(intRow, easyType);
       if (stringSymbolParent == parent) {
         parentArray.add(intRow);
       } //else {}
@@ -138,11 +138,11 @@ class SABEasyWordsModel extends SABBaseModel {
     return parentArray;
   }
 
-  List arrayRowWithElement(String element, EasyTypeEnum easyTypeEnum) {
+  List arrayRowWithElement(String element, EasyTypeEnum easyType) {
     List resultArray = List.empty(growable: true);
 
     for (int intRow = 0; intRow < 6; intRow++) {
-      String symbolElement = getSymbolElement(intRow, easyTypeEnum);
+      String symbolElement = getSymbolElement(intRow, easyType);
       if (symbolElement == element) {
         resultArray.add(intRow);
       }
@@ -152,11 +152,11 @@ class SABEasyWordsModel extends SABBaseModel {
     return resultArray;
   }
 
-  List arrayUsefulRow(EasyTypeEnum easyTypeEnum) {
+  List arrayUsefulRow(EasyTypeEnum easyType) {
     List parentArray = List.empty(growable: true);
 
     for (int intRow = 0; intRow < 6; intRow++) {
-      String stringSymbolParent = getSymbolParent(intRow, easyTypeEnum);
+      String stringSymbolParent = getSymbolParent(intRow, easyType);
       if (stringSymbolParent == inputDigitModel.strUsefulDeity) {
         parentArray.add(intRow);
       }
@@ -179,28 +179,28 @@ class SABEasyWordsModel extends SABBaseModel {
     return rowModelAtRow(intRow).isMovement();
   }
 
-  String getSymbolName(int intRow, EasyTypeEnum easyTypeEnum) {
-    return rowModelAtRow(intRow).getSymbolName(easyTypeEnum);
+  String getSymbolName(int intRow, EasyTypeEnum easyType) {
+    return rowModelAtRow(intRow).getSymbolName(easyType);
   }
 
-  String getSymbolParent(int intRow, EasyTypeEnum easyTypeEnum) {
-    return rowModelAtRow(intRow).getSymbolParent(easyTypeEnum);
+  String getSymbolParent(int intRow, EasyTypeEnum easyType) {
+    return rowModelAtRow(intRow).getSymbolParent(easyType);
   }
 
-  String getSymbolEarth(int intRow, EasyTypeEnum easyTypeEnum) {
-    return rowModelAtRow(intRow).getSymbolEarth(easyTypeEnum);
+  String getSymbolEarth(int intRow, EasyTypeEnum easyType) {
+    return rowModelAtRow(intRow).getSymbolEarth(easyType);
   }
 
-  String getSymbolElement(int intRow, EasyTypeEnum easyTypeEnum) {
-    return rowModelAtRow(intRow).getSymbolElement(easyTypeEnum);
+  String getSymbolElement(int intRow, EasyTypeEnum easyType) {
+    return rowModelAtRow(intRow).getSymbolElement(easyType);
   }
 
-  String getEarlyPlace(int intRow, EasyTypeEnum easyTypeEnum) {
-    return rowModelAtRow(intRow).getEarlyPlace(easyTypeEnum);
+  String getEarlyPlace(int intRow, EasyTypeEnum easyType) {
+    return rowModelAtRow(intRow).getEarlyPlace(easyType);
   }
 
-  String getLatePlace(int intRow, EasyTypeEnum easyTypeEnum) {
-    return rowModelAtRow(intRow).getLatePlace(easyTypeEnum);
+  String getLatePlace(int intRow, EasyTypeEnum easyType) {
+    return rowModelAtRow(intRow).getLatePlace(easyType);
   }
 
   String getLifeParent() {
@@ -227,10 +227,10 @@ class SABEasyWordsModel extends SABBaseModel {
     return getDiagrams(getLifeIndex());
   }
 
-  String stringFromSymbolArray(List hideArray, EasyTypeEnum easyTypeEnum) {
+  String stringFromSymbolArray(List hideArray, EasyTypeEnum easyType) {
     String stringResult = "";
     for (int intRow in hideArray) {
-      String symbol = getSymbolName(intRow, easyTypeEnum);
+      String symbol = getSymbolName(intRow, easyType);
       if ('' != symbol) {
         SASStringService.appendToString(stringResult, symbol);
       } else {

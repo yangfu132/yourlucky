@@ -30,6 +30,10 @@ class SABHealthModel extends SABBaseModel {
     return rowModelAtRow(nRow).healthForEasyType(easyType);
   }
 
+  String getHealthDescription(int nRow, EasyTypeEnum easyType) {
+    return symbol(nRow, easyType)?.healthDescription() ?? "easyType:$easyType empty";
+  }
+
   SABHealthSymbolModel? symbol(int nRow, EasyTypeEnum easyType) {
     if (EasyTypeEnum.from == easyType) {
       return rowModelAtRow(nRow).fromSymbol;

@@ -459,40 +459,45 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     return outRightBusiness.wordsModel();
   }
 
+
+
   SABHealthSymbolModel fromSymbol(
-    SABLogicSymbolModel logicSymbol,
+    int intRow,
     SABHealthDiagramsModel diagrams,
   ) {
-    int intRow = logicSymbol.inputWordsSymbol.intRow;
+    const easyType = EasyTypeEnum.from;
+    final logicSymbol = logicModel().symbolAtRow(intRow, easyType);
     return SABHealthSymbolModel(
         inputLogicSymbol: logicSymbol,
         critical: healthCriticalValue(),
-        doubleHealth: symbolBasicHealthAtRow(intRow, EasyTypeEnum.from),
+        doubleHealth: symbolBasicHealthAtRow(intRow, easyType),
         outRight:
-            outRightBusiness.fromOutRightAtRow(intRow, EasyTypeEnum.from));
+            outRightBusiness.fromOutRightAtRow(intRow, easyType));
   }
 
   SABHealthSymbolModel toSymbol(
-    SABLogicSymbolModel logicSymbol,
+    int intRow,
     SABHealthDiagramsModel diagrams,
   ) {
-    int intRow = logicSymbol.inputWordsSymbol.intRow;
+    const easyType = EasyTypeEnum.to;
+    final logicSymbol = logicModel().symbolAtRow(intRow, easyType);
     return SABHealthSymbolModel(
         inputLogicSymbol: logicSymbol,
         critical: healthCriticalValue(),
-        doubleHealth: symbolBasicHealthAtRow(intRow, EasyTypeEnum.to),
+        doubleHealth: symbolBasicHealthAtRow(intRow, easyType),
         outRight: OutRightEnum.rightTypeNull);
   }
 
   SABHealthSymbolModel hideSymbol(
-    SABLogicSymbolModel logicSymbol,
+    int intRow,
     SABHealthDiagramsModel diagrams,
   ) {
-    int intRow = logicSymbol.inputWordsSymbol.intRow;
+    const easyType = EasyTypeEnum.hide;
+    final logicSymbol = logicModel().symbolAtRow(intRow, easyType);
     return SABHealthSymbolModel(
         inputLogicSymbol: logicSymbol,
         critical: healthCriticalValue(),
-        doubleHealth: symbolBasicHealthAtRow(intRow, EasyTypeEnum.hide),
+        doubleHealth: symbolBasicHealthAtRow(intRow, easyType),
         outRight: OutRightEnum.rightTypeHide);
   }
 
@@ -529,9 +534,9 @@ class SABHealthOriginBusiness extends SABLogBusiness {
 
       SABHealthRowModel rowModel = SABHealthRowModel(
         inputLogicRow: logicModel,
-        fromSymbol: fromSymbol(logicModel.fromSymbol, diagrams),
-        toSymbol: toSymbol(logicModel.toSymbol, diagrams),
-        hideSymbol: hideSymbol(logicModel.hideSymbol, diagrams),
+        fromSymbol: fromSymbol(intRow, diagrams),
+        toSymbol: toSymbol(intRow, diagrams),
+        hideSymbol: hideSymbol(intRow, diagrams),
       );
 
       healthModel.addRowModel(rowModel);
