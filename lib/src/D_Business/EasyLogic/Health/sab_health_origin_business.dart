@@ -1,6 +1,7 @@
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_logic_row_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_logic_symbol_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_action_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_symbol_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_outright_business.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/sab_day_model.dart';
@@ -466,10 +467,12 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     SABHealthDiagramsModel diagrams,
   ) {
     const easyType = EasyTypeEnum.from;
-    final logicSymbol = logicModel().symbolAtRow(intRow, easyType);
+    final initModel = SABHealthActionModel(easyType:easyType,
+        nRow:intRow,
+        doubleHealth:symbolBasicHealthAtRow(intRow, easyType));
     return SABHealthSymbolModel(
         critical: healthCriticalValue(),
-        doubleHealth: symbolBasicHealthAtRow(intRow, easyType),
+        initModel: initModel,
         outRight:
             outRightBusiness.symbolOutRightAtRow(intRow, easyType));
   }
@@ -479,10 +482,12 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     SABHealthDiagramsModel diagrams,
   ) {
     const easyType = EasyTypeEnum.to;
-    final logicSymbol = logicModel().symbolAtRow(intRow, easyType);
+    final initModel = SABHealthActionModel(easyType:easyType,
+        nRow:intRow,
+        doubleHealth:symbolBasicHealthAtRow(intRow, easyType));
     return SABHealthSymbolModel(
         critical: healthCriticalValue(),
-        doubleHealth: symbolBasicHealthAtRow(intRow, easyType),
+        initModel: initModel,
         outRight: outRightBusiness.symbolOutRightAtRow(intRow, easyType));
   }
 
@@ -491,10 +496,12 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     SABHealthDiagramsModel diagrams,
   ) {
     const easyType = EasyTypeEnum.hide;
-    final logicSymbol = logicModel().symbolAtRow(intRow, easyType);
+    final initModel = SABHealthActionModel(easyType:easyType,
+        nRow:intRow,
+        doubleHealth:symbolBasicHealthAtRow(intRow, easyType));
     return SABHealthSymbolModel(
         critical: healthCriticalValue(),
-        doubleHealth: symbolBasicHealthAtRow(intRow, easyType),
+        initModel: initModel,
         outRight: outRightBusiness.symbolOutRightAtRow(intRow, easyType));
   }
 

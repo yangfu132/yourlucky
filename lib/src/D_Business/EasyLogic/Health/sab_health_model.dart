@@ -2,6 +2,7 @@
 import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_easy_logic_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_action_model.dart';
 
 import 'sab_health_diagrams_model.dart';
 import 'sab_health_row_model.dart';
@@ -58,8 +59,13 @@ class SABHealthModel extends SABBaseModel {
     }
   }
 
-  void updateHealthAtRow(int nRow, double health) {
-    rowModelAtRow(nRow).setHealthForEasyType(EasyTypeEnum.from, health);
+  void updateHealthAtRow(SABHealthActionModel actionModel) {
+    //rowModelAtRow(nRow).setHealthForEasyType(EasyTypeEnum.from, health);
+    rowModelAtRow(actionModel.nRow).setHealthForEasyType(actionModel);
+  }
+
+  void sumHealthAtRow(SABHealthActionModel actionModel) {
+    rowModelAtRow(actionModel.nRow).sumForEasyType(actionModel);
   }
 
   List moveRightInArray(List arrayRow, easyType) {

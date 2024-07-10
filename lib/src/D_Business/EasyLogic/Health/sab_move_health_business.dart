@@ -1,6 +1,7 @@
 import 'package:your_lucky/src/D_Business/Base/sab_base_business.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
 import 'package:your_lucky/src/D_Business/EarthBranch/sab_earth_branch_business.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_action_model.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/sab_easy_words_model.dart';
 
 import '../../../A_Context/sac_context.dart';
@@ -21,51 +22,60 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
 
   void calculateHealthOfAllMoveRight(SABHealthModel healthModel, List listRow) {
     bool hasBegin = healthModel.diagramsModel.hasBeginMoveRow;
-    for (int item in listRow) {
-      final fromSymbol = healthModel.rowModelAtRow(item).fromSymbol;
-      if (healthModel.diagramsModel.isUnFinish(item)) {
-        double moveHealth = fromSymbol.doubleHealth;
+    for (int nRow in listRow) {
+      final fromSymbol = healthModel.rowModelAtRow(nRow).fromSymbol;
+      if (healthModel.diagramsModel.isUnFinish(nRow)) {
+        double moveHealth = fromSymbol.getHealthAction();
         if (hasBegin) {
           moveHealth = calculateHealthOfMoveRightRow(
             healthModel,
-            item,
+            nRow,
             EasyTypeEnum.from,
           );
         } else {
-          if (wordsModel().isMovementAtRow(item)) {
-            moveHealth = moveSymbolBasicHealthAtRow(healthModel, item);
+          if (wordsModel().isMovementAtRow(nRow)) {
+            moveHealth = moveSymbolBasicHealthAtRow(healthModel, nRow);
           } else {}
         } //end if
-        healthModel.updateHealthAtRow(item, moveHealth);
-        healthModel.diagramsModel.addToFinishArray(item);
+        SABHealthActionModel actionModel = SABHealthActionModel(nRow:nRow,
+          easyType: EasyTypeEnum.from,
+          doubleHealth: moveHealth,
+        );
+        healthModel.updateHealthAtRow(actionModel);
+        healthModel.diagramsModel.addToFinishArray(nRow);
       } //else {}
     } //end for
   }
 
   //calculateHealthOfAllMoveRightRow
   double calculateHealthOfMoveRightRow(
-      SABHealthModel tempHealthModel, int item, EasyTypeEnum easyType) {
+      SABHealthModel tempHealthModel, int nRow, EasyTypeEnum easyType) {
     double moveHealth = 0;
-    if (wordsModel().isMovementAtRow(item)) {
-      moveHealth = moveSymbolBasicHealthAtRow(tempHealthModel, item);
+    if (wordsModel().isMovementAtRow(nRow)) {
+      moveHealth = moveSymbolBasicHealthAtRow(tempHealthModel, nRow);
     } else {
-      moveHealth = originBusiness().symbolBasicHealthAtRow(item, easyType);
+      moveHealth = originBusiness().symbolBasicHealthAtRow(nRow, easyType);
     } //end if
 
     List arrayEffects =
-        effectingArrayAtLevel3Row(tempHealthModel, item, easyType);
+        effectingArrayAtLevel3Row(tempHealthModel, nRow, easyType);
 
     for (int effectsItem in arrayEffects) {
       if (tempHealthModel.diagramsModel.isUnFinish(effectsItem)) {
         moveHealth = calculateHealthOfMoveRightRow(
             tempHealthModel, effectsItem, easyType);
-        tempHealthModel.updateHealthAtRow(item, moveHealth);
-        tempHealthModel.diagramsModel.addToFinishArray(item);
+        SABHealthActionModel actionModel = SABHealthActionModel(nRow:nRow,
+          easyType: EasyTypeEnum.from,
+          doubleHealth: moveHealth,
+        );
+        tempHealthModel.updateHealthAtRow(actionModel);
+        // tempHealthModel.updateHealthAtRow(item, moveHealth);
+        tempHealthModel.diagramsModel.addToFinishArray(nRow);
       }
       //else cont.
       moveHealth += adjustHealthAtRow(
-          tempHealthModel, item, easyType, effectsItem, easyType);
-    } //endf
+          tempHealthModel, nRow, easyType, effectsItem, easyType);
+    } //end if
     return moveHealth;
   }
 

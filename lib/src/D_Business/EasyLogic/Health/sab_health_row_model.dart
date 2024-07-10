@@ -1,6 +1,7 @@
 ﻿import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_action_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_symbol_model.dart';
 
 import '../BaseLogic/sab_logic_row_model.dart';
@@ -36,24 +37,37 @@ class SABHealthRowModel extends SABBaseModel {
     double fHealth = 0.0;
 
     if (EasyTypeEnum.from == easyType) {
-      fHealth = fromSymbol.doubleHealth;
+      fHealth = fromSymbol.getHealthAction();
     } else if (EasyTypeEnum.to == easyType) {
-      fHealth = toSymbol.doubleHealth;
+      fHealth = toSymbol.getHealthAction();
     } else if (EasyTypeEnum.hide == easyType) {
-      fHealth = hideSymbol.doubleHealth;
+      fHealth = hideSymbol.getHealthAction();
     } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
     } //end if
     return fHealth;
   }
 
-  void setHealthForEasyType(EasyTypeEnum easyType, double fHealth) {
-    if (EasyTypeEnum.from == easyType) {
-      fromSymbol.doubleHealth = fHealth;
-    } else if (EasyTypeEnum.to == easyType) {
-      toSymbol.doubleHealth = fHealth;
-    } else if (EasyTypeEnum.hide == easyType) {
-      hideSymbol.doubleHealth = fHealth;
+  void setHealthForEasyType(SABHealthActionModel actionModel) {
+      // EasyTypeEnum easyType, double fHealth) {
+    if (EasyTypeEnum.from == actionModel.easyType) {
+      fromSymbol.setAction(actionModel);
+    } else if (EasyTypeEnum.to == actionModel.easyType) {
+      fromSymbol.setAction(actionModel);
+    } else if (EasyTypeEnum.hide == actionModel.easyType) {
+      fromSymbol.setAction(actionModel);
+    } else {
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
+    } //end if
+  }
+
+  void sumForEasyType(SABHealthActionModel actionModel) {
+    if (EasyTypeEnum.from == actionModel.easyType) {
+      fromSymbol.sumAction(actionModel);
+    } else if (EasyTypeEnum.to == actionModel.easyType) {
+      fromSymbol.sumAction(actionModel);
+    } else if (EasyTypeEnum.hide == actionModel.easyType) {
+      fromSymbol.sumAction(actionModel);
     } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
     } //end if

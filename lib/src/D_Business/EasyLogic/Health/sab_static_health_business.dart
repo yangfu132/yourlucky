@@ -1,5 +1,7 @@
 import 'package:your_lucky/src/D_Business/Base/sab_base_business.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_action_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_symbol_model.dart';
 
 import '../../../A_Context/sac_context.dart';
 import '../../../A_Context/sac_global.dart';
@@ -26,7 +28,12 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
         if (bHasBeginStatic) {
           double doubleHealth = calculateHealthOfStaticRightRow(
               tempHealthModel, nRow, EasyTypeEnum.from);
-          tempHealthModel.updateHealthAtRow(nRow, doubleHealth);
+          SABHealthActionModel actionModel = SABHealthActionModel(nRow:nRow,
+            easyType: EasyTypeEnum.from,
+            doubleHealth: doubleHealth,
+          );
+          tempHealthModel.updateHealthAtRow(actionModel);
+          // tempHealthModel.updateHealthAtRow(nRow, doubleHealth);
           tempHealthModel.diagramsModel.addToFinishArray(nRow);
         } else {
           ///如果找不到开始row，就随便指定一个座位开始row；
@@ -37,23 +44,27 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
   }
 
   double calculateHealthOfStaticRightRow(
-      SABHealthModel tempHealthModel, int nRow, EasyTypeEnum easyType) {
-    double basicHealth = tempHealthModel.symbolHealthAtRow(nRow, easyType);
-    List arrayEffectsInLevel4 = effectingArrayAtLevel4Row(nRow, easyType);
+      SABHealthModel tempHealthModel,
+      int nRow,
+      EasyTypeEnum easyType) {
 
+    List arrayEffectsInLevel4 = effectingArrayAtLevel4Row(nRow, easyType);
     for (int effectsItem in arrayEffectsInLevel4) {
       if (tempHealthModel.diagramsModel.isUnFinish(effectsItem)) {
-        basicHealth = calculateHealthOfStaticRightRow(
-            tempHealthModel, effectsItem, easyType);
-        tempHealthModel.updateHealthAtRow(nRow, basicHealth);
-        tempHealthModel.diagramsModel.addToFinishArray(nRow);
-      }
-      //else cont.
+        calculateHealthOfStaticRightRow(tempHealthModel, effectsItem, easyType);
+      } //else cont.
 
-      basicHealth += moveBusiness().adjustHealthAtRow(
+      double adjustHealth = moveBusiness().adjustHealthAtRow(
           tempHealthModel, nRow, easyType, effectsItem, easyType);
+      SABHealthActionModel actionModel = SABHealthActionModel(nRow:nRow,
+        easyType: EasyTypeEnum.from,
+        doubleHealth: adjustHealth,
+      );
+      tempHealthModel.sumHealthAtRow(actionModel);
     } //end for
-    return basicHealth;
+
+    tempHealthModel.diagramsModel.addToFinishArray(nRow);
+    return tempHealthModel.symbolHealthAtRow(nRow, easyType);
   }
 
   bool isStaticRightLevelHasBeginRow(SABHealthModel tempHealthModel) {

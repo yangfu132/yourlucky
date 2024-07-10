@@ -1,35 +1,56 @@
+import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_logic_symbol_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_action_model.dart';
 
 class SABHealthSymbolModel extends SABBaseModel {
   SABHealthSymbolModel({
-    required this.doubleHealth,
     required this.outRight,
     required this.critical,
-  });
+    required this.initModel,
+  }) {
+    setAction(initModel);
+  }
   final double critical;
-  double doubleHealth;
+  double _doubleHealth = 0;
   OutRightEnum outRight;
+  final SABHealthActionModel initModel;
 
+  double getHealthAction() {
+    return _doubleHealth;
+  }
+
+
+  void sumAction(SABHealthActionModel actionModel) {
+    _doubleHealth = _doubleHealth + actionModel.doubleHealth;
+    SACContext.addBoard("");
+  }
+
+  void setAction(SABHealthActionModel actionModel) {
+    _doubleHealth = actionModel.doubleHealth;
+    SACContext.addBoard("");
+  }
 
   SABHealthSymbolModel.fromJson(Map<String, Object?> json)
       : this(
     critical: json['critical'] as double,
-    doubleHealth: json['doubleHealth'] as double,
     outRight: json['outRight']! as OutRightEnum,
+      initModel:SABHealthActionModel(doubleHealth: 0,
+        easyType: EasyTypeEnum.typeNull,
+          nRow: globalRowInvalid),
   );
 
   @override Map<String, Object?> toJson() {
     return {
       'critical': critical,
-      'doubleHealth': doubleHealth,
+      'doubleHealth': _doubleHealth,
       'outRight': outRight,
     };
   }
 
   double healthWithCritical() {
-    return doubleHealth - critical;
+    return _doubleHealth - critical;
   }
 
   bool isStrong() {
