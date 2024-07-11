@@ -57,7 +57,7 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
           tempSymbol.outRight = OutRightEnum.rightTypeMove;
           resultRow.add(intRow);
         } else {
-          tempSymbol.outRight = OutRightEnum.rightTypeStatic;
+          tempSymbol.outRight = OutRightEnum.rightTypeBroken;
         }
       } else {
         coLog(StackTrace.current, LogTypeEnum.error,

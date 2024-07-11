@@ -1204,19 +1204,16 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       nResult = DayConflictEnum.conflictYES;
 
       if (wordsModel().isMovementAtRow(intRow)) {
-        if (symbolModel.isSeasonStrong) {
+        if (!symbolModel.isSeasonStrong) {
           nResult = DayConflictEnum.conflictSAN;
-        }
-        else {
-          nResult = DayConflictEnum.conflictSAN;
-        } //end if
+        } //else {//动爻强，冲而无碍}
       } else {
         if (symbolModel.isSeasonStrong) {
           nResult = DayConflictEnum.conflictBackMove;
         } else {
           nResult = DayConflictEnum.conflictBROKEN;
         } //end if
-      } //endi
+      } //end if
     }
     //else cont.
 

@@ -15,12 +15,19 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+## 计算的设想
 //假设月的健康值为30/365,也就是月实际代表的是一月，爻的健康值实际上是根据日月计算出来的；
 //假设日的健康值为10/365,也就是日实际代表的是一旬；爻的健康值实际上是根据日月计算出来的；
 //但是单个如何计算，现在还需要确定：直接按照十二长生来；
 //每个值的月部分为月的月健康值/12;
 //每个值的日部分为日的健康值/12;
 //以绝为0；以帝旺为100%，其他部分各自按顺序变化；四平运应该是指没有变化；四衰运应该是指变弱；四旺运应该是指增强；
+
+## 工程设想
+尽量讲计算结果变为model；
+symbol的model只保存计算结果；
+引入store作为viewmodel；
+自动生成store、model；
 
 2023-10-25 待完成内容：
 历史列表增加用神，门类，备注；（完成）
@@ -42,3 +49,8 @@ samples, guidance on mobile development, and a full API reference.
 希望能借助具体的易经道理，将示意更清晰的展现出来。
 2024-02-20
 如何推演准确的时间？
+2024-07-10
+1.日志：原本有完整的单元测试，但是在讲工程从Objective-c迁移为dart的过程中，但愿测试无法对应新的工程，需要全部重建。
+因为是重建，没办法按照逻辑分解的方式从头编写测试用例，或者说我的工程已经找不到头了。这可真是很糟糕；
+单元测试不是应该和业务逻辑在一起吗？为什么会找不到头呢？大概从一开始我就是摸着石头过河的，所以就没有建立完整的业务逻辑列表；
+    1.1 问题：我是否需要考虑建立一个呢？

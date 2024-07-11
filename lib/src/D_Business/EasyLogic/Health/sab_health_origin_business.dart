@@ -2,6 +2,8 @@ import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_logic_row_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_logic_symbol_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_action_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_sum_addend_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_sum_target_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_symbol_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_outright_business.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/sab_day_model.dart';
@@ -367,26 +369,36 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     return bResult;
   }
 
-  double conversionRateAtRow(int nRow, EasyTypeEnum easyType) {
-    double fResult = 1.0;
+  SABOutModel conversionRateAtRow(int nRow, EasyTypeEnum easyType) {
+    SABOutModel outModel = SABOutModel(nRow:nRow,easyType:easyType);
+    outModel.outRight = symbolOutRightAtRow(nRow,easyType);
 
     //TODO:yangfu132转化率到底是多少
-    final symbolModel = logicModel().rowModelAtRow(nRow).symbolModel(easyType);
-    if (null != symbolModel) {
-      if (symbolModel.isEmpty()) {
-        fResult = 0.0;
-      } else {
-        if (rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove).isNotEmpty) {
-          //动卦中静爻的作用没有那么大
-          if (!wordsModel().isMovementAtRow(nRow)) {
-            fResult = 0.5;
-          } //else cont.
-        } //else cont.
-      } //else cont.
-    } else {
-      coLog(StackTrace.current, LogTypeEnum.error, "symbolModel is null");
+    double fResult = 0.0;
+    switch (outModel.outRight) {
+      case OutRightEnum.rightTypeNull: //0
+        break;
+      case OutRightEnum.rightTypeBroken: //1,日破
+        coLog(StackTrace.current, LogTypeEnum.error,
+            "outRight:$outModel.outRight");
+        break;
+      case OutRightEnum.rightTypeDayConflict: //2,日冲
+        coLog(StackTrace.current, LogTypeEnum.error,
+            "outRight:$outModel.outRight");
+        break;
+      case OutRightEnum.rightTypeMove: //3,动
+        fResult = 1.0;
+        break;
+      case OutRightEnum.rightTypeStatic: //4,静
+        break;
+      case OutRightEnum.rightTypeEmpty: //5,空
+        break;
+      case OutRightEnum.rightTypeHide: //6,伏神
+        break;
+      default:
+        coLog(StackTrace.current, LogTypeEnum.error,
+            "outRight:$outModel.outRight");
     }
-
     /*******************************************
         虽然这段代码是废话，因为临是不影响输出的；
         但是放在这里可以提醒自己不要忘记；
@@ -398,7 +410,9 @@ class SABHealthOriginBusiness extends SABLogBusiness {
         fResult = 1.0;
         //else cont.
      *******************************************/
-    return fResult;
+    outModel.conversionRate = fResult;
+
+    return outModel;
   }
 
   ///`防御值与防御权`//////////////////////////////////////////////////////
@@ -419,26 +433,31 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     return 100.0;
   }
 
-  double symbolDefensiveAtRow(int nRow, EasyTypeEnum easyType) {
+  SABDefensiveModel symbolDefensiveAtRow(int nRow, EasyTypeEnum easyType) {
     /*
      防御值为0到1之间的数值，
      克：1代表完全不受别爻克，0为完全受克;目前只有0和1，还没有见到两者之间的数字呢。
      生：防御值不影响生
      */
-
+    SABDefensiveModel defensiveModel = SABDefensiveModel(nRow:nRow,easyType:easyType);
     double bResult = 0.0;
     final symbolModel = logicModel().rowModelAtRow(nRow).symbolModel(easyType);
     if (null != symbolModel) {
       if (EasyTypeEnum.to != easyType) {
         if (logicModel().isOnMonth(nRow, easyType)) {
+          defensiveModel.isOnMonth = true;
           bResult = globalMaxDefensive;
         } else if (logicModel().isOnDay(nRow, easyType)) {
+          defensiveModel.isOnDay = true;
           bResult = globalMaxDefensive;
         } else if (symbolModel.isEmpty()) {
+          defensiveModel.isEmpty = true;
           bResult = globalMaxDefensive;
         } else if (logicModel().isMonthPair(nRow, easyType)) {
+          defensiveModel.isMonthPair = true;
           bResult = globalMaxDefensive;
         } else if (logicModel().isDayPair(nRow, easyType)) {
+          defensiveModel.isDayPair = true;
           bResult = globalMaxDefensive;
         } //else cont.
       } else {
@@ -447,8 +466,8 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
     }
-
-    return bResult;
+    defensiveModel.defensive = bResult;
+    return defensiveModel;
   }
 
   ///`加载函数`//////////////////////////////////////////////////////
@@ -467,9 +486,11 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     SABHealthDiagramsModel diagrams,
   ) {
     const easyType = EasyTypeEnum.from;
-    final initModel = SABHealthActionModel(easyType:easyType,
+    final initModel = SABHealthActionModel(nActionType:ActionTypeEnum.init,
+        easyType:easyType,
         nRow:intRow,
-        doubleHealth:symbolBasicHealthAtRow(intRow, easyType));
+        doubleHealth:symbolBasicHealthAtRow(intRow, easyType),
+        sumActionList:[]);
     return SABHealthSymbolModel(
         critical: healthCriticalValue(),
         initModel: initModel,
@@ -482,9 +503,12 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     SABHealthDiagramsModel diagrams,
   ) {
     const easyType = EasyTypeEnum.to;
-    final initModel = SABHealthActionModel(easyType:easyType,
+    final initModel = SABHealthActionModel(nActionType:ActionTypeEnum.init,
+        easyType:easyType,
         nRow:intRow,
-        doubleHealth:symbolBasicHealthAtRow(intRow, easyType));
+        doubleHealth:symbolBasicHealthAtRow(intRow, easyType),
+        sumActionList:[]
+    );
     return SABHealthSymbolModel(
         critical: healthCriticalValue(),
         initModel: initModel,
@@ -496,9 +520,11 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     SABHealthDiagramsModel diagrams,
   ) {
     const easyType = EasyTypeEnum.hide;
-    final initModel = SABHealthActionModel(easyType:easyType,
+    final initModel = SABHealthActionModel(nActionType:ActionTypeEnum.init,
+        easyType:easyType,
         nRow:intRow,
-        doubleHealth:symbolBasicHealthAtRow(intRow, easyType));
+        doubleHealth:symbolBasicHealthAtRow(intRow, easyType),
+        sumActionList:[]);
     return SABHealthSymbolModel(
         critical: healthCriticalValue(),
         initModel: initModel,

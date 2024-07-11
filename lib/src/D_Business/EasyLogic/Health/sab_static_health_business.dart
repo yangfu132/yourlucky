@@ -1,6 +1,7 @@
 import 'package:your_lucky/src/D_Business/Base/sab_base_business.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_action_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_sum_action_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_symbol_model.dart';
 
 import '../../../A_Context/sac_context.dart';
@@ -28,9 +29,11 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
         if (bHasBeginStatic) {
           double doubleHealth = calculateHealthOfStaticRightRow(
               tempHealthModel, nRow, EasyTypeEnum.from);
-          SABHealthActionModel actionModel = SABHealthActionModel(nRow:nRow,
+          SABHealthActionModel actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
+            nRow:nRow,
             easyType: EasyTypeEnum.from,
             doubleHealth: doubleHealth,
+            sumActionList: [],
           );
           tempHealthModel.updateHealthAtRow(actionModel);
           // tempHealthModel.updateHealthAtRow(nRow, doubleHealth);
@@ -53,12 +56,13 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
       if (tempHealthModel.diagramsModel.isUnFinish(effectsItem)) {
         calculateHealthOfStaticRightRow(tempHealthModel, effectsItem, easyType);
       } //else cont.
-
-      double adjustHealth = moveBusiness().adjustHealthAtRow(
+      SABHealthSumActionModel sumActionModel = moveBusiness().adjustHealthAtRow(
           tempHealthModel, nRow, easyType, effectsItem, easyType);
-      SABHealthActionModel actionModel = SABHealthActionModel(nRow:nRow,
+      SABHealthActionModel actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.sum,
+        nRow:nRow,
         easyType: EasyTypeEnum.from,
-        doubleHealth: adjustHealth,
+        doubleHealth: sumActionModel.getAddendValue(),
+          sumActionList:[sumActionModel]
       );
       tempHealthModel.sumHealthAtRow(actionModel);
     } //end for
@@ -114,10 +118,12 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
         moveBusiness().calculateHealthOfMoveRightRow(
             tempHealthModel, itemEffects, easyType);
       } else {
-        basicHealth += moveBusiness().adjustHealthAtRow(
+        SABHealthSumActionModel sumActionModel = moveBusiness().adjustHealthAtRow(
             tempHealthModel, nRow, easyType, itemEffects, easyType);
-      } //endi
-    } //endf
+        sumActionModel.targetModel.health = basicHealth;
+        basicHealth = sumActionModel.getResult();
+      } //end if
+    } //end for
 
     return basicHealth;
   }

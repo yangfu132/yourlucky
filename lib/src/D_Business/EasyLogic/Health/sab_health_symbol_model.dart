@@ -36,9 +36,11 @@ class SABHealthSymbolModel extends SABBaseModel {
       : this(
     critical: json['critical'] as double,
     outRight: json['outRight']! as OutRightEnum,
-      initModel:SABHealthActionModel(doubleHealth: 0,
-        easyType: EasyTypeEnum.typeNull,
-          nRow: globalRowInvalid),
+      initModel:SABHealthActionModel(nActionType:ActionTypeEnum.fromJson,
+          doubleHealth: 0,
+          easyType: EasyTypeEnum.typeNull,
+          nRow: globalRowInvalid,
+          sumActionList:[]),
   );
 
   @override Map<String, Object?> toJson() {

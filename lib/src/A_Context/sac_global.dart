@@ -13,6 +13,14 @@ enum EasyTypeEnum {
   hide, //伏卦
 }
 
+enum ActionTypeEnum {
+  typeNull,
+  fromJson,
+  init,
+  update,
+  sum,
+}
+
 enum LogTypeEnum {
   typeNull,
   error, //错误
@@ -36,26 +44,29 @@ enum MonthConflictEnum {
   conflictNull,
   conflictNO, //非月破
   conflictBroken, //月破
-  conflictOnDay, //临日柱，不破
-  conflictMove, //动爻，不破
-  conflictDayBorn, //日生，不破
-  conflictMoveBorn, //动生，不破
+  conflictOnDay, //冲临日柱，不破
+  conflictMove, //冲动爻，不破
+  conflictDayBorn, //冲日生，不破
+  conflictMoveBorn, //冲动生，不破
 }
 
+//TODO：https://astro.sohu.com/a/772079859_100084723
+//这里说的不对，无论是否临日，日生、日和、有气、有根，最后都应该归结为强弱，应该变为可以计算的值；
 enum DayConflictEnum {
   conflictNull,
   conflictNO, //非日冲
   conflictYES, //日冲
-  conflictBROKEN, //日冲，弱而破
-  conflictSAN, //旺相冲之不散，衰弱冲之则散,TODO:yangfu132程序中都是按照散写的
+  conflictBROKEN, //静爻，日冲，弱而破
+  conflictSAN, //动爻， 旺相冲之不散，衰弱冲之则散,
   conflictBackMove, //日冲，强而暗动
 }
 
 //输出权利：有权对其他爻发生作用的权利
+//TODO：增加月破
 enum OutRightEnum {
   rightTypeNull, //0
-  rightTypeNull1, //1,占位符，无意义
-  rightTypeDayConflict, //2,日冲
+  rightTypeBroken, //1,静爻冲破或者动爻冲散
+  rightTypeDayConflict, //2,日冲，//此值为中间态，最后态为：强则变为rightTypeMove，弱则变为rightTypeBroken
   rightTypeMove, //3,动
   rightTypeStatic, //4,静
   rightTypeEmpty, //5,空
