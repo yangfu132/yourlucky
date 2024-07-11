@@ -51,8 +51,8 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
       int nRow,
       EasyTypeEnum easyType) {
 
-    List arrayEffectsInLevel4 = effectingArrayAtLevel4Row(nRow, easyType);
-    for (int effectsItem in arrayEffectsInLevel4) {
+    List arrayEffectsInStaticRight= effectingArrayAtStaticRightRow(nRow, easyType);
+    for (int effectsItem in arrayEffectsInStaticRight) {
       if (tempHealthModel.diagramsModel.isUnFinish(effectsItem)) {
         calculateHealthOfStaticRightRow(tempHealthModel, effectsItem, easyType);
       } //else cont.
@@ -77,7 +77,7 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
         originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeStatic);
     if (arrayLevel.isNotEmpty) {
       for (int item in arrayLevel) {
-        List arrayEffects = effectingArrayAtLevel4Row(item, EasyTypeEnum.from);
+        List arrayEffects = effectingArrayAtStaticRightRow(item, EasyTypeEnum.from);
 
         if (arrayEffects.isEmpty) {
           //这个分支是对的，下面那个分支可能永远也不会走到。因为在一个Level中，总会有不受同级生克的；而上一级对本级的生克已经计算完成。
@@ -105,30 +105,30 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
     return bHasBegin;
   }
 
-  double baseHealthAtLevel4Row(
-      SABHealthModel tempHealthModel, int nRow, EasyTypeEnum easyType) {
-    double basicHealth =
-        originBusiness().symbolBasicHealthAtRow(nRow, easyType);
+  // double baseHealthAtStaticRightRow(
+  //     SABHealthModel tempHealthModel, int nRow, EasyTypeEnum easyType) {
+  //   double basicHealth =
+  //       originBusiness().symbolBasicHealthAtRow(nRow, easyType);
+  //
+  //   List arrayEffectsInMoveRight = moveBusiness()
+  //       .effectingArrayAtMoveRightRow(tempHealthModel, nRow, easyType);
+  //
+  //   for (int itemEffects in arrayEffectsInMoveRight) {
+  //     if (tempHealthModel.diagramsModel.isUnFinish(itemEffects)) {
+  //       moveBusiness().calculateHealthOfMoveRightRow(
+  //           tempHealthModel, itemEffects, easyType);
+  //     } else {
+  //       SABHealthSumActionModel sumActionModel = moveBusiness().adjustHealthAtRow(
+  //           tempHealthModel, nRow, easyType, itemEffects, easyType);
+  //       sumActionModel.targetModel.health = basicHealth;
+  //       basicHealth = sumActionModel.getResult();
+  //     } //end if
+  //   } //end for
+  //
+  //   return basicHealth;
+  // }
 
-    List arrayEffectsInLevel3 = moveBusiness()
-        .effectingArrayAtMoveRightRow(tempHealthModel, nRow, easyType);
-
-    for (int itemEffects in arrayEffectsInLevel3) {
-      if (tempHealthModel.diagramsModel.isUnFinish(itemEffects)) {
-        moveBusiness().calculateHealthOfMoveRightRow(
-            tempHealthModel, itemEffects, easyType);
-      } else {
-        SABHealthSumActionModel sumActionModel = moveBusiness().adjustHealthAtRow(
-            tempHealthModel, nRow, easyType, itemEffects, easyType);
-        sumActionModel.targetModel.health = basicHealth;
-        basicHealth = sumActionModel.getResult();
-      } //end if
-    } //end for
-
-    return basicHealth;
-  }
-
-  bool isEffectingLevel4AtRow(int nEffectingRow, EasyTypeEnum easyType) {
+  bool isEffectingStaticRightAtRow(int nEffectingRow, EasyTypeEnum easyType) {
     bool bResult = false;
 
     if (OutRightEnum.rightTypeStatic ==
@@ -140,7 +140,7 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
     return bResult;
   }
 
-  List effectingArrayAtLevel4Row(int nRow, EasyTypeEnum easyType) {
+  List effectingArrayAtStaticRightRow(int nRow, EasyTypeEnum easyType) {
     List arrayEffects = [];
     String basicEarth = logicModel().getSymbolEarth(nRow, easyType);
 
@@ -149,7 +149,7 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
 
     for (int itemRow in levelArray) {
       if (nRow != itemRow) {
-        if (isEffectingLevel4AtRow(itemRow, easyType)) {
+        if (isEffectingStaticRightAtRow(itemRow, easyType)) {
           if (moveBusiness().isEffectingEarth(basicEarth, itemRow)) {
             arrayEffects.add(itemRow);
           } //else cont.

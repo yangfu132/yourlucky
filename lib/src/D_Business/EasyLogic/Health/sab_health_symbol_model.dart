@@ -12,6 +12,8 @@ class SABHealthSymbolModel extends SABBaseModel {
   }) {
     setAction(initModel);
   }
+  List<SABHealthActionModel> actionList = [];
+
   final double critical;
   double _doubleHealth = 0;
   OutRightEnum outRight;
@@ -21,14 +23,15 @@ class SABHealthSymbolModel extends SABBaseModel {
     return _doubleHealth;
   }
 
-
   void sumAction(SABHealthActionModel actionModel) {
     _doubleHealth = _doubleHealth + actionModel.doubleHealth;
+    actionList.add(actionModel);
     SACContext.addBoard("");
   }
 
   void setAction(SABHealthActionModel actionModel) {
     _doubleHealth = actionModel.doubleHealth;
+    actionList.add(actionModel);
     SACContext.addBoard("");
   }
 

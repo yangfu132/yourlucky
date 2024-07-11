@@ -369,9 +369,13 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     return bResult;
   }
 
-  SABOutModel conversionRateAtRow(int nRow, EasyTypeEnum easyType) {
-    SABOutModel outModel = SABOutModel(nRow:nRow,easyType:easyType);
-    outModel.outRight = symbolOutRightAtRow(nRow,easyType);
+  SABOutModel conversionRateAtRow(
+      int targetRow,
+      int nRateRow,
+      EasyTypeEnum rateEasyType) {
+
+    SABOutModel outModel = SABOutModel(nRow:nRateRow,easyType:rateEasyType);
+    outModel.outRight = symbolOutRightAtRow(nRateRow,rateEasyType);
 
     //TODO:yangfu132转化率到底是多少
     double fResult = 0.0;
@@ -394,6 +398,14 @@ class SABHealthOriginBusiness extends SABLogBusiness {
       case OutRightEnum.rightTypeEmpty: //5,空
         break;
       case OutRightEnum.rightTypeHide: //6,伏神
+        break;
+      case OutRightEnum.rightTypeMoveTo: //6,伏神
+        if (targetRow == nRateRow) {
+          fResult = 1.0;
+        }  else {
+          coLog(StackTrace.current, LogTypeEnum.error,
+              "targetRow:$targetRow, nRow:$nRateRow");
+        }
         break;
       default:
         coLog(StackTrace.current, LogTypeEnum.error,

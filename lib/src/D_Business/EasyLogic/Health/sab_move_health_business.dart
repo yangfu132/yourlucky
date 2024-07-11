@@ -28,33 +28,19 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
     for (int nRow in listRow) {
       final fromSymbol = healthModel.rowModelAtRow(nRow).fromSymbol;
       if (healthModel.diagramsModel.isUnFinish(nRow)) {
-        double moveHealth = fromSymbol.getHealthAction();
         if (hasBegin) {
-          moveHealth = calculateHealthOfMoveRightRow(
-            healthModel,
-            nRow,
-            EasyTypeEnum.from,
-          );
+          calculateHealthOfMoveRightRow(healthModel, nRow, EasyTypeEnum.from);
         } else {
           if (wordsModel().isMovementAtRow(nRow)) {
-            moveHealth = moveSymbolBasicHealthAtRow(healthModel, nRow);
-          } else {}
+            moveSymbolBasicHealthAtRow(healthModel, nRow);
+          } //else {}
         } //end if
-        SABHealthActionModel actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
-          nRow:nRow,
-          easyType: EasyTypeEnum.from,
-          doubleHealth: moveHealth,
-          sumActionList:[],
-        );
-        healthModel.updateHealthAtRow(actionModel);
-        healthModel.diagramsModel.addToFinishArray(nRow);
       } //else {}
     } //end for
   }
 
-  //calculateHealthOfAllMoveRightRow Move
-  
-  double calculateHealthOfMoveRightRow(
+  //calculateHealthOfAllMoveRightRow
+  SABHealthActionModel calculateHealthOfMoveRightRow(
       SABHealthModel tempHealthModel, int nRow, EasyTypeEnum easyType) {
     double moveHealth = 0;
     if (wordsModel().isMovementAtRow(nRow)) {
@@ -87,28 +73,17 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
     );
     tempHealthModel.updateHealthAtRow(actionModel);
     tempHealthModel.diagramsModel.addToFinishArray(nRow);
-    return moveHealth;
+    return actionModel;
   }
 
   SABHealthSumActionModel adjustHealthAtRow(SABHealthModel tempHealthModel,
-       int basicRow,
-        EasyTypeEnum baseEasyType,
-       int effectsRow,
-       EasyTypeEnum effectsEasyType) {
+      int basicRow,
+      EasyTypeEnum baseEasyType,
+      int effectsRow,
+      EasyTypeEnum effectsEasyType) {
 
      SABDefensiveModel basicDefenseModel =
      originBusiness().symbolDefensiveAtRow(basicRow, baseEasyType);
-
-     SABOutModel outModel = symbolOutAtRow(tempHealthModel, effectsRow, effectsEasyType);
-
-     String basicEarth =
-     logicModel().getSymbolEarth(basicRow, EasyTypeEnum.from);
-
-     String effectsEarth =
-     logicModel().getSymbolEarth(effectsRow, effectsEasyType);
-     bool isEarthAddendBornTarget = _branchBusiness.isEarthBorn(effectsEarth, basicEarth);
-     bool isEarthAddendRestrictsTarget = _branchBusiness.isEarthRestricts(effectsEarth, basicEarth);
-
      SABHealthSumTargetModel targetModel = SABHealthSumTargetModel(
        nRow: basicRow,
        easyType: baseEasyType,
@@ -116,6 +91,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
        defenseModel:basicDefenseModel,
      );
 
+     SABOutModel outModel = symbolOutAtRow(tempHealthModel,basicRow, effectsRow, effectsEasyType);
      SABHealthSumAddendModel addendModel = SABHealthSumAddendModel(
        nRow: effectsRow,
        easyType: effectsEasyType,
@@ -123,6 +99,10 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
        outModel: outModel,
      );
 
+     String basicEarth = logicModel().getSymbolEarth(basicRow, EasyTypeEnum.from);
+     String effectsEarth = logicModel().getSymbolEarth(effectsRow, effectsEasyType);
+     bool isEarthAddendBornTarget = _branchBusiness.isEarthBorn(effectsEarth, basicEarth);
+     bool isEarthAddendRestrictsTarget = _branchBusiness.isEarthRestricts(effectsEarth, basicEarth);
      SABHealthSumActionModel  sumModel = SABHealthSumActionModel(
        targetModel:targetModel,
        addendModel:addendModel,
@@ -135,20 +115,21 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
 
   SABOutModel symbolOutAtRow(
       SABHealthModel tempHealthModel,
-      int nRow,
-      EasyTypeEnum easyType) {
+      int targetRow,
+      int nOutRow,
+      EasyTypeEnum outEasyType) {
 
-    SABOutModel outModel = originBusiness().conversionRateAtRow(nRow, easyType);
-    if (EasyTypeEnum.to == easyType) {
-      outModel.health = symbolBasicHealthAtRow(nRow);
-    } else if (EasyTypeEnum.from == easyType) {
-      if (!tempHealthModel.diagramsModel.isUnFinish(nRow)) {
-        outModel.health = tempHealthModel.symbolHealthAtRow(nRow, easyType);
+    SABOutModel outModel = originBusiness().conversionRateAtRow(targetRow,nOutRow, outEasyType);
+    if (EasyTypeEnum.to == outEasyType) {
+      outModel.health = symbolBasicHealthAtRow(nOutRow);
+    } else if (EasyTypeEnum.from == outEasyType) {
+      if (!tempHealthModel.diagramsModel.isUnFinish(nOutRow)) {
+        outModel.health = tempHealthModel.symbolHealthAtRow(nOutRow, outEasyType);
       } else {
         coLog(StackTrace.current, LogTypeEnum.remark, "这种情况如何处理？");
       }
-    } else if (EasyTypeEnum.hide == easyType) {
-      outModel.health = symbolBasicHealthAtRow(nRow);
+    } else if (EasyTypeEnum.hide == outEasyType) {
+      outModel.health = symbolBasicHealthAtRow(nOutRow);
     } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
     }
@@ -165,20 +146,25 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
 
   ///动爻的基本值----------------------------------------------
   // 基础值加上变爻的生克
-// 基础值加上变爻的生克
   double moveSymbolBasicHealthAtRow(SABHealthModel tempHealthModel, int nRow) {
-    double fResult = -100.0;
-
-    fResult = originBusiness().symbolBasicHealthAtRow(nRow, EasyTypeEnum.from);
-
+    double fResult = originBusiness().symbolBasicHealthAtRow(nRow, EasyTypeEnum.from);
+    List<SABHealthSumActionModel> sumActionList = <SABHealthSumActionModel>[];
     if (isSymbolEffectableAtRow(nRow, EasyTypeEnum.from)) {
       SABHealthSumActionModel sumActionModel = adjustHealthAtRow(
           tempHealthModel, nRow, EasyTypeEnum.from, nRow, EasyTypeEnum.to);
       sumActionModel.targetModel.health = fResult;
       fResult = sumActionModel.getResult();
-    }
-    //else cont.
+      sumActionList.add(sumActionModel);
+    } //else cont.
 
+    SABHealthActionModel actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
+      nRow:nRow,
+      easyType: EasyTypeEnum.from,
+      doubleHealth: fResult,
+      sumActionList:sumActionList,
+    );
+    tempHealthModel.updateHealthAtRow(actionModel);
+    tempHealthModel.diagramsModel.addToFinishArray(nRow);
     return fResult;
   }
 
@@ -212,19 +198,19 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
   }
 
   List effectingArrayAtMoveRightRow(
-      SABHealthModel tempHealthModel, int nLevel3Row, EasyTypeEnum easyType) {
+      SABHealthModel tempHealthModel, int nMoveRightRow, EasyTypeEnum easyType) {
     List arrayEffects = [];
 
     ///TODO:yangfu132为了找到分析的开头，假设日建或者月建是不受其他爻生克的;
-    if (logicModel().isOnDay(nLevel3Row, easyType) ||
-        logicModel().isOnMonth(nLevel3Row, easyType)) {
-      String basicEarth = logicModel().getSymbolEarth(nLevel3Row, easyType);
-      List level3Array =
+    if (logicModel().isOnDay(nMoveRightRow, easyType) ||
+        logicModel().isOnMonth(nMoveRightRow, easyType)) {
+      String basicEarth = logicModel().getSymbolEarth(nMoveRightRow, easyType);
+      List moveRightArray =
           originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove);
 
-      for (int itemRow in level3Array) {
-        if (nLevel3Row != itemRow) {
-          if (isEffectingLevel3AtRow(tempHealthModel, itemRow, easyType)) {
+      for (int itemRow in moveRightArray) {
+        if (nMoveRightRow != itemRow) {
+          if (isEffectingMoveRightAtRow(tempHealthModel, itemRow, easyType)) {
             if (isEffectingEarth(basicEarth, itemRow)) {
               arrayEffects.add(itemRow);
             } //else cont.
@@ -269,7 +255,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
     return arrayEffects;
   }
 
-  bool isEffectingLevel3AtRow(SABHealthModel tempHealthModel, int nEffectingRow,
+  bool isEffectingMoveRightAtRow(SABHealthModel tempHealthModel, int nEffectingRow,
       EasyTypeEnum easyType) {
     bool bResult = false;
 

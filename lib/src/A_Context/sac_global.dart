@@ -71,6 +71,7 @@ enum OutRightEnum {
   rightTypeStatic, //4,静
   rightTypeEmpty, //5,空
   rightTypeHide, //6,伏神
+  rightTypeMoveTo, //7,变爻
 }
 
 //note：代表无效的爻索引数，当未被复制的时候使用；

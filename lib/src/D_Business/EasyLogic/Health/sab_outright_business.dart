@@ -50,7 +50,7 @@ class SABOutRightBusiness extends SABBaseBusiness {
   }
 
   OutRightEnum toOutRightAtRow(int nRow, EasyTypeEnum easyType) {
-    return OutRightEnum.rightTypeNull;
+    return OutRightEnum.rightTypeMoveTo;
   }
 
   OutRightEnum fromOutRightAtRow(int nRow, EasyTypeEnum easyType) {
