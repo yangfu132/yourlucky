@@ -25,14 +25,11 @@ class SABHealthSumActionModel extends SABBaseModel {
     double fHealth = 0;;
     if (isEarthAddendBornTarget) {
       fHealth = addendModel.outModel.getOut();
-    }
-    //else cont.
+    } //else cont.
 
     if (isEarthAddendRestrictsTarget) {
       fHealth = -1 * getAffectRate() * addendModel.outModel.getOut();
-    }
-    //else cont.
-
+    } //else cont.
     return fHealth;
   }
 

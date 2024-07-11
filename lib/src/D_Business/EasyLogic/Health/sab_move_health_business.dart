@@ -52,7 +52,8 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
     } //end for
   }
 
-  //calculateHealthOfAllMoveRightRow
+  //calculateHealthOfAllMoveRightRow Move
+  
   double calculateHealthOfMoveRightRow(
       SABHealthModel tempHealthModel, int nRow, EasyTypeEnum easyType) {
     double moveHealth = 0;
@@ -62,22 +63,12 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
       moveHealth = originBusiness().symbolBasicHealthAtRow(nRow, easyType);
     } //end if
 
-    List arrayEffects =
-        effectingArrayAtLevel3Row(tempHealthModel, nRow, easyType);
+    List arrayEffects = effectingArrayAtMoveRightRow(tempHealthModel, nRow, easyType);
 
+    List<SABHealthSumActionModel> sumActionList = <SABHealthSumActionModel>[];
     for (int effectsItem in arrayEffects) {
       if (tempHealthModel.diagramsModel.isUnFinish(effectsItem)) {
-        double effectHealth = calculateHealthOfMoveRightRow(
-            tempHealthModel, effectsItem, easyType);
-        SABHealthActionModel actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
-          nRow:effectsItem,
-          easyType: EasyTypeEnum.from,
-          doubleHealth: effectHealth,
-            sumActionList:[]
-        );
-        tempHealthModel.updateHealthAtRow(actionModel);
-        // tempHealthModel.updateHealthAtRow(item, moveHealth);
-        tempHealthModel.diagramsModel.addToFinishArray(effectsItem);
+        calculateHealthOfMoveRightRow(tempHealthModel, effectsItem, easyType);
       }
       //else cont.
 
@@ -85,7 +76,17 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
           tempHealthModel, nRow, easyType, effectsItem, easyType);
       sumActionModel.targetModel.health = moveHealth;
       moveHealth = sumActionModel.getResult();
+      arrayEffects.add(sumActionModel);
     } //end for
+
+    SABHealthActionModel actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
+        nRow:nRow,
+        easyType: easyType,
+        doubleHealth: moveHealth,
+        sumActionList:sumActionList
+    );
+    tempHealthModel.updateHealthAtRow(actionModel);
+    tempHealthModel.diagramsModel.addToFinishArray(nRow);
     return moveHealth;
   }
 
@@ -210,7 +211,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
     return bResult;
   }
 
-  List effectingArrayAtLevel3Row(
+  List effectingArrayAtMoveRightRow(
       SABHealthModel tempHealthModel, int nLevel3Row, EasyTypeEnum easyType) {
     List arrayEffects = [];
 
@@ -292,7 +293,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
         originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove);
     if (arrayMoveRightRow.isNotEmpty) {
       for (int intItem in arrayMoveRightRow) {
-        List arrayEffects = effectingArrayAtLevel3Row(
+        List arrayEffects = effectingArrayAtMoveRightRow(
             tempHealthModel, intItem, EasyTypeEnum.from);
 
         if (arrayEffects.isEmpty) {

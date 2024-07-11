@@ -111,7 +111,7 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
         originBusiness().symbolBasicHealthAtRow(nRow, easyType);
 
     List arrayEffectsInLevel3 = moveBusiness()
-        .effectingArrayAtLevel3Row(tempHealthModel, nRow, easyType);
+        .effectingArrayAtMoveRightRow(tempHealthModel, nRow, easyType);
 
     for (int itemEffects in arrayEffectsInLevel3) {
       if (tempHealthModel.diagramsModel.isUnFinish(itemEffects)) {
