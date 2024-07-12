@@ -2,16 +2,11 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_route_title_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/sau_button_model.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 
-typedef ContextCallback = void Function(BuildContext context,VoidCallback refreshAction);
-class SAUDetailTitleModel extends SABBaseModel {
-  SAUDetailTitleModel({required this.title,required this.actionTitle, required this.tapTitle});
-  final String title;
-  final String actionTitle;
-  final ContextCallback tapTitle;
-}
+
 
 class SAUDetailCardModel extends SABBaseModel {
   SAUDetailCardModel({required this.title,required this.resultList, required this.tapTitle});
@@ -22,7 +17,7 @@ class SAUDetailCardModel extends SABBaseModel {
 
 class SAUDetailRouteModel extends SABBaseModel {
   SAUDetailRouteModel({required this.titleModel,required this.cardList,required this.buttonRoles});
-  final SAUDetailTitleModel titleModel;
+  final SAURouteTitleModel titleModel;
   final List<SAUDetailCardModel> cardList;
   final List<SAUButtonModel> buttonRoles;
   SAUDetailCardModel getCardModel(int index) {
@@ -35,7 +30,7 @@ class SAUDetailRouteModel extends SABBaseModel {
 }
 
 SAUDetailRouteModel loadingDetailRouteModel(String title) {
-  SAUDetailTitleModel titleModel = SAUDetailTitleModel(title:title,
+  SAURouteTitleModel titleModel = SAURouteTitleModel(title:title,
       actionTitle: '刷新',tapTitle:(BuildContext context,VoidCallback refreshAction){});
   SAUDetailRouteModel data = SAUDetailRouteModel(titleModel:titleModel,
       cardList:[],

@@ -16,9 +16,7 @@ class SABWordsSymbolModel extends SABBaseModel {
     required this.stringAnimal,
     required this.stringDiagrams,
     required this.desOfGoalOrLife,
-  }) {
-    SACContext.addBoard(toJson().toString());
-  }
+  });
   final int intRow;
   final EasyTypeEnum easyType;
   final String symbolName;

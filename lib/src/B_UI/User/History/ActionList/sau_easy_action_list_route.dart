@@ -39,7 +39,18 @@ class SAUEasyActionListRouteState extends State<SAUEasyActionListRoute> {
     return Scaffold(
       appBar: AppBar(
         leading: backIconButton(context),
-        title: Text(widget.store.routeTitle),
+        title: Text(widget.store.titleModel().title),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              widget.store.titleModel().tapTitle(context,(){
+                setState(() {});
+              });
+            },
+            style: SACContext.textButtonStyle(),
+            child: Text(widget.store.titleModel().actionTitle),
+          ),
+        ],
       ),
       body: _buildBody(context),
     );

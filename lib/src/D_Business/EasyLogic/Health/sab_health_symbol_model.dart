@@ -26,13 +26,11 @@ class SABHealthSymbolModel extends SABBaseModel {
   void sumAction(SABHealthActionModel actionModel) {
     _doubleHealth = _doubleHealth + actionModel.doubleHealth;
     actionList.add(actionModel);
-    SACContext.addBoard("");
   }
 
   void setAction(SABHealthActionModel actionModel) {
     _doubleHealth = actionModel.doubleHealth;
     actionList.add(actionModel);
-    SACContext.addBoard("");
   }
 
   SABHealthSymbolModel.fromJson(Map<String, Object?> json)

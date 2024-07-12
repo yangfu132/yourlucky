@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_route_title_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route_model.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_model.dart';
@@ -20,9 +21,10 @@ class SAUDetailRouteStoreModel {
   SAUDetailRouteModel data = loadingDetailRouteModel('');
 
   SAUDetailRouteModel requestData() {
-
-    SAUDetailTitleModel titleModel = SAUDetailTitleModel(title:resultTitle(),
-        actionTitle: resultActionTitle(),tapTitle:resultAction);
+    final titleModel = SAURouteTitleModel.titleFromDetailModel(inputDetailModel,
+        intIndex,
+        easyType,
+        resultAction);
     data = SAUDetailRouteModel(titleModel:titleModel,
         cardList:[
           baseInfoCard(),
@@ -33,35 +35,6 @@ class SAUDetailRouteStoreModel {
     return data;
   }
 
-
-  String resultTitle() {
-    if (0 == intIndex) {
-      return inputDetailModel.digitModel().strStrategy;
-    } else if (globalRowDay == intIndex) {
-      return inputDetailModel.dayModel.strSymbolName;
-    } else if (globalRowMonth == intIndex) {
-      return inputDetailModel.monthModel.strSymbolName;
-    } else {
-      SABRowDetailModel rowModel =
-      inputDetailModel.rowModelAtRow(intIndex - 1);
-      String result = 'type：';
-      switch (easyType) {
-        case EasyTypeEnum.from:
-          result = '本：';
-          break;
-        case EasyTypeEnum.to:
-          result = '变：';
-          break;
-        case EasyTypeEnum.hide:
-          result = '伏：';
-          break;
-        default:
-          break;
-      }
-      return result + rowModel.getSymbolName(easyType);
-    }
-  }
-
   void resultAction(BuildContext context, VoidCallback refreshAction) {
     if (0 == intIndex) {
       gotoTextField(context);
@@ -70,14 +43,6 @@ class SAUDetailRouteStoreModel {
       inputDetailModel.rowModelAtRow(intIndex - 1);
       easyType = rowModel.getNextEasyType(easyType);
       refreshAction();
-    }
-  }
-
-  String resultActionTitle() {
-    if (0 == intIndex) {
-      return '备注';
-    } else {
-      return '切换';
     }
   }
 

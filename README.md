@@ -28,6 +28,8 @@ samples, guidance on mobile development, and a full API reference.
 symbol的model只保存计算结果；
 引入store作为viewmodel；
 自动生成store、model；
+为Android Studio开发一个插件，自动生成store
+UI的自动化与控件化，自动化只能提供某种约束，让开发人员按照一定的模式创建文件，控件化也是一种约束，让开发人员按照一定的模式使用控件；
 
 2023-10-25 待完成内容：
 历史列表增加用神，门类，备注；（完成）

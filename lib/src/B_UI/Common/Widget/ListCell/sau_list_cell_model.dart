@@ -78,7 +78,7 @@ class SAUListCellModel {
     SAUButtonModel deleteButton = SAUButtonModel(title: '删除', code: 'delete');
     SAUButtonModel annotate = SAUButtonModel(title: "批注", code: "annotate");
     SAUButtonModel actionList = SAUButtonModel(title: "Action", code: "actionList");
-    cellModel.buttons = [deleteButton, annotate];
+    cellModel.buttons = [deleteButton, annotate,actionList];
     return cellModel;
   }
 
@@ -104,7 +104,7 @@ class SAUListCellModel {
 
   static SAUListCellModel fromActionModel(SABHealthActionModel model) {
     SAUListCellModel cellModel = SAUListCellModel(
-        title: "stringTime", taskId: "taskId");
+        title: model.timeDes, taskId: "taskId");
     var contents = List<SAUListCellItemModel>.empty(growable: true);
     cellModel.contents = contents;
     contents.add(SAUListCellItemModel(title: 'ActionType', content: model.getActionTypeName()));
