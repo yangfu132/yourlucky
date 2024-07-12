@@ -5,6 +5,8 @@ import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route_store_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route_model.dart';
+import 'package:your_lucky/src/B_UI/User/History/ActionList/sau_easy_action_list_route.dart';
+import 'package:your_lucky/src/B_UI/User/History/ActionList/sau_easy_action_list_route_store.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_model.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_row_detail_model.dart';
 
@@ -68,19 +70,9 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
                     title: Text(value['key']),
                     onTap: (){
                       if ('用神' == value['key']) {
-                        int symbolRow = widget.inputDetailModel.getUsefulDeity().intRow + 1;
-                        Navigator.push(context, MaterialPageRoute(builder: (context) {
-                          final store = SAUDetailRouteStoreModel(
-                              inputDetailModel:widget.inputDetailModel,
-                            intIndex: symbolRow,
-                            easyType: EasyTypeEnum.from
-                          );
-                          return SAUDetailRoute(store:store);
-                          // return SAUSubDetailRoute(
-                          //     widget.inputDetailModel,
-                          //     symbolRow,
-                          // );
-                        }));
+                        onUsefulDeityClicked();
+                      } else if ('计算信息' == value['key']) {
+                        onActionListTapped(context,widget.inputDetailModel);
                       }
                     },
                 ),
@@ -89,6 +81,33 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
             //return ListTile(title: Text(value['key']));
           }),
     );
+  }
+
+  void onUsefulDeityClicked(){
+    int symbolRow = widget.inputDetailModel.getUsefulDeity().intRow + 1;
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      final store = SAUDetailRouteStoreModel(
+          inputDetailModel:widget.inputDetailModel,
+          intIndex: symbolRow,
+          easyType: EasyTypeEnum.from
+      );
+      return SAUDetailRoute(store:store);
+      // return SAUSubDetailRoute(
+      //     widget.inputDetailModel,
+      //     symbolRow,
+      // );
+    }));
+  }
+
+  void onActionListTapped(BuildContext context, SABEasyDetailModel model){
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      SAUEasyActionListRouteStore store = SAUEasyActionListRouteStore(
+        inputDetailModel:model,
+        nRow:0,
+        easyType: EasyTypeEnum.from,
+      );
+      return SAUEasyActionListRoute(store:store);
+    }));
   }
 
   List<Map> resultList() {

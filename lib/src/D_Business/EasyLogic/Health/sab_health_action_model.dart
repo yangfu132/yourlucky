@@ -21,5 +21,9 @@ class SABHealthActionModel extends SABBaseModel {
   int? nAffectRow;
   double? conversionRate;
 
+  String getActionTypeName(){
+    return nActionType.name;
+  }
+
   final List<SABHealthSumActionModel> sumActionList;
 }

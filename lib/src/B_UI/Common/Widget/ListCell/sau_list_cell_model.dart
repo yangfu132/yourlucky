@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/sau_button_model.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_action_model.dart';
 
 import '../../../../D_Business/Develop/sab_develop_model.dart';
 
@@ -46,6 +47,16 @@ class SAUListCellModel {
       this.tips,
       this.carrierId});
 
+  static SAUListCellModel errorOutRangeCellModel(String message) {
+    SAUListCellModel cellModel = SAUListCellModel(title: 'Index Out Range', taskId: 'taskId');
+    var contents = List<SAUListCellItemModel>.empty(growable: true);
+    cellModel.contents = contents;
+    contents.add(SAUListCellItemModel(title: 'message', content: 'message'));
+    SAUButtonModel annotate = SAUButtonModel(title: "批注", code: "annotate");
+    cellModel.buttons = [annotate];
+    return cellModel;
+  }
+
   static SAUListCellModel fromEasyDigitModel(SABEasyDigitModel model) {
     SAUListCellModel cellModel = SAUListCellModel(
         title: model.stringTime, taskId: model.modelId.toString());
@@ -66,6 +77,7 @@ class SAUListCellModel {
 
     SAUButtonModel deleteButton = SAUButtonModel(title: '删除', code: 'delete');
     SAUButtonModel annotate = SAUButtonModel(title: "批注", code: "annotate");
+    SAUButtonModel actionList = SAUButtonModel(title: "Action", code: "actionList");
     cellModel.buttons = [deleteButton, annotate];
     return cellModel;
   }
@@ -87,6 +99,17 @@ class SAUListCellModel {
     SAUButtonModel upload = SAUButtonModel(title: "上传", code: "upload");
     SAUButtonModel removeUpload = SAUButtonModel(title: "移除上传", code: "removeUpload");
     cellModel.buttons = [deleteButton, annotate];
+    return cellModel;
+  }
+
+  static SAUListCellModel fromActionModel(SABHealthActionModel model) {
+    SAUListCellModel cellModel = SAUListCellModel(
+        title: "stringTime", taskId: "taskId");
+    var contents = List<SAUListCellItemModel>.empty(growable: true);
+    cellModel.contents = contents;
+    contents.add(SAUListCellItemModel(title: 'ActionType', content: model.getActionTypeName()));
+    SAUButtonModel annotate = SAUButtonModel(title: "批注", code: "annotate");
+    cellModel.buttons = [annotate];
     return cellModel;
   }
 }

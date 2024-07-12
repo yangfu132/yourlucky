@@ -2,6 +2,7 @@
 import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/sab_easy_health_logic_model.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/sab_easy_words_model.dart';
 import 'package:your_lucky/src/D_Business/Strategy/sab_useful_deity_model.dart';
@@ -37,17 +38,20 @@ class SABEasyDetailModel extends SABBaseModel {
     super.check();
   }
 
-  SABEasyDigitModel digitModel() {
-    return wordsModel().inputDigitModel;
+  SABEasyHealthLogicModel healthLogicModel() {
+    return _analysisModel.inputHealthLogicModel;
+  }
+
+  SABHealthModel healthModel() {
+    return healthLogicModel().inputHealthModel;
   }
 
   SABEasyWordsModel wordsModel() {
-    return _analysisModel
-        .inputHealthLogicModel.inputHealthModel.inputLogicModel.inputWordsModel;
+    return healthModel().inputLogicModel.inputWordsModel;
   }
 
-  SABEasyHealthLogicModel healthLogicModel() {
-    return _analysisModel.inputHealthLogicModel;
+  SABEasyDigitModel digitModel() {
+    return wordsModel().inputDigitModel;
   }
 
   List<String> addHideSymbolDes(SABRowDetailModel rowModel) {

@@ -42,7 +42,7 @@ class SABSymbolDetailModel extends SABBaseModel {
 
   final String stringHealth;
 
-  final List<String> itemKeyList = ['基本信息','六神类象','地支类象', '六合','月将','日将','地支方位','所属八卦','调试信息'];
+  final List<String> itemKeyList = ['基本信息','六神类象','地支类象', '六合','月将','日将','地支方位','所属八卦','调试信息','计算信息'];
 
   String getSymbolName() {
     return strSymbolName;
@@ -87,6 +87,8 @@ class SABSymbolDetailModel extends SABBaseModel {
       case '调试信息':
         resultValue = debugInfo;
         break;
+      case '计算信息':
+        resultValue = 'ActionList';
       default:
         resultValue = '$itemKey 未找到值 ';
         break;
