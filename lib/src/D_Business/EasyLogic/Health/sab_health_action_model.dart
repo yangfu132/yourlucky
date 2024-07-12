@@ -16,11 +16,6 @@ class SABHealthActionModel extends SABBaseModel {
   final int nRow;
   double? basicDefense;
 
-  double? affectHealth;
-  EasyTypeEnum? affectEasyType;
-  int? nAffectRow;
-  double? conversionRate;
-
   String getActionTypeName(){
     return nActionType.name;
   }

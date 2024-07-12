@@ -108,6 +108,10 @@ class SAUListCellModel {
     var contents = List<SAUListCellItemModel>.empty(growable: true);
     cellModel.contents = contents;
     contents.add(SAUListCellItemModel(title: 'ActionType', content: model.getActionTypeName()));
+    contents.add(SAUListCellItemModel(title: 'doubleHealth', content: "${model.doubleHealth}"));
+    contents.add(SAUListCellItemModel(title: 'easyType', content: model.easyType.name));
+    contents.add(SAUListCellItemModel(title: 'row', content: "${model.nRow}"));
+    contents.add(SAUListCellItemModel(title: 'sumList', content: "${model.sumActionList.length}条"));
     SAUButtonModel annotate = SAUButtonModel(title: "批注", code: "annotate");
     cellModel.buttons = [annotate];
     return cellModel;
