@@ -112,6 +112,8 @@ class SAUListCellModel {
     contents.add(SAUListCellItemModel(title: 'easyType', content: model.easyType.name));
     contents.add(SAUListCellItemModel(title: 'row', content: "${model.nRow}"));
     contents.add(SAUListCellItemModel(title: 'sumList', content: "${model.sumActionList.length}条"));
+    contents.add(SAUListCellItemModel(title: 'effectRowList', content: "迁移到sum"));
+    contents.add(SAUListCellItemModel(title: 'basicDefense', content: "${model.basicDefense ?? "空"}"));
     SAUButtonModel annotate = SAUButtonModel(title: "批注", code: "annotate");
     cellModel.buttons = [annotate];
     return cellModel;

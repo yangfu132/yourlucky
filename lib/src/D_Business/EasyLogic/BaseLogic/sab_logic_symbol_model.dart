@@ -1,10 +1,13 @@
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_sum_target_model.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/sab_words_symbol_model.dart';
 
 class SABLogicSymbolModel extends SABBaseModel {
   SABLogicSymbolModel({
+    required this.nRow,
+    required this.easyType,
     required this.isOnMonth,
     required this.isMonthPair,
     required this.bMonthBorn,
@@ -20,6 +23,8 @@ class SABLogicSymbolModel extends SABBaseModel {
     required this.stringSeason,
     required this.isEffectAble,
   });
+  final int nRow;
+  final EasyTypeEnum easyType;
 
   final bool isOnMonth;
   final bool isMonthPair;
@@ -40,6 +45,8 @@ class SABLogicSymbolModel extends SABBaseModel {
   //
   SABLogicSymbolModel.fromJson(Map<String, Object?> json)
       : this(
+    nRow: json['nRow'] as int,
+    easyType: json['easyType'] as EasyTypeEnum,
     isOnMonth: json['isOnMonth'] as bool,
     isMonthPair: json['isMonthPair'] as bool,
     bMonthBorn: json['bMonthBorn'] as bool,
@@ -87,5 +94,24 @@ class SABLogicSymbolModel extends SABBaseModel {
         EmptyEnum.emptyReal == basicEmptyState;
   }
 
-
+  double defensive (){
+    /*
+     防御值为0到1之间的数值，
+     克：1代表完全不受别爻克，0为完全受克;目前只有0和1，还没有见到两者之间的数字呢。
+     生：防御值不影响生
+     */
+    double bResult = 0.0;
+    if (isOnMonth) {
+      bResult = globalMaxDefensive;
+    } else if (isOnDay) {
+      bResult = globalMaxDefensive;
+    } else if (isEmpty()) {
+      bResult = globalMaxDefensive;
+    } else if (isMonthPair) {
+      bResult = globalMaxDefensive;
+    } else if (isDayPair) {
+      bResult = globalMaxDefensive;
+    } //else cont.
+    return bResult;
+  }
 }

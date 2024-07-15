@@ -200,10 +200,9 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
   List effectingArrayAtMoveRightRow(
       SABHealthModel tempHealthModel, int nMoveRightRow, EasyTypeEnum easyType) {
     List arrayEffects = [];
-
-    ///TODO:yangfu132为了找到分析的开头，假设日建或者月建是不受其他爻生克的;
-    if (logicModel().isOnDay(nMoveRightRow, easyType) ||
-        logicModel().isOnMonth(nMoveRightRow, easyType)) {
+    final symbol = logicModel().symbolAtRow(nMoveRightRow, easyType);
+    ///TODO:yangfu132为了找到分析的开头，假设globalMaxDefensive的爻不受其他爻生克的;
+    if (symbol.defensive() != globalMaxDefensive) {
       String basicEarth = logicModel().getSymbolEarth(nMoveRightRow, easyType);
       List moveRightArray =
           originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove);

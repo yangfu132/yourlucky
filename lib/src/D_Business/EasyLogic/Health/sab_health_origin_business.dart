@@ -446,35 +446,11 @@ class SABHealthOriginBusiness extends SABLogBusiness {
   }
 
   SABDefensiveModel symbolDefensiveAtRow(int nRow, EasyTypeEnum easyType) {
-    /*
-     防御值为0到1之间的数值，
-     克：1代表完全不受别爻克，0为完全受克;目前只有0和1，还没有见到两者之间的数字呢。
-     生：防御值不影响生
-     */
     SABDefensiveModel defensiveModel = SABDefensiveModel(nRow:nRow,easyType:easyType);
     double bResult = 0.0;
     final symbolModel = logicModel().rowModelAtRow(nRow).symbolModel(easyType);
     if (null != symbolModel) {
-      if (EasyTypeEnum.to != easyType) {
-        if (logicModel().isOnMonth(nRow, easyType)) {
-          defensiveModel.isOnMonth = true;
-          bResult = globalMaxDefensive;
-        } else if (logicModel().isOnDay(nRow, easyType)) {
-          defensiveModel.isOnDay = true;
-          bResult = globalMaxDefensive;
-        } else if (symbolModel.isEmpty()) {
-          defensiveModel.isEmpty = true;
-          bResult = globalMaxDefensive;
-        } else if (logicModel().isMonthPair(nRow, easyType)) {
-          defensiveModel.isMonthPair = true;
-          bResult = globalMaxDefensive;
-        } else if (logicModel().isDayPair(nRow, easyType)) {
-          defensiveModel.isDayPair = true;
-          bResult = globalMaxDefensive;
-        } //else cont.
-      } else {
-        coLog(StackTrace.current, LogTypeEnum.error, "error!");
-      }
+      bResult = symbolModel.defensive();
     } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
     }
@@ -490,8 +466,6 @@ class SABHealthOriginBusiness extends SABLogBusiness {
   SABEasyWordsModel wordsModel() {
     return outRightBusiness.wordsModel();
   }
-
-
 
   SABHealthSymbolModel fromSymbol(
     int intRow,

@@ -9,11 +9,6 @@ class SABDefensiveModel extends SABBaseModel {
   final int nRow;
   final EasyTypeEnum easyType;
   late final double defensive;
-  bool isOnMonth = false;
-  bool isOnDay = false;
-  bool isEmpty = false;
-  bool isMonthPair = false;
-  bool isDayPair = false;
 }
 
 class SABHealthSumTargetModel extends SABBaseModel {
