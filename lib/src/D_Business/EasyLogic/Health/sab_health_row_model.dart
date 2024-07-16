@@ -33,6 +33,20 @@ class SABHealthRowModel extends SABBaseModel {
     super.check();
   }
 
+  SABHealthSymbolModel? symbol(EasyTypeEnum easyType) {
+    SABHealthSymbolModel? result;
+    if (EasyTypeEnum.from == easyType) {
+      result = fromSymbol;
+    } else if (EasyTypeEnum.to == easyType) {
+      result = toSymbol;
+    } else if (EasyTypeEnum.hide == easyType) {
+      result = hideSymbol;
+    } else {
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
+    } //end if
+    return result;
+  }
+
   double healthForEasyType(EasyTypeEnum easyType) {
     double fHealth = 0.0;
 

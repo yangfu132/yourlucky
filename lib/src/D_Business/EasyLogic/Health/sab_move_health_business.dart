@@ -26,7 +26,6 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
   void calculateHealthOfAllMoveRight(SABHealthModel healthModel, List listRow) {
     bool hasBegin = healthModel.diagramsModel.hasBeginMoveRow;
     for (int nRow in listRow) {
-      final fromSymbol = healthModel.rowModelAtRow(nRow).fromSymbol;
       if (healthModel.diagramsModel.isUnFinish(nRow)) {
         if (hasBegin) {
           calculateHealthOfMoveRightRow(healthModel, nRow, EasyTypeEnum.from);
@@ -198,22 +197,19 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
   }
 
   List effectingArrayAtMoveRightRow(
-      SABHealthModel tempHealthModel, int nMoveRightRow, EasyTypeEnum easyType) {
+      SABHealthModel tempHealthModel, int basicRow, EasyTypeEnum easyType) {
     List arrayEffects = [];
-    final symbol = logicModel().symbolAtRow(nMoveRightRow, easyType);
+    final symbol = logicModel().symbolAtRow(basicRow, easyType);
     ///TODO:yangfu132为了找到分析的开头，假设globalMaxDefensive的爻不受其他爻生克的;
     if (symbol.defensive() != globalMaxDefensive) {
-      String basicEarth = logicModel().getSymbolEarth(nMoveRightRow, easyType);
+      String basicEarth = logicModel().getSymbolEarth(basicRow, easyType);
       List moveRightArray =
           originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove);
-
       for (int itemRow in moveRightArray) {
-        if (nMoveRightRow != itemRow) {
-          if (isEffectingMoveRightAtRow(tempHealthModel, itemRow, easyType)) {
-            if (isEffectingEarth(basicEarth, itemRow)) {
-              arrayEffects.add(itemRow);
-            } //else cont.
-          } //else 日冲休囚静爻算是日破
+        if (basicRow != itemRow) {
+          if (isEffectingEarth(basicEarth, itemRow)) {
+            arrayEffects.add(itemRow);
+          } //else cont.
         }//else cont.
       } //end for
     } // else cont.

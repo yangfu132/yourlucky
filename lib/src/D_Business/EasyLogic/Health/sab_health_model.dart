@@ -27,24 +27,16 @@ class SABHealthModel extends SABBaseModel {
     super.check();
   }
 
+  SABHealthSymbolModel? symbol(int nRow, EasyTypeEnum easyType) {
+    return rowModelAtRow(nRow).symbol(easyType);
+  }
+
   double symbolHealthAtRow(int nRow, EasyTypeEnum easyType) {
     return rowModelAtRow(nRow).healthForEasyType(easyType);
   }
 
   String getHealthDescription(int nRow, EasyTypeEnum easyType) {
     return symbol(nRow, easyType)?.healthDescription() ?? "easyType:$easyType empty";
-  }
-
-  SABHealthSymbolModel? symbol(int nRow, EasyTypeEnum easyType) {
-    if (EasyTypeEnum.from == easyType) {
-      return rowModelAtRow(nRow).fromSymbol;
-    } else if (EasyTypeEnum.to == easyType) {
-      return rowModelAtRow(nRow).toSymbol;
-    } else if (EasyTypeEnum.hide == easyType) {
-      return rowModelAtRow(nRow).hideSymbol;
-    } else {
-      return null;
-    }
   }
 
   OutRightEnum symbolOutRightAtRow(int nRow, EasyTypeEnum easyType) {

@@ -29,19 +29,29 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
     //  日破，对health没有影响，对right的影响与日冲是一样的。
 
     isValidEasy(tempHealthModel);
-    List arrayMoveRightRow = originBusiness().rowArrayAtOutRightLevel(
-      OutRightEnum.rightTypeMove,
-    );
-    moveBusiness().calculateHealthOfAllMoveRight(
-      tempHealthModel,
-      arrayMoveRightRow,
-    );
+
+    calculateMaxDefensive(tempHealthModel);
+
+    List<int> arrayMoveRightRow = rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove);
+    moveBusiness().calculateHealthOfAllMoveRight(tempHealthModel, arrayMoveRightRow);
+
     List<int> conflictMove = updateDayConflictOutRight(tempHealthModel);
     moveBusiness().calculateHealthOfAllMoveRight(tempHealthModel, conflictMove);
-    tempHealthModel.diagramsModel.listMoveRight =
-        rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove);
+
+    arrayMoveRightRow = rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove);
+    tempHealthModel.diagramsModel.listMoveRight = arrayMoveRightRow;
     staticBusiness().calculateHealthOfAllStaticRight(tempHealthModel);
     return tempHealthModel;
+  }
+
+  void calculateMaxDefensive(SABHealthModel tempHealthModel){
+    for (int nRow = 0; nRow < 6; nRow++) {
+      final symbol = originBusiness().logicModel().symbolAtRow(nRow, EasyTypeEnum.from);
+      if (globalMaxDefensive == symbol.defensive()) {
+        // addToFinishArray
+        tempHealthModel.diagramsModel.addToFinishArray(nRow);
+      }
+    }
   }
 
   List<int> updateDayConflictOutRight(SABHealthModel tempHealthModel) {
