@@ -48,7 +48,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
       moveHealth = originBusiness().symbolBasicHealthAtRow(nRow, easyType);
     } //end if
 
-    List arrayEffects = effectingArrayAtMoveRightRow(tempHealthModel, nRow, easyType);
+    List arrayEffects = effectingArrayAtMoveRightRow(nRow, easyType);
 
     List<SABHealthSumActionModel> sumActionList = <SABHealthSumActionModel>[];
     for (int effectsItem in arrayEffects) {
@@ -196,8 +196,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
     return bResult;
   }
 
-  List effectingArrayAtMoveRightRow(
-      SABHealthModel tempHealthModel, int basicRow, EasyTypeEnum easyType) {
+  List effectingArrayAtMoveRightRow(int basicRow, EasyTypeEnum easyType) {
     List arrayEffects = [];
     final symbol = logicModel().symbolAtRow(basicRow, easyType);
     ///TODO:yangfu132为了找到分析的开头，假设globalMaxDefensive的爻不受其他爻生克的;
@@ -274,8 +273,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
         originBusiness().rowsAtOutRightLevel(OutRightEnum.rightTypeMove);
     if (arrayMoveRightRow.isNotEmpty) {
       for (int intItem in arrayMoveRightRow) {
-        List arrayEffects = effectingArrayAtMoveRightRow(
-            tempHealthModel, intItem, EasyTypeEnum.from);
+        List arrayEffects = effectingArrayAtMoveRightRow(intItem, EasyTypeEnum.from);
 
         if (arrayEffects.isEmpty) {
           ///这个分支是对的，下面那个分支可能永远也不会走到。因为在一个Level中，总会有不受同级生克的；而上一级对本级的生克已经计算完成。

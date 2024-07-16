@@ -41,9 +41,8 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
       SABHealthModel tempHealthModel,
       int nRow,
       EasyTypeEnum easyType) {
-
-    List arrayEffectsInStaticRight= effectingArrayAtStaticRightRow(nRow, easyType);
-    for (int effectsItem in arrayEffectsInStaticRight) {
+    List staticEffects = effectingArrayAtStaticRightRow(nRow, easyType);
+    for (int effectsItem in staticEffects) {
       if (tempHealthModel.diagramsModel.isUnFinish(effectsItem)) {
         calculateHealthOfStaticRightRow(tempHealthModel, effectsItem, easyType);
       } //else cont.
@@ -133,9 +132,7 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
 
   List effectingArrayAtStaticRightRow(int nRow, EasyTypeEnum easyType) {
     List arrayEffects = [];
-
     String basicEarth = logicModel().getSymbolEarth(nRow, easyType);
-    
     List staticArray = originBusiness().rowsAtOutRightLevel(OutRightEnum.rightTypeStatic);
     for (int itemRow in staticArray) {
       if (nRow != itemRow) {
