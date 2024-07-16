@@ -41,10 +41,11 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
       SABHealthModel tempHealthModel,
       int nRow,
       EasyTypeEnum easyType) {
-    List staticEffects = effectingArrayAtStaticRightRow(nRow, easyType);
-    for (int effectsItem in staticEffects) {
+    List moveEffects = moveBusiness().effectingArrayAtMoveRightRow(nRow, easyType);
+    for (int effectsItem in moveEffects) {
       if (tempHealthModel.diagramsModel.isUnFinish(effectsItem)) {
-        calculateHealthOfStaticRightRow(tempHealthModel, effectsItem, easyType);
+        //calculateHealthOfStaticRightRow(tempHealthModel, effectsItem, easyType);
+        coLog(StackTrace.current, LogTypeEnum.error, "此时不应该存在UnFinish的move");
       } //else cont.
       SABHealthSumActionModel sumActionModel = moveBusiness().adjustHealthAtRow(
           tempHealthModel, nRow, easyType, effectsItem, easyType);
