@@ -16,7 +16,7 @@ class SABOutRightBusiness extends SABBaseBusiness {
       SABEasyLogicBusiness(_inputEasyModel);
 
   ///原函数名rowArrayAtLevel
-  List<int> rowArrayAtOutRightLevel(OutRightEnum level) {
+  List<int> rowsAtOutRightLevel(OutRightEnum level) {
     final array = <int>[];
 
     for (int nRow = 0; nRow < 6; nRow++) {

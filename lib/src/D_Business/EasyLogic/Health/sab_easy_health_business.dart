@@ -32,13 +32,13 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
 
     calculateMaxDefensive(tempHealthModel);
 
-    List<int> arrayMoveRightRow = rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove);
+    List<int> arrayMoveRightRow = rowsAtOutRightLevel(OutRightEnum.rightTypeMove);
     moveBusiness().calculateHealthOfAllMoveRight(tempHealthModel, arrayMoveRightRow);
 
     List<int> conflictMove = updateDayConflictOutRight(tempHealthModel);
     moveBusiness().calculateHealthOfAllMoveRight(tempHealthModel, conflictMove);
 
-    arrayMoveRightRow = rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove);
+    arrayMoveRightRow = rowsAtOutRightLevel(OutRightEnum.rightTypeMove);
     tempHealthModel.diagramsModel.listMoveRight = arrayMoveRightRow;
     staticBusiness().calculateHealthOfAllStaticRight(tempHealthModel);
     return tempHealthModel;
@@ -57,7 +57,7 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
   List<int> updateDayConflictOutRight(SABHealthModel tempHealthModel) {
     final resultRow = <int>[];
     final rowList = originBusiness()
-        .rowArrayAtOutRightLevel(OutRightEnum.rightTypeDayConflict);
+        .rowsAtOutRightLevel(OutRightEnum.rightTypeDayConflict);
     for (final intRow in rowList) {
       if (null != tempHealthModel.symbol(intRow, EasyTypeEnum.from)) {
         SABHealthSymbolModel tempSymbol =
@@ -87,8 +87,8 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
 
   ///`SABEasyHealthDelegate`
 
-  List<int> rowArrayAtOutRightLevel(OutRightEnum level) {
-    return originBusiness().rowArrayAtOutRightLevel(level);
+  List<int> rowsAtOutRightLevel(OutRightEnum level) {
+    return originBusiness().rowsAtOutRightLevel(level);
   }
 
   ///`加载函数`

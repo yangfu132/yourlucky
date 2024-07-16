@@ -21,25 +21,16 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
 
   ///Level:指的是OutRightEnum，Level4代指 rightTypeStatic
   void calculateHealthOfAllStaticRight(SABHealthModel tempHealthModel) {
-    bool bHasBeginStatic = tempHealthModel.diagramsModel.hasBeginStaticRow;
     List arrayStatic =
-        originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeStatic);
+        originBusiness().rowsAtOutRightLevel(OutRightEnum.rightTypeStatic);
     for (int nRow in arrayStatic) {
       if (tempHealthModel.diagramsModel.isUnFinish(nRow)) {
-        if (bHasBeginStatic) {
-          double doubleHealth = calculateHealthOfStaticRightRow(
+        if (tempHealthModel.diagramsModel.hasBeginStaticRow) {
+          calculateHealthOfStaticRightRow(
               tempHealthModel, nRow, EasyTypeEnum.from);
-          SABHealthActionModel actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
-            nRow:nRow,
-            easyType: EasyTypeEnum.from,
-            doubleHealth: doubleHealth,
-            sumActionList: [],
-          );
-          tempHealthModel.updateHealthAtRow(actionModel);
-          // tempHealthModel.updateHealthAtRow(nRow, doubleHealth);
           tempHealthModel.diagramsModel.addToFinishArray(nRow);
         } else {
-          ///如果找不到开始row，就随便指定一个座位开始row；
+          ///如果找不到开始row，就随便指定一个作为开始row；
           tempHealthModel.diagramsModel.addToFinishArray(nRow);
         }
       }
@@ -60,7 +51,7 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
           tempHealthModel, nRow, easyType, effectsItem, easyType);
       SABHealthActionModel actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.sum,
         nRow:nRow,
-        easyType: EasyTypeEnum.from,
+        easyType: easyType,
         doubleHealth: sumActionModel.getAddendValue(),
           sumActionList:[sumActionModel]
       );
@@ -74,7 +65,7 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
   bool isStaticRightLevelHasBeginRow(SABHealthModel tempHealthModel) {
     bool bHasBegin = false;
     List arrayLevel =
-        originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeStatic);
+        originBusiness().rowsAtOutRightLevel(OutRightEnum.rightTypeStatic);
     if (arrayLevel.isNotEmpty) {
       for (int item in arrayLevel) {
         List arrayEffects = effectingArrayAtStaticRightRow(item, EasyTypeEnum.from);
@@ -142,12 +133,11 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
 
   List effectingArrayAtStaticRightRow(int nRow, EasyTypeEnum easyType) {
     List arrayEffects = [];
+
     String basicEarth = logicModel().getSymbolEarth(nRow, easyType);
-
-    List levelArray =
-        originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeStatic);
-
-    for (int itemRow in levelArray) {
+    
+    List staticArray = originBusiness().rowsAtOutRightLevel(OutRightEnum.rightTypeStatic);
+    for (int itemRow in staticArray) {
       if (nRow != itemRow) {
         if (isEffectingStaticRightAtRow(itemRow, easyType)) {
           if (moveBusiness().isEffectingEarth(basicEarth, itemRow)) {

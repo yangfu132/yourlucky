@@ -204,7 +204,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
     if (symbol.defensive() != globalMaxDefensive) {
       String basicEarth = logicModel().getSymbolEarth(basicRow, easyType);
       List moveRightArray =
-          originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove);
+          originBusiness().rowsAtOutRightLevel(OutRightEnum.rightTypeMove);
       for (int itemRow in moveRightArray) {
         if (basicRow != itemRow) {
           if (isEffectingEarth(basicEarth, itemRow)) {
@@ -235,7 +235,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
     String basicEarth = logicModel().getSymbolEarth(nRow, easyType);
 
     List levelArray =
-        originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove);
+        originBusiness().rowsAtOutRightLevel(OutRightEnum.rightTypeMove);
     levelArray.add(nRow);
 
     for (int itemRow in levelArray) {
@@ -271,7 +271,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
   bool isMoveRightLevelHasBeginRow(SABHealthModel tempHealthModel) {
     bool bHasBegin = false;
     List arrayMoveRightRow =
-        originBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove);
+        originBusiness().rowsAtOutRightLevel(OutRightEnum.rightTypeMove);
     if (arrayMoveRightRow.isNotEmpty) {
       for (int intItem in arrayMoveRightRow) {
         List arrayEffects = effectingArrayAtMoveRightRow(

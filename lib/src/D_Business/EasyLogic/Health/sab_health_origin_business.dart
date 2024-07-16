@@ -521,8 +521,8 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     return _healthModel;
   }
 
-  List<int> rowArrayAtOutRightLevel(OutRightEnum level) {
-    return outRightBusiness.rowArrayAtOutRightLevel(level);
+  List<int> rowsAtOutRightLevel(OutRightEnum level) {
+    return outRightBusiness.rowsAtOutRightLevel(level);
   }
 
   OutRightEnum symbolOutRightAtRow(int nRow, EasyTypeEnum easyType) {
@@ -533,7 +533,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     return SABHealthDiagramsModel(
       logicModel: logicModel().diagramsModel,
       healthCritical: healthCriticalValue(),
-      listMoveRight: rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove),
+      listMoveRight: rowsAtOutRightLevel(OutRightEnum.rightTypeMove),
     );
   }
 

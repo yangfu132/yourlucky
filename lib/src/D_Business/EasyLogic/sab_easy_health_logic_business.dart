@@ -122,7 +122,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   }
 
   List moveRightArray() {
-    return healthBusiness().rowArrayAtOutRightLevel(OutRightEnum.rightTypeMove);
+    return healthBusiness().rowsAtOutRightLevel(OutRightEnum.rightTypeMove);
   }
 
   ///`桥函数`
