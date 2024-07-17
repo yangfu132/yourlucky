@@ -153,6 +153,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
      SABHealthSumTargetModel targetModel = SABHealthSumTargetModel(
        nRow: basicRow,
        easyType: baseEasyType,
+       symbolName: logicModel().getSymbolName(basicRow, baseEasyType),
        symbolEarth:logicModel().getSymbolEarth(basicRow, baseEasyType),
        defenseModel:basicDefenseModel,
      );
@@ -161,6 +162,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
      SABHealthSumAddendModel addendModel = SABHealthSumAddendModel(
        nRow: effectsRow,
        easyType: effectsEasyType,
+       symbolName:logicModel().getSymbolName(effectsRow, effectsEasyType),
        symbolEarth:logicModel().getSymbolEarth(effectsRow, effectsEasyType),
        outModel: outModel,
      );

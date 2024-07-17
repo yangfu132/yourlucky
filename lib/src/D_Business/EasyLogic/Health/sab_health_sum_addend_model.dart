@@ -23,11 +23,13 @@ class SABHealthSumAddendModel extends SABBaseModel {
   SABHealthSumAddendModel({
     required this.nRow,
     required this.easyType,
+    required this.symbolName,
     required this.symbolEarth,
     required this.outModel
   });
   final int nRow;
   final EasyTypeEnum easyType;
+  final String symbolName;
   final String symbolEarth;
   final SABOutModel outModel;
 

@@ -128,8 +128,10 @@ class SAUListCellModel {
     cellModel.contents = contents;
     contents.add(SAUListCellItemModel(title: 'targetRow', content: "${model.targetModel.nRow}"));
     contents.add(SAUListCellItemModel(title: 'targetType', content: model.targetModel.easyType.name));
+    contents.add(SAUListCellItemModel(title: 'targetName', content: model.targetModel.symbolName));
     contents.add(SAUListCellItemModel(title: 'addendRow', content: "${model.addendModel.nRow}"));
     contents.add(SAUListCellItemModel(title: 'addendType', content: model.addendModel.easyType.name));
+    contents.add(SAUListCellItemModel(title: 'addendName', content: model.addendModel.symbolName));
     contents.add(SAUListCellItemModel(title: 'targetHealth', content: '${model.targetModel.health}'));
     contents.add(SAUListCellItemModel(title: 'addendHealth', content: '${model.addendModel.getOut()}'));
     contents.add(SAUListCellItemModel(title: 'resultHealth', content: '${model.getResult()}'));

@@ -80,6 +80,10 @@ class SABEasyLogicModel extends SABBaseModel {
     return bResult;
   }
 
+  String getSymbolName(int intRow, EasyTypeEnum easyTypeEnum) {
+    return rowModelAtRow(intRow).inputWordsRow.getSymbolName(easyTypeEnum);
+  }
+
   String getSymbolEarth(int intRow, EasyTypeEnum easyTypeEnum) {
     return rowModelAtRow(intRow).inputWordsRow.getSymbolEarth(easyTypeEnum);
   }
