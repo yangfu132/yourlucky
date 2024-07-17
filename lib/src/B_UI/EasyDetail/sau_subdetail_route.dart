@@ -5,7 +5,7 @@ import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route_store_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route_model.dart';
-import 'package:your_lucky/src/B_UI/User/History/ActionList/sau_easy_action_list_route.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/List/sau_list_route.dart';
 import 'package:your_lucky/src/B_UI/User/History/ActionList/sau_easy_action_list_route_store.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_model.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_row_detail_model.dart';
@@ -105,12 +105,12 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
 
   void onActionListTapped(BuildContext context){
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      SAUEasyActionListRouteStore store = SAUEasyActionListRouteStore(
+      SAUActionListRouteStore store = SAUActionListRouteStore(
         inputDetailModel:widget.inputDetailModel,
         nRow:SACContext.uiRowToSymbolRow(widget.uiRow),
         easyType: EasyTypeEnum.from,
       );
-      return SAUEasyActionListRoute(store:store);
+      return SAUListRoute(store:store);
     }));
   }
 

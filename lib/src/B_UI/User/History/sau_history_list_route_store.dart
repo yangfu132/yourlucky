@@ -8,7 +8,7 @@ import 'package:your_lucky/src/B_UI/Common/Widget/Button/sau_button_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/sau_alert_view.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/sau_toast_widget.dart';
 import 'package:your_lucky/src/B_UI/EasyStrategy/sau_strategy_result_route.dart';
-import 'package:your_lucky/src/B_UI/User/History/ActionList/sau_easy_action_list_route.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/List/sau_list_route.dart';
 import 'package:your_lucky/src/B_UI/User/History/ActionList/sau_easy_action_list_route_store.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_business.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
@@ -113,12 +113,12 @@ class SAUHistoryListRouteStore extends SABBaseModel{
   void onActionListTapped(BuildContext context, SABEasyDigitModel model){
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       SABEasyDetailBusiness detailBusiness = SABEasyDetailBusiness(model);
-      SAUEasyActionListRouteStore store = SAUEasyActionListRouteStore(
+      SAUActionListRouteStore store = SAUActionListRouteStore(
           inputDetailModel:detailBusiness.outputDetailModel(),
           nRow:0,
         easyType: EasyTypeEnum.from,
       );
-      return SAUEasyActionListRoute(store:store);
+      return SAUListRoute(store:store);
     }));
   }
 }

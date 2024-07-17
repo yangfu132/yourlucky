@@ -21,7 +21,6 @@ class SABHealthSumActionModel extends SABBaseModel {
   }
 
   double getAddendValue () {
-    //TODO:yangfuliang 生、克之外呢？
     double fHealth = 0;;
     if (isEarthAddendBornTarget) {
       fHealth = addendModel.outModel.getOut();

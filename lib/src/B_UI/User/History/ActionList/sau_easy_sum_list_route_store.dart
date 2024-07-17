@@ -1,18 +1,17 @@
 
 import 'package:your_lucky/src/B_UI/Common/Route/List/sau_list_route_store.dart';
-class SAUActionListRouteStore extends SAUListRouteStore{
-  SAUActionListRouteStore({
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_sum_action_model.dart';
+
+class SAUEasySumListRouteStore extends SAUListRouteStore{
+  SAUEasySumListRouteStore({
     required super.inputDetailModel,
     required super.nRow,
     required super.easyType,
+    required this.listSumAction,
   });
-  // final SABEasyDetailModel inputDetailModel;
+
+  final List<SABHealthSumActionModel> listSumAction;
   //
-  // int nRow;
-  //
-  // final EasyTypeEnum easyType;
-  //
-  // List<SAUListCellModel> listData = [];
   //
   // SAURouteTitleModel titleModel(){
   //   return SAURouteTitleModel.titleFromDetailModel(inputDetailModel,
