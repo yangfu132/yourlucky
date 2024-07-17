@@ -82,7 +82,7 @@ class SAUListRouteState extends State<SAUListRoute> {
     return SAUListCell(
       model: model,
       onTap: (value) {
-        widget.store.onCellTapped(context, () { });
+        widget.store.onCellTapped(model,context, () { });
       },
       buttonsClick: (value) {
         widget.store.onButtonClicked(value, context, () { });

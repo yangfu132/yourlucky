@@ -1,5 +1,10 @@
 
+import 'package:flutter/material.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/List/sau_list_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/List/sau_list_route_store.dart';
+import 'package:your_lucky/src/B_UI/Common/Widget/ListCell/sau_list_cell_model.dart';
+import 'package:your_lucky/src/B_UI/User/History/ActionList/sau_easy_sum_list_route_store.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_action_model.dart';
 class SAUActionListRouteStore extends SAUListRouteStore{
   SAUActionListRouteStore({
     required super.inputDetailModel,
@@ -74,10 +79,17 @@ class SAUActionListRouteStore extends SAUListRouteStore{
   //   }));
   // }
   //
-  // void onCellTapped(BuildContext context, VoidCallback refreshAction){
-  //   // Navigator.push(context, MaterialPageRoute(builder: (context) {
-  //   //   SABEasyDetailBusiness detailBusiness = SABEasyDetailBusiness(model);
-  //   //   return SAUStrategyResultRoute(detailBusiness.outputDetailModel());
-  //   // }))
-  // }
+  @override
+  void onCellTapped(SAUListCellModel model,BuildContext context, VoidCallback refreshAction){
+    SABHealthActionModel actionModel = model.dataModel as SABHealthActionModel;
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      SAUEasySumListRouteStore store = SAUEasySumListRouteStore(
+        inputDetailModel:inputDetailModel,
+        nRow:nRow,
+        easyType: easyType,
+        listSumAction: actionModel.sumActionList
+      );
+      return SAUListRoute(store:store);
+    }));
+  }
 }

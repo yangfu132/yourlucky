@@ -1,6 +1,9 @@
 
+import 'package:flutter/material.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/List/sau_list_route_store.dart';
+import 'package:your_lucky/src/B_UI/Common/Widget/ListCell/sau_list_cell_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_sum_action_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_symbol_model.dart';
 
 class SAUEasySumListRouteStore extends SAUListRouteStore{
   SAUEasySumListRouteStore({
@@ -29,16 +32,14 @@ class SAUEasySumListRouteStore extends SAUListRouteStore{
   //   loadData(refreshAction);
   // }
   //
-  // void loadData(VoidCallback refreshAction){
-  //   SABHealthSymbolModel? symbol = inputDetailModel.healthModel().symbol(nRow, easyType);
-  //   if (null != symbol) {
-  //     for (SABHealthActionModel actionModel in symbol.actionList) {
-  //       SAUListCellModel cellModel = SAUListCellModel.fromActionModel(actionModel);
-  //       listData.add(cellModel);
-  //     } // end for
-  //   } // end if
-  //   refreshAction();
-  // }
+  @override
+  void loadData(VoidCallback refreshAction){
+    for (SABHealthSumActionModel actionModel in listSumAction) {
+      SAUListCellModel cellModel = SAUListCellModel.fromSumModel(actionModel);
+      listData.add(cellModel);
+    } // end for
+    refreshAction();
+  }
   //
   // SAUListCellModel cellModelAtIndex(int index){
   //   SAUListCellModel cellModel;

@@ -23,10 +23,5 @@ class SABHealthActionModel extends SABBaseModel {
     return nActionType.name;
   }
 
-  String getTimeDes(){
-    final DateTime theDate = DateTime.now().toLocal();
-    return theDate.toString();
-  }
-
   final List<SABHealthSumActionModel> sumActionList;
 }

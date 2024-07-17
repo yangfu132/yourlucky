@@ -32,8 +32,6 @@ class SABHealthSumAddendModel extends SABBaseModel {
   final SABOutModel outModel;
 
   double getOut(){
-    //(maxDefensive - basicDefensive) * (health * conversionRate);
-    return 0;
+    return outModel.getOut();
   }
-
 }

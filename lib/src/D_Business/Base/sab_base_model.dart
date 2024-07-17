@@ -5,6 +5,11 @@ import 'package:your_lucky/src/A_Context/sac_global.dart';
 class SABBaseModel {
   SABBaseModel();
 
+  String getTimeDes(){
+    final DateTime theDate = DateTime.now().toLocal();
+    return theDate.toString();
+  }
+
   String? cloudId;
 
   SABBaseModel.fromJson(Map<String, Object?> json);

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/sau_button_model.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_action_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_sum_action_model.dart';
 
 import '../../../../D_Business/Develop/sab_develop_model.dart';
 
@@ -105,6 +106,7 @@ class SAUListCellModel {
   static SAUListCellModel fromActionModel(SABHealthActionModel model) {
     SAUListCellModel cellModel = SAUListCellModel(
         title: model.timeDes, taskId: "taskId");
+    cellModel.dataModel = model;
     var contents = List<SAUListCellItemModel>.empty(growable: true);
     cellModel.contents = contents;
     contents.add(SAUListCellItemModel(title: 'ActionType', content: model.getActionTypeName()));
@@ -114,6 +116,24 @@ class SAUListCellModel {
     contents.add(SAUListCellItemModel(title: 'sumList', content: "${model.sumActionList.length}条"));
     contents.add(SAUListCellItemModel(title: 'effectRowList', content: "迁移到sum"));
     contents.add(SAUListCellItemModel(title: 'basicDefense', content: "${model.basicDefense ?? "空"}"));
+    SAUButtonModel annotate = SAUButtonModel(title: "批注", code: "annotate");
+    cellModel.buttons = [annotate];
+    return cellModel;
+  }
+
+  static SAUListCellModel fromSumModel(SABHealthSumActionModel model) {
+    SAUListCellModel cellModel = SAUListCellModel(
+        title: model.timeDes, taskId: "taskId");
+    var contents = List<SAUListCellItemModel>.empty(growable: true);
+    cellModel.contents = contents;
+    contents.add(SAUListCellItemModel(title: 'targetRow', content: "${model.targetModel.nRow}"));
+    contents.add(SAUListCellItemModel(title: 'targetType', content: model.targetModel.easyType.name));
+    contents.add(SAUListCellItemModel(title: 'addendRow', content: "${model.addendModel.nRow}"));
+    contents.add(SAUListCellItemModel(title: 'addendType', content: model.addendModel.easyType.name));
+    contents.add(SAUListCellItemModel(title: 'targetHealth', content: '${model.targetModel.health}'));
+    contents.add(SAUListCellItemModel(title: 'addendHealth', content: '${model.addendModel.getOut()}'));
+    contents.add(SAUListCellItemModel(title: 'resultHealth', content: '${model.getResult()}'));
+
     SAUButtonModel annotate = SAUButtonModel(title: "批注", code: "annotate");
     cellModel.buttons = [annotate];
     return cellModel;

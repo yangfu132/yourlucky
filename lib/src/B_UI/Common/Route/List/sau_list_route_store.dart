@@ -84,6 +84,6 @@ class SAUListRouteStore extends SABBaseModel{
     }));
   }
 
-  void onCellTapped(BuildContext context, VoidCallback refreshAction){
+  void onCellTapped(SAUListCellModel model,BuildContext context, VoidCallback refreshAction){
   }
 }

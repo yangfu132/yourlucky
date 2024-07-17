@@ -14,6 +14,7 @@ class SABHealthSumActionModel extends SABBaseModel {
   final SABHealthSumTargetModel targetModel;
   final bool isEarthAddendBornTarget;
   final bool isEarthAddendRestrictsTarget;
+  late final String timeDes = getTimeDes();
 
   double getAffectRate(){
     //(globalMaxDefensive - basicDefenseModel.defensive)
