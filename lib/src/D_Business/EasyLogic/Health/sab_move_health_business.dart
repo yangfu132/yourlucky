@@ -23,10 +23,77 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
 
   late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
 
-  void calculateHealthOfAllMoveRight(SABHealthModel healthModel, List listRow) {
+  bool canBeginCalculate(SABHealthModel healthModel, int nRow) {
+    bool result = false;
+    if (healthModel.diagramsModel.isUnFinish(nRow)) {
+      List arrayEffects = effectingArrayAtMoveRightRow(nRow, EasyTypeEnum.from);
+      if (arrayEffects.isEmpty) {
+        result = true;
+      } else {
+        bool allFinish = true;
+        for (int effectRow in arrayEffects) {
+          if (healthModel.diagramsModel.isUnFinish(effectRow)) {
+            allFinish = false;
+            break;
+          } //else cont.
+        } //end for
+        result = allFinish;
+      } // end if
+    } // end if
+    return result;
+  }
+
+  int findCanBeginCalculateRow(SABHealthModel healthModel, List listRow){
+    int nResult = globalRowInvalid;
+    for (int nRow in listRow) {
+      if (canBeginCalculate(healthModel,nRow)) {
+        nResult = nRow;
+      }
+    }
+    return nResult;
+  }
+
+  bool haveUnfinished(SABHealthModel healthModel, List listRow){
+    bool result = false;
+    for (int nRow in listRow) {
+      if (healthModel.diagramsModel.isUnFinish(nRow)) {
+        result = true;
+      } // else cont.
+    } // end for
+    return result;
+  }
+
+  void calculateHealthOfAllMoveRight(SABHealthModel healthModel, List listRow){
+    while (haveUnfinished(healthModel,listRow)) {
+      int nRow = findCanBeginCalculateRow(healthModel,listRow);
+      if (globalRowInvalid != nRow) {
+        calculateHealthOfMoveRightRow(healthModel, nRow, EasyTypeEnum.from);
+      } else {
+        for (int itemRow in listRow) {
+          if (healthModel.diagramsModel.isUnFinish(itemRow)) {
+            if (wordsModel().isMovementAtRow(nRow)) {
+              moveSymbolBasicHealthAtRow(healthModel, nRow);
+            } //else {}
+            break;
+          } //else cont.
+        } //end for
+      } // end if
+    } // end while
+  }
+
+  void calculateHealthOfAllMoveRightV1(SABHealthModel healthModel, List listRow) {
     bool hasBegin = healthModel.diagramsModel.hasBeginMoveRow;
     for (int nRow in listRow) {
       if (healthModel.diagramsModel.isUnFinish(nRow)) {
+        List arrayEffects = effectingArrayAtMoveRightRow(nRow, EasyTypeEnum.from);
+        for (int nEffectsRow in arrayEffects) {
+          if (healthModel.diagramsModel.isUnFinish(nEffectsRow)) {
+            List arrayEffects = effectingArrayAtMoveRightRow(nEffectsRow, EasyTypeEnum.from);
+            if (arrayEffects.isEmpty) {
+
+            }
+          }
+        }
         if (hasBegin) {
           calculateHealthOfMoveRightRow(healthModel, nRow, EasyTypeEnum.from);
         } else {
@@ -34,7 +101,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
             moveSymbolBasicHealthAtRow(healthModel, nRow);
           } //else {}
         } //end if
-      } //else {}
+      } //else { finish }
     } //end for
   }
 
@@ -64,7 +131,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
       arrayEffects.add(sumActionModel);
     } //end for
 
-    SABHealthActionModel actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
+    final actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
         nRow:nRow,
         easyType: easyType,
         doubleHealth: moveHealth,
@@ -147,27 +214,26 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
   // 基础值加上变爻的生克
   double moveSymbolBasicHealthAtRow(SABHealthModel tempHealthModel, int nRow) {
     double fResult = originBusiness().symbolBasicHealthAtRow(nRow, EasyTypeEnum.from);
-    List<SABHealthSumActionModel> sumActionList = <SABHealthSumActionModel>[];
-    if (isSymbolEffectableAtRow(nRow, EasyTypeEnum.from)) {
-      SABHealthSumActionModel sumActionModel = adjustHealthAtRow(
+    if (isSymbolEffectedAtRow(nRow, EasyTypeEnum.from)) {
+      final sumActionModel = adjustHealthAtRow(
           tempHealthModel, nRow, EasyTypeEnum.from, nRow, EasyTypeEnum.to);
       sumActionModel.targetModel.health = fResult;
       fResult = sumActionModel.getResult();
-      sumActionList.add(sumActionModel);
+
+      final actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
+        nRow:nRow,
+        easyType: EasyTypeEnum.from,
+        doubleHealth: fResult,
+        sumActionList:[sumActionModel],
+      );
+      tempHealthModel.updateHealthAtRow(actionModel);
     } //else cont.
 
-    SABHealthActionModel actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
-      nRow:nRow,
-      easyType: EasyTypeEnum.from,
-      doubleHealth: fResult,
-      sumActionList:sumActionList,
-    );
-    tempHealthModel.updateHealthAtRow(actionModel);
     tempHealthModel.diagramsModel.addToFinishArray(nRow);
     return fResult;
   }
 
-  bool isSymbolEffectableAtRow(int nRow, EasyTypeEnum easyType) {
+  bool isSymbolEffectedAtRow(int nRow, EasyTypeEnum easyType) {
     /*
      不受生克有以下几种情况:
      1、旬空；旬空的爻，health不变，但在生克上不起作用，但是在判断时机上起作用；
@@ -274,10 +340,10 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
     if (arrayMoveRightRow.isNotEmpty) {
       for (int intItem in arrayMoveRightRow) {
         List arrayEffects = effectingArrayAtMoveRightRow(intItem, EasyTypeEnum.from);
-
         if (arrayEffects.isEmpty) {
           ///这个分支是对的，下面那个分支可能永远也不会走到。因为在一个Level中，总会有不受同级生克的；而上一级对本级的生克已经计算完成。
           bHasBegin = true;
+          break;
         } else {
           bool allFinish = true;
           for (int itemEffects in arrayEffects) {
@@ -286,7 +352,6 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
               break;
             } //else cont.
           } //end if
-
           bHasBegin = allFinish;
         } //end if
       } //end for

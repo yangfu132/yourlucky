@@ -97,4 +97,8 @@ class SACContext {
     SACContext businessContext = SABSingletonService.getObject('SACContext');
     return businessContext._developBusiness;
   }
+
+  static int uiRowToSymbolRow(int uiRow){
+    return uiRow - 1;
+  }
 }

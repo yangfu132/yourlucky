@@ -49,8 +49,7 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
       SABHealthSumActionModel sumActionModel = moveBusiness().adjustHealthAtRow(
           tempHealthModel, nRow, easyType, effectsItem, easyType);
       sumActionModel.targetModel.health = tempHealthModel.symbolHealthAtRow(nRow, easyType);
-      SABHealthActionModel actionModel = SABHealthActionModel(
-          nActionType:ActionTypeEnum.update,
+      final actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
           nRow:nRow,
           easyType: easyType,
           doubleHealth: sumActionModel.getResult(),

@@ -48,8 +48,11 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
     for (int nRow = 0; nRow < 6; nRow++) {
       final symbol = originBusiness().logicModel().symbolAtRow(nRow, EasyTypeEnum.from);
       if (globalMaxDefensive == symbol.defensive()) {
-        // addToFinishArray
-        tempHealthModel.diagramsModel.addToFinishArray(nRow);
+        if (moveBusiness().wordsModel().isMovementAtRow(nRow)) {
+          moveBusiness().moveSymbolBasicHealthAtRow(tempHealthModel, nRow);
+        } else {
+          tempHealthModel.diagramsModel.addToFinishArray(nRow);
+        }
       }
     }
   }

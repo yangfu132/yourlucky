@@ -12,9 +12,9 @@ import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_row_detail_model.dart'
 
 ///功能：一般性推断结果
 class SAUSubDetailRoute extends StatefulWidget {
-  const SAUSubDetailRoute(this.inputDetailModel, this.intIndex, {super.key});
+  const SAUSubDetailRoute(this.inputDetailModel, this.uiRow, {super.key});
   final SABEasyDetailModel inputDetailModel;
-  final int intIndex;
+  final int uiRow;
   @override
   State<SAUSubDetailRoute> createState() {
     return _SAUEasyResultState();
@@ -29,7 +29,7 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
   }
 
   Widget resultActionTitle() {
-    if (0 == widget.intIndex) {
+    if (0 == widget.uiRow) {
       return const Text('备注');
     } else {
       return const Text('切换');
@@ -59,7 +59,15 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
             int kv = index % 2;
             Map value = resultList()[dataIndex];
             if (kv > 0) {
-              return ListTile(title: Text(value['value']));
+              return ListTile(
+                title: Text(value['value']),
+                onTap: (){
+                if ('用神' == value['key']) {
+                  onUsefulDeityClicked();
+                } else if ('计算信息' == value['key']) {
+                  onActionListTapped(context);
+                }
+              },);
             } else {
               return Container(
                 //color: Colors.grey,
@@ -72,7 +80,7 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
                       if ('用神' == value['key']) {
                         onUsefulDeityClicked();
                       } else if ('计算信息' == value['key']) {
-                        onActionListTapped(context,widget.inputDetailModel);
+                        onActionListTapped(context);
                       }
                     },
                 ),
@@ -92,18 +100,14 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
           easyType: EasyTypeEnum.from
       );
       return SAUDetailRoute(store:store);
-      // return SAUSubDetailRoute(
-      //     widget.inputDetailModel,
-      //     symbolRow,
-      // );
     }));
   }
 
-  void onActionListTapped(BuildContext context, SABEasyDetailModel model){
+  void onActionListTapped(BuildContext context){
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       SAUEasyActionListRouteStore store = SAUEasyActionListRouteStore(
-        inputDetailModel:model,
-        nRow:0,
+        inputDetailModel:widget.inputDetailModel,
+        nRow:SACContext.uiRowToSymbolRow(widget.uiRow),
         easyType: EasyTypeEnum.from,
       );
       return SAUEasyActionListRoute(store:store);
@@ -111,29 +115,29 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
   }
 
   List<Map> resultList() {
-    if (0 == widget.intIndex) {
+    if (0 == widget.uiRow) {
       return widget.inputDetailModel.diagramsDetailModel.resultList;
-    } else if (globalRowDay == widget.intIndex) {
+    } else if (globalRowDay == widget.uiRow) {
       return widget.inputDetailModel.dayModel.resultList();
-    } else if (globalRowMonth == widget.intIndex) {
+    } else if (globalRowMonth == widget.uiRow) {
       return widget.inputDetailModel.monthModel.resultList();
     } else {
       SABRowDetailModel rowModel =
-          widget.inputDetailModel.rowModelAtRow(widget.intIndex - 1);
+          widget.inputDetailModel.rowModelAtRow(widget.uiRow - 1);
       return rowModel.resultList(currentEasyType);
     }
   }
 
   String resultTitle() {
-    if (0 == widget.intIndex) {
+    if (0 == widget.uiRow) {
       return widget.inputDetailModel.digitModel().strStrategy;
-    } else if (globalRowDay == widget.intIndex) {
+    } else if (globalRowDay == widget.uiRow) {
       return widget.inputDetailModel.dayModel.strSymbolName;
-    } else if (globalRowMonth == widget.intIndex) {
+    } else if (globalRowMonth == widget.uiRow) {
       return widget.inputDetailModel.monthModel.strSymbolName;
     } else {
       SABRowDetailModel rowModel =
-          widget.inputDetailModel.rowModelAtRow(widget.intIndex - 1);
+          widget.inputDetailModel.rowModelAtRow(widget.uiRow - 1);
       String result = 'type：';
       switch (currentEasyType) {
         case EasyTypeEnum.from:
@@ -153,7 +157,7 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
   }
 
   void resultAction() {
-    if (0 == widget.intIndex) {
+    if (0 == widget.uiRow) {
       Navigator.push(context, MaterialPageRoute(builder: (context) {
         SAUTextFieldRouteModel model = SAUTextFieldRouteModel(
           stringTitle: "修改目的",
@@ -172,7 +176,7 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
       }));
     } else {
       SABRowDetailModel rowModel =
-          widget.inputDetailModel.rowModelAtRow(widget.intIndex - 1);
+          widget.inputDetailModel.rowModelAtRow(widget.uiRow - 1);
       currentEasyType = rowModel.getNextEasyType(currentEasyType);
       setState(() {});
     }
