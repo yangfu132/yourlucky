@@ -92,6 +92,7 @@ class SAUHistoryListRouteStore extends SABBaseModel{
             SAUToastWidget.show("你点击了删除 ${model.title()}");
             SACContext.easyStore().delete(model);
             historyData.removeAt(positionNow);
+            refreshAction();
           })
     ]);
   }

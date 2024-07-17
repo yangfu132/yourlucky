@@ -128,7 +128,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
           tempHealthModel, nRow, easyType, effectsItem, easyType);
       sumActionModel.targetModel.health = moveHealth;
       moveHealth = sumActionModel.getResult();
-      arrayEffects.add(sumActionModel);
+      sumActionList.add(sumActionModel);
     } //end for
 
     final actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
@@ -265,12 +265,11 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
   }
 
   List effectingArrayAtMoveRightRow(int basicRow, EasyTypeEnum easyType) {
-    List arrayEffects = [];
+    List<int> arrayEffects = <int>[];
     final symbol = logicModel().symbolAtRow(basicRow, easyType);
-    ///TODO:yangfu132为了找到分析的开头，假设globalMaxDefensive的爻不受其他爻生克的;
     if (symbol.defensive() != globalMaxDefensive) {
       String basicEarth = logicModel().getSymbolEarth(basicRow, easyType);
-      List moveRightArray =
+      List<int> moveRightArray =
           originBusiness().rowsAtOutRightLevel(OutRightEnum.rightTypeMove);
       for (int itemRow in moveRightArray) {
         if (basicRow != itemRow) {

@@ -361,7 +361,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
             strMonthPair =
                 "月合: $strMonthPair; 爻之合者，静而逢合谓之合起。爻静或与日月动爻合者，得合而起，即使爻值休囚亦有旺相之意。";
           } //endi
-        } else if (EasyTypeEnum.from == easyType) {
+        } else if (EasyTypeEnum.to == easyType) {
           strMonthPair = "变爻与月合: $strMonthPair; 即使爻值休囚亦有旺相之意。";
         } else if (EasyTypeEnum.hide == easyType) {
           strMonthPair = "伏神与月合: $strMonthPair; 即使爻值休囚亦有旺相之意。";
