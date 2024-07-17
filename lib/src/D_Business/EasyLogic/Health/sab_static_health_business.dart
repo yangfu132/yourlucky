@@ -2,7 +2,6 @@ import 'package:your_lucky/src/D_Business/Base/sab_base_business.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_action_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_sum_action_model.dart';
-import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_symbol_model.dart';
 
 import '../../../A_Context/sac_context.dart';
 import '../../../A_Context/sac_global.dart';
@@ -28,7 +27,6 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
         if (tempHealthModel.diagramsModel.hasBeginStaticRow) {
           calculateHealthOfStaticRightRow(
               tempHealthModel, nRow, EasyTypeEnum.from);
-          tempHealthModel.diagramsModel.addToFinishArray(nRow);
         } else {
           ///如果找不到开始row，就随便指定一个作为开始row；
           tempHealthModel.diagramsModel.addToFinishArray(nRow);
@@ -37,29 +35,30 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
     }
   }
 
-  double calculateHealthOfStaticRightRow(
+  void calculateHealthOfStaticRightRow(
       SABHealthModel tempHealthModel,
       int nRow,
       EasyTypeEnum easyType) {
+
     List moveEffects = moveBusiness().effectingArrayAtMoveRightRow(nRow, easyType);
     for (int effectsItem in moveEffects) {
       if (tempHealthModel.diagramsModel.isUnFinish(effectsItem)) {
-        //calculateHealthOfStaticRightRow(tempHealthModel, effectsItem, easyType);
+        //TODO：calculateHealthOfStaticRightRow(tempHealthModel, effectsItem, easyType);
         coLog(StackTrace.current, LogTypeEnum.error, "此时不应该存在UnFinish的move");
       } //else cont.
       SABHealthSumActionModel sumActionModel = moveBusiness().adjustHealthAtRow(
           tempHealthModel, nRow, easyType, effectsItem, easyType);
-      SABHealthActionModel actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.sum,
-        nRow:nRow,
-        easyType: easyType,
-        doubleHealth: sumActionModel.getAddendValue(),
-          sumActionList:[sumActionModel]
-      );
+      sumActionModel.targetModel.health = tempHealthModel.symbolHealthAtRow(nRow, easyType);
+      SABHealthActionModel actionModel = SABHealthActionModel(
+          nActionType:ActionTypeEnum.update,
+          nRow:nRow,
+          easyType: easyType,
+          doubleHealth: sumActionModel.getResult(),
+          sumActionList:[sumActionModel]);
       tempHealthModel.sumHealthAtRow(actionModel);
     } //end for
 
     tempHealthModel.diagramsModel.addToFinishArray(nRow);
-    return tempHealthModel.symbolHealthAtRow(nRow, easyType);
   }
 
   bool isStaticRightLevelHasBeginRow(SABHealthModel tempHealthModel) {
@@ -79,16 +78,14 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
             if (tempHealthModel.diagramsModel.isUnFinish(itemEffects)) {
               allFinish = false;
               break;
-            }
-            //else cont.
-          } //endf
+            } //else cont.
+          } //end if
 
-          if (allFinish) bHasBegin = true;
-          //else cont.
-
-        } //endi
-
-      } //endf
+          if (allFinish) {
+            bHasBegin = true;
+          } //else cont.
+        } //end if
+      } //end for
     } else {
       bHasBegin = true;
     }
@@ -141,12 +138,9 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
           if (moveBusiness().isEffectingEarth(basicEarth, itemRow)) {
             arrayEffects.add(itemRow);
           } //else cont.
-        }
-        //else 日冲休囚静爻算是日破
-      }
-      //else cont.
-
-    } //endf
+        } //else 日冲休囚静爻算是日破
+      } //else cont.
+    } //end for
 
     return arrayEffects;
   }
