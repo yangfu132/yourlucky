@@ -307,7 +307,6 @@ class SABHealthOriginBusiness extends SABLogBusiness {
 
       if ("" != basicEarth) {
         //日
-
         if (symbolModel.isEmpty()) {
           fResult = 0;
         } else {

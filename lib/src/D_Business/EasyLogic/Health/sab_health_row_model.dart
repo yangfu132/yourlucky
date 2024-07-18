@@ -67,9 +67,9 @@ class SABHealthRowModel extends SABBaseModel {
     if (EasyTypeEnum.from == actionModel.easyType) {
       fromSymbol.setAction(actionModel);
     } else if (EasyTypeEnum.to == actionModel.easyType) {
-      fromSymbol.setAction(actionModel);
+      toSymbol.setAction(actionModel);
     } else if (EasyTypeEnum.hide == actionModel.easyType) {
-      fromSymbol.setAction(actionModel);
+      hideSymbol.setAction(actionModel);
     } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
     } //end if
@@ -79,9 +79,9 @@ class SABHealthRowModel extends SABBaseModel {
     if (EasyTypeEnum.from == actionModel.easyType) {
       fromSymbol.sumAction(actionModel);
     } else if (EasyTypeEnum.to == actionModel.easyType) {
-      fromSymbol.sumAction(actionModel);
+      toSymbol.sumAction(actionModel);
     } else if (EasyTypeEnum.hide == actionModel.easyType) {
-      fromSymbol.sumAction(actionModel);
+      hideSymbol.sumAction(actionModel);
     } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
     } //end if

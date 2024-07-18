@@ -1,3 +1,4 @@
+import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_action_model.dart';
@@ -29,6 +30,11 @@ class SABHealthSymbolModel extends SABBaseModel {
   void setAction(SABHealthActionModel actionModel) {
     _doubleHealth = actionModel.doubleHealth;
     actionList.add(actionModel);
+    if (ActionTypeEnum.update == actionModel.nActionType) {
+      if (actionModel.sumActionList.isEmpty) {
+        coLog(StackTrace.current, LogTypeEnum.error, "没有变化为什么要更新");
+      }
+    }
   }
 
   SABHealthSymbolModel.fromJson(Map<String, Object?> json)

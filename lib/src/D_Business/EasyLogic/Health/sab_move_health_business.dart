@@ -73,6 +73,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
           if (healthModel.diagramsModel.isUnFinish(itemRow)) {
             if (wordsModel().isMovementAtRow(itemRow)) {
               moveSymbolBasicHealthAtRow(healthModel, itemRow);
+              break;
             } //else {}
             break;
           } //else cont.
@@ -165,7 +166,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
 
     SABOutModel outModel = originBusiness().conversionRateAtRow(targetRow,nOutRow, outEasyType);
     if (EasyTypeEnum.to == outEasyType) {
-      outModel.health = symbolBasicHealthAtRow(nOutRow);
+      outModel.health = symbolBasicHealthAtRow(nOutRow,EasyTypeEnum.to);
     } else if (EasyTypeEnum.from == outEasyType) {
       if (!tempHealthModel.diagramsModel.isUnFinish(nOutRow)) {
         outModel.health = tempHealthModel.symbolHealthAtRow(nOutRow, outEasyType);
@@ -173,7 +174,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
         coLog(StackTrace.current, LogTypeEnum.remark, "这种情况如何处理？");
       }
     } else if (EasyTypeEnum.hide == outEasyType) {
-      outModel.health = symbolBasicHealthAtRow(nOutRow);
+      outModel.health = symbolBasicHealthAtRow(nOutRow,EasyTypeEnum.hide);
     } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
     }
@@ -182,8 +183,8 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
 
   ///`变爻的health`//////////////////////////////////////////////////////
 
-  double symbolBasicHealthAtRow(int nRow) {
-    return originBusiness().symbolBasicHealthAtRow(nRow, EasyTypeEnum.to);
+  double symbolBasicHealthAtRow(int nRow,EasyTypeEnum easyType) {
+    return originBusiness().symbolBasicHealthAtRow(nRow, easyType);
   }
 
   ///`动爻的基本值`//////////////////////////////////////////////////////
