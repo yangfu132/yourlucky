@@ -347,7 +347,7 @@ class SAUDetailDemoRouteState extends State<SAUDetailDemoRoute> {
     for (int i = 0; i < buttons.length; i++) {
       children.add(_buildButton(store, buttons[i], i == lastIndex));
       if (i != lastIndex) {
-        children.add(SizedBox(width: 10));
+        children.add(const SizedBox(width: 10));
       }
     }
 

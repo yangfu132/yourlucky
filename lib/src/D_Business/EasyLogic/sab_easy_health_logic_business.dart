@@ -11,7 +11,6 @@ import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_logic_symbol_m
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_easy_health_business.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_row_model.dart';
-import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_symbol_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/sab_easy_health_logic_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/sab_health_logic_row_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/sab_health_logic_symbol_model.dart';
@@ -539,7 +538,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
         bResult = true;
       } else {
         //元神长生帝旺于日辰，三也。
-        String stringEarthBase = wordsModel().getSymbolEarth(intIndex, EasyTypeEnum.from);;
+        String stringEarthBase = wordsModel().getSymbolEarth(intIndex, EasyTypeEnum.from);
         String stringTwelveDeity =
             branchBusiness().earthTwelveDeity(stringEarthBase, dayEarth());
         if ("长生" == stringTwelveDeity || "帝旺" == stringTwelveDeity) {
@@ -1019,8 +1018,6 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   EmptyEnum symbolEmptyState(int intRow, EasyTypeEnum easyType) {
     EmptyEnum nResult = EmptyEnum.emptyNull;
     String stringSymbol = symbolNameAtRow(intRow, easyType);
-    SABLogicSymbolModel symbolModel =
-        logicModel().symbolAtRow(intRow, easyType);
     if ("" != stringSymbol) {
       String earth = wordsModel().getSymbolEarth(intRow, easyType);
       if (logicModel().diagramsModel.stringEmptyBranch.contains(earth)) {

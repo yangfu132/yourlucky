@@ -1,8 +1,6 @@
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
-import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_sum_target_model.dart';
-import 'package:your_lucky/src/D_Business/EasyWords/sab_words_symbol_model.dart';
 
 class SABLogicSymbolModel extends SABBaseModel {
   SABLogicSymbolModel({

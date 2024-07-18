@@ -1,6 +1,3 @@
-
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_route_title_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/sau_button_model.dart';

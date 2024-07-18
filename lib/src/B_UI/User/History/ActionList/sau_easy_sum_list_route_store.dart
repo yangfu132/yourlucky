@@ -6,7 +6,6 @@ import 'package:your_lucky/src/B_UI/Common/Route/List/sau_list_route_store.dart'
 import 'package:your_lucky/src/B_UI/Common/Widget/ListCell/sau_list_cell_model.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_sum_action_model.dart';
-import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_symbol_model.dart';
 
 class SAUEasySumListRouteStore extends SAUListRouteStore{
   SAUEasySumListRouteStore({

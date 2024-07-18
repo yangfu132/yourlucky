@@ -81,30 +81,6 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
     } // end while
   }
 
-  void calculateHealthOfAllMoveRightV1(SABHealthModel healthModel, List listRow) {
-    bool hasBegin = healthModel.diagramsModel.hasBeginMoveRow;
-    for (int nRow in listRow) {
-      if (healthModel.diagramsModel.isUnFinish(nRow)) {
-        List arrayEffects = effectingArrayAtMoveRightRow(nRow, EasyTypeEnum.from);
-        for (int nEffectsRow in arrayEffects) {
-          if (healthModel.diagramsModel.isUnFinish(nEffectsRow)) {
-            List arrayEffects = effectingArrayAtMoveRightRow(nEffectsRow, EasyTypeEnum.from);
-            if (arrayEffects.isEmpty) {
-
-            }
-          }
-        }
-        if (hasBegin) {
-          calculateHealthOfMoveRightRow(healthModel, nRow, EasyTypeEnum.from);
-        } else {
-          if (wordsModel().isMovementAtRow(nRow)) {
-            moveSymbolBasicHealthAtRow(healthModel, nRow);
-          } //else {}
-        } //end if
-      } //else { finish }
-    } //end for
-  }
-
   //calculateHealthOfAllMoveRightRow
   SABHealthActionModel calculateHealthOfMoveRightRow(
       SABHealthModel tempHealthModel, int nRow, EasyTypeEnum easyType) {
@@ -246,8 +222,8 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
      其中旬空、日合改变防御值与right，日临月临改变防御值与health，；
      */
     bool bResult = false;
-    bResult =
-        globalMaxDefensive != originBusiness().symbolDefensiveAtRow(nRow, easyType);
+    final defensiveModel = originBusiness().symbolDefensiveAtRow(nRow, easyType);
+    bResult = globalMaxDefensive != defensiveModel.defensive;
     return bResult;
   }
 
