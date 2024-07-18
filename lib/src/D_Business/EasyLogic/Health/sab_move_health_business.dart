@@ -71,8 +71,8 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
       } else {
         for (int itemRow in listRow) {
           if (healthModel.diagramsModel.isUnFinish(itemRow)) {
-            if (wordsModel().isMovementAtRow(nRow)) {
-              moveSymbolBasicHealthAtRow(healthModel, nRow);
+            if (wordsModel().isMovementAtRow(itemRow)) {
+              moveSymbolBasicHealthAtRow(healthModel, itemRow);
             } //else {}
             break;
           } //else cont.
