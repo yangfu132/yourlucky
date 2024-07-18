@@ -83,7 +83,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
   }
 
   //calculateHealthOfAllMoveRightRow
-  SABHealthActionModel calculateHealthOfMoveRightRow(
+  void calculateHealthOfMoveRightRow(
       SABHealthModel tempHealthModel, int nRow, EasyTypeEnum easyType) {
     double moveHealth = 0;
     if (wordsModel().isMovementAtRow(nRow)) {
@@ -93,30 +93,32 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
     } //end if
 
     List arrayEffects = effectingArrayAtMoveRightRow(nRow, easyType);
+    if (arrayEffects.isNotEmpty) {
+      List<SABHealthSumActionModel> sumActionList = <SABHealthSumActionModel>[];
+      for (int effectsItem in arrayEffects) {
+        if (tempHealthModel.diagramsModel.isUnFinish(effectsItem)) {
+          calculateHealthOfMoveRightRow(tempHealthModel, effectsItem, easyType);
+        }
+        //else cont.
 
-    List<SABHealthSumActionModel> sumActionList = <SABHealthSumActionModel>[];
-    for (int effectsItem in arrayEffects) {
-      if (tempHealthModel.diagramsModel.isUnFinish(effectsItem)) {
-        calculateHealthOfMoveRightRow(tempHealthModel, effectsItem, easyType);
-      }
-      //else cont.
+        SABHealthSumActionModel sumActionModel =  adjustHealthAtRow(
+            tempHealthModel, nRow, easyType, effectsItem, easyType);
+        sumActionModel.targetModel.health = moveHealth;
+        moveHealth = sumActionModel.getResult();
+        sumActionList.add(sumActionModel);
+      } //end for
 
-      SABHealthSumActionModel sumActionModel =  adjustHealthAtRow(
-          tempHealthModel, nRow, easyType, effectsItem, easyType);
-      sumActionModel.targetModel.health = moveHealth;
-      moveHealth = sumActionModel.getResult();
-      sumActionList.add(sumActionModel);
-    } //end for
-
-    final actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
-        nRow:nRow,
-        easyType: easyType,
-        doubleHealth: moveHealth,
-        sumActionList:sumActionList
-    );
-    tempHealthModel.updateHealthAtRow(actionModel);
+      final actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
+          nRow:nRow,
+          easyType: easyType,
+          doubleHealth: moveHealth,
+          sumActionList:sumActionList
+      );
+      tempHealthModel.updateHealthAtRow(actionModel);
+    } else {
+      tempHealthModel.symbol(nRow, EasyTypeEnum.from)?.isBasicHealth = true;
+    }
     tempHealthModel.diagramsModel.addToFinishArray(nRow);
-    return actionModel;
   }
 
   SABHealthSumActionModel adjustHealthAtRow(SABHealthModel tempHealthModel,
@@ -207,7 +209,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
       );
       tempHealthModel.updateHealthAtRow(actionModel);
     } //else cont.
-
+    tempHealthModel.symbol(nRow, EasyTypeEnum.from)?.isBasicHealth = true;
     tempHealthModel.diagramsModel.addToFinishArray(nRow);
     return fResult;
   }

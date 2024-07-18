@@ -51,6 +51,7 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
         if (moveBusiness().wordsModel().isMovementAtRow(nRow)) {
           moveBusiness().moveSymbolBasicHealthAtRow(tempHealthModel, nRow);
         } else {
+          tempHealthModel.symbol(nRow, EasyTypeEnum.from)?.isBasicHealth = true;
           tempHealthModel.diagramsModel.addToFinishArray(nRow);
         }
       }

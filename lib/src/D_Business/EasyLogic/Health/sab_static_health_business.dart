@@ -24,13 +24,8 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
         originBusiness().rowsAtOutRightLevel(OutRightEnum.rightTypeStatic);
     for (int nRow in arrayStatic) {
       if (tempHealthModel.diagramsModel.isUnFinish(nRow)) {
-        if (tempHealthModel.diagramsModel.hasBeginStaticRow) {
-          calculateHealthOfStaticRightRow(
-              tempHealthModel, nRow, EasyTypeEnum.from);
-        } else {
-          ///如果找不到开始row，就随便指定一个作为开始row；
-          tempHealthModel.diagramsModel.addToFinishArray(nRow);
-        }
+        calculateHealthOfStaticRightRow(
+            tempHealthModel, nRow, EasyTypeEnum.from);
       }
     }
   }
@@ -41,22 +36,25 @@ class SABStaticHealthBusiness extends SABBaseBusiness {
       EasyTypeEnum easyType) {
 
     List moveEffects = moveBusiness().effectingArrayAtMoveRightRow(nRow, easyType);
-    for (int effectsItem in moveEffects) {
-      if (tempHealthModel.diagramsModel.isUnFinish(effectsItem)) {
-        //TODO：calculateHealthOfStaticRightRow(tempHealthModel, effectsItem, easyType);
-        coLog(StackTrace.current, LogTypeEnum.error, "此时不应该存在UnFinish的move");
-      } //else cont.
-      SABHealthSumActionModel sumActionModel = moveBusiness().adjustHealthAtRow(
-          tempHealthModel, nRow, easyType, effectsItem, easyType);
-      sumActionModel.targetModel.health = tempHealthModel.symbolHealthAtRow(nRow, easyType);
-      final actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
-          nRow:nRow,
-          easyType: easyType,
-          doubleHealth: sumActionModel.getResult(),
-          sumActionList:[sumActionModel]);
-      tempHealthModel.sumHealthAtRow(actionModel);
-    } //end for
-
+    if (moveEffects.isNotEmpty) {
+      for (int effectsItem in moveEffects) {
+        if (tempHealthModel.diagramsModel.isUnFinish(effectsItem)) {
+          //TODO：calculateHealthOfStaticRightRow(tempHealthModel, effectsItem, easyType);
+          coLog(StackTrace.current, LogTypeEnum.error, "此时不应该存在UnFinish的move");
+        } //else cont.
+        SABHealthSumActionModel sumActionModel = moveBusiness().adjustHealthAtRow(
+            tempHealthModel, nRow, easyType, effectsItem, easyType);
+        sumActionModel.targetModel.health = tempHealthModel.symbolHealthAtRow(nRow, easyType);
+        final actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
+            nRow:nRow,
+            easyType: easyType,
+            doubleHealth: sumActionModel.getResult(),
+            sumActionList:[sumActionModel]);
+        tempHealthModel.sumHealthAtRow(actionModel);
+      } //end for
+    } else {
+      tempHealthModel.symbol(nRow, EasyTypeEnum.from)?.isBasicHealth = true;
+    }
     tempHealthModel.diagramsModel.addToFinishArray(nRow);
   }
 

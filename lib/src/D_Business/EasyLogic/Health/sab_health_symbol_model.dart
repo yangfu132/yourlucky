@@ -17,7 +17,7 @@ class SABHealthSymbolModel extends SABBaseModel {
   double _doubleHealth = 0;
   OutRightEnum outRight;
   final SABHealthActionModel initModel;
-
+  bool isBasicHealth = false;
   double getHealthAction() {
     return _doubleHealth;
   }
@@ -31,7 +31,7 @@ class SABHealthSymbolModel extends SABBaseModel {
     _doubleHealth = actionModel.doubleHealth;
     actionList.add(actionModel);
     if (ActionTypeEnum.update == actionModel.nActionType) {
-      if (actionModel.sumActionList.isEmpty) {
+      if (actionModel.sumActionList.isEmpty || isBasicHealth) {
         coLog(StackTrace.current, LogTypeEnum.error, "没有变化为什么要更新");
       }
     }

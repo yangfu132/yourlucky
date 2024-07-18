@@ -17,6 +17,7 @@ class SABHealthActionModel extends SABBaseModel {
   final EasyTypeEnum easyType;
   final int nRow;
   double? basicDefense;
+  bool isBasicHealth = false;
 
   String getActionTypeName(){
     return nActionType.name;

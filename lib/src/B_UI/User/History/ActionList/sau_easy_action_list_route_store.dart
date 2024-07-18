@@ -41,6 +41,7 @@ class SAUActionListRouteStore extends SAUListRouteStore{
     SABHealthSymbolModel? symbol = inputDetailModel.healthModel().symbol(nRow, easyType);
     if (null != symbol) {
       for (SABHealthActionModel actionModel in symbol.actionList) {
+        actionModel.isBasicHealth = symbol.isBasicHealth;
         SAUListCellModel cellModel = SAUListCellModel.fromActionModel(actionModel);
         listData.add(cellModel);
       } // end for
