@@ -72,7 +72,7 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
         for (int itemRow in listRow) {
           if (healthModel.diagramsModel.isUnFinish(itemRow)) {
             if (wordsModel().isMovementAtRow(itemRow)) {
-              moveSymbolBasicHealthAtRow(healthModel, itemRow);
+              calculateMoveSymbolBasicHealthAtRow(healthModel, itemRow);
               break;
             } //else {}
             break;
@@ -85,16 +85,19 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
   //calculateHealthOfAllMoveRightRow
   void calculateHealthOfMoveRightRow(
       SABHealthModel tempHealthModel, int nRow, EasyTypeEnum easyType) {
-    double moveHealth = 0;
-    if (wordsModel().isMovementAtRow(nRow)) {
-      moveHealth = moveSymbolBasicHealthAtRow(tempHealthModel, nRow);
-    } else {
-      moveHealth = originBusiness().symbolBasicHealthAtRow(nRow, easyType);
-    } //end if
 
     List arrayEffects = effectingArrayAtMoveRightRow(nRow, easyType);
     if (arrayEffects.isNotEmpty) {
-      List<SABHealthSumActionModel> sumActionList = <SABHealthSumActionModel>[];
+      SABHealthActionModel calculateAction;
+      if (wordsModel().isMovementAtRow(nRow)) {
+        calculateAction = moveSymbolBasicHealthAtRow(tempHealthModel, nRow);
+      } else {
+        calculateAction = originBusiness().symbolBasicHealthAtRow(nRow, easyType);
+      } //end if
+
+      double moveHealth = calculateAction.doubleHealth;
+
+      List<SABHealthSumActionModel> sumActionList = calculateAction.sumActionList;
       for (int effectsItem in arrayEffects) {
         if (tempHealthModel.diagramsModel.isUnFinish(effectsItem)) {
           calculateHealthOfMoveRightRow(tempHealthModel, effectsItem, easyType);
@@ -167,51 +170,54 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
       EasyTypeEnum outEasyType) {
 
     SABOutModel outModel = originBusiness().conversionRateAtRow(targetRow,nOutRow, outEasyType);
-    if (EasyTypeEnum.to == outEasyType) {
-      outModel.health = symbolBasicHealthAtRow(nOutRow,EasyTypeEnum.to);
-    } else if (EasyTypeEnum.from == outEasyType) {
+    if (EasyTypeEnum.from == outEasyType) {
       if (!tempHealthModel.diagramsModel.isUnFinish(nOutRow)) {
         outModel.health = tempHealthModel.symbolHealthAtRow(nOutRow, outEasyType);
       } else {
         coLog(StackTrace.current, LogTypeEnum.remark, "这种情况如何处理？");
       }
+    } else if (EasyTypeEnum.to == outEasyType) {
+      // outModel.health = symbolBasicHealthAtRow(nOutRow,EasyTypeEnum.to);
+      outModel.health = tempHealthModel.symbolHealthAtRow(nOutRow, outEasyType);
     } else if (EasyTypeEnum.hide == outEasyType) {
-      outModel.health = symbolBasicHealthAtRow(nOutRow,EasyTypeEnum.hide);
+      outModel.health = tempHealthModel.symbolHealthAtRow(nOutRow, outEasyType);
     } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
     }
     return outModel;
   }
 
-  ///`变爻的health`//////////////////////////////////////////////////////
-
-  double symbolBasicHealthAtRow(int nRow,EasyTypeEnum easyType) {
-    return originBusiness().symbolBasicHealthAtRow(nRow, easyType);
-  }
-
   ///`动爻的基本值`//////////////////////////////////////////////////////
 
   ///动爻的基本值----------------------------------------------
   // 基础值加上变爻的生克
-  double moveSymbolBasicHealthAtRow(SABHealthModel tempHealthModel, int nRow) {
-    double fResult = originBusiness().symbolBasicHealthAtRow(nRow, EasyTypeEnum.from);
+  void calculateMoveSymbolBasicHealthAtRow(SABHealthModel tempHealthModel, int nRow) {
+    final actionModel = moveSymbolBasicHealthAtRow(tempHealthModel,nRow);
+    tempHealthModel.updateHealthAtRow(actionModel);
+    tempHealthModel.symbol(nRow, EasyTypeEnum.from)?.isBasicHealth = true;
+    tempHealthModel.diagramsModel.addToFinishArray(nRow);
+  }
+
+  SABHealthActionModel moveSymbolBasicHealthAtRow(SABHealthModel tempHealthModel, int nRow) {
+    final calculateAction = originBusiness().symbolBasicHealthAtRow(nRow, EasyTypeEnum.from);
+    List<SABHealthSumActionModel> sumActionList = calculateAction.sumActionList;
+
+    double doubleHealth = calculateAction.doubleHealth;
     if (isSymbolEffectedAtRow(nRow, EasyTypeEnum.from)) {
       final sumActionModel = adjustHealthAtRow(
           tempHealthModel, nRow, EasyTypeEnum.from, nRow, EasyTypeEnum.to);
-      sumActionModel.targetModel.health = fResult;
-      fResult = sumActionModel.getResult();
-
-      final actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
-        nRow:nRow,
-        easyType: EasyTypeEnum.from,
-        doubleHealth: fResult,
-        sumActionList:[sumActionModel],
-      );
-      tempHealthModel.updateHealthAtRow(actionModel);
+      sumActionModel.targetModel.health = doubleHealth;
+      sumActionList.add(sumActionModel);
+      doubleHealth = sumActionModel.getResult();
     } //else cont.
-    tempHealthModel.symbol(nRow, EasyTypeEnum.from)?.isBasicHealth = true;
-    tempHealthModel.diagramsModel.addToFinishArray(nRow);
-    return fResult;
+
+    final actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
+      nRow:nRow,
+      easyType: EasyTypeEnum.from,
+      doubleHealth: doubleHealth,
+      sumActionList:sumActionList,
+    );
+    return actionModel;
   }
 
   bool isSymbolEffectedAtRow(int nRow, EasyTypeEnum easyType) {

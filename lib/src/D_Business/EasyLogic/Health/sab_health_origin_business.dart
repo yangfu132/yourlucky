@@ -325,6 +325,8 @@ class SABHealthOriginBusiness extends SABLogBusiness {
       symbolEarth:logicModel().getSymbolEarth(basicRow, basicEasyType),
       defenseModel:basicDefenseModel,
     );
+    targetModel.health = 0;
+
     int effectsRow = globalRowMonth;
     EasyTypeEnum effectsEasyType = EasyTypeEnum.month;
     SABOutModel outModel = SABOutModel(nRow:effectsRow,easyType:effectsEasyType);
@@ -393,20 +395,24 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     return sumModel;
   }
 
-  double symbolBasicHealthAtRow(int nRow, EasyTypeEnum easyType) {
+  SABHealthActionModel symbolBasicHealthAtRow(int nRow, EasyTypeEnum easyType) {
     double fResult = 0.0;
+    List<SABHealthSumActionModel> sumActionList = <SABHealthSumActionModel>[];
+
     final symbolModel = logicModel().rowModelAtRow(nRow).symbolModel(easyType);
     if (null != symbolModel) {
       String basicEarth = logicModel().getSymbolEarth(nRow, easyType);
       if ("" != basicEarth) {
-
         SABHealthSumActionModel sumMonth = monthSumAction(nRow,easyType,symbolModel,basicEarth);
         double monthResult = sumMonth.getResult();
+        sumActionList.add(sumMonth);
 
         //日
         SABHealthSumActionModel sumDay = daySumAction(nRow,easyType,symbolModel,basicEarth);
         sumDay.targetModel.health = monthResult;
         fResult = sumDay.getResult();
+        sumActionList.add(sumDay);
+
       } else {
         coLog(StackTrace.current, LogTypeEnum.error, "error!");
       }
@@ -414,7 +420,14 @@ class SABHealthOriginBusiness extends SABLogBusiness {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
     }
 
-    return fResult;
+    final actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.calculate,
+        nRow:nRow,
+        easyType: easyType,
+        doubleHealth: fResult,
+        sumActionList:sumActionList
+    );
+
+    return actionModel;
   }
 
   double healthCriticalValue() {
@@ -431,9 +444,8 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     bool bResult = false;
 
     if (0 <= nRow && nRow < 6) {
-      double health = symbolBasicHealthAtRow(nRow, easyType);
-
-      bResult = health > healthCriticalValue();
+      SABHealthActionModel actionModel = symbolBasicHealthAtRow(nRow, easyType);
+      bResult = actionModel.doubleHealth > healthCriticalValue();
     } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
     } //end if
@@ -556,11 +568,12 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     SABHealthDiagramsModel diagrams,
   ) {
     const easyType = EasyTypeEnum.from;
+    SABHealthActionModel actionModel = symbolBasicHealthAtRow(intRow, easyType);
     final initModel = SABHealthActionModel(nActionType:ActionTypeEnum.init,
         easyType:easyType,
         nRow:intRow,
-        doubleHealth:symbolBasicHealthAtRow(intRow, easyType),
-        sumActionList:[]);
+        doubleHealth:actionModel.doubleHealth,
+        sumActionList:actionModel.sumActionList);
     return SABHealthSymbolModel(
         critical: healthCriticalValue(),
         initModel: initModel,
@@ -573,11 +586,12 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     SABHealthDiagramsModel diagrams,
   ) {
     const easyType = EasyTypeEnum.to;
+    SABHealthActionModel actionModel = symbolBasicHealthAtRow(intRow, easyType);
     final initModel = SABHealthActionModel(nActionType:ActionTypeEnum.init,
         easyType:easyType,
         nRow:intRow,
-        doubleHealth:symbolBasicHealthAtRow(intRow, easyType),
-        sumActionList:[]
+        doubleHealth:actionModel.doubleHealth,
+        sumActionList:actionModel.sumActionList
     );
     return SABHealthSymbolModel(
         critical: healthCriticalValue(),
@@ -590,11 +604,12 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     SABHealthDiagramsModel diagrams,
   ) {
     const easyType = EasyTypeEnum.hide;
+    SABHealthActionModel actionModel = symbolBasicHealthAtRow(intRow, easyType);
     final initModel = SABHealthActionModel(nActionType:ActionTypeEnum.init,
         easyType:easyType,
         nRow:intRow,
-        doubleHealth:symbolBasicHealthAtRow(intRow, easyType),
-        sumActionList:[]);
+        doubleHealth:actionModel.doubleHealth,
+        sumActionList:actionModel.sumActionList);
     return SABHealthSymbolModel(
         critical: healthCriticalValue(),
         initModel: initModel,

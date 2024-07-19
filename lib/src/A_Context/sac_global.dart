@@ -21,6 +21,7 @@ enum ActionTypeEnum {
   init,
   update,
   sum,
+  calculate,
 }
 
 enum LogTypeEnum {
