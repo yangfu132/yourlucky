@@ -1,6 +1,8 @@
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_logic_row_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_logic_symbol_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_action_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_sum_action_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_sum_addend_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_sum_target_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_symbol_model.dart';
@@ -299,28 +301,76 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     return fResult;
   }
 
+  SABHealthSumActionModel monthSumAction(int basicRow, EasyTypeEnum basicEasyType,
+      SABLogicSymbolModel symbolModel,String basicEarth) {
+    //月
+    double monthResult = 0.0;
+    if (symbolModel.isConflictMonth) {
+      if (1 == SACContext.setting().monthConflictZero.intValue) {
+        monthResult = 0;
+      } else {
+        monthResult = earthHealthAtMonthAndDay(
+            basicEarth, monthModel().stringEarth, dayModel().stringEarth);
+      } //end if
+    } else {
+      monthResult = earthHealthAtMonthAndDay(
+          basicEarth, monthModel().stringEarth, dayModel().stringEarth);
+    } //end if
+
+    SABDefensiveModel basicDefenseModel = symbolDefensiveAtRow(basicRow, basicEasyType);
+    SABHealthSumTargetModel targetModel = SABHealthSumTargetModel(
+      nRow: basicRow,
+      easyType: basicEasyType,
+      symbolName: logicModel().getSymbolName(basicRow, basicEasyType),
+      symbolEarth:logicModel().getSymbolEarth(basicRow, basicEasyType),
+      defenseModel:basicDefenseModel,
+    );
+    int effectsRow = globalRowMonth;
+    EasyTypeEnum effectsEasyType = EasyTypeEnum.month;
+    SABOutModel outModel = SABOutModel(nRow:effectsRow,easyType:effectsEasyType);
+    outModel.conversionRate = 1;
+    outModel.health = monthResult;
+    outModel.outRight = OutRightEnum.rightTypeMonth;
+    SABHealthSumAddendModel addendModel = SABHealthSumAddendModel(
+      nRow: effectsRow,
+      easyType: effectsEasyType,
+      symbolName:logicModel().getSymbolName(effectsRow, effectsEasyType),
+      symbolEarth:logicModel().getSymbolEarth(effectsRow, effectsEasyType),
+      outModel: outModel,
+    );
+
+    SABHealthSumActionModel  sumModel = SABHealthSumActionModel(
+      targetModel:targetModel,
+      addendModel:addendModel,
+      isEarthAddendBornTarget:true,
+      isEarthAddendRestrictsTarget:false,
+    );
+    return sumModel;
+  }
+
   double symbolBasicHealthAtRow(int nRow, EasyTypeEnum easyType) {
     double fResult = 0.0;
     final symbolModel = logicModel().rowModelAtRow(nRow).symbolModel(easyType);
     if (null != symbolModel) {
       String basicEarth = logicModel().getSymbolEarth(nRow, easyType);
-
       if ("" != basicEarth) {
+
+        SABHealthSumActionModel sumMonth = monthSumAction(nRow,easyType,symbolModel,basicEarth);
+        double monthResult = sumMonth.getResult();
+
         //日
+        double dayResult = 0.0;
         if (symbolModel.isEmpty()) {
-          fResult = 0;
+          if (1 == SACContext.setting().emptyZero.intValue) {
+            dayResult = 0;
+          } else {
+            dayResult = earthHealthAtDayEarth(basicEarth, wordsModel().dayModel.stringEarth);
+          } // end if
         } else {
-          fResult = earthHealthAtDayEarth(
-              basicEarth, wordsModel().dayModel.stringEarth);
+          dayResult = earthHealthAtDayEarth(basicEarth, wordsModel().dayModel.stringEarth);
         } //end if
 
-        //月
-        if (symbolModel.isConflictMonth) {
-          fResult += 0;
-        } else {
-          fResult += earthHealthAtMonthAndDay(
-              basicEarth, monthModel().stringEarth, dayModel().stringEarth);
-        } //end if
+        fResult = dayResult + monthResult;
       } else {
         coLog(StackTrace.current, LogTypeEnum.error, "error!");
       }

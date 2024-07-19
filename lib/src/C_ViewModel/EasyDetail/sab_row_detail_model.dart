@@ -96,7 +96,7 @@ class SABRowDetailModel extends SABBaseModel {
       case EasyTypeEnum.hide:
         resultType = EasyTypeEnum.from;
         break;
-      case EasyTypeEnum.typeNull:
+      default:
         error();
     }
     return resultType;

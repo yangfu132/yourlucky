@@ -11,6 +11,8 @@ enum EasyTypeEnum {
   from, //本卦
   to, //变卦
   hide, //伏卦
+  month, //伏卦
+  day, //伏卦
 }
 
 enum ActionTypeEnum {
@@ -72,6 +74,8 @@ enum OutRightEnum {
   rightTypeEmpty, //5,空
   rightTypeHide, //6,伏神
   rightTypeMoveTo, //7,变爻
+  rightTypeMonth, //8,月
+  rightTypeDay, //9,日
 }
 
 //note：代表无效的爻索引数，当未被复制的时候使用；
