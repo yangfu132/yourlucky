@@ -23,12 +23,10 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
   @override
   void initState() {
     super.initState();
-    SASFileService.readFile((content) {
-      this.content = content;
-      setState(() {
-
-      });
-    });
+    // SASFileService.readFile((content) {
+    //   this.content = content;
+    //   setState(() {});
+    // });
   }
 
   Widget _buildBody() {
