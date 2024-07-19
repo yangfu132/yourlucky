@@ -148,13 +148,13 @@ class SABMoveHealthBusiness extends SABBaseBusiness {
 
      String basicEarth = logicModel().getSymbolEarth(basicRow, EasyTypeEnum.from);
      String effectsEarth = logicModel().getSymbolEarth(effectsRow, effectsEasyType);
-     bool isEarthAddendBornTarget = _branchBusiness.isEarthBorn(effectsEarth, basicEarth);
-     bool isEarthAddendRestrictsTarget = _branchBusiness.isEarthRestricts(effectsEarth, basicEarth);
+     bool isAddToTarget = _branchBusiness.isEarthBorn(effectsEarth, basicEarth);
+     bool isSubToTarget = _branchBusiness.isEarthRestricts(effectsEarth, basicEarth);
      SABHealthSumActionModel  sumModel = SABHealthSumActionModel(
        targetModel:targetModel,
        addendModel:addendModel,
-       isEarthAddendBornTarget:isEarthAddendBornTarget,
-       isEarthAddendRestrictsTarget:isEarthAddendRestrictsTarget,
+       isAddToTarget:isAddToTarget,
+       isSubToTarget:isSubToTarget,
      );
 
     return sumModel;

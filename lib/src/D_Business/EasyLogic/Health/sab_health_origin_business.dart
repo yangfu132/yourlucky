@@ -334,16 +334,61 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     SABHealthSumAddendModel addendModel = SABHealthSumAddendModel(
       nRow: effectsRow,
       easyType: effectsEasyType,
-      symbolName:logicModel().getSymbolName(effectsRow, effectsEasyType),
-      symbolEarth:logicModel().getSymbolEarth(effectsRow, effectsEasyType),
+      symbolName:wordsModel().monthModel.skyEarth(),
+      symbolEarth:wordsModel().monthModel.stringEarth,
       outModel: outModel,
     );
 
     SABHealthSumActionModel  sumModel = SABHealthSumActionModel(
       targetModel:targetModel,
       addendModel:addendModel,
-      isEarthAddendBornTarget:true,
-      isEarthAddendRestrictsTarget:false,
+      isAddToTarget:true,
+      isSubToTarget:false,
+    );
+    return sumModel;
+  }
+
+  SABHealthSumActionModel daySumAction(int basicRow, EasyTypeEnum basicEasyType,
+      SABLogicSymbolModel symbolModel,String basicEarth) {
+    //日
+    double dayResult = 0.0;
+    if (symbolModel.isEmpty()) {
+      if (1 == SACContext.setting().emptyZero.intValue) {
+        dayResult = 0;
+      } else {
+        dayResult = earthHealthAtDayEarth(basicEarth, wordsModel().dayModel.stringEarth);
+      } // end if
+    } else {
+      dayResult = earthHealthAtDayEarth(basicEarth, wordsModel().dayModel.stringEarth);
+    } //end if
+
+    SABDefensiveModel basicDefenseModel = symbolDefensiveAtRow(basicRow, basicEasyType);
+    SABHealthSumTargetModel targetModel = SABHealthSumTargetModel(
+      nRow: basicRow,
+      easyType: basicEasyType,
+      symbolName: logicModel().getSymbolName(basicRow, basicEasyType),
+      symbolEarth:logicModel().getSymbolEarth(basicRow, basicEasyType),
+      defenseModel:basicDefenseModel,
+    );
+    int effectsRow = globalRowDay;
+    EasyTypeEnum effectsEasyType = EasyTypeEnum.day;
+    SABOutModel outModel = SABOutModel(nRow:effectsRow,easyType:effectsEasyType);
+    outModel.conversionRate = 1;
+    outModel.health = dayResult;
+    outModel.outRight = OutRightEnum.rightTypeDay;
+    SABHealthSumAddendModel addendModel = SABHealthSumAddendModel(
+      nRow: effectsRow,
+      easyType: effectsEasyType,
+      symbolName:wordsModel().dayModel.skyEarth(),
+      symbolEarth:wordsModel().dayModel.stringEarth,
+      outModel: outModel,
+    );
+
+    SABHealthSumActionModel  sumModel = SABHealthSumActionModel(
+      targetModel:targetModel,
+      addendModel:addendModel,
+      isAddToTarget:true,
+      isSubToTarget:false,
     );
     return sumModel;
   }
@@ -359,18 +404,9 @@ class SABHealthOriginBusiness extends SABLogBusiness {
         double monthResult = sumMonth.getResult();
 
         //日
-        double dayResult = 0.0;
-        if (symbolModel.isEmpty()) {
-          if (1 == SACContext.setting().emptyZero.intValue) {
-            dayResult = 0;
-          } else {
-            dayResult = earthHealthAtDayEarth(basicEarth, wordsModel().dayModel.stringEarth);
-          } // end if
-        } else {
-          dayResult = earthHealthAtDayEarth(basicEarth, wordsModel().dayModel.stringEarth);
-        } //end if
-
-        fResult = dayResult + monthResult;
+        SABHealthSumActionModel sumDay = daySumAction(nRow,easyType,symbolModel,basicEarth);
+        sumDay.targetModel.health = monthResult;
+        fResult = sumDay.getResult();
       } else {
         coLog(StackTrace.current, LogTypeEnum.error, "error!");
       }

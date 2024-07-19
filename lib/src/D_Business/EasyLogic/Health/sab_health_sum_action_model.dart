@@ -7,13 +7,13 @@ class SABHealthSumActionModel extends SABBaseModel {
   SABHealthSumActionModel({
     required this.addendModel,
     required this.targetModel,
-    required this.isEarthAddendBornTarget,
-    required this.isEarthAddendRestrictsTarget,
+    required this.isAddToTarget,
+    required this.isSubToTarget,
   });
   final SABHealthSumAddendModel addendModel;
   final SABHealthSumTargetModel targetModel;
-  final bool isEarthAddendBornTarget;
-  final bool isEarthAddendRestrictsTarget;
+  final bool isAddToTarget;
+  final bool isSubToTarget;
   late final String timeDes = getTimeDes();
 
   double getAffectRate(){
@@ -23,11 +23,11 @@ class SABHealthSumActionModel extends SABBaseModel {
 
   double getAddendValue () {
     double fHealth = 0;
-    if (isEarthAddendBornTarget) {
+    if (isAddToTarget) {
       fHealth = addendModel.outModel.getOut();
     } //else cont.
 
-    if (isEarthAddendRestrictsTarget) {
+    if (isSubToTarget) {
       fHealth = -1 * getAffectRate() * addendModel.outModel.getOut();
     } //else cont.
     return fHealth;
