@@ -330,8 +330,8 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
       //用神冲空 出空
       strUseful = "$strUseful现在有效";
       strResult = SASStringService.appendToString(strResult, strUseful);
-    } else if (EmptyEnum.emptyNO != emptyState) {
-      if (EmptyEnum.emptyNull == emptyState) {
+    } else if (EmptyEnum.emptyNO != emptyState.emptyType) {
+      if (EmptyEnum.emptyNull == emptyState.emptyType) {
         if (globalRowMonth == usefulDeity.symbolRow) {
           //用神旬空
           strUseful = strUseful + outEmptyDate();

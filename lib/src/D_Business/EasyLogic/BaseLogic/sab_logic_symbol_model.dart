@@ -89,8 +89,8 @@ class SABLogicSymbolModel extends SABBaseModel {
   }
 
   bool isEmpty() {
-    return EmptyEnum.emptyYES == basicEmptyState ||
-        EmptyEnum.emptyReal == basicEmptyState;
+    return EmptyEnum.emptyYES == basicEmptyState.emptyType ||
+        EmptyEnum.emptyReal == basicEmptyState.emptyType;
   }
 
   double defensive (){
