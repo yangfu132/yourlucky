@@ -11,6 +11,7 @@ import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_logic_symbol_m
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_easy_health_business.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_row_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/sab_easy_empty_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/sab_easy_health_logic_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/sab_health_logic_row_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/sab_health_logic_symbol_model.dart';
@@ -171,8 +172,10 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     return logicModel().inputWordsModel.getSymbolName(intRow, enumEasyType);
   }
 
-  bool isEmptyAtRow(int intRow, EasyTypeEnum easyType) {
-    return logicModel().symbolAtRow(intRow, easyType).isEmpty();
+  bool isEmptyAtRow(int symbolRow, EasyTypeEnum easyType) {
+    SABEasyEmptyModel typeModel = logicModel().symbolAtRow(symbolRow, easyType).basicEmptyState;
+    bool bResult = typeModel.emptyType == EmptyEnum.emptyYES;
+    return bResult;
   }
 
   String monthEarth() {
@@ -1095,6 +1098,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
   bool isRealEmpty(int intRow, EasyTypeEnum easyType) {
     bool bResult = false;
+    //TODO:做个model
     /*
      月破为空，
      有气不动亦为空，
@@ -1533,8 +1537,8 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     //舍其旬空而用不空；          野鹤：舍其不空而用旬空；
     List listEmpty = List.empty(growable: true);
     for (int intRow in usefulArray) {
-      if (logicModel().symbolAtRow(intRow, easyTypeEnum).basicEmptyState !=
-          EmptyEnum.emptyNO) {
+      SABEasyEmptyModel typeModel = logicModel().symbolAtRow(intRow, easyTypeEnum).basicEmptyState;
+      if (typeModel.emptyType != EmptyEnum.emptyNO) {
         listEmpty.add(intRow);
       } //else {}
     } //end for

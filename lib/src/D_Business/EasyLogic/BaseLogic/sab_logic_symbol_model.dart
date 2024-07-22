@@ -1,6 +1,7 @@
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/sab_easy_empty_model.dart';
 
 class SABLogicSymbolModel extends SABBaseModel {
   SABLogicSymbolModel({
@@ -35,7 +36,7 @@ class SABLogicSymbolModel extends SABBaseModel {
   final bool bDayBorn;
   final bool isConflictDay;
   final bool isDayRestrict;
-  final EmptyEnum basicEmptyState;
+  final SABEasyEmptyModel basicEmptyState;
 
   final bool isSeasonStrong;
   final String stringSeason;
@@ -55,7 +56,7 @@ class SABLogicSymbolModel extends SABBaseModel {
     bDayBorn: json['bDayBorn'] as bool,
     isConflictDay: json['isConflictDay'] as bool,
     isDayRestrict: json['isDayRestrict'] as bool,
-    basicEmptyState: json['basicEmptyState'] as EmptyEnum,
+    basicEmptyState: json['basicEmptyState'] as SABEasyEmptyModel,
     isSeasonStrong: json['isSeasonStrong'] as bool,
     stringSeason: json['stringSeason']! as String,
     isEffectAble: json['isEffectAble'] as bool,

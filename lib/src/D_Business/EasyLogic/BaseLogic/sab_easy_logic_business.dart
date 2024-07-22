@@ -5,6 +5,7 @@ import 'package:your_lucky/src/D_Business/EarthBranch/sab_earth_branch_business.
 import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_common_logic_business.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_logic_row_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_logic_symbol_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/sab_easy_empty_model.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/sab_words_row_model.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/sab_words_symbol_model.dart';
 
@@ -757,31 +758,18 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
 
   /// `--旬空章第二十六`///////////////////////////////////////////////////////////
 
-  EmptyEnum _symbolBasicEmptyState(String stringSymbol) {
-    EmptyEnum nResult = EmptyEnum.emptyFalse;
-    if ("" != stringSymbol) {
-      String earth = symbolEarth(stringSymbol);
-      if (emptyEarth().contains(earth)) {
-        String strDay = dayEarth();
-        if (isEarthConflict(strDay, earth)) {
-          //爻遇旬空，日辰冲起而为用，谓之冲空则实。
-          nResult = EmptyEnum.emptyConflict;
-        } else {
-          nResult = EmptyEnum.emptyYES;
-        }
-      } //else continue.
-    } else {
-      coLog(StackTrace.current, LogTypeEnum.error, "stringSymbol为空");
-    }
-
-    return nResult;
-  }
-
-  bool isEmptyAtRow(int intRow, EasyTypeEnum easyType) {
-    String stringSymbol = rowModelAtRow(intRow, easyType);
-    bool bResult = _symbolBasicEmptyState(stringSymbol) == EmptyEnum.emptyYES;
-
-    return bResult;
+  SABEasyEmptyModel _symbolBasicEmptyState(int symbolRow, EasyTypeEnum easyType) {
+    String stringSymbol = rowModelAtRow(symbolRow, easyType);
+    SABEasyEmptyModel typeModel = SABEasyEmptyModel(
+        easyType:easyType,
+        symbolRow:symbolRow,
+    );
+    typeModel.stringSymbol = stringSymbol;
+    typeModel.emptyEarth = emptyEarth();
+    typeModel.strDay = dayEarth();
+    typeModel.earth = symbolEarth(stringSymbol);
+    typeModel.isEarthConflict = isEarthConflict(typeModel.strDay, typeModel.earth);
+    return typeModel;
   }
 
   bool isHideSymbolSeasonStrong(int intRow) {
@@ -1041,7 +1029,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       isDayPair: _isSymbolDayPair(stringSymbol),
       bDayBorn: _isSymbolDayBorn(stringSymbol),
       isDayRestrict: _isSymbolDayRestrict(stringSymbol),
-      basicEmptyState: _symbolBasicEmptyState(stringSymbol),
+      basicEmptyState: _symbolBasicEmptyState(intRow,EasyTypeEnum.from),
       isConflictDay: isConflictDayAtRow(intRow, EasyTypeEnum.from),
       isSeasonStrong: isSymbolSeasonStrong(stringSymbol),
       stringSeason: _symbolSeason(stringSymbol),
@@ -1065,7 +1053,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       bDayBorn: _isSymbolDayBorn(stringSymbol),
       isDayRestrict: _isSymbolDayRestrict(stringSymbol),
       isConflictDay: isConflictDayAtRow(intRow, EasyTypeEnum.to),
-      basicEmptyState: _symbolBasicEmptyState(stringSymbol),
+      basicEmptyState: _symbolBasicEmptyState(intRow,EasyTypeEnum.to),
       isSeasonStrong: isSymbolSeasonStrong(symbolAtToRow(intRow)),
       stringSeason: _symbolSeason(stringSymbol),
       isEffectAble: isEffectAbleRow(intRow, EasyTypeEnum.to),
@@ -1088,7 +1076,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       isDayRestrict: _isSymbolDayRestrict(stringSymbol),
       isDayPair: _isSymbolDayPair(stringSymbol),
       isConflictDay: isConflictDayAtRow(intRow, EasyTypeEnum.hide),
-      basicEmptyState: _symbolBasicEmptyState(stringSymbol),
+      basicEmptyState: _symbolBasicEmptyState(intRow,EasyTypeEnum.hide),
       isSeasonStrong: isSymbolSeasonStrong(stringSymbol),
       stringSeason: _symbolSeason(stringSymbol),
       isEffectAble: isEffectAbleRow(intRow, EasyTypeEnum.hide),

@@ -4,6 +4,7 @@ import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_base_info_detail_route_store.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route_store.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_empty_detail_route_store.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/List/sau_list_route.dart';
@@ -92,7 +93,7 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
     } else if ('日将' == value['key']) {
       int uiRow = widget.inputDetailModel.getUsefulDeity().symbolRow + 1;
       Navigator.push(context, MaterialPageRoute(builder: (context) {
-        final store = SAUBaseInfoDetailRouteStore(
+        final store = SAUDetailDetailRouteStore(
             inputDetailModel:widget.inputDetailModel,
             uiRow: uiRow,
             easyType: EasyTypeEnum.from
@@ -105,7 +106,7 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
   void onUsefulDeityClicked(){
     int uiRow = widget.inputDetailModel.getUsefulDeity().symbolRow + 1;
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      final store = SAUDetailRouteStore(
+      final store = SAUBaseInfoDetailRouteStore(
           inputDetailModel:widget.inputDetailModel,
           uiRow: uiRow,
           easyType: EasyTypeEnum.from

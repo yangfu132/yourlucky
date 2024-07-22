@@ -2,6 +2,7 @@
 import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_easy_logic_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/sab_easy_health_logic_model.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/sab_easy_words_model.dart';
@@ -46,8 +47,12 @@ class SABEasyDetailModel extends SABBaseModel {
     return healthLogicModel().inputHealthModel;
   }
 
+  SABEasyLogicModel logicModel() {
+    return healthModel().inputLogicModel;
+  }
+
   SABEasyWordsModel wordsModel() {
-    return healthModel().inputLogicModel.inputWordsModel;
+    return logicModel().inputWordsModel;
   }
 
   SABEasyDigitModel digitModel() {

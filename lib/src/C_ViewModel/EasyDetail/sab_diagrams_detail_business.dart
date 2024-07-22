@@ -6,6 +6,7 @@ import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
 import 'package:your_lucky/src/D_Business/EarthBranch/sab_earth_branch_business.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_easy_logic_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/sab_easy_empty_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/sab_easy_health_logic_model.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/sab_easy_words_model.dart';
 import 'package:your_lucky/src/D_Business/Strategy/sab_useful_deity_model.dart';
@@ -302,7 +303,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
 
     final usefulDeity = healthLogicModel().usefulDeity;
 
-    EmptyEnum emptyState = EmptyEnum.emptyNull;
+    SABEasyEmptyModel emptyState = SABEasyEmptyModel.emptyModel();
     String strUseful = "";
     if (EasyTypeEnum.from == usefulDeity.easyType ||
         EasyTypeEnum.hide == usefulDeity.easyType) {
@@ -321,11 +322,11 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
           "EasyType do not has usefulDeity.");
     } //end {}
 
-    if (EmptyEnum.emptyNoUseful == emptyState) {
+    if (EmptyEnum.emptyNoUseful == emptyState.emptyType) {
       //用神没有出现
       strUseful = "$strUseful卦中用神未现";
       strResult = SASStringService.appendToString(strResult, strUseful);
-    } else if (EmptyEnum.emptyConflict == emptyState) {
+    } else if (EmptyEnum.emptyConflict == emptyState.emptyType) {
       //用神冲空 出空
       strUseful = "$strUseful现在有效";
       strResult = SASStringService.appendToString(strResult, strUseful);

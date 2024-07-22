@@ -1,5 +1,6 @@
 ﻿import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_logic_symbol_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/sab_easy_empty_model.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/sab_day_model.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/sab_month_model.dart';
 
@@ -131,7 +132,7 @@ class SABEasyLogicModel extends SABBaseModel {
     return rowModelAtRow(intRow).getIsSeasonStrong(easyType);
   }
 
-  EmptyEnum getBasicEmptyState(int intRow, EasyTypeEnum easyType) {
+  SABEasyEmptyModel getBasicEmptyState(int intRow, EasyTypeEnum easyType) {
     return rowModelAtRow(intRow).getBasicEmptyState(easyType);
   }
 
