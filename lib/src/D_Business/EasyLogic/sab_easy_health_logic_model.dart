@@ -2,6 +2,7 @@ import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/sab_easy_empty_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/sab_health_logic_row_model.dart';
 import 'package:your_lucky/src/D_Business/Strategy/sab_useful_deity_model.dart';
 
@@ -41,7 +42,7 @@ class SABEasyHealthLogicModel extends SABBaseModel {
     return inputHealthModel.symbol(nRow, easyType)?.healthDescription() ?? "easyType:$easyType empty";
   }
 
-  EmptyEnum getSymbolEmptyState(int intRow, EasyTypeEnum easyTypeEnum) {
+  SABEasyEmptyModel getSymbolEmptyState(int intRow, EasyTypeEnum easyTypeEnum) {
     return rowModelAtRow(intRow).getSymbolEmptyState(easyTypeEnum);
   }
 

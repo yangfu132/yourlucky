@@ -3,6 +3,7 @@ import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
 import 'package:your_lucky/src/D_Business/EarthBranch/sab_earth_branch_business.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_easy_logic_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/sab_easy_empty_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/sab_easy_health_logic_model.dart';
 import 'package:your_lucky/src/D_Business/EasyWords/sab_easy_words_model.dart';
 import 'package:your_lucky/src/E_Service/sas_string_service.dart';
@@ -318,27 +319,8 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
   }
 
   String resultSymbolEmpty(int nRow, EasyTypeEnum easyType) {
-    String strEmpty = "";
-    switch (healthLogicModel().getSymbolEmptyState(nRow, easyType)) {
-      case EmptyEnum.emptyNO:
-        break;
-      case EmptyEnum.emptyYES:
-        strEmpty = "[空]";
-        break;
-      case EmptyEnum.emptyFalse:
-        strEmpty = "[假空]";
-        break;
-      case EmptyEnum.emptyReal:
-        strEmpty = "[真空]";
-        break;
-      case EmptyEnum.emptyConflict:
-        strEmpty = "[冲空不空]";
-        break;
-      default:
-        break;
-    } //ends
-
-    return strEmpty;
+    SABEasyEmptyModel typeModel = healthLogicModel().getSymbolEmptyState(nRow, easyType);
+    return typeModel.emptyDes();
   }
 
   ///`六合章第十九`//////////////////////////////////////////////////////

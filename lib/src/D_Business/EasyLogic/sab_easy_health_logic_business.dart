@@ -1018,29 +1018,11 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
   /// `--旬空章第二十六`///////////////////////////////////////////////////////////
 
-  EmptyEnum symbolEmptyState(int intRow, EasyTypeEnum easyType) {
-    EmptyEnum nResult = EmptyEnum.emptyNull;
-    String stringSymbol = symbolNameAtRow(intRow, easyType);
-    if ("" != stringSymbol) {
-      String earth = wordsModel().getSymbolEarth(intRow, easyType);
-      if (logicModel().diagramsModel.stringEmptyBranch.contains(earth)) {
-        String strDay = dayEarth();
-        if (branchBusiness().isEarthConflict(strDay, earth)) {
-          //爻遇旬空，日辰冲起而为用，谓之冲空则实。
-          nResult = EmptyEnum.emptyConflict;
-        } else if (isFalseEmptyAtRow(intRow, easyType)) {
-          nResult = EmptyEnum.emptyFalse;
-        } else if (isRealEmpty(intRow, easyType)) {
-          nResult = EmptyEnum.emptyReal;
-        } else {
-          nResult = EmptyEnum.emptyYES;
-        }
-      } //else cont.
-    } else {
-      coLog(StackTrace.current, LogTypeEnum.error, "error!");
-    }
-
-    return nResult;
+  SABEasyEmptyModel symbolEmptyState(int symbolRow, EasyTypeEnum easyType) {
+    SABEasyEmptyModel typeModel = logicModel().getBasicEmptyState(symbolRow, easyType);
+    typeModel.isFalseEmpty = isFalseEmptyAtRow(symbolRow, easyType);
+    typeModel.isRealEmpty = isRealEmpty(symbolRow, easyType);
+    return typeModel;
   }
 
   bool isFalseEmptyAtRow(int intRow, EasyTypeEnum easyType) {

@@ -132,8 +132,8 @@ class SABEasyLogicModel extends SABBaseModel {
     return rowModelAtRow(intRow).getIsSeasonStrong(easyType);
   }
 
-  SABEasyEmptyModel getBasicEmptyState(int intRow, EasyTypeEnum easyType) {
-    return rowModelAtRow(intRow).getBasicEmptyState(easyType);
+  SABEasyEmptyModel getBasicEmptyState(int symbolRow, EasyTypeEnum easyType) {
+    return rowModelAtRow(symbolRow).getBasicEmptyState(easyType);
   }
 
   bool isOnMonth(int intRow, EasyTypeEnum easyType) {

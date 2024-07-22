@@ -72,30 +72,6 @@ class SAUDetailDetailRouteStore extends SAUDetailRouteStore{
     return resultValue;
   }
 
-  String resultSymbolEmpty(int nRow, EasyTypeEnum easyType) {
-    String strEmpty = "";
-    switch (inputDetailModel.healthLogicModel().getSymbolEmptyState(nRow, easyType)) {
-      case EmptyEnum.emptyNO:
-        break;
-      case EmptyEnum.emptyYES:
-        strEmpty = "[空]";
-        break;
-      case EmptyEnum.emptyFalse:
-        strEmpty = "[假空]";
-        break;
-      case EmptyEnum.emptyReal:
-        strEmpty = "[真空]";
-        break;
-      case EmptyEnum.emptyConflict:
-        strEmpty = "[冲空不空]";
-        break;
-      default:
-        break;
-    } //ends
-
-    return strEmpty;
-  }
-
   List<Map> resultList() {
     final List<String> itemKeyList = ['health'];
     var result = List<Map>.empty(growable: true);

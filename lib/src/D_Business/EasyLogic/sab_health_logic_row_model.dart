@@ -2,6 +2,7 @@ import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_row_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/sab_easy_empty_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/sab_health_logic_symbol_model.dart';
 
 class SABHealthLogicRowModel extends SABBaseModel {
@@ -55,7 +56,7 @@ class SABHealthLogicRowModel extends SABBaseModel {
     }
   }
 
-  EmptyEnum getSymbolEmptyState(EasyTypeEnum easyTypeEnum) {
+  SABEasyEmptyModel getSymbolEmptyState(EasyTypeEnum easyTypeEnum) {
     if (easyTypeEnum == EasyTypeEnum.from) {
       return fromSymbol.symbolEmptyState;
     } else if (easyTypeEnum == EasyTypeEnum.to) {
@@ -65,7 +66,7 @@ class SABHealthLogicRowModel extends SABBaseModel {
     } else {
       coLog(
           StackTrace.current, LogTypeEnum.error, 'easyTypeEnum:$easyTypeEnum');
-      return EmptyEnum.emptyNull;
+      return SABEasyEmptyModel.emptyModel();
     }
   }
 

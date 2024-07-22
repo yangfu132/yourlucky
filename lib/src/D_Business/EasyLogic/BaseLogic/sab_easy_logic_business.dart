@@ -768,7 +768,7 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     typeModel.emptyEarth = emptyEarth();
     typeModel.strDay = dayEarth();
     typeModel.earth = symbolEarth(stringSymbol);
-    typeModel.isEarthConflict = isEarthConflict(typeModel.strDay, typeModel.earth);
+    typeModel.isConflictDay = isEarthConflict(typeModel.strDay, typeModel.earth);
     return typeModel;
   }
 
