@@ -6,11 +6,11 @@ import 'package:your_lucky/src/B_UI/Common/Widget/Button/sau_button_model.dart';
 import 'package:your_lucky/src/E_Service/sas_file_service.dart';
 
 import '../../Widget/sau_divider_widget.dart';
-import 'sau_detail_route_store_model.dart';
+import 'sau_detail_route_store.dart';
 
 class SAUDetailRoute extends StatefulWidget {
   const SAUDetailRoute({super.key, required this.store});
-  final SAUDetailRouteStoreModel store;
+  final SAUDetailRouteStore store;
   @override
   SAUDetailRouteState createState() {
     return SAUDetailRouteState();
@@ -81,7 +81,7 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
     );
   }
 
-  Widget _buildBottomButtons(SAUDetailRouteStoreModel store) {
+  Widget _buildBottomButtons(SAUDetailRouteStore store) {
     final children = <Widget>[];
     final buttons = store.data.buttonRoles;
     final lastIndex = buttons.length - 1;
@@ -109,7 +109,7 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
     );
   }
 
-  Widget _buildButton(SAUDetailRouteStoreModel store,
+  Widget _buildButton(SAUDetailRouteStore store,
       SAUButtonModel role, bool isLast) {
     final backColor = isLast ? const Color(0xFFFEAB00) : Colors.white;
     final borderColor = isLast ? const Color(0xFFFEAB00) : const Color(0xFFDCDFE6);

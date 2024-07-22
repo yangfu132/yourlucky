@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route.dart';
-import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route_store_model.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route_store.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/List/sau_list_route.dart';
@@ -94,7 +94,7 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
   void onUsefulDeityClicked(){
     int symbolRow = widget.inputDetailModel.getUsefulDeity().intRow + 1;
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      final store = SAUDetailRouteStoreModel(
+      final store = SAUDetailRouteStore(
           inputDetailModel:widget.inputDetailModel,
           intIndex: symbolRow,
           easyType: EasyTypeEnum.from

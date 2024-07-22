@@ -9,8 +9,8 @@ import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_row_detail_model.dart'
 
 import 'sau_detail_route_model.dart';
 
-class SAUDetailRouteStoreModel {
-  SAUDetailRouteStoreModel({
+class SAUDetailRouteStore {
+  SAUDetailRouteStore({
     required this.inputDetailModel,
     required this.intIndex,
     required this.easyType});
