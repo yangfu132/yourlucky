@@ -322,11 +322,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
           "EasyType do not has usefulDeity.");
     } //end {}
 
-    if (EmptyEnum.emptyNoUseful == emptyState.emptyType) {
-      //用神没有出现
-      strUseful = "$strUseful卦中用神未现";
-      strResult = SASStringService.appendToString(strResult, strUseful);
-    } else if (EmptyEnum.emptyConflict == emptyState.emptyType) {
+    if (EmptyEnum.emptyConflict == emptyState.emptyType) {
       //用神冲空 出空
       strUseful = "$strUseful现在有效";
       strResult = SASStringService.appendToString(strResult, strUseful);

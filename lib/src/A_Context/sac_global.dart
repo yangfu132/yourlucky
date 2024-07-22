@@ -40,7 +40,6 @@ enum EmptyEnum {
   emptyConflict, //冲空不空
   emptyFalse, //假空
   emptyReal, //真空
-  emptyNoUseful, //用神未现
 }
 
 enum MonthConflictEnum {
