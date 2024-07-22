@@ -19,31 +19,22 @@ class SABEasyEmptyModel extends SABBaseModel {
   bool isFalseEmpty = false;
   bool isRealEmpty = false;
 
-  void symbolBasicEmptyState (){
+  void symbolEmptyState () {
     if ("" != stringSymbol) {
       if (emptyEarth.contains(earth)) {
         if (isConflictDay) {
           //爻遇旬空，日辰冲起而为用，谓之冲空则实。
           emptyType = EmptyEnum.emptyConflict;
-        } else {
-          emptyType = EmptyEnum.emptyYES;
-        } // end if
-      } //end if
-    } else {
-      coLog(StackTrace.current, LogTypeEnum.error, "stringSymbol为空");
-    } // end if
-  }
-
-  void symbolEmptyState () {
-    if ("" != stringSymbol) {
-      if (emptyEarth.contains(earth)) {
-        if (isConflictDay) {
         } else if (isFalseEmpty) {
           emptyType = EmptyEnum.emptyFalse;
         } else if (isRealEmpty) {
           emptyType = EmptyEnum.emptyReal;
-        } else {}
-      } //else cont.
+        } else {
+          emptyType = EmptyEnum.emptyYES;
+        }
+      } else {
+        emptyType = EmptyEnum.emptyNO;
+      }
     } else {
       coLog(StackTrace.current, LogTypeEnum.error, "error!");
     }

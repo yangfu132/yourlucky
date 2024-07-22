@@ -1022,6 +1022,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     SABEasyEmptyModel typeModel = logicModel().getBasicEmptyState(symbolRow, easyType);
     typeModel.isFalseEmpty = isFalseEmptyAtRow(symbolRow, easyType);
     typeModel.isRealEmpty = isRealEmpty(symbolRow, easyType);
+    typeModel.symbolEmptyState();
     return typeModel;
   }
 
