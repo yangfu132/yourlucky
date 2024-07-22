@@ -219,11 +219,11 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     if (EasyTypeEnum.from == deityModel.easyType ||
         EasyTypeEnum.hide == deityModel.easyType) {
       fResult = healthModel()
-          .symbolHealthAtRow(deityModel.intRow, deityModel.easyType);
+          .symbolHealthAtRow(deityModel.symbolRow, deityModel.easyType);
     } else if (EasyTypeEnum.typeNull == deityModel.easyType) {
-      if (globalRowMonth == deityModel.intRow) {
+      if (globalRowMonth == deityModel.symbolRow) {
         fResult = wordsModel().monthModel.health;
-      } else if (globalRowDay == deityModel.intRow) {
+      } else if (globalRowDay == deityModel.symbolRow) {
         fResult = wordsModel().dayModel.health;
       }
     } else if (EasyTypeEnum.to == deityModel.easyType) {
@@ -262,7 +262,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   bool isUsefulDeityChangeToConflict() {
     SABUsefulDeityModel deityModel = usefulDeityRow();
     if (EasyTypeEnum.from == deityModel.easyType) {
-      return logicModel().getIsSymbolChangeConflict(deityModel.intRow);
+      return logicModel().getIsSymbolChangeConflict(deityModel.symbolRow);
     } else {
       return false;
     }
@@ -271,7 +271,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
   bool isUsefulDeityChangeToRestricts() {
     SABUsefulDeityModel deityModel = usefulDeityRow();
     if (EasyTypeEnum.from == deityModel.easyType) {
-      return logicModel().getIsSymbolChangeRestrict(deityModel.intRow);
+      return logicModel().getIsSymbolChangeRestrict(deityModel.symbolRow);
     } else {
       return false;
     }
@@ -282,10 +282,10 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     SABUsefulDeityModel deityModel = usefulDeityRow();
     if (EasyTypeEnum.from == deityModel.easyType) {
       bResult =
-          logicModel().isSeasonStrong(deityModel.intRow, EasyTypeEnum.from);
+          logicModel().isSeasonStrong(deityModel.symbolRow, EasyTypeEnum.from);
     } else if (EasyTypeEnum.hide == deityModel.easyType) {
       bResult =
-          logicModel().isSeasonStrong(deityModel.intRow, EasyTypeEnum.hide);
+          logicModel().isSeasonStrong(deityModel.symbolRow, EasyTypeEnum.hide);
     } else if (EasyTypeEnum.typeNull == deityModel.easyType) {
       return true;
     } else if (EasyTypeEnum.to == deityModel.easyType) {
@@ -302,13 +302,13 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     if (EasyTypeEnum.from == deityModel.easyType ||
         EasyTypeEnum.hide == deityModel.easyType) {
       stringEarth = logicModel().inputWordsModel.getSymbolEarth(
-            deityModel.intRow,
+            deityModel.symbolRow,
             deityModel.easyType,
           );
     } else if (EasyTypeEnum.typeNull == deityModel.easyType) {
-      if (globalRowMonth == deityModel.intRow) {
+      if (globalRowMonth == deityModel.symbolRow) {
         stringEarth = logicModel().inputWordsModel.monthModel.stringEarth;
-      } else if (globalRowDay == deityModel.intRow) {
+      } else if (globalRowDay == deityModel.symbolRow) {
         stringEarth = logicModel().inputWordsModel.dayModel.stringEarth;
       }
     } else if (EasyTypeEnum.to == deityModel.easyType) {
@@ -332,10 +332,10 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     if (enumEasyType == EasyTypeEnum.from) {
       SABUsefulDeityModel deityModel = indexOfUseDeityInEasy(EasyTypeEnum.from);
       if (EasyTypeEnum.from == deityModel.easyType &&
-          intIndex == deityModel.intRow) {
+          intIndex == deityModel.symbolRow) {
         strResult = "用神";
       } else if (EasyTypeEnum.hide == deityModel.easyType &&
-          intIndex == deityModel.intRow) {
+          intIndex == deityModel.symbolRow) {
         strResult = "伏神";
       } else {
         String usefulElement = getDiagramsModel().deityElement;
@@ -1425,7 +1425,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
         SABElementInfoModel.elementRelative(fromEasyElement, monthElement());
     if (monthParent == usefulParent) {
       resultModel = SABUsefulDeityModel(
-        intRow: globalRowMonth,
+        symbolRow: globalRowMonth,
         easyType: EasyTypeEnum.typeNull,
       );
     } else {
@@ -1433,7 +1433,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
           SABElementInfoModel.elementRelative(fromEasyElement, dayElement());
       if (dayParent == usefulParent) {
         resultModel = SABUsefulDeityModel(
-          intRow: globalRowDay,
+          symbolRow: globalRowDay,
           easyType: EasyTypeEnum.typeNull,
         );
       } else {
@@ -1451,12 +1451,12 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
     if (usefulArray.length == 1) {
       resultModel = SABUsefulDeityModel(
-        intRow: usefulArray[0],
+        symbolRow: usefulArray[0],
         easyType: easyTypeEnum,
       );
     } else if (usefulArray.length > 1) {
       resultModel = SABUsefulDeityModel(
-        intRow: multiUsefulDeity(easyTypeEnum, usefulArray),
+        symbolRow: multiUsefulDeity(easyTypeEnum, usefulArray),
         easyType: easyTypeEnum,
       );
     } else {

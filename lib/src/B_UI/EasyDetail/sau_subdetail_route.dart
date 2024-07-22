@@ -89,7 +89,7 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
     } else if ('计算信息' == value['key']) {
       onActionListTapped(context);
     } else if ('日将' == value['key']) {
-      int uiRow = widget.inputDetailModel.getUsefulDeity().intRow + 1;
+      int uiRow = widget.inputDetailModel.getUsefulDeity().symbolRow + 1;
       Navigator.push(context, MaterialPageRoute(builder: (context) {
         final store = SAUDetailRouteStore(
             inputDetailModel:widget.inputDetailModel,
@@ -102,7 +102,7 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
   }
 
   void onUsefulDeityClicked(){
-    int uiRow = widget.inputDetailModel.getUsefulDeity().intRow + 1;
+    int uiRow = widget.inputDetailModel.getUsefulDeity().symbolRow + 1;
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       final store = SAUDetailRouteStore(
           inputDetailModel:widget.inputDetailModel,

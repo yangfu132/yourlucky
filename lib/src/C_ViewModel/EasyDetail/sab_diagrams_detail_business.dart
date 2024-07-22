@@ -277,7 +277,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     if (EasyTypeEnum.from == usefulDeity.easyType ||
         EasyTypeEnum.hide == usefulDeity.easyType) {
       usefulEarth =
-          logicModel().getSymbolEarth(usefulDeity.intRow, usefulDeity.easyType);
+          logicModel().getSymbolEarth(usefulDeity.symbolRow, usefulDeity.easyType);
       String onResult = "用神月破：实破之 $usefulEarth (日、月、年)则不破";
       result = SASStringService.appendToString(result, onResult);
 
@@ -307,13 +307,13 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     if (EasyTypeEnum.from == usefulDeity.easyType ||
         EasyTypeEnum.hide == usefulDeity.easyType) {
       strUseful = _inputLogicDesModel.getEmptyDescription(
-          usefulDeity.intRow, usefulDeity.easyType);
+          usefulDeity.symbolRow, usefulDeity.easyType);
       emptyState = logicModel()
-          .getBasicEmptyState(usefulDeity.intRow, usefulDeity.easyType);
+          .getBasicEmptyState(usefulDeity.symbolRow, usefulDeity.easyType);
     } else if (EasyTypeEnum.typeNull == usefulDeity.easyType) {
-      if (globalRowMonth == usefulDeity.intRow) {
+      if (globalRowMonth == usefulDeity.symbolRow) {
         strUseful = "月为用神";
-      } else if (globalRowDay == usefulDeity.intRow) {
+      } else if (globalRowDay == usefulDeity.symbolRow) {
         strUseful = "日为用神";
       }
     } else {
@@ -331,11 +331,11 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
       strResult = SASStringService.appendToString(strResult, strUseful);
     } else if (EmptyEnum.emptyNO != emptyState) {
       if (EmptyEnum.emptyNull == emptyState) {
-        if (globalRowMonth == usefulDeity.intRow) {
+        if (globalRowMonth == usefulDeity.symbolRow) {
           //用神旬空
           strUseful = strUseful + outEmptyDate();
           strResult = SASStringService.appendToString(strResult, strUseful);
-        } else if (globalRowDay == usefulDeity.intRow) {
+        } else if (globalRowDay == usefulDeity.symbolRow) {
           //日为用神不存在旬空
           strResult = SASStringService.appendToString(strResult, strUseful);
         } else {
@@ -346,7 +346,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
       }
     }
     if (EasyTypeEnum.from == usefulDeity.easyType) {
-      if (healthLogicModel().getIsSymbolChangeEmpty(usefulDeity.intRow)!) {
+      if (healthLogicModel().getIsSymbolChangeEmpty(usefulDeity.symbolRow)!) {
         //化空
         String str = "变爻";
         str = str + outEmptyDate();
@@ -358,7 +358,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     //月破
     if (EasyTypeEnum.from == usefulDeity.easyType) {
       MonthConflictEnum monthBrokenState = healthLogicModel()
-          .getConflictOnMonthState(usefulDeity.intRow, usefulDeity.easyType);
+          .getConflictOnMonthState(usefulDeity.symbolRow, usefulDeity.easyType);
 
       if (MonthConflictEnum.conflictOnDay == monthBrokenState ||
           MonthConflictEnum.conflictMove == monthBrokenState ||
@@ -646,10 +646,10 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
     String result = "";
     SABUsefulDeityModel usefulDeity = healthLogicModel().usefulDeity;
     if (EasyTypeEnum.from == usefulDeity.easyType) {
-      if (logicModel().isMovementAtRow(usefulDeity.intRow)) {
+      if (logicModel().isMovementAtRow(usefulDeity.symbolRow)) {
         if (healthLogicModel().isUsefulDeityStrong) {
           String fromEarth = wordsModel()
-              .getSymbolEarth(usefulDeity.intRow, usefulDeity.easyType);
+              .getSymbolEarth(usefulDeity.symbolRow, usefulDeity.easyType);
           String timeEarth = _branchBusiness.getSixConflict(fromEarth);
 
           result =
@@ -657,7 +657,7 @@ class SABDiagramsDetailBusiness extends SABBaseBusiness {
         } else if (healthLogicModel().isUsefulDeityChangeToRestricts ||
             healthLogicModel().isUsefulDeityChangeToConflict) {
           String fromEarth = wordsModel()
-              .getSymbolEarth(usefulDeity.intRow, usefulDeity.easyType);
+              .getSymbolEarth(usefulDeity.symbolRow, usefulDeity.easyType);
           String timeEarth = _branchBusiness.getSixConflict(fromEarth);
           result = "$result用神休囚，冲开之年月忧郁而已,预计 $timeEarth 年或者 $timeEarth 月冲开。";
         }
