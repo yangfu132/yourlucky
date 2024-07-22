@@ -6,10 +6,11 @@ import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route_model.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_model.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_row_detail_model.dart';
+import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 
 import 'sau_detail_route_model.dart';
 
-class SAUDetailRouteStore {
+class SAUDetailRouteStore extends SABBaseModel{
   SAUDetailRouteStore({
     required this.inputDetailModel,
     required this.uiRow,
@@ -27,8 +28,6 @@ class SAUDetailRouteStore {
         resultAction);
     data = SAUDetailRouteModel(titleModel:titleModel,
         cardList:[
-          baseInfoCard(),
-          healthInfoCard(),
           debugInfoCard()
         ],
         buttonRoles:[]);
@@ -46,37 +45,8 @@ class SAUDetailRouteStore {
     }
   }
 
-  SAUDetailCardModel baseInfoCard () {
-    final List<Map> resultList;
-    if (0 == uiRow) {
-      resultList = inputDetailModel.diagramsDetailModel.resultList;
-    } else if (globalRowDay == uiRow) {
-      resultList = inputDetailModel.dayModel.resultList();
-    } else if (globalRowMonth == uiRow) {
-      resultList =  inputDetailModel.monthModel.resultList();
-    } else {
-      SABRowDetailModel rowModel =
-      inputDetailModel.rowModelAtRow(uiRow - 1);
-      resultList =  rowModel.resultList(easyType);
-    }
-
-    SAUDetailCardModel cardModel = SAUDetailCardModel(title: "基本信息",
-        resultList: resultList,
-        tapTitle:gotoBaseInfo
-    );
-    return cardModel;
-  }
-
-  SAUDetailCardModel healthInfoCard () {
-    return todoCard("Health信息");
-  }
-
   SAUDetailCardModel debugInfoCard () {
     return todoCard("debug信息");
-  }
-
-
-  void gotoBaseInfo(BuildContext context,VoidCallback refreshAction) {
   }
 
   void gotoTextField(BuildContext context) {
