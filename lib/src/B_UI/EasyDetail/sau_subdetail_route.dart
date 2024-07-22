@@ -62,11 +62,7 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
               return ListTile(
                 title: Text(value['value']),
                 onTap: (){
-                if ('用神' == value['key']) {
-                  onUsefulDeityClicked();
-                } else if ('计算信息' == value['key']) {
-                  onActionListTapped(context);
-                }
+                  onCellClicked(value);
               },);
             } else {
               return Container(
@@ -77,11 +73,7 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
                 child: ListTile(
                     title: Text(value['key']),
                     onTap: (){
-                      if ('用神' == value['key']) {
-                        onUsefulDeityClicked();
-                      } else if ('计算信息' == value['key']) {
-                        onActionListTapped(context);
-                      }
+                      onCellClicked(value);
                     },
                 ),
               );
@@ -91,12 +83,30 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
     );
   }
 
+  void onCellClicked(Map value){
+    if ('用神' == value['key']) {
+      onUsefulDeityClicked();
+    } else if ('计算信息' == value['key']) {
+      onActionListTapped(context);
+    } else if ('日将' == value['key']) {
+      int uiRow = widget.inputDetailModel.getUsefulDeity().intRow + 1;
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        final store = SAUDetailRouteStore(
+            inputDetailModel:widget.inputDetailModel,
+            uiRow: uiRow,
+            easyType: EasyTypeEnum.from
+        );
+        return SAUDetailRoute(store:store);
+      }));
+    }
+  }
+
   void onUsefulDeityClicked(){
-    int symbolRow = widget.inputDetailModel.getUsefulDeity().intRow + 1;
+    int uiRow = widget.inputDetailModel.getUsefulDeity().intRow + 1;
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       final store = SAUDetailRouteStore(
           inputDetailModel:widget.inputDetailModel,
-          intIndex: symbolRow,
+          uiRow: uiRow,
           easyType: EasyTypeEnum.from
       );
       return SAUDetailRoute(store:store);

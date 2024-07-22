@@ -12,17 +12,17 @@ import 'sau_detail_route_model.dart';
 class SAUDetailRouteStore {
   SAUDetailRouteStore({
     required this.inputDetailModel,
-    required this.intIndex,
+    required this.uiRow,
     required this.easyType});
 
   final SABEasyDetailModel inputDetailModel;
-  final int intIndex;
+  final int uiRow;
   EasyTypeEnum easyType;
   SAUDetailRouteModel data = loadingDetailRouteModel('');
 
   SAUDetailRouteModel requestData() {
     final titleModel = SAURouteTitleModel.titleFromDetailModel(inputDetailModel,
-        intIndex,
+        uiRow,
         easyType,
         resultAction);
     data = SAUDetailRouteModel(titleModel:titleModel,
@@ -36,11 +36,11 @@ class SAUDetailRouteStore {
   }
 
   void resultAction(BuildContext context, VoidCallback refreshAction) {
-    if (0 == intIndex) {
+    if (0 == uiRow) {
       gotoTextField(context);
     } else {
       SABRowDetailModel rowModel =
-      inputDetailModel.rowModelAtRow(intIndex - 1);
+      inputDetailModel.rowModelAtRow(uiRow - 1);
       easyType = rowModel.getNextEasyType(easyType);
       refreshAction();
     }
@@ -48,15 +48,15 @@ class SAUDetailRouteStore {
 
   SAUDetailCardModel baseInfoCard () {
     final List<Map> resultList;
-    if (0 == intIndex) {
+    if (0 == uiRow) {
       resultList = inputDetailModel.diagramsDetailModel.resultList;
-    } else if (globalRowDay == intIndex) {
+    } else if (globalRowDay == uiRow) {
       resultList = inputDetailModel.dayModel.resultList();
-    } else if (globalRowMonth == intIndex) {
+    } else if (globalRowMonth == uiRow) {
       resultList =  inputDetailModel.monthModel.resultList();
     } else {
       SABRowDetailModel rowModel =
-      inputDetailModel.rowModelAtRow(intIndex - 1);
+      inputDetailModel.rowModelAtRow(uiRow - 1);
       resultList =  rowModel.resultList(easyType);
     }
 
