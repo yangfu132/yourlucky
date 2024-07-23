@@ -908,11 +908,8 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       } else if (easyType == EasyTypeEnum.hide) {
         stringSymbol = symbolAtHideRow(intIndex);
       } //else cont.
-
       bResult = _isSymbolMoveBorn(stringSymbol);
-    }
-    //else cont.
-
+    } //else cont.
     return bResult;
   }
 
@@ -925,10 +922,8 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       if (commonLogicBusiness().isSymbolBorn(stringSymbol, stringSymbolItem)) {
         bResult = true;
         break;
-      }
-      //else cont.
-
-    } //endf
+      } //else cont.
+    } //end for
     return bResult;
   }
 
@@ -954,11 +949,9 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
             .isSymbolRestrict(stringSymbol, stringSymbolItem)) {
           bResult = true;
           break;
-        }
-        //else cont.
-      }
-      //else cont.
-    } //endf
+        } //else cont.
+      } //else cont.
+    } //end for
     return bResult;
   }
 
@@ -983,9 +976,8 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     for (String item in arrayPair) {
       if (arrayEarth.contains(item)) {
         arrayRowPaired.add(arrayEarth.indexOf(item));
-      }
-      //else cont.
-    } //endf
+      } //else cont.
+    } //end for
 
     if (arrayRowPaired.length == 3) {
       List movementArray = moveRightArray();
@@ -993,9 +985,8 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       for (String item in arrayRowPaired) {
         if (!movementArray.contains(item)) arrayResult.add(item);
         //else cont.
-      } //endf
-    }
-    //else cont.
+      } //end for
+    }//else cont.
 
     return arrayResult;
   }
