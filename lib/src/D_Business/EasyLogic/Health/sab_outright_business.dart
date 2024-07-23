@@ -104,7 +104,7 @@ class SABOutRightBusiness extends SABBaseBusiness {
     return fResult;
   }
 
-  OutRightEnum updateDayConflictRight(OutRightEnum fResult, bool isStrong) {
+  OutRightEnum updateOutRight(OutRightEnum fResult, bool isStrong) {
     if (OutRightEnum.rightTypeDayConflict == fResult) {
       if (isStrong) {
         fResult = OutRightEnum.rightTypeMove;
@@ -116,9 +116,9 @@ class SABOutRightBusiness extends SABBaseBusiness {
   }
 
 
-  OutRightEnum OutRightUnEmpty(int nRow, EasyTypeEnum easyType,bool isStrong){
+  OutRightEnum outRightUnEmpty(int nRow, EasyTypeEnum easyType,bool isStrong){
     OutRightEnum fResult = basicOutRightUnEmpty(nRow,easyType);
-    fResult = updateDayConflictRight(fResult,isStrong);
+    fResult = updateOutRight(fResult,isStrong);
     return fResult;
   }
 

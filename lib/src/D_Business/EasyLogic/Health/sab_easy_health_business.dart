@@ -67,10 +67,9 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
       if (null != tempHealthModel.symbol(intRow, EasyTypeEnum.from)) {
         final tempSymbol = tempHealthModel.symbol(intRow, EasyTypeEnum.from)!;
         bool? isStrong = tempSymbol.isStrong();
-        tempSymbol.outRight = outRightBusiness().updateDayConflictRight(outright,isStrong);
-        if (tempSymbol.outRight == OutRightEnum.rightTypeMove) {
-          resultRow.add(intRow);
-        }
+        tempSymbol.outRight = outRightBusiness().updateOutRight(outright,isStrong);
+        tempSymbol.outRightUnEmpty = outRightBusiness().updateOutRight(outright,isStrong);
+        resultRow.add(intRow);
       } else {
         coLog(StackTrace.current, LogTypeEnum.error,
             'updateDayConflictOutRight:symbol is null');
