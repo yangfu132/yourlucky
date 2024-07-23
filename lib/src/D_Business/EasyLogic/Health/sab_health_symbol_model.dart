@@ -6,6 +6,7 @@ import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_action_mod
 class SABHealthSymbolModel extends SABBaseModel {
   SABHealthSymbolModel({
     required this.outRight,
+    required this.outRightUnEmpty,
     required this.critical,
     required this.initModel,
   }) {
@@ -16,6 +17,7 @@ class SABHealthSymbolModel extends SABBaseModel {
   final double critical;
   double _doubleHealth = 0;
   OutRightEnum outRight;
+  OutRightEnum outRightUnEmpty;
   final SABHealthActionModel initModel;
   bool isBasicHealth = false;
   double getHealthAction() {
@@ -40,6 +42,7 @@ class SABHealthSymbolModel extends SABBaseModel {
   SABHealthSymbolModel.fromJson(Map<String, Object?> json)
       : this(
     critical: json['critical'] as double,
+    outRightUnEmpty: json['outRightUnEmpty']! as OutRightEnum,
     outRight: json['outRight']! as OutRightEnum,
       initModel:SABHealthActionModel(nActionType:ActionTypeEnum.fromJson,
           doubleHealth: 0,
@@ -53,6 +56,7 @@ class SABHealthSymbolModel extends SABBaseModel {
       'critical': critical,
       'doubleHealth': _doubleHealth,
       'outRight': outRight,
+      'outRightUnEmpty':outRightUnEmpty,
     };
   }
 

@@ -577,7 +577,8 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     return SABHealthSymbolModel(
         critical: healthCriticalValue(),
         initModel: initModel,
-        outRight: outRightBusiness.symbolOutRightAtRow(intRow, easyType));
+        outRight: outRightBusiness.symbolOutRightAtRow(intRow, easyType),
+        outRightUnEmpty:outRightBusiness.basicOutRightUnEmpty(intRow, easyType),);
   }
 
   SABHealthSymbolModel toSymbol(
@@ -595,7 +596,8 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     return SABHealthSymbolModel(
         critical: healthCriticalValue(),
         initModel: initModel,
-        outRight: outRightBusiness.symbolOutRightAtRow(intRow, easyType));
+        outRight: outRightBusiness.symbolOutRightAtRow(intRow, easyType),
+        outRightUnEmpty:outRightBusiness.symbolOutRightAtRow(intRow, easyType));
   }
 
   SABHealthSymbolModel hideSymbol(
@@ -612,7 +614,8 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     return SABHealthSymbolModel(
         critical: healthCriticalValue(),
         initModel: initModel,
-        outRight: outRightBusiness.symbolOutRightAtRow(intRow, easyType));
+        outRight: outRightBusiness.symbolOutRightAtRow(intRow, easyType),
+        outRightUnEmpty:outRightBusiness.symbolOutRightAtRow(intRow, easyType),);
   }
 
   SABHealthModel outputHealthModel() {

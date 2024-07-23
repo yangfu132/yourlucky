@@ -1043,7 +1043,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
     if (easyType == EasyTypeEnum.from) {
       //动不为空；
-      final outright =  healthBusiness().outRightBusiness().outRightWithoutEmpty(symbolRow, easyType,isStrong);
+      final outright =  healthBusiness().outRightBusiness().OutRightUnEmpty(symbolRow, easyType,isStrong);
       bool bMove = OutRightEnum.rightTypeMove == outright;
       bResult = bResult || bMove;
     }
@@ -1103,7 +1103,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
       // //此种情况应该包含在‘有气不动亦为空’中
       final healthSymbol = healthModel().symbol(symbolRow, easyType);
       bool isStrong = healthSymbol?.isStrong() ?? false;
-      final outright =  healthBusiness().outRightBusiness().outRightWithoutEmpty(symbolRow, easyType,isStrong);
+      final outright =  healthBusiness().outRightBusiness().OutRightUnEmpty(symbolRow, easyType,isStrong);
       bool bMove = OutRightEnum.rightTypeMove == outright;
       if (!isStrong && !bMove) {
         bResult = true;

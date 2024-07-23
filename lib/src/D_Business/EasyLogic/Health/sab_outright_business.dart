@@ -67,7 +67,7 @@ class SABOutRightBusiness extends SABBaseBusiness {
     final symbolModel = logicModel().rowModelAtRow(nRow).symbolModel(easyType);
     if (null != symbolModel) {
       if (!symbolModel.isEmpty()) {
-        fResult = basicOutRightWithoutEmpty(nRow,easyType);
+        fResult = basicOutRightUnEmpty(nRow,easyType);
       } else {
         fResult = OutRightEnum.rightTypeEmpty;
       }
@@ -77,7 +77,7 @@ class SABOutRightBusiness extends SABBaseBusiness {
     return fResult;
   }
 
-  OutRightEnum basicOutRightWithoutEmpty(int nRow, EasyTypeEnum easyType){
+  OutRightEnum basicOutRightUnEmpty(int nRow, EasyTypeEnum easyType){
     OutRightEnum fResult = OutRightEnum.rightTypeNull;
     final symbolModel = logicModel().rowModelAtRow(nRow).symbolModel(easyType);
     if (null != symbolModel) {
@@ -116,8 +116,8 @@ class SABOutRightBusiness extends SABBaseBusiness {
   }
 
 
-  OutRightEnum outRightWithoutEmpty(int nRow, EasyTypeEnum easyType,bool isStrong){
-    OutRightEnum fResult = basicOutRightWithoutEmpty(nRow,easyType);
+  OutRightEnum OutRightUnEmpty(int nRow, EasyTypeEnum easyType,bool isStrong){
+    OutRightEnum fResult = basicOutRightUnEmpty(nRow,easyType);
     fResult = updateDayConflictRight(fResult,isStrong);
     return fResult;
   }
