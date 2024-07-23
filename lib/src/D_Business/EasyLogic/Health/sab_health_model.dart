@@ -51,6 +51,18 @@ class SABHealthModel extends SABBaseModel {
     }
   }
 
+  OutRightEnum symbolOutRightUnEmptyAtRow(int nRow, EasyTypeEnum easyType) {
+    if (EasyTypeEnum.from == easyType) {
+      return rowModelAtRow(nRow).fromSymbol.outRightUnEmpty;
+    } else if (EasyTypeEnum.to == easyType) {
+      return rowModelAtRow(nRow).toSymbol.outRightUnEmpty;
+    } else if (EasyTypeEnum.hide == easyType) {
+      return rowModelAtRow(nRow).hideSymbol.outRightUnEmpty;
+    } else {
+      return OutRightEnum.rightTypeNull;
+    }
+  }
+
   void updateHealthAtRow(SABHealthActionModel actionModel) {
     //rowModelAtRow(nRow).setHealthForEasyType(EasyTypeEnum.from, health);
     rowModelAtRow(actionModel.nRow).setHealthForEasyType(actionModel);
