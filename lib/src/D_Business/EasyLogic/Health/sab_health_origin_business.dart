@@ -577,8 +577,7 @@ class SABHealthOriginBusiness extends SABLogBusiness {
     return SABHealthSymbolModel(
         critical: healthCriticalValue(),
         initModel: initModel,
-        outRight:
-            outRightBusiness.symbolOutRightAtRow(intRow, easyType));
+        outRight: outRightBusiness.symbolOutRightAtRow(intRow, easyType));
   }
 
   SABHealthSymbolModel toSymbol(

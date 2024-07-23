@@ -319,7 +319,7 @@ class SABEasyAnalysisBusiness extends SABBaseBusiness {
   }
 
   String resultSymbolEmpty(int nRow, EasyTypeEnum easyType) {
-    SABEasyEmptyModel typeModel = healthLogicModel().getSymbolEmptyState(nRow, easyType);
+    SABEasyEmptyModel typeModel = healthLogicModel().symbolEmpty(nRow, easyType);
     return typeModel.emptyDes();
   }
 

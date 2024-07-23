@@ -21,6 +21,18 @@ class SABSettingBusiness extends SABBaseBusiness {
       SettingTypeEnum.switchType,
       intValue: 1);
 
+  late final SABSettingModel isRemainStrong = generateModel(
+      "余气是否为强",
+      "余气是否为强",
+      SettingTypeEnum.switchType,
+      intValue: 0);
+
+  late final SABSettingModel isRemainEmpty = generateModel(
+      "余气是否为空",
+      "余气是否为空",
+      SettingTypeEnum.switchType,
+      intValue: 1);
+
   ///假设日的健康值为10/365,也就是日实际代表的是一旬；爻的健康值实际上是根据日月计算出来的；
   late final SABSettingModel dayHealth =
       generateModel("日值", "日值", SettingTypeEnum.textField, stringValue: '10');
@@ -33,6 +45,8 @@ class SABSettingBusiness extends SABBaseBusiness {
     autoSave,
     emptyZero,
     monthConflictZero,
+    isRemainStrong,
+    isRemainEmpty,
     monthHealth,
     dayHealth
   ];

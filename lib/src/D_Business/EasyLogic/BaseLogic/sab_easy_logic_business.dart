@@ -235,7 +235,9 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
       String stringSeason = _symbolSeason(stringSymbol);
       bResult = "旺" == stringSeason;
       bResult = bResult || "相" == stringSeason;
-      bResult = bResult || "余气" == stringSeason;
+      if (1 == SACContext.setting().isRemainStrong.intValue) {
+        bResult = bResult || "余气" == stringSeason;
+      }
     } else {
       coLog(StackTrace.current, LogTypeEnum.error, 'error');
     }

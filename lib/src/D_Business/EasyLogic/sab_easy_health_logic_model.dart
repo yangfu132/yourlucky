@@ -42,21 +42,21 @@ class SABEasyHealthLogicModel extends SABBaseModel {
     return inputHealthModel.symbol(nRow, easyType)?.healthDescription() ?? "easyType:$easyType empty";
   }
 
-  SABEasyEmptyModel getSymbolEmptyState(int intRow, EasyTypeEnum easyTypeEnum) {
-    return rowModelAtRow(intRow).getSymbolEmptyState(easyTypeEnum);
+  SABEasyEmptyModel symbolEmpty(int intRow, EasyTypeEnum easyType) {
+    return rowModelAtRow(intRow).symbolEmpty(easyType);
   }
 
-  bool getIsSymbolDayBroken(int intRow, EasyTypeEnum easyTypeEnum) {
-    return rowModelAtRow(intRow).getIsSymbolDayBroken(easyTypeEnum);
+  bool getIsSymbolDayBroken(int intRow, EasyTypeEnum easyType) {
+    return rowModelAtRow(intRow).getIsSymbolDayBroken(easyType);
   }
 
   MonthConflictEnum getConflictOnMonthState(
-      int intRow, EasyTypeEnum easyTypeEnum) {
-    return rowModelAtRow(intRow).getConflictOnMonthState(easyTypeEnum);
+      int intRow, EasyTypeEnum easyType) {
+    return rowModelAtRow(intRow).getConflictOnMonthState(easyType);
   }
 
-  DayConflictEnum getConflictOnDayState(int intRow, EasyTypeEnum easyTypeEnum) {
-    return rowModelAtRow(intRow).getConflictOnDayState(easyTypeEnum);
+  DayConflictEnum getConflictOnDayState(int intRow, EasyTypeEnum easyType) {
+    return rowModelAtRow(intRow).getConflictOnDayState(easyType);
   }
 
   bool? getIsSymbolChangeEmpty(int intRow) {

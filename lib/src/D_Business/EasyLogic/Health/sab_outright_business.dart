@@ -34,7 +34,7 @@ class SABOutRightBusiness extends SABBaseBusiness {
     OutRightEnum fResult = OutRightEnum.rightTypeNull;
 
     if (EasyTypeEnum.from == easyType) {
-      fResult = fromOutRightAtRow(nRow, easyType);
+      fResult = fromBasicOutRightAtRow(nRow, easyType);
     } else if (EasyTypeEnum.to == easyType) {
       fResult = toOutRightAtRow(nRow, easyType);
     } else if (EasyTypeEnum.hide == easyType) {
@@ -53,7 +53,7 @@ class SABOutRightBusiness extends SABBaseBusiness {
     return OutRightEnum.rightTypeMoveTo;
   }
 
-  OutRightEnum fromOutRightAtRow(int nRow, EasyTypeEnum easyType) {
+  OutRightEnum fromBasicOutRightAtRow(int nRow, EasyTypeEnum easyType) {
     /*
      7、旬空：无生克权
      6、休囚的静爻：无生克权
@@ -67,30 +67,61 @@ class SABOutRightBusiness extends SABBaseBusiness {
     final symbolModel = logicModel().rowModelAtRow(nRow).symbolModel(easyType);
     if (null != symbolModel) {
       if (!symbolModel.isEmpty()) {
-        bool bPairDay = symbolModel.isDayPair;
-        bool bPairMonth = symbolModel.isMonthPair;
-        if (bPairDay || bPairMonth) {
-          fResult = OutRightEnum.rightTypeMove;
-        } else {
-          bool bConflictDay = symbolModel.isConflictDay;
-          bool bMove = wordsModel().isMovementAtRow(nRow);
-          if (bMove) {
-            fResult = OutRightEnum.rightTypeMove;
-          } else if (bConflictDay) {
-            fResult = OutRightEnum.rightTypeDayConflict;
-          } else {
-            fResult = OutRightEnum.rightTypeStatic;
-          } //end if
-        } //end if
+        fResult = basicOutRightWithoutEmpty(nRow,easyType);
       } else {
         fResult = OutRightEnum.rightTypeEmpty;
       }
     } else {
       coLog(StackTrace.current, LogTypeEnum.error, "symbolModel is null");
     }
-
     return fResult;
   }
+
+  OutRightEnum basicOutRightWithoutEmpty(int nRow, EasyTypeEnum easyType){
+    OutRightEnum fResult = OutRightEnum.rightTypeNull;
+    final symbolModel = logicModel().rowModelAtRow(nRow).symbolModel(easyType);
+    if (null != symbolModel) {
+      bool bOnDay = symbolModel.isOnDay;
+      bool bOnMonth = symbolModel.isOnMonth;
+      bool bPairDay = symbolModel.isDayPair;
+      bool bPairMonth = symbolModel.isMonthPair;
+      if (bOnDay || bOnMonth || bPairDay || bPairMonth) {
+        fResult = OutRightEnum.rightTypeMove;
+      } else {
+        bool bConflictDay = symbolModel.isConflictDay;
+        bool bMove = wordsModel().isMovementAtRow(nRow);
+        if (bMove) {
+          fResult = OutRightEnum.rightTypeMove;
+        } else if (bConflictDay) {
+          fResult = OutRightEnum.rightTypeDayConflict;
+        } else {
+          fResult = OutRightEnum.rightTypeStatic;
+        } //end if
+      } //end if
+    } else {
+      coLog(StackTrace.current, LogTypeEnum.error, "symbolModel is null");
+    }
+    return fResult;
+  }
+
+  OutRightEnum updateDayConflictRight(OutRightEnum fResult, bool isStrong) {
+    if (OutRightEnum.rightTypeDayConflict == fResult) {
+      if (isStrong) {
+        fResult = OutRightEnum.rightTypeMove;
+      } else {
+        fResult = OutRightEnum.rightTypeBroken;
+      }
+    }
+    return fResult;
+  }
+
+
+  OutRightEnum outRightWithoutEmpty(int nRow, EasyTypeEnum easyType,bool isStrong){
+    OutRightEnum fResult = basicOutRightWithoutEmpty(nRow,easyType);
+    fResult = updateDayConflictRight(fResult,isStrong);
+    return fResult;
+  }
+
 
   SABEasyLogicModel logicModel() {
     return _logicBusiness.outputLogicModel();

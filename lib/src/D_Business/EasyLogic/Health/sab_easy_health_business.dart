@@ -1,6 +1,7 @@
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_business.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_outright_business.dart';
 
 import '../../../A_Context/sac_global.dart';
 import 'sab_health_model.dart';
@@ -60,18 +61,15 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
 
   List<int> updateDayConflictOutRight(SABHealthModel tempHealthModel) {
     final resultRow = <int>[];
-    final rowList = originBusiness()
-        .rowsAtOutRightLevel(OutRightEnum.rightTypeDayConflict);
+    OutRightEnum outright = OutRightEnum.rightTypeDayConflict;
+    final rowList = originBusiness().rowsAtOutRightLevel(outright);
     for (final intRow in rowList) {
       if (null != tempHealthModel.symbol(intRow, EasyTypeEnum.from)) {
-        SABHealthSymbolModel tempSymbol =
-            tempHealthModel.symbol(intRow, EasyTypeEnum.from)!;
+        final tempSymbol = tempHealthModel.symbol(intRow, EasyTypeEnum.from)!;
         bool? isStrong = tempSymbol.isStrong();
-        if (isStrong) {
-          tempSymbol.outRight = OutRightEnum.rightTypeMove;
+        tempSymbol.outRight = outRightBusiness().updateDayConflictRight(outright,isStrong);
+        if (tempSymbol.outRight == OutRightEnum.rightTypeMove) {
           resultRow.add(intRow);
-        } else {
-          tempSymbol.outRight = OutRightEnum.rightTypeBroken;
         }
       } else {
         coLog(StackTrace.current, LogTypeEnum.error,
@@ -117,4 +115,9 @@ class SABEasyHealthBusiness extends SABBaseBusiness {
   SABHealthOriginBusiness originBusiness() {
     return moveBusiness().originBusiness();
   }
+
+  SABOutRightBusiness outRightBusiness(){
+    return originBusiness().outRightBusiness;
+  }
+
 }

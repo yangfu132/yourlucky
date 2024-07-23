@@ -56,7 +56,7 @@ class SABHealthLogicRowModel extends SABBaseModel {
     }
   }
 
-  SABEasyEmptyModel getSymbolEmptyState(EasyTypeEnum easyTypeEnum) {
+  SABEasyEmptyModel symbolEmpty(EasyTypeEnum easyTypeEnum) {
     if (easyTypeEnum == EasyTypeEnum.from) {
       return fromSymbol.symbolEmptyState;
     } else if (easyTypeEnum == EasyTypeEnum.to) {

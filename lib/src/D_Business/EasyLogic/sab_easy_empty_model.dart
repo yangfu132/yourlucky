@@ -18,6 +18,12 @@ class SABEasyEmptyModel extends SABBaseModel {
   bool isConflictDay = false;
   bool isFalseEmpty = false;
   bool isRealEmpty = false;
+  bool bWang = false;
+  bool bMove = false;
+  bool bRestrictHide = false;
+  String season = '';
+  bool isSeasonStrong = false;
+  MonthConflictEnum monthConflict = MonthConflictEnum.conflictNull;
 
   void symbolEmptyState () {
     if ("" != stringSymbol) {

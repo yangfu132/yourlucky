@@ -1026,7 +1026,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     return typeModel;
   }
 
-  bool isFalseEmptyAtRow(int intRow, EasyTypeEnum easyType) {
+  bool isFalseEmptyAtRow(int symbolRow, EasyTypeEnum easyType) {
     /*
      旺不为空；
      动不为空；
@@ -1036,27 +1036,27 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
      */
     bool bResult = false;
 
-    String stringSymbol = symbolNameAtRow(intRow, easyType);
-    final symbolModel = logicModel().symbolAtRow(intRow, easyType);
-    String strSeason = symbolModel.stringSeason;
-
     //旺不为空；
-    bResult = bResult || "旺" == strSeason;
+    final healthSymbol = healthModel().symbol(symbolRow, easyType);
+    bool isStrong = healthSymbol?.isStrong() ?? false;
+    bResult = bResult || isStrong;
 
     if (easyType == EasyTypeEnum.from) {
-      bool bMove = wordsModel().isMovementAtRow(intRow);
-
       //动不为空；
+      final outright =  healthBusiness().outRightBusiness().outRightWithoutEmpty(symbolRow, easyType,isStrong);
+      bool bMove = OutRightEnum.rightTypeMove == outright;
       bResult = bResult || bMove;
     }
     //else cont.
 
     //有日建生扶者，亦不为空；
+    final symbolModel = logicModel().symbolAtRow(symbolRow, easyType);
     bool bDayBorn = symbolModel.bDayBorn;
     bResult = bResult || bDayBorn;
 
     if (easyType == EasyTypeEnum.from || easyType == EasyTypeEnum.hide) {
       //有动爻生扶者，亦不为空；
+      String stringSymbol = symbolNameAtRow(symbolRow, easyType);
       bool bMoveBorn = _isSymbolMoveBorn(stringSymbol);
       bResult = bResult || bMoveBorn;
     }
@@ -1064,7 +1064,7 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
 
     if (easyType == EasyTypeEnum.from) {
       //动而化空
-      bool bChangeEmpty = isSymbolChangeEmpty(intRow);
+      bool bChangeEmpty = isSymbolChangeEmpty(symbolRow);
       bResult = bResult || bChangeEmpty;
     }
     //else cont.
@@ -1079,47 +1079,45 @@ class SABEasyHealthLogicBusiness extends SABBaseBusiness {
     return bResult;
   }
 
-  bool isRealEmpty(int intRow, EasyTypeEnum easyType) {
+  bool isRealEmpty(int symbolRow, EasyTypeEnum easyType) {
     bool bResult = false;
-    //TODO:做个model
     /*
      月破为空，
      有气不动亦为空，
      伏而被克亦为空，
      真空为空，真空者，春土夏金秋是木，三冬逢火是真空。
      */
-    String stringSymbol = symbolNameAtRow(intRow, easyType);
 
-    //月破为空
-    MonthConflictEnum stateEmpty = symbolConflictStateOnMonth(intRow, easyType);
+    OutRightEnum outright = healthModel().symbolOutRightAtRow(symbolRow, easyType);
+    if (outright == OutRightEnum.rightTypeEmpty) {
+      SABEasyEmptyModel typeModel = logicModel().getBasicEmptyState(symbolRow, easyType);
 
-    if (MonthConflictEnum.conflictNO == stateEmpty ||
-        MonthConflictEnum.conflictMove == stateEmpty ||
-        MonthConflictEnum.conflictMoveBorn == stateEmpty) {
-    } else {
-      bResult = true;
-    } //end if
+      //月破为空
+      typeModel.monthConflict = symbolConflictStateOnMonth(symbolRow, easyType);
+      if (MonthConflictEnum.conflictBroken == typeModel.monthConflict) {
+        bResult = true;
+      }
 
-    //有气不动亦为空
-    final symbolModel = logicModel().symbolAtRow(intRow, easyType);
-    String stringSymbolSeason = symbolModel.stringSeason;
+      //有气不动亦为空
+      // //真空为空，真空者，春土夏金秋是木，三冬逢火是真空。
+      // //此种情况应该包含在‘有气不动亦为空’中
+      final healthSymbol = healthModel().symbol(symbolRow, easyType);
+      bool isStrong = healthSymbol?.isStrong() ?? false;
+      final outright =  healthBusiness().outRightBusiness().outRightWithoutEmpty(symbolRow, easyType,isStrong);
+      bool bMove = OutRightEnum.rightTypeMove == outright;
+      if (!isStrong && !bMove) {
+        bResult = true;
+      }
 
-    bool bWang = ("旺" == stringSymbolSeason) || ("相" == stringSymbolSeason);
-
-    bool bMove = wordsModel().isMovementAtRow(intRow);
-    if (!bMove && !bWang) bResult = true;
-    //else cont.
-
-    //伏而被克亦为空
-    if (easyType == EasyTypeEnum.hide) {
-      String fromSymbol = symbolAtFromRow(intRow);
-      commonLogicBusiness().isSymbolRestrict(stringSymbol, fromSymbol);
-    }
-    //else cont.
-
-    //真空为空，真空者，春土夏金秋是木，三冬逢火是真空。
-    bool bRealEmpty = "死" == stringSymbolSeason;
-    if (bRealEmpty) bResult = true;
+      //伏而被克亦为空
+      if (easyType == EasyTypeEnum.hide) {
+        String fromSymbol = symbolAtFromRow(symbolRow);
+        typeModel.bRestrictHide = commonLogicBusiness().isSymbolRestrict(typeModel.stringSymbol, fromSymbol);
+        if (typeModel.bRestrictHide) {
+          bResult = true;
+        } //else cont.
+      } //else cont.
+    }//else cont.
     return bResult;
   }
 
