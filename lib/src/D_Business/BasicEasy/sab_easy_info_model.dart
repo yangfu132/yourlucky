@@ -74,3 +74,4 @@ class SABEasyInfoModel extends SABBaseModel {
     dictionary["001011"] = {"name": "第五十四卦：《归妹卦》"};
     return dictionary;
   }
+}
