@@ -5,6 +5,7 @@ import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_base_info_detail_rou
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route_store.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_empty_detail_route_store.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/sau_text_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/List/sau_list_route.dart';
@@ -88,7 +89,9 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
   void onCellClicked(Map value){
     if ('用神' == value['key']) {
       onUsefulDeityClicked();
-    } else if ('计算信息' == value['key']) {
+    } else if ('空白' == value['key']) {
+      onActionListTapped(context);
+    }  else if ('计算信息' == value['key']) {
       onActionListTapped(context);
     } else if ('日将' == value['key']) {
       int uiRow = widget.inputDetailModel.getUsefulDeity().symbolRow + 1;
@@ -101,6 +104,13 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
         return SAUDetailRoute(store:store);
       }));
     }
+  }
+
+  void onTextClicked(){
+    int uiRow = widget.inputDetailModel.getUsefulDeity().symbolRow + 1;
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return SAUTextRoute();
+    }));
   }
 
   void onUsefulDeityClicked(){

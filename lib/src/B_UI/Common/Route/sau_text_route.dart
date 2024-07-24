@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:your_lucky/src/E_Service/sas_file_service.dart';
+import 'package:your_lucky/src/D_Business/BasicEasy/sab_easy_text_business.dart';
+import 'package:your_lucky/src/E_Service/sas_text_file_service.dart';
 
 class SAUTextRoute extends StatefulWidget {
   const SAUTextRoute({super.key, this.title});
@@ -12,20 +13,27 @@ class SAUTextRoute extends StatefulWidget {
 
 class SAUTextRouteState extends State<SAUTextRoute> {
   var content = 'loading';
-
+  SABEasyTextBusiness business = SABEasyTextBusiness();
+  late ScrollController scrollController;
   @override
   void initState() {
+    scrollController = ScrollController();
     super.initState();
-    SASFileService.readFile((content) {
+    business.getEasyText('第一卦', '第二卦', (content) {
       this.content = content;
       setState(() {
-
       });
     });
   }
 
   Widget _buildBody() {
-    return Text(content);
+    return Expanded(
+      child: SingleChildScrollView(
+        controller: scrollController,
+          child:Text(content),
+      ),
+    );
+    //return Text(content);
   }
 
   @override

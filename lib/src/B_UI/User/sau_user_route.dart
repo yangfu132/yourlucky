@@ -61,6 +61,10 @@ class SAUUserRouteState extends State<SAUUserRoute> {
         'value': SACRouteUrl.detail,
         'key': SASLocalizationsService.detail(context)
       },
+      {
+        'value': SACRouteUrl.easyText,
+        'key': SASLocalizationsService.easyText(context)
+      },
     ];
   }
 

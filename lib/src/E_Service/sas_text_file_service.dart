@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 
 import 'Base/sas_base_service.dart';
-class SASFileService extends SABBaseService {
+class SASTextFileService extends SABBaseService {
+
   void writeFile (String content) async {
     File file = File('test.txt');
     try {
@@ -15,12 +16,11 @@ class SASFileService extends SABBaseService {
     }
   }
 
-  static Future<void> readFile(void Function(String content) refresh) async {
+  static Future<void> readAsset(void Function(String content) refresh) async {
     String result = "waiting";
     try{
-      final temp = await rootBundle.load("assets/easy.txt");
-      final aaa = temp as String?;
-      result = aaa ?? "failed";
+      String assetPath = "assets/easy.txt";
+      result = await rootBundle.loadString(assetPath);
       SABBaseService.staticPrintMsg(result);
     }catch(e){
       result = "failed";
@@ -29,10 +29,12 @@ class SASFileService extends SABBaseService {
     refresh(result);
   }
 
-  static Future<void> readFileOld(void Function(String content) refresh) async {
+  static Future<void> readFile(void Function(String content) refresh) async {
     String result = "waiting";
-    File file = File('assets/easy.txt');
     try{
+      String filePath = 'something like path,not asset';
+      File file = File(filePath);
+      //text_viewer_page中是这样写的： result = file.readAsStringSync();
       result = await file.readAsString();
       SABBaseService.staticPrintMsg(result);
     }catch(e){
@@ -41,6 +43,4 @@ class SASFileService extends SABBaseService {
     }
     refresh(result);
   }
-
-
 }

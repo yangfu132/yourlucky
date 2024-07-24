@@ -3,7 +3,7 @@ import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_route_title_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/sau_button_model.dart';
-import 'package:your_lucky/src/E_Service/sas_file_service.dart';
+import 'package:your_lucky/src/E_Service/sas_text_file_service.dart';
 
 import '../../Widget/sau_divider_widget.dart';
 import 'sau_detail_route_store.dart';
@@ -23,7 +23,7 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
   @override
   void initState() {
     super.initState();
-    // SASFileService.readFile((content) {
+    // SASTextFileService.readAsset((content) {
     //   this.content = content;
     //   setState(() {});
     // });

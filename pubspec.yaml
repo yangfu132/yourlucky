@@ -43,6 +43,7 @@ dependencies:
   bot_toast: # new
   cupertino_icons: # new #^1.0.6
   cloud_firestore: ^5.0.1
+  flutter_text_viewer: ^0.0.6
 dev_dependencies:
   flutter_test:
     sdk: flutter

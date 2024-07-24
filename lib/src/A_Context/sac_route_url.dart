@@ -1,6 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_text_viewer/flutter_text_viewer.dart';
+import 'package:your_lucky/src/A_Context/sac_context.dart';
+import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_text_route.dart';
 import 'package:your_lucky/src/B_UI/User/About/sau_about_route.dart';
 import 'package:your_lucky/src/B_UI/User/Debug/sau_debug_route.dart';
@@ -27,6 +31,7 @@ class SACRouteUrl {
   static const signUp = 'signUp';
   static const expertCategory = 'expertCategory';
   static const debug = 'debug';
+  static const easyText = 'easyText';
 
   // native route，所有native页面route必须添加 "Native/" 前缀
   static const nativePageA = 'Native/somePageA';
@@ -72,11 +77,31 @@ Widget mapRouteToPage(String route, Object? arguments) {
     case SACRouteUrl.detail:
       widget = const SAUTextRoute();
       break;
+    case SACRouteUrl.easyText:
+      //widget = const SAUTextRoute();
+      const kDebugMode = true;
+      widget = TextViewerPage(
+        textViewer: TextViewer.asset(
+          'assets/easy.txt',
+          highLightColor: Colors.yellow,
+          focusColor: Colors.orange,
+          ignoreCase: true,
+          onErrorCallback: (error) {
+            // show error in your UI
+            if (kDebugMode) {
+              coLog(StackTrace.current, LogTypeEnum.error, "Error: $error");
+            }
+          },
+        ),
+        showSearchAppBar: true,
+      );
+      break;
     default:
       break;
   }
   return widget;
 }
+
 
 const _nativeRouteMap = {
   SACRouteUrl.nativePageA: {

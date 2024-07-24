@@ -4,7 +4,7 @@ import 'package:your_lucky/src/B_UI/Common/Widget/Image/sau_upload_image_view.da
 import 'package:your_lucky/src/B_UI/Common/Widget/TaskProgress/sau_task_progress_widget.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/TaskProgress/sau_task_step_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/sau_divider_widget.dart';
-import 'package:your_lucky/src/E_Service/sas_file_service.dart';
+import 'package:your_lucky/src/E_Service/sas_text_file_service.dart';
 
 import 'sau_detail_demo_route_model.dart';
 import 'sau_detail_demo_route_store_model.dart';
@@ -25,7 +25,7 @@ class SAUDetailDemoRouteState extends State<SAUDetailDemoRoute> {
   @override
   void initState() {
     super.initState();
-    SASFileService.readFile((content) {
+    SASTextFileService.readAsset((content) {
       this.content = content;
       setState(() {
 

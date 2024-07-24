@@ -84,6 +84,10 @@ class SASLocalizationsService extends SABBaseService {
   static String detail(BuildContext context) {
     return localizationsString(context, "详情", "Detail");
   }
+
+  static String easyText(BuildContext context) {
+    return localizationsString(context, "文档", "EasyText");
+  }
 }
 
 //Locale代理类
