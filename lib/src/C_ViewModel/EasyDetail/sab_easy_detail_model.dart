@@ -1,6 +1,7 @@
 ﻿import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
+import 'package:your_lucky/src/D_Business/DigitModel/sab_digit_diagrams_model.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_easy_logic_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_model.dart';
@@ -57,6 +58,10 @@ class SABEasyDetailModel extends SABBaseModel {
 
   SABEasyDigitModel digitModel() {
     return wordsModel().inputDigitModel;
+  }
+
+  SABDigitDiagramsModel diagramsModel() {
+    return wordsModel().inputDigitModel.diagramsModel;
   }
 
   List<String> addHideSymbolDes(SABRowDetailModel rowModel) {

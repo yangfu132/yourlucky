@@ -97,6 +97,18 @@ class SABDigitDiagramsModel extends SABBaseModel {
     super.check();
   }
 
+  String getEasyKey(EasyTypeEnum easyType) {
+    String result = '';
+    if (EasyTypeEnum.from == easyType) {
+      result = fromEasyKey;
+    } else if (EasyTypeEnum.to == easyType) {
+      result = toEasyKey;
+    } else if (EasyTypeEnum.hide == easyType) {
+      result = hideEasyKey();
+    }
+    return result;
+  }
+
   ///此方法获取本卦的卦名
   String _fromEasyName() {
     String stringResult = "";
@@ -134,10 +146,15 @@ class SABDigitDiagramsModel extends SABBaseModel {
 
   ///方法注释：获取本卦所在八宫的第一卦
   Map _placeFirstEasy() {
-    String firstKey = _eightDiagrams
-        .firstEasyKeyInDiagram(_eightDiagrams.easyPlaceByName(_fromEasyName()));
+    String firstKey = hideEasyKey();
     Map firstEasy = _eightDiagrams.getEasyDictionaryForKey(firstKey);
     return firstEasy;
+  }
+
+  String hideEasyKey() {
+    String firstKey = _eightDiagrams
+        .firstEasyKeyInDiagram(_eightDiagrams.easyPlaceByName(_fromEasyName()));
+    return firstKey;
   }
 
   //在本卦中，获得世的索引号；

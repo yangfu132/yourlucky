@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
-import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_base_info_detail_route_store.dart';
+import 'package:your_lucky/src/B_UI/EasyDetail/sau_base_info_detail_route_store.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route_store.dart';
-import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_empty_detail_route_store.dart';
+import 'package:your_lucky/src/B_UI/EasyDetail/sau_easy_text_route_store.dart';
+import 'package:your_lucky/src/B_UI/EasyDetail/sau_empty_detail_route_store.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_text_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route_model.dart';
@@ -109,7 +110,9 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
   void onTextClicked(){
     int uiRow = widget.inputDetailModel.getUsefulDeity().symbolRow + 1;
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return SAUTextRoute();
+      String easyKey = widget.inputDetailModel.diagramsModel().getEasyKey(currentEasyType);
+      SAUEasyTextRouteStore store = SAUEasyTextRouteStore(easyKey: easyKey);
+      return SAUTextRoute(store:store);
     }));
   }
 

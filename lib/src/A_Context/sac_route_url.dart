@@ -1,11 +1,10 @@
 import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_text_viewer/flutter_text_viewer.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_text_route.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/sau_text_route_store.dart';
 import 'package:your_lucky/src/B_UI/User/About/sau_about_route.dart';
 import 'package:your_lucky/src/B_UI/User/Debug/sau_debug_route.dart';
 import 'package:your_lucky/src/B_UI/User/Developer/sau_develop_list_route.dart';
@@ -75,7 +74,8 @@ Widget mapRouteToPage(String route, Object? arguments) {
       widget = SAUHistoryListRoute();
       break;
     case SACRouteUrl.detail:
-      widget = const SAUTextRoute();
+      SAUTextRouteStore store = SAUTextRouteStore();
+      widget = SAUTextRoute(store:store);
       break;
     case SACRouteUrl.easyText:
       //widget = const SAUTextRoute();

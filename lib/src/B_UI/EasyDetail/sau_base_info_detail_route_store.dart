@@ -3,7 +3,7 @@ import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route_store.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_route_title_model.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_row_detail_model.dart';
-import 'sau_detail_route_model.dart';
+import '../Common/Route/Detail/sau_detail_route_model.dart';
 
 class SAUBaseInfoDetailRouteStore extends SAUDetailRouteStore{
   SAUBaseInfoDetailRouteStore({

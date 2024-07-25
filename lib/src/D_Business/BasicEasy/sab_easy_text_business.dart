@@ -1,15 +1,30 @@
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:your_lucky/src/D_Business/Base/sab_base_business.dart';
+import 'package:your_lucky/src/D_Business/BasicEasy/sab_easy_info_model.dart';
 import 'package:your_lucky/src/E_Service/sas_text_file_service.dart';
 
 class SABEasyTextBusiness extends SABBaseBusiness {
   String fileContent = '';
+  SABEasyInfoModel infoModel = SABEasyInfoModel();
   Future<void> _loadData(void Function(String content) finish) async {
     SASTextFileService.readAsset((content) {
       fileContent = content;
       finish(content);
     });
   }
+
+  void getEasyText(String easyKey,void Function(String content) finish){
+    _loadData((content) {
+      Map data = infoModel.initEasyData();
+      String name = data[easyKey]['name'];
+      String next = data[easyKey]['next'];
+      int beginIndex = findIndex(name,true);
+      int endIndex = findIndex(next,true);
+      String newText = content.substring(beginIndex, endIndex);
+      finish(newText);
+    });
+  }
+
 
   String getSymbolText(String key, int index) {
     String result = "";
@@ -24,16 +39,6 @@ class SABEasyTextBusiness extends SABBaseBusiness {
       } // end if
     } // end if
     return result;
-  }
-
-  String getEasyText(String beginValue,String endValue,void Function(String content) finish) {
-    _loadData((content) {
-      int beginIndex = findIndex(beginValue,true);
-      int endIndex = findIndex(endValue,true);
-      String newText = content.substring(beginIndex, endIndex);
-      finish(newText);
-    });
-    return "";
   }
 
   int findIndex(String searchValue,bool ignoreCase) {
