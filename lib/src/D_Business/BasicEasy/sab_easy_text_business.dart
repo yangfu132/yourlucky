@@ -4,24 +4,33 @@ import 'package:your_lucky/src/E_Service/sas_text_file_service.dart';
 
 class SABEasyTextBusiness extends SABBaseBusiness {
   String fileContent = '';
+  String easyContent = '';
   SABEasyInfoModel infoModel = SABEasyInfoModel();
   Future<void> _loadData(void Function(String content) finish) async {
-    SASTextFileService.readAsset((content) {
-      fileContent = content;
-      finish(content);
-    });
+    if (fileContent.isEmpty) {
+      SASTextFileService.readAsset((content) {
+        fileContent = content;
+        finish(content);
+      });
+    } else {
+      finish(fileContent);
+    }
   }
 
   void getEasyText(String easyKey,void Function(String content) finish){
-    _loadData((content) {
-      Map data = infoModel.initEasyData();
-      String name = data[easyKey]['name'];
-      String next = data[easyKey]['next'];
-      int beginIndex = findIndex(name,true);
-      int endIndex = findIndex(next,true);
-      String newText = content.substring(beginIndex, endIndex);
-      finish(newText);
-    });
+    if (easyContent.isEmpty) {
+      _loadData((content) {
+        Map data = infoModel.initEasyData();
+        String name = data[easyKey]['name'];
+        String next = data[easyKey]['next'];
+        int beginIndex = findIndex(name,true);
+        int endIndex = findIndex(next,true);
+        easyContent = content.substring(beginIndex, endIndex);
+        finish(easyContent);
+      });
+    } else {
+      finish(easyContent);
+    }
   }
 
 

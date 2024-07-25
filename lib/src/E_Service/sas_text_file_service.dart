@@ -21,7 +21,6 @@ class SASTextFileService extends SABBaseService {
     try{
       String assetPath = "assets/easy.txt";
       result = await rootBundle.loadString(assetPath);
-      SABBaseService.staticPrintMsg(result);
     }catch(e){
       result = "failed";
       SABBaseService.staticPrintMsg(e as String?);

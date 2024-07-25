@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:your_lucky/src/B_UI/Common/Route/sau_text_route_store.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/Text/sau_text_route_store.dart';
 
 class SAUTextRoute extends StatefulWidget {
   const SAUTextRoute({super.key, this.title, required this.store});
