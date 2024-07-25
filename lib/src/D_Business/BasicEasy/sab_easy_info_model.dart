@@ -1,9 +1,52 @@
 // import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 //
+import 'package:your_lucky/src/A_Context/sac_context.dart';
+import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 
 class SABEasyInfoModel extends SABBaseModel {
   final Map dictionary = {};
+
+  List<String> symbolPositionAtIndex(int symbolIndex) {
+    List<String> result = <String>[];
+    switch(symbolIndex){
+      case 0:
+        result = ['上六','上九'];
+        break;
+      case 1:
+        result = ['六五','九五'];
+        break;
+      case 2:
+        result = ['六四','九四'];
+        break;
+      case 3:
+        result = ['六三','九三'];
+        break;
+      case 4:
+        result = ['六二','九二'];
+        break;
+      case 5:
+        result = ['初六','初九'];
+        break;
+      default:
+        coLog(StackTrace.current, LogTypeEnum.error, 'symbolIndex:$symbolIndex');
+    }
+    return result;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   Map initEasyData() {
     Map dictionary = {};

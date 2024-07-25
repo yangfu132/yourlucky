@@ -107,10 +107,13 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
   }
 
   void onTextClicked(BuildContext context){
-    int uiRow = widget.inputDetailModel.getUsefulDeity().symbolRow + 1;
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      String easyKey = widget.inputDetailModel.diagramsModel().getEasyKey(currentEasyType);
-      SAUEasyTextRouteStore store = SAUEasyTextRouteStore(easyKey: easyKey);
+      int symbolRow = widget.uiRow - 1;
+      SAUEasyTextRouteStore store = SAUEasyTextRouteStore(
+          inputDetailModel: widget.inputDetailModel,
+          easyType: currentEasyType,
+          symbolRow:symbolRow,
+      );
       return SAUTextRoute(store:store);
     }));
   }

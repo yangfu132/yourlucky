@@ -109,6 +109,18 @@ class SABDigitDiagramsModel extends SABBaseModel {
     return result;
   }
 
+  String getEasyName(EasyTypeEnum easyType) {
+    String result = '';
+    if (EasyTypeEnum.from == easyType) {
+      result = _fromEasyName();
+    } else if (EasyTypeEnum.to == easyType) {
+      result = _toEasyName();
+    } else if (EasyTypeEnum.hide == easyType) {
+      result = _hideEasyName();
+    }
+    return result;
+  }
+
   ///此方法获取本卦的卦名
   String _fromEasyName() {
     String stringResult = "";
@@ -127,6 +139,16 @@ class SABDigitDiagramsModel extends SABBaseModel {
     Map toDict = _toEasyDictionary();
     if (toDict.isNotEmpty) {
       stringResult = toDict["name"];
+    }
+    //else cont.
+    return stringResult;
+  }
+
+  String _hideEasyName() {
+    String stringResult = "";
+    Map hideDict = _placeFirstEasy();
+    if (hideDict.isNotEmpty) {
+      stringResult = hideDict["name"];
     }
     //else cont.
     return stringResult;

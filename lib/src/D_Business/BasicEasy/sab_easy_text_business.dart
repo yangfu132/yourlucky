@@ -23,9 +23,12 @@ class SABEasyTextBusiness extends SABBaseBusiness {
         Map data = infoModel.initEasyData();
         String name = data[easyKey]['name'];
         String next = data[easyKey]['next'];
-        int beginIndex = findIndex(name,true);
-        int endIndex = findIndex(next,true);
-        easyContent = content.substring(beginIndex, endIndex);
+        int beginIndex = findIndex(fileContent,name,true);
+        int endIndex = findIndex(fileContent,next,true);
+        if (-1 != beginIndex && -1 != endIndex) {
+          easyContent = content.substring(beginIndex, endIndex);
+        }
+
         finish(easyContent);
       });
     } else {
@@ -34,32 +37,51 @@ class SABEasyTextBusiness extends SABBaseBusiness {
   }
 
 
-  String getSymbolText(String key, int index) {
-    String result = "";
-    String name = "name";
-    String nextName = "name";
-    String content = "content";
-    int start = content.indexOf(name);
-    if (-1 != start) {
-      int end = content.indexOf(nextName);
-      if (-1 != end) {
-        result = content.substring(start,end);
-      } // end if
-    } // end if
-    return result;
+  void getSymbolText(String easyKey,int symbolRow,void Function(String content) finish) {
+    getEasyText(easyKey, (content) {
+      List<String> beginList = infoModel.symbolPositionAtIndex(symbolRow);
+      int beginIndex = -1;
+      for (String position in beginList) {
+        beginIndex = findIndex(content,position,true);
+        if (-1 != beginIndex) {
+          break;
+        }
+      }
+
+      int endIndex = -1;
+      if (symbolRow >= 1) {
+        List<String> endList = infoModel.symbolPositionAtIndex(symbolRow-1);
+        for (String position in endList) {
+          endIndex = findIndex(content,position,true);
+          if (-1 != endIndex) {
+            break;
+          }
+        }
+      }
+
+      String result = "";
+      if (-1 != beginIndex) {
+        if ( -1 != endIndex) {
+          result = content.substring(beginIndex, endIndex);
+        } else {
+          result = content.substring(beginIndex);
+        }
+      }
+      finish(result);
+    });
   }
 
-  int findIndex(String searchValue,bool ignoreCase) {
-    int initialIndex = 0;
+  int findIndex(String content, String searchValue,bool ignoreCase) {
+    int initialIndex = -1;
     List<String> listResult = <String>[];
     if (searchValue.isNotEmpty) {
       if (ignoreCase) {
-        listResult = fileContent.toLowerCase().split(searchValue.toLowerCase());
+        listResult = content.toLowerCase().split(searchValue.toLowerCase());
       } else {
-        listResult = fileContent.split(searchValue);
+        listResult = content.split(searchValue);
       }
     }
-    if (listResult.length == 2) {
+    if (listResult.length >= 2) {
       String firstContent = listResult[0];
       initialIndex = firstContent.length;
     }
