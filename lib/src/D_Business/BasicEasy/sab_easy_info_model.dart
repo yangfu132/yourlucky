@@ -1,7 +1,6 @@
 // import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 //
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
-import 'package:your_lucky/src/D_Business/BasicEasy/sab_easy_info_symbol_model.dart';
 
 class SABEasyInfoModel extends SABBaseModel {
   final Map dictionary = {};

@@ -1,5 +1,4 @@
 import 'package:your_lucky/src/B_UI/Common/Route/sau_text_route_store.dart';
-import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 import 'package:your_lucky/src/D_Business/BasicEasy/sab_easy_text_business.dart';
 
 class SAUEasyTextRouteStore extends SAUTextRouteStore {

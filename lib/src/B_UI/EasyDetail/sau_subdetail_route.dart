@@ -3,7 +3,6 @@ import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/B_UI/EasyDetail/sau_base_info_detail_route_store.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route.dart';
-import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route_store.dart';
 import 'package:your_lucky/src/B_UI/EasyDetail/sau_easy_text_route_store.dart';
 import 'package:your_lucky/src/B_UI/EasyDetail/sau_empty_detail_route_store.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_text_route.dart';
