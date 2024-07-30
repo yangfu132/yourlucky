@@ -1,37 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
-import 'package:your_lucky/src/B_UI/Common/Route/Text/sau_text_route_store.dart';
+import 'package:your_lucky/src/B_UI/Backup/sau_backup_route_store.dart';
 
-class SAUTextRoute extends StatefulWidget {
-  const SAUTextRoute({super.key, this.title, required this.store});
+class SAUBaseRoute extends StatefulWidget {
+  const SAUBaseRoute({super.key, this.title, required this.store});
   final String? title;
-  final SAUTextRouteStore store;
+  final SAUBackupRouteStore store;
   @override
-  SAUTextRouteState createState() {
-    return SAUTextRouteState();
+  SAUBaseRouteState createState() {
+    return SAUBaseRouteState();
   }
 }
+class SAUBaseRouteState extends State<SAUBaseRoute> {
 
-class SAUTextRouteState extends State<SAUTextRoute> {
-  var content = 'loading';
-  late ScrollController scrollController;
   @override
   void initState() {
-    scrollController = ScrollController();
     super.initState();
-    widget.store.loadData((content) {
-      this.content = content;
-      setState(() {
-      });
-    });
-  }
-
-  Widget _buildBody() {
-    return SingleChildScrollView(
-      controller: scrollController,
-      child:Text(content),
-    );
-    //return Text(content);
   }
 
   @override
@@ -63,5 +47,9 @@ class SAUTextRouteState extends State<SAUTextRoute> {
         onPressed: () {
           Navigator.pop(context);
         });
+  }
+
+  Widget _buildBody() {
+    return const Text('空');
   }
 }

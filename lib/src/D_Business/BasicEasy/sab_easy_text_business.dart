@@ -24,11 +24,15 @@ class SABEasyTextBusiness extends SABBaseBusiness {
         String name = data[easyKey]['name'];
         String next = data[easyKey]['next'];
         int beginIndex = findIndex(fileContent,name,true);
-        int endIndex = findIndex(fileContent,next,true);
-        if (-1 != beginIndex && -1 != endIndex) {
-          easyContent = content.substring(beginIndex, endIndex);
-        }
 
+        if (next != '无') {
+          int endIndex = findIndex(fileContent,next,true);
+          if (-1 != beginIndex && -1 != endIndex) {
+            easyContent = content.substring(beginIndex, endIndex);
+          }
+        } else {
+          easyContent = content.substring(beginIndex);
+        }
         finish(easyContent);
       });
     } else {
