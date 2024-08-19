@@ -35,6 +35,8 @@ class SACContext {
 
   final SABDevelopBusiness _developBusiness = SABDevelopBusiness();
 
+  final AppType appType = AppType.develop;
+
   static bool simulator() {
     return true;
   }

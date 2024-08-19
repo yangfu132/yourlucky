@@ -18,6 +18,13 @@ class SAURouteTitleModel extends SABBaseModel {
         tapTitle:(BuildContext context,VoidCallback refreshAction){});
   }
 
+  static SAURouteTitleModel titleFromString(String title){
+    return SAURouteTitleModel(
+        title:title,
+        actionTitle: '',
+        tapTitle:(BuildContext context,VoidCallback refreshAction){});
+  }
+
   static SAURouteTitleModel titleFromDetailModel(
       SABEasyDetailModel inputDetailModel,
       int intIndex,

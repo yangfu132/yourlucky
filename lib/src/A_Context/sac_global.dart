@@ -6,6 +6,11 @@
 ///EightDiagrams：八卦
 library;
 
+enum AppType {
+  develop,
+  release,
+}
+
 enum EasyTypeEnum {
   typeNull,
   from, //本卦
