@@ -37,6 +37,15 @@ class SACContext {
 
   final AppType appType = AppType.develop;
 
+  static AppType getAppType() {
+    SACContext businessContext = SABSingletonService.getObject('SACContext');
+    if (1 == SACContext.setting().appType.intValue) {
+      return AppType.release;
+    } else {
+      return businessContext.appType;
+    }
+  }
+
   static bool simulator() {
     return true;
   }

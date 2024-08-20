@@ -106,6 +106,7 @@ class SAUSignInRouteState extends State<SAUSignInRoute> {
                 onPressed: () => SACNavigator.pushNamed(
                   context,
                   SACRouteUrl.signUp,
+                  null
                 ),
                 child: Text(SASLocalizationsService.userSignUp(context)),
               );

@@ -43,8 +43,9 @@ class SAUSignOutRouteState extends State<SAUSignOutRoute> {
                 title: Text(settingsList[index]['key']),
                 onTap: () {
                   SACNavigator.pushNamed(
-                    context,
-                    settingsList[index]['value'],
+                      context,
+                      settingsList[index]['value'],
+                      null
                   );
                 },
               );
@@ -61,6 +62,7 @@ class SAUSignOutRouteState extends State<SAUSignOutRoute> {
                     SACNavigator.pushNamed(
                       context,
                       settingsList[index]['value'],
+                      null
                     );
                   },
                 ),

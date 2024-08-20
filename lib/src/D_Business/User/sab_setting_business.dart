@@ -9,6 +9,9 @@ class SABSettingBusiness extends SABBaseBusiness {
   late final SABSettingModel autoSave =
       generateModel("自动保存", "自动保存", SettingTypeEnum.switchType);
 
+  late final SABSettingModel appType =
+  generateModel("ReleaseType", "ReleaseType", SettingTypeEnum.switchType);
+
   late final SABSettingModel emptyZero = generateModel(
       "旬空时日Health为0",
       "旬空时日Health为0",
@@ -42,6 +45,7 @@ class SABSettingBusiness extends SABBaseBusiness {
       generateModel("月值", "月值", SettingTypeEnum.textField, stringValue: '30');
 
   late final _settingList = [
+    appType,
     autoSave,
     emptyZero,
     monthConflictZero,

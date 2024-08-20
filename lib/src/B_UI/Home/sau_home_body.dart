@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:your_lucky/src/A_Context/sac_navigator.dart';
+import 'package:your_lucky/src/A_Context/sac_route_url.dart';
 import 'package:your_lucky/src/B_UI/EasyStrategy/sau_strategy_result_route.dart';
 import 'package:your_lucky/src/B_UI/User/sau_user_route.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_business.dart';
@@ -57,12 +59,14 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
     final animationDice = AnimationDiceWidget(() {
       _bAnimation = false;
       setState(() {});
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        SABEasyDigitModel outEasyModel = SACContext.easyStore().create();
-        SABEasyDetailBusiness detailBusiness =
-            SABEasyDetailBusiness(outEasyModel);
-        return SAUStrategyResultRoute(detailBusiness.outputDetailModel());
-      }));
+      SABEasyDigitModel outEasyModel = SACContext.easyStore().create();
+      SABEasyDetailBusiness detailBusiness =
+          SABEasyDetailBusiness(outEasyModel);
+      SACNavigator.pushNamed(
+          context,
+          SACRouteUrl.easyResult,
+          detailBusiness.outputDetailModel()
+      );
     });
     double screenWidth = SACContext.screenWidth(context);
     double screenHeight = SACContext.screenHeight(context);

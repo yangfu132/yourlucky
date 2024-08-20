@@ -2,6 +2,8 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
+import 'package:your_lucky/src/A_Context/sac_navigator.dart';
+import 'package:your_lucky/src/A_Context/sac_route_url.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/sau_button_model.dart';
@@ -32,10 +34,12 @@ class SAUHistoryListRouteStore extends SABBaseModel{
   }
 
   void onCellClicked(BuildContext context,SABEasyDigitModel model){
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      SABEasyDetailBusiness detailBusiness = SABEasyDetailBusiness(model);
-      return SAUStrategyResultRoute(detailBusiness.outputDetailModel());
-    }));
+    SABEasyDetailBusiness detailBusiness = SABEasyDetailBusiness(model);
+    SACNavigator.pushNamed(
+        context,
+        SACRouteUrl.easyResult,
+        detailBusiness.outputDetailModel()
+    );
   }
 
   void onButtonClicked (BuildContext context,
