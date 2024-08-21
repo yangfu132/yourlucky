@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
+import 'package:your_lucky/src/E_Service/sas_localizations_service.dart';
 import 'sau_easy_result_route_store.dart';
 
 class SAUEasyResultRoute extends StatefulWidget {
@@ -27,9 +28,66 @@ class SAUEasyResultRouteState extends State<SAUEasyResultRoute> {
   }
 
   Widget _buildBody() {
+    double screenWidth = SACContext.screenWidth(context);
+    double screenHeight = SACContext.screenHeight(context);
+    double buttonWidth = 80.0;
     return SingleChildScrollView(
       controller: scrollController,
-      child:Center(child: Text(content),),
+      child: Stack(
+        children: <Widget>[
+          Image.asset(
+            'images/8466654.jpg',
+            width: screenWidth,
+            height: screenHeight,
+            fit: BoxFit.fill,
+          ),
+          Positioned(
+            top: 40,
+            left: 0,
+            right: 0,
+            child: Text(content,
+              style: const TextStyle(
+                fontSize: 128,
+                color: Color(0xFFE5CC69),
+              ),
+              textAlign:TextAlign.center,
+            ),
+          ),
+          Positioned(
+            bottom: 50,
+            left: (SACContext.screenWidth(context) / 2 - buttonWidth) / 2,
+            child: TextButton(
+              child: Text(
+                SASLocalizationsService.easyNamed(context),
+                style: const TextStyle(
+                  color: Color(0xFFE5CC69),
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              onPressed: () async {
+
+              },
+            ),
+          ),
+          Positioned(
+            bottom: 50,
+            right: (SACContext.screenWidth(context) / 2 - buttonWidth) / 2,
+            child: TextButton(
+                child: Text(
+                  SASLocalizationsService.easyRetry(context),
+                  style: const TextStyle(
+                    color: Color(0xFFE5CC69),
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                onPressed: () {
+
+                }),
+          ),
+        ],
+      ),
     );
   }
 
@@ -37,25 +95,14 @@ class SAUEasyResultRouteState extends State<SAUEasyResultRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(
-      //   leading: backIconButton(context),
-      //   title: Text(widget.store.titleModel().title),
-      //   actions: <Widget>[
-      //     TextButton(
-      //       onPressed: () {
-      //         widget.store.titleModel().tapTitle(context,(){
-      //           setState(() {});
-      //         });
-      //       },
-      //       style: SACContext.textButtonStyle(),
-      //       child: Text(widget.store.titleModel().actionTitle),
-      //     ),
-      //   ],
+      //   backgroundColor: Colors.transparent, // 设置AppBar为透明
+      //   elevation: 0, // 去除AppBar的阴影
+      //   automaticallyImplyLeading: false,
+      //   systemOverlayStyle: const SystemUiOverlayStyle(
+      //     statusBarColor: Colors.transparent,//设置状态栏的背景颜色
+      //     statusBarIconBrightness: Brightness.dark,//状态栏的文字的颜色
+      //   ),
       // ),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent, // 设置AppBar为透明
-        elevation: 0, // 去除AppBar的阴影
-        automaticallyImplyLeading: false,
-      ),
       body: _buildBody(),
     );
   }

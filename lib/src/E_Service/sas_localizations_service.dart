@@ -22,7 +22,7 @@ class SASLocalizationsService extends SABBaseService {
   }
 
   static String homeEasy(BuildContext context) {
-    return localizationsString(context, "开始", "Easy");
+    return localizationsString(context, "占卜", "Easy");
   }
 
   static String homeUser(BuildContext context) {
@@ -87,6 +87,14 @@ class SASLocalizationsService extends SABBaseService {
 
   static String easyText(BuildContext context) {
     return localizationsString(context, "文档", "EasyText");
+  }
+
+  static String easyRetry(BuildContext context) {
+    return localizationsString(context, "再次占卜", "Continue");
+  }
+
+  static String easyNamed(BuildContext context) {
+    return localizationsString(context, "添加主题", "AddTitle");
   }
 }
 
