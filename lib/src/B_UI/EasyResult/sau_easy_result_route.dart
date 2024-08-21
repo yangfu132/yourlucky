@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'sau_easy_result_route_store.dart';
 
@@ -28,28 +29,32 @@ class SAUEasyResultRouteState extends State<SAUEasyResultRoute> {
   Widget _buildBody() {
     return SingleChildScrollView(
       controller: scrollController,
-      child:Text(content),
+      child:Center(child: Text(content),),
     );
-    //return Text(content);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(
+      //   leading: backIconButton(context),
+      //   title: Text(widget.store.titleModel().title),
+      //   actions: <Widget>[
+      //     TextButton(
+      //       onPressed: () {
+      //         widget.store.titleModel().tapTitle(context,(){
+      //           setState(() {});
+      //         });
+      //       },
+      //       style: SACContext.textButtonStyle(),
+      //       child: Text(widget.store.titleModel().actionTitle),
+      //     ),
+      //   ],
+      // ),
       appBar: AppBar(
-        leading: backIconButton(context),
-        title: Text(widget.store.titleModel().title),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              widget.store.titleModel().tapTitle(context,(){
-                setState(() {});
-              });
-            },
-            style: SACContext.textButtonStyle(),
-            child: Text(widget.store.titleModel().actionTitle),
-          ),
-        ],
+        backgroundColor: Colors.transparent, // 设置AppBar为透明
+        elevation: 0, // 去除AppBar的阴影
+        automaticallyImplyLeading: false,
       ),
       body: _buildBody(),
     );

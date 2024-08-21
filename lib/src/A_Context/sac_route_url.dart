@@ -55,7 +55,7 @@ Widget mapRouteToPage(String route, Object? arguments) {
         if (AppType.develop == SACContext.getAppType()) {
           widget = SAUStrategyResultRoute(detailModel);
         } else {
-          SAUEasyResultRouteStore store = SAUEasyResultRouteStore();
+          SAUEasyResultRouteStore store = SAUEasyResultRouteStore(detailModel: detailModel);
           widget = SAUEasyResultRoute(store:store);
         }
       }
