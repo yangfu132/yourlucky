@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:your_lucky/src/A_Context/sac_context.dart';
+import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/Button/sau_button_model.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_action_model.dart';
@@ -58,7 +60,34 @@ class SAUListCellModel {
     return cellModel;
   }
 
+  static SAUListCellModel fromReleaseEasyDigitModel(SABEasyDigitModel model) {
+    String title = model.strEasyGoal.isNotEmpty ? model.strEasyGoal :  model.stringTime;
+    SAUListCellModel cellModel = SAUListCellModel(
+        title:title , taskId: model.modelId.toString());
+    var contents = List<SAUListCellItemModel>.empty(growable: true);
+    cellModel.contents = contents;
+
+    contents.add(SAUListCellItemModel(title: '占卜时间', content: model.stringTime));
+    contents.add(SAUListCellItemModel(title: '占卜门类', content: model.strStrategy));
+    String strAnnotate = model.strAnnotate.isNotEmpty ? model.strAnnotate : '请添加批注';
+    contents.add(SAUListCellItemModel(title: '当前批注', content: strAnnotate));
+    contents.add(SAUListCellItemModel(
+        title: '占卜结果', content: model.diagramsModel.stringFromName));
+    SAUButtonModel deleteButton = SAUButtonModel(title: '删除占卜', code: 'delete');
+    SAUButtonModel annotate = SAUButtonModel(title: "添加批注", code: "annotate");
+    cellModel.buttons = [deleteButton, annotate];
+    return cellModel;
+  }
+
   static SAUListCellModel fromEasyDigitModel(SABEasyDigitModel model) {
+    if (AppType.release == SACContext.getAppType()) {
+      return fromReleaseEasyDigitModel(model);
+    } else {
+      return fromDevelopEasyDigitModel(model);
+    }
+  }
+
+  static SAUListCellModel fromDevelopEasyDigitModel(SABEasyDigitModel model) {
     SAUListCellModel cellModel = SAUListCellModel(
         title: model.stringTime, taskId: model.modelId.toString());
     var contents = List<SAUListCellItemModel>.empty(growable: true);

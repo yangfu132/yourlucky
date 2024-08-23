@@ -6,16 +6,16 @@ import 'package:your_lucky/src/B_UI/Common/Widget/sau_toast_widget.dart';
 import 'package:your_lucky/src/D_Business/User/sab_login_business.dart';
 import 'package:your_lucky/src/E_Service/sas_localizations_service.dart';
 
-class SAUSignInRoute extends StatefulWidget {
-  const SAUSignInRoute({super.key, this.title});
+class SAUSetPasswordRoute extends StatefulWidget {
+  const SAUSetPasswordRoute({super.key, this.title});
   final String? title;
   @override
-  SAUSignInRouteState createState() {
-    return SAUSignInRouteState();
+  SAUSetPasswordRouteState createState() {
+    return SAUSetPasswordRouteState();
   }
 }
 
-class SAUSignInRouteState extends State<SAUSignInRoute> {
+class SAUSetPasswordRouteState extends State<SAUSetPasswordRoute> {
   final SABLogInBusiness business = SACContext.login();
 
   @override
@@ -83,6 +83,18 @@ class SAUSignInRouteState extends State<SAUSignInRoute> {
                 focusNode: business.passwordFocus,
               );
             case 2:
+              return TextField(
+                controller: business.passwordController,
+                style: const TextStyle(fontSize: 14, color: Color(0xFF333333)),
+                decoration: const InputDecoration(
+                  hintText: '请再次输入密码',
+                  hintStyle: TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
+                  border: InputBorder.none,
+                ),
+                textInputAction: TextInputAction.done,
+                focusNode: business.passwordFocus,
+              );
+            case 3:
               return TextButton(
                 onPressed: () => business.signIn((String code, String message) {
                   SAUToastWidget.show("message:$message");
@@ -91,27 +103,8 @@ class SAUSignInRouteState extends State<SAUSignInRoute> {
                     SACNavigator.pop(context);
                   }
                 }),
-                child: Text(SASLocalizationsService.userLogIn(context)),
+                child: Text(SASLocalizationsService.userConfirm(context)),
               );
-            case 3:
-              return TextButton(
-                onPressed: () {
-                  business.sendPasswordResetEmail(context);
-                  SAUToastWidget.show("请前往邮箱查看重置邮件。");
-                },
-                child: Text(SASLocalizationsService.userForget(context)),
-              );
-
-            case 4:
-              return TextButton(
-                onPressed: () => SACNavigator.pushNamed(
-                  context,
-                  SACRouteUrl.signUp,
-                  null
-                ),
-                child: Text(SASLocalizationsService.userSignUp(context)),
-              );
-
             default:
               return Container();
           }

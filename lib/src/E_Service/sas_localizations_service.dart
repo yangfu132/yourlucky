@@ -26,7 +26,7 @@ class SASLocalizationsService extends SABBaseService {
   }
 
   static String homeUser(BuildContext context) {
-    return localizationsString(context, "设置", "User");
+    return localizationsString(context, "记录", "User");
   }
 
   static String userFeedback(BuildContext context) {
@@ -59,6 +59,10 @@ class SASLocalizationsService extends SABBaseService {
 
   static String userLogIn(BuildContext context) {
     return localizationsString(context, "登录", "Sign In");
+  }
+
+  static String userConfirm(BuildContext context) {
+    return localizationsString(context, "确定", "Confirm");
   }
 
   static String userForget(BuildContext context) {

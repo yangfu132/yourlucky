@@ -47,6 +47,10 @@ class SASSqliteService extends SABBaseService {
           await db.execute(
             'CREATE TABLE IF NOT EXISTS develop_task(id INTEGER PRIMARY KEY AUTOINCREMENT, goal TEXT, relationData TEXT, time TEXT,usefulDeity TEXT,strategy TEXT,dataJson TEXT)',
           );
+
+          await db.execute(
+            'CREATE TABLE IF NOT EXISTS user_sign(id INTEGER PRIMARY KEY AUTOINCREMENT, userName TEXT, userPassword TEXT,userMail TEXT,loginType INTEGER,dataJson TEXT)',
+          );
         },
         // Set the version. This executes the onCreate function and provides a
         // path to perform database upgrades and downgrades.

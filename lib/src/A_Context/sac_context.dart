@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:your_lucky/src/C_ViewModel/Strategy/sab_easy_strategy_info_business.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_business.dart';
+import 'package:your_lucky/src/D_Business/User/sab_login_business.dart';
 import 'package:your_lucky/src/D_Business/User/sab_setting_business.dart';
 import 'package:your_lucky/src/E_Service/sab_singleton_service.dart';
 
@@ -34,6 +35,8 @@ class SACContext {
   final SABSettingBusiness _settingBusiness = SABSettingBusiness();
 
   final SABDevelopBusiness _developBusiness = SABDevelopBusiness();
+
+  final SABLogInBusiness _loginBusiness = SABLogInBusiness();
 
   final AppType appType = AppType.develop;
 
@@ -107,6 +110,11 @@ class SACContext {
   static SABDevelopBusiness develop() {
     SACContext businessContext = SABSingletonService.getObject('SACContext');
     return businessContext._developBusiness;
+  }
+
+  static SABLogInBusiness login() {
+    SACContext businessContext = SABSingletonService.getObject('SACContext');
+    return businessContext._loginBusiness;
   }
 
   static int uiRowToSymbolRow(int uiRow){

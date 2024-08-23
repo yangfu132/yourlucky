@@ -16,6 +16,7 @@ import 'package:your_lucky/src/B_UI/User/EasyStrategy/sau_easy_strategy_route.da
 import 'package:your_lucky/src/B_UI/User/Feedback/sau_feedback_route.dart';
 import 'package:your_lucky/src/B_UI/User/History/sau_history_list_route.dart';
 import 'package:your_lucky/src/B_UI/User/Setting/sau_setting_route.dart';
+import 'package:your_lucky/src/B_UI/User/SignIn/sau_set_password_route.dart';
 import 'package:your_lucky/src/B_UI/User/SignIn/sau_signin_route.dart';
 import 'package:your_lucky/src/B_UI/User/SignIn/sau_signup_route.dart';
 import 'package:your_lucky/src/B_UI/User/SignOut/sau_signout_route.dart';
@@ -33,6 +34,7 @@ class SACRouteUrl {
   static const history = 'history';
   static const detail = 'detail';
   static const logIn = 'logIn';
+  static const setPassword = 'setPassword';
   static const logOut = 'logOut';
   static const signUp = 'signUp';
   static const expertCategory = 'expertCategory';
@@ -77,6 +79,9 @@ Widget mapRouteToPage(String route, Object? arguments) {
       break;
     case SACRouteUrl.logIn:
       widget = const SAUSignInRoute();
+      break;
+    case SACRouteUrl.setPassword:
+      widget = const SAUSetPasswordRoute();
       break;
     case SACRouteUrl.logOut:
       widget = const SAUSignOutRoute();
