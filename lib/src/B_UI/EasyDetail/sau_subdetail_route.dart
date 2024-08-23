@@ -89,7 +89,7 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
   void onCellClicked(Map value){
     if ('用神' == value['key']) {
       onUsefulDeityClicked();
-    } else if ('文本信息' == value['key']) {
+    } else if ('文本描述' == value['key']) {
       onTextClicked(context);
     }  else if ('计算信息' == value['key']) {
       onActionListTapped(context);
@@ -185,27 +185,31 @@ class _SAUEasyResultState extends State<SAUSubDetailRoute> {
 
   void resultAction() {
     if (0 == widget.uiRow) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        SAUTextFieldRouteModel model = SAUTextFieldRouteModel(
-          stringTitle: "修改目的",
-          stringValue: widget.inputDetailModel.digitModel().strEasyGoal,
-          stringPlaceholder: "请输入",
-        );
-        return SAUTextFieldRoute(
-          model: model,
-          onSave: (SAUTextFieldRouteModel model) {
-            widget.inputDetailModel.digitModel().strEasyGoal =
-                model.stringValue;
-            SACContext.easyStore().save(widget.inputDetailModel.digitModel());
-            Navigator.pop(context);
-          },
-        );
-      }));
+      gotoTextField();
     } else {
       SABRowDetailModel rowModel =
           widget.inputDetailModel.rowModelAtRow(widget.uiRow - 1);
       currentEasyType = rowModel.getNextEasyType(currentEasyType);
       setState(() {});
     }
+  }
+
+  void gotoTextField() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      SAUTextFieldRouteModel model = SAUTextFieldRouteModel(
+        stringTitle: "修改目的",
+        stringValue: widget.inputDetailModel.digitModel().strEasyGoal,
+        stringPlaceholder: "请输入",
+      );
+      return SAUTextFieldRoute(
+        model: model,
+        onSave: (SAUTextFieldRouteModel model) {
+          widget.inputDetailModel.digitModel().strEasyGoal =
+              model.stringValue;
+          SACContext.easyStore().save(widget.inputDetailModel.digitModel());
+          Navigator.pop(context);
+        },
+      );
+    }));
   }
 }

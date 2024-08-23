@@ -5,6 +5,7 @@ import 'package:your_lucky/src/C_ViewModel/EasyAnalysis/sab_easy_analysis_symbol
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_row_detail_model.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_business.dart';
 import 'package:your_lucky/src/D_Business/BasicEasy/sab_animal_info_model.dart';
+import 'package:your_lucky/src/D_Business/BasicEasy/sab_easy_info_model.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_easy_logic_model.dart';
 import 'package:your_lucky/src/D_Business/EasyLogic/sab_easy_health_logic_business.dart';
@@ -129,7 +130,7 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
   String eightDiagramsPlace(int intRow, EasyTypeEnum easyTypeEnum) {
     String strGua = wordsModel().getDiagrams(intRow);
     String result = '$strGua:';
-    result = '先天八卦位于${wordsModel().getEarlyPlace(intRow, easyTypeEnum)}';
+    result = '先天八卦位于${wordsModel().getEarlyPlace(intRow, easyTypeEnum)}，';
     result += '后天八卦位于${wordsModel().getLatePlace(intRow, easyTypeEnum)}';
     return result;
   }
@@ -146,6 +147,7 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
       EasyTypeEnum easyType) {
     String strSymbolName = wordsModel().getSymbolName(intRow, easyType);
     String stringHealth = healthLogicModel().getHealthDescription(intRow,easyType);
+    late final String easyKey = wordsModel().inputDigitModel.diagramsModel.getEasyKey(easyType);
     SABSymbolDetailModel detailSymbol = SABSymbolDetailModel(
         strSymbolName: strSymbolName,
         baseInfo: symbolBasic(intRow, easyType),
@@ -157,7 +159,9 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
         earthDirection: symbolEarthDirection(intRow, easyType),
         diagramsPlace: eightDiagramsPlace(intRow, easyType),
         debugInfo: '未填写debugInfo',
-        stringHealth: stringHealth);
+        stringHealth: stringHealth,
+      easyKey: easyKey,
+    );
     return detailSymbol;
   }
 
@@ -176,7 +180,9 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
         earthDirection: '$earth ${logicModel().earthBranchModel().earthDirection()[earth]}',
         diagramsPlace: strSymbolName,
         debugInfo: '未填写debugInfo',
-        stringHealth: stringHealth);
+        stringHealth: stringHealth,
+      easyKey: '未出现在卦上，出现在月柱上',
+    );
     return detailSymbol;
   }
 
@@ -195,7 +201,9 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
         earthDirection: '$earth ${logicModel().earthBranchModel().earthDirection()[earth]}',
         diagramsPlace: strSymbolName,
         debugInfo: '未填写debugInfo',
-        stringHealth: stringHealth);
+        stringHealth: stringHealth,
+      easyKey: '未出现在卦上，出现在日柱上',
+    );
     return detailSymbol;
   }
 

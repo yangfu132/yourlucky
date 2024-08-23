@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/ListCell/sau_select_view.dart';
 import 'package:your_lucky/src/E_Service/sas_localizations_service.dart';
 import 'sau_easy_result_route_store.dart';
@@ -143,7 +145,7 @@ class SAUEasyResultRouteState extends State<SAUEasyResultRoute> {
                 textAlign: TextAlign.left,
               ),
               onPressed: () async {
-
+                widget.store.gotoTextField(context);
               },
             ),
           ),
@@ -163,7 +165,7 @@ class SAUEasyResultRouteState extends State<SAUEasyResultRoute> {
                   textAlign: TextAlign.right,
                 ),
                 onPressed: () {
-
+                  Navigator.pop(context);
                 }),
           ),
         ],
@@ -174,26 +176,8 @@ class SAUEasyResultRouteState extends State<SAUEasyResultRoute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent, // 设置AppBar为透明
-      //   elevation: 0, // 去除AppBar的阴影
-      //   automaticallyImplyLeading: false,
-      //   systemOverlayStyle: const SystemUiOverlayStyle(
-      //     statusBarColor: Colors.transparent,//设置状态栏的背景颜色
-      //     statusBarIconBrightness: Brightness.dark,//状态栏的文字的颜色
-      //   ),
-      // ),
       body: _buildBody(),
     );
-  }
-
-  IconButton backIconButton(BuildContext context) {
-    return IconButton(
-        icon: const Icon(Icons.arrow_back_ios),
-        color: Colors.white,
-        onPressed: () {
-          Navigator.pop(context);
-        });
   }
 }
 
