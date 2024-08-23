@@ -222,6 +222,20 @@ class SABEasyLogicBusiness extends SABBaseBusiness {
     return bResult;
   }
 
+  ///应与世
+  String getParent(int baseIndex,int otherIndex){
+    String baseElement =
+    branchBusiness().earthElement(earthAtFromRow(baseIndex));
+
+    String otherElement =
+    branchBusiness().earthElement(earthAtFromRow(otherIndex));
+
+    String tempParent =
+    SABElementInfoModel.elementRelative(baseElement, otherElement);
+    return tempParent;
+  }
+
+
   ///`四时旺相章第又十五`//////////////////////////////////////////////////////
   String _symbolSeason(String stringSymbol) {
     return branchBusiness()

@@ -8,6 +8,7 @@ import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route_model.dart'
 import 'package:your_lucky/src/B_UI/EasyResult/sau_seak_future_route_store.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_model.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/BaseLogic/sab_easy_logic_business.dart';
 import 'package:your_lucky/src/E_Service/sas_localizations_service.dart';
 
 class SAUEasyResultRouteStore extends SABBaseModel {
@@ -18,7 +19,84 @@ class SAUEasyResultRouteStore extends SABBaseModel {
   }
 
   void loadData(void Function(String content) finish){
-    finish('吉');
+    String strResult = '平';
+    bool isFuture = getFuture();
+    bool isEvil = getEvil();
+    if (isEvil) {
+      strResult = '凶';
+    } else if (isFuture) {
+      strResult = '吉';
+    }
+    finish(strResult);
+  }
+
+  bool getEvil (){
+    bool bResult = false;
+    ///官鬼持世
+    if ('官鬼' == detailModel.wordsModel().getLifeParent()) {
+      bResult = true;
+    } else {
+      int nRow = detailModel.wordsModel().getLifeIndex();
+      final healthSymbol = detailModel.healthModel().symbol(nRow, EasyTypeEnum.from);
+      bool isStrong = healthSymbol?.isStrong() ?? false;
+      ///世弱
+      if (!isStrong) {
+        bResult = true;
+      } else {
+        String parentGoal = getParentOnGoal();
+        ///应克世
+        if ('官鬼' == parentGoal) {
+          bResult = true;
+        } else {
+          bool isMovement = detailModel.digitModel().isMovementAtRow(nRow);
+          if (isMovement) {
+            String parentTo = detailModel.wordsModel().getSymbolParent(nRow, EasyTypeEnum.to);
+            ///化鬼
+            if ('官鬼' == parentTo) {
+              bResult = true;
+            } else {
+              ///化克
+              if (detailModel.logicModel().getIsSymbolChangeRestrict(nRow)) {
+                bResult = true;
+              } //else {}
+            }
+          }
+        }
+      }
+    }
+    return bResult;
+  }
+
+  String getParentOnGoal(){
+    int nRow = detailModel.wordsModel().getLifeIndex();
+    int goalIndex = detailModel.wordsModel().getGoalIndex();
+    SABEasyLogicBusiness logicBusiness = SABEasyLogicBusiness(detailModel.digitModel());
+    String parentGoal = logicBusiness.getParent(nRow,goalIndex);
+    return parentGoal;
+  }
+
+  String getParentOnDeity(){
+    int nRow = detailModel.getUsefulDeity().symbolRow;
+    int goalIndex = detailModel.wordsModel().getGoalIndex();
+    SABEasyLogicBusiness logicBusiness = SABEasyLogicBusiness(detailModel.digitModel());
+    String parentGoal = logicBusiness.getParent(nRow,goalIndex);
+    return parentGoal;
+  }
+
+  bool getFuture (){
+    bool bResult = false;
+    /// 1. 应生世
+    final parentGoal = getParentOnGoal();
+    if ('父母' == parentGoal) {
+      bResult = true;
+    } else {
+      /// 2. 用生世
+      final parentGoal = getParentOnDeity();
+      if ('父母' == parentGoal) {
+        bResult = true;
+      }
+    }
+    return bResult;
   }
 
   //趋吉

@@ -16,13 +16,13 @@ class SAUSeekFutureRouteStore extends SAUDetailRouteStore{
 
   @override
   SAUDetailRouteModel requestData() {
-    final titleModel = SAURouteTitleModel.titleFromString('趋吉信息');
+    final titleModel = SAURouteTitleModel.titleFromString('吉神信息');
 
     final symbolList = getSymbolList();
     List<SAUDetailCardModel> cardList = [];
     for (int nIndex = 0; nIndex < symbolList.length; nIndex++) {
       SAUSymbolModel model = symbolList[nIndex];
-      cardList.add(seekFutureCard(model,nIndex));
+      cardList.add(seekFutureCard(model,nIndex,symbolList.length > 1));
     }
     data = SAUDetailRouteModel(titleModel:titleModel,
         cardList:cardList,
@@ -66,7 +66,7 @@ class SAUSeekFutureRouteStore extends SAUDetailRouteStore{
     }
   }
 
-  SAUDetailCardModel seekFutureCard (SAUSymbolModel symbolModel,int nIndex) {
+  SAUDetailCardModel seekFutureCard (SAUSymbolModel symbolModel,int nIndex,bool bMulti) {
 
     String indexDes = '';
     switch(nIndex) {
@@ -91,7 +91,13 @@ class SAUSeekFutureRouteStore extends SAUDetailRouteStore{
       default:
         break;
     }
-    String title = '$indexDes吉神';
+    String title = '';
+    if (bMulti) {
+      title = '$indexDes吉神';
+    } else {
+      title = '吉神';
+    }
+
     final List<Map> resultList;
     if (globalRowDay == symbolModel.symbolRow) {
       resultList = inputDetailModel.dayModel.resultList();
@@ -110,28 +116,6 @@ class SAUSeekFutureRouteStore extends SAUDetailRouteStore{
     );
     return cardModel;
   }
-
-
-  // SAUDetailCardModel seekFutureCard () {
-  //   final List<Map> resultList;
-  //   if (0 == uiRow) {
-  //     resultList = inputDetailModel.diagramsDetailModel.resultList;
-  //   } else if (globalRowDay == uiRow) {
-  //     resultList = inputDetailModel.dayModel.resultList();
-  //   } else if (globalRowMonth == uiRow) {
-  //     resultList =  inputDetailModel.monthModel.resultList();
-  //   } else {
-  //     SABRowDetailModel rowModel =
-  //     inputDetailModel.rowModelAtRow(uiRow - 1);
-  //     resultList =  rowModel.resultList(easyType);
-  //   }
-  //
-  //   SAUDetailCardModel cardModel = SAUDetailCardModel(title: "趋吉",
-  //       resultList: resultList,
-  //       tapTitle:gotoBaseInfo
-  //   );
-  //   return cardModel;
-  // }
 
   void gotoBaseInfo(BuildContext context,VoidCallback refreshAction) {
   }

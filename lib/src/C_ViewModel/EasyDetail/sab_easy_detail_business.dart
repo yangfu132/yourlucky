@@ -169,6 +169,7 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
     String strSymbolName = inputModel.skyEarth();
     String stringHealth = inputModel.healthDes();
     String earth = inputModel.stringEarth;
+    String easyKey = wordsModel().inputDigitModel.diagramsModel.getEasyKey(EasyTypeEnum.from);
     SABSymbolDetailModel detailSymbol = SABSymbolDetailModel(
         strSymbolName: strSymbolName,
         baseInfo: strSymbolName,
@@ -178,10 +179,10 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
         monthRelation: strSymbolName,
         dayRelation: 'analysisModel().getDayRelation(intRow, type)',
         earthDirection: '$earth ${logicModel().earthBranchModel().earthDirection()[earth]}',
-        diagramsPlace: strSymbolName,
+        diagramsPlace: '无',
         debugInfo: '未填写debugInfo',
         stringHealth: stringHealth,
-      easyKey: '未出现在卦上，出现在月柱上',
+      easyKey: easyKey,
     );
     return detailSymbol;
   }
@@ -190,6 +191,7 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
     String strSymbolName = inputModel.skyEarth();
     String stringHealth = inputModel.healthDes();
     String earth = inputModel.stringEarth;
+    String easyKey = wordsModel().inputDigitModel.diagramsModel.getEasyKey(EasyTypeEnum.from);
     SABSymbolDetailModel detailSymbol = SABSymbolDetailModel(
         strSymbolName: strSymbolName,
         baseInfo: strSymbolName,
@@ -199,10 +201,10 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
         monthRelation: 'analysisModel().getMonthRelation(intRow, type)',
         dayRelation: strSymbolName,
         earthDirection: '$earth ${logicModel().earthBranchModel().earthDirection()[earth]}',
-        diagramsPlace: strSymbolName,
+        diagramsPlace: '无',
         debugInfo: '未填写debugInfo',
         stringHealth: stringHealth,
-      easyKey: '未出现在卦上，出现在日柱上',
+      easyKey: easyKey,
     );
     return detailSymbol;
   }
