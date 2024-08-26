@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_navigator.dart';
+import 'package:your_lucky/src/A_Context/sac_release.dart';
 import 'package:your_lucky/src/A_Context/sac_route_url.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/ListCell/sau_list_cell.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/ListCell/sau_list_cell_model.dart';
@@ -67,7 +68,7 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
   }
 
   Widget listCell(BuildContext context, SABEasyDigitModel model) {
-    SAUListCellModel cellModel = SAUListCellModel.fromEasyDigitModel(model);
+    SAUListCellModel cellModel = SACRelease.fromEasyDigitModel(model);
     return SAUListCell(
       model: cellModel,
       onTap: (value) => {

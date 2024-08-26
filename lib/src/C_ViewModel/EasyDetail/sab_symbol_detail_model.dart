@@ -1,6 +1,6 @@
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
-import 'package:your_lucky/src/B_UI/EasyDetail/sau_easy_text_route_store.dart';
+import 'package:your_lucky/src/A_Context/sac_release.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 
 class SABSymbolDetailModel extends SABBaseModel {
@@ -44,20 +44,6 @@ class SABSymbolDetailModel extends SABBaseModel {
   final String debugInfo;
 
   final String stringHealth;
-
-  final List<String> itemKeyList = ['基本信息',
-    '六神类象','地支类象',
-    '六合','月将','日将','地支方位','所属八卦','调试信息','计算信息','文本描述','空白'];
-
-  List<String> getItemKeyList (){
-    if (AppType.release == SACContext.getAppType()) {
-      return itemKeyList;
-    } else {
-      final List<String> releaseList = ['基本信息',
-        '六神类象','地支类象','地支方位','六十四卦信息','文本描述','所属八卦'];
-      return releaseList;
-    }
-  }
 
   String getSymbolName() {
     return strSymbolName;
@@ -121,7 +107,7 @@ class SABSymbolDetailModel extends SABBaseModel {
 
   List<Map> resultList() {
     var result = List<Map>.empty(growable: true);
-    for (String itemKey in itemKeyList) {
+    for (String itemKey in SACRelease.getItemKeyList()) {
       result.add({'key':itemKey,'value':itemValue(itemKey)});
     }
     return result;

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_text_viewer/flutter_text_viewer.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
+import 'package:your_lucky/src/A_Context/sac_release.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Text/sau_text_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Text/sau_text_route_store.dart';
 import 'package:your_lucky/src/B_UI/EasyDetail/sau_easy_detail_route.dart';
@@ -52,15 +53,7 @@ Widget mapRouteToPage(String route, Object? arguments) {
   Widget widget = Container();
   switch (route) {
     case SACRouteUrl.easyResult:
-      final detailModel = arguments as SABEasyDetailModel?;
-      if (null != detailModel) {
-        if (AppType.develop == SACContext.getAppType()) {
-          widget = SAUStrategyResultRoute(detailModel);
-        } else {
-          SAUEasyResultRouteStore store = SAUEasyResultRouteStore(detailModel: detailModel);
-          widget = SAUEasyResultRoute(store:store);
-        }
-      }
+      widget = SACRelease.getEasyResultWidget(arguments);
       break;
     case SACRouteUrl.feedback:
       widget = const SAUFeedbackRoute();

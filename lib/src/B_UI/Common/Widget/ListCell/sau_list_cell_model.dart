@@ -79,14 +79,6 @@ class SAUListCellModel {
     return cellModel;
   }
 
-  static SAUListCellModel fromEasyDigitModel(SABEasyDigitModel model) {
-    if (AppType.release == SACContext.getAppType()) {
-      return fromReleaseEasyDigitModel(model);
-    } else {
-      return fromDevelopEasyDigitModel(model);
-    }
-  }
-
   static SAUListCellModel fromDevelopEasyDigitModel(SABEasyDigitModel model) {
     SAUListCellModel cellModel = SAUListCellModel(
         title: model.stringTime, taskId: model.modelId.toString());
