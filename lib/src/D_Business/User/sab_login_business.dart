@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:your_lucky/src/A_Context/sac_navigator.dart';
 import 'package:your_lucky/src/A_Context/sac_route_url.dart';
+import 'package:your_lucky/src/B_UI/Common/Widget/sau_toast_widget.dart';
 import 'package:your_lucky/src/B_UI/User/SignIn/sau_set_password_route.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_business.dart';
 import 'package:your_lucky/src/D_Business/User/sab_login_model.dart';
@@ -16,21 +17,24 @@ class SABLogInBusiness extends SABBaseBusiness {
     // _userAuthService.initFireAuth();
   }
 
-  late final SABLoginModel loginModel;
+  final SABLoginModel loginModel = SABLoginModel.empty();
 
   final SASSqliteService sqlite = SASSqliteService();
 
   // final SASFireBaseUserAuthService _userAuthService =
   //     SASFireBaseUserAuthService();
 
-  final emailController = TextEditingController(text: 'yangfu132@163.com');
+  final emailController = TextEditingController(text: '');
   final emailFocus = FocusNode();
 
-  final nameController = TextEditingController(text: 'yangfu132');
+  final nameController = TextEditingController(text: '');
   final nameFocus = FocusNode();
 
-  final passwordController = TextEditingController(text: '123456@Zc');
+  final passwordController = TextEditingController(text: '');
   final passwordFocus = FocusNode();
+
+  final confirmController = TextEditingController(text: '');
+  final confirmFocus = FocusNode();
 
   //注册
   void signUp(SignUpCallback callback) {
@@ -43,13 +47,13 @@ class SABLogInBusiness extends SABBaseBusiness {
 
   //登录
   void signIn(SignInCallback callback) {
-    String name = nameController.text;
+    String email = emailController.text;
     String password = passwordController.text;
     load((dataList) {
       if (dataList.isNotEmpty) {
-        if (name.isNotEmpty && password.isNotEmpty) {
-          loginModel = dataList[0];
-          if (loginModel.userName == name && loginModel.userPassword == password) {
+        if (email.isNotEmpty && password.isNotEmpty) {
+          loginModel.setModel(dataList[0]);
+          if (loginModel.userMail == email && loginModel.userPassword == password) {
             loginModel.isLogged = true;
           }
         }
@@ -72,28 +76,32 @@ class SABLogInBusiness extends SABBaseBusiness {
     );
   }
 
-  //登录
+  //设置密码
   void setPassword(SignInCallback callback) {
     String userName = nameController.text;
     String userPassword = passwordController.text;
-    String userMail = passwordController.text;
-    if (userName.isNotEmpty && userPassword.isNotEmpty && userMail.isNotEmpty) {
-      load((dataList) {
-        if (dataList.isNotEmpty) {
-          loginModel = dataList[0];
-        } else {
-          loginModel = SABLoginModel(modelId: null,
-              userName: userName,
-              userPassword: userPassword,
-              userMail: userMail,
-              loginType: LoginTypeEnum.textType,
-              dataJson: '',
-              isLogged: false);
-        }
+    String confirmPassword = confirmController.text;
+    String userMail = emailController.text;
+    if (userPassword == confirmPassword) {
+      if (confirmPassword.isNotEmpty && userPassword.isNotEmpty && userMail.isNotEmpty) {
+        load((dataList) {
+          if (dataList.isNotEmpty) {
+            loginModel.setModel(dataList[0]);
+          } else {
+            loginModel.userName = userName;
+            loginModel.userPassword = userPassword;
+            loginModel.userMail = userMail;
+            loginModel.loginType = LoginTypeEnum.textType;
+          }
 
-        save(loginModel);
-        callback('0','');
-      });
+          save(loginModel);
+          callback('0','');
+        });
+      } else {
+        SAUToastWidget.show("信息不能为空");
+      }
+    } else {
+      SAUToastWidget.show("密码输入不一致");
     }
   }
 
@@ -107,7 +115,7 @@ class SABLogInBusiness extends SABBaseBusiness {
     // callback('', '成功');
   }
 
-  String? displayName() {
+  String displayName() {
     return loginModel.userName;
     // return _userAuthService.displayName;
   }
@@ -134,7 +142,7 @@ class SABLogInBusiness extends SABBaseBusiness {
   ///加载
   Future<void> load(void Function(List<SABLoginModel> dataList) refresh) async {
     List<SABLoginModel> dataList = <SABLoginModel>[];
-    await sqlite.query('setting', (json) {
+    await sqlite.query('user_sign', (json) {
       dataList.add(SABLoginModel.fromJson(json));
     }, () {
       refresh(dataList);

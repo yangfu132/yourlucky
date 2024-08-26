@@ -26,7 +26,7 @@ class SABLoginModel extends SABBaseModel {
   bool isLogged = false;
 
   @override String getModelName() {
-    return 'setting';
+    return 'user_sign';
   }
 
   @override int? getModelId() {
@@ -43,9 +43,9 @@ class SABLoginModel extends SABBaseModel {
   SABLoginModel.fromJson(Map<String, Object?> json)
       : this(
     modelId: json['id'] as int,
-    userName: json['settingKey']! as String,
-    userPassword: json['settingTitle']! as String,
-    userMail: json['stringValue']! as String,
+    userName: json['userName']! as String,
+    userPassword: json['userPassword']! as String,
+    userMail: json['userMail']! as String,
     loginType: LoginTypeEnum.values[json['loginType'] as int],
     dataJson: json['dataJson']! as String,
     isLogged: false,
@@ -57,8 +57,27 @@ class SABLoginModel extends SABBaseModel {
       'userName': userName,
       'userPassword': userPassword,
       'userMail': userMail,
-      'settingType': loginType!.index,
+      'loginType': loginType!.index,
       'dataJson': dataJson,
     };
+  }
+
+  static SABLoginModel empty () {
+    return SABLoginModel(modelId: null,
+        userName: '',
+        userPassword: '',
+        userMail: '',
+        loginType: LoginTypeEnum.textType,
+        dataJson: '',
+        isLogged: false);
+  }
+
+  void setModel(SABLoginModel model) {
+    modelId = model.modelId;
+    userName = model.userName;
+    userPassword = model.userPassword;
+    userMail = model.userMail;
+    loginType = model.loginType;
+    dataJson = model.dataJson;
   }
 }

@@ -21,11 +21,37 @@ class SAUSetPasswordRouteState extends State<SAUSetPasswordRoute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(business.displayName() ??
-            SASLocalizationsService.userLogIn(context)),
-      ),
-      body: business.isLogged() ? buildLogged(context) : buildLogIn(context),
+      body: _buildBody(),
+    );
+  }
+
+  Widget _buildBody () {
+    double screenWidth = SACContext.screenWidth(context);
+    double screenHeight = SACContext.screenHeight(context);
+    return Center(
+        child: Stack(
+          children: <Widget>[
+            Image.asset(
+              'images/8466654.jpg',
+              width: screenWidth,
+              height: screenHeight,
+              fit: BoxFit.fill,
+            ),
+            Positioned(
+              left: 15,
+              right: 15,
+              top: 60,
+              bottom: 30,
+              child:Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                  color: Colors.white,
+                ),
+                child: business.isLogged() ? buildLogged(context) : buildLogIn(context),
+              ),
+            ),
+          ],
+        ),
     );
   }
 
@@ -52,6 +78,7 @@ class SAUSetPasswordRouteState extends State<SAUSetPasswordRoute> {
         });
   }
 
+
   Widget buildLogIn(BuildContext context) {
     return ListView.builder(
         itemCount: 5,
@@ -59,55 +86,118 @@ class SAUSetPasswordRouteState extends State<SAUSetPasswordRoute> {
         itemBuilder: (BuildContext context, int index) {
           switch (index) {
             case 0:
-              return TextField(
-                controller: business.emailController,
-                style: const TextStyle(fontSize: 14, color: Color(0xFF333333)),
-                decoration: const InputDecoration(
-                  hintText: '请输入email',
-                  hintStyle: TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
-                  border: InputBorder.none,
-                ),
-                textInputAction: TextInputAction.next,
-                focusNode: business.emailFocus,
+              return  Row(
+                children: [
+                  SizedBox(width: 15,),
+                  Text('用户邮箱:        '),
+                  Expanded(
+                    child: TextField(
+                      controller: business.emailController,
+                      style: const TextStyle(fontSize: 14, color: Color(0xFF333333)),
+                      decoration: const InputDecoration(
+                        hintText: '请输入邮箱',
+                        hintStyle: TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
+                        border: InputBorder.none,
+                      ),
+                      textInputAction: TextInputAction.done,
+                      focusNode: business.emailFocus,
+                    ),
+                  ),
+                ],
               );
             case 1:
-              return TextField(
-                controller: business.passwordController,
-                style: const TextStyle(fontSize: 14, color: Color(0xFF333333)),
-                decoration: const InputDecoration(
-                  hintText: '请输入密码',
-                  hintStyle: TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
-                  border: InputBorder.none,
-                ),
-                textInputAction: TextInputAction.done,
-                focusNode: business.passwordFocus,
+              return  Row(
+                children: [
+                  SizedBox(width: 15,),
+                  Text('输入密码:        '),
+                  Expanded(
+                    child: TextField(
+                      controller: business.passwordController,
+                      style: const TextStyle(fontSize: 14, color: Color(0xFF333333)),
+                      decoration: const InputDecoration(
+                        hintText: '请输入密码',
+                        hintStyle: TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
+                        border: InputBorder.none,
+                      ),
+                      textInputAction: TextInputAction.done,
+                      focusNode: business.passwordFocus,
+                    ),
+                  ),
+                ],
               );
             case 2:
-              return TextField(
-                controller: business.passwordController,
-                style: const TextStyle(fontSize: 14, color: Color(0xFF333333)),
-                decoration: const InputDecoration(
-                  hintText: '请再次输入密码',
-                  hintStyle: TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
-                  border: InputBorder.none,
-                ),
-                textInputAction: TextInputAction.done,
-                focusNode: business.passwordFocus,
+          return  Row(
+            children: [
+              SizedBox(width: 15,),
+              Text('确认密码:        '),
+              Expanded(
+                child: TextField(
+                      controller: business.confirmController,
+                      style: const TextStyle(fontSize: 14, color: Color(0xFF333333)),
+                      decoration: const InputDecoration(
+                        hintText: '请再次输入密码',
+                        hintStyle: TextStyle(fontSize: 14, color: Color(0xFFCCCCCC)),
+                        border: InputBorder.none,
+                      ),
+                      textInputAction: TextInputAction.done,
+                      focusNode: business.confirmFocus,
+                    ),
+                  ),
+                ],
               );
             case 3:
-              return TextButton(
-                onPressed: () => business.signIn((String code, String message) {
-                  SAUToastWidget.show("message:$message");
-                  debugPrint(message);
-                  if ('成功' == message) {
-                    SACNavigator.pop(context);
-                  }
-                }),
-                child: Text(SASLocalizationsService.userConfirm(context)),
-              );
+              return Row(children: [
+                Expanded(child:  TextButton(
+                  onPressed: () => SACNavigator.pop(context),
+                  child: Text(
+                    SASLocalizationsService.userCancel(context),
+                    style: TextStyle(fontSize: 16, color: Color(0xFF333333),),
+                  ),
+                ),),
+                Expanded(child:  TextButton(
+                  onPressed: () => business.setPassword((String code, String message) {
+                    SAUToastWidget.show("message:$message");
+                    debugPrint(message);
+                    if ('成功' == message) {
+                      SACNavigator.pop(context);
+                    }
+                  }),
+                  child: Text(
+                    SASLocalizationsService.userConfirm(context),
+                    style: TextStyle(fontSize: 16, color: Color(0xFF333333),),
+                  ),
+                ),),
+              ],);
             default:
               return Container();
           }
+        });
+  }
+
+
+  void resultAction(BuildContext context) {
+    SACNavigator.pushNamed(
+        context,
+        SACRouteUrl.logIn,
+        null
+    );
+  }
+
+  Widget resultActionTitle() {
+    final SABLogInBusiness business = SACContext.login();
+    if (business.displayName().isNotEmpty) {
+      return Text(business.displayName());
+    } else {
+      return Text(SASLocalizationsService.setPassword(context));
+    }
+  }
+
+  IconButton backIconButton(BuildContext context) {
+    return IconButton(
+        icon: const Icon(Icons.arrow_back_ios),
+        color: Colors.white,
+        onPressed: () {
+          Navigator.pop(context);
         });
   }
 }
