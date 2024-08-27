@@ -86,6 +86,9 @@ class SAUSignInRouteState extends State<SAUSignInRoute> {
               return TextButton(
                 onPressed: () => business.signOut((code, message) {
                   if ('0' == code) {
+                    if (null != widget.finishBlock){
+                      widget.finishBlock!();
+                    }
                     SACNavigator.pop(context);
                   }
                 }),

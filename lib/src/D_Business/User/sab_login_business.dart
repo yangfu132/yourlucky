@@ -45,6 +45,13 @@ class SABLogInBusiness extends SABBaseBusiness {
     // });
   }
 
+  void clearText(){
+    emailController.text = '';
+    passwordController.text = '';
+    nameController.text = '';
+    confirmController.text = '';
+  }
+
   //登录
   void signIn(SignInCallback callback) {
     String email = emailController.text;
@@ -56,6 +63,7 @@ class SABLogInBusiness extends SABBaseBusiness {
           if (loginModel.userMail == email && loginModel.userPassword == password) {
             loginModel.isLogged = true;
             callback('0','');
+            clearText();
           } else {
             callback('-1','密码错误');
           }
@@ -90,15 +98,13 @@ class SABLogInBusiness extends SABBaseBusiness {
         load((dataList) {
           if (dataList.isNotEmpty) {
             loginModel.setModel(dataList[0]);
-          } else {
-            loginModel.userName = userName;
-            loginModel.userPassword = userPassword;
-            loginModel.userMail = userMail;
-            loginModel.loginType = LoginTypeEnum.textType;
-          }
+          } //else {}
 
-          save(loginModel);
-          callback('0','');
+          loginModel.userName = userName;
+          loginModel.userPassword = userPassword;
+          loginModel.userMail = userMail;
+          loginModel.loginType = LoginTypeEnum.textType;
+          save(loginModel,callback);
         });
       } else {
         SAUToastWidget.show("信息不能为空");
@@ -113,6 +119,7 @@ class SABLogInBusiness extends SABBaseBusiness {
   }
 
   void signOut(SignOutCallback callback) {
+    clearText();
     loginModel.isLogged = false;
     callback('0', '成功');
     // _userAuthService.signOut();
@@ -131,15 +138,26 @@ class SABLogInBusiness extends SABBaseBusiness {
 
 
   ///保存
-  void save(SABLoginModel model) {
+  void save(SABLoginModel model, SignInCallback callback) {
     if (null == model.getModelId()) {
       sqlite.insertModel(model, (json) {
-        SABLoginModel savedModel = SABLoginModel.fromJson(json);
-        printMsg('SABSettingModel:${SABLoginModel.fromJson(json)}');
-        model.modelId = savedModel.modelId;
+        if (json.isNotEmpty) {
+          SABLoginModel savedModel = SABLoginModel.fromJson(json);
+          printMsg('SABSettingModel:${SABLoginModel.fromJson(json)}');
+          model.modelId = savedModel.modelId;
+          callback('0','设置成功');
+        } else {
+          callback('-1','设置失败');
+        }
       });
     } else {
-      sqlite.updateModel(model);
+      sqlite.updateModel(model,(int count){
+        if (count > 0) {
+          callback('0','设置成功');
+        } else {
+          callback('-1','设置失败');
+        }
+      });
     }
   }
 

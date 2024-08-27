@@ -78,7 +78,7 @@ class SASSqliteDemoService extends SABBaseService {
       name: fido.name,
       age: fido.age + 7,
     );
-    await sqlService.updateModel(fido);
+    await sqlService.updateModel(fido,(int count){});
 
     // Print the updated results.
     sqlService.query(fido.getModelName(), (json) {

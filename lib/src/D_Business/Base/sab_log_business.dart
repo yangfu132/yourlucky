@@ -29,7 +29,7 @@ class SABLogBusiness extends SABBaseBusiness {
         printMsg('SABLogModel:${SABLogModel.fromJson(json)}');
       });
     } else {
-      sqlite.updateModel(digitModel);
+      sqlite.updateModel(digitModel,(int count){});
     }
   }
 

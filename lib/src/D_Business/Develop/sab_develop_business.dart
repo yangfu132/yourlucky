@@ -67,7 +67,7 @@ class SABDevelopBusiness extends SABBaseBusiness {
         digitModel.modelId = savedModel.modelId;
       });
     } else {
-      sqlite.updateModel(digitModel);
+      sqlite.updateModel(digitModel,(int count){});
     }
   }
 

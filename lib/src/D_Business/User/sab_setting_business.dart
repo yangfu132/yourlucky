@@ -98,7 +98,7 @@ class SABSettingBusiness extends SABBaseBusiness {
         model.modelId = savedModel.modelId;
       });
     } else {
-      sqlite.updateModel(model);
+      sqlite.updateModel(model,(int count){});
     }
   }
 

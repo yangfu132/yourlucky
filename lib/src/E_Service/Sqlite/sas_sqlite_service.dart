@@ -106,11 +106,11 @@ class SASSqliteService extends SABBaseService {
     });
   }
 
-  Future<void> updateModel(SABBaseModel sabModel) async {
+  Future<void> updateModel(SABBaseModel sabModel,void Function(int count) updateResult) async {
     // Get a reference to the database (获得数据库引用)
     await openDataBase((db) async {
       // Update the given model (修改给定的model的数据)
-      await db.update(
+      int count = await db.update(
         sabModel.getModelName(),
         sabModel.toJson(),
         // Ensure that the Dog has a matching id.
@@ -118,6 +118,7 @@ class SASSqliteService extends SABBaseService {
         // Pass the Dog's id as a whereArg to prevent SQL injection.
         whereArgs: [sabModel.getModelId()],
       );
+      updateResult(count);
     });
   }
 

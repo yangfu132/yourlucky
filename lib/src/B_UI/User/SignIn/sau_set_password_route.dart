@@ -158,7 +158,7 @@ class SAUSetPasswordRouteState extends State<SAUSetPasswordRoute> {
                   onPressed: () => business.setPassword((String code, String message) {
                     SAUToastWidget.show("message:$message");
                     debugPrint(message);
-                    if ('成功' == message) {
+                    if ('0' == code) {
                       SACNavigator.pop(context);
                     }
                   }),
