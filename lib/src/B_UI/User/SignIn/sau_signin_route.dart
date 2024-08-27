@@ -155,10 +155,10 @@ class SAUSignInRouteState extends State<SAUSignInRoute> {
                   onPressed: () {
                     business.signIn((code, message) {
                       if (code == '0') {
-                        SACNavigator.pop(context);
                         if (null != widget.finishBlock){
                           widget.finishBlock!();
                         }
+                        SACNavigator.pop(context);
                       } else {
                         SAUToastWidget.show("$message");
                       }

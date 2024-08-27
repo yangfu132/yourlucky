@@ -27,9 +27,18 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
   @override
   void initState() {
     super.initState();
-    widget.store.loadData(() {
+    loadData();
+  }
+
+  void loadData(){
+    bool isLogged = SACContext.login().isLogged();
+    if (isLogged) {
+      widget.store.loadData(() {
+        setState(() {});
+      });
+    } else {
       setState(() {});
-    });
+    }
   }
 
   Widget _buildBody(BuildContext context) {
@@ -170,8 +179,7 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
 
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       final widgetTemp = SAUSignInRoute(finishBlock: (){
-        setState(() {
-        });
+        loadData();
       });
       return widgetTemp;
     }));
