@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:your_lucky/src/A_Context/sac_navigator.dart';
+import 'package:your_lucky/src/A_Context/sac_release.dart';
 import 'package:your_lucky/src/A_Context/sac_route_url.dart';
 import 'package:your_lucky/src/B_UI/EasyStrategy/sau_strategy_result_route.dart';
 import 'package:your_lucky/src/B_UI/User/sau_user_route.dart';
@@ -156,9 +157,11 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const SAUUserRoute();
-                  }));
+                  SACNavigator.pushNamed(
+                      context,
+                      SACRelease.userAction(),
+                      null
+                  );
                 }),
           ),
         ],

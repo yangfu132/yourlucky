@@ -91,7 +91,10 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
       },
       buttonsClick: (value) {
         widget.store.onButtonClicked(context,positionNow,model,value, () {
-          listKey.removeAt(positionNow);
+          if ('delete' == value.code) {
+            listKey.removeAt(positionNow);
+          }
+          loadData();
           setState(() {});
         });
       },

@@ -51,7 +51,7 @@ class SAUHistoryListRouteStore extends SABBaseModel{
       deleteHistory(context, model, positionNow,refreshAction);
     }
     if ('annotate' == value.code) {
-      onAnnotateTapped(context,model);
+      onAnnotateTapped(context,model,refreshAction);
     }
     if ('upload' == value.code) {
       onUploadTapped(model);
@@ -62,9 +62,33 @@ class SAUHistoryListRouteStore extends SABBaseModel{
     if ('actionList' == value.code) {
       onActionListTapped(context,model);
     }
+    if ('remark' == value.code) {
+      onRemarkTapped(context,model,refreshAction);
+    }
   }
 
-  void onAnnotateTapped(BuildContext context,SABEasyDigitModel digitModel) {
+  void onRemarkTapped(BuildContext context,SABEasyDigitModel digitModel,
+      VoidCallback refreshAction) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      SAUTextFieldRouteModel model = SAUTextFieldRouteModel(
+        stringTitle: "修改主题",
+        stringValue: digitModel.strEasyGoal,
+        stringPlaceholder: "请输入",
+      );
+      return SAUTextFieldRoute(
+        model: model,
+        onSave: (SAUTextFieldRouteModel model) {
+          digitModel.strEasyGoal = model.stringValue;
+          SACContext.easyStore().save(digitModel);
+          refreshAction();
+          Navigator.pop(context);
+        },
+      );
+    }));
+  }
+
+  void onAnnotateTapped(BuildContext context,SABEasyDigitModel digitModel,
+      VoidCallback refreshAction) {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       SAUTextFieldRouteModel model = SAUTextFieldRouteModel(
         stringTitle: "修改批注",
@@ -76,6 +100,7 @@ class SAUHistoryListRouteStore extends SABBaseModel{
         onSave: (SAUTextFieldRouteModel model) {
           digitModel.strAnnotate = model.stringValue;
           SACContext.easyStore().save(digitModel);
+          refreshAction();
           Navigator.pop(context);
         },
       );

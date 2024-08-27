@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:your_lucky/src/A_Context/sac_release.dart';
 
 import 'Base/sas_base_service.dart';
 
@@ -26,7 +27,7 @@ class SASLocalizationsService extends SABBaseService {
   }
 
   static String homeUser(BuildContext context) {
-    return localizationsString(context, "记录", "User");
+    return localizationsString(context, SACRelease.userZH(), SACRelease.userEn());
   }
 
   static String userFeedback(BuildContext context) {

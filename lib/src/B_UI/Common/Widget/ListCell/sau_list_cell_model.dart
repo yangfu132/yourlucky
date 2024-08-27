@@ -73,9 +73,10 @@ class SAUListCellModel {
     contents.add(SAUListCellItemModel(title: '当前批注', content: strAnnotate));
     contents.add(SAUListCellItemModel(
         title: '占卜结果', content: model.diagramsModel.stringFromName));
+    SAUButtonModel remark = SAUButtonModel(title: '修改主题', code: 'remark');
     SAUButtonModel deleteButton = SAUButtonModel(title: '删除占卜', code: 'delete');
     SAUButtonModel annotate = SAUButtonModel(title: "添加批注", code: "annotate");
-    cellModel.buttons = [deleteButton, annotate];
+    cellModel.buttons = [remark, deleteButton, annotate];
     return cellModel;
   }
 

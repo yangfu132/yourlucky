@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
+import 'package:your_lucky/src/A_Context/sac_route_url.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/ListCell/sau_list_cell_model.dart';
 import 'package:your_lucky/src/B_UI/EasyResult/sau_easy_result_route.dart';
 import 'package:your_lucky/src/B_UI/EasyResult/sau_easy_result_route_store.dart';
@@ -44,4 +45,31 @@ class SACRelease extends SABBaseModel {
       return SAUListCellModel.fromDevelopEasyDigitModel(model);
     }
   }
+
+  static String userAction (){
+    if (AppType.release == SACContext.getAppType()) {
+      return SACRouteUrl.userRoute;
+    } else {
+      return SACRouteUrl.userRoute;
+      // return const SAUUserRoute();
+    }
+  }
+
+  static String userZH (){
+    if (AppType.release == SACContext.getAppType()) {
+      return "记录";//localizationsString(context, "记录", "History");
+    } else {
+      return "设置";//localizationsString(context, "设置", "Setting");
+    }
+  }
+
+  static String userEn (){
+    if (AppType.release == SACContext.getAppType()) {
+      return "History";//localizationsString(context, "记录", "History");
+    } else {
+      return "Setting";//localizationsString(context, "设置", "Setting");
+    }
+  }
+
+
 }

@@ -21,6 +21,7 @@ import 'package:your_lucky/src/B_UI/User/SignIn/sau_set_password_route.dart';
 import 'package:your_lucky/src/B_UI/User/SignIn/sau_signin_route.dart';
 import 'package:your_lucky/src/B_UI/User/SignIn/sau_signup_route.dart';
 import 'package:your_lucky/src/B_UI/User/SignOut/sau_signout_route.dart';
+import 'package:your_lucky/src/B_UI/User/sau_user_route.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_business.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_model.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
@@ -43,6 +44,7 @@ class SACRouteUrl {
   static const easyText = 'easyText';
   static const easyResult = 'easyResult';
   static const historyDetail = 'historyDetail';
+  static const userRoute = 'userRoute';
 
   // native route，所有native页面route必须添加 "Native/" 前缀
   static const nativePageA = 'Native/somePageA';
@@ -54,6 +56,9 @@ Widget mapRouteToPage(String route, Object? arguments) {
   switch (route) {
     case SACRouteUrl.easyResult:
       widget = SACRelease.getEasyResultWidget(arguments);
+      break;
+    case SACRouteUrl.userRoute:
+      widget = const SAUUserRoute();
       break;
     case SACRouteUrl.feedback:
       widget = const SAUFeedbackRoute();
