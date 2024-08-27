@@ -50,9 +50,9 @@ class _SAUBottomButtonBarState extends State<SAUBottomButtonBar> {
   }
 
   Widget _buildButton(SAUButtonModel item,bool isLast) {
-    final backColor = isLast ? Colors.blue : Colors.white;
-    final borderColor = isLast ? Colors.blue : Colors.blue;
-    final textColor = isLast ? Colors.white : Colors.blue;
+    final backColor = isLast ? Color(0xFFB39936) : Colors.white;
+    final borderColor = isLast ? Color(0xFFB39936) : Colors.blue;
+    final textColor = isLast ? Colors.white : Color(0xFFB39936);
     return Expanded(
       child: Material(
         shape: StadiumBorder(

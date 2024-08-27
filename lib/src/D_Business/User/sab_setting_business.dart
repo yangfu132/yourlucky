@@ -10,7 +10,7 @@ class SABSettingBusiness extends SABBaseBusiness {
       generateModel("自动保存", "自动保存", SettingTypeEnum.switchType);
 
   late final SABSettingModel appType =
-  generateModel("ReleaseType", "ReleaseType", SettingTypeEnum.switchType);
+  generateModel("DevelopType", "DevelopType", SettingTypeEnum.switchType);
 
   late final SABSettingModel emptyZero = generateModel(
       "旬空时日Health为0",

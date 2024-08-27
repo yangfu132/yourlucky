@@ -38,12 +38,13 @@ class SAUButtonRowsView extends StatelessWidget {
 
   List<Widget> _buildButtons() {
     var buttons = List<Widget>.empty(growable: true);
+    Color highColor = Color(0xFFB39936);//Colors.blue
     for (SAUButtonModel element in buttonList) {
       final backColor =
-      element.highLight ? Colors.blue : Colors.transparent;
+      element.highLight ? highColor : Colors.transparent;
       final textColor = element.highLight ? Colors.white : const Color(0xFF333333);
       final bolderColor =
-      element.highLight ? Colors.transparent : Colors.blue;
+      element.highLight ? Colors.transparent : highColor;
       buttons.add(Container(
           height: 30,
           padding: const EdgeInsets.only(left: 8),

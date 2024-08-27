@@ -65,7 +65,6 @@ class SAUSignInRouteState extends State<SAUSignInRoute> {
               child: Column(children: [
                 SizedBox(height: 15,),
                 Expanded(child: business.isLogged() ? buildLogged(context) : buildLogIn(context),),
-
               ],),
             ),
           ),

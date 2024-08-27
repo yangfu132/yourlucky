@@ -43,7 +43,7 @@ class SACContext {
   static AppType getAppType() {
     SACContext businessContext = SABSingletonService.getObject('SACContext');
     if (1 == SACContext.setting().appType.intValue) {
-      return AppType.release;
+      return AppType.develop;
     } else {
       return businessContext.appType;
     }
