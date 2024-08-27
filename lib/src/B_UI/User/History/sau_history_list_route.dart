@@ -51,6 +51,7 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
             itemBuilder: (BuildContext context, int index) {
               return const ListTile(
                 title: Text('暂无数据，请稍后再试',
+                  style: TextStyle(color: Color(0xFFE5CC69),),
                   textAlign: TextAlign.center,),
                 onTap: null,
               );

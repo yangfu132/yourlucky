@@ -18,36 +18,55 @@ class SAUSignInRoute extends StatefulWidget {
 class SAUSignInRouteState extends State<SAUSignInRoute> {
   final SABLogInBusiness business = SACContext.login();
 
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _buildBody(),
+    return Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: ExactAssetImage('images/8466654.jpg'),
+              // NetworkImage(
+              //     'https://i-blog.csdnimg.cn/blog_migrate/46fe176149f7cf1c2520bb349eba9039.jpeg'),
+              fit: BoxFit.fill,
+            )),
+        child: Scaffold(
+          backgroundColor: Colors.transparent, //把scaffold的背景色改成透明
+          appBar: AppBar(
+            leading: backIconButton(context),
+            backgroundColor: Colors.transparent,
+            title: const Text(
+              '登录',
+              style: TextStyle(
+                color: Color(0xFFE5CC69),
+              ),
+            ),
+          ),
+          body: _buildBody(context),
+        )
     );
   }
 
-  Widget _buildBody () {
+  Widget _buildBody (BuildContext context) {
     double screenWidth = SACContext.screenWidth(context);
     double screenHeight = SACContext.screenHeight(context);
     return Center(
       child: Stack(
         children: <Widget>[
-          Image.asset(
-            'images/8466654.jpg',
-            width: screenWidth,
-            height: screenHeight,
-            fit: BoxFit.fill,
-          ),
           Positioned(
             left: 15,
             right: 15,
-            top: 60,
+            top: 10,
             bottom: 30,
             child:Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
                 color: Colors.white,
               ),
-              child: business.isLogged() ? buildLogged(context) : buildLogIn(context),
+              child: Column(children: [
+                SizedBox(height: 15,),
+                Expanded(child: business.isLogged() ? buildLogged(context) : buildLogIn(context),),
+
+              ],),
             ),
           ),
         ],
@@ -66,7 +85,7 @@ class SAUSignInRouteState extends State<SAUSignInRoute> {
             case 1:
               return TextButton(
                 onPressed: () => business.signOut((code, message) {
-                  if ('成功' == message) {
+                  if ('0' == code) {
                     SACNavigator.pop(context);
                   }
                 }),
@@ -126,14 +145,21 @@ class SAUSignInRouteState extends State<SAUSignInRoute> {
                 ],
               );
             case 2:
+              return Text('');
+            case 3:
               return Row(children: [
                 Expanded(child:  TextButton(
                   onPressed: () {
                     business.signIn((code, message) {
-                      SACNavigator.pop(context);
-                      if (null != widget.finishBlock){
-                        widget.finishBlock!();
+                      if (code == '0') {
+                        SACNavigator.pop(context);
+                        if (null != widget.finishBlock){
+                          widget.finishBlock!();
+                        }
+                      } else {
+                        SAUToastWidget.show("$message");
                       }
+
                     });
 
                   },
@@ -165,6 +191,7 @@ class SAUSignInRouteState extends State<SAUSignInRoute> {
       return SASLocalizationsService.setPassword(context);
     }
   }
+
   void resultAction(BuildContext context) {
     SACNavigator.pushNamed(
         context,

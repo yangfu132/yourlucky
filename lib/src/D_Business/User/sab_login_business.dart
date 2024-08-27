@@ -55,6 +55,9 @@ class SABLogInBusiness extends SABBaseBusiness {
           loginModel.setModel(dataList[0]);
           if (loginModel.userMail == email && loginModel.userPassword == password) {
             loginModel.isLogged = true;
+            callback('0','');
+          } else {
+            callback('-1','密码错误');
           }
         }
       };
@@ -111,6 +114,7 @@ class SABLogInBusiness extends SABBaseBusiness {
 
   void signOut(SignOutCallback callback) {
     loginModel.isLogged = false;
+    callback('0', '成功');
     // _userAuthService.signOut();
     // callback('', '成功');
   }
