@@ -64,6 +64,8 @@ class SABLogInBusiness extends SABBaseBusiness {
     String digest = sha256.convert(bytes).toString();
     if ('cf7f0b89f407a4138411e23cb814cce38fb589ba7a76719a909a58c6cfa0a73f' == digest) {
       SACContext.setAppType(AppType.develop);
+    } else {
+      SACContext.setAppType(AppType.release);
     }
   }
 
@@ -74,8 +76,14 @@ class SABLogInBusiness extends SABBaseBusiness {
     load((dataList) {
       if (dataList.isNotEmpty) {
         if (email.isNotEmpty && password.isNotEmpty) {
-          loginModel.setModel(dataList[0]);
-          if (loginModel.userMail == email && loginModel.userPassword == password) {
+          bool bFind = false;
+          for (SABLoginModel model in dataList) {
+            if (model.userMail == email && model.userPassword == password) {
+              loginModel.setModel(model);
+              bFind = true;
+            }
+          }
+          if (bFind) {
             loginModel.isLogged = true;
             setAppType(email,password);
             callback('0','');
@@ -112,10 +120,16 @@ class SABLogInBusiness extends SABBaseBusiness {
     if (userPassword == confirmPassword) {
       if (confirmPassword.isNotEmpty && userPassword.isNotEmpty && userMail.isNotEmpty) {
         load((dataList) {
-          if (dataList.isNotEmpty) {
-            loginModel.setModel(dataList[0]);
-          } //else {}
-
+          bool bFind = false;
+          for (SABLoginModel model in dataList) {
+            if (model.userMail == userMail) {
+              loginModel.setModel(model);
+              bFind = true;
+            }
+          }
+          if (!bFind) {
+            loginModel.setModel(SABLoginModel.empty());
+          }
           loginModel.userName = userName;
           loginModel.userPassword = userPassword;
           loginModel.userMail = userMail;
