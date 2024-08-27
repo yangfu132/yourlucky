@@ -38,7 +38,7 @@ class SACContext {
 
   final SABLogInBusiness _loginBusiness = SABLogInBusiness();
 
-  final AppType appType = AppType.develop;
+  final AppType appType = AppType.release;
 
   static AppType getAppType() {
     SACContext businessContext = SABSingletonService.getObject('SACContext');

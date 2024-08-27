@@ -59,7 +59,7 @@ class SAUTextFieldRouteState extends State<SAUTextFieldRoute> {
       ),
       minLines: 1,
       maxLines: 1,
-      keyboardType: TextInputType.number,
+      keyboardType: TextInputType.text,
       onChanged: (value){
       },
     );

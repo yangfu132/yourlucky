@@ -42,7 +42,7 @@ class _SAUListCellState extends State<SAUListCell> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10,vertical:5),
       child: Container(
         decoration: BoxDecoration(
             color: Colors.white,
