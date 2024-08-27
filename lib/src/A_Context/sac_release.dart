@@ -48,7 +48,7 @@ class SACRelease extends SABBaseModel {
 
   static String userAction (){
     if (AppType.release == SACContext.getAppType()) {
-      return SACRouteUrl.userRoute;
+      return SACRouteUrl.history;
     } else {
       return SACRouteUrl.userRoute;
       // return const SAUUserRoute();

@@ -1,5 +1,11 @@
+import 'dart:convert';
+import 'package:crypto/crypto.dart';
+
 import 'package:flutter/material.dart';
+import 'package:your_lucky/src/A_Context/sac_context.dart';
+import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/A_Context/sac_navigator.dart';
+import 'package:your_lucky/src/A_Context/sac_release.dart';
 import 'package:your_lucky/src/A_Context/sac_route_url.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/sau_toast_widget.dart';
 import 'package:your_lucky/src/B_UI/User/SignIn/sau_set_password_route.dart';
@@ -7,6 +13,7 @@ import 'package:your_lucky/src/D_Business/Base/sab_base_business.dart';
 import 'package:your_lucky/src/D_Business/User/sab_login_model.dart';
 import 'package:your_lucky/src/E_Service/FireBase/sas_fire_base_user_auth_service.dart';
 import 'package:your_lucky/src/E_Service/Sqlite/sas_sqlite_service.dart';
+import 'package:your_lucky/src/E_Service/sab_singleton_service.dart';
 
 typedef SignInCallback = void Function(String code, String message);
 typedef SignUpCallback = void Function(String code, String message);
@@ -52,6 +59,14 @@ class SABLogInBusiness extends SABBaseBusiness {
     confirmController.text = '';
   }
 
+  void setAppType(String name,String password) {
+    var bytes = utf8.encode("$name+$password"); // data being hashed
+    String digest = sha256.convert(bytes).toString();
+    if ('cf7f0b89f407a4138411e23cb814cce38fb589ba7a76719a909a58c6cfa0a73f' == digest) {
+      SACContext.setAppType(AppType.develop);
+    }
+  }
+
   //登录
   void signIn(SignInCallback callback) {
     String email = emailController.text;
@@ -62,6 +77,7 @@ class SABLogInBusiness extends SABBaseBusiness {
           loginModel.setModel(dataList[0]);
           if (loginModel.userMail == email && loginModel.userPassword == password) {
             loginModel.isLogged = true;
+            setAppType(email,password);
             callback('0','');
             clearText();
           } else {

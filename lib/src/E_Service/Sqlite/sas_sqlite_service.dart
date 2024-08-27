@@ -98,7 +98,7 @@ class SASSqliteService extends SABBaseService {
     // Get a reference to the database.
     await openDataBase((db) async {
       // Query the table for all The Dogs.
-      final List<Map<String, dynamic>> maps = await db.query(table);
+      final List<Map<String, dynamic>> maps = await db.query(table,orderBy:'id DESC');
       for (Map<String, dynamic> data in maps) {
         createModel(data);
       }

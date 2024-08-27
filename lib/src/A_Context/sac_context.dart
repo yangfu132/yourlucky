@@ -38,15 +38,20 @@ class SACContext {
 
   final SABLogInBusiness _loginBusiness = SABLogInBusiness();
 
-  final AppType appType = AppType.release;
+  AppType _appType = AppType.release;
 
   static AppType getAppType() {
     SACContext businessContext = SABSingletonService.getObject('SACContext');
     if (1 == SACContext.setting().appType.intValue) {
       return AppType.develop;
     } else {
-      return businessContext.appType;
+      return businessContext._appType;
     }
+  }
+
+  static void setAppType(AppType type) {
+    SACContext businessContext = SABSingletonService.getObject('SACContext');
+    businessContext._appType = type;
   }
 
   static bool simulator() {
