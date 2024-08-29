@@ -182,16 +182,7 @@ class SAUSetPasswordRouteState extends State<SAUSetPasswordRoute> {
         null
     );
   }
-
-  Widget resultActionTitle() {
-    final SABLogInBusiness business = SACContext.login();
-    if (business.displayName().isNotEmpty) {
-      return Text(business.displayName());
-    } else {
-      return Text(SASLocalizationsService.setPassword(context));
-    }
-  }
-
+  
   IconButton backIconButton(BuildContext context) {
     return IconButton(
         icon: const Icon(Icons.arrow_back_ios),

@@ -13,7 +13,7 @@ class SABDevelopBusiness extends SABBaseBusiness {
   ///创建测试
   SABDevelopModel create() {
     SABDevelopModel outEasyModel;
-    String strEasyGoal = '测试';
+    String strEasyGoal = '待定';
     String strUsefulDeity = '子孙';
     List<int> listRelationData = generateEasyArray();
 

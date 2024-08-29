@@ -101,6 +101,14 @@ class SAUSignInRouteState extends State<SAUSignInRoute> {
 
 
   Widget buildLogIn(BuildContext context) {
+    final SABLogInBusiness business = SACContext.login();
+    String buttonTitle = '';
+    if (business.hasUser) {
+      buttonTitle = SASLocalizationsService.userForget(context);
+    } else {
+      buttonTitle = SASLocalizationsService.signUp(context);
+    }
+
     return ListView.builder(
         itemCount: 5,
         itemExtent: 50.0, //强制高度为50.0
@@ -174,8 +182,7 @@ class SAUSignInRouteState extends State<SAUSignInRoute> {
                   onPressed: () {
                     business.sendPasswordResetEmail(context);
                   },
-                  child: Text(
-                    SASLocalizationsService.userForget(context),
+                  child: Text(buttonTitle,
                     style: TextStyle(fontSize: 16, color: Color(0xFF333333),),
                   ),
                 ),),
@@ -186,29 +193,12 @@ class SAUSignInRouteState extends State<SAUSignInRoute> {
         });
   }
 
-  String aaa(){
-    if(business.isLogged()) {
-      return SASLocalizationsService.userForget(context);
-    } else {
-      return SASLocalizationsService.setPassword(context);
-    }
-  }
-
   void resultAction(BuildContext context) {
     SACNavigator.pushNamed(
         context,
         SACRouteUrl.logIn,
         null
     );
-  }
-
-  Widget resultActionTitle() {
-    final SABLogInBusiness business = SACContext.login();
-    if (business.displayName().isNotEmpty) {
-      return Text(business.displayName());
-    } else {
-      return Text(SASLocalizationsService.setPassword(context));
-    }
   }
 
   IconButton backIconButton(BuildContext context) {

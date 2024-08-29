@@ -186,14 +186,6 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
       });
       return widgetTemp;
     }));
-
-    final SABLogInBusiness business = SACContext.login();
-    if (!business.hasUser) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return const SAUSetPasswordRoute();
-      }));
-    }
-
   }
 
   IconButton backIconButton(BuildContext context) {
