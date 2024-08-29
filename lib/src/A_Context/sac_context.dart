@@ -28,6 +28,7 @@ void coLog(StackTrace trace, LogTypeEnum logType, String strMsg) {
 }
 
 class SACContext {
+
   final SABEasyDigitBusiness _storeBusiness = SABEasyDigitBusiness();
   final SABEasyStrategyInfoBusiness _categoryBusiness =
       SABEasyStrategyInfoBusiness();
@@ -39,6 +40,13 @@ class SACContext {
   final SABLogInBusiness _loginBusiness = SABLogInBusiness();
 
   AppType _appType = AppType.release;
+
+  ///SA 服务目录
+  Future<void> initStep() async {
+    await _categoryBusiness.getsCategory();
+    _settingBusiness.settingList((dataList) { });
+    _loginBusiness.initBusiness();
+  }
 
   static AppType getAppType() {
     SACContext businessContext = SABSingletonService.getObject('SACContext');
@@ -58,10 +66,6 @@ class SACContext {
     return true;
   }
 
-  ///SA 服务目录
-  Future<void> initStep() async {
-    await _categoryBusiness.getsCategory();
-  }
 
   /// UI 服务目录
   static double screenWidth(context) {

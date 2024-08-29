@@ -24,6 +24,14 @@ class SABLogInBusiness extends SABBaseBusiness {
     // _userAuthService.initFireAuth();
   }
 
+  void initBusiness(){
+    load((dataList) {
+      hasUser = dataList.isNotEmpty;
+    });
+  }
+
+  bool hasUser = false;
+
   final SABLoginModel loginModel = SABLoginModel.empty();
 
   final SASSqliteService sqlite = SASSqliteService();

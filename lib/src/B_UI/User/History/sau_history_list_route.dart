@@ -7,6 +7,7 @@ import 'package:your_lucky/src/B_UI/Common/Widget/ListCell/sau_list_cell.dart';
 import 'package:your_lucky/src/B_UI/Common/Widget/ListCell/sau_list_cell_model.dart';
 import 'package:your_lucky/src/B_UI/User/History/sau_edit_list_item.dart';
 import 'package:your_lucky/src/B_UI/User/History/sau_history_list_route_store.dart';
+import 'package:your_lucky/src/B_UI/User/SignIn/sau_set_password_route.dart';
 import 'package:your_lucky/src/B_UI/User/SignIn/sau_signin_route.dart';
 import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
 import 'package:your_lucky/src/D_Business/User/sab_login_business.dart';
@@ -179,13 +180,20 @@ class SAUHistoryListRouteState extends State<SAUHistoryListRoute> {
     //     SACRouteUrl.logIn,
     //     null
     // );
-
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       final widgetTemp = SAUSignInRoute(finishBlock: (){
         loadData();
       });
       return widgetTemp;
     }));
+
+    final SABLogInBusiness business = SACContext.login();
+    if (!business.hasUser) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return const SAUSetPasswordRoute();
+      }));
+    }
+
   }
 
   IconButton backIconButton(BuildContext context) {
