@@ -25,6 +25,7 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
   }
 
   Widget _buildBody() {
+    // return Text('data');
     if (widget.store.data.cardList.isEmpty) {
       return Container();
     }
@@ -36,13 +37,14 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
     }
     children.add(const SizedBox(height: 40));
     final body = Container(
-      color: Colors.white,
+      color: Colors.transparent,
       child: SingleChildScrollView(
         child: Column(
           children: children,
         ),
       ),
     );
+
     if (widget.store.data.buttonRoles.isEmpty) {
       return body;
     } else {
@@ -227,7 +229,7 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
 
 
   @override
-  Widget build(BuildContext context) {
+  Widget build_new(BuildContext context) {
     return Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
@@ -262,12 +264,41 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
     );
   }
 
-  void resultAction(BuildContext context){
-    widget.store.data.titleModel.tapTitle(context,(){setState(() {});});
-  }
-
-  Widget resultActionTitle(){
-    return Text(widget.store.data.titleModel.actionTitle);
+  @override
+  Widget build(BuildContext context) {
+    widget.store.requestData();
+    return Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+              image:ExactAssetImage('images/8466654.jpg'),
+              // NetworkImage(
+              //     'https://i-blog.csdnimg.cn/blog_migrate/46fe176149f7cf1c2520bb349eba9039.jpeg'),
+              fit: BoxFit.fill,
+            )),
+        child: Scaffold(
+          backgroundColor: Colors.transparent, //把scaffold的背景色改成透明
+          appBar: AppBar(
+            leading: backIconButton(context),
+            backgroundColor: Colors.transparent,
+            title: Text(
+              widget.store.data.titleModel.title,
+              style: TextStyle(
+                color: Color(0xFFE5CC69),
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  resultAction(context);
+                },
+                style: SACContext.textButtonStyle(),
+                child: resultActionTitle(),
+              ),
+            ],
+          ),
+          body: _buildBody(),
+        )
+    );
   }
 
   @override
@@ -291,10 +322,18 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
     );
   }
 
+  void resultAction(BuildContext context){
+    widget.store.data.titleModel.tapTitle(context,(){setState(() {});});
+  }
+
+  Widget resultActionTitle(){
+    return Text(widget.store.data.titleModel.actionTitle);
+  }
+
   IconButton backIconButton(BuildContext context) {
     return IconButton(
         icon: const Icon(Icons.arrow_back_ios),
-        color: Colors.white,
+        color: Color(0xFFE5CC69),
         onPressed: () {
           Navigator.pop(context);
         });
