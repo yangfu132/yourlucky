@@ -112,13 +112,17 @@ class SAUEasyResultRouteState extends State<SAUEasyResultRoute> {
                     title: '趋吉',
                     titleMinWidth: 75,
                     content: '进入详情  ',
-                    onTap: () => {},
+                    onTap: () {
+                      widget.store.gotoSeekFortuneDetail(context);
+                    },
                   ),
                   SelectorInputView(
                     title: '避凶',
                     titleMinWidth: 75,
                     content: '进入详情  ',
-                    onTap: () => {},
+                    onTap: () {
+                      widget.store.gotoAvoidEvilDetail(context);
+                    },
                   ),
                   SelectorInputView(
                     title: '祈福',

@@ -5,6 +5,7 @@ import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_route_title_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route_model.dart';
+import 'package:your_lucky/src/B_UI/EasyResult/sau_avoid_evil_route_store.dart';
 import 'package:your_lucky/src/B_UI/EasyResult/sau_seak_future_route_store.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_model.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
@@ -114,7 +115,15 @@ class SAUEasyResultRouteStore extends SABBaseModel {
 
   //避凶
   void gotoAvoidEvilDetail(BuildContext context) {
-
+    int uiRow = detailModel.getUsefulDeity().symbolRow + 1;
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      final store = SAUAvoidEvilRouteStore(
+          inputDetailModel:detailModel,
+          uiRow: uiRow,
+          easyType: detailModel.getUsefulDeity().easyType
+      );
+      return SAUDetailRoute(store:store);
+    }));
   }
 
   void gotoTextField(BuildContext context) {

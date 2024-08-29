@@ -159,6 +159,7 @@ class SABLogInBusiness extends SABBaseBusiness {
   void signOut(SignOutCallback callback) {
     clearText();
     loginModel.isLogged = false;
+    SACContext.setAppType(AppType.release);
     callback('0', '成功');
     // _userAuthService.signOut();
     // callback('', '成功');
