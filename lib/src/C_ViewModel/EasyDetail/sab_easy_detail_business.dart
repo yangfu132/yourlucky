@@ -147,7 +147,7 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
       EasyTypeEnum easyType) {
     String strSymbolName = wordsModel().getSymbolName(intRow, easyType);
     String stringHealth = healthLogicModel().getHealthDescription(intRow,easyType);
-    late final String easyKey = wordsModel().inputDigitModel.diagramsModel.getEasyKey(easyType);
+    late final String easyName = wordsModel().inputDigitModel.diagramsModel.getEasyName(easyType);
     SABSymbolDetailModel detailSymbol = SABSymbolDetailModel(
         strSymbolName: strSymbolName,
         baseInfo: symbolBasic(intRow, easyType),
@@ -160,7 +160,7 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
         diagramsPlace: eightDiagramsPlace(intRow, easyType),
         debugInfo: '未填写debugInfo',
         stringHealth: stringHealth,
-      easyKey: easyKey,
+      easyName: easyName,
     );
     return detailSymbol;
   }
@@ -169,7 +169,7 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
     String strSymbolName = inputModel.skyEarth();
     String stringHealth = inputModel.healthDes();
     String earth = inputModel.stringEarth;
-    String easyKey = wordsModel().inputDigitModel.diagramsModel.getEasyKey(EasyTypeEnum.from);
+    String easyName = wordsModel().inputDigitModel.diagramsModel.getEasyName(EasyTypeEnum.from);
     SABSymbolDetailModel detailSymbol = SABSymbolDetailModel(
         strSymbolName: strSymbolName,
         baseInfo: strSymbolName,
@@ -182,7 +182,7 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
         diagramsPlace: '无',
         debugInfo: '未填写debugInfo',
         stringHealth: stringHealth,
-      easyKey: easyKey,
+      easyName: easyName,
     );
     return detailSymbol;
   }
@@ -191,7 +191,7 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
     String strSymbolName = inputModel.skyEarth();
     String stringHealth = inputModel.healthDes();
     String earth = inputModel.stringEarth;
-    String easyKey = wordsModel().inputDigitModel.diagramsModel.getEasyKey(EasyTypeEnum.from);
+    String easyName = wordsModel().inputDigitModel.diagramsModel.getEasyName(EasyTypeEnum.from);
     SABSymbolDetailModel detailSymbol = SABSymbolDetailModel(
         strSymbolName: strSymbolName,
         baseInfo: strSymbolName,
@@ -204,7 +204,7 @@ class SABEasyDetailBusiness extends SABBaseBusiness {
         diagramsPlace: '无',
         debugInfo: '未填写debugInfo',
         stringHealth: stringHealth,
-      easyKey: easyKey,
+      easyName: easyName,
     );
     return detailSymbol;
   }

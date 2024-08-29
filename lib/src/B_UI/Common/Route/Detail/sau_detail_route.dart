@@ -22,10 +22,6 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
   @override
   void initState() {
     super.initState();
-    // SASTextFileService.readAsset((content) {
-    //   this.content = content;
-    //   setState(() {});
-    // });
   }
 
   Widget _buildBody() {
@@ -34,7 +30,8 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
     }
 
     List<Widget> children = <Widget>[];
-    for (int index = 0; index < 3; index++) {
+    int cardCount = widget.store.data.cardList.length;
+    for (int index = 0; index < cardCount; index++) {
       children.add(_buildBoxContainer(_buildCardInfo(widget.store.data.getCardModel(index))));
     }
     children.add(const SizedBox(height: 40));
@@ -228,8 +225,53 @@ class SAUDetailRouteState extends State<SAUDetailRoute> {
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
+    return Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+              image:ExactAssetImage('images/8466654.jpg'),
+              // NetworkImage(
+              //     'https://i-blog.csdnimg.cn/blog_migrate/46fe176149f7cf1c2520bb349eba9039.jpeg'),
+              fit: BoxFit.fill,
+            )),
+        child: Scaffold(
+          backgroundColor: Colors.transparent, //把scaffold的背景色改成透明
+          appBar: AppBar(
+            leading: backIconButton(context),
+            backgroundColor: Colors.transparent,
+            title: Text(
+              widget.store.data.titleModel.title,
+              style: TextStyle(
+                color: Color(0xFFE5CC69),
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  resultAction(context);
+                },
+                style: SACContext.textButtonStyle(),
+                child: resultActionTitle(),
+              ),
+            ],
+          ),
+          body: _buildBody(),
+        )
+    );
+  }
+
+  void resultAction(BuildContext context){
+    widget.store.data.titleModel.tapTitle(context,(){setState(() {});});
+  }
+
+  Widget resultActionTitle(){
+    return Text(widget.store.data.titleModel.actionTitle);
+  }
+
+  @override
+  Widget build_old(BuildContext context) {
     widget.store.requestData();
     return Scaffold(
       appBar: AppBar(

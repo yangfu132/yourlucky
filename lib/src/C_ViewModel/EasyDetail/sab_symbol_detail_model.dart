@@ -16,7 +16,7 @@ class SABSymbolDetailModel extends SABBaseModel {
     required this.diagramsPlace,
     required this.debugInfo,
     required this.stringHealth,
-    required this.easyKey,
+    required this.easyName,
   });
 
   final String strSymbolName;
@@ -29,7 +29,7 @@ class SABSymbolDetailModel extends SABBaseModel {
 
   final String sixPairDes;
 
-  final String easyKey;
+  final String easyName;
 
   late String symbolHealthDes = getSymbolHealthDes();
 
@@ -92,7 +92,7 @@ class SABSymbolDetailModel extends SABBaseModel {
         resultValue = 'ActionList';
         break;
       case '六十四卦信息':
-        resultValue = easyKey;
+        resultValue = easyName;
         break;
       case '空白':
         resultValue = '空白';

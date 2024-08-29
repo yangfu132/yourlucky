@@ -188,7 +188,17 @@ class SABEasyWordsModel extends SABBaseModel {
   }
 
   String getSymbolEarth(int intRow, EasyTypeEnum easyType) {
-    return rowModelAtRow(intRow).getSymbolEarth(easyType);
+    if (intRow != globalRowInvalid) {
+      if (globalRowDay == intRow) {
+        return dayModel.stringEarth;
+      } else if (globalRowMonth == intRow) {
+        return monthModel.stringEarth;
+      } else {
+        return rowModelAtRow(intRow).getSymbolEarth(easyType);
+      }
+    } else {
+      return '';
+    }
   }
 
   String getSymbolElement(int intRow, EasyTypeEnum easyType) {
@@ -247,6 +257,7 @@ class SABEasyWordsModel extends SABBaseModel {
   }
 
   SABWordsRowModel rowModelAtRow(int intRow) {
+
     if (intRow > _listRowModels.length) {
       coLog(StackTrace.current, LogTypeEnum.error, "intRow:$intRow");
     }

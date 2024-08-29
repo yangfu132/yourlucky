@@ -26,7 +26,7 @@ class SACRelease extends SABBaseModel {
   }
 
   static List<String> getItemKeyList (){
-    if (AppType.release == SACContext.getAppType()) {
+    if (AppType.develop == SACContext.getAppType()) {
       final List<String> itemKeyList = ['基本信息',
         '六神类象','地支类象',
         '六合','月将','日将','地支方位','所属八卦','调试信息','计算信息','文本描述','空白'];
