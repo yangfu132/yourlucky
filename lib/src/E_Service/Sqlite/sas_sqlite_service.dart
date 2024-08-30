@@ -5,7 +5,7 @@ import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 import 'package:your_lucky/src/E_Service/Base/sas_base_service.dart';
 
 
-class SASSqliteService extends SABBaseService {
+class SASSqliteService extends SASBaseService {
   Database? database;
   Future<void> openDataBase(void Function(Database db) databaseFunc) async {
     if (null == database) {

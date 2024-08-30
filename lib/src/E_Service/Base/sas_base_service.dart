@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-class SABBaseService {
+class SASBaseService {
   void printMsg (String? message) {
     debugPrint(message);
   }

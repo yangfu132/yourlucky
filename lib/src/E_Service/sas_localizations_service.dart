@@ -4,7 +4,7 @@ import 'package:your_lucky/src/A_Context/sac_release.dart';
 
 import 'Base/sas_base_service.dart';
 
-class SASLocalizationsService extends SABBaseService {
+class SASLocalizationsService extends SASBaseService {
   SASLocalizationsService(this.isZh);
   //是否为中文
   bool isZh = false;
@@ -123,7 +123,7 @@ class SASLocalizationsDelegate
   // Flutter会调用此类加载相应的Locale资源类
   @override
   Future<SASLocalizationsService> load(Locale locale) {
-    SABBaseService.staticPrintMsg("$locale");
+    SASBaseService.staticPrintMsg("$locale");
     return SynchronousFuture<SASLocalizationsService>(
         SASLocalizationsService(locale.languageCode == "zh"));
   }

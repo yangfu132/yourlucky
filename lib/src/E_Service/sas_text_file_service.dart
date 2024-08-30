@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 
 import 'Base/sas_base_service.dart';
-class SASTextFileService extends SABBaseService {
+class SASTextFileService extends SASBaseService {
 
   void writeFile (String content) async {
     File file = File('test.txt');
@@ -23,7 +23,7 @@ class SASTextFileService extends SABBaseService {
       result = await rootBundle.loadString(assetPath);
     }catch(e){
       result = "failed";
-      SABBaseService.staticPrintMsg(e as String?);
+      SASBaseService.staticPrintMsg(e as String?);
     }
     refresh(result);
   }
@@ -35,10 +35,10 @@ class SASTextFileService extends SABBaseService {
       File file = File(filePath);
       //text_viewer_page中是这样写的： result = file.readAsStringSync();
       result = await file.readAsString();
-      SABBaseService.staticPrintMsg(result);
+      SASBaseService.staticPrintMsg(result);
     }catch(e){
       result = "failed";
-      SABBaseService.staticPrintMsg(e as String?);
+      SASBaseService.staticPrintMsg(e as String?);
     }
     refresh(result);
   }

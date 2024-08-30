@@ -51,7 +51,7 @@ class Dog extends SABBaseModel {
   }
 }
 
-class SASSqliteDemoService extends SABBaseService {
+class SASSqliteDemoService extends SASBaseService {
 
   Future<void> testDog() async {
     final SASSqliteService sqlService =  SASSqliteService();

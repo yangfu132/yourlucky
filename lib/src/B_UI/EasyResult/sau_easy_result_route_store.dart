@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_perpttual_calendar/flutter_perpttual_calendar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
@@ -6,6 +7,7 @@ import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_route_title_model.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/sau_textfield_route_model.dart';
+import 'package:your_lucky/src/B_UI/EasyResult/sas_buddha_service.dart';
 import 'package:your_lucky/src/B_UI/EasyResult/sau_avoid_evil_route_store.dart';
 import 'package:your_lucky/src/B_UI/EasyResult/sau_seak_future_route_store.dart';
 import 'package:your_lucky/src/C_ViewModel/EasyDetail/sab_easy_detail_model.dart';
@@ -128,8 +130,8 @@ class SAUEasyResultRouteStore extends SABBaseModel {
   }
 
   void gotoUrl(BuildContext context){
-    
-    _launchUrl('https://flutter.dev');
+    final buddha = SASBuddhaService();
+    _launchUrl(buddha.getPath());
   }
 
   Future<void> _launchUrl(String path) async {
