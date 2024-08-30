@@ -129,15 +129,18 @@ class SAUEasyResultRouteStore extends SABBaseModel {
     }));
   }
 
-  void gotoUrl(BuildContext context){
-    final buddha = SASBuddhaService();
-    _launchUrl(buddha.getPath());
+  String getBuddhaPath(){
+    final buddha = SASBuddhaService(stringTime:detailModel.digitModel().stringTime);
+    return buddha.getPath();
   }
 
-  Future<void> _launchUrl(String path) async {
-    final Uri url = Uri.parse(path);
-    if (!await launchUrl(url)) {
-      throw Exception('Could not launch $url');
+  Future<void> gotoBuddhaUrl(BuildContext context) async {
+    String path = getBuddhaPath();
+    if (path.isNotEmpty) {
+      final Uri url = Uri.parse(path);
+      if (!await launchUrl(url)) {
+        throw Exception('Could not launch $url');
+      }
     }
   }
 

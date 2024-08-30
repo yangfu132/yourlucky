@@ -129,7 +129,7 @@ class SAUEasyResultRouteState extends State<SAUEasyResultRoute> {
                     titleMinWidth: 75,
                     content: '进入详情  ',
                     onTap: () {
-                      widget.store.gotoUrl(context);
+                      widget.store.gotoBuddhaUrl(context);
                     },
                   ),
               ],),

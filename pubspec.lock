@@ -207,10 +207,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_perpttual_calendar
-      sha256: "89c99058a31078f2dd9d61955da209a1c32b29e5f27d88772e88c0d2f036d6c9"
+      sha256: b8ecfda5de075ec61883874bcbef04b82fa4d9bb6fa0b407421042be2f5674ff
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0+10"
+    version: "1.0.0+12"
   flutter_test:
     dependency: "direct dev"
     description: flutter
