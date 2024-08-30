@@ -128,7 +128,9 @@ class SAUEasyResultRouteState extends State<SAUEasyResultRoute> {
                     title: '祈福',
                     titleMinWidth: 75,
                     content: '进入详情  ',
-                    onTap: () => {},
+                    onTap: () {
+                      widget.store.gotoUrl(context);
+                    },
                   ),
               ],),
           ),

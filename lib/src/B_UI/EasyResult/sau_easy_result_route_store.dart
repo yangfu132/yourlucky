@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/A_Context/sac_global.dart';
 import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route.dart';
@@ -124,6 +125,18 @@ class SAUEasyResultRouteStore extends SABBaseModel {
       );
       return SAUDetailRoute(store:store);
     }));
+  }
+
+  void gotoUrl(BuildContext context){
+    
+    _launchUrl('https://flutter.dev');
+  }
+
+  Future<void> _launchUrl(String path) async {
+    final Uri url = Uri.parse(path);
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
   }
 
   void gotoTextField(BuildContext context) {

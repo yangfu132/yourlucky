@@ -101,12 +101,12 @@ class SAUSeekFutureRouteStore extends SAUDetailRouteStore{
     final List<Map> resultList;
     if (globalRowDay == symbolModel.symbolRow) {
       resultList = inputDetailModel.dayModel.resultList();
-    } else if (globalRowMonth == uiRow) {
+    } else if (globalRowMonth == symbolModel.symbolRow) {
       resultList =  inputDetailModel.monthModel.resultList();
     } else {
       SABRowDetailModel rowModel =
       inputDetailModel.rowModelAtRow(symbolModel.symbolRow);
-      resultList =  rowModel.resultList(easyType);
+      resultList =  rowModel.resultList(symbolModel.easyType);
       // title = rowModel.getSymbolName(easyType);
     }
 
