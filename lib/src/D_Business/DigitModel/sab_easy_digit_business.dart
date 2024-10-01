@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter_perpttual_calendar/flutter_perpttual_calendar.dart';
 import 'package:your_lucky/src/A_Context/sac_context.dart';
 import 'package:your_lucky/src/D_Business/Base/sab_base_business.dart';
+import 'package:your_lucky/src/D_Business/Strategy/sab_parent_info_model.dart';
 import 'package:your_lucky/src/E_Service/Sqlite/sas_sqlite_service.dart';
 
 import 'sab_easy_digit_model.dart';
@@ -10,11 +11,22 @@ import 'sab_easy_digit_model.dart';
 class SABEasyDigitBusiness extends SABBaseBusiness {
   final SASSqliteService sqlite = SASSqliteService();
 
+  String deityFromStrategy() {
+    String stringStrategy = SACContext.expertCategory().stringStrategy;
+    List  listStrategy = SABParentInfoModel.baseCategoryArray();
+    int index = listStrategy.indexOf(stringStrategy);
+    if (index >= 0) {
+      return stringStrategy;
+    } else {
+      return '子孙';
+    }
+  }
+
   ///创建测试
   SABEasyDigitModel create() {
     SABEasyDigitModel outEasyModel;
     String strEasyGoal = '待定';
-    String strUsefulDeity = '子孙';
+    String strUsefulDeity = deityFromStrategy();
     List<int> listEasyData = generateEasyArray();
 
     final DateTime easyDateTime = DateTime.now();
