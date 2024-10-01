@@ -1,0 +1,54 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'sau_upload_image_view.dart';
+
+class SAUImageInputView extends StatelessWidget {
+  final String title;
+  final List<String> urls;
+  final ValueChanged<List<String>>? imageChanged;
+  final bool isEdit;
+  final EdgeInsets? padding;
+  final EdgeInsets? imagePadding;
+
+  const SAUImageInputView(
+      {super.key, required this.title,
+        required this.urls,
+        this.imageChanged,
+        this.isEdit = true,
+        this.padding,
+        this.imagePadding});
+
+  @override
+  Widget build(BuildContext context) {
+    final padding = this.padding ?? const EdgeInsets.only(top: 16);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: padding,
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 14,
+              color: Color(0xFF666666),
+            ),
+          ),
+        ),
+        _buildImage(),
+      ],
+    );
+  }
+
+  Widget _buildImage() {
+    final imagePadding =
+        this.imagePadding ?? const EdgeInsets.only(top: 5, bottom: 8);
+    return SAUUploadImageView(
+      urls,
+      isEdit,
+      1,
+      padding: imagePadding,
+      changeBack: imageChanged,
+    );
+  }
+}

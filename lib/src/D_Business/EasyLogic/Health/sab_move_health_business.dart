@@ -1,0 +1,362 @@
+import 'package:your_lucky/src/D_Business/Base/sab_base_business.dart';
+import 'package:your_lucky/src/D_Business/DigitModel/sab_easy_digit_model.dart';
+import 'package:your_lucky/src/D_Business/EarthBranch/sab_earth_branch_business.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_action_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_sum_action_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_sum_addend_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_sum_target_model.dart';
+import 'package:your_lucky/src/D_Business/EasyWords/sab_easy_words_model.dart';
+
+import '../../../A_Context/sac_context.dart';
+import '../../../A_Context/sac_global.dart';
+import '../BaseLogic/sab_easy_logic_model.dart';
+import 'sab_health_model.dart';
+import 'sab_health_origin_business.dart';
+
+///动爻的强弱计算
+class SABMoveHealthBusiness extends SABBaseBusiness {
+  SABMoveHealthBusiness(this._inputEasyModel);
+
+  late final SABHealthOriginBusiness _originBusiness =
+      SABHealthOriginBusiness(_inputEasyModel);
+  final SABEasyDigitModel _inputEasyModel;
+
+  late final SABEarthBranchBusiness _branchBusiness = SABEarthBranchBusiness();
+
+  bool canBeginCalculate(SABHealthModel healthModel, int nRow) {
+    bool result = false;
+    if (healthModel.diagramsModel.isUnFinish(nRow)) {
+      List arrayEffects = effectingArrayAtMoveRightRow(nRow, EasyTypeEnum.from);
+      if (arrayEffects.isEmpty) {
+        result = true;
+      } else {
+        bool allFinish = true;
+        for (int effectRow in arrayEffects) {
+          if (healthModel.diagramsModel.isUnFinish(effectRow)) {
+            allFinish = false;
+            break;
+          } //else cont.
+        } //end for
+        result = allFinish;
+      } // end if
+    } // end if
+    return result;
+  }
+
+  int findCanBeginCalculateRow(SABHealthModel healthModel, List listRow){
+    int nResult = globalRowInvalid;
+    for (int nRow in listRow) {
+      if (canBeginCalculate(healthModel,nRow)) {
+        nResult = nRow;
+      }
+    }
+    return nResult;
+  }
+
+  bool haveUnfinished(SABHealthModel healthModel, List listRow){
+    bool result = false;
+    for (int nRow in listRow) {
+      if (healthModel.diagramsModel.isUnFinish(nRow)) {
+        result = true;
+      } // else cont.
+    } // end for
+    return result;
+  }
+
+  void calculateHealthOfAllMoveRight(SABHealthModel healthModel, List listRow){
+    while (haveUnfinished(healthModel,listRow)) {
+      int nRow = findCanBeginCalculateRow(healthModel,listRow);
+      if (globalRowInvalid != nRow) {
+        calculateHealthOfMoveRightRow(healthModel, nRow, EasyTypeEnum.from);
+      } else {
+        for (int itemRow in listRow) {
+          if (healthModel.diagramsModel.isUnFinish(itemRow)) {
+            if (wordsModel().isMovementAtRow(itemRow)) {
+              calculateMoveSymbolBasicHealthAtRow(healthModel, itemRow);
+              break;
+            } //else {}
+            break;
+          } //else cont.
+        } //end for
+      } // end if
+    } // end while
+  }
+
+  //calculateHealthOfAllMoveRightRow
+  void calculateHealthOfMoveRightRow(
+      SABHealthModel tempHealthModel, int nRow, EasyTypeEnum easyType) {
+
+    List arrayEffects = effectingArrayAtMoveRightRow(nRow, easyType);
+    if (arrayEffects.isNotEmpty) {
+      SABHealthActionModel calculateAction;
+      if (wordsModel().isMovementAtRow(nRow)) {
+        calculateAction = moveSymbolBasicHealthAtRow(tempHealthModel, nRow);
+      } else {
+        calculateAction = originBusiness().symbolBasicHealthAtRow(nRow, easyType);
+      } //end if
+
+      double moveHealth = calculateAction.doubleHealth;
+
+      List<SABHealthSumActionModel> sumActionList = calculateAction.sumActionList;
+      for (int effectsItem in arrayEffects) {
+        if (tempHealthModel.diagramsModel.isUnFinish(effectsItem)) {
+          calculateHealthOfMoveRightRow(tempHealthModel, effectsItem, easyType);
+        }
+        //else cont.
+
+        SABHealthSumActionModel sumActionModel =  adjustHealthAtRow(
+            tempHealthModel, nRow, easyType, effectsItem, easyType);
+        sumActionModel.targetModel.health = moveHealth;
+        moveHealth = sumActionModel.getResult();
+        sumActionList.add(sumActionModel);
+      } //end for
+
+      final actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
+          nRow:nRow,
+          easyType: easyType,
+          doubleHealth: moveHealth,
+          sumActionList:sumActionList
+      );
+      tempHealthModel.updateHealthAtRow(actionModel);
+    } else {
+      tempHealthModel.symbol(nRow, EasyTypeEnum.from)?.isBasicHealth = true;
+    }
+    tempHealthModel.diagramsModel.addToFinishArray(nRow);
+  }
+
+  SABHealthSumActionModel adjustHealthAtRow(SABHealthModel tempHealthModel,
+      int basicRow,
+      EasyTypeEnum baseEasyType,
+      int effectsRow,
+      EasyTypeEnum effectsEasyType) {
+
+     SABDefensiveModel basicDefenseModel =
+     originBusiness().symbolDefensiveAtRow(basicRow, baseEasyType);
+     SABHealthSumTargetModel targetModel = SABHealthSumTargetModel(
+       nRow: basicRow,
+       easyType: baseEasyType,
+       symbolName: logicModel().getSymbolName(basicRow, baseEasyType),
+       symbolEarth:logicModel().getSymbolEarth(basicRow, baseEasyType),
+       defenseModel:basicDefenseModel,
+     );
+
+     SABOutModel outModel = symbolOutAtRow(tempHealthModel,basicRow, effectsRow, effectsEasyType);
+     SABHealthSumAddendModel addendModel = SABHealthSumAddendModel(
+       nRow: effectsRow,
+       easyType: effectsEasyType,
+       symbolName:logicModel().getSymbolName(effectsRow, effectsEasyType),
+       symbolEarth:logicModel().getSymbolEarth(effectsRow, effectsEasyType),
+       outModel: outModel,
+     );
+
+     String basicEarth = logicModel().getSymbolEarth(basicRow, EasyTypeEnum.from);
+     String effectsEarth = logicModel().getSymbolEarth(effectsRow, effectsEasyType);
+     bool isAddToTarget = _branchBusiness.isEarthBorn(effectsEarth, basicEarth);
+     bool isSubToTarget = _branchBusiness.isEarthRestricts(effectsEarth, basicEarth);
+     SABHealthSumActionModel  sumModel = SABHealthSumActionModel(
+       targetModel:targetModel,
+       addendModel:addendModel,
+       isAddToTarget:isAddToTarget,
+       isSubToTarget:isSubToTarget,
+     );
+
+    return sumModel;
+  }
+
+  SABOutModel symbolOutAtRow(
+      SABHealthModel tempHealthModel,
+      int targetRow,
+      int nOutRow,
+      EasyTypeEnum outEasyType) {
+
+    SABOutModel outModel = originBusiness().conversionRateAtRow(targetRow,nOutRow, outEasyType);
+    if (EasyTypeEnum.from == outEasyType) {
+      if (!tempHealthModel.diagramsModel.isUnFinish(nOutRow)) {
+        outModel.health = tempHealthModel.symbolHealthAtRow(nOutRow, outEasyType);
+      } else {
+        coLog(StackTrace.current, LogTypeEnum.remark, "这种情况如何处理？");
+      }
+    } else if (EasyTypeEnum.to == outEasyType) {
+      // outModel.health = symbolBasicHealthAtRow(nOutRow,EasyTypeEnum.to);
+      outModel.health = tempHealthModel.symbolHealthAtRow(nOutRow, outEasyType);
+    } else if (EasyTypeEnum.hide == outEasyType) {
+      outModel.health = tempHealthModel.symbolHealthAtRow(nOutRow, outEasyType);
+    } else {
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
+    }
+    return outModel;
+  }
+
+  ///`动爻的基本值`//////////////////////////////////////////////////////
+
+  ///动爻的基本值----------------------------------------------
+  // 基础值加上变爻的生克
+  void calculateMoveSymbolBasicHealthAtRow(SABHealthModel tempHealthModel, int nRow) {
+    final actionModel = moveSymbolBasicHealthAtRow(tempHealthModel,nRow);
+    tempHealthModel.updateHealthAtRow(actionModel);
+    tempHealthModel.symbol(nRow, EasyTypeEnum.from)?.isBasicHealth = true;
+    tempHealthModel.diagramsModel.addToFinishArray(nRow);
+  }
+
+  SABHealthActionModel moveSymbolBasicHealthAtRow(SABHealthModel tempHealthModel, int nRow) {
+    final calculateAction = originBusiness().symbolBasicHealthAtRow(nRow, EasyTypeEnum.from);
+    List<SABHealthSumActionModel> sumActionList = calculateAction.sumActionList;
+
+    double doubleHealth = calculateAction.doubleHealth;
+    if (isSymbolEffectedAtRow(nRow, EasyTypeEnum.from)) {
+      final sumActionModel = adjustHealthAtRow(
+          tempHealthModel, nRow, EasyTypeEnum.from, nRow, EasyTypeEnum.to);
+      sumActionModel.targetModel.health = doubleHealth;
+      sumActionList.add(sumActionModel);
+      doubleHealth = sumActionModel.getResult();
+    } //else cont.
+
+    final actionModel = SABHealthActionModel(nActionType:ActionTypeEnum.update,
+      nRow:nRow,
+      easyType: EasyTypeEnum.from,
+      doubleHealth: doubleHealth,
+      sumActionList:sumActionList,
+    );
+    return actionModel;
+  }
+
+  bool isSymbolEffectedAtRow(int nRow, EasyTypeEnum easyType) {
+    /*
+     不受生克有以下几种情况:
+     1、旬空；旬空的爻，health不变，但在生克上不起作用，但是在判断时机上起作用；
+     2、日临月临：health无限大，不受生克冲合的影响。
+     3、日合：health保持不变，但是对动爻的生克权有影响。
+     最后、没有爻生克这个爻，或者没有1、2、3爻以外的爻影响；
+
+     其中旬空、日合改变防御值与right，日临月临改变防御值与health，；
+     */
+    bool bResult = false;
+    final defensiveModel = originBusiness().symbolDefensiveAtRow(nRow, easyType);
+    bResult = globalMaxDefensive != defensiveModel.defensive;
+    return bResult;
+  }
+
+  bool isEffectingEarth(String basicEarth, int itemRow) {
+    bool bResult = false;
+    String earth = wordsModel().getSymbolEarth(itemRow, EasyTypeEnum.from);
+    if (_branchBusiness.isEarthBorn(earth, basicEarth)) {
+      bResult = true;
+    } else if (_branchBusiness.isEarthRestricts(earth, basicEarth)) {
+      bResult = true;
+    }
+    //else cont.
+
+    return bResult;
+  }
+
+  List effectingArrayAtMoveRightRow(int basicRow, EasyTypeEnum easyType) {
+    List<int> arrayEffects = <int>[];
+    final symbol = logicModel().symbolAtRow(basicRow, easyType);
+    if (symbol.defensive() != globalMaxDefensive) {
+      String basicEarth = logicModel().getSymbolEarth(basicRow, easyType);
+      List<int> moveRightArray =
+          originBusiness().rowsAtOutRightLevel(OutRightEnum.rightTypeMove);
+      for (int itemRow in moveRightArray) {
+        if (basicRow != itemRow) {
+          if (isEffectingEarth(basicEarth, itemRow)) {
+            arrayEffects.add(itemRow);
+          } //else cont.
+        }//else cont.
+      } //end for
+    } // else cont.
+
+    return arrayEffects;
+  }
+
+  bool isLevel6EffectableAtRow(int nRow, EasyTypeEnum easyType) {
+    bool bResult = false;
+    //TODO:yangfu132除了动爻，静爻可以生克伏神吗？
+    //TODO:yangfu132除了旬空的不可以生克伏神，还有别的不可以生克伏神吗？
+    final symbol = logicModel().rowModelAtRow(nRow).symbolModel(easyType);
+    if (null != symbol) {
+      bResult = !symbol.isEmpty();
+    }
+
+    return bResult;
+  }
+
+  List effectingArrayAtLevel6Row(int nRow, EasyTypeEnum easyType) {
+    List arrayEffects = [];
+
+    String basicEarth = logicModel().getSymbolEarth(nRow, easyType);
+
+    List levelArray =
+        originBusiness().rowsAtOutRightLevel(OutRightEnum.rightTypeMove);
+    levelArray.add(nRow);
+
+    for (int itemRow in levelArray) {
+      if (isLevel6EffectableAtRow(itemRow, EasyTypeEnum.from)) {
+        if (isEffectingEarth(basicEarth, itemRow)) arrayEffects.add(itemRow);
+        //else cont.
+      }
+      //else cont.
+
+    } //endf
+
+    return arrayEffects;
+  }
+
+  bool isEffectingMoveRightAtRow(SABHealthModel tempHealthModel, int nEffectingRow,
+      EasyTypeEnum easyType) {
+    bool bResult = false;
+
+    if (EasyTypeEnum.from == easyType) {
+      //明动爻对其它爻都有生克权
+      if (wordsModel().isMovementAtRow(nEffectingRow)) {
+        bResult = logicModel().isEffectAble(nEffectingRow, easyType);
+      } else {
+        //被日冲的爻只有在strong时才是暗动，才能生克动爻
+        bResult = logicModel().isEffectAble(nEffectingRow, easyType);
+      }
+    } else {
+      coLog(StackTrace.current, LogTypeEnum.error, "error!");
+    } //end if
+    return bResult;
+  }
+
+  bool isMoveRightLevelHasBeginRow(SABHealthModel tempHealthModel) {
+    bool bHasBegin = false;
+    List arrayMoveRightRow =
+        originBusiness().rowsAtOutRightLevel(OutRightEnum.rightTypeMove);
+    if (arrayMoveRightRow.isNotEmpty) {
+      for (int intItem in arrayMoveRightRow) {
+        List arrayEffects = effectingArrayAtMoveRightRow(intItem, EasyTypeEnum.from);
+        if (arrayEffects.isEmpty) {
+          ///这个分支是对的，下面那个分支可能永远也不会走到。因为在一个Level中，总会有不受同级生克的；而上一级对本级的生克已经计算完成。
+          bHasBegin = true;
+          break;
+        } else {
+          bool allFinish = true;
+          for (int itemEffects in arrayEffects) {
+            if (tempHealthModel.diagramsModel.isUnFinish(itemEffects)) {
+              allFinish = false;
+              break;
+            } //else cont.
+          } //end if
+          bHasBegin = allFinish;
+        } //end if
+      } //end for
+    } else {
+      bHasBegin = true;
+    } //end if
+    return bHasBegin;
+  }
+
+  ///`加载函数`//////////////////////////////////////////////////////
+  SABHealthOriginBusiness originBusiness() {
+    return _originBusiness;
+  }
+
+  SABEasyLogicModel logicModel() {
+    return originBusiness().logicModel();
+  }
+
+  SABEasyWordsModel wordsModel() {
+    return originBusiness().wordsModel();
+  }
+}

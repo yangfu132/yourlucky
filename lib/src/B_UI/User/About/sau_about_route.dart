@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+
+class SAUAboutRoute extends StatefulWidget {
+  const SAUAboutRoute({super.key, this.title});
+  final String? title;
+  @override
+  SAUAboutRouteState createState() {
+    return SAUAboutRouteState();
+  }
+}
+
+class SAUAboutRouteState extends State<SAUAboutRoute> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Widget _buildBody() {
+    return const Text('Waiting');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('关于'),
+      ),
+      body: _buildBody(),
+    );
+  }
+}

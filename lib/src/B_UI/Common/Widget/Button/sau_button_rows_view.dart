@@ -1,0 +1,81 @@
+import 'package:flutter/material.dart';
+import 'package:your_lucky/src/B_UI/Common/Widget/Button/sau_button_model.dart';
+import '../sau_divider_widget.dart';
+
+typedef ButtonRowsButtonClick = Function(SAUButtonModel value);
+
+class SAUButtonRowsView extends StatelessWidget {
+  final List<SAUButtonModel> buttonList;
+  final ButtonRowsButtonClick onButtonTap;
+  final bool showDivider;
+
+  const SAUButtonRowsView(
+      {
+        super.key,
+        required this.buttonList,
+        required this.onButtonTap,
+        this.showDivider = false
+      });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 50,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Offstage(offstage: !showDivider, child: const SAUDividerWidget()),
+          Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                textDirection: TextDirection.ltr,
+                children: _buildButtons(),
+              )),
+        ],
+      ),
+    );
+  }
+
+  List<Widget> _buildButtons() {
+    var buttons = List<Widget>.empty(growable: true);
+    Color highColor = Color(0xFFB39936);//Colors.blue
+    for (SAUButtonModel element in buttonList) {
+      final backColor =
+      element.highLight ? highColor : Colors.transparent;
+      final textColor = element.highLight ? Colors.white : const Color(0xFF333333);
+      final bolderColor =
+      element.highLight ? Colors.transparent : highColor;
+      buttons.add(Container(
+          height: 30,
+          padding: const EdgeInsets.only(left: 8),
+          child: Center(
+            child: Material(
+              shape: StadiumBorder(
+                side: BorderSide(
+                  width: 0.5,
+                  color: bolderColor,
+                ),
+              ),
+              clipBehavior: Clip.hardEdge,
+              color: backColor,
+              child: InkWell(
+                  onTap: () => {onButtonTap(element)},
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    constraints: const BoxConstraints(minWidth: 80),
+                    height: 30,
+                    child: Center(
+                      child: Text(element.title,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                            color: textColor,
+                          )),
+                    ),
+                  )),
+            ),
+          )));
+    }
+    return buttons;
+  }
+}

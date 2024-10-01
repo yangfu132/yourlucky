@@ -1,0 +1,341 @@
+import 'package:flutter/material.dart';
+import 'package:your_lucky/src/A_Context/sac_context.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_detail_route_model.dart';
+import 'package:your_lucky/src/B_UI/Common/Route/Detail/sau_route_title_model.dart';
+import 'package:your_lucky/src/B_UI/Common/Widget/Button/sau_button_model.dart';
+
+import '../../Widget/sau_divider_widget.dart';
+import 'sau_detail_route_store.dart';
+
+class SAUDetailRoute extends StatefulWidget {
+  const SAUDetailRoute({super.key, required this.store});
+  final SAUDetailRouteStore store;
+  @override
+  SAUDetailRouteState createState() {
+    return SAUDetailRouteState();
+  }
+}
+
+class SAUDetailRouteState extends State<SAUDetailRoute> {
+  var content = 'loading';
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Widget _buildBody() {
+    // return Text('data');
+    if (widget.store.data.cardList.isEmpty) {
+      return Container();
+    }
+
+    List<Widget> children = <Widget>[];
+    int cardCount = widget.store.data.cardList.length;
+    for (int index = 0; index < cardCount; index++) {
+      children.add(_buildBoxContainer(_buildCardInfo(widget.store.data.getCardModel(index))));
+    }
+    children.add(const SizedBox(height: 40));
+    final body = Container(
+      color: Colors.transparent,
+      child: SingleChildScrollView(
+        child: Column(
+          children: children,
+        ),
+      ),
+    );
+
+    if (widget.store.data.buttonRoles.isEmpty) {
+      return body;
+    } else {
+      return Column(
+        children: [
+          Expanded(
+            child: body,
+          ),
+          _buildBottomButtons(widget.store),
+        ],
+      );
+    }
+  }
+
+  Widget _buildCardInfo(SAUDetailCardModel model) {
+    final resultList = model.resultList;
+
+    List<Widget> children = [
+      _buildTitleWithAction(model.title,model.tapTitle),
+      const SAUDividerWidget(),
+      const SizedBox(height: 10)
+    ];
+    for (int index = 0; index < resultList.length; index++) {
+      Map value = resultList[index];
+      children.add(_buildInfoCell(value['key'], value['value']));
+    }
+    children.add(const SizedBox(height: 10));
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: children
+    );
+  }
+
+  Widget _buildBottomButtons(SAUDetailRouteStore store) {
+    final children = <Widget>[];
+    final buttons = store.data.buttonRoles;
+    final lastIndex = buttons.length - 1;
+    for (int i = 0; i < buttons.length; i++) {
+      children.add(_buildButton(store, buttons[i], i == lastIndex));
+      if (i != lastIndex) {
+        children.add(const SizedBox(width: 10));
+      }
+    }
+
+    return Container(
+      height: 65,
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Color(0x1a0E567F),
+            blurRadius: 10.0,
+            offset: Offset(0, -5),
+          ),
+        ],
+      ),
+      child: Row(children: children),
+    );
+  }
+
+  Widget _buildButton(SAUDetailRouteStore store,
+      SAUButtonModel role, bool isLast) {
+    final backColor = isLast ? const Color(0xFFFEAB00) : Colors.white;
+    final borderColor = isLast ? const Color(0xFFFEAB00) : const Color(0xFFDCDFE6);
+    final textColor = isLast ? Colors.white : Colors.black;
+    return Expanded(
+      child: Material(
+        shape: StadiumBorder(
+          side: BorderSide(
+            width: 0.5,
+            color: borderColor,
+          ),
+        ),
+        clipBehavior: Clip.hardEdge,
+        color: backColor,
+        child: InkWell(
+          onTap: () => store.tapButton(role.code),
+          child: Center(
+            child: Text(
+              role.title,
+              style: TextStyle(
+                fontSize: 16,
+                color: textColor,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 15),
+      child: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTitleWithAction(String title, ContextCallback action) {
+    return Material(
+      color: Colors.white,
+      child: InkWell(
+        onTap: () => action(context,(){setState(() {});}),
+        child: Row(
+          children: [
+            Expanded(
+              child: _buildTitle(title),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Icon(
+                Icons.arrow_forward_ios,
+                size: 16,
+                color: Color(0xFF333333),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoCell(String title, String detail) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.baseline,
+        textBaseline: TextBaseline.ideographic,
+        children: [
+          Container(
+            constraints: const BoxConstraints(minWidth: 114),
+            child: Text(
+              title,
+              style: const TextStyle(
+                fontSize: 14,
+                color: Color(0xFF666666),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Text(
+              detail,
+              style: const TextStyle(
+                fontSize: 14,
+                color: Color(0xFF333333),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBoxContainer(Widget child) {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(15, 10, 15, 0),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      decoration: ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6),
+        ),
+        shadows: const [
+          BoxShadow(
+            color: Color(0x1a0E567F),
+            blurRadius: 20.0,
+            offset: Offset(0, 0),
+          ),
+        ],
+      ),
+      child: child,
+    );
+  }
+
+
+  @override
+  Widget build_new(BuildContext context) {
+    return Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+              image:ExactAssetImage('images/8466654.jpg'),
+              // NetworkImage(
+              //     'https://i-blog.csdnimg.cn/blog_migrate/46fe176149f7cf1c2520bb349eba9039.jpeg'),
+              fit: BoxFit.fill,
+            )),
+        child: Scaffold(
+          backgroundColor: Colors.transparent, //把scaffold的背景色改成透明
+          appBar: AppBar(
+            leading: backIconButton(context),
+            backgroundColor: Colors.transparent,
+            title: Text(
+              widget.store.data.titleModel.title,
+              style: TextStyle(
+                color: Color(0xFFE5CC69),
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  resultAction(context);
+                },
+                style: SACContext.textButtonStyle(),
+                child: resultActionTitle(),
+              ),
+            ],
+          ),
+          body: _buildBody(),
+        )
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    widget.store.requestData();
+    return Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+              image:ExactAssetImage('images/8466654.jpg'),
+              // NetworkImage(
+              //     'https://i-blog.csdnimg.cn/blog_migrate/46fe176149f7cf1c2520bb349eba9039.jpeg'),
+              fit: BoxFit.fill,
+            )),
+        child: Scaffold(
+          backgroundColor: Colors.transparent, //把scaffold的背景色改成透明
+          appBar: AppBar(
+            leading: backIconButton(context),
+            backgroundColor: Colors.transparent,
+            title: Text(
+              widget.store.data.titleModel.title,
+              style: TextStyle(
+                color: Color(0xFFE5CC69),
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  resultAction(context);
+                },
+                style: SACContext.textButtonStyle(),
+                child: resultActionTitle(),
+              ),
+            ],
+          ),
+          body: _buildBody(),
+        )
+    );
+  }
+
+  @override
+  Widget build_old(BuildContext context) {
+    widget.store.requestData();
+    return Scaffold(
+      appBar: AppBar(
+        leading: backIconButton(context),
+        title: Text(widget.store.data.titleModel.title),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              widget.store.data.titleModel.tapTitle(context,(){setState(() {});});
+            },
+            style: SACContext.textButtonStyle(),
+            child: Text(widget.store.data.titleModel.actionTitle),
+          ),
+        ],
+      ),
+      body: _buildBody(),
+    );
+  }
+
+  void resultAction(BuildContext context){
+    widget.store.data.titleModel.tapTitle(context,(){setState(() {});});
+  }
+
+  Widget resultActionTitle(){
+    return Text(widget.store.data.titleModel.actionTitle);
+  }
+
+  IconButton backIconButton(BuildContext context) {
+    return IconButton(
+        icon: const Icon(Icons.arrow_back_ios),
+        color: Color(0xFFE5CC69),
+        onPressed: () {
+          Navigator.pop(context);
+        });
+  }
+}

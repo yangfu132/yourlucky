@@ -1,0 +1,90 @@
+import 'package:your_lucky/src/A_Context/sac_context.dart';
+import 'package:your_lucky/src/A_Context/sac_global.dart';
+import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/Health/sab_health_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/sab_easy_empty_model.dart';
+import 'package:your_lucky/src/D_Business/EasyLogic/sab_health_logic_row_model.dart';
+import 'package:your_lucky/src/D_Business/Strategy/sab_useful_deity_model.dart';
+
+class SABEasyHealthLogicModel extends SABBaseModel {
+  SABEasyHealthLogicModel({
+    required this.inputHealthModel,
+    required this.usefulDeity,
+    required this.lifeHealthWithCritical,
+    required this.usefulHealthWithCritical,
+    required this.isUsefulDeityStrong,
+    required this.isUsefulDeityChangeToRestricts,
+    required this.isUsefulDeityChangeToConflict,
+  });
+  final SABHealthModel inputHealthModel;
+
+  //属性：用神的索引号
+  final SABUsefulDeityModel usefulDeity;
+
+  final _listRowModels = <SABHealthLogicRowModel>[];
+
+  final double lifeHealthWithCritical;
+  final double usefulHealthWithCritical;
+  final bool isUsefulDeityStrong;
+  final bool isUsefulDeityChangeToRestricts;
+  final bool isUsefulDeityChangeToConflict;
+
+  @override void check() {
+    inputHealthModel.check();
+    usefulDeity.check();
+    for (SABHealthLogicRowModel row in _listRowModels) {
+      row.check();
+    }
+    super.check();
+  }
+
+  String getHealthDescription(int nRow, EasyTypeEnum easyType) {
+    return inputHealthModel.symbol(nRow, easyType)?.healthDescription() ?? "easyType:$easyType empty";
+  }
+
+  SABEasyEmptyModel symbolEmpty(int intRow, EasyTypeEnum easyType) {
+    return rowModelAtRow(intRow).symbolEmpty(easyType);
+  }
+
+  bool getIsSymbolDayBroken(int intRow, EasyTypeEnum easyType) {
+    return rowModelAtRow(intRow).getIsSymbolDayBroken(easyType);
+  }
+
+  MonthConflictEnum getConflictOnMonthState(
+      int intRow, EasyTypeEnum easyType) {
+    return rowModelAtRow(intRow).getConflictOnMonthState(easyType);
+  }
+
+  DayConflictEnum getConflictOnDayState(int intRow, EasyTypeEnum easyType) {
+    return rowModelAtRow(intRow).getConflictOnDayState(easyType);
+  }
+
+  bool? getIsSymbolChangeEmpty(int intRow) {
+    return rowModelAtRow(intRow).isSymbolChangeEmpty;
+  }
+
+  void setIsSymbolChangeEmpty(int intRow, bool bSymbolChangeEmpty) {
+    rowModelAtRow(intRow).isSymbolChangeEmpty = bSymbolChangeEmpty;
+  }
+
+  String getDeity(int intRow, EasyTypeEnum easyType) {
+    return rowModelAtRow(intRow).getDeity(easyType);
+  }
+
+  bool getIsSymbolBackMove(int intRow) {
+    return rowModelAtRow(intRow).isSymbolBackMove;
+  }
+
+  /// `加载函数`/////////////////////////////////////////////////////////////////
+
+  void addSymbol(SABHealthLogicRowModel rowModel) {
+    _listRowModels.add(rowModel);
+  }
+
+  SABHealthLogicRowModel rowModelAtRow(int intRow) {
+    if (intRow > _listRowModels.length) {
+      coLog(StackTrace.current, LogTypeEnum.error, "intRow:$intRow");
+    }
+    return _listRowModels[intRow];
+  }
+}
