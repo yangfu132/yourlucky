@@ -27,6 +27,13 @@ class SABLogInBusiness extends SABBaseBusiness {
   void initBusiness(){
     load((dataList) {
       hasUser = dataList.isNotEmpty;
+      SABLoginModel loggedModel;
+      for (SABLoginModel model in dataList) {
+        if (model.isLogged) {
+          loginModel.setModel(model);
+        }
+      }
+      loginSuccessful(loginModel.userMail,loginModel.userPassword);
     });
   }
 
@@ -92,8 +99,7 @@ class SABLogInBusiness extends SABBaseBusiness {
             }
           }
           if (bFind) {
-            loginModel.isLogged = true;
-            setAppType(email,password);
+            loginSuccessful(loginModel.userMail,loginModel.userPassword);
             callback('0','');
             clearText();
           } else {
@@ -107,6 +113,14 @@ class SABLogInBusiness extends SABBaseBusiness {
     //     emailController.text, passwordController.text, (e) {
     //   callback(e.code, e.message ?? "成功");
     // });
+  }
+
+  void loginSuccessful(String email, String password){
+    loginModel.isLogged = true;
+    save(loginModel, (code, message) {
+
+    });
+    setAppType(email,password);
   }
 
   //重置密码

@@ -1,3 +1,6 @@
+
+import 'dart:convert';
+
 import 'package:your_lucky/src/D_Business/Base/sab_base_model.dart';
 
 enum LoginTypeEnum {
@@ -15,8 +18,18 @@ class SABLoginModel extends SABBaseModel {
     required this.userMail,
     required this.loginType,
     required this.dataJson,
-    required this.isLogged,
-  });
+  }) {
+    if (dataJson.isNotEmpty) {
+      Map<String, dynamic> extraData = Map<String, dynamic>.from(json.decode(dataJson));
+      String? aaa = extraData["isLogged"];
+      if (null != aaa) {
+        aaa.toLowerCase() == 'true';
+        isLogged = bool.parse(aaa);
+      }
+      // isLogged = extraData["isLogged"] ?? false;
+    } // else {}
+  }
+
   int? modelId;
   String userName;
   String userPassword;
@@ -33,25 +46,24 @@ class SABLoginModel extends SABBaseModel {
     return modelId;
   }
 
-  // int? modelId;
-  // String userName;
-  // String userPassword;
-  // String userMail;
-  // String stringRemark;
-  // LoginTypeEnum? settingType;
-
-  SABLoginModel.fromJson(Map<String, Object?> json)
+  SABLoginModel.fromJson(Map<String, Object?> jsonData)
       : this(
-    modelId: json['id'] as int,
-    userName: json['userName']! as String,
-    userPassword: json['userPassword']! as String,
-    userMail: json['userMail']! as String,
-    loginType: LoginTypeEnum.values[json['loginType'] as int],
-    dataJson: json['dataJson']! as String,
-    isLogged: false,
+    modelId: jsonData['id'] as int,
+    userName: jsonData['userName']! as String,
+    userPassword: jsonData['userPassword']! as String,
+    userMail: jsonData['userMail']! as String,
+    loginType: LoginTypeEnum.values[jsonData['loginType'] as int],
+    dataJson: jsonData['dataJson']! as String,
   );
 
   @override Map<String, Object?> toJson() {
+    Map<String, dynamic> extraData = {};
+    extraData["isLogged"] = isLogged.toString();
+    ///TODO:add more item
+    if (extraData.isNotEmpty) {
+      dataJson = json.encode(extraData);
+    }
+
     return {
       'id': modelId,
       'userName': userName,
@@ -68,8 +80,7 @@ class SABLoginModel extends SABBaseModel {
         userPassword: '',
         userMail: '',
         loginType: LoginTypeEnum.textType,
-        dataJson: '',
-        isLogged: false);
+        dataJson: '');
   }
 
   void setModel(SABLoginModel model) {
@@ -79,5 +90,6 @@ class SABLoginModel extends SABBaseModel {
     userMail = model.userMail;
     loginType = model.loginType;
     dataJson = model.dataJson;
+    isLogged = model.isLogged;
   }
 }

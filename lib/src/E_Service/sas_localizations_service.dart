@@ -59,7 +59,7 @@ class SASLocalizationsService extends SASBaseService {
   }
 
   static String userLogIn(BuildContext context) {
-    return localizationsString(context, "确定登录", "Sign In");
+    return localizationsString(context, "登录", "Sign In");
   }
 
   static String userConfirm(BuildContext context) {
