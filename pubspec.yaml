@@ -42,7 +42,7 @@ dependencies:
   path:
   bot_toast: # new
   cupertino_icons: # new #^1.0.6
-  cloud_firestore: ^5.0.1
+#  cloud_firestore: ^5.0.1
   flutter_text_viewer: ^0.0.6
   url_launcher: 6.3.0
 dev_dependencies:
