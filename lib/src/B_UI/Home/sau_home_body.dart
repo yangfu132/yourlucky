@@ -26,7 +26,6 @@ class SAUHomeBody extends StatefulWidget {
 class SAUHomeBodyState extends State<SAUHomeBody> {
   AnimationDiceWidget animationWidget = AnimationDiceWidget(() {});
   bool _bAnimation = false;
-  bool _settingIconPressed = false;
   final SASAudioService _audioService = SASAudioService();
 
   @override
@@ -85,41 +84,24 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
             fit: BoxFit.fill,
           ),
           Positioned(
+            top: 120,
+            child: imageWan,
+          ),
+          Positioned(
             top: topPadding + 12,
             right: 12,
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTapDown: (_) {
-                setState(() {
-                  _settingIconPressed = true;
-                });
-              },
-              onTapCancel: () {
-                setState(() {
-                  _settingIconPressed = false;
-                });
-              },
-              onTapUp: (_) {
-                setState(() {
-                  _settingIconPressed = false;
-                });
-                SACNavigator.pushNamed(context, SACRouteUrl.setting, null);
-              },
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 120),
-                curve: Curves.easeOut,
-                width: 48,
-                height: 48,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: _settingIconPressed
-                      ? const Color(0x22E5CC69)
-                      : Colors.transparent,
-                  shape: BoxShape.circle,
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: () => SACNavigator.pushNamed(
+                  context,
+                  SACRouteUrl.setting,
+                  null,
                 ),
-                child: AnimatedScale(
-                  duration: const Duration(milliseconds: 120),
-                  scale: _settingIconPressed ? 0.88 : 1.0,
+                borderRadius: BorderRadius.circular(20),
+                splashColor: const Color(0x33E5CC69),
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
                   child: SvgPicture.asset(
                     'images/exported_image.svg',
                     width: 32,
@@ -132,10 +114,6 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
                 ),
               ),
             ),
-          ),
-          Positioned(
-            top: 120,
-            child: imageWan,
           ),
           Positioned(
             top: widthBg / 2,
