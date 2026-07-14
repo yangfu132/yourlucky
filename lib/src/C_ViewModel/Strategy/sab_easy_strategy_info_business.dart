@@ -22,6 +22,7 @@ class SABEasyStrategyInfoBusiness extends SABBaseBusiness {
   ///UI信息
   Map categoryDictionary() {
     return {
+      '功能': ['存储'],
       '基础': SABParentInfoModel.baseCategoryArray(),
       '分类': SABEasyStrategyInfoModel.categoryArray(),
     };

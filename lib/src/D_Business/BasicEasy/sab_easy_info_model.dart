@@ -35,19 +35,6 @@ class SABEasyInfoModel extends SABBaseModel {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   Map initEasyData() {
     Map dictionary = {};
     dictionary["111111"] = {"name": "第一卦","next":"第二卦"};
@@ -116,3 +103,5 @@ class SABEasyInfoModel extends SABBaseModel {
     dictionary["001011"] = {"name": "第五十四卦","next":"第五十五卦"};
     return dictionary;
   }
+  
+}

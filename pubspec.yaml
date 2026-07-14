@@ -45,6 +45,7 @@ dependencies:
 #  cloud_firestore: ^5.0.1
   flutter_text_viewer: ^0.0.6
   url_launcher: 6.3.0
+  flutter_svg: ^2.0.10
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -72,6 +73,7 @@ flutter:
   assets:
     - images/8466654.jpg
     - images/shangpingwan@2x.png
+    - images/exported_image.svg
     - images/1@2x.png
     - images/2@2x.png
     - images/3@2x.png

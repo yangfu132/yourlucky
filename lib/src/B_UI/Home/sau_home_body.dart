@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:your_lucky/src/A_Context/sac_navigator.dart';
 import 'package:your_lucky/src/A_Context/sac_release.dart';
 import 'package:your_lucky/src/A_Context/sac_route_url.dart';
@@ -25,6 +26,7 @@ class SAUHomeBody extends StatefulWidget {
 class SAUHomeBodyState extends State<SAUHomeBody> {
   AnimationDiceWidget animationWidget = AnimationDiceWidget(() {});
   bool _bAnimation = false;
+  bool _settingIconPressed = false;
   final SASAudioService _audioService = SASAudioService();
 
   @override
@@ -46,6 +48,7 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
   @override
   Widget build(BuildContext context) {
     double buttonWidth = 80.0;
+    final topPadding = MediaQuery.of(context).padding.top;
     double widthBg =
         SACContext.screenHeight(context) > SACContext.screenWidth(context)
             ? SACContext.screenWidth(context)
@@ -82,7 +85,56 @@ class SAUHomeBodyState extends State<SAUHomeBody> {
             fit: BoxFit.fill,
           ),
           Positioned(
-            top: 40,
+            top: topPadding + 12,
+            right: 12,
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTapDown: (_) {
+                setState(() {
+                  _settingIconPressed = true;
+                });
+              },
+              onTapCancel: () {
+                setState(() {
+                  _settingIconPressed = false;
+                });
+              },
+              onTapUp: (_) {
+                setState(() {
+                  _settingIconPressed = false;
+                });
+                SACNavigator.pushNamed(context, SACRouteUrl.setting, null);
+              },
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 120),
+                curve: Curves.easeOut,
+                width: 48,
+                height: 48,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: _settingIconPressed
+                      ? const Color(0x22E5CC69)
+                      : Colors.transparent,
+                  shape: BoxShape.circle,
+                ),
+                child: AnimatedScale(
+                  duration: const Duration(milliseconds: 120),
+                  scale: _settingIconPressed ? 0.88 : 1.0,
+                  child: SvgPicture.asset(
+                    'images/exported_image.svg',
+                    width: 32,
+                    height: 32,
+                    colorFilter: const ColorFilter.mode(
+                      Color(0xFFE5CC69),
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: 120,
             child: imageWan,
           ),
           Positioned(
