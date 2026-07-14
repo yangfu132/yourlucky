@@ -229,7 +229,7 @@ class SABDiagramsInfoModel extends SABBaseModel {
       List array = ["丶父母戌土", "丶兄弟申金", "丶官鬼午火", "丶兄弟酉金", "丶子孙亥水", "丶丶父母丑土"];
 
       dictionary["111110"] = {
-        "name": " 天风姤(乾)",
+        "name": "天风姤(乾)",
         "data": array,
         "世": (1),
         "应": (4)
@@ -629,7 +629,7 @@ class SABDiagramsInfoModel extends SABBaseModel {
         "name": "火雷噬嗑(巽)",
         "data": array,
         "世": (5),
-        "应": (2)
+        "应": (1)
       };
     }
 
@@ -650,8 +650,8 @@ class SABDiagramsInfoModel extends SABBaseModel {
       dictionary["100110"] = {
         "name": "山风蛊(巽)",
         "data": array,
-        "世": (4),
-        "应": (1)
+        "世": (3),
+        "应": (6)
       };
     }
 
