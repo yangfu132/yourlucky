@@ -28,6 +28,19 @@ class SABEasyStrategyInfoBusiness extends SABBaseBusiness {
     };
   }
 
+
+  String usefulDeityWhenLoad() {
+    if ('存储' == stringStrategy) {
+      return '';
+    }
+    List listStrategy = SABParentInfoModel.baseCategoryArray();
+    if (listStrategy.contains(stringStrategy)) {
+      return stringStrategy;
+    }
+    return '子孙';
+  }
+
+
   Future<String> getsCategory() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     stringStrategy = prefs.getString(stringStrategyKey) ?? '趋避';

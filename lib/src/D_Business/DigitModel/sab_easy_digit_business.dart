@@ -83,11 +83,33 @@ class SABEasyDigitBusiness extends SABBaseBusiness {
     }
   }
 
+  SABEasyDigitModel _modelFromJson(Map<String, Object?> json) {
+    final usefulDeityFromStrategy =
+        SACContext.expertCategory().usefulDeityWhenLoad();
+    final originalUsefulDeity = json['usefulDeity']! as String;
+    final usefulDeity = usefulDeityFromStrategy.isEmpty
+        ? originalUsefulDeity
+        : usefulDeityFromStrategy;
+
+    return SABEasyDigitModel(
+      modelId: json['id'] as int,
+      strEasyGoal: json['easyGoal']! as String,
+      strUsefulDeity: usefulDeity,
+      stringTime: json['time']! as String,
+      strStrategy: json['strategy']! as String,
+      dataJson: json['dataJson']! as String,
+      listEasyData: (json['easy']! as String)
+          .split(',')
+          .map((e) => int.parse(e))
+          .toList(),
+    );
+  }
+
   ///加载
   Future<void> load(void Function(List<SABEasyDigitModel> dataList) refresh) async {
     List<SABEasyDigitModel> dataList = <SABEasyDigitModel>[];
     await sqlite.query('easy', (json) {
-      dataList.add(SABEasyDigitModel.fromJson(json));
+      dataList.add(_modelFromJson(json));
       refresh(dataList);
     }, () {
       refresh(dataList);
