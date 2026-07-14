@@ -134,31 +134,10 @@ class SAUEasyResultRouteState extends State<SAUEasyResultRoute> {
                   ),
               ],),
           ),
-
           Positioned(
             bottom: 50,
             height: 50,
-            width: SACContext.screenWidth(context) / 2 - 20,
             left: 15,
-            child: TextButton(
-              child: Text(
-                SASLocalizationsService.easyNamed(context),
-                style: const TextStyle(
-                  color: Color(0xFFE5CC69),
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.left,
-              ),
-              onPressed: () async {
-                widget.store.gotoTextField(context);
-              },
-            ),
-          ),
-          Positioned(
-            bottom: 50,
-            height: 50,
-            right: 15,
             width: SACContext.screenWidth(context) / 2 - 20,
             child: TextButton(
                 child: Text(
@@ -173,6 +152,26 @@ class SAUEasyResultRouteState extends State<SAUEasyResultRoute> {
                 onPressed: () {
                   Navigator.pop(context);
                 }),
+          ),
+          Positioned(
+            bottom: 50,
+            height: 50,
+            width: SACContext.screenWidth(context) / 2 - 20,
+            right: 15,
+            child: TextButton(
+              child: Text(
+                SASLocalizationsService.easyNamed(context),
+                style: const TextStyle(
+                  color: Color(0xFFE5CC69),
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.left,
+              ),
+              onPressed: () async {
+                widget.store.gotoTextField(context);
+              },
+            ),
           ),
         ],
       ),

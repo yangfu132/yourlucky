@@ -103,11 +103,11 @@ class SASLocalizationsService extends SASBaseService {
   }
 
   static String easyRetry(BuildContext context) {
-    return localizationsString(context, "再次占卜", "Continue");
+    return localizationsString(context, "返回", "Back");
   }
 
   static String easyNamed(BuildContext context) {
-    return localizationsString(context, "添加主题", "AddTitle");
+    return localizationsString(context, "保存", "Save");
   }
 }
 
